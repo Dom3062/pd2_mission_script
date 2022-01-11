@@ -1,0 +1,79 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´nav_obstacle_add _blockers´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´documents_WP´ ElementWaypoint 100011
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_waypoint´ ElementInstanceInput 100012
+	event enable_waypoint
+	on_executed
+		´enable_WP´ (delay 0)
+´input_disable_waypoint´ ElementInstanceInput 100013
+	event disable_waypoint
+	on_executed
+		´toggle_OFF_WP´ (delay 0)
+´enable_WP´ MissionScriptElement 100014
+	on_executed
+		´documents_WP´ (delay 0)
+´toggle_OFF_WP´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´documents_WP´
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100016
+	operation remove
+	elements
+		1 ´documents_WP´
+´nav_obstacle_add _blockers´ ElementNavObstacle 100017
+	operation add
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-175, -100, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (275, 375, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (275, 50, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (-300, -150, 0)
+		5
+			guis_id 6
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-300, 100, 0)

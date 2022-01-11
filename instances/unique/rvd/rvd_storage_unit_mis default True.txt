@@ -1,0 +1,1347 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´test_equipment_saw´ (delay 0)
+		´test_enable_content´ (delay 0)
+		´test_sequence´ (delay 0)
+		´test_set_chance´ (delay 0)
+		´relay´ (delay 3)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´seq_setup´ (delay 0)
+		´disabler´ (delay 0)
+		´add_door_blocker´ (delay 0)
+		´disable_lab_units´ (delay 0)
+		´disable_mannequins´ (delay 0)
+		´disable_money_units´ (delay 0)
+´seq_setup´ ElementUnitSequence 100007
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_storage_unit_door/rvd_prop_storage_unit_door/shutter (-128, -102, 10)
+			notify_unit_sequence state_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (-90, 339, 0)
+			notify_unit_sequence hide_disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_vault_loot/bnk_prop_vault_loot_toast/001 (7.62939E-06, 200, 0)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/001 (-27, 309, 0)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/002 (61, 314, 0)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/003 (17, 280, 0)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/004 (-32, 244, 0)
+			notify_unit_sequence hide
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/005 (69, 266, 0)
+			notify_unit_sequence hide
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/006 (-94, 221, -4)
+			notify_unit_sequence hide
+			time 0
+´test_equipment_saw´ ElementEquipment 100009
+	amount 1
+	equipment saw
+	position 2300, 200, 0
+	rotation 0, 0, 0, -1
+´disabler´ ElementDisableUnit 100015
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/001 (-35, 142, 0)
+		2 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/002 (7.00002, 64, 0)
+		3 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/003 (-4.99999, 133, 0)
+		4 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/004 (6.00002, 149, 0)
+		5 core/units/light_spot/light_spot/light_spot (0, 200, 375)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-25, 38, -19)
+		7 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/003 (-44, 38, -19)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/004 (-44, 138, -19)
+		9 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/005 (-44, 210, -19)
+		10 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/006 (-44, 285, -19)
+		11 core/units/light_omni/light_omni/001 (0, 200, 78)
+		12 units/payday2/props/ind_prop_dock_box/ind_prop_dock_box_stacked/001 (-82, 149, 0)
+		13 units/payday2/props/res_prop_livingroom_plant_table_worn/res_prop_livingroom_plant_table_worn/001 (-68, 112, 155)
+		14 units/pd2_dlc_rvd/props/rvd_prop_livingroom_shelf_d_tall_grime/rvd_prop_livingroom_shelf_d_tall_grime/001 (100, 243, 0)
+		15 units/payday2/props/ind_prop_dock_box/ind_prop_dock_box_stacked/004 (48, 347, 0)
+		16 units/payday2/props/res_prop_apartment_mess_straight/res_prop_apartment_mess_straight/001 (-83, 319, 0)
+´interaction/timer_done´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+	on_executed
+		´switch_saws´ (delay 1.5)
+		´teammate_comment_its_done´ (delay 0.5)
+´open_shutter´ ElementUnitSequence 100017
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_storage_unit_door/rvd_prop_storage_unit_door/shutter (-128, -102, 10)
+			notify_unit_sequence open
+			time 0
+´show_saw´ ElementUnitSequence 100018
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence set_hack_time_45_sec
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´start_enable_interactions´ MissionScriptElement 100019
+	on_executed
+		´show_saw´ (delay 0)
+´input_show_saw´ ElementInstanceInput 100020
+	event enable_interactions
+	on_executed
+		´start_enable_interactions´ (delay 0)
+´input_allow_briefcase´ ElementInstanceInput 100021
+	event allow_briefcase
+	on_executed
+		´toggle´ (delay 0)
+´decide_content´ MissionScriptElement 100022
+	on_executed
+		´briefcase´ (delay 0) DISABLED
+		´ammo´ (delay 0) DISABLED
+		´trash´ (delay 0)
+		´small_loot´ (delay 0) DISABLED
+´show_diamond_bag001´ ElementUnitSequence 100023
+	position 600, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/001 (-27, 309, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´briefcase´ MissionScriptElement 100024
+	DISABLED
+	on_executed
+		´enable_single_diamonds´ (delay 0)
+		´input_hide_saws´ (delay 0)
+		´show_single_diamonds´ (delay 0)
+		´WP_loot´ (delay 1)
+		´output_found_briefcase´ (delay 0)
+		´enable_light´ (delay 0)
+		´normal´ (delay 0) DISABLED
+		´hard´ (delay 0) DISABLED
+		´one_difficulty_rules_them_all´ (delay 0)
+		´ovk´ (delay 0) DISABLED
+		´ew_dw_sm´ (delay 0) DISABLED
+		´enable_lookat_bags´ (delay 0)
+´ammo´ MissionScriptElement 100025
+	DISABLED
+	on_executed
+		´show_ammo_shelf´ (delay 0)
+		´output_found_anything_but_briefcase´ (delay 0)
+		´enable_light´ (delay 0)
+´trash´ MissionScriptElement 100026
+	on_executed
+		´chance´ (delay 0)
+		´output_found_anything_but_briefcase´ (delay 0)
+´test_enable_content´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+´enable_single_diamonds´ ElementEnableUnit 100032
+	position 800, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/001 (-35, 142, 0)
+		2 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/002 (7.00002, 64, 0)
+		3 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/003 (-4.99999, 133, 0)
+		4 units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/004 (6.00002, 149, 0)
+´show_ammo_shelf´ ElementUnitSequence 100037
+	position 1300, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (-90, 339, 0)
+			notify_unit_sequence show_enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (-90, 339, 0)
+			notify_unit_sequence state_4
+			time 0
+´input_allow_ammo´ ElementInstanceInput 100038
+	event allow_ammo
+	on_executed
+		´toggle_2´ (delay 0)
+´toggle´ ElementToggle 100040
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´briefcase´ DISABLED
+		2 ´trash´
+´toggle_2´ ElementToggle 100041
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´ammo´ DISABLED
+		2 ´trash´
+´add_door_blocker´ ElementNavObstacle 100046
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (98, -43, 0)
+´remove_door_blocker´ ElementNavObstacle 100047
+	operation remove
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (98, -43, 0)
+´WP_loot´ ElementWaypoint 100049
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 16, 306, 41
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_loot´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´WP_loot´
+´output_interacted_with_briefcase´ ElementInstanceOutput 100051
+	event interacted_with_briefcase
+´output_found_briefcase´ ElementInstanceOutput 100052
+	event found_briefcase
+´civi_hands_up´ ElementSpecialObjective 100053
+	SO_access 3
+	action_duration_max 3
+	action_duration_min 3
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 61.9387, 207, 0
+	rotation 0, 0, 0.994522, 0.104528
+	scan true
+	search_distance 0
+	search_position -175 -50 0
+	so_action cmf_so_surrender
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´civi_panic´
+´civi_panic´ ElementSpecialObjective 100057
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 61.9387, 207, 50
+	rotation 0, 0, 0.994522, 0.104528
+	scan true
+	search_distance 0
+	search_position -175 -50 0
+	so_action cmf_so_panic
+	trigger_on none
+	use_instigator true
+	followup_elements
+´disable_lab_units´ ElementDisableUnit 100074
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_play_sound_001´ ElementPlaySound 100079
+	append_prefix false
+	interrupt true
+	position 125, 75, 125
+	rotation 0, 0, 0, -1
+	sound_event f11m_sin
+	use_instigator false
+´point_blurzone_001´ ElementBlurZone 100089
+	height 200
+	mode 2
+	position -49, 207, 75
+	radius 325
+	rotation 0, 0, 0, -1
+´switch_saws´ ElementUnitSequence 100090
+	position 1100, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence state_interaction_enabled
+			time 0.1
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence hide_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence show_prop_only
+			time 0
+	on_executed
+		´WP_take_saw´ (delay 0)
+´test_sequence´ ElementUnitSequence 100092
+	position 2200, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´took_saw´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+	on_executed
+		´relay´ (delay 0)
+´WP_take_saw´ ElementWaypoint 100093
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 3, -21, 78
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_take_saw´ ElementOperator 100094
+	operation remove
+	elements
+		1 ´WP_take_saw´
+´loose_money´ MissionScriptElement 100008
+	on_executed
+		´enable_money_units´ (delay 0)
+´small_loot´ MissionScriptElement 100068
+	DISABLED
+	on_executed
+		´loose_money´ (delay 0)
+		´output_found_anything_but_briefcase´ (delay 0)
+´input_allow_small_loot´ ElementInstanceInput 100098
+	event allow_small_loot
+	on_executed
+		´toggle_3´ (delay 0)
+´toggle_3´ ElementToggle 100099
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´trash´
+		2 ´small_loot´ DISABLED
+´hide_saws´ ElementUnitSequence 100035
+	position 1800, 300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/saw_take (-1.99999, -1, 1.80783E-07)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´input_hide_saws´ ElementInstanceInput 100100
+	event hide_saws
+	on_executed
+		´hide_saws´ (delay 0)
+´disable_mannequins´ ElementDisableUnit 100109
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_01/001 (-91, 260, 0)
+		2 units/payday2/props/previs/mannequins/previs_mannequin_02/001 (-76, 329, 0)
+		3 units/payday2/props/previs/mannequins/previs_mannequin_03/001 (-18, 361, 0)
+		4 units/payday2/props/previs/mannequins/previs_mannequin_03/002 (90, 146, 0)
+		5 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/001 (93, 78, 0)
+		6 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/002 (-73, 175, 32)
+		7 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/003 (-95, 138, 0)
+		8 units/payday2/props/previs/mannequins/previs_mannequin_dst_03/001 (-95, 78, 0)
+´enable_mannequins´ ElementEnableUnit 100110
+	position 1500, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_01/001 (-91, 260, 0)
+		2 units/payday2/props/previs/mannequins/previs_mannequin_02/001 (-76, 329, 0)
+		3 units/payday2/props/previs/mannequins/previs_mannequin_03/001 (-18, 361, 0)
+		4 units/payday2/props/previs/mannequins/previs_mannequin_03/002 (90, 146, 0)
+		5 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/001 (93, 78, 0)
+		6 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/002 (-73, 175, 32)
+		7 units/payday2/props/previs/mannequins/previs_mannequin_dst_02/003 (-95, 138, 0)
+		8 units/payday2/props/previs/mannequins/previs_mannequin_dst_03/001 (-95, 78, 0)
+´mannequins´ MissionScriptElement 100111
+	on_executed
+		´enable_mannequins´ (delay 0)
+´chance´ ElementLogicChance 100114
+	chance 99
+	position 1500, -600, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´another_chance´ (delay 0)
+´fail´ ElementLogicChanceTrigger 100115
+	outcome fail
+	position 1700, -600, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance´
+	on_executed
+		´most_important_thing_in_the_world´ (delay 0) DISABLED
+´most_important_thing_in_the_world´ MissionScriptElement 100116
+	DISABLED
+	on_executed
+		´enable_light´ (delay 0)
+		´show_most_important_thing_in_the_world´ (delay 0)
+		´env_effect_play_dust´ (delay 0)
+´enable_light´ ElementEnableUnit 100117
+	position 1700, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_spot/light_spot/light_spot (0, 200, 375)
+		2 core/units/light_omni/light_omni/001 (0, 200, 78)
+	on_executed
+		´seq_lamp_on´ (delay 0)
+´disable_money_units´ ElementDisableUnit 100119
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_rvd/props/rvd_prop_warehouse_workbench/rvd_prop_warehouse_workbench/001 (-72, 174, 0)
+	on_executed
+		´hide_money´ (delay 0)
+´hide_money´ ElementUnitSequence 100141
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-63, 90, 81)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (-68, 109, 81)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (-66, 76, 81)
+			notify_unit_sequence hidden
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (-77, 130, 81)
+			notify_unit_sequence hidden
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (-58, 123, 81)
+			notify_unit_sequence hidden
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-76, 175, 81)
+			notify_unit_sequence hidden
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-90, 186, 81)
+			notify_unit_sequence hidden
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-76, 195, 81)
+			notify_unit_sequence hidden
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-84, 217, 81)
+			notify_unit_sequence hidden
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (-95, 232, 81)
+			notify_unit_sequence hidden
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/011 (-66, 215, 81)
+			notify_unit_sequence hidden
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/012 (-53, 211, 81)
+			notify_unit_sequence hidden
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/013 (-59, 231, 81)
+			notify_unit_sequence hidden
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/014 (-61, 245, 81)
+			notify_unit_sequence hidden
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/015 (-72, 263, 81)
+			notify_unit_sequence hidden
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/016 (-84, 270, 81)
+			notify_unit_sequence hidden
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/017 (-56, 173, 81)
+			notify_unit_sequence hidden
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/018 (-63, 154, 81)
+			notify_unit_sequence hidden
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/019 (-57, 138, 81)
+			notify_unit_sequence hidden
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/020 (-34, 145, 81)
+			notify_unit_sequence hidden
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/021 (-38, 161, 81)
+			notify_unit_sequence hidden
+			time 0
+´show_money´ ElementUnitSequence 100142
+	position 1400, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-63, 90, 81)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (-68, 109, 81)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (-66, 76, 81)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (-77, 130, 81)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (-58, 123, 81)
+			notify_unit_sequence show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-76, 175, 81)
+			notify_unit_sequence show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-90, 186, 81)
+			notify_unit_sequence show
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-76, 195, 81)
+			notify_unit_sequence show
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-84, 217, 81)
+			notify_unit_sequence show
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (-95, 232, 81)
+			notify_unit_sequence show
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/011 (-66, 215, 81)
+			notify_unit_sequence show
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/012 (-53, 211, 81)
+			notify_unit_sequence show
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/013 (-59, 231, 81)
+			notify_unit_sequence show
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/014 (-61, 245, 81)
+			notify_unit_sequence show
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/015 (-72, 263, 81)
+			notify_unit_sequence show
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/016 (-84, 270, 81)
+			notify_unit_sequence show
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/017 (-56, 173, 81)
+			notify_unit_sequence show
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/018 (-63, 154, 81)
+			notify_unit_sequence show
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/019 (-57, 138, 81)
+			notify_unit_sequence show
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/020 (-34, 145, 81)
+			notify_unit_sequence show
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/021 (-38, 161, 81)
+			notify_unit_sequence show
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-63, 90, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (-68, 109, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (-66, 76, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (-77, 130, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (-58, 123, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-76, 175, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-90, 186, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-76, 195, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-84, 217, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (-95, 232, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/011 (-66, 215, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		33
+			id 33
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/012 (-53, 211, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		34
+			id 34
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/013 (-59, 231, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		35
+			id 35
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/014 (-61, 245, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		36
+			id 36
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/015 (-72, 263, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		37
+			id 37
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/016 (-84, 270, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		38
+			id 38
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/017 (-56, 173, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		39
+			id 39
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/018 (-63, 154, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		40
+			id 40
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/019 (-57, 138, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		41
+			id 41
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/020 (-34, 145, 81)
+			notify_unit_sequence interact_enable
+			time 0
+		42
+			id 42
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/021 (-38, 161, 81)
+			notify_unit_sequence interact_enable
+			time 0
+´enable_money_units´ ElementEnableUnit 100143
+	position 1400, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_rvd/props/rvd_prop_warehouse_workbench/rvd_prop_warehouse_workbench/001 (-72, 174, 0)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-25, 38, -19)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/003 (-44, 38, -19)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/004 (-44, 138, -19)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/005 (-44, 210, -19)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/006 (-44, 285, -19)
+	on_executed
+		´show_money´ (delay 0)
+´output_placed_saw´ ElementInstanceOutput 100144
+	event placed_saw
+´placed_saw´ ElementUnitSequenceTrigger 100145
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/equipment/rvd_interactable_saw_no_jam/rvd_interactable_saw_no_jam/real_saw (-1.99998, -1, 3.55271E-13)
+	on_executed
+		´output_placed_saw´ (delay 0)
+´output_found_anything_but_briefcase´ ElementInstanceOutput 100146
+	event found_anything_but_briefcase
+´show_single_diamonds´ ElementUnitSequence 100150
+	position 800, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/001 (-35, 142, 0)
+			notify_unit_sequence interactive_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/002 (7.00002, 64, 0)
+			notify_unit_sequence interactive_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/003 (-4.99999, 133, 0)
+			notify_unit_sequence interactive_on
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/diamondheist_diamond_pickups/diamond_pickup_single_02/004 (6.00002, 149, 0)
+			notify_unit_sequence interactive_on
+			time 0
+´took_loot´ MissionScriptElement 100151
+	TRIGGER TIMES 1
+	on_executed
+		´remove_WP_loot´ (delay 0)
+		´output_interacted_with_briefcase´ (delay 0)
+´show_most_important_thing_in_the_world´ ElementUnitSequence 100153
+	position 1700, -1000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_vault_loot/bnk_prop_vault_loot_toast/001 (7.62939E-06, 200, 0)
+			notify_unit_sequence show
+			time 0
+´relay´ MissionScriptElement 100044
+	on_executed
+		´remove_WP_take_saw´ (delay 0)
+		´open_shutter´ (delay 0)
+		´decide_content´ (delay 0)
+		´remove_door_blocker´ (delay 0)
+´seq_lamp_on´ ElementUnitSequence 100028
+	position 1700, -950, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_ceiling_light_a/dah_prop_ceiling_light_a/001 (0, 200, 296.695)
+			notify_unit_sequence lamp_on
+			time 0
+´took_diamond_bag´ ElementUnitSequenceTrigger 100043
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/001 (-27, 309, 0)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/002 (61, 314, 0)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/003 (17, 280, 0)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/004 (-32, 244, 0)
+		5
+			guis_id 5
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/005 (69, 266, 0)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/006 (-94, 221, -4)
+	on_executed
+		´took_loot´ (delay 0)
+		´teammate_comment_got_one´ (delay 0)
+		´2´ (delay 0)
+´normal´ ElementFilter 100163
+	DISABLED
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 600, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´4´ (delay 0) DISABLED
+´hard´ ElementFilter 100164
+	DISABLED
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 700, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´5´ (delay 0) DISABLED
+´one_difficulty_rules_them_all´ ElementFilter 100165
+	difficulty_easy true
+	difficulty_easy_wish true
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 800, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´6´ (delay 0)
+´ovk´ ElementFilter 100166
+	DISABLED
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 900, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´8´ (delay 0) DISABLED
+´8´ MissionScriptElement 100169
+	DISABLED
+	on_executed
+		´show_diamond_bag001´ (delay 0)
+		´show_diamond_bag002´ (delay 0)
+		´show_diamond_bag003´ (delay 0)
+		´show_diamond_bag004´ (delay 0)
+		´show_diamond_bag005´ (delay 0)
+		´show_diamond_bag006´ (delay 0)
+´6´ MissionScriptElement 100170
+	on_executed
+		´show_diamond_bag001´ (delay 0)
+		´show_diamond_bag002´ (delay 0)
+		´show_diamond_bag003´ (delay 0)
+		´show_diamond_bag004´ (delay 0)
+		´show_diamond_bag005´ (delay 0)
+		´show_diamond_bag006´ (delay 0)
+´5´ MissionScriptElement 100171
+	DISABLED
+	on_executed
+		´show_diamond_bag001´ (delay 0)
+		´show_diamond_bag002´ (delay 0)
+		´show_diamond_bag003´ (delay 0)
+		´show_diamond_bag004´ (delay 0)
+		´show_diamond_bag005´ (delay 0)
+´4´ MissionScriptElement 100172
+	DISABLED
+	on_executed
+		´show_diamond_bag002´ (delay 0)
+		´show_diamond_bag001´ (delay 0)
+		´show_diamond_bag003´ (delay 0)
+		´show_diamond_bag004´ (delay 0)
+´show_diamond_bag002´ ElementUnitSequence 100173
+	position 700, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/002 (61, 314, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´show_diamond_bag003´ ElementUnitSequence 100174
+	position 800, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/003 (17, 280, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´show_diamond_bag004´ ElementUnitSequence 100175
+	position 900, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/004 (-32, 244, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´show_diamond_bag005´ ElementUnitSequence 100176
+	position 1000, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/005 (69, 266, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´show_diamond_bag006´ ElementUnitSequence 100177
+	position 800, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_diamond_bag/rvd_prop_diamond_bag/006 (-94, 221, -4)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´ew_dw_sm´ ElementFilter 100181
+	DISABLED
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1000, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´10´ (delay 0) DISABLED
+´10´ MissionScriptElement 100182
+	DISABLED
+	on_executed
+		´show_diamond_bag006´ (delay 0)
+		´show_diamond_bag001´ (delay 0)
+		´show_diamond_bag002´ (delay 0)
+		´show_diamond_bag003´ (delay 0)
+		´show_diamond_bag004´ (delay 0)
+		´show_diamond_bag005´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100042
+	base_time 0
+	effect effects/payday2/environment/rvd_bats
+	max_amount 0
+	position 0, 71, -5
+	random_time 0
+	rotation -0.406736, 0, 0, -0.913546
+	screen_space false
+	on_executed
+		´sound_bats´ (delay 0)
+´bats´ MissionScriptElement 100054
+	on_executed
+		´env_effect_play_001´ (delay 0.75)
+		´enable_bats´ (delay 0)
+´enable_bats´ ElementEnableUnit 100065
+	position 1600, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_dock_box/ind_prop_dock_box_stacked/001 (-82, 149, 0)
+		2 units/payday2/props/res_prop_livingroom_plant_table_worn/res_prop_livingroom_plant_table_worn/001 (-68, 112, 155)
+		3 units/pd2_dlc_rvd/props/rvd_prop_livingroom_shelf_d_tall_grime/rvd_prop_livingroom_shelf_d_tall_grime/001 (100, 243, 0)
+		4 units/payday2/props/ind_prop_dock_box/ind_prop_dock_box_stacked/004 (48, 347, 0)
+		5 units/payday2/props/res_prop_apartment_mess_straight/res_prop_apartment_mess_straight/001 (-83, 319, 0)
+´env_effect_play_dust´ ElementPlayEffect 100056
+	base_time 0
+	effect effects/payday2/particles/flares/godrays_dust_smaller
+	max_amount 0
+	position -2, 209, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´sound_bats´ ElementPlaySound 100059
+	append_prefix false
+	interrupt true
+	position 0, 71, 24
+	rotation -0.406736, 0, 0, -0.913546
+	sound_event bats_fly_away
+	use_instigator false
+´another_chance´ ElementLogicChance 100060
+	chance 75
+	position 1500, -700, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´mannequins´ (delay 0)
+´fail_again´ ElementLogicChanceTrigger 100061
+	outcome fail
+	position 1600, -700, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´another_chance´
+	on_executed
+		´bats´ (delay 0)
+´test_set_chance´ ElementLogicChanceOperator 100066
+	chance 0
+	operation set_chance
+	position 2300, 0, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´another_chance´
+´teammate_comment_here_it_is´ ElementTeammateComment 100067
+	close_to_element false
+	comment g14
+	position 0, 25, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100070
+	as_subtitle false
+	debug_string teammate_comment_here_it_is
+	show_instigator false
+´lookat_bags´ ElementLookAtTrigger 100071
+	DISABLED
+	TRIGGER TIMES 1
+	distance 200
+	in_front true
+	interval 0.1
+	position 0, 100, 0
+	rotation 0, 0, 1, 1.19209E-07
+	sensitivity 0,9
+	on_executed
+		´teammate_comment_here_it_is´ (delay 0)
+´enable_lookat_bags´ ElementToggle 100072
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lookat_bags´ DISABLED
+´teammate_comment_got_one´ ElementTeammateComment 100033
+	TRIGGER TIMES 1
+	close_to_element false
+	comment v05
+	position 1500, 300, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´teammate_comment_got_another´ ElementTeammateComment 100069
+	TRIGGER TIMES 1
+	close_to_element false
+	comment v06
+	position 1500, 100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´2´ ElementCounter 100073
+	counter_target 2
+	on_executed
+		´teammate_comment_got_another´ (delay 0)
+´teammate_comment_its_done´ ElementTeammateComment 100075
+	close_to_element true
+	comment v07
+	position 2, -27, 59
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

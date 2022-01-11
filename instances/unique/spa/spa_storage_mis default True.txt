@@ -1,0 +1,764 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100064
+	DISABLED
+	EXECUTE ON STARTUP
+	position -1000, 100, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+´startup´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	TRIGGER TIMES 1
+	on_executed
+		´seq_disable´ (delay 0)
+		´disable_briefcases´ (delay 0)
+´disable_all´ ElementDisableUnit 100011
+	position -700, 1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_long_shelf/001 (109, -139, 0)
+		2 units/payday2/architecture/bnk/bnk_int_fence_door/001 (9.00002, -50, 1)
+		3 units/payday2/architecture/bnk/bnk_int_fence_gate/002 (1.52588E-05, 99.9999, 0)
+		4 units/payday2/architecture/bnk/bnk_int_fence_wall_short/001 (0, 200, 0)
+		5 units/payday2/architecture/bnk/bnk_int_fence_wall_short/002 (6.10352E-05, -100, 0)
+		6 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m_grey/004 (5.71692, 201.003, 0)
+		7 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m1m_above_door_grey/002 (3.34253, 101.031, 200)
+		8 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m1m_grey/003 (5.71692, 201.003, 200)
+		9 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_2m_shorter_grey/001 (3.0343, -198.965, 0)
+		10 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_2m1m_grey/001 (3.03418, -23.9651, 200)
+		11 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/002 (3.03418, 88.0349, 0)
+		12 units/payday2/architecture/mkp/mkp_int_floor_4x4m_a/002 (0, -200, 0)
+		13 units/payday2/architecture/mkp/mkp_int_floor_4x4m_a/001 (0, -200, 0)
+		14 units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_long_shelf/002 (341, -97, 0)
+	on_executed
+		´add_door_blocker´ (delay 0)
+´delay´ MissionScriptElement 100014
+	on_executed
+		´disable_all´ (delay 1)
+´seq_disable´ ElementUnitSequence 100015
+	position -700, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door/001 (9.00002, -50, 1)
+			notify_unit_sequence deactivate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/002 (3.03418, 88.0349, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence deactivate
+			time 0
+	on_executed
+		´delay´ (delay 0)
+´enable_vault´ ElementInstanceInput 100017
+	TRIGGER TIMES 1
+	event enable_vault
+	on_executed
+		´enable_vault_2´ (delay 0)
+		´enable_vault_seq´ (delay 1)
+		´func_instance_output_001´ (delay 0)
+		´activate_drill_waypoint_link´ (delay 0)
+´enable_ammo´ ElementInstanceInput 100018
+	TRIGGER TIMES 1
+	event enable_ammo
+	on_executed
+		´enable_ammo_2´ (delay 0)
+		´activate_door´ (delay 1)
+		´logic_toggle_003´ (delay 0)
+´disable_briefcases´ ElementUnitSequence 100019
+	position -800, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´disable_money´ (delay 0)
+´disable_money´ ElementUnitSequence 100022
+	position -900, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (356.874, 73.3556, 146)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (371.492, 83.9062, 26)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (358.702, 74.3966, 26)
+			notify_unit_sequence hidden
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (373.081, -80.1839, 27)
+			notify_unit_sequence hidden
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (355.507, -71.0283, 27)
+			notify_unit_sequence hidden
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (285.534, -169.337, 86)
+			notify_unit_sequence hidden
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (265.947, -162.775, 86)
+			notify_unit_sequence hidden
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (247.334, -163.277, 86)
+			notify_unit_sequence hidden
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (142.722, -156.645, 146)
+			notify_unit_sequence hidden
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/001 (166, -173, 85)
+			notify_unit_sequence state_hide
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/002 (363.617, 4.31476, 25)
+			notify_unit_sequence state_hide
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/003 (368.165, 38.024, 86)
+			notify_unit_sequence state_hide
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/004 (224.256, -164.04, 145)
+			notify_unit_sequence state_hide
+			time 0
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100023
+	position -1000, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´func_sequence_002´ (delay 0)
+´enable_vault_2´ ElementEnableUnit 100024
+	position -700, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_long_shelf/001 (109, -139, 0)
+		2 units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+		3 units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+		4 units/payday2/architecture/bnk/bnk_int_fence_wall_short/001 (0, 200, 0)
+		5 units/payday2/architecture/bnk/bnk_int_fence_gate/002 (1.52588E-05, 99.9999, 0)
+		6 units/payday2/architecture/bnk/bnk_int_fence_door/001 (9.00002, -50, 1)
+		7 units/payday2/architecture/bnk/bnk_int_fence_wall_short/002 (6.10352E-05, -100, 0)
+		8 units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_long_shelf/002 (341, -97, 0)
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100026
+	operation add
+	position -700, 1200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
+´enable_ammo_2´ ElementEnableUnit 100029
+	position -700, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_2m_shorter_grey/001 (3.0343, -198.965, 0)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/002 (3.03418, 88.0349, 0)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m_grey/004 (5.71692, 201.003, 0)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m1m_grey/003 (5.71692, 201.003, 200)
+		5 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_1m1m_above_door_grey/002 (3.34253, 101.031, 200)
+		6 units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_2m1m_grey/001 (3.03418, -23.9651, 200)
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´enable_vault_seq´ ElementUnitSequence 100044
+	position -800, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence set_hack_time_90s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence set_jam_times_to_2
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence activate
+			time 1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (356.874, 73.3556, 146)
+			notify_unit_sequence interact_enable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (371.492, 83.9062, 26)
+			notify_unit_sequence interact_enable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (358.702, 74.3966, 26)
+			notify_unit_sequence interact_enable
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (373.081, -80.1839, 27)
+			notify_unit_sequence interact_enable
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (355.507, -71.0283, 27)
+			notify_unit_sequence interact_enable
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (285.534, -169.337, 86)
+			notify_unit_sequence interact_enable
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (265.947, -162.775, 86)
+			notify_unit_sequence interact_enable
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (247.334, -163.277, 86)
+			notify_unit_sequence interact_enable
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (142.722, -156.645, 146)
+			notify_unit_sequence interact_enable
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (356.874, 73.3556, 146)
+			notify_unit_sequence show
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/003 (371.492, 83.9062, 26)
+			notify_unit_sequence show
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/004 (358.702, 74.3966, 26)
+			notify_unit_sequence show
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/005 (373.081, -80.1839, 27)
+			notify_unit_sequence show
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (355.507, -71.0283, 27)
+			notify_unit_sequence show
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (285.534, -169.337, 86)
+			notify_unit_sequence show
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (265.947, -162.775, 86)
+			notify_unit_sequence show
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (247.334, -163.277, 86)
+			notify_unit_sequence show
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/010 (142.722, -156.645, 146)
+			notify_unit_sequence show
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/001 (166, -173, 85)
+			notify_unit_sequence state_show
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/002 (363.617, 4.31476, 25)
+			notify_unit_sequence state_show
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/003 (368.165, 38.024, 86)
+			notify_unit_sequence state_show
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_weapon_case_2x1/gen_interactable_weapon_case_2x1/004 (224.256, -164.04, 145)
+			notify_unit_sequence state_show
+			time 0
+	on_executed
+		´logic_random_001´ (delay 0)
+´show_briefcase1´ ElementUnitSequence 100045
+	position -1000, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+			notify_unit_sequence enable_interaction
+			time 1
+	on_executed
+		´toggle_briefcase_waypoint001´ (delay 0)
+´show_briefcase2´ ElementUnitSequence 100046
+	position -1000, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+			notify_unit_sequence enable_interaction
+			time 1
+	on_executed
+		´toggle_briefcase_waypoint002´ (delay 0)
+´logic_random_001´ ElementRandom 100047
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´show_briefcase2´ (delay 0)
+		´show_briefcase1´ (delay 0)
+´toggle_briefcase_waypoint001´ ElementToggle 100048
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´briefcase_waypoint001´ DISABLED
+´toggle_briefcase_waypoint002´ ElementToggle 100049
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´briefcase_waypoint002´ DISABLED
+´briefcase_waypoint001´ ElementWaypoint 100050
+	DISABLED
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 369, -59, 117
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´briefcase_waypoint002´ ElementWaypoint 100051
+	DISABLED
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 226, -170, 62
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´briefcase_pickup´ ElementUnitSequenceTrigger 100052
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/001 (371.33, -60.619, 85)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_mad/props/mad_interactable_weapon_case/mad_interactable_weapon_case_1x1_closed/002 (228.534, -162.487, 26)
+	on_executed
+		´remove_briefcase_waypoint´ (delay 0)
+´remove_briefcase_waypoint´ ElementOperator 100053
+	operation remove
+	elements
+		1 ´briefcase_waypoint001´ DISABLED
+		2 ´briefcase_waypoint002´ DISABLED
+	on_executed
+		´briefcase_pickedup´ (delay 0)
+´activate_waypoints´ ElementInstanceInput 100037
+	TRIGGER TIMES 1
+	event activate_waypoint
+	on_executed
+		´filter´ (delay 0)
+´filter´ ElementRandom 100039
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´briefcase_waypoint002´ (delay 0) DISABLED
+		´briefcase_waypoint001´ (delay 0) DISABLED
+´func_instance_output_001´ ElementInstanceOutput 100054
+	event disable_ammo_locker_chance
+´drill_done´ ElementUnitSequenceTrigger 100055
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+	on_executed
+		´open_door/hide_drill´ (delay 0)
+		´func_instance_output_002´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´open_door/hide_drill´ ElementUnitSequence 100056
+	position -700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small/001 (-1.52588E-05, 38, 85)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door/001 (9.00002, -50, 1)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´disable_door_blocker´ (delay 0)
+´activate_door´ ElementUnitSequence 100057
+	position -800, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/002 (3.03418, 88.0349, 0)
+			notify_unit_sequence activate_door
+			time 0
+	on_executed
+		´func_sequence_003´ (delay 0)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100058
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/002 (3.03418, 88.0349, 0)
+	on_executed
+		´disable_door_blocker_2´ (delay 0)
+´disable_door_blocker´ ElementNavObstacle 100059
+	operation remove
+	position -700, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
+´disable_door_blocker_2´ ElementNavObstacle 100060
+	operation remove
+	position -700, -900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
+´drill_waypoint´ ElementWaypoint 100061
+	icon pd2_drill
+	only_in_civilian false
+	position -36, 40, 124
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´drill_waypoint_link´ MissionScriptElement 100062
+	DISABLED
+	on_executed
+		´drill_waypoint´ (delay 0)
+´activate_drill_waypoint_link´ ElementToggle 100065
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´drill_waypoint_link´ DISABLED
+		2 ´check_if_vault´ DISABLED
+´func_instance_input_001´ ElementInstanceInput 100066
+	TRIGGER TIMES 1
+	event activate_drill_waypoint
+	on_executed
+		´drill_waypoint_link´ (delay 0) DISABLED
+		´logic_link_001´ (delay 0) DISABLED
+´func_instance_output_002´ ElementInstanceOutput 100067
+	event drill_done
+´briefcase_pickedup´ ElementInstanceOutput 100068
+	event briefcase_pickedup
+´check_if_vault´ ElementAreaTrigger 100069
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -200, 0, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´vault_found´ (delay 0)
+´vault_found´ ElementInstanceOutput 100070
+	event vault_found
+´point_debug_001´ ElementDebug 100071
+	as_subtitle true
+	debug_string Drill Done
+	show_instigator false
+´logic_operator_001´ ElementOperator 100072
+	operation remove
+	elements
+		1 ´drill_waypoint´
+´logic_toggle_001´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´drill_waypoint´
+´logic_link_001´ MissionScriptElement 100036
+	DISABLED
+´logic_toggle_002´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´logic_link_001´ DISABLED
+´func_sequence_002´ ElementUnitSequence 100042
+	position -1100, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_crowbar/gen_pku_crowbar/001 (331.079, -106.721, 43)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_crowbar/gen_pku_crowbar/001 (331.079, -106.721, 43)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´disable_ammo_shelf´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100043
+	position -900, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_crowbar/gen_pku_crowbar/001 (331.079, -106.721, 43)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_crowbar/gen_pku_crowbar/001 (331.079, -106.721, 43)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´enable_ammo_shelf001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100073
+	position -700, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/architecture/mus_int_lab/mus_int_lab_wall_a_4x4/001 (0, 200, 0)
+´func_disable_unit_002´ ElementDisableUnit 100084
+	position -700, -700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/architecture/mus_int_lab/mus_int_lab_wall_a_4x4/001 (0, 200, 0)
+´disable_ammo_shelf´ ElementUnitSequence 100086
+	position -1200, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (300, -150, 0)
+			notify_unit_sequence state_6
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (300, -150, 0)
+			notify_unit_sequence hide_disable_interaction
+			time 1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/002 (350, 100, 0)
+			notify_unit_sequence state_6
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/002 (350, 100, 0)
+			notify_unit_sequence hide_disable_interaction
+			time 0
+´enable_ammo_shelf001´ ElementUnitSequence 100087
+	position -1000, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/001 (300, -150, 0)
+			notify_unit_sequence show_enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/props/spa_prop_armory_shelf_ammo/spa_prop_armory_shelf_ammo/002 (350, 100, 0)
+			notify_unit_sequence show_enable_interaction
+			time 0
+´ammo_bag_placed´ ElementAreaTrigger 100013
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator equipment
+	instigator_name ammo_bag
+	interval 0.1
+	position 258, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_instance_output_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100016
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ammo_bag_placed´ DISABLED
+´func_instance_output_003´ ElementInstanceOutput 100089
+	event ammo_bag_placed_inside_ammo_storage
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100090
+	as_subtitle false
+	debug_string ammo_bag_placed
+	show_instigator false

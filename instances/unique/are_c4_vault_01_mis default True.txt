@@ -1,0 +1,920 @@
+´prepare_c4´ ElementInstanceInput 100021
+	event Mark_C4
+	on_executed
+		´toggle´ (delay 0)
+´toggle´ ElementToggle 100045
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_c4´ DISABLED
+	on_executed
+		´enable X´ (delay 0)
+´enable_c4´ ElementInstanceInput 100046
+	DISABLED
+	event enable c4
+	on_executed
+		´begin c4 sequence´ (delay 0)
+´begin c4 sequence´ MissionScriptElement 100047
+	on_executed
+		´waypoint -  goto´ (delay 0)
+		´toggle_2´ (delay 0)
+´waypoint -  goto´ ElementWaypoint 100048
+	icon pd2_goto
+	only_in_clean false
+	position 400, 0, 271.553
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´toggle_2´ ElementToggle 100049
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger´ DISABLED
+´trigger´ ElementAreaTrigger 100050
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 400
+	instigator player
+	interval 0.1
+	position 400, 0, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 800
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove waypoint - goto´ (delay 0)
+		´waypoint -  c4´ (delay 0)
+´remove waypoint - goto´ ElementOperator 100051
+	operation remove
+	elements
+		1 ´waypoint -  goto´
+	on_executed
+		´show c4´ (delay 0)
+´waypoint -  c4´ ElementWaypoint 100052
+	icon pd2_c4
+	only_in_clean false
+	position 400, 0, 346.553
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´c4 counter´ ElementCounter 100053
+	counter_target 3
+	on_executed
+		´remove waypoint - c4´ (delay 0)
+´c4 planted´ ElementUnitSequenceTrigger 100054
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+	on_executed
+		´c4 counter´ (delay 0)
+´c4 all placed´ ElementInstanceOutput 100055
+	event c4 all placed
+	on_executed
+		´toggle_3´ (delay 0)
+		´select placement´ (delay 0)
+´remove waypoint - c4´ ElementOperator 100056
+	operation remove
+	elements
+		1 ´waypoint -  c4´
+	on_executed
+		´c4 all placed´ (delay 0)
+´show c4´ ElementUnitSequence 100057
+	position 500, -750, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+			notify_unit_sequence state_vis_show_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+			notify_unit_sequence state_vis_show_enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+			notify_unit_sequence state_vis_show_enable
+			time 0
+´blow up c4´ ElementInstanceInput 100062
+	event c4 blow up
+	on_executed
+		´which place am i in the line to blow up´ (delay 0)
+´blow up c4_2´ ElementUnitSequence 100063
+	position 525, -1075, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+´blow up c4_3´ MissionScriptElement 100064
+	DISABLED
+	on_executed
+		´blow up c4_2´ (delay 0)
+´remove floor´ ElementDisableUnit 100065
+	position 325, -1075, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´hide c4´ (delay 0)
+		´explosion_damage´ (delay 0)
+		´show waypoint´ (delay 0)
+´explode c4´ ElementUnitSequenceTrigger 100066
+	BASE DELAY 5
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence activate_explode_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+		2
+			guis_id 2
+			sequence activate_explode_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+		3
+			guis_id 3
+			sequence activate_explode_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+	on_executed
+		´remove floor´ (delay 0)
+		´fx_explosion´ (delay 0)
+´temp_money_acquired´ ElementInstanceOutput 100043
+	event Money Acquired
+´toggle_3´ ElementToggle 100077
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´blow up c4_3´ DISABLED
+´waypoint_saw´ ElementWaypoint 100059
+	icon pd2_generic_saw
+	only_in_clean false
+	position 400, 0, 400
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove waypoint - saw´ ElementOperator 100060
+	operation remove
+	elements
+		1 ´waypoint_saw´
+	on_executed
+		´off_5´ (delay 0)
+		´Saw_Used´ (delay 0)
+´drill setup done´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+	on_executed
+		´remove waypoint - saw´ (delay 0)
+´enable X´ ElementEnableUnit 100089
+	position 400, -450, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_vault_concrete/are_prop_vault_concrete/001 (0, 0, 400)
+	on_executed
+		´hide black van´ (delay 0) DISABLED
+´disable X by default´ ElementDisableUnit 100090
+	EXECUTE ON STARTUP
+	position 50, 50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_vault_concrete/are_prop_vault_concrete/001 (0, 0, 400)
+´show_van´ ElementInstanceInput 100091
+	DISABLED
+	event Show Van
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´fx_explosion´ ElementPlayEffect 100022
+	base_time 0
+	effect effects/payday2/particles/explosions/c4_wall_explosion
+	max_amount 0
+	position 400, 0, 400
+	random_time 0
+	rotation 0, 1, 0, -4.37114E-08
+	screen_space false
+´Setup Cutters´ ElementUnitSequence 100068
+	EXECUTE ON STARTUP
+	position 400, 0, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence state_set_timer_30
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence state_set_timer_30
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence state_set_timer_30
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence stop_cut_sound
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence stop_cut_sound
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence stop_cut_sound
+			time 0
+´cutter_1_timer_done´ ElementUnitSequenceTrigger 100096
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+	on_executed
+		´remove´ (delay 0)
+´cutter_2_timer_done´ ElementUnitSequenceTrigger 100106
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+	on_executed
+		´remove_2´ (delay 0)
+´cutter_3_timer_done´ ElementUnitSequenceTrigger 100108
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+	on_executed
+		´remove_3´ (delay 0)
+´temp´ ElementDisableUnit 100125
+	position 225, 550, 0
+	rotation 0, 0, 0.707107, -0.707107
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_vault_concrete/are_prop_vault_concrete_cap_01/001 (0, 0, 400)
+	on_executed
+		´remove_4´ (delay 0)
+´temp001´ ElementDisableUnit 100126
+	position 225, 750, 0
+	rotation 0, 0, 0.707107, -0.707107
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_vault_concrete/are_prop_vault_concrete_cap_02/001 (0, 0, 400)
+	on_executed
+		´remove_5´ (delay 0)
+´temp002´ ElementDisableUnit 100127
+	position 225, 950, 0
+	rotation 0, 0, 0.707107, -0.707107
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_vault_concrete/are_prop_vault_concrete_cap_03/001 (0, 0, 400)
+	on_executed
+		´remove_6´ (delay 0)
+´remove´ ElementUnitSequence 100118
+	position 450, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´waypoint_grab_cutter001´ (delay 0)
+		´Saw_Finished´ (delay 0)
+´remove_2´ ElementUnitSequence 100119
+	position 450, 750, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´waypoint_grab_cutter002´ (delay 0)
+		´Saw_Finished´ (delay 0)
+´remove_3´ ElementUnitSequence 100120
+	position 450, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´waypoint_grab_cutter003´ (delay 0)
+		´Saw_Finished´ (delay 0)
+´logic_counter_operator_001´ ElementCounterOperator 100122
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´which place am i in the line to blow up´
+	on_executed
+		´1st was picked´ (delay 0)
+´logic_counter_operator_002´ ElementCounterOperator 100123
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´which place am i in the line to blow up´
+	on_executed
+		´2nd was picked´ (delay 0)
+´logic_counter_operator_003´ ElementCounterOperator 100124
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´which place am i in the line to blow up´
+	on_executed
+		´3rd was picked´ (delay 0)
+´which place am i in the line to blow up´ ElementCounter 100129
+	counter_target 1
+	on_executed
+		´blow up c4_3´ (delay 0) DISABLED
+		´point_debug_001´ (delay 0)
+´disable 1st´ ElementInstanceInput 100128
+	event disable 1st
+	on_executed
+		´off´ (delay 0)
+´disable 2nd´ ElementInstanceInput 100135
+	event disable 2nd
+	on_executed
+		´off_2´ (delay 0)
+´disable 3rd´ ElementInstanceInput 100136
+	event disable 3rd
+	on_executed
+		´off_3´ (delay 0)
+´1st was picked´ ElementInstanceOutput 100137
+	event 1st was picked
+	on_executed
+		´off_4´ (delay 0)
+		´point_debug_002´ (delay 0)
+´2nd was picked´ ElementInstanceOutput 100138
+	event 2nd was picked
+	on_executed
+		´off_4´ (delay 0)
+		´point_debug_003´ (delay 0)
+´3rd was picked´ ElementInstanceOutput 100139
+	event 3rd was picked
+	on_executed
+		´off_4´ (delay 0)
+		´point_debug_004´ (delay 0)
+´off´ ElementToggle 100140
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link 1´
+	on_executed
+		´2nd on´ (delay 0)
+´off_2´ ElementToggle 100141
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link 2´ DISABLED
+	on_executed
+		´3rd on´ (delay 0)
+´off_3´ ElementToggle 100142
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link 3´ DISABLED
+´select placement´ MissionScriptElement 100143
+	on_executed
+		´link 3´ (delay 0) DISABLED
+		´link 2´ (delay 0) DISABLED
+		´link 1´ (delay 0)
+´on´ ElementToggle 100144
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link 2´ DISABLED
+´on_2´ ElementToggle 100149
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link 3´ DISABLED
+´off_4´ ElementToggle 100001
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´select placement´
+´2nd on´ MissionScriptElement 100117
+	on_executed
+		´on´ (delay 0)
+´3rd on´ MissionScriptElement 100121
+	on_executed
+		´on_2´ (delay 0)
+´point_debug_001´ ElementDebug 100145
+	as_subtitle true
+	debug_string VAULT Should eXPLODE NOW
+	show_instigator false
+´point_debug_002´ ElementDebug 100146
+	as_subtitle true
+	debug_string 1 set
+	show_instigator false
+´point_debug_003´ ElementDebug 100147
+	as_subtitle true
+	debug_string 2 set
+	show_instigator false
+´point_debug_004´ ElementDebug 100148
+	as_subtitle true
+	debug_string 3 set
+	show_instigator false
+´link 1´ MissionScriptElement 100150
+	on_executed
+		´logic_counter_operator_001´ (delay 0)
+´link 2´ MissionScriptElement 100151
+	DISABLED
+	on_executed
+		´logic_counter_operator_002´ (delay 0)
+´link 3´ MissionScriptElement 100152
+	DISABLED
+	on_executed
+		´logic_counter_operator_003´ (delay 0)
+´hide c4´ ElementUnitSequence 100156
+	position 225, -1075, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence spawn_dummy
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence spawn_dummy
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence spawn_dummy
+			time 0
+	on_executed
+		´remove cap´ (delay 0)
+´remove cap´ ElementInstanceOutput 100069
+	event remove cap
+´Clean Up´ ElementInstanceInput 100030
+	event Clean Up
+	on_executed
+		´remove all waypoints´ (delay 0)
+´remove all waypoints´ ElementOperator 100071
+	operation remove
+	elements
+		1 ´waypoint -  c4´
+		2 ´waypoint -  goto´
+		3 ´waypoint_saw´
+		4 ´waypoint_grab_cutter001´
+		5 ´waypoint_grab_cutter002´
+		6 ´waypoint_grab_cutter003´
+	on_executed
+		´disable interactables´ (delay 0)
+´disable interactables´ ElementUnitSequence 100155
+	position 400, -1575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_circle_cutter/gen_interactable_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence hide_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/001 (250, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/002 (400, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/gen_plantable_c4_x10/003 (550, 0, 400)
+			notify_unit_sequence state_vis_hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (195, 0, 500)
+			notify_unit_sequence state_vis_hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/002 (395, 0, 500)
+			notify_unit_sequence state_vis_hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/003 (595, 0, 500)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´OFF´ (delay 0)
+´OFF´ ElementToggle 100157
+	set_trigger_times -1
+	toggle off
+´cutter_2_pku´ ElementUnitSequenceTrigger 100014
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/002 (395, 0, 500)
+	on_executed
+		´temp001´ (delay 0)
+		´saw_removed´ (delay 0)
+´cutter_3_pku´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/003 (595, 0, 500)
+	on_executed
+		´temp´ (delay 0)
+		´saw_removed´ (delay 0)
+´cutter_1_pku´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (195, 0, 500)
+	on_executed
+		´temp002´ (delay 0)
+		´saw_removed´ (delay 0)
+´waypoint_grab_cutter001´ ElementWaypoint 100012
+	icon pd2_generic_interact
+	only_in_clean false
+	position 200, 0, 475
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_grab_cutter002´ ElementWaypoint 100010
+	icon pd2_generic_interact
+	only_in_clean false
+	position 400, 0, 475
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_grab_cutter003´ ElementWaypoint 100011
+	icon pd2_generic_interact
+	only_in_clean false
+	position 600, 0, 475
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_4´ ElementOperator 100013
+	operation remove
+	elements
+		1 ´waypoint_grab_cutter003´
+	on_executed
+		´money´ (delay 1)
+		´env_effect_play_003´ (delay 0)
+´remove_5´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´waypoint_grab_cutter002´
+	on_executed
+		´money_2´ (delay 1)
+		´env_effect_play_002´ (delay 0)
+´remove_6´ ElementOperator 100018
+	operation remove
+	elements
+		1 ´waypoint_grab_cutter001´
+	on_executed
+		´money_3´ (delay 1)
+		´env_effect_play_001´ (delay 0)
+´hide black van´ ElementUnitSequence 100019
+	DISABLED
+	position 325, -450, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_nav_obstacle_001´ ElementNavObstacle 100033
+	operation add
+	position 400, -200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/006 (525, -100, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/004 (525, 0, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (525, -100, 0)
+´explosion_damage´ ElementExplosionDamage 100009
+	damage 80
+	position 400, 0, 375
+	range 500
+	rotation 0, 0, 0, -1
+´show waypoint´ ElementCounter 100020
+	counter_target 2
+	on_executed
+		´show saw waypoint´ (delay 0)
+´show_saw_waypoint´ ElementInstanceInput 100031
+	event show_saw_waypoint
+	on_executed
+		´show waypoint´ (delay 0)
+´show saw waypoint´ MissionScriptElement 100034
+	TRIGGER TIMES 1
+	on_executed
+		´waypoint_saw´ (delay 0)
+´off_5´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´show saw waypoint´
+´Saw_Used´ ElementInstanceOutput 100025
+	event saw_used
+´Saw_Finished´ ElementInstanceOutput 100036
+	event Saw_Finished
+´money´ ElementUnitSequence 100038
+	position 75, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/005 (608.002, 1.8217, 530.978)
+			notify_unit_sequence drop_bundle
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/006 (579.186, 1.8217, 580.767)
+			notify_unit_sequence drop_bundle
+			time 1
+´money_2´ ElementUnitSequence 100039
+	position 75, 750, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/003 (387.121, 10.7004, 523.153)
+			notify_unit_sequence drop_bundle
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/004 (405.446, -7.62486, 573.259)
+			notify_unit_sequence drop_bundle
+			time 1
+´money_3´ ElementUnitSequence 100040
+	position 75, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/001 (200, 13, 524)
+			notify_unit_sequence drop_bundle
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/002 (200, -14.4019, 572.696)
+			notify_unit_sequence drop_bundle
+			time 1
+´Money bundles 01´ ElementUnitSequenceTrigger 100082
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/001 (200, 13, 524)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/002 (200, -14.4019, 572.696)
+	on_executed
+		´temp_money_acquired´ (delay 0)
+		´point_debug_006´ (delay 0)
+´Money bundles001´ ElementUnitSequenceTrigger 100084
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/003 (387.121, 10.7004, 523.153)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/004 (405.446, -7.62486, 573.259)
+	on_executed
+		´temp_money_acquired´ (delay 0)
+		´point_debug_007´ (delay 0)
+´Money bundles002´ ElementUnitSequenceTrigger 100092
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/005 (608.002, 1.8217, 530.978)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/pickups/gen_pku_money_plasic_wrapped/gen_pku_money_plasic_wrapped/006 (579.186, 1.8217, 580.767)
+	on_executed
+		´temp_money_acquired´ (delay 0)
+		´point_debug_008´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100000
+	base_time 0
+	effect effects/payday2/environment/falling_money
+	max_amount 0
+	position 197, 0, 525
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_002´ ElementPlayEffect 100023
+	base_time 0
+	effect effects/payday2/environment/falling_money
+	max_amount 0
+	position 397, 0, 525
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_003´ ElementPlayEffect 100028
+	base_time 0
+	effect effects/payday2/environment/falling_money
+	max_amount 0
+	position 597, 0, 525
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´point_debug_006´ ElementDebug 100073
+	as_subtitle false
+	debug_string SHOW 1
+	show_instigator false
+´point_debug_007´ ElementDebug 100074
+	as_subtitle false
+	debug_string SHOW 2
+	show_instigator false
+´point_debug_008´ ElementDebug 100076
+	as_subtitle false
+	debug_string SHOW 3
+	show_instigator false
+´func_instance_input_001´ ElementInstanceInput 100078
+	event QA_CHEAT
+	on_executed
+		´prepare_c4´ (delay 0)
+		´remove waypoint - goto´ (delay 1)
+		´c4 planted´ (delay 3)
+		´blow up c4_2´ (delay 4)
+		´temp_money_acquired´ (delay 5)
+´saw_removed´ ElementInstanceOutput 100029
+	event Saw_Removed

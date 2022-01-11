@@ -1,0 +1,943 @@
+´SO_reader´ ElementSpecialObjective 100003
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 15864
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 15
+	needs_pos_rsrv true
+	path_haste none
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 150, -10, 0
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 1500
+	search_position 100 -50 0
+	so_action e_so_interact_mid
+	trigger_on none
+	followup_elements
+´activate_SO´ MissionScriptElement 100008
+	on_executed
+		´SO_reader´ (delay 0.5) DISABLED
+		´enable_SO´ (delay 0)
+´set_reader´ ElementUnitSequence 100009
+	position 2200, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_interact_disabled
+			time 0
+´start´ MissionScriptElement 100010
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´set_reader´ (delay 0)
+´area_picked_up001´ ElementAreaTrigger 100011
+	amount 1
+	depth 80000
+	height 4000
+	instigator player
+	interval 0.5
+	position 2100, -600, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 80000
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´cont´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100016
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 barcode_brickell
+´data_instigator_rule_002´ ElementInstigatorRule 100017
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 barcode_downtown
+´data_instigator_rule_003´ ElementInstigatorRule 100018
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 barcode_edgewater
+´data_instigator_rule_004´ ElementInstigatorRule 100019
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 barcode_isles_beach
+´data_instigator_rule_005´ ElementInstigatorRule 100020
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 barcode_opa_locka
+´area_picked_up002´ ElementAreaTrigger 100012
+	amount 1
+	depth 80000
+	height 4000
+	instigator player
+	interval 0.5
+	position 2000, -600, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 80000
+	rules_element_ids
+		1 ´data_instigator_rule_002´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´cont´ (delay 0)
+´area_picked_up003´ ElementAreaTrigger 100013
+	amount 1
+	depth 80000
+	height 4000
+	instigator player
+	interval 0.5
+	position 1900, -600, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 80000
+	rules_element_ids
+		1 ´data_instigator_rule_003´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´cont´ (delay 0)
+´area_picked_up004´ ElementAreaTrigger 100014
+	amount 1
+	depth 80000
+	height 4000
+	instigator player
+	interval 0.5
+	position 1800, -600, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 80000
+	rules_element_ids
+		1 ´data_instigator_rule_004´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´cont´ (delay 0)
+´area_picked_up005´ ElementAreaTrigger 100015
+	amount 1
+	depth 80000
+	height 4000
+	instigator player
+	interval 0.5
+	position 1700, -600, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 80000
+	rules_element_ids
+		1 ´data_instigator_rule_005´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´cont´ (delay 0)
+´cont´ MissionScriptElement 100021
+	on_executed
+		´state_activated´ (delay 0.5)
+		´add1_barcode´ (delay 0)
+´state_activated´ ElementUnitSequence 100022
+	position 1900, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_interact_enabled
+			time 0
+	on_executed
+		´show_WP´ (delay 0)
+		´point_debug_022´ (delay 0)
+´picked_up_barcode´ ElementInstanceInput 100028
+	event picked_up_barcode
+´deactivate_SO´ MissionScriptElement 100029
+	on_executed
+		´disable_SO´ (delay 0)
+´disable_SO´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_reader´ DISABLED
+	on_executed
+		´remove_SO´ (delay 0)
+´remove_SO´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´SO_reader´ DISABLED
+´interacted_with_reader_right´ ElementUnitSequenceTrigger 100032
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+	on_executed
+		´wait ...´ (delay 0)
+		´point_debug_011´ (delay 0)
+		´toggle_right_wrong001´ (delay 0)
+´interacted_with_reader_wrong´ ElementUnitSequenceTrigger 100033
+	sequence_list
+		1
+			guis_id 1
+			sequence wrong
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+	on_executed
+		´wait ...´ (delay 0)
+		´point_debug_012´ (delay 0)
+´wait ...´ MissionScriptElement 100034
+	on_executed
+		´set_random_time´ (delay 0)
+		´start_2´ (delay 0.5)
+		´point_debug_001´ (delay 0)
+		´remove_WP´ (delay 0)
+		´disable_reader_2´ (delay 0)
+		´activate_SO´ (delay 0)
+		´disable_reader_activate´ (delay 0)
+		´enable_faster_comment´ (delay 0)
+		´sub1_barcode´ (delay 0)
+		´Bain_starts_encoding´ (delay 0)
+		´start_bain_comment´ (delay 0)
+´timer_reader´ ElementTimer 100035
+	timer 0
+	on_executed
+		´done´ (delay 0)
+´set_random_time´ ElementRandom 100036
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´90s´ (delay 0)
+		´120´ (delay 0)
+		´180´ (delay 0)
+´start_2´ ElementTimerOperator 100037
+	operation start
+	position 1400, 0, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_reader´
+´90s´ ElementTimerOperator 100038
+	operation set_time
+	position 1500, 200, 100
+	rotation 0, 0, 0, -1
+	time 90
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_006´ (delay 0)
+´120´ ElementTimerOperator 100039
+	operation set_time
+	position 1400, 200, 100
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_007´ (delay 0)
+´180´ ElementTimerOperator 100040
+	operation set_time
+	position 1300, 200, 100
+	rotation 0, 0, 0, -1
+	time 180
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_008´ (delay 0)
+´point_debug_001´ ElementDebug 100041
+	as_subtitle false
+	debug_string wait for Bain ...
+	show_instigator false
+´done´ MissionScriptElement 100042
+	BASE DELAY 1
+	on_executed
+		´escape´ (delay 0) DISABLED
+		´WRONG´ (delay 0)
+		´point_debug_009´ (delay 0)
+		´deactivate_SO´ (delay 0)
+		´disable_faster_comment´ (delay 0)
+´escape´ MissionScriptElement 100043
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´instance_escape´ (delay 0)
+		´disable_everything´ (delay 0)
+		´disable_reader_2´ (delay 0)
+		´Bain_escape´ (delay 0)
+		´teammate_comment_get_out´ (delay 10)
+		´point_debug_010´ (delay 0)
+		´set_reader_correct´ (delay 0)
+		´func_experience_001´ (delay 0)
+´instance_escape´ ElementInstanceOutput 100044
+	event escape
+´pause´ ElementTimerOperator 100045
+	operation pause
+	position 1100, 300, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_027´ (delay 0)
+´cops_interrupt´ MissionScriptElement 100046
+	on_executed
+		´pause´ (delay 0)
+		´deactivate_SO´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´disable_reader´ (delay 0)
+		´enable_reader_restart´ (delay 0)
+		´show_WP´ (delay 0)
+		´set_to_error´ (delay 0)
+		´teammate_comment_swear´ (delay 2)
+´complete´ ElementSpecialObjectiveTrigger 100047
+	event complete
+	position 2000, -200, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_reader´ DISABLED
+	on_executed
+		´cops_interrupt´ (delay 0)
+´admin´ ElementSpecialObjectiveTrigger 100048
+	event administered
+	position 2000, -300, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_reader´ DISABLED
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100049
+	as_subtitle false
+	debug_string someone runs to reader
+	show_instigator false
+´point_debug_003´ ElementDebug 100050
+	as_subtitle true
+	debug_string Bain: Cops interrupted reader, get it working!
+	show_instigator false
+´unpause´ ElementTimerOperator 100051
+	operation start
+	position 1000, 300, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_028´ (delay 0)
+´player_restarts´ MissionScriptElement 100052
+	on_executed
+		´unpause´ (delay 0)
+		´point_debug_004´ (delay 0)
+		´remove_WP´ (delay 0)
+		´activate_SO´ (delay 0)
+		´set_reader_disable_interact´ (delay 0)
+		´set_reader_again´ (delay 0.1)
+		´enable_reader´ (delay 0)
+´point_debug_004´ ElementDebug 100053
+	as_subtitle true
+	debug_string Bain: "I get the info again, good job."
+	show_instigator false
+´reader_restart´ ElementUnitSequenceTrigger 100054
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+		2
+			guis_id 2
+			sequence wrong
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+	on_executed
+		´player_restarts´ (delay 0)
+		´point_debug_019´ (delay 0)
+´disable_reader´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interacted_with_reader_wrong´
+		2 ´interacted_with_reader_right´
+´enable_reader_restart´ ElementToggle 100056
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´reader_restart´ DISABLED
+´toggle_right_wrong´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interacted_with_reader_right´
+	on_executed
+		´point_debug_005´ (delay 0)
+´point_debug_005´ ElementDebug 100059
+	as_subtitle false
+	debug_string toggle right wrong
+	show_instigator false
+´WP_reader´ ElementWaypoint 100060
+	icon wp_standard
+	only_in_civilian false
+	position 254, -19, 127
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_WP´ MissionScriptElement 100061
+	on_executed
+		´WP_reader´ (delay 0)
+		´point_debug_021´ (delay 0)
+´remove_WP´ ElementOperator 100062
+	operation remove
+	elements
+		1 ´WP_reader´
+´disable_everything´ ElementToggle 100063
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´cont´
+		2 ´state_activated´
+		3 ´teammate_comment_swear´
+		4 ´teammate_comment_faster´
+´teammate_comment_get_out´ ElementTeammateComment 100064
+	close_to_element false
+	comment g17
+	position 1500, 500, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´WRONG´ MissionScriptElement 100077
+	on_executed
+		´Bain_WRONG´ (delay 0)
+		´enable_reader_activate´ (delay 0)
+		´point_debug_013´ (delay 0.1)
+		´set_reader_again´ (delay 0.1)
+		´set_reader_WRONG´ (delay 0)
+		´instance_output_start_bain_reminder´ (delay 0)
+		´got_barcode´ (delay 1)
+´Bain_WRONG´ ElementDialogue 100080
+	dialogue Play_pln_hm1_51
+	execute_on_executed_when_done false
+	use_position false
+´disable_reader_2´ ElementUnitSequence 100083
+	position 1600, 300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_interact_disabled
+			time 0
+´set_to_error´ ElementUnitSequence 100087
+	position 1200, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_screen_error
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_activate_barcode_reader
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_interact_enabled
+			time 0
+´Bain_escape´ ElementDialogue 100088
+	dialogue Play_pln_hm1_52
+	execute_on_executed_when_done false
+	use_position false
+´point_debug_006´ ElementDebug 100004
+	as_subtitle false
+	debug_string 2min to go
+	show_instigator false
+´point_debug_007´ ElementDebug 100005
+	as_subtitle false
+	debug_string 2.5min to go
+	show_instigator false
+´point_debug_008´ ElementDebug 100006
+	as_subtitle false
+	debug_string 3min to go
+	show_instigator false
+´point_debug_009´ ElementDebug 100007
+	as_subtitle false
+	debug_string done
+	show_instigator false
+´disable_reader_activate´ ElementToggle 100065
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´state_activated´
+´enable_reader_activate´ ElementToggle 100066
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´state_activated´
+´point_debug_010´ ElementDebug 100067
+	as_subtitle false
+	debug_string escape!
+	show_instigator false
+´point_debug_011´ ElementDebug 100068
+	as_subtitle false
+	debug_string 1
+	show_instigator false
+´point_debug_012´ ElementDebug 100069
+	as_subtitle false
+	debug_string 2
+	show_instigator false
+´point_debug_013´ ElementDebug 100070
+	as_subtitle false
+	debug_string but WRONG
+	show_instigator false
+´toggle_right_wrong001´ ElementToggle 100071
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´escape´ DISABLED
+		2 ´WRONG´
+´set_barcode001´ ElementInstanceInput 100072
+	event set_barcode001
+	on_executed
+		´set_reader_downtown´ (delay 0)
+´set_barcode002´ ElementInstanceInput 100073
+	event set_barcode002
+	on_executed
+		´set_reader_george´ (delay 0)
+´set_barcode003´ ElementInstanceInput 100074
+	event set_barcode003
+	on_executed
+		´set_reader_west_end´ (delay 0)
+´set_barcode004´ ElementInstanceInput 100075
+	event set_barcode004
+	on_executed
+		´set_reader_west_foggy´ (delay 0)
+´set_barcode005´ ElementInstanceInput 100076
+	event set_barcode005
+	on_executed
+		´set_reader_shaw´ (delay 0)
+´set_reader_downtown´ ElementUnitSequence 100078
+	position 1100, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_barcode_downtown_washington
+			time 0
+	on_executed
+		´point_debug_014´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´set_reader_george´ ElementUnitSequence 100079
+	position 1000, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_barcode_georgetown
+			time 0
+	on_executed
+		´point_debug_015´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´set_reader_west_end´ ElementUnitSequence 100081
+	position 900, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_barcode_west_end
+			time 0
+	on_executed
+		´point_debug_016´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´set_reader_west_foggy´ ElementUnitSequence 100082
+	position 800, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_barcode_foggy_bottom
+			time 0
+	on_executed
+		´point_debug_017´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´set_reader_shaw´ ElementUnitSequence 100091
+	position 700, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_barcode_shaw
+			time 0
+	on_executed
+		´point_debug_018´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´set_reader_again´ MissionScriptElement 100090
+	on_executed
+		´set_reader_downtown´ (delay 0)
+		´set_reader_george´ (delay 0)
+		´set_reader_west_end´ (delay 0)
+		´set_reader_west_foggy´ (delay 0)
+		´set_reader_shaw´ (delay 0)
+´point_debug_014´ ElementDebug 100097
+	as_subtitle false
+	debug_string downtown set
+	show_instigator false
+´point_debug_015´ ElementDebug 100098
+	as_subtitle false
+	debug_string george set
+	show_instigator false
+´point_debug_016´ ElementDebug 100099
+	as_subtitle false
+	debug_string west end set
+	show_instigator false
+´point_debug_017´ ElementDebug 100100
+	as_subtitle false
+	debug_string foggy set
+	show_instigator false
+´point_debug_018´ ElementDebug 100101
+	as_subtitle false
+	debug_string shaw set
+	show_instigator false
+´correct_barcode_taken´ MissionScriptElement 100112
+	on_executed
+		´toggle_right_wrong´ (delay 1)
+´set_reader_WRONG´ ElementUnitSequence 100216
+	position 1300, 500, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_screen_incorrect
+			time 0
+´set_reader_correct´ ElementUnitSequence 100217
+	position 1500, 600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_screen_correct
+			time 0
+´set_reader_disable_interact´ ElementUnitSequence 100220
+	position 1000, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader/hlm_interactable_bar_code_reader (252, -10, 86)
+			notify_unit_sequence state_interact_disabled
+			time 0
+´enable_reader´ ElementToggle 100221
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interacted_with_reader_wrong´
+		2 ´interacted_with_reader_right´
+´enable_SO´ ElementToggle 100226
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´SO_reader´ DISABLED
+´point_debug_021´ ElementDebug 100227
+	as_subtitle false
+	debug_string show WP
+	show_instigator false
+´point_debug_022´ ElementDebug 100228
+	as_subtitle false
+	debug_string state_activated
+	show_instigator false
+´complete001´ ElementSpecialObjectiveTrigger 100023
+	DISABLED
+	event anim_act_04
+	position 2000, -100, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_reader´ DISABLED
+	on_executed
+		´cops_interrupt´ (delay 0)
+´instance_input_correct_barcode_taken´ ElementInstanceInput 100024
+	event correct_barcode_taken
+	on_executed
+		´correct_barcode_taken´ (delay 0)
+´logic_toggle_001´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´set_reader_george´
+		2 ´set_reader_west_end´
+		3 ´set_reader_west_foggy´
+		4 ´set_reader_shaw´
+´logic_toggle_002´ ElementToggle 100026
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´set_reader_downtown´
+		2 ´set_reader_west_end´
+		3 ´set_reader_west_foggy´
+		4 ´set_reader_shaw´
+´logic_toggle_003´ ElementToggle 100027
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´set_reader_george´
+		2 ´set_reader_downtown´
+		3 ´set_reader_west_foggy´
+		4 ´set_reader_shaw´
+´logic_toggle_004´ ElementToggle 100057
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´set_reader_west_end´
+		2 ´set_reader_george´
+		3 ´set_reader_downtown´
+		4 ´set_reader_shaw´
+´logic_toggle_005´ ElementToggle 100092
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´set_reader_west_foggy´
+		2 ´set_reader_west_end´
+		3 ´set_reader_george´
+		4 ´set_reader_downtown´
+´point_debug_019´ ElementDebug 100093
+	as_subtitle false
+	debug_string 3
+	show_instigator false
+´bain_processing´ ElementDialogue 100094
+	dialogue Play_pln_hm1_79
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´start_bain_comment´ (delay 15)
+´teammate_comment_faster´ ElementTeammateComment 100002
+	close_to_element true
+	comment p04
+	position 150, -50, 100
+	radius 0
+	rotation 0, 0, 1, -1.19209E-07
+	use_instigator false
+´logic_link_003´ MissionScriptElement 100104
+	on_executed
+		´loop´ (delay 0)
+´random_repeater´ ElementRandom 100105
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_link_003´ (delay 30-35)
+		´logic_link_005´ (delay 5)
+		´logic_link_007´ (delay 10)
+´logic_link_005´ MissionScriptElement 100107
+	on_executed
+		´loop´ (delay 0)
+´logic_link_007´ MissionScriptElement 100109
+	on_executed
+		´loop´ (delay 0)
+´loop´ MissionScriptElement 100110
+	on_executed
+		´teammate_comment_faster´ (delay 0)
+´enable_faster_comment´ ElementToggle 100111
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´teammate_comment_faster´
+		2 ´bain_processing´
+´disable_faster_comment´ ElementToggle 100113
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´teammate_comment_faster´
+		2 ´bain_processing´
+´logic_timer_trigger_001´ ElementTimerTrigger 100114
+	position 1200, 500, 100
+	rotation 0, 0, 0, -1
+	time 180
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_020´ (delay 0)
+´logic_timer_trigger_002´ ElementTimerTrigger 100115
+	position 1200, 600, 100
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_023´ (delay 0)
+´logic_timer_trigger_003´ ElementTimerTrigger 100116
+	position 1200, 700, 100
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_024´ (delay 0)
+´logic_timer_trigger_004´ ElementTimerTrigger 100117
+	position 1200, 800, 100
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_025´ (delay 0)
+´logic_timer_trigger_005´ ElementTimerTrigger 100118
+	position 1200, 900, 100
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer_reader´
+	on_executed
+		´point_debug_026´ (delay 0)
+´point_debug_020´ ElementDebug 100119
+	as_subtitle false
+	debug_string reader timer: 180s left
+	show_instigator false
+´point_debug_023´ ElementDebug 100120
+	as_subtitle false
+	debug_string reader timer: 120s left
+	show_instigator false
+´point_debug_024´ ElementDebug 100121
+	as_subtitle false
+	debug_string reader timer: 60s left
+	show_instigator false
+´point_debug_025´ ElementDebug 100122
+	as_subtitle false
+	debug_string reader timer: 30s left
+	show_instigator false
+´point_debug_026´ ElementDebug 100123
+	as_subtitle false
+	debug_string reader timer: 10s left
+	show_instigator false
+´point_debug_027´ ElementDebug 100124
+	as_subtitle false
+	debug_string PAUSE
+	show_instigator false
+´point_debug_028´ ElementDebug 100125
+	as_subtitle false
+	debug_string UNPAUSE
+	show_instigator false
+´start_bain_comment´ MissionScriptElement 100084
+	on_executed
+		´logic_random_001´ (delay 0)
+		´random_repeater´ (delay 0)
+		´instance_output_start_bain_process_comment´ (delay 0)
+´logic_random_001´ ElementRandom 100085
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_link_001´ (delay 25-35)
+´logic_link_001´ MissionScriptElement 100086
+	on_executed
+		´bain_processing´ (delay 0)
+´instance_output_start_bain_process_comment´ ElementInstanceOutput 100102
+	event start_bain_process_comment
+´instance_output_start_bain_reminder´ ElementInstanceOutput 100103
+	event start_bain_reminder
+´counter_barcode´ ElementCounter 100106
+	counter_target 0
+´add1_barcode´ ElementCounterOperator 100108
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter_barcode´
+´sub1_barcode´ ElementCounterOperator 100126
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´counter_barcode´
+´got_barcode´ ElementCounterFilter 100127
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_barcode´
+	on_executed
+		´state_activated´ (delay 0)
+´Bain_starts_encoding´ ElementDialogue 100128
+	dialogue Play_pln_hm1_57
+	execute_on_executed_when_done false
+	use_position false
+´teammate_comment_swear´ ElementTeammateComment 100089
+	close_to_element true
+	comment g60
+	position 150, -50, 200
+	radius 0
+	rotation 0, 0, 1, -1.19209E-07
+	use_instigator false
+´func_experience_001´ ElementExperience 100095
+	TRIGGER TIMES 1
+	amount 6000
+	on_executed
+		´point_debug_029´ (delay 0)
+´point_debug_029´ ElementDebug 100096
+	as_subtitle false
+	debug_string + 6000
+	show_instigator false

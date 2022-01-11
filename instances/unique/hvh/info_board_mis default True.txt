@@ -1,0 +1,108 @@
+´clear´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_all´ (delay 0)
+´disable_all´ ElementDisableUnit 100003
+	position -150, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_open_safe (-93.2076, 0, 40.8801)
+		2 units/dev_tools/editable_text_long/editable_text_long/text_tazer_drone (-92.8664, 0, 57.4019)
+		3 units/dev_tools/editable_text_long/editable_text_long/text_dont_slip (-500.795, 0, 45.6182)
+		4 units/dev_tools/editable_text_long/editable_text_long/text_lance (-80.2076, 0, 48.8801)
+		5 units/dev_tools/editable_text_long/editable_text_long/text_exit (-95.6493, 0, 51.6351)
+		6 units/dev_tools/editable_text_long/editable_text_long/text_safes (-85.0937, -7.62939E-06, 49.2079)
+		7 units/dev_tools/editable_text_long/editable_text_long/text_watch_clock (-81.1713, -1.29422E-06, 49.9318)
+	on_executed
+		´default´ (delay 0.2)
+´lance´ ElementInstanceInput 100004
+	event lance
+	on_executed
+		´clear´ (delay 0)
+		´001´ (delay 0.25)
+´001´ ElementEnableUnit 100005
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_lance (-80.2076, 0, 48.8801)
+´t-drone´ ElementInstanceInput 100006
+	event tazer_drone
+	on_executed
+		´002´ (delay 0.25)
+		´clear´ (delay 0)
+´002´ ElementEnableUnit 100007
+	position -50, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_tazer_drone (-92.8664, 0, 57.4019)
+´dev´ MissionScriptElement 100010
+	DISABLED
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´lance´ (delay 1)
+		´t-drone´ (delay 6)
+		´wet_floor´ (delay 9)
+		´safe´ (delay 3)
+		´exit´ (delay 12)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´wet_floor´ ElementInstanceInput 100012
+	event floor_wet
+	on_executed
+		´clear´ (delay 0)
+		´003´ (delay 0.25)
+´003´ ElementEnableUnit 100013
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_dont_slip (-500.795, 0, 45.6182)
+´safe´ ElementInstanceInput 100014
+	event Open the Safe
+	on_executed
+		´clear´ (delay 0)
+		´004´ (delay 0.25)
+´wet_floor002´ ElementInstanceInput 100015
+	event extra
+	on_executed
+		´clear´ (delay 0)
+´004´ ElementEnableUnit 100016
+	position 50, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_open_safe (-93.2076, 0, 40.8801)
+´point_spawn_player_001´ ElementPlayerSpawner 100009
+	DISABLED
+	EXECUTE ON STARTUP
+	position 0, -150, 0
+	rotation 0, 0, 0, -1
+	state standard
+´006´ ElementEnableUnit 100019
+	position 150, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_exit (-95.6493, 0, 51.6351)
+´005´ ElementEnableUnit 100020
+	position 100, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´exit´ ElementInstanceInput 100021
+	event Exit
+	on_executed
+		´clear´ (delay 0)
+		´006´ (delay 0.25)
+´safes´ ElementInstanceInput 100023
+	event safes
+	on_executed
+		´clear´ (delay 0)
+		´007´ (delay 0.25)
+´007´ ElementEnableUnit 100024
+	position 200, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_safes (-85.0937, -7.62939E-06, 49.2079)
+´default´ ElementEnableUnit 100026
+	TRIGGER TIMES 1
+	position -150, 50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_watch_clock (-81.1713, -1.29422E-06, 49.9318)

@@ -1,0 +1,2083 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´input_enable_cable_cutting´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/002 (-400, 46, -400)
+		2 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/003 (-200, 46, -400)
+		3 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/004 (0, 89, -400)
+		4 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/005 (200, 52, -400)
+		5 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/006 (394, 65, -400)
+		6 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/007 (400, -116, 0)
+		7 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/008 (200, -92, 0)
+		8 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/009 (0, -92, 0)
+		9 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/010 (-151, -141, 0)
+		10 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/011 (-487, -122, 0)
+		11 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/012 (-329, -114, 0)
+		12 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/013 (-671, -124, 0)
+		13 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/014 (523, -131, 0)
+		14 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/015 (688.09, -169.662, 0)
+´input_enable_c4_interaction´ ElementInstanceInput 100007
+	event enable_c4_interaction
+	on_executed
+		´enable_placment´ (delay 0)
+´output_countdown_enabled´ ElementInstanceOutput 100008
+	event c4_countdown_started
+´enable_placment´ ElementUnitSequence 100016
+	position 2100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+			notify_unit_sequence show_interactive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+			notify_unit_sequence show_interactive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+			notify_unit_sequence show_interactive
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+			notify_unit_sequence show_interactive
+			time 0
+´4´ ElementCounter 100019
+	counter_target 4
+	on_executed
+		´output_countdown_enabled´ (delay 0)
+		´boom´ (delay 0)
+´4_placed´ ElementUnitSequenceTrigger 100020
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+	on_executed
+		´4´ (delay 0)
+		´output_1st_c4_placed´ (delay 0)
+´boom´ ElementUnitSequence 100021
+	position 2200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+	on_executed
+		´delay_2´ (delay 0)
+´debug_bag´ ElementUnitSequence 100023
+	position 1700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, -100, 0)
+			notify_unit_sequence state_interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, -100, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+´creak_window´ ElementUnitSequence 100024
+	position 2200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´output_c4_done´ (delay 0)
+		´delay_3´ (delay 0) DISABLED
+		´point_explosion_001´ (delay 0)
+		´point_explosion_002´ (delay 0)
+´delay_2´ MissionScriptElement 100025
+	on_executed
+		´creak_window´ (delay 5)
+´output_c4_done´ ElementInstanceOutput 100026
+	event c4_exploded_crack_windows
+´input_spawn_bag´ ElementInstanceInput 100027
+	event debug_spawn_c4_bag
+	on_executed
+		´debug_bag´ (delay 1)
+´enable_glass_shatter´ ElementEnableUnit 100045
+	position 2700, -700, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/002 (-400, 46, -400)
+		2 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/003 (-200, 46, -400)
+		3 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/004 (0, 89, -400)
+		4 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/005 (200, 52, -400)
+		5 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/006 (394, 65, -400)
+		6 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/007 (400, -116, 0)
+		7 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/008 (200, -92, 0)
+		8 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/009 (0, -92, 0)
+		9 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/010 (-151, -141, 0)
+		10 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/011 (-487, -122, 0)
+		11 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/012 (-329, -114, 0)
+		12 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/013 (-671, -124, 0)
+		13 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/014 (523, -131, 0)
+		14 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/015 (688.09, -169.662, 0)
+	on_executed
+		´remove_blockers´ (delay 0)
+´wp_target001´ ElementWaypoint 100055
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 2250, 525
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_targets´ ElementInstanceInput 100056
+	event enable_roof_targets
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100057
+	position 2400, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´wp_target001´ (delay 0)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100059
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100060
+	operation remove
+	elements
+		1 ´wp_target001´
+		2 ´wp_cut´
+	on_executed
+		´seq_swing_chandelier´ (delay 0)
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100054
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´logic_operator_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100061
+	operation remove
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100063
+	position 2600, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_002´ ElementDisableUnit 100064
+	position 2500, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´break window´ MissionScriptElement 100077
+	on_executed
+		´smash´ (delay 0)
+		´output_window_breaks´ (delay 0)
+		´point_feedback_001´ (delay 0)
+		´point_debug_002´ (delay 0)
+´smash´ ElementUnitSequence 100078
+	position 2700, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´enable_glass_shatter´ (delay 0)
+´output_ram_complete´ ElementInstanceOutput 100079
+	TRIGGER TIMES 1
+	event ram_done
+´wp_target002´ ElementWaypoint 100083
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 12, 207
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_target003´ ElementWaypoint 100084
+	DISABLED
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -713, -35, 157
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´try_shooting_windows´ ElementUnitSequenceTrigger 100085
+	sequence_list
+		1
+			guis_id 1
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/003 (-759.129, -162.22, 250)
+		2
+			guis_id 2
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/004 (738.223, -114.833, 247)
+		3
+			guis_id 3
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/005 (-730.45, -121.262, 250)
+		4
+			guis_id 4
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/006 (-673.093, -39.3473, 250)
+		5
+			guis_id 5
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/007 (-595.471, 2.8539, 250)
+		6
+			guis_id 6
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/008 (-595.471, 2.8539, 150)
+		7
+			guis_id 7
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/009 (-673.093, -39.3473, 150)
+		8
+			guis_id 8
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/010 (-730.45, -121.262, 150)
+		9
+			guis_id 9
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/011 (-759.129, -162.22, 150)
+		10
+			guis_id 10
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/012 (-595.471, 2.85389, 50.0001)
+		11
+			guis_id 11
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/013 (-673.093, -39.3473, 50.0001)
+		12
+			guis_id 12
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/014 (-730.45, -121.262, 50.0001)
+		13
+			guis_id 13
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/015 (-759.129, -162.22, 50.0001)
+		14
+			guis_id 14
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/016 (680.865, -32.9176, 247)
+		15
+			guis_id 15
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/017 (604.173, 4.23471, 250)
+		16
+			guis_id 16
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/018 (504.173, 4.2345, 250)
+		17
+			guis_id 17
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/019 (738.223, -114.833, 147)
+		18
+			guis_id 18
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/020 (680.865, -32.9176, 147)
+		19
+			guis_id 19
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/021 (604.173, 4.23472, 150)
+		20
+			guis_id 20
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/022 (504.173, 4.23451, 150)
+		21
+			guis_id 21
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/023 (738.223, -114.833, 47)
+		22
+			guis_id 22
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/024 (680.865, -32.9176, 47)
+		23
+			guis_id 23
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/025 (604.173, 4.23474, 50)
+		24
+			guis_id 24
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/026 (504.173, 4.23452, 50.0001)
+		25
+			guis_id 25
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/027 (404.571, 4.23444, 250)
+		26
+			guis_id 26
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/028 (304.571, 4.23444, 250)
+		27
+			guis_id 27
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/029 (204.571, 4.23444, 250)
+		28
+			guis_id 28
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/030 (104.571, 4.23444, 250)
+		29
+			guis_id 29
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/031 (4.57071, 4.23444, 250)
+		30
+			guis_id 30
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/032 (-95.4293, 4.23444, 250)
+		31
+			guis_id 31
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/033 (-195.429, 4.23444, 250)
+		32
+			guis_id 32
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/034 (-295.429, 4.23444, 250)
+		33
+			guis_id 33
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/035 (-395.429, 4.23444, 250)
+		34
+			guis_id 34
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/036 (-495.429, 4.23444, 250)
+		35
+			guis_id 35
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/037 (404.571, 4.23444, 150)
+		36
+			guis_id 36
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/038 (304.571, 4.23444, 150)
+		37
+			guis_id 37
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/039 (204.571, 4.23444, 150)
+		38
+			guis_id 38
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/040 (104.571, 4.23443, 150)
+		39
+			guis_id 39
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/041 (4.57071, 4.23443, 150)
+		40
+			guis_id 40
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/042 (-95.4293, 4.23443, 150)
+		41
+			guis_id 41
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/043 (-195.429, 4.23442, 150)
+		42
+			guis_id 42
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/044 (-295.429, 4.23442, 150)
+		43
+			guis_id 43
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/045 (-395.429, 4.23442, 150)
+		44
+			guis_id 44
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/046 (-495.429, 4.23442, 150)
+		45
+			guis_id 45
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/047 (404.571, 4.23444, 50.0001)
+		46
+			guis_id 46
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/048 (304.571, 4.23444, 50.0001)
+		47
+			guis_id 47
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/049 (204.571, 4.23444, 50.0001)
+		48
+			guis_id 48
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/050 (104.571, 4.23443, 50)
+		49
+			guis_id 49
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/051 (4.57071, 4.23443, 50)
+		50
+			guis_id 50
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/052 (-95.4293, 4.23443, 50)
+		51
+			guis_id 51
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/053 (-195.429, 4.23442, 50)
+		52
+			guis_id 52
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/054 (-295.429, 4.23442, 50)
+		53
+			guis_id 53
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/055 (-395.429, 4.23442, 50)
+		54
+			guis_id 54
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/056 (-495.429, 4.23442, 50)
+		55
+			guis_id 55
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/057 (766.901, -155.791, 247)
+		56
+			guis_id 56
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/058 (766.901, -155.791, 147)
+		57
+			guis_id 57
+			sequence hit_1
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/059 (766.901, -155.791, 47)
+	on_executed
+		´logic_counter_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100086
+	on_executed
+		´remove´ (delay 0)
+´input_objective_to_destroy_window´ ElementInstanceInput 100087
+	TRIGGER TIMES 1
+	event enable_markers_to_shoot_window
+	on_executed
+		´enable_target´ (delay 0)
+´enable_target´ ElementUnitSequence 100088
+	position 1900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/003 (-759.129, -162.22, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/004 (738.223, -114.833, 247)
+			notify_unit_sequence enable_hitbox
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/005 (-730.45, -121.262, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/006 (-673.093, -39.3473, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/007 (-595.471, 2.8539, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/008 (-595.471, 2.8539, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/009 (-673.093, -39.3473, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/010 (-730.45, -121.262, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/011 (-759.129, -162.22, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/012 (-595.471, 2.85389, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/013 (-673.093, -39.3473, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/014 (-730.45, -121.262, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/015 (-759.129, -162.22, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/016 (680.865, -32.9176, 247)
+			notify_unit_sequence enable_hitbox
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/017 (604.173, 4.23471, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/018 (504.173, 4.2345, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/019 (738.223, -114.833, 147)
+			notify_unit_sequence enable_hitbox
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/020 (680.865, -32.9176, 147)
+			notify_unit_sequence enable_hitbox
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/021 (604.173, 4.23472, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/022 (504.173, 4.23451, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/023 (738.223, -114.833, 47)
+			notify_unit_sequence enable_hitbox
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/024 (680.865, -32.9176, 47)
+			notify_unit_sequence enable_hitbox
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/025 (604.173, 4.23474, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/026 (504.173, 4.23452, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/027 (404.571, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/028 (304.571, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/029 (204.571, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/030 (104.571, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/031 (4.57071, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/032 (-95.4293, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/033 (-195.429, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/034 (-295.429, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		33
+			id 33
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/035 (-395.429, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		34
+			id 34
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/036 (-495.429, 4.23444, 250)
+			notify_unit_sequence enable_hitbox
+			time 0
+		35
+			id 35
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/037 (404.571, 4.23444, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		36
+			id 36
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/038 (304.571, 4.23444, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		37
+			id 37
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/039 (204.571, 4.23444, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		38
+			id 38
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/040 (104.571, 4.23443, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		39
+			id 39
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/041 (4.57071, 4.23443, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		40
+			id 40
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/042 (-95.4293, 4.23443, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		41
+			id 41
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/043 (-195.429, 4.23442, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		42
+			id 42
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/044 (-295.429, 4.23442, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		43
+			id 43
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/045 (-395.429, 4.23442, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		44
+			id 44
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/046 (-495.429, 4.23442, 150)
+			notify_unit_sequence enable_hitbox
+			time 0
+		45
+			id 45
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/047 (404.571, 4.23444, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		46
+			id 46
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/048 (304.571, 4.23444, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		47
+			id 47
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/049 (204.571, 4.23444, 50.0001)
+			notify_unit_sequence enable_hitbox
+			time 0
+		48
+			id 48
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/050 (104.571, 4.23443, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		49
+			id 49
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/051 (4.57071, 4.23443, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		50
+			id 50
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/052 (-95.4293, 4.23443, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		51
+			id 51
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/053 (-195.429, 4.23442, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		52
+			id 52
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/054 (-295.429, 4.23442, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		53
+			id 53
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/055 (-395.429, 4.23442, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		54
+			id 54
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/056 (-495.429, 4.23442, 50)
+			notify_unit_sequence enable_hitbox
+			time 0
+		55
+			id 55
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/057 (766.901, -155.791, 247)
+			notify_unit_sequence enable_hitbox
+			time 0
+		56
+			id 56
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/058 (766.901, -155.791, 147)
+			notify_unit_sequence enable_hitbox
+			time 0
+		57
+			id 57
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/059 (766.901, -155.791, 47)
+			notify_unit_sequence enable_hitbox
+			time 0
+	on_executed
+		´wp_target002´ (delay 0)
+		´wp_target003´ (delay 0) DISABLED
+´remove´ ElementOperator 100089
+	operation remove
+	elements
+		1 ´wp_target002´
+		2 ´wp_target003´ DISABLED
+	on_executed
+		´disable_targets´ (delay 0)
+		´logic_link_002´ (delay 0) DISABLED
+´disable_targets´ ElementUnitSequence 100090
+	position 2000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/003 (-759.129, -162.22, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/004 (738.223, -114.833, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/005 (-730.45, -121.262, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/006 (-673.093, -39.3473, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/007 (-595.471, 2.8539, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/008 (-595.471, 2.8539, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/009 (-673.093, -39.3473, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/010 (-730.45, -121.262, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/011 (-759.129, -162.22, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/012 (-595.471, 2.85389, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/013 (-673.093, -39.3473, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/014 (-730.45, -121.262, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/015 (-759.129, -162.22, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/016 (680.865, -32.9176, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/017 (604.173, 4.23471, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/018 (504.173, 4.2345, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/019 (738.223, -114.833, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/020 (680.865, -32.9176, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/021 (604.173, 4.23472, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/022 (504.173, 4.23451, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/023 (738.223, -114.833, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/024 (680.865, -32.9176, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/025 (604.173, 4.23474, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/026 (504.173, 4.23452, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/027 (404.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/028 (304.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/029 (204.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/030 (104.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/031 (4.57071, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/032 (-95.4293, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/033 (-195.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/034 (-295.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		33
+			id 33
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/035 (-395.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		34
+			id 34
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/036 (-495.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		35
+			id 35
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/037 (404.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		36
+			id 36
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/038 (304.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		37
+			id 37
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/039 (204.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		38
+			id 38
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/040 (104.571, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		39
+			id 39
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/041 (4.57071, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		40
+			id 40
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/042 (-95.4293, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		41
+			id 41
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/043 (-195.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		42
+			id 42
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/044 (-295.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		43
+			id 43
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/045 (-395.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		44
+			id 44
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/046 (-495.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		45
+			id 45
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/047 (404.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		46
+			id 46
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/048 (304.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		47
+			id 47
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/049 (204.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		48
+			id 48
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/050 (104.571, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		49
+			id 49
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/051 (4.57071, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		50
+			id 50
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/052 (-95.4293, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		51
+			id 51
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/053 (-195.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		52
+			id 52
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/054 (-295.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		53
+			id 53
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/055 (-395.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		54
+			id 54
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/056 (-495.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		55
+			id 55
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/057 (766.901, -155.791, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		56
+			id 56
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/058 (766.901, -155.791, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		57
+			id 57
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/059 (766.901, -155.791, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+	on_executed
+		´glas_shot_at´ (delay 0)
+´remove_blockers´ ElementDisableUnit 100096
+	position 2700, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/001 (787.553, -219.411, 0)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/002 (651, -29, 0)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/003 (451, -29, 0)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/005 (-249, -29, 0)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/006 (-572.385, 85.7576, 0)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/004 (151, -29, 0)
+	on_executed
+		´remove_nav_blocker´ (delay 0)
+´delay_3´ MissionScriptElement 100097
+	DISABLED
+	on_executed
+		´func_sequence_002´ (delay 1)
+´logic_toggle_001´ ElementToggle 100098
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´delay_3´ DISABLED
+		2 ´logic_link_002´ DISABLED
+	on_executed
+		´debug_bag´ (delay 0)
+´logic_link_002´ MissionScriptElement 100099
+	DISABLED
+	on_executed
+		´enable_placment´ (delay 0)
+´remove_nav_blocker´ ElementNavObstacle 100100
+	operation remove
+	position 2700, -900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+	on_executed
+		´add_blocker´ (delay 3)
+´setup´ ElementUnitSequence 100005
+	position 1600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, -100, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, -100, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-6.10352E-05, 2275, 443.541)
+			notify_unit_sequence state_interaction_thermite
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-6.10352E-05, 2275, 443.541)
+			notify_unit_sequence disable
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_chandelier/chca_prop_chandelier/001 (0, 1725, 325.175)
+			notify_unit_sequence set_state_thermite
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/003 (-759.129, -162.22, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/004 (738.223, -114.833, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/005 (-730.45, -121.262, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/006 (-673.093, -39.3473, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/007 (-595.471, 2.8539, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/008 (-595.471, 2.8539, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/009 (-673.093, -39.3473, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/010 (-730.45, -121.262, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/011 (-759.129, -162.22, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/012 (-595.471, 2.85389, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/013 (-673.093, -39.3473, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/014 (-730.45, -121.262, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/015 (-759.129, -162.22, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/016 (680.865, -32.9176, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/017 (604.173, 4.23471, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/018 (504.173, 4.2345, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/019 (738.223, -114.833, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/020 (680.865, -32.9176, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/021 (604.173, 4.23472, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/022 (504.173, 4.23451, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/023 (738.223, -114.833, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/024 (680.865, -32.9176, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/025 (604.173, 4.23474, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		33
+			id 33
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/026 (504.173, 4.23452, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		34
+			id 34
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/027 (404.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		35
+			id 35
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/028 (304.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		36
+			id 36
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/029 (204.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		37
+			id 37
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/030 (104.571, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		38
+			id 38
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/031 (4.57071, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		39
+			id 39
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/032 (-95.4293, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		40
+			id 40
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/033 (-195.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		41
+			id 41
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/034 (-295.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		42
+			id 42
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/035 (-395.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		43
+			id 43
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/036 (-495.429, 4.23444, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		44
+			id 44
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/037 (404.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		45
+			id 45
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/038 (304.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		46
+			id 46
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/039 (204.571, 4.23444, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		47
+			id 47
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/040 (104.571, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		48
+			id 48
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/041 (4.57071, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		49
+			id 49
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/042 (-95.4293, 4.23443, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		50
+			id 50
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/043 (-195.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		51
+			id 51
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/044 (-295.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		52
+			id 52
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/045 (-395.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		53
+			id 53
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/046 (-495.429, 4.23442, 150)
+			notify_unit_sequence disable_hitbox
+			time 0
+		54
+			id 54
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/047 (404.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		55
+			id 55
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/048 (304.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		56
+			id 56
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/049 (204.571, 4.23444, 50.0001)
+			notify_unit_sequence disable_hitbox
+			time 0
+		57
+			id 57
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/050 (104.571, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		58
+			id 58
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/051 (4.57071, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		59
+			id 59
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/052 (-95.4293, 4.23443, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		60
+			id 60
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/053 (-195.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		61
+			id 61
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/054 (-295.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		62
+			id 62
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/055 (-395.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		63
+			id 63
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/056 (-495.429, 4.23442, 50)
+			notify_unit_sequence disable_hitbox
+			time 0
+		64
+			id 64
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/057 (766.901, -155.791, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+		65
+			id 65
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/058 (766.901, -155.791, 147)
+			notify_unit_sequence disable_hitbox
+			time 0
+		66
+			id 66
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/059 (766.901, -155.791, 47)
+			notify_unit_sequence disable_hitbox
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+´output_window_breaks´ ElementInstanceOutput 100010
+	event break_windows_ram
+	on_executed
+		´output_ram_complete´ (delay 0)
+´glas_shot_at´ ElementInstanceOutput 100009
+	event meeting room_glass_was_shoot_at
+´WP_C4_004´ ElementWaypoint 100015
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position -675, -100, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_C4_003 ´ ElementWaypoint 100017
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position -600, -50, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_C4_001´ ElementWaypoint 100018
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 675, -100, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_C4_002´ ElementWaypoint 100101
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 600, -75, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_c4_WPs´ ElementInstanceInput 100102
+	TRIGGER TIMES 1
+	event enable_C4_WPs
+	on_executed
+		´show_WPs´ (delay 0)
+´show_WPs´ MissionScriptElement 100103
+	on_executed
+		´WP_C4_001´ (delay 0)
+		´WP_C4_002´ (delay 0)
+		´WP_C4_003 ´ (delay 0)
+		´WP_C4_004´ (delay 0)
+´C4_placed_001´ ElementUnitSequenceTrigger 100104
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+	on_executed
+		´remove_C4_WP_001´ (delay 0)
+´C4_placed_002´ ElementUnitSequenceTrigger 100105
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+	on_executed
+		´remove_C4_WP_002´ (delay 0)
+´C4_placed_003´ ElementUnitSequenceTrigger 100106
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+	on_executed
+		´remove_C4_WP_003´ (delay 0)
+´C4_placed_004´ ElementUnitSequenceTrigger 100107
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+	on_executed
+		´remove_C4_WP_004´ (delay 0)
+´remove_C4_WP_001´ ElementOperator 100108
+	operation remove
+	elements
+		1 ´WP_C4_001´
+	on_executed
+		´disable_WP_C4_001´ (delay 0)
+´remove_C4_WP_002´ ElementOperator 100109
+	operation remove
+	elements
+		1 ´WP_C4_002´
+	on_executed
+		´disable_WP_C4_002´ (delay 0)
+´remove_C4_WP_003´ ElementOperator 100110
+	operation remove
+	elements
+		1 ´WP_C4_003 ´
+	on_executed
+		´disable_WP_C4_003´ (delay 0)
+´remove_C4_WP_004´ ElementOperator 100111
+	operation remove
+	elements
+		1 ´WP_C4_004´
+	on_executed
+		´disable_WP_C4_004´ (delay 0)
+´disable_WP_C4_001´ ElementToggle 100112
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_C4_001´
+´disable_WP_C4_002´ ElementToggle 100113
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_C4_002´
+´disable_WP_C4_003´ ElementToggle 100114
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_C4_003 ´
+´disable_WP_C4_004´ ElementToggle 100115
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_C4_004´
+´point_explosion_001´ ElementExplosion 100116
+	TRIGGER TIMES 1
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 50
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 35
+	position 600, -100, 100
+	range 500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´point_explosion_002´ ElementExplosion 100117
+	TRIGGER TIMES 1
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 50
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 35
+	position -650, -100, 100
+	range 500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´point_feedback_001´ ElementFeedback 100118
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 0,35
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,5
+	effect mission_triggered
+	position 0, 0, 9.15527E-05
+	range 3500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 0,1
+	rumble_sustain 0,5
+	use_camera_shake true
+	use_rumble true
+´point_feedback_002´ ElementFeedback 100119
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 0,5
+	camera_shake_attack 0,1
+	camera_shake_decay 0,4
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 2,5
+	effect mission_triggered
+	position 0, 800, 0.175087
+	range 2500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´output_1st_c4_placed´ ElementInstanceOutput 100120
+	TRIGGER TIMES 1
+	event 1st_c4_placed
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100121
+	as_subtitle false
+	debug_string meeting_room_1st_c4_placed
+	show_instigator false
+´input_disable_interactions´ ElementInstanceInput 100122
+	TRIGGER TIMES 1
+	event disable_interactions
+	on_executed
+		´disable_everything´ (delay 0)
+´disable_everything´ ElementToggle 100123
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´4_placed´
+		2 ´try_shooting_windows´
+		3 ´input_objective_to_destroy_window´
+		4 ´input_spawn_bag´
+		5 ´input_enable_c4_interaction´
+		6 ´input_enable_targets´
+		7 ´func_sequence_trigger_002´ DISABLED
+		8 ´func_sequence_trigger_001´
+		9 ´input_enable_c4_WPs´
+		10 ´glas_shot_at´
+		11 ´output_c4_done´
+		12 ´output_window_breaks´
+		13 ´output_ram_complete´
+		14 ´show_WPs´
+		15 ´break window´
+		16 ´smash´
+		17 ´wp_target001´
+		18 ´WP_C4_002´
+		19 ´WP_C4_001´
+		20 ´wp_target002´
+		21 ´WP_C4_003 ´
+		22 ´WP_C4_004´
+		23 ´wp_target003´ DISABLED
+		24 ´wp_cut´
+		25 ´interaction_cut_cable´ DISABLED
+	on_executed
+		´remove_everything´ (delay 0)
+´remove_everything´ ElementOperator 100124
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´wp_target002´
+		2 ´WP_C4_001´
+		3 ´WP_C4_002´
+		4 ´WP_C4_003 ´
+		5 ´WP_C4_004´
+		6 ´wp_target003´ DISABLED
+		7 ´wp_target001´
+		8 ´wp_cut´
+	on_executed
+		´seq_disable_everything´ (delay 0)
+´seq_disable_everything´ ElementUnitSequence 100125
+	TRIGGER TIMES 1
+	position 3000, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (662.583, -135.624, 125)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (597.918, -98.2895, 138.724)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (-587.713, -85.6959, 125)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-656.38, -125.341, 125)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/003 (-759.129, -162.22, 250)
+			notify_unit_sequence disable_hitbox
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/dev_tools/level_tools/target_hitbox/target_hitbox/004 (738.223, -114.833, 247)
+			notify_unit_sequence disable_hitbox
+			time 0
+´add_blocker´ ElementNavObstacle 100126
+	operation add
+	position 2700, -1000, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-74.867, 162.751, -400)
+´interaction_cut_cable´ ElementInteraction 100128
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, 2475, 425
+	rotation 0, -0.00872654, 0, -0.999962
+	tweak_data_id apply_thermite_paste_chca
+	on_executed
+		´thermite_enabled´ (delay 0) (alternative interacted)
+´wp_cut´ ElementWaypoint 100129
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 2475, 475
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_cable_cutting´ ElementInstanceInput 100130
+	TRIGGER TIMES 1
+	event enable_cable_cutting
+	on_executed
+		´enable_cable_cutting´ (delay 0)
+		´wp_cut´ (delay 1)
+´enable_cable_cutting´ ElementToggle 100131
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_cut_cable´ DISABLED
+	on_executed
+		´seq_enable_thermite´ (delay 0) DISABLED
+´seq_enable_thermite´ ElementUnitSequence 100133
+	DISABLED
+	position 2900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-6.10352E-05, 2275, 443.541)
+			notify_unit_sequence enable
+			time 0
+´env_effect_play_thermite_001´ ElementPlayEffect 100134
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_infinite
+	max_amount 0
+	position -1, 2477, 505.547
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´env_effect_play_thermite_002´ (delay 10)
+		´sound_thermite_001´ (delay 0)
+´env_effect_play_thermite_002´ ElementPlayEffect 100135
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -1, 2477, 505.547
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´sound_thermite_001´ ElementPlaySound 100136
+	append_prefix false
+	interrupt true
+	position 0, 2475, 520.72
+	rotation 0, 0, 0, -1
+	sound_event thermite_paste_start
+	use_instigator false
+´thermite_enabled´ MissionScriptElement 100137
+	on_executed
+		´env_effect_play_thermite_001´ (delay 0)
+		´env_effect_stop_001´ (delay 10)
+´env_effect_stop_001´ ElementStopEffect 100138
+	operation kill
+	position 2800, 200, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_thermite_001´
+	on_executed
+		´logic_operator_003´ (delay 2)
+		´logic_operator_001´ (delay 1)
+´logic_operator_003´ ElementOperator 100139
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´sound_thermite_001´
+´seq_swing_chandelier´ ElementUnitSequence 100065
+	position 2650, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_chandelier/chca_prop_chandelier/001 (0, 1725, 325.175)
+			notify_unit_sequence anim_destroy
+			time 0
+	on_executed
+		´output_chandelier_swings´ (delay 0)
+´seq_trigger_chandelier_anim´ ElementUnitSequenceTrigger 100141
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence trigger_hit_glass
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_chandelier/chca_prop_chandelier/001 (0, 1725, 325.175)
+	on_executed
+		´break window´ (delay 0)
+´point_debug_002´ ElementDebug 100142
+	as_subtitle false
+	debug_string windows broken
+	show_instigator false
+´output_chandelier_swings´ ElementInstanceOutput 100046
+	TRIGGER TIMES 1
+	event chandelier_swings
+´logic_counter_001´ ElementCounter 100051
+	counter_target 3
+	on_executed
+		´logic_link_001´ (delay 0)

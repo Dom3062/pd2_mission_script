@@ -1,0 +1,201 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100002
+	position 0, -675, 0.0039978
+	rotation 0, 0, 0, -1
+	state standard
+´temp_spawn_bag´ ElementLootBag 100000
+	carry_id ladder_bag
+	from_respawn false
+	position 0, -425, 150.004
+	rotation 0, 0, 0, -1
+´startup´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_marker´ (delay 0)
+		´hide_trans´ (delay 0)
+´temp_area´ ElementAreaTrigger 100009
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 295
+	height 460
+	instigator loot
+	interval 0.1
+	position 125, 0, 100.004
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 196,35
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´place_bag´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100010
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 ladder_bag
+´place_bag´ ElementInstanceInput 100011
+	event place_bag
+	on_executed
+		´hide_marker´ (delay 0)
+		´enable_dev_ladder´ (delay 0)
+		´play_ladder_sound´ (delay 0)
+		´remove_bag´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´show_ladder´ (delay 0)
+		´hide_trans´ (delay 0)
+´hide_marker´ ElementInstanceOutput 100012
+	event hide_marker
+	on_executed
+		´hide_temp_marker´ (delay 0) DISABLED
+´hide_temp_marker´ ElementUnitSequence 100013
+	DISABLED
+	position -1650, -750, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_prop_ladder_marker/gen_prop_ladder_marker/temp_marker (125, 0, 0.00400394)
+			notify_unit_sequence hide
+			time 0
+´temp_startup´ MissionScriptElement 100018
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´temp_spawn_bag´ (delay 0)
+		´point_spawn_player_001´ (delay 0)
+		´enable´ (delay 0)
+		´hide_temp_marker´ (delay 2) DISABLED
+´enable_dev_ladder´ ElementUnitSequence 100020
+	position -1750, -975, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (22, -4.17233E-06, -27.996)
+			notify_unit_sequence state_ladder_enable
+			time 0
+´disable_dev_ladder´ ElementUnitSequence 100021
+	position -1350, -825, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (22, -4.17233E-06, -27.996)
+			notify_unit_sequence state_ladder_disable
+			time 0
+´show_marker´ ElementInstanceOutput 100024
+	event show_marker
+	on_executed
+		´show_temp_marker´ (delay 0) DISABLED
+´show_temp_marker´ ElementUnitSequence 100025
+	DISABLED
+	position -1250, -975, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_prop_ladder_marker/gen_prop_ladder_marker/temp_marker (125, 0, 0.00400394)
+			notify_unit_sequence show
+			time 0
+´reset_trigger´ ElementInstanceOutput 100026
+	event reset_trigger
+	on_executed
+		´enable001´ (delay 0) DISABLED
+´play_ladder_sound´ ElementPlaySound 100028
+	append_prefix false
+	position 25, 0, 175.004
+	rotation 0, 0, 0, -1
+	sound_event saw_impact_medium
+	use_instigator false
+´remove_bag´ ElementCarry 100029
+	operation remove
+	type_filter ladder_bag
+´enable´ ElementToggle 100007
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´temp_area´ DISABLED
+		2 ´show_temp_marker´ DISABLED
+		3 ´hide_temp_marker´ DISABLED
+		4 ´enable001´ DISABLED
+´disable_climbing´ ElementInstanceInput 100031
+	event disable_climbing
+	on_executed
+		´disable´ (delay 0)
+´disable´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_dev_ladder´
+		2 ´disable_dev_ladder´
+´make_ladder_not_there´ ElementInstanceInput 100006
+	event make_ladder_not_there
+	on_executed
+		´disable_dev_ladder´ (delay 0)
+		´show_marker´ (delay 0)
+		´reset_trigger´ (delay 0)
+		´hide_ladder´ (delay 0)
+		´show_trans_ladder´ (delay 0)
+´enable001´ ElementToggle 100004
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´temp_area´ DISABLED
+´point_waypoint_001´ ElementWaypoint 100015
+	DISABLED
+	icon pd2_generic_look
+	only_in_civilian false
+	position 75, 0, 200.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100019
+	operation remove
+	elements
+		1 ´point_waypoint_001´ DISABLED
+´show_waypoint´ ElementInstanceInput 100022
+	event show_waypoint
+	on_executed
+		´point_waypoint_001´ (delay 0) DISABLED
+´show_ladder´ ElementUnitSequence 100035
+	position -1750, -900, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_ladder/jry_pku_pickable_ladder_extended/001 (4, 0, -0.996002)
+			notify_unit_sequence show
+			time 0
+´hide_ladder´ ElementUnitSequence 100016
+	position -1350, -900, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_ladder/jry_pku_pickable_ladder_extended/001 (4, 0, -0.996002)
+			notify_unit_sequence hide
+			time 0
+´show_trans_ladder´ ElementEnableUnit 100001
+	position -1350, -1050, 402.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/equipment/jry_int_placeable_ladder/jry_int_placeable_ladder/001 (4, 0, -0.996002)
+´hide_trans´ ElementDisableUnit 100003
+	position -1750, -825, 402.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/equipment/jry_int_placeable_ladder/jry_int_placeable_ladder/001 (4, 0, -0.996002)

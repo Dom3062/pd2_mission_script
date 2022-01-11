@@ -1,0 +1,449 @@
+´call heli´ ElementInstanceInput 100001
+	event call helicopter
+	on_executed
+		´fly in´ (delay 0)
+´fly in´ ElementUnitSequence 100002
+	position -950, -375, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 0)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 0)
+			notify_unit_sequence diamondheist
+			time 0
+	on_executed
+		´idle hose´ (delay 35)
+		´output_heliopter_arrived´ (delay 25)
+		´output_helicopter_coming´ (delay 0)
+´interacted´ ElementUnitSequenceTrigger 100004
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+	on_executed
+		´ hose connected´ (delay 0)
+´ hose connected´ ElementUnitSequence 100005
+	position -950, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence hose_connected
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´hose_connected´ (delay 0)
+		´start timer´ (delay 0)
+		´hose_reconnected´ (delay 0) DISABLED
+´idle hose´ ElementUnitSequence 100006
+	position -950, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence hose_hanging
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´helicopter lowered hose´ (delay 0)
+´fly out´ ElementUnitSequence 100008
+	position -950, 425, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 0)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´equal to two´ (delay 0)
+		´time_122´ (delay 0)
+		´time_62´ (delay 0) DISABLED
+´times filled´ ElementCounter 100009
+	counter_target 0
+´add one´ ElementCounterOperator 100010
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´times filled´
+´less than two´ ElementCounterFilter 100011
+	check_type less_than
+	needed_to_execute all
+	value 2
+	elements
+		1 ´times filled´
+	on_executed
+		´fly in´ (delay 0)
+´equal to two´ ElementCounterFilter 100012
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´times filled´
+	on_executed
+		´filling done´ (delay 0)
+´filling done´ ElementInstanceOutput 100013
+	event helicopter done
+	on_executed
+		´hide heli_2´ (delay 22)
+´hide heli´ ElementUnitSequence 100014
+	position -750, -550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´hide hose_2´ (delay 0)
+´startup´ MissionScriptElement 100015
+	EXECUTE ON STARTUP
+	on_executed
+		´hide heli´ (delay 1)
+´hide heli_2´ ElementUnitSequence 100016
+	position -950, 875, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+´helicopter lowered hose´ ElementInstanceOutput 100017
+	event helicopter hose lowered
+´hose_connected´ ElementInstanceOutput 100018
+	event hose connected
+´output hose up´ ElementInstanceOutput 100019
+	event hose lifted
+´output_heliopter_arrived´ ElementInstanceOutput 100020
+	event helicopter arrived
+	on_executed
+		´show and lower_hose´ (delay 0)
+´output_helicopter_coming´ ElementInstanceOutput 100023
+	event helicopter coming
+´done lowered hose´ ElementUnitSequenceTrigger 100022
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence done_lowered_hose
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+	on_executed
+		´idle hose´ (delay 0)
+´show and lower_hose´ ElementUnitSequence 100024
+	position -1050, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence lower_hose
+			time 0
+´lift hose´ ElementUnitSequence 100025
+	position -950, 175, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence lift_hose
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence sound_hose_pouring_stop
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence sound_house_pouring_end
+			time 0
+	on_executed
+		´add one´ (delay 0)
+		´output_water_filled´ (delay 0)
+´hose lifted´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence done_hose_lifted
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+	on_executed
+		´fly out´ (delay 0)
+		´hide hose´ (delay 0)
+		´output hose up´ (delay 0)
+´hide hose´ ElementUnitSequence 100027
+	position -1050, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+´hide hose_2´ ElementUnitSequence 100028
+	position -750, -650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´output_water_filled´ ElementInstanceOutput 100007
+	event water_filled
+´filling time´ ElementTimer 100029
+	timer 240
+	on_executed
+		´time done´ (delay 0)
+´pause time´ ElementTimerOperator 100030
+	operation pause
+	position -1150, -50, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´filling time´
+	on_executed
+		´hose disconnect´ (delay 0)
+´is time 120´ ElementTimerTrigger 100031
+	position -1150, 175, 0
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´filling time´
+	on_executed
+		´pause time_2´ (delay 0)
+´start timer´ ElementTimerOperator 100032
+	operation start
+	position -1050, 50, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´filling time´
+´chance to disconnect the hose´ ElementLogicChance 100033
+	chance 25
+	position -1250, 50, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´pause time´ (delay 0)
+´disconnect hose at 210´ ElementTimerTrigger 100034
+	position -1250, 175, 0
+	rotation 0, 0, 0, -1
+	time 210
+	elements
+		1 ´filling time´
+	on_executed
+		´chance to disconnect the hose´ (delay 0)
+		´disconnected?´ (delay 0)
+´disconnect hose at 150´ ElementTimerTrigger 100035
+	position -1350, 175, 0
+	rotation 0, 0, 0, -1
+	time 150
+	elements
+		1 ´filling time´
+	on_executed
+		´chance to disconnect the hose´ (delay 0)
+		´disconnected?´ (delay 0)
+´hose disconnect´ ElementUnitSequence 100036
+	position -1050, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence hose_hanging
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/connected (0, 0, 0)
+			notify_unit_sequence sound_hose_pouring_stop
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/helicopter_hose/water_hose/001 (0, 0, 0)
+			notify_unit_sequence sound_house_pouring_end
+			time 0
+	on_executed
+		´instance output hose disconnected´ (delay 0)
+		´toggle_outputs´ (delay 0)
+´pause time_2´ ElementTimerOperator 100037
+	operation pause
+	position -1050, 175, 0
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´filling time´
+	on_executed
+		´lift hose´ (delay 0)
+´disconnected?´ ElementDebug 100038
+	as_subtitle false
+	debug_string trying to disconnect
+	show_instigator false
+´time done´ ElementDebug 100039
+	as_subtitle false
+	debug_string time done
+	show_instigator false
+´is time done´ ElementTimerTrigger 100043
+	position -1150, 300, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´filling time´
+	on_executed
+		´lift hose´ (delay 0)
+´disconnect hose at 90´ ElementTimerTrigger 100044
+	position -1250, 300, 0
+	rotation 0, 0, 0, -1
+	time 90
+	elements
+		1 ´filling time´
+	on_executed
+		´chance to disconnect the hose´ (delay 0)
+		´disconnected?´ (delay 0)
+´disconnect hose at 30´ ElementTimerTrigger 100045
+	position -1350, 300, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´filling time´
+	on_executed
+		´chance to disconnect the hose´ (delay 0)
+		´disconnected?´ (delay 0)
+´toggle_outputs´ ElementToggle 100040
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´hose_connected´
+		2 ´hose_reconnected´ DISABLED
+´instance output hose disconnected´ ElementInstanceOutput 100042
+	event hose disconnected
+´hose_reconnected´ ElementInstanceOutput 100046
+	DISABLED
+	event hose reconnected
+	on_executed
+		´toggle_outputs´ (delay 0)
+´time_122´ MissionScriptElement 100000
+	on_executed
+		´less than two´ (delay 122)
+´time_62´ MissionScriptElement 100047
+	DISABLED
+	on_executed
+		´less than two´ (delay 62)
+´logic_toggle_001´ ElementToggle 100048
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´time_122´
+		2 ´time_62´ DISABLED
+´input_ace_pilot´ ElementInstanceInput 100049
+	event ace_pilot
+	on_executed
+		´logic_toggle_001´ (delay 0)

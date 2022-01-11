@@ -1,0 +1,52 @@
+´On´ ElementInstanceInput 100001
+	event Turn_On
+	on_executed
+		´Start´ (delay 0)
+´Off´ ElementInstanceInput 100002
+	event Turn_Off
+	on_executed
+		´Finish´ (delay 0)
+´Start´ MissionScriptElement 100003
+	on_executed
+		´env_effect_play_001´ (delay 4.75)
+		´blower_start´ (delay 0)
+´Finish´ MissionScriptElement 100004
+	BASE DELAY 0,25
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100005
+	base_time 0
+	effect effects/payday2/particles/water/snow_cannon_spray
+	max_amount 0
+	position 6.10352E-05, -50, 225
+	random_time 0
+	rotation -5.70244E-08, -0.382684, 0.923879, 1.37669E-07
+	screen_space false
+´env_effect_stop_001´ ElementStopEffect 100007
+	operation fade_kill
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´func_sequence_001´ (delay 0)
+´blower_start´ ElementUnitSequence 100009
+	position 600, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/props/cne_prop_santa_snowcannon/cne_prop_santa_snowcannon/001 (0, 0, 0)
+			notify_unit_sequence state_blower_start
+			time 0
+´func_sequence_001´ ElementUnitSequence 100010
+	position 900, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/props/cne_prop_santa_snowcannon/cne_prop_santa_snowcannon/001 (0, 0, 0)
+			notify_unit_sequence state_blower_stop
+			time 0

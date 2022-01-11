@@ -1,0 +1,334 @@
+´run_instance´ ElementInstanceInput 100011
+	event blackhawk_heli_land
+	on_executed
+		´reset_forcespawn´ (delay 0)
+		´flyin´ (delay 0)
+´flyin´ ElementUnitSequence 100012
+	TRIGGER TIMES 1
+	position -1100, 526.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´open_doors´ (delay 21)
+´forced_enemy_spawn001´ ElementSpawnEnemyDummy 100013
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -283, 19, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_left
+	team default
+	voice 0
+	orientation_elements
+´forced_enemy_spawn002´ ElementSpawnEnemyDummy 100020
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -283, -81, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_right
+	team default
+	voice 0
+	orientation_elements
+´forced_enemy_spawn004´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 278, 26.0001, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_right
+	team default
+	voice 0
+	orientation_elements
+´forced_enemy_spawn003´ ElementSpawnEnemyDummy 100022
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 278, -73.9998, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_left
+	team default
+	voice 0
+	orientation_elements
+´prefered_enemy_spawn001´ ElementSpawnEnemyDummy 100023
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -283, 19, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_left
+	team default
+	voice 0
+	orientation_elements
+´prefered_enemy_spawn002´ ElementSpawnEnemyDummy 100024
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -283, -81, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_right
+	team default
+	voice 0
+	orientation_elements
+´prefered_enemy_spawn003´ ElementSpawnEnemyDummy 100025
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 278, -74, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_left
+	team default
+	voice 0
+	orientation_elements
+´prefered_enemy_spawn004´ ElementSpawnEnemyDummy 100026
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 278, 26, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_jump_down_heli_cbt_right
+	team default
+	voice 0
+	orientation_elements
+´forcespawn_group´ ElementSpawnEnemyGroup 100028
+	amount 4
+	ignore_disabled true
+	interval 0
+	spawn_type group
+	team default
+	preferred_spawn_groups
+		1 tac_shield_wall_charge
+		2 FBI_spoocs
+		3 tac_tazer_charge
+		4 tac_tazer_flanking
+		5 tac_swat_rifle_flank
+		6 tac_shield_wall
+		7 tac_shield_wall_ranged
+		8 tac_bull_rush
+	elements
+		1 ´forced_enemy_spawn001´
+		2 ´forced_enemy_spawn002´
+		3 ´forced_enemy_spawn003´
+		4 ´forced_enemy_spawn004´
+´open_doors´ ElementUnitSequence 100029
+	position -1200, 526.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence open_door_right
+			time 0
+	on_executed
+		´hover´ (delay 2)
+´hover´ ElementUnitSequence 100027
+	position -1300, 526.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence hover_idle
+			time 0
+	on_executed
+		´forcespawn_group´ (delay 0)
+		´Heli_smoke_play´ (delay 0)
+		´add_prefered´ (delay 0)
+		´spawn_grenade_chance´ (delay 0)
+´prefered_group´ ElementSpawnEnemyGroup 100030
+	amount 0
+	ignore_disabled false
+	interval 0
+	spawn_type group
+	team default
+	preferred_spawn_groups
+		1 tac_shield_wall_charge
+		2 FBI_spoocs
+		3 tac_tazer_charge
+		4 tac_tazer_flanking
+		5 tac_shield_wall
+		6 tac_swat_rifle_flank
+		7 tac_bull_rush
+		8 tac_shield_wall_ranged
+	elements
+		1 ´prefered_enemy_spawn001´
+		2 ´prefered_enemy_spawn002´
+		3 ´prefered_enemy_spawn003´
+		4 ´prefered_enemy_spawn004´
+´add_prefered´ ElementEnemyPreferedAdd 100031
+	spawn_groups
+		1 ´prefered_group´
+	on_executed
+		´forcespawn_enemies´ (delay 15)
+´remove_prefered´ ElementEnemyPreferedRemove 100032
+	elements
+		1 ´add_prefered´
+	on_executed
+		´close_doors´ (delay 5)
+´takeoff´ ElementUnitSequence 100036
+	position -1200, 326.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´stop_heli_dust_effect´ (delay 0)
+´close_doors´ ElementUnitSequence 100035
+	position -1100, 326.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence close_door_right
+			time 0
+	on_executed
+		´takeoff´ (delay 0)
+´Heli_smoke_play´ ElementPlayEffect 100037
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´stop_heli_dust_effect´ ElementStopEffect 100038
+	operation fade_kill
+	position -1300, 326.606, -30.1273
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Heli_smoke_play´
+	on_executed
+		´blackhawk_exit_started_output´ (delay 0)
+´point_smoke_grenade_001´ ElementSmokeGrenade 100039
+	duration 15
+	effect_type smoke
+	ignore_control true
+	immediate true
+	position 0, 0, 14
+	rotation 0, 0, 0, -1
+´enemy_spawn_trigger´ ElementEnemyDummyTrigger 100042
+	event spawn
+	position -1500, 526.606, -30.1273
+	rotation 0, 0, 0, -1
+	elements
+		1 ´forced_enemy_spawn001´
+		2 ´forced_enemy_spawn002´
+		3 ´forced_enemy_spawn003´
+		4 ´forced_enemy_spawn004´
+		5 ´prefered_enemy_spawn001´
+		6 ´prefered_enemy_spawn002´
+		7 ´prefered_enemy_spawn003´
+		8 ´prefered_enemy_spawn004´
+	on_executed
+		´spawn_counter´ (delay 0)
+´spawn_counter´ ElementCounter 100043
+	counter_target 10
+	on_executed
+		´remove_prefered´ (delay 0)
+		´turn_off_forcespawn´ (delay 0)
+´forcespawn_enemies´ MissionScriptElement 100044
+	on_executed
+		´forcespawn_group´ (delay 0)
+		´remove_prefered´ (delay 0)
+´turn_off_forcespawn´ ElementToggle 100045
+	set_trigger_times 0
+	toggle off
+	elements
+		1 ´forcespawn_enemies´
+		2 ´forcespawn_group´
+		3 ´spawn_counter´
+´blackhawk_exit_started_output´ ElementInstanceOutput 100046
+	event blackhawk_exit_started
+	on_executed
+		´blackhawk_hide´ (delay 20)
+´blackhawk_exit_done_output´ ElementInstanceOutput 100047
+	event blackhawk_exit_done
+´spawn_grenade_chance´ ElementLogicChance 100048
+	chance 30
+	position -1300, 626.429, -24.1773
+	rotation -0.0297598, 0, 0, -0.999557
+	on_executed
+		´point_smoke_grenade_001´ (delay 0)
+´reset_forcespawn´ ElementToggle 100049
+	set_trigger_times 0
+	toggle on
+	elements
+		1 ´forcespawn_enemies´
+		2 ´forcespawn_group´
+		3 ´spawn_counter´
+	on_executed
+		´reset_spawn_counter´ (delay 0)
+´reset_spawn_counter´ ElementCounterOperator 100050
+	amount 10
+	operation set
+	instance_var_names
+	elements
+		1 ´spawn_counter´
+´blackhawk_hide´ ElementUnitSequence 100041
+	position -1500, 326.606, -30.1273
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -1443)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´blackhawk_exit_done_output´ (delay 1)

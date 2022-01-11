@@ -1,0 +1,111 @@
+´scythe_taken´ ElementInstanceOutput 100003
+	event scythe_taken
+´point_waypoint_001´ ElementWaypoint 100004
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_scythe_WP´ ElementOperator 100005
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´toggle_OFF_scythe_WP´ (delay 0)
+´toggle_OFF_scythe_WP´ ElementToggle 100006
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_001´
+		2 ´relay´
+		3 ´input_enable_scythe_WP´
+		4 ´remove_scythe_WP´
+´relay´ MissionScriptElement 100007
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´input_enable_scythe_WP´ ElementInstanceInput 100008
+	event enable_scythe_WP
+	on_executed
+		´relay´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100010
+	TRIGGER TIMES 1
+	global_event police_called
+	position 200, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´remove_scythe_WP´ (delay 0)
+		´disable_interaction´ (delay 0)
+´enable_scythe´ ElementUnitSequence 100000
+	position -100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+			notify_unit_sequence disable_outline
+			time 0
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´enable_scythe´ (delay 0)
+´scythe_taken_trigger´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+	on_executed
+		´scythe_taken´ (delay 0)
+		´remove_scythe_WP´ (delay 0)
+		´scythe_taken_SFX´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100002
+	position 200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+			notify_unit_sequence disable_outline
+			time 0
+´enable_outline´ ElementUnitSequence 100012
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_scythe/fex_pku_scythe/001 (-5, -1.52588E-05, -4.64668E-06)
+			notify_unit_sequence enable_outline
+			time 0
+´input_enable_outline´ ElementInstanceInput 100013
+	event enable_scythe_outline
+	on_executed
+		´enable_outline´ (delay 0)
+´input_disable_scythe_WP´ ElementInstanceInput 100014
+	event disable_scythe_WP
+	on_executed
+		´remove_scythe_WP´ (delay 0)
+		´toggle_OFF_scythe_WP´ (delay 0)
+´scythe_taken_SFX´ ElementPlaySound 100015
+	append_prefix false
+	interrupt false
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	sound_event scythe_pick_up
+	use_instigator false

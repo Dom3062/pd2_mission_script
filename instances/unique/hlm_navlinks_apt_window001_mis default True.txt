@@ -1,0 +1,96 @@
+´navlink_jump_out´ ElementSpecialObjective 100003
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -50, 0, 75
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -330,31 -62,7451 50
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100004
+	TRIGGER TIMES 1
+	event anim_act_04
+	position -150, 100, 50
+	rotation 0, 0, 0, -1
+	elements
+		1 ´navlink_jump_out´
+		2 ´navlink_jump_in´
+	on_executed
+		´destroy_window´ (delay 0)
+´navlink_jump_in´ ElementSpecialObjective 100005
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -325, 23, 83
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -15,2643 10,9865 75
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´destroy_window´ ElementUnitSequence 100006
+	position -50, 100, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_ext_apartment_window_03/001 (-195, 65, 155)
+			notify_unit_sequence destroy
+			time 0
+´window_destroyed´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence destroy
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_ext_apartment_window_03/001 (-195, 65, 155)
+	on_executed
+		´disable_window_destroy´ (delay 0)
+´disable_window_destroy´ ElementToggle 100008
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_special_objective_001´

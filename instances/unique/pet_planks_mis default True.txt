@@ -1,0 +1,75 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100001
+	DISABLED
+	EXECUTE ON STARTUP
+	position -2300, -1.52588E-05, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+´startup´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_planks´ (delay 0)
+´highlight´ ElementUnitSequence 100003
+	position -475, 175, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_prop_barn_planks_barricade/pta_prop_barn_planks_pile/001 (0, 15, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´once_interacted´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/props/pta_prop_barn_planks_barricade/pta_prop_barn_planks_pile/001 (0, 15, 0)
+	on_executed
+		´give_planks´ (delay 0)
+´give_planks´ ElementEquipment 100005
+	amount 1
+	equipment planks
+	position -675, 175, 2.5
+	rotation 0, 0, 0, -1
+´player_close´ ElementAreaTrigger 100006
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 700
+	instigator player
+	interval 0.1
+	position 0, 0, 77.5
+	radius 735
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´highlight´ (delay 0)
+´enable_player_close´ ElementToggle 100007
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close´ DISABLED
+´enable_planks´ ElementInstanceInput 100011
+	event enable_planks
+	on_executed
+		´show_planks´ (delay 0)
+		´enable_player_close´ (delay 0)
+´show_planks´ ElementEnableUnit 100008
+	position -375, 275, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_peta/props/pta_prop_barn_planks_barricade/pta_prop_barn_planks_pile/001 (0, 15, 0)
+´hide_planks´ ElementDisableUnit 100009
+	position -375, 400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_peta/props/pta_prop_barn_planks_barricade/pta_prop_barn_planks_pile/001 (0, 15, 0)

@@ -1,0 +1,406 @@
+´STARTUP´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´DELAY´ MissionScriptElement 100003
+´seq_SHOW´ ElementUnitSequence 100004
+	position 225, 0, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´ON´ (delay 0)
+´wp_powerbox´ ElementWaypoint 100005
+	DISABLED
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 40, 0, 151
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´seq_trg_powerbox_INTERACT´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+	on_executed
+		´wp_powerbox_REMOVE´ (delay 0)
+		´wp_powerbox_OFF´ (delay 0)
+		´powerbox_opened_bo´ (delay 0)
+		´powerbox_opened_ao´ (delay 0) DISABLED
+´seq_power_socket_ENABLE´ ElementUnitSequence 100009
+	position 350, 200, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´wp_powersocket´ (delay 0) DISABLED
+´seq_trg_power_socket_INTERACT´ ElementUnitSequenceTrigger 100010
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+	on_executed
+		´output_power_socket_connected´ (delay 0)
+´output_power_socket_connected´ ElementInstanceOutput 100011
+	event power_socket_connected
+	on_executed
+		´wp_powersocket_REMOVE´ (delay 0)
+´wp_powerbox_REMOVE´ ElementOperator 100012
+	operation remove
+	elements
+		1 ´wp_powerbox´ DISABLED
+´wp_powersocket´ ElementWaypoint 100013
+	DISABLED
+	icon pd2_power
+	only_in_civilian false
+	position 15, 0, 139
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_powersocket_REMOVE´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´wp_powersocket´ DISABLED
+	on_executed
+		´power light on´ (delay 0)
+´so_interrupt_power´ ElementSpecialObjective 100015
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 15864
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	allow_followup_self true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interval 1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 76, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 5000
+	search_position 126,358 46,1883 2,5
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´input_start_interrupting´ ElementInstanceInput 100016
+	event start_interrupting
+	on_executed
+		´start_interrupting´ (delay 0.5) DISABLED
+		´loop_and_triggers_ON´ (delay 0) DISABLED
+´start_interrupting´ MissionScriptElement 100017
+	DISABLED
+	on_executed
+		´interrupt_loop´ (delay 0)
+		´wp_powersocket_defend´ (delay 0) DISABLED
+´interrupt_loop´ MissionScriptElement 100018
+	on_executed
+		´try_interrupt´ (delay 30)
+´try_interrupt´ MissionScriptElement 100019
+	on_executed
+		´so_interrupt_power_ON´ (delay 0)
+´so_interrupt_power_ON´ ElementToggle 100020
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´so_interrupt_power´ DISABLED
+	on_executed
+		´so_interrupt_power´ (delay 0.5) DISABLED
+´so_trg_interrupt_power_FAIL´ ElementSpecialObjectiveTrigger 100021
+	event fail
+	position 275, 700, 800
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_interrupt_power´ DISABLED
+	on_executed
+		´interrupt_loop´ (delay 0)
+´so_trg_interrupt_power_COMPLETE´ ElementSpecialObjectiveTrigger 100022
+	event complete
+	position 275, 875, 800
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_interrupt_power´ DISABLED
+	on_executed
+		´interrupt_loop´ (delay 0)
+		´power_socket_disconnected´ (delay 0) DISABLED
+		´so_defend´ (delay 0)
+´power_socket_disconnected´ MissionScriptElement 100023
+	DISABLED
+	on_executed
+		´output_power_socket_disconnected´ (delay 0)
+		´seq_power_socket_ENABLE_2´ (delay 0)
+		´wp_powersocket´ (delay 0) DISABLED
+		´stop_interrupting´ (delay 0) DISABLED
+´output_power_socket_disconnected´ ElementInstanceOutput 100024
+	event power_socket_disconnected
+´seq_power_socket_ENABLE_2´ ElementUnitSequence 100025
+	position 525, 875, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence off
+			time 0
+´input_stop_interrupting´ ElementInstanceInput 100030
+	event stop_interrupting
+	on_executed
+		´stop_interrupting´ (delay 0) DISABLED
+´stop_interrupting´ MissionScriptElement 100031
+	DISABLED
+	on_executed
+		´so_interrupt_power_OFF´ (delay 0)
+		´so_interrupt_power_REMOVE´ (delay 0)
+		´loop_and_triggers_OFF´ (delay 0)
+		´wp_powersocket_defend_REMOVE´ (delay 0)
+´so_interrupt_power_OFF´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_interrupt_power´ DISABLED
+´so_interrupt_power_REMOVE´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´so_interrupt_power´ DISABLED
+´loop_and_triggers_OFF´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_trg_interrupt_power_COMPLETE´
+		2 ´so_trg_interrupt_power_FAIL´
+		3 ´start_interrupting´ DISABLED
+		4 ´interrupt_loop´
+		5 ´try_interrupt´
+		6 ´so_interrupt_power_ON´
+´loop_and_triggers_ON´ ElementToggle 100001
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_trg_interrupt_power_COMPLETE´
+		2 ´so_trg_interrupt_power_FAIL´
+		3 ´start_interrupting´ DISABLED
+		4 ´interrupt_loop´
+		5 ´try_interrupt´
+		6 ´so_interrupt_power_ON´
+´input_open_powerbox´ ElementInstanceInput 100006
+	event open_powerbox
+	on_executed
+		´powerbox_not_opened_yet´ (delay 0)
+		´powerbox_already_opened´ (delay 0) DISABLED
+´wp_powerbox_OFF´ ElementToggle 100007
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_powerbox´ DISABLED
+´powerbox_not_opened_yet´ MissionScriptElement 100026
+	on_executed
+		´wp_powerbox´ (delay 0) DISABLED
+		´powerbox_opened_bo_ao´ (delay 0)
+´powerbox_already_opened´ MissionScriptElement 100027
+	DISABLED
+	on_executed
+		´use_power_socket´ (delay 0)
+´powerbox_opened_TOGGLE´ ElementToggle 100028
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´powerbox_not_opened_yet´
+		2 ´powerbox_already_opened´ DISABLED
+´use_power_socket´ MissionScriptElement 100029
+	on_executed
+		´seq_power_socket_ENABLE´ (delay 0)
+´powerbox_opened_bo´ MissionScriptElement 100036
+	on_executed
+		´powerbox_opened_TOGGLE´ (delay 0)
+´powerbox_opened_ao´ MissionScriptElement 100037
+	DISABLED
+	on_executed
+		´use_power_socket´ (delay 0)
+´powerbox_opened_bo_ao´ ElementToggle 100038
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´powerbox_opened_bo´
+		2 ´powerbox_opened_ao´ DISABLED
+´so_defend´ ElementSpecialObjective 100039
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 76, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -150 125 0
+	so_action AI_defend
+	trigger_on none
+	use_instigator true
+	followup_elements
+´wp_powersocket_defend´ ElementWaypoint 100040
+	DISABLED
+	icon pd2_defend
+	only_in_civilian false
+	position 15, 0, 139
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_powersocket_defend_REMOVE´ ElementOperator 100041
+	operation remove
+	elements
+		1 ´wp_powersocket_defend´ DISABLED
+´power light on´ ElementUnitSequence 100042
+	position 525, 375, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence on
+			time 0
+´input_disable_cops_e3´ ElementInstanceInput 100043
+	event drill_powerbox_e3_version
+	on_executed
+		´stop_interrupting´ (delay 0) DISABLED
+		´disable_powershutting_cops´ (delay 0.5)
+´disable_powershutting_cops´ ElementToggle 100044
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´output_power_socket_disconnected´
+		2 ´so_trg_interrupt_power_COMPLETE´
+		3 ´so_trg_interrupt_power_FAIL´
+		4 ´start_interrupting´ DISABLED
+		5 ´input_start_interrupting´
+		6 ´interrupt_loop´
+		7 ´try_interrupt´
+		8 ´so_interrupt_power_ON´
+		9 ´wp_powersocket_defend´ DISABLED
+	on_executed
+		´wp_powersocket_defend_REMOVE´ (delay 0)
+´input_hide_powerbox´ ElementInstanceInput 100045
+	event hide_powerbox
+	on_executed
+		´seq_hide´ (delay 0)
+		´wps_OFF´ (delay 0)
+´seq_hide´ ElementUnitSequence 100046
+	position 100, 1725, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_power_socket/cas_prop_power_socket_static/power_socket (12, 0, 139)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_powerbox/cas_prop_powerbox/powerbox (0, 0, 150)
+			notify_unit_sequence disable_interaction
+			time 0
+´wps_OFF´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_powerbox´ DISABLED
+		2 ´wp_powersocket´ DISABLED
+		3 ´wp_powersocket_defend´ DISABLED
+´input_show´ ElementInstanceInput 100048
+	event show
+	on_executed
+		´seq_SHOW´ (delay 0)
+´ON´ ElementToggle 100049
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´wp_powerbox´ DISABLED
+		2 ´wp_powersocket´ DISABLED
+		3 ´wp_powersocket_defend´ DISABLED
+		4 ´start_interrupting´ DISABLED
+		5 ´stop_interrupting´ DISABLED
+		6 ´loop_and_triggers_ON´ DISABLED
+		7 ´power_socket_disconnected´ DISABLED

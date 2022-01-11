@@ -1,0 +1,415 @@
+´point_interaction_001´ ElementInteraction 100666
+	DISABLED
+	host_only false
+	override_timer 2
+	position 150, 0, 500
+	rotation 0, 0, 0, -1
+	tweak_data_id zipline_mount
+	on_executed
+		´setup_ziplines´ (delay 0) (alternative interacted)
+´hide_ziplines´ ElementUnitSequence 100681
+	position -1100, -3000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_bag_001 (146, -1, 331)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_003 (-27, 63, 350)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_004 (-27, -63, 350)
+			notify_unit_sequence state_zipline_disable
+			time 0
+´startup´ MissionScriptElement 100682
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´hide_ziplines´ (delay 0)
+´found_loot´ ElementInstanceInput 100683
+	event found_loot
+	on_executed
+		´loot_wp´ (delay 0)
+		´enable_bag_ziplines´ (delay 0)
+´loot_wp´ ElementWaypoint 100684
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 150, 0, 500
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´setup_ziplines´ MissionScriptElement 100685
+	on_executed
+		´enable_bag_ziplines´ (delay 0)
+´enable_bag_ziplines´ ElementUnitSequence 100686
+	position -1100, -2600, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_bag_001 (146, -1, 331)
+			notify_unit_sequence state_zipline_enable
+			time 0
+´bag_sent_up´ ElementInstanceOutput 100689
+	event bag_sent_up
+´time_to_escape´ ElementInstanceInput 100688
+	event time_to_escape
+	on_executed
+		´show_marker´ (delay 0)
+		´escape_wp001´ (delay 0)
+		´enable_area´ (delay 0)
+´enable_player_ziplines001´ ElementUnitSequence 100706
+	DISABLED
+	position -400, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_003 (-27, 63, 350)
+			notify_unit_sequence state_zipline_enable
+			time 0
+´ride_ziplines_wp´ ElementWaypoint 100707
+	icon pd2_escape
+	only_in_civilian false
+	only_on_instigator false
+	position -25, -67, 525
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´all_players_up´ ElementAreaTrigger 100747
+	TRIGGER TIMES 1
+	amount all
+	depth 1500
+	height 800
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -200, 0, 8700
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´all_at_surface_link´ (delay 0)
+´bag_sent_up_seq´ ElementUnitSequenceTrigger 100687
+	sequence_list
+		1
+			guis_id 1
+			sequence on_detached_bag
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_bag_001 (146, -1, 331)
+	on_executed
+		´bag_sent_up´ (delay 0)
+		´point_teammate_comment_002´ (delay 0)
+		´logic_counter_001´ (delay 0)
+´all_at_surface´ ElementInstanceOutput 100761
+	event all_at_surface
+´all_at_surface_link´ MissionScriptElement 100762
+	on_executed
+		´all_at_surface´ (delay 0)
+		´remove_wp´ (delay 0)
+		´remove_loot_wp´ (delay 0)
+´remove_wp´ ElementOperator 100763
+	operation remove
+	elements
+		1 ´ride_ziplines_wp´
+		2 ´ride_ziplines_wp001´
+´remove_loot_wp´ ElementOperator 100764
+	operation remove
+	elements
+		1 ´loot_wp´
+´point_spawn_player_001´ ElementPlayerSpawner 100001
+	DISABLED
+	EXECUTE ON STARTUP
+	BASE DELAY 3
+	position -1600, 0, -0.261108
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	on_executed
+		´time_to_escape´ (delay 0)
+´ride_ziplines_wp001´ ElementWaypoint 100026
+	icon pd2_escape
+	only_in_civilian false
+	only_on_instigator false
+	position -25, 65, 525
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´player_zipline001´ ElementInteraction 100027
+	DISABLED
+	host_only false
+	override_timer 2
+	position -25, 65, 525
+	rotation 0, 0, 0, -1
+	tweak_data_id zipline_mount
+	on_executed
+		´enable_player_zipline001´ (delay 0) (alternative interacted)
+´player_zipline002´ ElementInteraction 100028
+	DISABLED
+	host_only false
+	override_timer 2
+	position -25, -67, 525
+	rotation 0, 0, 0, -1
+	tweak_data_id zipline_mount
+	on_executed
+		´enable_player_zipline002´ (delay 0) (alternative interacted)
+´enable_ziplines´ ElementToggle 100029
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_zipline001´ DISABLED
+		2 ´player_zipline002´ DISABLED
+´enable_player_zipline001´ MissionScriptElement 100057
+	on_executed
+		´enable_player_ziplines001´ (delay 0) DISABLED
+´enable_player_zipline002´ MissionScriptElement 100058
+	on_executed
+		´enable_player_ziplines002´ (delay 0) DISABLED
+´enable_player_ziplines002´ ElementUnitSequence 100059
+	DISABLED
+	position -400, -2000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_004 (-27, -63, 350)
+			notify_unit_sequence state_zipline_enable
+			time 0
+´escape_wp001´ ElementWaypoint 100071
+	icon pd2_escape
+	only_in_civilian false
+	only_on_instigator false
+	position -14, 0, 482
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_area_001´ ElementAreaTrigger 100072
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 300
+	height 250
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -25, 0, 475
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 250
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´all_gathered´ (delay 0)
+´show_marker´ ElementUnitSequence 100073
+	position -1100, -2000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_27x24/gen_prop_square_goal_marker_27x24/marker (-22, 0, 362)
+			notify_unit_sequence show
+			time 0
+´enable_area´ ElementToggle 100074
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´all_gathered´ MissionScriptElement 100075
+	on_executed
+		´enable_ziplines´ (delay 0) DISABLED
+		´ride_ziplines_wp´ (delay 0)
+		´ride_ziplines_wp001´ (delay 0)
+		´func_dialogue_001´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´func_sequence_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´func_dialogue_001´ ElementDialogue 100003
+	can_not_be_muted false
+	dialogue Play_loc_jr1_66
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´func_dialogue_002´ (delay 6)
+´logic_operator_001´ ElementOperator 100005
+	operation remove
+	elements
+		1 ´escape_wp001´
+´func_sequence_001´ ElementUnitSequence 100007
+	position -800, -2200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_27x24/gen_prop_square_goal_marker_27x24/marker (-22, 0, 362)
+			notify_unit_sequence hide
+			time 0
+´left_vault_area´ ElementInstanceInput 100000
+	event left_vault_area
+	on_executed
+		´disable_ziplines´ (delay 0) DISABLED
+		´disable_ziplines001´ (delay 0)
+´disable_ziplines´ ElementUnitSequence 100009
+	DISABLED
+	position -1100, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_bag_001 (146, -1, 331)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_003 (-27, 63, 350)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_004 (-27, -63, 350)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+´trigger_area_002´ ElementAreaTrigger 100013
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 4204.32
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_teammate_comment_001´ (delay 0)
+		´logic_toggle_001´ (delay 5)
+´point_teammate_comment_001´ ElementTeammateComment 100014
+	close_to_element false
+	comment v46
+	position -100, 0, 4200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´logic_toggle_001´ ElementToggle 100015
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_002´
+´point_teammate_comment_002´ ElementTeammateComment 100016
+	TRIGGER TIMES 3
+	close_to_element true
+	comment p27
+	position 300, 0, 308.798
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_003´ ElementTeammateComment 100017
+	TRIGGER TIMES 3
+	close_to_element true
+	comment p28
+	position 400, 0, 308.798
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_counter_001´ ElementCounter 100018
+	counter_target 4
+	on_executed
+		´point_teammate_comment_003´ (delay 0)
+´func_dialogue_002´ ElementDialogue 100022
+	can_not_be_muted false
+	dialogue Play_loc_jr1_39
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´disable_ziplines001´ ElementUnitSequence 100031
+	position -1100, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_bag_001 (146, -1, 331)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+´trigger_area_report_001´ ElementAreaReportTrigger 100032
+	amount 1
+	depth 500
+	height 9924,66
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 100, 0, 4363
+	radius 1090
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´disable_ziplines002´ (delay 0) (alternative empty)
+		´enable_player_ziplines001´ (delay 0) DISABLED (alternative enter)
+		´enable_player_ziplines002´ (delay 0) DISABLED (alternative enter)
+´logic_toggle_002´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_player_ziplines001´ DISABLED
+		2 ´enable_player_ziplines002´ DISABLED
+	on_executed
+		´enable_player_zipline001´ (delay 0)
+		´enable_player_zipline002´ (delay 0)
+´disable_ziplines002´ ElementUnitSequence 100033
+	position -1100, -1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_003 (-27, 63, 350)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/zipline_player_004 (-27, -63, 350)
+			notify_unit_sequence state_zipline_disable_special
+			time 0

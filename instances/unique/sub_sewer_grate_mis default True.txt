@@ -1,0 +1,201 @@
+´area_chance_enemy´ ElementAreaTrigger 100002
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -1300, 0
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enemy_spawn_chance´ (delay 0)
+´enemy_spawn_chance´ ElementLogicChance 100003
+	chance 35
+	position 0, -900, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´drop_the_beat´ (delay 0)
+		´spawn_enemy´ (delay 0.5)
+´drop_the_beat´ ElementUnitSequence 100004
+	position -100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/suburbia/suburbia_escape_grate/001 (0, 0, 300)
+			notify_unit_sequence drop
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+´spawn_enemy´ MissionScriptElement 100007
+	on_executed
+		´hard-vhard´ (delay 0)
+		´normal´ (delay 0)
+		´dw´ (delay 0)
+´logic_random_001´ ElementRandom 100008
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´single_cloaker´ (delay 0)
+		´tazer_shieldwall´ (delay 0)
+´cloaker´ ElementSpawnEnemyDummy 100009
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_spook_1/ene_spook_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -30.9999, -219, 1
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_clk_4_5m_dwn_vent
+	team default
+	voice 0
+	orientation_elements
+´bulldozer´ ElementSpawnEnemyDummy 100010
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -53.9999, 42, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_4m_var1
+	team default
+	voice 0
+	orientation_elements
+´hard-vhard´ ElementFilter 100011
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, -700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_001´ (delay 0)
+´normal´ ElementFilter 100012
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -100, -700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_002´ (delay 0)
+´dw´ ElementFilter 100013
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 100, -700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´´ (delay 0)
+´point_debug_001´ ElementDebug 100017
+	as_subtitle false
+	debug_string drop it
+	show_instigator false
+´´ ElementRandom 100018
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´bulldozer´ (delay 0)
+		´single_bulldozer´ (delay 0)
+´shield001´ ElementSpawnEnemyDummy 100019
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_2/ene_shield_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -74.9999, 0, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_4m_var1
+	team default
+	voice 0
+	orientation_elements
+´tazer001´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -24.9999, 75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_4m_var1
+	team default
+	voice 0
+	orientation_elements
+´logic_random_002´ ElementRandom 100022
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´single_tazer´ (delay 0)
+		´single_shield´ (delay 0)
+´single_tazer´ MissionScriptElement 100023
+	on_executed
+		´tazer001´ (delay 0)
+´single_shield´ MissionScriptElement 100024
+	on_executed
+		´shield001´ (delay 0)
+´single_cloaker´ MissionScriptElement 100025
+	on_executed
+		´cloaker´ (delay 0)
+´tazer_shieldwall´ MissionScriptElement 100026
+	on_executed
+		´shield001´ (delay 0)
+		´tazer001´ (delay 0)
+´single_bulldozer´ MissionScriptElement 100020
+	on_executed
+		´bulldozer´ (delay 0)

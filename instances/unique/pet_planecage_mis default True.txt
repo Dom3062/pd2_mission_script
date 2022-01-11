@@ -1,0 +1,609 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	position -50, -875, 0.0039978
+	rotation 0, 0, 0, -1
+	state standard
+´plane_missed´ ElementInstanceOutput 100002
+	event plane_missed
+´drop_cage_bag001´ ElementLootBag 100005
+	carry_id cage_bag
+	from_respawn false
+	position -850, -375, 150.004
+	push_multiplier 0,2
+	rotation 0.271413, 0.129457, 0.410586, -0.860811
+	spawn_dir 0 0 1
+	on_executed
+		´drop_cage_bag002´ (delay 0.05)
+´temp_startup´ MissionScriptElement 100007
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´temp_spawn_bags´ (delay 0)
+		´enable_cage_location´ (delay 1)
+´startup´ MissionScriptElement 100008
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_marker_and_plane´ (delay 0)
+		´70_chance´ (delay 0)
+´hide_marker_and_plane´ ElementUnitSequence 100009
+	position -6025, -250, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´temp_spawn_bags´ MissionScriptElement 100010
+	on_executed
+		´drop_cage_bag001´ (delay 0)
+		´logic_link_001´ (delay 0)
+´plane_fly_in_miss´ ElementUnitSequence 100011
+	position -3550, -525, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence anim_plane_miss
+			time 0
+	on_executed
+		´7s_delay´ (delay 7)
+		´15s_delay´ (delay 15)
+´drop_cage_bag002´ ElementLootBag 100012
+	carry_id cage_bag
+	from_respawn false
+	position -850, -425, 150.004
+	push_multiplier 0,6
+	rotation 0.845957, 0.266729, -0.13885, -0.440378
+	spawn_dir 0 0 1
+	on_executed
+		´drop_cage_bag003´ (delay 0.05)
+´drop_cage_bag003´ ElementLootBag 100013
+	carry_id cage_bag
+	from_respawn false
+	position -850, -475, 150.004
+	push_multiplier 0,5
+	rotation -0.374709, -0.37471, 0.599661, -0.599661
+	spawn_dir 0 0 1
+´lootdrop_waypoint´ ElementWaypoint 100015
+	icon pd2_lootdrop
+	only_in_civilian false
+	position 0, 0, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´lootdrop_waypoint_link´ MissionScriptElement 100017
+	on_executed
+		´lootdrop_waypoint´ (delay 0)
+´remove_lootdrop_waypoint´ ElementOperator 100018
+	operation remove
+	elements
+		1 ´lootdrop_waypoint´
+´detect_cage_bags´ ElementAreaTrigger 100016
+	DISABLED
+	amount 1
+	depth 305
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, 0, 75.004
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+		1 ´detect_cage_bags_rule´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´detect_cage_bags_link´ (delay 0)
+´detect_cage_bags_rule´ ElementInstigatorRule 100019
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 cage_bag
+´goats´ ElementLootBag 100020
+	carry_id goat
+	from_respawn false
+	position -850, -75, 150.004
+	rotation 3.72529E-09, -7.45058E-09, 0, -1
+´logic_link_001´ MissionScriptElement 100021
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100022
+	TRIGGER TIMES 10
+	on_executed
+		´goats´ (delay 0)
+		´logic_link_001´ (delay 0.1)
+´enable_detect_cage_bags´ ElementToggle 100023
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´detect_cage_bags´ DISABLED
+´detect_goats´ ElementAreaTrigger 100024
+	DISABLED
+	amount 1
+	depth 305
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, 0, 100.004
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+		1 ´detect_goats_rule´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´detect_goats_link´ (delay 0)
+´detect_goats_rule´ ElementInstigatorRule 100025
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 goat
+´enable_detect_goats´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´detect_goats´ DISABLED
+´enable_cage_location´ ElementInstanceInput 100027
+	event enable_cage_location
+	on_executed
+		´show_marker_and_plane´ (delay 0)
+		´lootdrop_waypoint_link´ (delay 0)
+		´enable_detect_cage_bags´ (delay 0)
+´show_marker_and_plane´ ElementUnitSequence 100028
+	position -5925, -425, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´show_marker_and_plane_debug´ (delay 0)
+´interact_waypoint´ ElementWaypoint 100029
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_interact_waypoint´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´interact_waypoint´
+´interact_waypoint_link´ MissionScriptElement 100031
+	on_executed
+		´interact_waypoint´ (delay 0)
+´detect_goats_link´ MissionScriptElement 100032
+	on_executed
+		´ready_for_balloon_trigger_once´ (delay 0)
+´detect_cage_bags_link´ MissionScriptElement 100033
+	on_executed
+		´build_cage´ (delay 0)
+		´count_to_3´ (delay 0)
+		´remove_cage_bag´ (delay 0)
+		´cage_location_chosen_trigger_once´ (delay 0)
+´build_cage´ ElementUnitSequence 100034
+	position -5625, -525, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_build_cage
+			time 0
+´count_to_3´ ElementCounter 100035
+	counter_target 3
+	on_executed
+		´cage_is_built´ (delay 0)
+´cage_is_built´ MissionScriptElement 100036
+	on_executed
+		´enable_detect_goats´ (delay 0)
+		´cage_is_built_2´ (delay 0)
+		´reset_counter´ (delay 0)
+´ready_for_balloon_trigger_once´ MissionScriptElement 100038
+	TRIGGER TIMES 1
+	on_executed
+		´enable_cage_interaction´ (delay 0)
+		´interact_waypoint_link´ (delay 0)
+		´ready_to_fire_balloon´ (delay 0)
+´enable_cage_interaction´ ElementUnitSequence 100040
+	position -4900, -425, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´enable_interaction_triggered_debug´ (delay 0)
+´once_interacted_with_cage´ ElementUnitSequenceTrigger 100041
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+	on_executed
+		´remove_interact_waypoint´ (delay 0)
+		´pilot_is_coming´ (delay 0)
+		´balloon_fired_up´ (delay 0)
+		´once_interacted_with_cage_triggered_debug´ (delay 0)
+		´pilot_is_coming_2nd_time´ (delay 0) DISABLED
+		´keep_them_away´ (delay 5)
+´x_chance´ ElementLogicChance 100001
+	chance 0
+	position -3750, -425, 402.5
+	rotation 0, 0, 0, -1
+´95_chance´ ElementLogicChanceOperator 100003
+	chance 95
+	operation set_chance
+	position -3750, -325, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´x_chance´
+´success´ ElementLogicChanceTrigger 100042
+	outcome success
+	position -3650, -425, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´x_chance´
+	on_executed
+		´plane_fly_in_catch_cage´ (delay 0)
+		´plane_successed_debug´ (delay 0)
+´fail´ ElementLogicChanceTrigger 100043
+	outcome fail
+	position -3650, -525, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´x_chance´
+	on_executed
+		´plane_fly_in_miss´ (delay 0)
+		´plane_failed_debug´ (delay 0)
+´sober_pilot´ ElementInstanceInput 100044
+	event sober_pilot
+	on_executed
+		´95_chance´ (delay 0)
+´7s_delay´ MissionScriptElement 100046
+	on_executed
+		´plane_missed´ (delay 0)
+´plane_fly_in_catch_cage´ ElementUnitSequence 100047
+	position -3550, -425, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence anim_plane_catch
+			time 0
+	on_executed
+		´6_5s_delay´ (delay 6.5)
+		´15s_delay_2´ (delay 15)
+´pilot_is_coming´ MissionScriptElement 100048
+	on_executed
+		´2min´ (delay 0)
+´15s_delay´ MissionScriptElement 100049
+	on_executed
+		´1s_delay´ (delay 1)
+´plane_returns´ MissionScriptElement 100050
+	on_executed
+		´pilot_is_coming_again´ (delay 0)
+		´count_to_2´ (delay 0)
+´15s_delay_2´ MissionScriptElement 100054
+	on_executed
+		´hide_plane´ (delay 0)
+		´reset´ (delay 0)
+´6_5s_delay´ MissionScriptElement 100055
+	on_executed
+		´plane_catched_it´ (delay 0)
+		´remove_lootdrop_waypoint´ (delay 0)
+		´hide_marker´ (delay 0)
+		´disable_triggers´ (delay 0)
+´plane_catched_it´ ElementInstanceOutput 100056
+	event plane_catched_it
+´remove´ ElementCarry 100063
+	operation remove
+	type_filter none
+	on_executed
+		´award_goat_trophy´ (delay 0)
+´count_to_10´ ElementCounter 100064
+	counter_target 10
+	on_executed
+		´all_goats_secured_debug´ (delay 0)
+´goat_secured´ ElementInstanceOutput 100066
+	event goat_secured
+	on_executed
+		´count_to_10´ (delay 0)
+´all_goats_secured_debug´ ElementDebug 100065
+	as_subtitle false
+	debug_string all goats secured debug
+	show_instigator false
+´remove_cage_bag´ ElementCarry 100067
+	operation remove
+	type_filter none
+´1s_delay´ MissionScriptElement 100004
+	on_executed
+		´plane_returns´ (delay 0)
+´plane_failed_debug´ ElementDebug 100045
+	as_subtitle false
+	debug_string plane failed
+	show_instigator false
+´plane_successed_debug´ ElementDebug 100051
+	as_subtitle false
+	debug_string plane successed debug
+	show_instigator false
+´hide_plane´ ElementUnitSequence 100052
+	position -3350, -425, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´reset_states´ (delay 0)
+´70_chance´ ElementLogicChanceOperator 100053
+	chance 70
+	operation set_chance
+	position -3750, -525, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´x_chance´
+´hide_marker´ ElementUnitSequence 100068
+	position -3350, -125, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´count_to_2´ ElementCounter 100071
+	counter_target 2
+	on_executed
+		´100_chance´ (delay 0)
+		´enable_plane_success_debug´ (delay 0)
+´2min´ MissionScriptElement 100072
+	on_executed
+		´1min´ (delay 60)
+		´there_in_2_min´ (delay 0)
+´1min´ MissionScriptElement 100073
+	on_executed
+		´there_in_1_min´ (delay 0)
+		´30s´ (delay 30)
+´can_see_it´ MissionScriptElement 100074
+	on_executed
+		´can_see_it_2´ (delay 0)
+		´x_chance´ (delay 0)
+´there_in_2_min´ ElementInstanceOutput 100075
+	event there_in_2_min
+	on_executed
+		´there_in_2_min_debug´ (delay 0)
+´there_in_1_min´ ElementInstanceOutput 100076
+	event there_in_1_min
+	on_executed
+		´there_in_1_min_debug´ (delay 0)
+´can_see_it_2´ ElementInstanceOutput 100077
+	event can_see_it
+	on_executed
+		´can_see_it_debug´ (delay 0)
+´there_in_2_min_debug´ ElementDebug 100078
+	as_subtitle false
+	debug_string there in 2 min
+	show_instigator false
+´there_in_1_min_debug´ ElementDebug 100079
+	as_subtitle false
+	debug_string there in 1 min
+	show_instigator false
+´can_see_it_debug´ ElementDebug 100080
+	as_subtitle false
+	debug_string can see it
+	show_instigator false
+´other_drop_chosen´ ElementInstanceInput 100081
+	event other_drop_chosen
+	on_executed
+		´hide_marker_and_plane´ (delay 0)
+		´remove_lootdrop_waypoint´ (delay 0)
+		´disable_all_triggers´ (delay 0)
+´disable_triggers´ ElementToggle 100082
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´detect_goats´ DISABLED
+		2 ´detect_cage_bags´ DISABLED
+	on_executed
+		´enable_secure_loot_air´ (delay 0)
+		´1s_delay_2´ (delay 1)
+´ready_to_fire_balloon´ ElementInstanceOutput 100037
+	event ready_to_fire_balloon
+´balloon_fired_up´ ElementInstanceOutput 100039
+	event balloon_fired_up
+´enable_secure_loot_air´ ElementToggle 100059
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´secure_loot_air´ DISABLED
+´cage_is_built_2´ ElementInstanceOutput 100061
+	event cage_is_built
+	on_executed
+		´cage_is_built_debug´ (delay 0)
+´cage_location_chosen_trigger_once´ ElementInstanceOutput 100083
+	TRIGGER TIMES 1
+	event cage_location_chosen
+	on_executed
+		´cage_location_chosen_debug´ (delay 0)
+´cage_location_chosen_debug´ ElementDebug 100084
+	as_subtitle false
+	debug_string cage location chosen
+	show_instigator false
+´cage_is_built_debug´ ElementDebug 100085
+	as_subtitle false
+	debug_string cage is built
+	show_instigator false
+´30s´ MissionScriptElement 100087
+	on_executed
+		´can_see_it´ (delay 30)
+		´there_in_30s´ (delay 0)
+´there_in_30s´ ElementInstanceOutput 100088
+	event there_in_30s
+	on_executed
+		´there_in_30s_debug´ (delay 0)
+´there_in_30s_debug´ ElementDebug 100089
+	as_subtitle false
+	debug_string there in 30s
+	show_instigator false
+´secure_loot_air´ ElementAreaTrigger 100058
+	DISABLED
+	amount 1
+	depth 305
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, 0, 25.004
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´secure_loot_air_link´ (delay 0)
+´secure_loot_air_link´ MissionScriptElement 100060
+	on_executed
+		´goat_secured´ (delay 0)
+		´remove´ (delay 0)
+´disable_all_triggers´ ElementToggle 100057
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´detect_goats´ DISABLED
+		2 ´detect_cage_bags´ DISABLED
+		3 ´secure_loot_air´ DISABLED
+´enable_cage_location_again´ ElementInstanceInput 100090
+	event enable_cage_location_again
+	on_executed
+		´show_marker_and_plane´ (delay 0)
+		´lootdrop_waypoint_link´ (delay 0)
+		´enable_detect_cage_bags´ (delay 0)
+		´100_chance´ (delay 0)
+		´enable´ (delay 0)
+		´disable´ (delay 0)
+´reset_counter´ ElementCounterReset 100091
+	counter_target 3
+	position -5525, -300, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´count_to_3´
+´reset´ ElementToggle 100086
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´ready_for_balloon_trigger_once´
+´pilot_is_coming_again´ MissionScriptElement 100092
+	on_executed
+		´1min´ (delay 0)
+´show_marker_and_plane_debug´ ElementDebug 100095
+	as_subtitle false
+	debug_string show marker and plane
+	show_instigator false
+´1s_delay_2´ MissionScriptElement 100096
+	on_executed
+		´disable_all_triggers´ (delay 0)
+´enable_plane_success_debug´ ElementDebug 100097
+	as_subtitle false
+	debug_string enable plane success
+	show_instigator false
+´100_chance´ ElementLogicChanceOperator 100098
+	chance 100
+	operation set_chance
+	position -3050, -625, 402.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´x_chance´
+´reset_states´ ElementUnitSequence 100069
+	position -3250, -425, 402.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/vehicles/air_vehicle_cessna_206_csgo/air_vehicle_cessna_206_csgo/001 (0, 0, 0)
+			notify_unit_sequence state_reset_cage
+			time 0
+´enable_interaction_triggered_debug´ ElementDebug 100093
+	as_subtitle false
+	debug_string enable interaction triggered
+	show_instigator false
+´once_interacted_with_cage_triggered_debug´ ElementDebug 100070
+	as_subtitle false
+	debug_string once interacted with cage triggered
+	show_instigator false
+´enable´ ElementToggle 100094
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pilot_is_coming_2nd_time´ DISABLED
+´pilot_is_coming_2nd_time´ MissionScriptElement 100099
+	DISABLED
+	on_executed
+		´1min´ (delay 0)
+´disable´ ElementToggle 100100
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´pilot_is_coming´
+´keep_them_away´ ElementTeammateComment 100101
+	close_to_element false
+	comment g16
+	position -25, -150, 150.004
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´award_goat_trophy´ ElementCustomSafehouseAwardTrophy 100062
+	award_instigator false
+	objective_id trophy_goats_extracted
+	position -2850, -25, 402.5
+	rotation 0, 0, 0, -1
+	trophy trophy_goat

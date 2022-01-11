@@ -1,0 +1,60 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100009
+	DISABLED
+	EXECUTE ON STARTUP
+	position 775, 0, -399.996
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	on_executed
+		´deploy_turret´ (delay 0)
+´deploy_turret´ ElementInstanceInput 100010
+	event deploy_turret
+	on_executed
+		´logic_filter_001´ (delay 0)
+´spawn_turret´ ElementUnitSequence 100011
+	position 300, 200, -300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/gen_turret_ceiling_hatch/gen_turret_ceiling_hatch/001 (0, 0, -13)
+			notify_unit_sequence turret_spawn
+			time 0
+	on_executed
+		´activate_turret´ (delay 0.25)
+		´point_debug_001´ (delay 0)
+´activate_turret´ ElementUnitSequence 100012
+	position 300, 300, -300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/gen_turret_ceiling_hatch/gen_turret_ceiling_hatch/001 (0, 0, -13)
+			notify_unit_sequence turret_activate
+			time 0
+´logic_filter_001´ ElementFilter 100000
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 300, 100, -300
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_turret´ (delay 0)
+´point_debug_001´ ElementDebug 100001
+	as_subtitle false
+	debug_string spawning turret
+	show_instigator false

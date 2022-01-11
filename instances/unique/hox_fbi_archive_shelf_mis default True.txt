@@ -1,0 +1,177 @@
+´activate´ ElementInstanceInput 100003
+	event activate
+	on_executed
+		´activate_int´ (delay 0)
+´searched_left´ ElementUnitSequenceTrigger 100005
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/001 (0, -44, 125)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/001 (0, -44, 125)
+	on_executed
+		´scatter001´ (delay 0)
+		´right_shelf001´ (delay 0) DISABLED
+´searched_right´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/002 (0, 50, 125)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/002 (0, 50, 125)
+	on_executed
+		´scatter002´ (delay 0)
+		´right_shelf002´ (delay 0) DISABLED
+´scatter001´ ElementUnitSequence 100007
+	position 100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_archives_filecabinet/stn_prop_archives_filecabinet/001 (-150, -50, 0)
+			notify_unit_sequence show_searched_left
+			time 0
+´scatter002´ ElementUnitSequence 100008
+	position 100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_archives_filecabinet/stn_prop_archives_filecabinet/001 (-150, -50, 0)
+			notify_unit_sequence show_searched_right
+			time 0
+´right_shelf´ ElementInstanceInput 100009
+	event right_shelf
+	on_executed
+		´enable_random´ (delay 0)
+´enable_random´ ElementRandom 100010
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´enable_right_shelf001´ (delay 0)
+		´enable_right_shelf002´ (delay 0)
+´enable_right_shelf001´ ElementToggle 100011
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´false_int001´
+		2 ´right_int001´ DISABLED
+		3 ´right_shelf001´ DISABLED
+´enable_right_shelf002´ ElementToggle 100012
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´false_int002´
+		2 ´right_int002´ DISABLED
+		3 ´right_shelf002´ DISABLED
+´right_shelf001´ MissionScriptElement 100013
+	DISABLED
+	on_executed
+		´found_right´ (delay 0)
+´right_shelf002´ MissionScriptElement 100014
+	DISABLED
+	on_executed
+		´found_right´ (delay 0)
+´found_right´ ElementInstanceOutput 100015
+	event found_right
+´deactivate´ ElementInstanceInput 100016
+	event deactivate
+	on_executed
+		´disable_interact´ (delay 0)
+´setup´ MissionScriptElement 100018
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_interact´ (delay 2)
+´disable_interact´ ElementUnitSequence 100019
+	position -300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/002 (0, 50, 125)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/001 (0, -44, 125)
+			notify_unit_sequence interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/001 (0, -44, 125)
+			notify_unit_sequence interaction_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/002 (0, 50, 125)
+			notify_unit_sequence interaction_disable
+			time 0
+´false_int001´ ElementUnitSequence 100004
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/001 (0, -44, 125)
+			notify_unit_sequence interaction_enable
+			time 0
+´false_int002´ ElementUnitSequence 100024
+	position -100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching_false/002 (0, 50, 125)
+			notify_unit_sequence interaction_enable
+			time 0
+´right_int001´ ElementUnitSequence 100025
+	DISABLED
+	position -200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/001 (0, -44, 125)
+			notify_unit_sequence interaction_enable
+			time 0
+´right_int002´ ElementUnitSequence 100026
+	DISABLED
+	position -200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_searching/invisible_interaction_searching/002 (0, 50, 125)
+			notify_unit_sequence interaction_enable
+			time 0
+´activate_int´ MissionScriptElement 100027
+	on_executed
+		´int001´ (delay 0)
+		´int002´ (delay 0)
+´int001´ MissionScriptElement 100028
+	on_executed
+		´right_int001´ (delay 0) DISABLED
+		´false_int001´ (delay 0)
+´int002´ MissionScriptElement 100029
+	on_executed
+		´right_int002´ (delay 0) DISABLED
+		´false_int002´ (delay 0)

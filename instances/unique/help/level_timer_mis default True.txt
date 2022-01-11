@@ -1,0 +1,93 @@
+´ENABLE´ MissionScriptElement 100008
+	on_executed
+		´timer_started´ (delay 0)
+		´60 sec´ (delay 0)
+		´50´ (delay 0)
+´Start_Timer´ ElementInstanceInput 100009
+	event Start_Timer
+	on_executed
+		´ENABLE´ (delay 0)
+´timer_started´ ElementInstanceOutput 100026
+	event timer_started
+´timer_finished´ ElementInstanceOutput 100028
+	event timer_finished
+´60 sec´ MissionScriptElement 100041
+	BASE DELAY 60
+	on_executed
+		´Finished´ (delay 0)
+´Finished´ MissionScriptElement 100012
+	on_executed
+		´timer_finished´ (delay 0)
+´50´ MissionScriptElement 100000
+	BASE DELAY 50
+	on_executed
+		´Close_Doors´ (delay 0)
+		´teammate_comment_any_second_now´ (delay 5)
+´Close_Doors´ ElementInstanceOutput 100001
+	event Close_Doors
+´link´ MissionScriptElement 100002
+	on_executed
+		´random´ (delay 0)
+´next_event´ ElementInstanceInput 100003
+	event next_event
+	on_executed
+		´link´ (delay 0)
+´random´ ElementRandom 100004
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´link_3´ (delay 0) DISABLED
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100005
+	on_executed
+		´On_2´ (delay 0)
+´link_3´ MissionScriptElement 100007
+	DISABLED
+	on_executed
+		´On´ (delay 0)
+´pick_wheel´ ElementInstanceOutput 100011
+	event pick_wheel
+´pick_switch´ ElementInstanceOutput 100013
+	event pick_switch
+´On´ ElementToggle 100015
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_2´
+	on_executed
+		´Off´ (delay 0)
+´Off´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_3´ DISABLED
+	on_executed
+		´pick_wheel´ (delay 0)
+´Off_2´ ElementToggle 100006
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_2´
+	on_executed
+		´pick_switch´ (delay 0)
+´On_2´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_3´ DISABLED
+	on_executed
+		´Off_2´ (delay 0)
+´teammate_comment_any_second_now´ ElementTeammateComment 100014
+	close_to_element false
+	comment p17
+	position -100, 100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100017
+	as_subtitle false
+	debug_string teammate_comment_any_second_now
+	show_instigator false

@@ -1,0 +1,371 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´deathwish´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -350, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_torture_cuffs/sand_prop_torture_cuffs/001 (-125, -4, 16)
+			notify_unit_sequence state_shackled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´add_door_blockers´ (delay 0) DISABLED
+´input_enable_vlad_camera´ ElementInstanceInput 100007
+	event enable_vlad_camera
+	on_executed
+		´camera_001´ (delay 0)
+´ai_disable_camera_001´ ElementSecurityCamera 100009
+	camera_u_id 100016
+	on_executed
+		´toggle_OFF_trigger´ (delay 0)
+´ai_camera´ ElementSecurityCamera 100010
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100016
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -60
+´enable_camera´ ElementEnableUnit 100011
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_001 (124, -234.282, 219.5)
+	on_executed
+		´ai_camera´ (delay 0)
+´camera_001´ MissionScriptElement 100012
+	on_executed
+		´enable_camera´ (delay 0)
+´camera_access_001´ ElementAccessCamera 100015
+	camera_u_id 100016
+	pitch_limit 25
+	position 61, -211, 202.5
+	rotation 0.178577, 0.0363319, -0.19603, -0.963516
+	text_id debug_none
+	yaw_limit 25
+´disable_camera´ ElementDisableUnit 100013
+	position 1100, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_001 (124, -234.282, 219.5)
+	on_executed
+		´ai_disable_camera_001´ (delay 0)
+´input_disable_vlad_camera´ ElementInstanceInput 100017
+	event disable_vlad_camera
+	on_executed
+		´camera_001_2´ (delay 0)
+´camera_001_2´ MissionScriptElement 100018
+	on_executed
+		´disable_camera´ (delay 0)
+´point_access_camera_trigger_vlad_camera´ ElementAccessCameraTrigger 100036
+	TRIGGER TIMES 1
+	position 1200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_type accessed
+	elements
+		1 ´camera_access_001´
+	on_executed
+		´output_vlad_seen_in_camera´ (delay 0)
+´output_vlad_seen_in_camera´ ElementInstanceOutput 100037
+	event vlad_seen_in_camera
+´toggle_OFF_trigger´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_access_camera_trigger_vlad_camera´
+´point_waypoint_vlad´ ElementWaypoint 100038
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_waypoint_vlad´ ElementInstanceInput 100039
+	event show_waypoint_vlad
+	on_executed
+		´link_show_wp´ (delay 0)
+´input_hide_waypoint_vlad´ ElementInstanceInput 100040
+	event hide_waypoint_vlad
+	on_executed
+		´link_hide_wp´ (delay 0)
+´link_show_wp´ MissionScriptElement 100041
+	on_executed
+		´point_waypoint_vlad´ (delay 0)
+´link_hide_wp´ MissionScriptElement 100042
+	on_executed
+		´toggle_off_wp´ (delay 0)
+´toggle_off_wp´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_vlad´
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´point_waypoint_vlad´
+´open_handcuffs_hands´ ElementInteraction 100020
+	DISABLED
+	host_only false
+	override_timer -1
+	position -75, 0, 200
+	rotation 0, 0, 0, -1
+	tweak_data_id sand_open_handcuffs
+	on_executed
+		´remove_handcuff_WP_and_VO´ (delay 0) (alternative interacted)
+		´output_vlad_released´ (delay 0) (alternative interacted)
+		´show_loose_cuufs´ (delay 0) (alternative interacted)
+´output_vlad_released´ ElementInstanceOutput 100023
+	event vlad_released
+´handcuffs_WP´ ElementWaypoint 100024
+	icon pd2_wirecutter
+	only_in_civilian false
+	only_on_instigator false
+	position -75, 0, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_handcuff_WP_and_VO´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´handcuffs_WP´
+		2 ´vlad_sees_the_player_audio´
+´toggle_ON_interaction´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open_handcuffs_hands´ DISABLED
+	on_executed
+		´handcuffs_WP´ (delay 0)
+		´vlad_sees_the_player_audio´ (delay 0)
+´input_enable_use_paddles´ ElementInstanceInput 100029
+	event enable_use_paddles
+	on_executed
+		´toggle_ON_interaction_2´ (delay 0)
+´input_enable_use_adrenaline´ ElementInstanceInput 100030
+	event enable_use_adrenaline
+	on_executed
+		´toggle_ON_interaction_3´ (delay 0)
+´toggle_ON_interaction_2´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´use_paddles´ DISABLED
+	on_executed
+		´paddle_WP´ (delay 0)
+´toggle_ON_interaction_3´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´use_adrenaline´ DISABLED
+	on_executed
+		´adrenaline_WP´ (delay 0)
+´use_paddles´ ElementInteraction 100034
+	DISABLED
+	host_only false
+	override_timer -1
+	position 3, 40, 50
+	rotation -4.65661E-10, -8.27181E-25, -1.49012E-08, -1
+	tweak_data_id sand_use_paddles
+	on_executed
+		´remove_WP_2´ (delay 0) (alternative interacted)
+		´point_play_sound_use_paddles´ (delay 0) (alternative interacted)
+´use_adrenaline´ ElementInteraction 100035
+	DISABLED
+	host_only false
+	override_timer -1
+	position 3, 40, 50
+	rotation -4.65661E-10, -8.27181E-25, -1.49012E-08, -1
+	tweak_data_id sand_use_adrenaline
+	on_executed
+		´remove_WP_3´ (delay 0) (alternative interacted)
+		´syringe_stab_audio´ (delay 0) (alternative interacted)
+´output_paddles_used´ ElementInstanceOutput 100045
+	event paddles_used
+´output_adrenaline_used´ ElementInstanceOutput 100046
+	event adrenaline_used
+´paddle_WP´ ElementWaypoint 100047
+	icon pd2_power
+	only_in_civilian false
+	only_on_instigator false
+	position 3, 40, 50
+	rotation -4.65661E-10, -8.27181E-25, -1.49012E-08, -1
+	text_id debug_none
+´adrenaline_WP´ ElementWaypoint 100048
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 3, 40, 50
+	rotation -4.65661E-10, -8.27181E-25, -1.49012E-08, -1
+	text_id debug_none
+´remove_WP_2´ ElementOperator 100049
+	operation remove
+	elements
+		1 ´paddle_WP´
+	on_executed
+		´output_paddles_used´ (delay 0)
+´remove_WP_3´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´adrenaline_WP´
+	on_executed
+		´output_adrenaline_used´ (delay 0)
+´input_police_called´ ElementInstanceInput 100052
+	event police_called
+	on_executed
+		´ai_disable_camera_001´ (delay 0)
+´deathwish´ ElementFilter 100051
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_upgrade_cameras´ (delay 0)
+´seq_upgrade_cameras´ ElementUnitSequence 100053
+	position 600, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_001 (124, -234.282, 219.5)
+			notify_unit_sequence deathwish
+			time 0
+´input_enable_handcuff_interaction´ ElementInstanceInput 100004
+	event enable_handcuff_interaction
+	on_executed
+		´toggle_ON_interaction´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100008
+	SO_access 131073
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -100, 0, 25
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -100 0 0
+	so_action cm_so_sand_tied_to_wall_fall
+	trigger_on none
+	followup_elements
+´add_door_blockers´ ElementNavObstacle 100059
+	DISABLED
+	operation add
+	position 600, -300, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (100, -250, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-200, -150, 0)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-200, 75, 0)
+´point_play_sound_torture_tape´ ElementPlaySound 100060
+	append_prefix false
+	interrupt true
+	position -81, 114, 75
+	rotation 0, 0, 0.707107, -0.707107
+	sound_event Play_sand_torture_tape_01
+	use_instigator false
+´point_interaction_listen_to_tape´ ElementInteraction 100061
+	host_only false
+	override_timer -1
+	position -81, 114, 103
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id sand_tort_tape
+	on_executed
+		´point_play_sound_torture_tape´ (delay 0) (alternative interacted)
+´syringe_stab_audio´ ElementPlaySound 100062
+	append_prefix false
+	interrupt true
+	position 3, 40, 50
+	rotation -4.65661E-10, -8.27181E-25, -1.49012E-08, -1
+	sound_event syringe_stab
+	use_instigator false
+´vlad_sees_the_player_audio´ ElementPlaySound 100063
+	append_prefix false
+	interrupt true
+	position -75, 0, 200
+	rotation 0, 0, 0, -1
+	sound_event Play_vld_sand_01
+	use_instigator false
+´point_play_sound_use_paddles´ ElementPlaySound 100026
+	append_prefix false
+	interrupt true
+	position 3, 40, 50
+	rotation -4.65661E-10, 0, 0, -1
+	sound_event defib_pads_use
+	use_instigator false
+´show_loose_cuufs´ ElementUnitSequence 100065
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_torture_cuffs/sand_prop_torture_cuffs/001 (-125, -4, 16)
+			notify_unit_sequence state_loose
+			time 0

@@ -1,0 +1,1596 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -750, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´input_enable_blowtorch_interactions´ (delay 2)
+		´input_disable_backdoor_ACTIVATE_AFTER_RANDOM_NUMBERS-->´ (delay 4)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence enable_contour
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence enable_contour
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence state_door_closed
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence state_door_closed
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´door_blockers_ADD_FFS´ (delay 0)
+		´GETTING_SICK_OF_THIS_S´ (delay 0)
+		´randomize_container_color´ (delay 0)
+´output_company_A_enabled´ ElementInstanceOutput 100008
+	event company_X_enabled
+´input_enable_company_A_logo´ ElementInstanceInput 100019
+	BASE DELAY 2
+	event enable_company_X_logo
+	on_executed
+		´logic_link_001´ (delay 0)
+´input_enable_company_B_logo´ ElementInstanceInput 100020
+	BASE DELAY 2
+	event enable_company_Y_logo
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_enable_company_C_logo´ ElementInstanceInput 100021
+	BASE DELAY 2
+	event enable_company_Z_logo
+	on_executed
+		´logic_link_003´ (delay 0)
+´output_company_B_enabled´ ElementInstanceOutput 100022
+	event company_Y_enabled
+´output_company_C_enabled´ ElementInstanceOutput 100023
+	event company_Z_enabled
+´logic_link_001´ MissionScriptElement 100024
+	on_executed
+		´func_sequence_001´ (delay 0)
+´logic_link_002´ MissionScriptElement 100028
+	on_executed
+		´func_sequence_002´ (delay 0)
+´logic_link_003´ MissionScriptElement 100029
+	on_executed
+		´func_sequence_003´ (delay 0)
+´input_disable_backdoor_ACTIVATE_AFTER_RANDOM_NUMBERS-->´ ElementInstanceInput 100007
+	event disable_backdoor
+	on_executed
+		´disable_backdoor´ (delay 0)
+´disable_backdoor´ ElementUnitSequence 100009
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´toggle_OFF_blowtorch_interaction´ (delay 0)
+´front_door_opened´ ElementUnitSequenceTrigger 100068
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_door_open
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+	on_executed
+		´remove_front_blocker´ (delay 0)
+´back_door_opened´ ElementUnitSequenceTrigger 100069
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_door_open
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+	on_executed
+		´remove_back_blocker´ (delay 0)
+´input_show_000´ ElementInstanceInput 100087
+	event show_00
+	on_executed
+		´show_00´ (delay 0)
+´input_show_001´ ElementInstanceInput 100088
+	event show_01
+	on_executed
+		´show_01´ (delay 0)
+´input_show_002´ ElementInstanceInput 100089
+	event show_02
+	on_executed
+		´show_02´ (delay 0)
+´input_show_003´ ElementInstanceInput 100090
+	event show_03
+	on_executed
+		´show_03´ (delay 0)
+´input_show_004´ ElementInstanceInput 100091
+	event show_04
+	on_executed
+		´show_04´ (delay 0)
+´input_show_005´ ElementInstanceInput 100092
+	event show_05
+	on_executed
+		´show_05´ (delay 0)
+´input_show_006´ ElementInstanceInput 100093
+	event show_06
+	on_executed
+		´show_06´ (delay 0)
+´input_show_007´ ElementInstanceInput 100094
+	event show_07
+	on_executed
+		´show_07´ (delay 0)
+´input_show_008´ ElementInstanceInput 100095
+	event show_08
+	on_executed
+		´show_08´ (delay 0)
+´input_show_009´ ElementInstanceInput 100096
+	event show_09
+	on_executed
+		´show_09´ (delay 0)
+´input_show_010´ ElementInstanceInput 100097
+	event show_10
+	on_executed
+		´show_10´ (delay 0)
+´input_show_011´ ElementInstanceInput 100098
+	event show_11
+	on_executed
+		´show_11´ (delay 0)
+´input_show_012´ ElementInstanceInput 100099
+	event show_12
+	on_executed
+		´show_12´ (delay 0)
+´input_show_013´ ElementInstanceInput 100100
+	event show_13
+	on_executed
+		´show_13´ (delay 0)
+´input_show_014´ ElementInstanceInput 100101
+	event show_14
+	on_executed
+		´show_14´ (delay 0)
+´input_show_015´ ElementInstanceInput 100102
+	event show_15
+	on_executed
+		´show_15´ (delay 0)
+´container_blue´ ElementUnitSequence 100136
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_color_blue
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence var_set_color_blue
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence var_set_color_blue
+			time 0
+´container_green´ ElementUnitSequence 100137
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_color_green
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence var_set_color_green
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence var_set_color_green
+			time 0
+´container_red´ ElementUnitSequence 100138
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_color_red
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence var_set_color_red
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence var_set_color_red
+			time 0
+´container_white´ ElementUnitSequence 100139
+	position 900, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_color_white
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence var_set_color_white
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence var_set_color_white
+			time 0
+´container_yellow´ ElementUnitSequence 100140
+	position 1000, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_color_yellow
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence var_set_color_yellow
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence var_set_color_yellow
+			time 0
+´randomize_container_color´ ElementRandom 100141
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´container_blue´ (delay 0)
+		´container_green´ (delay 0)
+		´container_red´ (delay 0)
+		´container_white´ (delay 0)
+		´container_yellow´ (delay 0)
+´show_01´ ElementUnitSequence 100149
+	position 2675, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_01
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_1
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_1
+			time 0
+´show_00´ ElementUnitSequence 100150
+	position 2575, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_00
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_00
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_0
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_0
+			time 0
+´show_02´ ElementUnitSequence 100151
+	position 2775, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_02
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_2
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_2
+			time 0
+´show_03´ ElementUnitSequence 100152
+	position 2875, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_03
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_03
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_3
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_3
+			time 0
+´show_04´ ElementUnitSequence 100153
+	position 2975, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_04
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_04
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_4
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_4
+			time 0
+´show_05´ ElementUnitSequence 100154
+	position 2575, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_05
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_05
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_5
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_5
+			time 0
+´show_06´ ElementUnitSequence 100155
+	position 2675, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_06
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_06
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_6
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_6
+			time 0
+´show_07´ ElementUnitSequence 100156
+	position 2775, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_07
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_07
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_7
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_7
+			time 0
+´show_08´ ElementUnitSequence 100157
+	position 2875, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_08
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_08
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_8
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_8
+			time 0
+´show_09´ ElementUnitSequence 100158
+	position 2975, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_09
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_09
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_0
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_9
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_0
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_9
+			time 0
+´back_lock_broken´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_lock_broken
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+	on_executed
+		´open_back_door´ (delay 0)
+´front_lock_broken´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_lock_broken
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+	on_executed
+		´open_front_door´ (delay 0)
+´open_front_door´ ElementUnitSequence 100012
+	position 1500, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_contour
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´toggle_OFF_front_triggers´ (delay 0)
+´open_back_door´ ElementUnitSequence 100013
+	position 1400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_contour
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´toggle_OFF_back_triggers´ (delay 0)
+´back_end´ MissionScriptElement 100014
+	on_executed
+		´back_stop_effect´ (delay 0)
+		´toggle_OFF_WP´ (delay 0)
+´back_stop_effect´ ElementStopEffect 100015
+	operation kill
+	position 0, -1050, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_007´
+´back_interrupt´ MissionScriptElement 100016
+	on_executed
+		´back_stop_effect´ (delay 0)
+		´sound_blowtorch_end003´ (delay 0)
+´back_start´ MissionScriptElement 100017
+	on_executed
+		´sound_blowtorch_end003´ (delay 0)
+		´env_effect_play_007´ (delay 0)
+´blowtorch_BACK_WP´ ElementWaypoint 100018
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position 0, -313, 137
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´sound_blowtorch_end003´ ElementPlaySound 100033
+	append_prefix false
+	interrupt true
+	position 0, -313, 137
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator false
+´point_interaction_blowtorch_BACK´ ElementInteraction 100034
+	DISABLED
+	host_only false
+	override_timer 3
+	position 0, -313, 137
+	rotation 0, 0, 1, 4.37114E-08
+	tweak_data_id sand_hold_blow_torch
+	on_executed
+		´back_start´ (delay 0) (alternative start)
+		´back_end´ (delay 0) (alternative interacted)
+		´back_interrupt´ (delay 0) (alternative interupt)
+´env_effect_play_007´ ElementPlayEffect 100035
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 0, -311, 135
+	random_time 0
+	rotation -0.382683, 0, 0, -0.92388
+	screen_space false
+´input_enable_blowtorch_interactions´ ElementInstanceInput 100036
+	event enable_blowtorch_interactions
+	on_executed
+		´toggle_ON_back´ (delay 0)
+		´toggle_ON_front´ (delay 0)
+´toggle_ON_back´ ElementToggle 100037
+	set_trigger_times 0
+	toggle on
+	elements
+		1 ´point_interaction_blowtorch_BACK´ DISABLED
+		2 ´disable_blowtorch_WP_BACK´ DISABLED
+		3 ´enable_blowtorch_WP_BACK´ DISABLED
+	on_executed
+		´disable_interaction´ (delay 0) DISABLED
+´disable_interaction´ ElementUnitSequence 100038
+	DISABLED
+	position 1700, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_contour
+			time 0
+´toggle_OFF_WP´ ElementToggle 100121
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´blowtorch_BACK_WP´
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100122
+	operation remove
+	elements
+		1 ´blowtorch_BACK_WP´
+	on_executed
+		´show_broken_lock_BACK´ (delay 0)
+´show_broken_lock_BACK´ ElementUnitSequence 100123
+	position 0, -1350, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_lock_broken
+			time 0
+´show_12´ ElementUnitSequence 100125
+	position 2775, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_12
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_12
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_2
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_2
+			time 0
+´show_13´ ElementUnitSequence 100126
+	position 2875, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_13
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_13
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_3
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_3
+			time 0
+´show_14´ ElementUnitSequence 100127
+	position 2975, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_14
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_14
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_4
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_4
+			time 0
+´show_15´ ElementUnitSequence 100128
+	position 3075, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_15
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_15
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_5
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_5
+			time 0
+´show_11´ ElementUnitSequence 100129
+	position 2675, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_11
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_11
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_1
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_1
+			time 0
+´show_10´ ElementUnitSequence 100130
+	position 2575, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence state_show_number_10
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_show_number_10
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_1_1
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+			notify_unit_sequence show_2_0
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_1_1
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+			notify_unit_sequence show_2_0
+			time 0
+´remove_WPs001´ ElementOperator 100132
+	operation remove
+	elements
+		1 ´blowtorch_BACK_WP´
+´enable_blowtorch_WP_BACK´ ElementAreaTrigger 100135
+	DISABLED
+	amount 1
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -400, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 250
+	rules_element_ids
+		1 ´data_instigator_rule_blowtorch´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´blowtorch_BACK_WP´ (delay 0)
+		´link_toggle_on_back_interaction´ (delay 0)
+´disable_blowtorch_WP_BACK´ ElementAreaTrigger 100159
+	DISABLED
+	amount all
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -400, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+		1 ´data_instigator_rule_blowtorch´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_toggle_off_wp´ (delay 0)
+		´link_toggle_off_back_interaction´ (delay 0)
+		´back_stop_effect´ (delay 0)
+´disable_blowtorch_WP_FRONT´ ElementAreaTrigger 100124
+	DISABLED
+	amount all
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 400, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+		1 ´data_instigator_rule_blowtorch´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_toggle_off_wp_2´ (delay 0)
+		´link_toggle_off_front_interaction´ (delay 0)
+		´back_stop_effect001´ (delay 0)
+´enable_blowtorch_WP_FRONT´ ElementAreaTrigger 100131
+	DISABLED
+	amount 1
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 400, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 250
+	rules_element_ids
+		1 ´data_instigator_rule_blowtorch´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´blowtorch_FRONT_WP´ (delay 0)
+		´link_toggle_on_front_interaction´ (delay 0)
+´point_interaction_blowtorch_FRONT´ ElementInteraction 100133
+	DISABLED
+	host_only false
+	override_timer 3
+	position 0, 313, 137
+	rotation 0, 0, -7.54976E-08, -1
+	tweak_data_id sand_hold_blow_torch
+	on_executed
+		´back_start001´ (delay 0) (alternative start)
+		´back_end001´ (delay 0) (alternative interacted)
+		´back_interrupt001´ (delay 0) (alternative interupt)
+´sound_blowtorch_end004´ ElementPlaySound 100134
+	append_prefix false
+	interrupt true
+	position -2.62261E-05, 313, 137
+	rotation 0, 0, 1, -1.19209E-07
+	sound_event bar_blowtorch_end
+	use_instigator false
+´blowtorch_FRONT_WP´ ElementWaypoint 100160
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position 0, 313, 137
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´env_effect_play_008´ ElementPlayEffect 100161
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 0, 313, 137
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´back_interrupt001´ MissionScriptElement 100162
+	on_executed
+		´back_stop_effect001´ (delay 0)
+		´sound_blowtorch_end004´ (delay 0)
+´back_end001´ MissionScriptElement 100163
+	on_executed
+		´back_stop_effect001´ (delay 0)
+		´toggle_OFF_WP001´ (delay 0)
+´back_start001´ MissionScriptElement 100164
+	on_executed
+		´sound_blowtorch_end004´ (delay 0)
+		´env_effect_play_008´ (delay 0)
+´back_stop_effect001´ ElementStopEffect 100165
+	operation kill
+	position -8.39233E-05, 962, 88
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´env_effect_play_008´
+´toggle_OFF_WP001´ ElementToggle 100166
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´blowtorch_FRONT_WP´
+	on_executed
+		´remove_WP001´ (delay 0)
+´remove_WP001´ ElementOperator 100167
+	operation remove
+	elements
+		1 ´blowtorch_FRONT_WP´
+	on_executed
+		´show_broken_lock_FRONT´ (delay 0)
+´show_broken_lock_FRONT´ ElementUnitSequence 100168
+	position -0.000152588, 1262, 88
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence state_lock_broken
+			time 0
+´remove_WPs002´ ElementOperator 100169
+	operation remove
+	elements
+		1 ´blowtorch_FRONT_WP´
+´toggle_ON_front´ ElementToggle 100039
+	set_trigger_times 0
+	toggle on
+	elements
+		1 ´point_interaction_blowtorch_FRONT´ DISABLED
+		2 ´enable_blowtorch_WP_FRONT´ DISABLED
+		3 ´disable_blowtorch_WP_FRONT´ DISABLED
+	on_executed
+		´disable_interaction_2´ (delay 0) DISABLED
+´disable_interaction_2´ ElementUnitSequence 100170
+	DISABLED
+	position 1900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_contour
+			time 0
+´toggle_OFF_blowtorch_interaction´ ElementToggle 100171
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´toggle_ON_back´
+		2 ´disable_blowtorch_WP_BACK´ DISABLED
+		3 ´enable_blowtorch_WP_BACK´ DISABLED
+´toggle_OFF_front_triggers´ ElementToggle 100172
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_blowtorch_WP_FRONT´ DISABLED
+		2 ´enable_blowtorch_WP_FRONT´ DISABLED
+´toggle_OFF_back_triggers´ ElementToggle 100173
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_blowtorch_WP_BACK´ DISABLED
+		2 ´enable_blowtorch_WP_BACK´ DISABLED
+´data_instigator_rule_blowtorch´ ElementInstigatorRule 100174
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 blow_torch
+´input_blowtorch_taken´ ElementInstanceInput 100070
+	event blowtorch_taken
+	on_executed
+		´disable_TA_interactions´ (delay 0)
+´disable_TA_interactions´ ElementUnitSequence 100071
+	position 1100, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_contour
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/BACK (0, -0.00012207, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_contour
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_interactable_container_lock/sand_interactable_container_lock/FRONT (0, -6.10352E-05, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´input_toggle_off_wp_perm´ ElementInstanceInput 100004
+	event toggle_off_waypoints_permanently
+	on_executed
+		´toggle_off_wps´ (delay 0)
+´toggle_off_wps´ ElementToggle 100175
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´toggle_ON_front´
+		2 ´toggle_ON_back´
+		3 ´blowtorch_BACK_WP´
+		4 ´blowtorch_FRONT_WP´
+´link_toggle_off_wp´ MissionScriptElement 100176
+	on_executed
+		´toggle_off_wp´ (delay 0) DISABLED
+		´remove_WPs001´ (delay 0)
+´toggle_off_wp´ ElementToggle 100177
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´blowtorch_BACK_WP´
+´toggle_off_wp_2´ ElementToggle 100178
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´blowtorch_FRONT_WP´
+´link_toggle_off_wp_2´ MissionScriptElement 100179
+	on_executed
+		´toggle_off_wp_2´ (delay 0) DISABLED
+		´remove_WPs002´ (delay 0)
+´link_toggle_on_back_interaction´ MissionScriptElement 100180
+	on_executed
+		´toggle_on_interaction´ (delay 0)
+´link_toggle_off_back_interaction´ MissionScriptElement 100181
+	on_executed
+		´toggle_off_interaction´ (delay 0)
+´toggle_on_interaction´ ElementToggle 100182
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_blowtorch_BACK´ DISABLED
+´toggle_off_interaction´ ElementToggle 100183
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_blowtorch_BACK´ DISABLED
+´link_toggle_on_front_interaction´ MissionScriptElement 100184
+	on_executed
+		´toggle_on_interaction_2´ (delay 0)
+´link_toggle_off_front_interaction´ MissionScriptElement 100185
+	on_executed
+		´toggle_off_interaction_2´ (delay 0)
+´toggle_on_interaction_2´ ElementToggle 100186
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_blowtorch_FRONT´ DISABLED
+´toggle_off_interaction_2´ ElementToggle 100187
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_blowtorch_FRONT´ DISABLED
+´remove_front_blocker´ ElementNavObstacle 100189
+	TRIGGER TIMES 1
+	operation remove
+	position 1200, 200, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (49.9998, 350, -25)
+´remove_back_blocker´ ElementNavObstacle 100190
+	TRIGGER TIMES 1
+	operation remove
+	position 1300, 200, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (50, -250, -25)
+´door_blockers_ADD_FFS´ ElementNavObstacle 100120
+	TRIGGER TIMES 1
+	operation add
+	position 550, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (50, -250, -25)
+´GETTING_SICK_OF_THIS_S´ ElementNavObstacle 100144
+	TRIGGER TIMES 1
+	operation add
+	position 650, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (49.9998, 350, -25)
+´func_sequence_001´ ElementUnitSequence 100191
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_logo_1
+			time 0
+	on_executed
+		´output_company_A_enabled´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100192
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_logo_2
+			time 0
+	on_executed
+		´output_company_B_enabled´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100193
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container/001 (0, -6.10352E-05, 3.05176E-05)
+			notify_unit_sequence var_set_logo_3
+			time 0
+	on_executed
+		´output_company_C_enabled´ (delay 0)
+´input_is_vlad_container´ ElementInstanceInput 100025
+	event set_is_correct_vlad_container
+	on_executed
+		´counter_2´ (delay 0)
+		´toggle_off´ (delay 0)
+´counter_2´ ElementCounter 100026
+	counter_target 2
+	on_executed
+		´link_vlad_container´ (delay 0)
+´trigger_door_opened´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_door_open
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/BACK (-114.999, -295, 14.9999)
+		2
+			guis_id 2
+			sequence anim_door_open
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_chinese_container/sand_prop_chinese_container_doors/FRONT (116.001, 294.99, 15.0003)
+	on_executed
+		´counter_2´ (delay 0)
+		´output_door_opened´ (delay 0)
+´link_vlad_container´ MissionScriptElement 100030
+	on_executed
+		´output_vlad_container´ (delay 0)
+		´point_debug_001´ (delay 0) DISABLED
+		´point_debug_002´ (delay 0)
+´output_vlad_container´ ElementInstanceOutput 100031
+	event correct_vlad_container_opened
+´point_debug_001´ ElementDebug 100032
+	DISABLED
+	as_subtitle false
+	debug_string correct vlad container opened
+	show_instigator false
+´point_debug_002´ ElementDebug 100040
+	as_subtitle false
+	debug_string vlad_found
+	show_instigator false
+´output_door_opened´ ElementInstanceOutput 100041
+	event doors_opened
+´toggle_off´ ElementToggle 100042
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´output_door_opened´

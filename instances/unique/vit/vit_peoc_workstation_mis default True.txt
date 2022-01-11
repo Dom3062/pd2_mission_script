@@ -1,0 +1,654 @@
+´enable_interaction´ ElementUnitSequence 100001
+	position 400, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence set_stealth
+			time 0
+	on_executed
+		´computer_wp´ (delay 0)
+´enable_interaction_input´ ElementInstanceInput 100003
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+´interacted_computer´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/off_int_keyboard_dockyard/off_int_keyboard_dockyard/001 (1.54972E-05, 35, 88)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+		´logic_counter_001´ (delay 0)
+		´started_hacking_firewall´ (delay 0)
+´start_hacking´ ElementUnitSequence 100005
+	position 300, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence set_stealth
+			time 0
+	on_executed
+		´started_hacking_output´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100007
+	EXECUTE ON STARTUP
+	position 500, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+´func_enable_unit_001´ ElementEnableUnit 100008
+	position 300, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´started_hacking_output´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100009
+	DISABLED
+	position -400, 400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+	on_executed
+		´ai_spawn_enemy_001´ (delay 1) DISABLED
+´func_sequence_001´ ElementUnitSequence 100010
+	EXECUTE ON STARTUP
+	position 500, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence set_hack_time_60
+			time 0
+´interrupt_so_001´ ElementSpecialObjective 100012
+	DISABLED
+	SO_access 56623608
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 125, 0.00400543
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1000
+	search_position 3,92865 61,2318 0,00400394
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´interrupt_so_002´ DISABLED
+´interrupt_so_002´ ElementSpecialObjective 100013
+	DISABLED
+	SO_access 56623608
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 125, 100.004
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 3,92865 61,2318 0,00400394
+	so_action e_so_interact_mid
+	trigger_on none
+	use_instigator true
+	followup_elements
+´interrupt_input´ ElementInstanceInput 100011
+	event interrupt
+	on_executed
+		´interrupt´ (delay 0)
+´interrupt´ ElementUnitSequence 100014
+	position 200, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence state_device_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´fix_wp´ (delay 0)
+´interacted_computer_2´ ElementUnitSequenceTrigger 100015
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+	on_executed
+		´resume´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100016
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interacted_computer_2´ DISABLED
+		2 ´resume´ DISABLED
+	on_executed
+		´interrupted_by_enemies_output´ (delay 0)
+´resume´ ElementUnitSequence 100017
+	DISABLED
+	position 100, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´point_debug_002´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100018
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -400, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´ai_spawn_enemy_003´ (delay 0) DISABLED
+		´ai_spawn_enemy_002´ (delay 0) DISABLED
+´police_called´ ElementGlobalEventTrigger 100019
+	TRIGGER TIMES 1
+	global_event police_called
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_001´ (delay 0)
+		´logic_toggle_009´ (delay 0)
+´logic_counter_001´ ElementCounter 100020
+	counter_target 2
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´point_debug_003´ (delay 0)
+´logic_toggle_002´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_so_001´ DISABLED
+	on_executed
+		´logic_toggle_003´ (delay 0)
+		´set_loud´ (delay 0) DISABLED
+´logic_toggle_003´ ElementToggle 100022
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_so_002´ DISABLED
+	on_executed
+		´interrupt_so_002´ (delay 0.1) DISABLED
+		´interrupt_so_001´ (delay 0.1) DISABLED
+´anim_complete´ ElementSpecialObjectiveTrigger 100023
+	event complete
+	position 200, 400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so_002´ DISABLED
+	on_executed
+		´interrupt´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100024
+	event fail
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so_002´ DISABLED
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´interrupt_so_002´ DISABLED
+		2 ´interrupt_so_001´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100026
+	operation none
+	elements
+		1 ´interrupt_so_002´ DISABLED
+		2 ´interrupt_so_001´ DISABLED
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100027
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -800, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100028
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -600, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´logic_toggle_004´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_so_001´ DISABLED
+		2 ´interrupt_so_002´ DISABLED
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_003´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´interrupt_so_001´ DISABLED
+		2 ´interrupt_so_002´ DISABLED
+		3 ´computer_wp´
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´point_debug_001´ ElementDebug 100031
+	as_subtitle false
+	debug_string anim_fail
+	show_instigator false
+´point_debug_002´ ElementDebug 100032
+	as_subtitle false
+	debug_string resume
+	show_instigator false
+	on_executed
+		´resumed_output´ (delay 0)
+´point_debug_003´ ElementDebug 100033
+	as_subtitle false
+	debug_string counter
+	show_instigator false
+´started_hacking_output´ ElementInstanceOutput 100034
+	event started_hacking
+´interrupted_by_enemies_output´ ElementInstanceOutput 100035
+	event interrupted_by_enemies
+´resumed_output´ ElementInstanceOutput 100036
+	event resumed
+	on_executed
+		´logic_operator_004´ (delay 0)
+´kill_power_input´ ElementInstanceInput 100037
+	event kill_power
+	on_executed
+		´kill_power´ (delay 0)
+´kill_power´ ElementUnitSequence 100038
+	position -200, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence power_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence hide_gui
+			time 0
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´restore_power_input´ ElementInstanceInput 100039
+	event restore_power
+	on_executed
+		´restore_power´ (delay 0)
+´restore_power´ ElementUnitSequence 100040
+	position -300, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence power_on
+			time 0
+	on_executed
+		´restore_interuptions´ (delay 0) DISABLED
+´restore_interuptions´ MissionScriptElement 100041
+	DISABLED
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_toggle_005´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´restore_interuptions´ DISABLED
+´hacking_completed´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+	on_executed
+		´logic_toggle_004´ (delay 0)
+		´hacking_completed_output´ (delay 0)
+		´firewall_breached_output´ (delay 0)
+		´point_debug_005´ (delay 0)
+		´logic_operator_005´ (delay 0)
+´hacking_completed_output´ ElementInstanceOutput 100044
+	event hacking_completed
+	on_executed
+		´restore_power001´ (delay 0)
+´breach_stopped_by_firewall_input´ ElementInstanceInput 100048
+	event breach_stopped_by_firewall
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100047
+	position 600, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´logic_toggle_006´ ElementToggle 100049
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´firewall_breached_output´
+		2 ´started_hacking_firewall´
+	on_executed
+		´enable_interaction´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+		´enable_interaction_loud´ (delay 0) DISABLED
+´firewall_breached_output´ ElementInstanceOutput 100051
+	event firewall_breached
+	on_executed
+		´logic_toggle_008´ (delay 0)
+		´point_debug_004´ (delay 0)
+´started_hacking_firewall´ ElementInstanceOutput 100050
+	event started_hacking_firewall
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100052
+	position 600, 800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´logic_toggle_007´ ElementToggle 100053
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´started_hacking_output´
+´logic_toggle_008´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´started_hacking_output´
+´set_loud´ ElementUnitSequence 100046
+	DISABLED
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence set_loud
+			time 0
+´hacking_completed001´ ElementUnitSequenceTrigger 100055
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_on_interact_stealth
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+	on_executed
+		´firewall_breached_output´ (delay 0)
+		´point_debug_005´ (delay 0)
+		´logic_operator_005´ (delay 0)
+		´hacking_completed_output´ (delay 0)
+´point_debug_004´ ElementDebug 100056
+	as_subtitle false
+	debug_string OUTPUT!!!!!!
+	show_instigator false
+´point_debug_005´ ElementDebug 100057
+	as_subtitle false
+	debug_string Hacking_Completed!!!!!!!!!!!!!!!!
+	show_instigator false
+´computer_wp´ ElementWaypoint 100058
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 158.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fix_wp´ ElementWaypoint 100059
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 158.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_004´ ElementOperator 100060
+	operation remove
+	elements
+		1 ´fix_wp´
+	on_executed
+		´computer_wp´ (delay 0)
+´logic_operator_005´ ElementOperator 100061
+	operation remove
+	elements
+		1 ´fix_wp´
+		2 ´computer_wp´
+´enable_interaction_loud´ ElementUnitSequence 100062
+	DISABLED
+	position 400, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence set_loud
+			time 0
+	on_executed
+		´computer_wp´ (delay 0)
+´logic_toggle_009´ ElementToggle 100063
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_loud´ DISABLED
+	on_executed
+		´logic_toggle_010´ (delay 0)
+´logic_toggle_010´ ElementToggle 100064
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_interaction´
+´restore_power001´ ElementUnitSequence 100000
+	position -600, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence state_show_desktop
+			time 0
+´disable_workstation´ ElementInstanceInput 100006
+	event DISABLE_WORKSTATION
+	on_executed
+		´disable_everything´ (delay 0)
+		´point_debug_006´ (delay 0)
+´disable_everything´ ElementToggle 100065
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_complete´
+		2 ´anim_fail´
+		3 ´breach_stopped_by_firewall_input´
+		4 ´computer_wp´
+		5 100065
+		6 ´enable_interaction´
+		7 ´enable_interaction_input´
+		8 ´enable_interaction_loud´ DISABLED
+		9 ´firewall_breached_output´
+		10 ´fix_wp´
+		11 ´func_disable_unit_001´
+		12 ´func_disable_unit_002´
+		13 ´func_enable_unit_001´
+		14 ´func_enable_unit_002´
+		15 ´func_sequence_001´
+		16 ´hacking_completed´
+		17 ´hacking_completed_output´
+		18 ´hacking_completed001´
+		19 ´interacted_computer´
+		20 ´interacted_computer_2´ DISABLED
+		21 ´interrupt´
+		22 ´interrupt_input´
+		23 ´interrupt_so_001´ DISABLED
+		24 ´interrupt_so_002´ DISABLED
+		25 ´interrupted_by_enemies_output´
+		26 ´kill_power´
+		27 ´kill_power_input´
+		28 ´logic_counter_001´
+		29 ´logic_operator_001´
+		30 ´logic_operator_002´
+		31 ´logic_operator_003´
+		32 ´logic_operator_004´
+		33 ´logic_operator_005´
+		34 ´logic_toggle_001´
+		35 ´logic_toggle_002´
+		36 ´logic_toggle_003´
+		37 ´logic_toggle_004´
+		38 ´logic_toggle_005´
+		39 ´logic_toggle_006´
+		40 ´logic_toggle_007´
+		41 ´logic_toggle_008´
+		42 ´logic_toggle_009´
+		43 ´logic_toggle_010´
+		44 ´point_debug_001´
+		45 ´point_debug_002´
+		46 ´point_debug_003´
+		47 ´point_debug_004´
+		48 ´point_debug_005´
+		49 ´police_called´
+		50 ´restore_interuptions´ DISABLED
+		51 ´restore_power´
+		52 ´restore_power_input´
+		53 ´restore_power001´
+		54 ´resume´ DISABLED
+		55 ´resumed_output´
+		56 ´set_loud´ DISABLED
+		57 ´start_hacking´
+		58 ´started_hacking_firewall´
+		59 ´started_hacking_output´
+	on_executed
+		´remove_all_wps´ (delay 0)
+´remove_all_wps´ ElementOperator 100066
+	operation remove
+	elements
+		1 ´computer_wp´
+		2 ´fix_wp´
+		3 ´interrupt_so_001´ DISABLED
+		4 ´interrupt_so_002´ DISABLED
+	on_executed
+		´shut_it_all_down´ (delay 0)
+´shut_it_all_down´ ElementUnitSequence 100067
+	position 900, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence power_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_interactable_computer_monitor/vit_interactable_computer_monitor_firewall/001 (0, 0, 88.1847)
+			notify_unit_sequence hide_gui
+			time 0
+´point_debug_006´ ElementDebug 100068
+	as_subtitle false
+	debug_string DISABLE_WORKSTATION
+	show_instigator false

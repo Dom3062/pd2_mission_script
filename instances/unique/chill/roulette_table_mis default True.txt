@@ -1,0 +1,1473 @@
+´AUTO START´ MissionScriptElement 100006
+	EXECUTE ON STARTUP
+	on_executed
+		´if_bonnie_3´ (delay 0)
+		´if_bonnie_2 or less´ (delay 0)
+´red´ ElementInteraction 100007
+	DISABLED
+	host_only true
+	override_timer -1
+	position 9, -50, 102
+	rotation 0, 0, 0, -1
+	tweak_data_id press_bet_red
+	on_executed
+		´bet_red_link_check´ (delay 0) (alternative interacted)
+´black´ ElementInteraction 100008
+	DISABLED
+	host_only true
+	override_timer -1
+	position 67, -50, 102
+	rotation 0, 0, 0, -1
+	tweak_data_id press_bet_black
+	on_executed
+		´bet_black_link_check´ (delay 0) (alternative interacted)
+´red_2´ MissionScriptElement 100009
+	on_executed
+		´add´ (delay 0)
+		´off_2´ (delay 0)
+		´place_bet´ (delay 0)
+		´ON´ (delay 0)
+		´enable_interaction´ (delay 0)
+		´remove_10k´ (delay 0)
+´black_2´ MissionScriptElement 100010
+	on_executed
+		´add_2´ (delay 0)
+		´off´ (delay 0)
+		´place_bet´ (delay 0)
+		´ON_2´ (delay 0)
+		´enable_interaction´ (delay 0)
+		´remove_10k´ (delay 0)
+´Off´ ElementToggle 100012
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´red´ DISABLED
+		2 ´black´ DISABLED
+´Lock Bets´ MissionScriptElement 100011
+	on_executed
+		´Off´ (delay 0)
+´Start Wheel´ MissionScriptElement 100013
+	on_executed
+		´Chance Calculate´ (delay 0)
+´Chance Calculate´ MissionScriptElement 100015
+	on_executed
+		´50 - 50´ (delay 0)
+´Winner´ MissionScriptElement 100019
+	on_executed
+		´black_4´ (delay 0) DISABLED
+		´red_4´ (delay 0) DISABLED
+		´ON_3´ (delay 0)
+		´play_sound_player_win´ (delay 0)
+´Loser´ MissionScriptElement 100020
+	on_executed
+		´black_5´ (delay 0) DISABLED
+		´red_5´ (delay 0) DISABLED
+		´ON_4´ (delay 0)
+		´chance_of_vo_player_lose´ (delay 0)
+´50 - 50´ ElementLogicChance 100021
+	chance 48
+	position 750, -400, 0
+	rotation 0, 0, 0, -1
+´win´ ElementLogicChanceTrigger 100028
+	outcome success
+	position 650, -450, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´50 - 50´
+	on_executed
+		´Winner´ (delay 0)
+´lose´ ElementLogicChanceTrigger 100029
+	outcome fail
+	position 850, -450, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´50 - 50´
+	on_executed
+		´Loser´ (delay 0)
+´you lost´ ElementDebug 100031
+	BASE DELAY 1
+	as_subtitle true
+	debug_string You LOST
+	show_instigator false
+´Clean up´ MissionScriptElement 100032
+	on_executed
+		´reset table´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´chance_of_place_bets_vo´ (delay 0)
+´1´ ElementCounter 100033
+	counter_target 1
+	on_executed
+		´show´ (delay 0)
+´2´ ElementCounter 100034
+	counter_target 2
+	on_executed
+		´show001´ (delay 0)
+´3´ ElementCounter 100035
+	counter_target 3
+	on_executed
+		´show002´ (delay 0)
+´4´ ElementCounter 100036
+	counter_target 4
+	on_executed
+		´show003´ (delay 0)
+´5´ ElementCounter 100037
+	counter_target 5
+	on_executed
+		´show004´ (delay 0)
+´show´ ElementUnitSequence 100041
+	position 1225, -825, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´show001´ ElementUnitSequence 100042
+	position 1225, -875, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´show002´ ElementUnitSequence 100044
+	position 1225, -925, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´show003´ ElementUnitSequence 100046
+	position 1225, -975, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´show004´ ElementUnitSequence 100048
+	position 1225, -1025, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´hide´ ElementUnitSequence 100027
+	position -300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/001 (30, -36, 93.6983)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/002 (30, -36, 94.698)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/003 (30, -36, 95.698)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/004 (30, -36, 96.698)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/005 (30, -36, 97.698)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/006 (47, -35, 93.6983)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/007 (47, -35, 94.698)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/008 (47, -35, 95.698)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/009 (47, -35, 96.698)
+			notify_unit_sequence hide
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/010 (47, -35, 97.698)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´logic_money_filter_001´ (delay 0)
+´reset table´ ElementUnitSequence 100043
+	position 750, -875, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/001 (30, -36, 93.6983)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/002 (30, -36, 94.698)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/003 (30, -36, 95.698)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/004 (30, -36, 96.698)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/005 (30, -36, 97.698)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/006 (47, -35, 93.6983)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/007 (47, -35, 94.698)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/008 (47, -35, 95.698)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/009 (47, -35, 96.698)
+			notify_unit_sequence hide
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/010 (47, -35, 97.698)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´On´ (delay 0)
+		´reset´ (delay 0)
+´point_debug_001´ ElementDebug 100045
+	as_subtitle true
+	debug_string Dealer reset table
+	show_instigator false
+´On´ ElementToggle 100047
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´red´ DISABLED
+		2 ´black´ DISABLED
+		3 ´link_2´
+		4 ´link´
+	on_executed
+		´Off_2´ (delay 0)
+´1_2´ ElementUnitSequence 100049
+	position 25, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/001 (30, -36, 93.6983)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k´ (delay 0) DISABLED
+´show 1´ ElementUnitSequence 100050
+	position 175, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/006 (47, -35, 93.6983)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k´ (delay 0) DISABLED
+´roll´ MissionScriptElement 100017
+	on_executed
+		´roll_2´ (delay 0)
+		´reset - wheel - roll´ (delay 1)
+		´Lock Bets´ (delay 0)
+		´chance_of_vo_no_more_bets´ (delay 0)
+´counter´ ElementCounter 100055
+	counter_target 0
+´add´ ElementCounterOperator 100056
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter´
+		2 ´counter_3´
+´1_3´ ElementCounterFilter 100057
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter´
+	on_executed
+		´1_2´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´2_2´ ElementCounterFilter 100058
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter´
+	on_executed
+		´2_3´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´3_2´ ElementCounterFilter 100059
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´counter´
+	on_executed
+		´3_3´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´4_2´ ElementCounterFilter 100060
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´counter´
+	on_executed
+		´4_3´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´5_2´ ElementCounterFilter 100061
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´counter´
+	on_executed
+		´5_3´ (delay 0)
+´2_3´ ElementUnitSequence 100062
+	position 25, -550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/002 (30, -36, 94.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_2´ (delay 0) DISABLED
+´reset´ ElementCounterOperator 100063
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´counter´
+		2 ´counter_2´
+		3 ´counter_3´
+´3_3´ ElementUnitSequence 100064
+	position 25, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/003 (30, -36, 95.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_3´ (delay 0) DISABLED
+´4_3´ ElementUnitSequence 100065
+	position 25, -650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/004 (30, -36, 96.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_4´ (delay 0) DISABLED
+´5_3´ ElementUnitSequence 100066
+	position 25, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/005 (30, -36, 97.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_5´ (delay 0) DISABLED
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100067
+	enemy units/pd2_dlc_chill/characters/civ_male_casino_3_immortal/civ_male_casino_3_immortal
+	force_pickup none
+	position 26.0001, 79, 0
+	rotation 0, 0, 1, -6.55651E-07
+	state none
+	team neutral1
+	orientation_elements
+	on_executed
+		´idle - 1´ (delay 0)
+´func_whisper_state_001´ ElementWhisperState 100068
+	DISABLED
+	disable_hud false
+	position -300, 0, 0
+	rotation 0, 0, 0, -1
+	state true
+´idle - 1´ ElementSpecialObjective 100069
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 35, 204, 0
+	repeatable true
+	rotation 0, 0, 1, -8.9407E-08
+	scan true
+	search_distance 0
+	search_position 50 150 0
+	so_action cm_so_croupier_idle
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 100069
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´001´ ElementCounterFilter 100070
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_2´
+	on_executed
+		´show 1´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´002´ ElementCounterFilter 100071
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter_2´
+	on_executed
+		´show 2´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´003´ ElementCounterFilter 100072
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´counter_2´
+	on_executed
+		´show 3´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´counter_2´ ElementCounter 100073
+	counter_target 0
+´show 2´ ElementUnitSequence 100074
+	position 175, -550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/007 (47, -35, 94.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_2´ (delay 0) DISABLED
+´show 3´ ElementUnitSequence 100075
+	position 175, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/008 (47, -35, 95.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_3´ (delay 0) DISABLED
+´add_2´ ElementCounterOperator 100076
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter_2´
+		2 ´counter_3´
+´004´ ElementCounterFilter 100077
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´counter_2´
+	on_executed
+		´show 4´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+´005´ ElementCounterFilter 100078
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´counter_2´
+	on_executed
+		´show 5´ (delay 0)
+´show 4´ ElementUnitSequence 100079
+	position 175, -650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/009 (47, -35, 96.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_4´ (delay 0) DISABLED
+´show 5´ ElementUnitSequence 100080
+	position 175, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/010 (47, -35, 97.698)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´sub 50k_5´ (delay 0) DISABLED
+´link´ MissionScriptElement 100085
+	on_executed
+		´on´ (delay 0)
+´link_2´ MissionScriptElement 100086
+	on_executed
+		´on_2´ (delay 0)
+´on´ ElementToggle 100087
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´red´ DISABLED
+´on_2´ ElementToggle 100088
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´black´ DISABLED
+´off´ ElementToggle 100089
+	BASE DELAY 0,1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´
+		2 ´red´ DISABLED
+	on_executed
+		´001´ (delay 0)
+		´002´ (delay 0)
+		´003´ (delay 0)
+		´004´ (delay 0)
+		´005´ (delay 0)
+´off_2´ ElementToggle 100090
+	BASE DELAY 0,1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_2´
+		2 ´black´ DISABLED
+	on_executed
+		´1_3´ (delay 0)
+		´2_2´ (delay 0)
+		´3_2´ (delay 0)
+		´4_2´ (delay 0)
+		´5_2´ (delay 0)
+´roll - win´ ElementSpecialObjective 100091
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 35, 304, 0
+	repeatable true
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 50 150 0
+	so_action cm_so_croupier_win
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´idle - 1´
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´roll_2´ ElementSpecialObjective 100092
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -65, 304, 0
+	repeatable true
+	rotation 0, 0, 1, 5.96046E-08
+	scan true
+	search_distance 0
+	search_position 50 150 0
+	so_action cm_so_croupier_wheel
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´idle - 1´
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´roll - lose´ ElementSpecialObjective 100093
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 135, 304, 0
+	repeatable true
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 50 150 0
+	so_action cm_so_croupier_loose
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´idle - 1´
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´ADD´ ElementMoney 100094
+	action AddSpending
+	amount 20000
+	only_local_player true
+	position 1225, -525, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k005´ (delay 0)
+		´func_hint_001´ (delay 0)
+´sub 50k´ ElementMoney 100095
+	DISABLED
+	action DeductOffshore
+	amount 50000
+	only_local_player true
+	position 300, -500, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k´ (delay 0)
+´sub 50k_2´ ElementMoney 100096
+	DISABLED
+	action DeductOffshore
+	amount 50000
+	only_local_player true
+	position 300, -550, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k001´ (delay 0)
+´sub 50k_3´ ElementMoney 100097
+	DISABLED
+	action DeductOffshore
+	amount 50000
+	only_local_player true
+	position 300, -600, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k002´ (delay 0)
+´sub 50k_4´ ElementMoney 100098
+	DISABLED
+	action DeductOffshore
+	amount 50000
+	only_local_player true
+	position 300, -650, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k003´ (delay 0)
+´sub 50k_5´ ElementMoney 100099
+	DISABLED
+	action DeductOffshore
+	amount 50000
+	only_local_player true
+	position 300, -700, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k004´ (delay 0)
+´1_4´ ElementCounterFilter 100105
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_3´
+	on_executed
+		´ADD´ (delay 0)
+´2_4´ ElementCounterFilter 100106
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter_3´
+	on_executed
+		´ADD_2´ (delay 0)
+´3_4´ ElementCounterFilter 100107
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´counter_3´
+	on_executed
+		´ADD_3´ (delay 0)
+´4_4´ ElementCounterFilter 100108
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´counter_3´
+	on_executed
+		´ADD_4´ (delay 0)
+´5_4´ ElementCounterFilter 100109
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´counter_3´
+	on_executed
+		´ADD_5´ (delay 0)
+´ADD_2´ ElementMoney 100110
+	action AddSpending
+	amount 40000
+	only_local_player true
+	position 1225, -575, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k006´ (delay 0)
+		´func_hint_002´ (delay 0)
+´ADD_3´ ElementMoney 100111
+	action AddSpending
+	amount 60000
+	only_local_player true
+	position 1225, -625, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k007´ (delay 0)
+		´func_hint_003´ (delay 0)
+´ADD_4´ ElementMoney 100112
+	action AddSpending
+	amount 80000
+	only_local_player true
+	position 1225, -700, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k008´ (delay 0)
+		´func_hint_004´ (delay 0)
+´ADD_5´ ElementMoney 100113
+	action AddSpending
+	amount 100000
+	only_local_player true
+	position 1225, -775, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´sub 10k009´ (delay 0)
+		´func_hint_005´ (delay 0)
+´sub 10k´ ElementDebug 100114
+	as_subtitle false
+	debug_string sub 10k
+	show_instigator false
+´sub 10k001´ ElementDebug 100115
+	as_subtitle false
+	debug_string sub 10k
+	show_instigator false
+´sub 10k002´ ElementDebug 100116
+	as_subtitle false
+	debug_string sub 10k
+	show_instigator false
+´sub 10k003´ ElementDebug 100117
+	as_subtitle false
+	debug_string sub 10k
+	show_instigator false
+´sub 10k004´ ElementDebug 100118
+	as_subtitle false
+	debug_string sub 10k
+	show_instigator false
+´sub 10k005´ ElementDebug 100100
+	as_subtitle false
+	debug_string add 20k
+	show_instigator false
+´sub 10k006´ ElementDebug 100101
+	as_subtitle false
+	debug_string add 40k
+	show_instigator false
+´sub 10k007´ ElementDebug 100102
+	as_subtitle false
+	debug_string add 60k
+	show_instigator false
+´sub 10k008´ ElementDebug 100103
+	as_subtitle false
+	debug_string add 80k
+	show_instigator false
+´sub 10k009´ ElementDebug 100104
+	as_subtitle false
+	debug_string add 100k
+	show_instigator false
+´counter_3´ ElementCounter 100119
+	counter_target 0
+´place_bet´ ElementPlaySound 100003
+	append_prefix false
+	interrupt true
+	position 40, -36, 98.6983
+	rotation 0, 0, 0, -1
+	sound_event place_bet
+	use_instigator false
+´win_2´ ElementPlaySound 100005
+	append_prefix false
+	interrupt true
+	position 40, 19, 93.6983
+	rotation 0, 0, 0, -1
+	sound_event roulette_win
+	use_instigator false
+´lose_2´ ElementPlaySound 100038
+	append_prefix false
+	interrupt true
+	position 40, 19, 93.6983
+	rotation 0, 0, 0, -1
+	sound_event roulette_lose
+	use_instigator false
+´black_3´ ElementUnitSequence 100000
+	position 725, -625, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence black
+			time 0
+´red_3´ ElementUnitSequence 100040
+	position 775, -625, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence red
+			time 0
+´black_4´ MissionScriptElement 100120
+	DISABLED
+	on_executed
+		´black_3´ (delay 0)
+´red_4´ MissionScriptElement 100121
+	DISABLED
+	on_executed
+		´red_3´ (delay 0)
+´black_5´ MissionScriptElement 100122
+	DISABLED
+	on_executed
+		´black_3´ (delay 0)
+´red_5´ MissionScriptElement 100123
+	DISABLED
+	on_executed
+		´red_3´ (delay 0)
+´ON´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´red_4´ DISABLED
+		2 ´black_5´ DISABLED
+´ON_2´ ElementToggle 100022
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´black_4´ DISABLED
+		2 ´red_5´ DISABLED
+´Off_2´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´black_4´ DISABLED
+		2 ´red_4´ DISABLED
+		3 ´black_5´ DISABLED
+		4 ´red_5´ DISABLED
+		5 ´lose_3´ DISABLED
+		6 ´win_3´ DISABLED
+´table_rolled´ ElementUnitSequenceTrigger 100024
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+	on_executed
+		´win_3´ (delay 0) DISABLED
+		´lose_3´ (delay 0) DISABLED
+´ON_3´ ElementToggle 100025
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´win_3´ DISABLED
+´win_3´ MissionScriptElement 100026
+	DISABLED
+	on_executed
+		´roll - win´ (delay 0)
+		´win_2´ (delay 0)
+		´win_4´ (delay 0)
+´lose_3´ MissionScriptElement 100124
+	DISABLED
+	on_executed
+		´you lost´ (delay 0)
+		´lose_2´ (delay 0)
+		´roll - lose´ (delay 0)
+		´Clean up´ (delay 2.4)
+		´logic_counter_filter_001´ (delay 0)
+		´logic_counter_filter_002´ (delay 0)
+		´logic_counter_filter_003´ (delay 0)
+		´logic_counter_filter_004´ (delay 0)
+		´logic_counter_filter_005´ (delay 0)
+´ON_4´ ElementToggle 100125
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lose_3´ DISABLED
+´time_to_roll´ ElementUnitSequenceTrigger 100030
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+	on_executed
+		´roll´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100126
+	only_for_local_player true
+	position 50, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´reset - wheel - roll´ ElementUnitSequence 100127
+	position -200, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence reset
+			time 0
+	on_executed
+		´delay - 1.6 seconds´ (delay 0)
+´enable_interaction_2´ MissionScriptElement 100016
+	on_executed
+		´link´ (delay 0)
+		´link_2´ (delay 0)
+´delay - 1.6 seconds´ MissionScriptElement 100018
+	BASE DELAY 1,6
+	on_executed
+		´Start Wheel´ (delay 0)
+´done_anim´ ElementSpecialObjectiveTrigger 100128
+	event complete
+	position 25, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´roll - lose´
+		2 ´roll - win´
+	on_executed
+		´idle - 1´ (delay 0)
+´take_money´ ElementInteraction 100131
+	DISABLED
+	host_only false
+	override_timer 0
+	position -4, 1, 101
+	rotation 0, 0, 0, -1
+	tweak_data_id money_wrap_single_bundle
+	on_executed
+		´take mooney´ (delay 0) (alternative interacted)
+		´win_4´ (delay 0) (alternative interacted)
+´ON - 1´ ElementToggle 100132
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´take_money´ DISABLED
+	on_executed
+		´enable_cash´ (delay 0)
+´win_4´ MissionScriptElement 100133
+	on_executed
+		´1_4´ (delay 0)
+		´2_4´ (delay 0)
+		´3_4´ (delay 0)
+		´4_4´ (delay 0)
+		´5_4´ (delay 0)
+		´1´ (delay 0)
+		´2´ (delay 0)
+		´3´ (delay 0)
+		´4´ (delay 0)
+		´5´ (delay 0)
+		´hide_cash´ (delay 0)
+		´Clean up´ (delay 0)
+´hide_cash´ ElementDisableUnit 100134
+	position 1225, -475, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/csgo_models/props/cs_assault/money/001 (-11.2702, -5.61999, 93)
+		2 units/pd2_dlc2/csgo_models/props/cs_assault/money/002 (-0.0657349, -9.5305, 93)
+		3 units/pd2_dlc2/csgo_models/props/cs_assault/money/003 (-5.15402, -6.35097, 95)
+	on_executed
+		´OFF´ (delay 0)
+´enable_cash´ ElementEnableUnit 100135
+	position 650, -825, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/csgo_models/props/cs_assault/money/001 (-11.2702, -5.61999, 93)
+		2 units/pd2_dlc2/csgo_models/props/cs_assault/money/002 (-0.0657349, -9.5305, 93)
+		3 units/pd2_dlc2/csgo_models/props/cs_assault/money/003 (-5.15402, -6.35097, 95)
+´disable´ ElementDisableUnit 100136
+	position -300, 150, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/csgo_models/props/cs_assault/money/001 (-11.2702, -5.61999, 93)
+		2 units/pd2_dlc2/csgo_models/props/cs_assault/money/002 (-0.0657349, -9.5305, 93)
+		3 units/pd2_dlc2/csgo_models/props/cs_assault/money/003 (-5.15402, -6.35097, 95)
+´OFF´ ElementToggle 100137
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´take_money´ DISABLED
+´take mooney´ ElementPlaySound 100139
+	append_prefix false
+	interrupt true
+	position -4, -11, 98.6983
+	rotation 0, 0, 0, -1
+	sound_event money_grab
+	use_instigator false
+´if_bonnie_3´ ElementCustomSafehouseFilter 100140
+	check_type equal
+	position -300, 250, 0
+	room_id bonnie
+	room_tier 3
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´hide´ (delay 0)
+		´ai_spawn_civilian_001´ (delay 1)
+		´disable´ (delay 0)
+´disable_all´ MissionScriptElement 100141
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100142
+	position -350, 100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_cashier_chip_carrier_stand/cas_prop_cashier_chip_stand/001 (-16.8891, 23.7878, 92.6983)
+		2 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/001 (30, -36, 93.6983)
+		3 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/002 (30, -36, 94.698)
+		4 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/003 (30, -36, 95.698)
+		5 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/004 (30, -36, 96.698)
+		6 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/005 (30, -36, 97.698)
+		7 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/006 (47, -35, 93.6983)
+		8 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/007 (47, -35, 94.698)
+		9 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/008 (47, -35, 95.698)
+		10 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/009 (47, -35, 96.698)
+		11 units/pd2_dlc_chill/props/chl_prop_cashier_chip_blue/chl_prop_cashier_chip_blue/010 (47, -35, 97.698)
+		12 units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+		13 200001
+		14 200002
+		15 200003
+		16 200004
+		17 200005
+		18 units/pd2_dlc2/csgo_models/props/cs_assault/money/001 (-11.2702, -5.61999, 93)
+		19 units/pd2_dlc2/csgo_models/props/cs_assault/money/002 (-0.0657349, -9.5305, 93)
+		20 units/pd2_dlc2/csgo_models/props/cs_assault/money/003 (-5.15402, -6.35097, 95)
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´if_bonnie_2 or less´ ElementCustomSafehouseFilter 100143
+	check_type less_or_equal
+	position -350, 250, 0
+	room_id bonnie
+	room_tier 2
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´disable_all´ (delay 0)
+´logic_toggle_001´ ElementToggle 100144
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´red´ DISABLED
+		2 ´place_bet´
+		3 ´black´ DISABLED
+		4 ´take_money´ DISABLED
+		5 ´take mooney´
+		6 ´win_2´
+		7 ´sound_intro_trigger_area´
+´play_sound_player_win´ ElementUnitSequence 100150
+	position 600, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence sound_play_rcp_player_wins
+			time 0
+´play_sound_player_lose´ ElementUnitSequence 100151
+	position 1000, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence sound_play_rcp_player_lose
+			time 0
+´play_sound_no_more_bets´ ElementUnitSequence 100145
+	position -350, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence sound_play_rcp_no_bets
+			time 0
+´play_sound_intro´ ElementUnitSequence 100146
+	position 400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence sound_play_rcp_intro
+			time 0
+´sound_intro_trigger_area´ ElementAreaTrigger 100147
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´play_sound_intro´ (delay 0)
+´chance_of_vo_no_more_bets´ ElementLogicChance 100148
+	chance 35
+	position -250, -200, 0
+	rotation 0, 0, 0, -1
+´chance_of_vo_no_more_bets_trigger´ ElementLogicChanceTrigger 100149
+	outcome success
+	position -300, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_of_vo_no_more_bets´
+	on_executed
+		´play_sound_no_more_bets´ (delay 0)
+´chance_of_vo_player_lose´ ElementLogicChance 100152
+	chance 35
+	position 900, -500, 0
+	rotation 0, 0, 0, -1
+´logic_chance_trigger_001´ ElementLogicChanceTrigger 100153
+	outcome success
+	position 950, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_of_vo_player_lose´
+	on_executed
+		´play_sound_player_lose´ (delay 0)
+´place_bets_vo´ ElementUnitSequence 100154
+	position 550, -975, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_roulettetable/chl_prop_roulettetable/001 (0, 0, 0)
+			notify_unit_sequence sound_play_rcp_place_bets
+			time 0
+´chance_of_place_bets_vo_trigger´ ElementLogicChanceTrigger 100157
+	outcome success
+	position 550, -875, 0
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´chance_of_place_bets_vo´
+	on_executed
+		´place_bets_vo´ (delay 0)
+´chance_of_place_bets_vo´ ElementLogicChance 100158
+	chance 35
+	position 550, -775, 0
+	rotation 0, 0, 0.707107, -0.707107
+´money_filter´ ElementMoneyFilter 100155
+	account offshore
+	check_type less_than
+	only_local_player true
+	position 200, -100, 0
+	rotation 0, 0, 0, -1
+	value 10000
+	on_executed
+		´func_hint_no_money´ (delay 0)
+´func_hint_no_money´ ElementHint 100156
+	hint_id chill_betting_insufficient
+	instigator_only false
+	position 300, -100, 0
+	rotation 0, 0, 0, -1
+´money_filter_black´ ElementMoneyFilter 100159
+	account offshore
+	check_type greater_or_equal
+	only_local_player true
+	position 225, -250, 0
+	rotation 0, 0, 0, -1
+	value 10000
+	on_executed
+		´black_2´ (delay 0)
+		´point_debug_003´ (delay 0)
+´money_filter_red´ ElementMoneyFilter 100160
+	account offshore
+	check_type greater_or_equal
+	only_local_player true
+	position -125, -250, 0
+	rotation 0, 0, 0, -1
+	value 10000
+	on_executed
+		´red_2´ (delay 0)
+		´point_debug_003´ (delay 0)
+´remove_10k´ ElementMoney 100161
+	action DeductOffshore
+	amount 10000
+	only_local_player true
+	position 50, -250, 0
+	remove_all false
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100162
+	as_subtitle false
+	debug_string remove_10k_offshore
+	show_instigator false
+´func_hint_001´ ElementHint 100163
+	hint_id chill_betting_won_20k
+	instigator_only true
+	position 1350, -525, 0
+	rotation 0, 0, 0, -1
+´func_hint_002´ ElementHint 100164
+	hint_id chill_betting_won_40k
+	instigator_only true
+	position 1350, -575, 0
+	rotation 0, 0, 0, -1
+´func_hint_003´ ElementHint 100165
+	hint_id chill_betting_won_60k
+	instigator_only true
+	position 1350, -625, 0
+	rotation 0, 0, 0, -1
+´func_hint_004´ ElementHint 100166
+	hint_id chill_betting_won_80k
+	instigator_only true
+	position 1350, -700, 0
+	rotation 0, 0, 0, -1
+´func_hint_005´ ElementHint 100167
+	hint_id chill_betting_won_100k
+	instigator_only true
+	position 1350, -775, 0
+	rotation 0, 0, 0, -1
+´func_hint_006´ ElementHint 100168
+	hint_id chill_betting_loss
+	instigator_only true
+	position 1025, -725, 0
+	rotation 0, 0, 0, -1
+´func_hint_007´ ElementHint 100169
+	hint_id chill_betting_loss
+	instigator_only true
+	position 1025, -800, 0
+	rotation 0, 0, 0, -1
+´func_hint_008´ ElementHint 100170
+	hint_id chill_betting_loss
+	instigator_only true
+	position 1025, -875, 0
+	rotation 0, 0, 0, -1
+´func_hint_009´ ElementHint 100171
+	hint_id chill_betting_loss
+	instigator_only true
+	position 1025, -950, 0
+	rotation 0, 0, 0, -1
+´func_hint_010´ ElementHint 100172
+	hint_id chill_betting_loss
+	instigator_only true
+	position 1025, -1025, 0
+	rotation 0, 0, 0, -1
+´logic_counter_filter_001´ ElementCounterFilter 100173
+	check_type equal
+	needed_to_execute all
+	value 1
+	on_executed
+		´func_hint_006´ (delay 0)
+´logic_counter_filter_002´ ElementCounterFilter 100174
+	check_type equal
+	needed_to_execute all
+	value 2
+	on_executed
+		´func_hint_007´ (delay 0)
+´logic_counter_filter_003´ ElementCounterFilter 100175
+	check_type equal
+	needed_to_execute all
+	value 3
+	on_executed
+		´func_hint_008´ (delay 0)
+´logic_counter_filter_004´ ElementCounterFilter 100176
+	check_type equal
+	needed_to_execute all
+	value 4
+	on_executed
+		´func_hint_009´ (delay 0)
+´logic_counter_filter_005´ ElementCounterFilter 100177
+	check_type equal
+	needed_to_execute all
+	value 5
+	on_executed
+		´func_hint_010´ (delay 0)
+´bet_black_link_check´ MissionScriptElement 100178
+	on_executed
+		´money_filter´ (delay 0)
+		´money_filter_black´ (delay 0)
+´bet_red_link_check´ MissionScriptElement 100179
+	on_executed
+		´money_filter_red´ (delay 0)
+		´money_filter´ (delay 0)
+´point_debug_003´ ElementDebug 100180
+	as_subtitle false
+	debug_string money_filter
+	show_instigator false
+´func_instance_input_001´ ElementInstanceInput 100181
+	event combat_remove_roulette_guy
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100182
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ai_spawn_civilian_001´
+´logic_toggle_003´ ElementToggle 100183
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´red´ DISABLED
+		2 ´black´ DISABLED
+´logic_money_filter_001´ ElementMoneyFilter 100184
+	account offshore
+	check_type greater_or_equal
+	only_local_player true
+	position -250, 100, 0
+	rotation 0, 0, 0, -1
+	value 0
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_004´ ElementToggle 100186
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´red´ DISABLED
+		2 ´black´ DISABLED
+´func_instance_input_002´ ElementInstanceInput 100185
+	event multiplayer disable roulette
+	on_executed
+		´logic_toggle_004´ (delay 0)

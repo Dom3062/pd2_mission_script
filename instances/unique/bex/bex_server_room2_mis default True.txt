@@ -1,0 +1,100 @@
+´start´ MissionScriptElement 100038
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´delay´ MissionScriptElement 100039
+	on_executed
+		´logic_random_001´ (delay 0)
+´trigger_Server_room_found´ ElementAreaTrigger 100009
+	TRIGGER TIMES 1
+	amount 1
+	depth 600
+	height 250
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 300, -400, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 550
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_instance_output_001´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100024
+	event server_room2_found
+´logic_random_001´ ElementRandom 100048
+	amount 1
+	amount_random 0
+	ignore_disabled true
+´func_nav_obstacle_001´ ElementNavObstacle 100031
+	operation add
+	position 900, -200, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-6, -499, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (344, -503, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (212, -100, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (584, -95, 0)
+		5
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (513, -242, 0)
+		6
+			guis_id 6
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (584, -765, 0)
+´disable_props´ ElementInstanceInput 100035
+	event disable_props
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100041
+	position 200, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/office/chair/chair_02/002 (32.1188, -86.667, 0)
+		2 units/pd2_dlc_chill/props/chl_prop_contruction_tool_electricalscrewdriver/chl_prop_contruction_tool_electricalscrewdriver/001 (28.7613, -54.6444, 81.461)
+		3 units/payday2/props/com_prop_election_table/com_prop_election_table/001 (84.4828, -42.958, 0)
+		4 units/world/props/office/computer/computer_01/002 (122.183, -64.247, 87)
+		5 units/pd2_dlc_flat/props/flt_prop_cardboard_box02/flt_prop_cardboard_box02/003 (195.319, -43.5899, 50)
+		6 units/pd2_dlc_flat/props/flt_prop_cardboard_box02/flt_prop_cardboard_box02/002 (195.319, -43.5899, 0)
+´func_disable_unit_002´ ElementDisableUnit 100042
+	position 700, -200, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_flat/props/flt_prop_cardboard_box02/flt_prop_cardboard_box02/004 (43.93, -53.9988, 0)
+		2 units/pd2_dlc_flat/props/flt_prop_cardboard_box03/flt_prop_cardboard_box03/002 (45.929, -54.0686, 52)
+		3 units/world/props/office/chair/chair_02/003 (163, -88, 0)
+		4 units/payday2/props/com_prop_election_table/com_prop_election_table/002 (157, -46, 0)
+		5 units/world/props/tools/tools_screwdriver/001 (111, -67, 78.1498)
+		6 units/pd2_dlc_chill/props/chl_prop_fan_table/chl_prop_fan_table/002 (91, -57, 75)
+´func_enable_unit_001´ ElementEnableUnit 100043
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_fan_table/chl_prop_fan_table/002 (91, -57, 75)
+		2 units/pd2_dlc_flat/props/flt_prop_cardboard_box03/flt_prop_cardboard_box03/002 (45.929, -54.0686, 52)
+		3 units/pd2_dlc_flat/props/flt_prop_cardboard_box02/flt_prop_cardboard_box02/004 (43.93, -53.9988, 0)
+		4 units/payday2/props/com_prop_election_table/com_prop_election_table/002 (157, -46, 0)
+		5 units/world/props/tools/tools_screwdriver/001 (111, -67, 78.1498)
+		6 units/world/props/office/chair/chair_02/003 (163, -88, 0)

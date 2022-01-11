@@ -1,0 +1,650 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position -300, -250, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´seq_setup001´ (delay 0)
+		´input_enable_WP´ (delay 0)
+		´input_enable_fire_int´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/DAY (-175, -25, -99)
+		2 units/dev_tools/editable_text_long/editable_text_long/ITS (-716, -25, -99)
+		3 units/dev_tools/editable_text_long/editable_text_long/PAY (-425, -25, -99)
+		4 units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+´input_enable_fire_int´ ElementInstanceInput 100007
+	event enable_fire_interaction
+	on_executed
+		´turn_on´ (delay 0)
+´output_fire_completed´ ElementInstanceOutput 100008
+	event fire_interactions_completed
+´point_blurzone_001´ ElementBlurZone 100009
+	height 300
+	mode 1
+	position -750, 9.15527E-05, -50
+	radius 300
+	rotation 1, 0, 0, -1.19209E-07
+´it's´ ElementInteraction 100011
+	DISABLED
+	BASE DELAY 1
+	host_only false
+	override_timer -1
+	position -625, 25.0001, 825
+	rotation 0, 0, 0, -1
+	tweak_data_id chca_hold_pour_diesel
+	on_executed
+		´point_blurzone_001´ (delay 0) (alternative interacted)
+		´3´ (delay 0) (alternative interacted)
+		´remove_wp_it's´ (delay 0) (alternative interacted)
+´pay´ ElementInteraction 100012
+	DISABLED
+	BASE DELAY 1
+	host_only false
+	override_timer -1
+	position -325, 25.0001, 825
+	rotation 0, 0, 0, -1
+	tweak_data_id chca_hold_pour_diesel
+	on_executed
+		´point_blurzone_002´ (delay 0) (alternative interacted)
+		´3´ (delay 0) (alternative interacted)
+		´remove_wp_pay´ (delay 0) (alternative interacted)
+´day´ ElementInteraction 100013
+	DISABLED
+	BASE DELAY 1
+	host_only false
+	override_timer -1
+	position 0, 25, 825
+	rotation 0, 0, 0, -1
+	tweak_data_id chca_hold_pour_diesel
+	on_executed
+		´point_blurzone_003´ (delay 0) (alternative interacted)
+		´3´ (delay 0) (alternative interacted)
+		´remove_wp_day´ (delay 0) (alternative interacted)
+´point_blurzone_002´ ElementBlurZone 100048
+	height 300
+	mode 1
+	position -275, 4.75049E-05, -75
+	radius 300
+	rotation 1, 0, 0, -1.19209E-07
+´point_blurzone_003´ ElementBlurZone 100069
+	height 300
+	mode 1
+	position 175, 3.05176E-05, -75
+	radius 300
+	rotation 1, 0, 0, -1.19209E-07
+´3´ ElementCounter 100071
+	counter_target 3
+	on_executed
+		´toggle_off_WP´ (delay 0)
+´seq_setup001´ ElementUnitSequence 100082
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100086
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+	on_executed
+		´turn_on´ (delay 0)
+´turn_on´ ElementToggle 100087
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´day´ DISABLED
+		2 ´it's´ DISABLED
+		3 ´pay´ DISABLED
+	on_executed
+		´seq_enable_interactions´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100088
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position 200, -1, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_002´ ElementWaypoint 100089
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position -275, -0.999901, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_003´ ElementWaypoint 100090
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position -800, -0.999901, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fire_wp´ MissionScriptElement 100091
+	on_executed
+		´output_fire_interactions´ (delay 0)
+´remove_wp_it's´ MissionScriptElement 100092
+	on_executed
+		´logic_operator_001´ (delay 0)
+´remove_wp_pay´ MissionScriptElement 100093
+	on_executed
+		´logic_operator_002´ (delay 0)
+´remove_wp_day´ MissionScriptElement 100094
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_001´ ElementOperator 100095
+	operation remove
+	elements
+		1 ´point_waypoint_003´
+	on_executed
+		´smoke001´ (delay 0)
+´logic_operator_002´ ElementOperator 100096
+	operation remove
+	elements
+		1 ´point_waypoint_002´
+	on_executed
+		´smoke002´ (delay 0)
+´logic_operator_003´ ElementOperator 100097
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´smoke003´ (delay 0)
+´letter_smoke´ ElementPlayEffect 100079
+	base_time 0
+	effect effects/particles/dest/apartment_smoke_pillar
+	max_amount 0
+	position -775, -42.6777, 57.3223
+	random_time 0
+	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
+	screen_space false
+´letter_smoke001´ ElementPlayEffect 100080
+	base_time 0
+	effect effects/particles/dest/apartment_smoke_pillar
+	max_amount 0
+	position -275, -42.6776, 57.3223
+	random_time 0
+	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
+	screen_space false
+´letter_smoke002´ ElementPlayEffect 100081
+	base_time 0
+	effect effects/particles/dest/apartment_smoke_pillar
+	max_amount 0
+	position 200, -42.6775, 57.3223
+	random_time 0
+	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
+	screen_space false
+´smoke001´ MissionScriptElement 100098
+	on_executed
+		´letter_smoke´ (delay 1)
+		´turn_on_2´ (delay 0)
+´smoke002´ MissionScriptElement 100099
+	on_executed
+		´letter_smoke001´ (delay 1)
+		´turn_on001´ (delay 0)
+´smoke003´ MissionScriptElement 100100
+	on_executed
+		´letter_smoke002´ (delay 1)
+		´turn_on002´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100014
+	DISABLED
+	amount 1
+	depth 250
+	height 200
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -800, 0, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on both
+	use_disabled_shapes false
+	width 450
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´fire_damage´ (delay 0)
+´trigger_area_002´ ElementAreaTrigger 100018
+	DISABLED
+	amount 1
+	depth 300
+	height 200
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -275, 0, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on both
+	use_disabled_shapes false
+	width 450
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´fire_damage´ (delay 0)
+´fire_damage´ ElementKillZone 100019
+	position -300, -150, 25
+	rotation 0, 0, 0, -1
+	type fire
+´trigger_area_003´ ElementAreaTrigger 100020
+	DISABLED
+	amount 1
+	depth 250
+	height 200
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 200, 0, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on both
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´fire_damage´ (delay 0)
+´turn_on_2´ ElementToggle 100022
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´disable_WP_001´ (delay 0)
+´turn_on001´ ElementToggle 100023
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_002´ DISABLED
+	on_executed
+		´disable_WP_002´ (delay 0)
+´turn_on002´ ElementToggle 100024
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_003´ DISABLED
+	on_executed
+		´disable_WP_003´ (delay 0)
+´its´ ElementEnableUnit 100025
+	position 1200, -300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/ITS (-716, -25, -99)
+´pay_2´ ElementEnableUnit 100026
+	position 1300, -300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/PAY (-425, -25, -99)
+´day_2´ ElementEnableUnit 100027
+	position 1400, -300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/DAY (-175, -25, -99)
+´output_fire_interactions´ ElementInstanceOutput 100021
+	event fire_interactions_enabled
+´input_debug_can´ ElementInstanceInput 100028
+	event debug_spawn_can
+	on_executed
+		´seq_setup002´ (delay 2)
+´seq_setup002´ ElementUnitSequence 100029
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100030
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fex/pickups/fex_pku_diesel_can/fex_pku_diesel_can/001 (300, -300, 0)
+´input_enable_WP´ ElementInstanceInput 100031
+	event enable_WP
+	on_executed
+		´show_WP´ (delay 0)
+´input_disable_WP´ ElementInstanceInput 100032
+	event disable_WP
+	on_executed
+		´remove_WP´ (delay 0)
+´show_WP´ MissionScriptElement 100033
+	on_executed
+		´point_waypoint_003´ (delay 0)
+		´point_waypoint_002´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+		´seq_show_outline´ (delay 0) DISABLED
+´remove_WP´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+		2 ´point_waypoint_002´
+		3 ´point_waypoint_003´
+	on_executed
+		´seq_hide_outline´ (delay 0) DISABLED
+´disable_WP_001´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_003´
+´disable_WP_002´ ElementToggle 100036
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_002´
+´disable_WP_003´ ElementToggle 100037
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_001´
+´toggle_off_WP´ ElementToggle 100038
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_disable_WP´
+		2 ´input_enable_WP´
+		3 ´show_WP´
+		4 ´remove_WP´
+	on_executed
+		´output_fire_completed´ (delay 0)
+´seq_enable_interactions´ ElementUnitSequence 100042
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´fire_wp´ (delay 0)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+	on_executed
+		´3´ (delay 0)
+		´point_blurzone_001´ (delay 0)
+		´func_sequence_001´ (delay 0)
+		´env_effect_play_003´ (delay 0)
+		´env_effect_play_004´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100044
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+	on_executed
+		´3´ (delay 0)
+		´point_blurzone_002´ (delay 0)
+		´func_sequence_002´ (delay 0)
+		´env_effect_play_005´ (delay 0)
+		´env_effect_play_006´ (delay 0)
+		´point_play_sound_002´ (delay 0)
+´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+	on_executed
+		´3´ (delay 0)
+		´point_blurzone_003´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´env_effect_play_007´ (delay 0)
+		´env_effect_play_008´ (delay 0)
+		´point_play_sound_003´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100046
+	position 1200, 300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´remove_wp_it's´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100047
+	position 1300, 300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´remove_wp_pay´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100049
+	position 1400, 300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´remove_wp_day´ (delay 0)
+´seq_show_outline´ ElementUnitSequence 100050
+	DISABLED
+	position 600, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence show_outline
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence show_outline
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence show_outline
+			time 0
+´seq_hide_outline´ ElementUnitSequence 100051
+	DISABLED
+	position 800, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_01/001 (-300, 0, 0)
+			notify_unit_sequence hide_outline
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_02/001 (-300, 0, 0)
+			notify_unit_sequence hide_outline
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_burning_message/chca_interactable_burning_message_03/001 (-300, 0, 0)
+			notify_unit_sequence hide_outline
+			time 0
+´env_effect_play_003´ ElementPlayEffect 100054
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position -900, 24.9999, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_004´ ElementPlayEffect 100055
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position -675, -50.0001, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_005´ ElementPlayEffect 100053
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position -400, -75.0001, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_006´ ElementPlayEffect 100056
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position -175, 49.9999, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_007´ ElementPlayEffect 100057
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position 75, 24.9999, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_008´ ElementPlayEffect 100058
+	base_time 0
+	effect effects/payday2/particles/explosions/molotov_grenade
+	max_amount 0
+	position 325, -75.0001, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´point_play_sound_001´ ElementPlaySound 100052
+	append_prefix false
+	interrupt true
+	position -800, -50, 0
+	rotation 0, 0, 0, -1
+	sound_event fire_burning_message_loop
+	use_instigator false
+´point_play_sound_002´ ElementPlaySound 100059
+	append_prefix false
+	interrupt true
+	position -275, -50, 0
+	rotation 0, 0, 0, -1
+	sound_event fire_burning_message_loop
+	use_instigator false
+´point_play_sound_003´ ElementPlaySound 100060
+	append_prefix false
+	interrupt true
+	position 202, -50, 0
+	rotation 0, 0, 0, -1
+	sound_event fire_burning_message_loop
+	use_instigator false

@@ -1,0 +1,183 @@
+´player_trigger´ ElementAreaTrigger 100000
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position 0, 400, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´area_shape´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´alarm_link´ (delay 0)
+		´stepped_on_tile´ (delay 0)
+´area_shape´ ElementShape 100001
+	depth 200
+	height 300
+	position 100, -100, 140
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 200
+´ai_trigger´ ElementAreaTrigger 100002
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	interval 0.1
+	position 0, 500, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´area_shape´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´alarm_link´ (delay 0)
+		´stepped_on_tile´ (delay 0)
+´alarm_link´ MissionScriptElement 100003
+	TRIGGER TIMES 1
+	on_executed
+		´alarm_raised_output´ (delay 0)
+		´point_debug_001´ (delay 0)
+´alarm_raised_output´ ElementInstanceOutput 100004
+	event alarm_raised
+´disable_alarm_link´ ElementToggle 100005
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´alarm_link´
+´set_dark´ ElementInstanceInput 100008
+	event set_dark
+	on_executed
+		´set_dark_seq´ (delay 0)
+´set_dark_seq´ ElementUnitSequence 100009
+	position 100, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/architecture/mus_int_diamond_room/mus_int_diamond_pressure_plate/001 (0, 0, -14)
+			notify_unit_sequence state_vis_dark
+			time 0
+´lower_tile´ ElementUnitSequence 100010
+	DISABLED
+	position -200, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/architecture/mus_int_diamond_room/mus_int_diamond_pressure_plate/001 (0, 0, -14)
+			notify_unit_sequence anim_lower_tile
+			time 0
+´point_debug_001´ ElementDebug 100006
+	as_subtitle false
+	debug_string stepped_on_wrong
+	show_instigator false
+´disable_alarm´ ElementInstanceInput 100011
+	event disable_alarm
+	on_executed
+		´disable_alarm_link´ (delay 0)
+		´enable_right_lower´ (delay 0)
+		´disable_wrong_lower´ (delay 0)
+´allow_raise´ ElementToggle 100012
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´reset_tile_link´ DISABLED
+´reset_tile´ ElementInstanceInput 100013
+	event reset
+	on_executed
+		´reset´ (delay 0)
+´stepped_on_tile´ MissionScriptElement 100015
+	TRIGGER TIMES 1
+	on_executed
+		´lower_tile´ (delay 0) DISABLED
+		´allow_raise´ (delay 0)
+		´lower_tile_wrong´ (delay 0)
+		´clear_inside´ (delay 0)
+´reset´ MissionScriptElement 100014
+	on_executed
+		´enable_set_1´ (delay 0)
+		´disable_right_lower´ (delay 0)
+		´enable_wrong_lower´ (delay 0)
+		´reset_tile_link´ (delay 0) DISABLED
+´raise_tile´ ElementUnitSequence 100016
+	position 100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/architecture/mus_int_diamond_room/mus_int_diamond_pressure_plate/001 (0, 0, -14)
+			notify_unit_sequence anim_raise_tile
+			time 0
+´enable_set_1´ ElementToggle 100017
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´player_trigger´
+		2 ´ai_trigger´
+		3 ´alarm_link´
+		4 ´stepped_on_tile´
+´lower_tile_wrong´ ElementUnitSequence 100018
+	position -200, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/architecture/mus_int_diamond_room/mus_int_diamond_pressure_plate/001 (0, 0, -14)
+			notify_unit_sequence anim_lower_tile_fail
+			time 0
+´enable_right_lower´ ElementToggle 100019
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lower_tile´ DISABLED
+´disable_wrong_lower´ ElementToggle 100020
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´lower_tile_wrong´
+´enable_wrong_lower´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lower_tile_wrong´
+´disable_right_lower´ ElementToggle 100022
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´lower_tile´ DISABLED
+´clear_inside´ ElementAreaOperator 100023
+	apply_on_interval false
+	apply_on_use_disabled_shapes false
+	interval 0.1
+	operation clear_inside
+	use_disabled_shapes false
+	elements
+		1 ´player_trigger´
+		2 ´ai_trigger´
+´reset_tile_link´ MissionScriptElement 100024
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´raise_tile´ (delay 0)

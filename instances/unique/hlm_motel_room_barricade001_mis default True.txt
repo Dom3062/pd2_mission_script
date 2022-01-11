@@ -1,0 +1,907 @@
+´area_player_barricaded´ ElementAreaTrigger 100020
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 828,274
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 25, -200, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on both
+	use_disabled_shapes false
+	width 815
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´SO_remove_plank001´ ElementSpecialObjective 100025
+	SO_access 14816
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 25
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 78, 336, 0
+	rotation 0, 0, 0.882947, -0.469472
+	scan true
+	search_distance 6000
+	search_position 109,396 86,4461 8,19564E-06
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´SO_remove_plank002´ ElementSpecialObjective 100026
+	TRIGGER TIMES 1
+	SO_access 480
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 25
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -106, -750, 0
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 2000
+	search_position -79,2255 -508,913 8,19564E-06
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100036
+	event administered
+	position 25, 350, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_remove_plank001´
+		2 ´SO_remove_plank002´
+	on_executed
+		´point_debug_013´ (delay 0)
+´completed_removing_planks001´ ElementSpecialObjectiveTrigger 100008
+	event complete
+	position 150, 400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_remove_plank001´
+	on_executed
+		´remove_plank001´ (delay 0)
+		´point_debug_009´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´remove_plank001´ ElementUnitSequence 100038
+	position 250, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/001 (145, 225, 190)
+			notify_unit_sequence hide
+			time 0
+´room_is_free_to_go´ ElementToggle 100039
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_player_barricaded´ DISABLED
+´point_debug_009´ ElementDebug 100041
+	as_subtitle false
+	debug_string OH NO YOU DID-ENT!1
+	show_instigator false
+´SO_jump_window001´ ElementSpecialObjective 100042
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 251364
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 150, 125, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position 116,281 404,895 8,19564E-06
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´SO_jump_window002´ ElementSpecialObjective 100044
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 251364
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position 150, 350, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1000
+	search_position 183,745 30,8471 8,19564E-06
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´SO_jump_window003´ ElementSpecialObjective 100050
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 251364
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -81, -775, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position -74,0716 -491,045 8,19564E-06
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´SO_jump_window004´ ElementSpecialObjective 100051
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	SO_access 251364
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -81, -550, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1000
+	search_position -62,2209 -874,589 0
+	so_action e_nl_cs_jump_window
+	trigger_on none
+	followup_elements
+´laser_player´ ElementLaserTrigger 100055
+	DISABLED
+	color red
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random false
+	cycle_type flow
+	instigator player
+	interval 0.1
+	skip_dummies true
+	visual_only false
+	connections
+		1
+			from 1
+			to 2
+	points
+		1
+			pos -56.4489, 243.818, 54.7901
+			rot 0, 0, -0.707134, -0.70708
+		2
+			pos -164.991, 242.974, 54.3841
+			rot 0, 0, 0.707133, -0.70708
+	on_executed
+		´start_explosion´ (delay 0) (alternative enter)
+´laser_enemy´ ElementLaserTrigger 100056
+	DISABLED
+	color red
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random false
+	cycle_type flow
+	instigator enemies
+	interval 0.1
+	skip_dummies true
+	visual_only false
+	connections
+		1
+			from 1
+			to 2
+	points
+		1
+			pos -56.449, 244.278, 54.2778
+			rot 0, 0, -0.707134, -0.70708
+		2
+			pos -164.991, 245.399, 55.7776
+			rot 0, 0, 0.707133, -0.70708
+	on_executed
+		´start_explosion´ (delay 0) (alternative enter)
+´jumped_through001´ ElementSpecialObjectiveTrigger 100059
+	TRIGGER TIMES 1
+	event anim_act_04
+	position 400, 400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_jump_window002´
+		2 ´SO_jump_window001´
+	on_executed
+		´damage_window´ (delay 0)
+´damage_window´ ElementUnitSequence 100060
+	TRIGGER TIMES 1
+	position 500, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/architecture/res_int_motel/res_int_motel_window_01/001 (211, 224, 73)
+			notify_unit_sequence destroy
+			time 0
+´show_plank´ ElementUnitSequence 100064
+	position 400, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/001 (145, 225, 190)
+			notify_unit_sequence show_gfx_only
+			time 0
+´start_lasershow´ MissionScriptElement 100065
+	on_executed
+		´enable_lasers´ (delay 0.1)
+		´close_door´ (delay 0)
+´enable_lasers´ ElementToggle 100066
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´laser_player´ DISABLED
+		2 ´laser_enemy´ DISABLED
+´trap_explode´ ElementUnitSequenceTrigger 100067
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_explode
+			notify_unit_id units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-58, 241, 52)
+	on_executed
+		´start_explosion´ (delay 0)
+		´disable_lasershow´ (delay 0)
+´remove_laser´ ElementOperator 100068
+	operation remove
+	elements
+		1 ´laser_player´ DISABLED
+		2 ´laser_enemy´ DISABLED
+´start_explosion´ MissionScriptElement 100069
+	on_executed
+		´explosion´ (delay 0)
+		´disable_tripmine´ (delay 0)
+		´enable_make_way´ (delay 0)
+		´make_way´ (delay 1) DISABLED
+		´disable_another_lasershow´ (delay 0)
+		´disable_laser´ (delay 0)
+´explosion´ ElementExplosion 100070
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 60
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 40
+	position -100, 225, 100
+	range 350
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´disable_tripmine´ ElementDisableUnit 100071
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-58, 241, 52)
+		2 units/dev_tools/level_tools/door_blocker/door_blocker_1m/001 (-110, 227, 0)
+´remove_blocker´ ElementNavObstacle 100073
+	operation remove
+	position -100, 600, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 13847164090252556502
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker_1m/001 (-110, 227, 0)
+´add_blocker´ ElementNavObstacle 100074
+	operation add
+	position -100, 1200, 0
+	rotation 0, 0, -0.382683, -0.92388
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 13847164090252556502
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker_1m/001 (-110, 227, 0)
+´player_spawn´ MissionScriptElement 100075
+	on_executed
+		´hide_tripmine´ (delay 0)
+		´door_setup´ (delay 1)
+´hide_tripmine´ ElementDisableUnit 100076
+	position -100, 1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-58, 241, 52)
+´door_setup´ MissionScriptElement 100077
+	on_executed
+		´logic_random_001´ (delay 0)
+´open_door´ ElementUnitSequence 100079
+	position -100, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+			notify_unit_sequence state_door_open
+			time 0
+	on_executed
+		´show_tripmine´ (delay 0)
+		´enable_area_mobster´ (delay 0)
+´closed_door´ ElementUnitSequence 100080
+	position -300, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+			notify_unit_sequence state_door_close
+			time 0
+	on_executed
+		´remove_laser´ (delay 0)
+		´allow_breach_door_SO´ (delay 0)
+		´enable_make_way´ (delay 0)
+		´enable_done_opened´ (delay 0)
+		´add_blocker´ (delay 0)
+´instance_higher_floor´ ElementInstanceInput 100083
+	BASE DELAY 1
+	event higher_floor
+	on_executed
+		´disable_back_window´ (delay 0)
+´disable_back_window´ ElementToggle 100084
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_jump_window004´
+		2 ´SO_remove_plank002´
+		3 ´SO_jump_window003´
+		4 ´destroy_planks002´
+		5 ´show_planks002´
+		6 ´less_than_2´
+		7 ´all_boarded2´
+´done_opened´ ElementUnitSequenceTrigger 100092
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+	on_executed
+		´make_way´ (delay 1) DISABLED
+		´remove_SO_breach_door´ (delay 0)
+		´enable_make_way´ (delay 0.5)
+		´point_debug_007´ (delay 0)
+		´dis-able-everything.´ (delay 0)
+´make_way´ MissionScriptElement 100093
+	DISABLED
+	on_executed
+		´remove_blocker´ (delay 0)
+´enable_make_way´ ElementToggle 100094
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´make_way´ DISABLED
+´door_closed_by_mobster´ ElementUnitSequenceTrigger 100095
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_close_door
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+	on_executed
+		´add_blocker´ (delay 0)
+´close_door´ ElementUnitSequence 100097
+	position 500, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+´show_tripmine´ ElementEnableUnit 100098
+	position -100, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-58, 241, 52)
+´disable_another_lasershow´ ElementToggle 100100
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_lasers´
+´disable_lasershow´ ElementToggle 100105
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´start_lasershow´
+´dis-able-everything.´ ElementToggle 100106
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_remove_plank001´
+´instance_input_thug_planks_windows´ ElementInstanceInput 100107
+	event thug_planks_windows
+	on_executed
+		´show_plank´ (delay 0)
+´instigator_input´ ElementInstanceInput 100104
+	event player_spawn
+	on_executed
+		´player_spawn´ (delay 0)
+´disable_laser´ ElementToggle 100109
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´laser_player´ DISABLED
+		2 ´laser_enemy´ DISABLED
+´SO_breach_through_door´ ElementSpecialObjective 100110
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 13792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 15
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -125, 375, 0
+	rotation 0, 0, 1, -0
+	scan true
+	search_distance 800
+	search_position -48,8569 12,3647 8,19564E-06
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´allow_breach_door_SO´ MissionScriptElement 100111
+	on_executed
+		´enable_SO_breach_door´ (delay 0)
+´enable_SO_breach_door´ ElementToggle 100112
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_breach_through_door´ DISABLED
+	on_executed
+		´SO_breach_through_door´ (delay 0) DISABLED
+´disable_SO_breach_door´ ElementToggle 100081
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_breach_through_door´ DISABLED
+´remove_SO_breach_door´ ElementOperator 100113
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´SO_breach_through_door´ DISABLED
+		2 ´SO_remove_plank001´
+	on_executed
+		´disable_SO_breach_door´ (delay 0)
+´started_breaching´ ElementSpecialObjectiveTrigger 100114
+	TRIGGER TIMES 1
+	event anim_act_04
+	position 200, 1200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_breach_through_door´ DISABLED
+	on_executed
+		´open_door_2´ (delay 0)
+		´remove_SO_breach_door´ (delay 0)
+´open_door_2´ ElementUnitSequence 100115
+	position 200, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c/001 (-49, 231, 0)
+			notify_unit_sequence open_door
+			time 0
+´enable_area_mobster´ ElementToggle 100116
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_mobster_inside´ DISABLED
+´enable_done_opened´ ElementToggle 100117
+	BASE DELAY 3
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´done_opened´ DISABLED
+´point_debug_007´ ElementDebug 100037
+	as_subtitle false
+	debug_string done opened
+	show_instigator false
+´point_debug_013´ ElementDebug 100119
+	as_subtitle false
+	debug_string someone tries to steal ur planks!!!!!!!!!!!
+	show_instigator false
+´logic_toggle_002´ ElementToggle 100120
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_remove_plank001´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100122
+	operation remove
+	elements
+		1 ´SO_remove_plank001´
+´logic_random_001´ ElementRandom 100078
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´open_door´ (delay 0)
+		´closed_door´ (delay 0)
+´show_planks001´ ElementUnitSequenceTrigger 100001
+	sequence_list
+		1
+			guis_id 1
+			sequence show_planks
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/001 (145, 225, 190)
+		2
+			guis_id 2
+			sequence show_gfx_only
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/001 (145, 225, 190)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´remove_navlinks001´ (delay 0)
+		´add1_plank´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+´show_planks002´ ElementUnitSequenceTrigger 100002
+	sequence_list
+		1
+			guis_id 1
+			sequence show_planks
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/002 (-83, -655, 188)
+		2
+			guis_id 2
+			sequence show_gfx_only
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/002 (-83, -655, 188)
+	on_executed
+		´point_debug_002´ (delay 0)
+		´remove_navlink002´ (delay 0)
+		´add1_plank´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+´point_debug_001´ ElementDebug 100004
+	as_subtitle false
+	debug_string show planks 1
+	show_instigator false
+´point_debug_002´ ElementDebug 100005
+	as_subtitle false
+	debug_string show planks 2
+	show_instigator false
+´remove_navlinks001´ ElementOperator 100006
+	operation remove
+	elements
+		1 ´SO_jump_window001´
+		2 ´SO_jump_window002´
+´remove_navlink002´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´SO_jump_window003´
+		2 ´SO_jump_window004´
+´destroy_planks001´ ElementUnitSequenceTrigger 100009
+	sequence_list
+		1
+			guis_id 1
+			sequence destroy_planks
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/001 (145, 225, 190)
+	on_executed
+		´point_debug_003´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´sub1_plank´ (delay 0)
+´point_debug_003´ ElementDebug 100010
+	as_subtitle false
+	debug_string plank removed 1
+	show_instigator false
+´destroy_planks002´ ElementUnitSequenceTrigger 100011
+	sequence_list
+		1
+			guis_id 1
+			sequence destroy_planks
+			notify_unit_id units/payday2/equipment/hlm_interactable_win_planks/hlm_interactable_win_planks/002 (-83, -655, 188)
+	on_executed
+		´point_debug_004´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´sub1_plank´ (delay 0)
+´point_debug_004´ ElementDebug 100012
+	as_subtitle false
+	debug_string plank removed 2
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100013
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_jump_window001´
+		2 ´SO_jump_window002´
+	on_executed
+		´SO_jump_window001´ (delay 1)
+		´SO_jump_window002´ (delay 1)
+´logic_toggle_003´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_jump_window003´
+		2 ´SO_jump_window004´
+	on_executed
+		´SO_jump_window003´ (delay 1)
+		´SO_jump_window004´ (delay 1)
+´area_mobster_inside´ ElementAreaTrigger 100015
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 454
+	height 300
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position -100, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on while_inside
+	use_disabled_shapes false
+	width 570
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´start_lasershow´ (delay 0)
+´counter_until_swat_steps_in´ ElementCounter 100016
+	counter_target 0
+´all_boarded2´ ElementCounterFilter 100017
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter_until_swat_steps_in´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´less_than_2´ ElementCounterFilter 100018
+	check_type less_than
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter_until_swat_steps_in´
+	on_executed
+		´point_debug_005´ (delay 0)
+		´remove_plank_swat´ (delay 0)
+´point_debug_005´ ElementDebug 100019
+	as_subtitle false
+	debug_string not enough planks yet
+	show_instigator false
+´point_debug_006´ ElementDebug 100021
+	as_subtitle false
+	debug_string all_boarded
+	show_instigator false
+´counter_until_swat_steps_in001´ ElementCounter 100022
+	counter_target 0
+´logic_counter_filter_003´ ElementCounterFilter 100023
+	check_type less_than
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_until_swat_steps_in001´
+	on_executed
+		´point_debug_005´ (delay 0)
+		´remove_plank_swat´ (delay 0)
+´all_boarded1´ ElementCounterFilter 100024
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_until_swat_steps_in001´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´remove_plank_swat´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´SO_remove_plank001´
+´logic_toggle_004´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_remove_plank001´
+	on_executed
+		´SO_remove_plank001´ (delay 1)
+´add1_plank´ ElementCounterOperator 100029
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter_until_swat_steps_in´
+		2 ´counter_until_swat_steps_in001´
+	on_executed
+		´all_boarded2´ (delay 1)
+		´less_than_2´ (delay 1)
+´sub1_plank´ ElementCounterOperator 100030
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´counter_until_swat_steps_in´
+		2 ´counter_until_swat_steps_in001´
+	on_executed
+		´all_boarded1´ (delay 1)
+		´logic_counter_filter_003´ (delay 1)
+´func_sequence_001´ ElementUnitSequence 100031
+	position 100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/architecture/res_int_motel/res_int_motel_window_01/002 (-151.999, -656, 74.0003)
+			notify_unit_sequence destroy
+			time 0
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100032
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence damage
+			notify_unit_id units/pd2_dlc1/architecture/res_int_motel/res_int_motel_window_01/002 (-151.999, -656, 74.0003)
+		2
+			guis_id 2
+			sequence destroy
+			notify_unit_id units/pd2_dlc1/architecture/res_int_motel/res_int_motel_window_01/002 (-151.999, -656, 74.0003)
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´logic_toggle_005´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_sequence_001´
+´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100034
+	event anim_act_04
+	position 0, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_jump_window004´
+		2 ´SO_jump_window003´
+	on_executed
+		´func_sequence_001´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100035
+	instigator enemies
+	invert false
+	rules
+		enemies
+			enemy_names
+				1 units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1
+				2 units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2
+				3 units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3
+				4 units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4
+				5 units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
+				6 units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2
+				7 units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3
+				8 units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4
+				9 units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5
+´logic_toggle_006´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_jump_window002´
+		2 ´SO_jump_window001´
+´logic_toggle_007´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_jump_window004´
+		2 ´SO_jump_window003´

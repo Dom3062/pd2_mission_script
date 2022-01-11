@@ -1,0 +1,473 @@
+´startup´ MissionScriptElement 100102
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_setup´ (delay 0)
+		´add_door_blockers´ (delay 0)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´seq_setup´ ElementUnitSequence 100010
+	position -400, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/001 (-586, -176, 98)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/002 (-586, -291, 98)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/003 (-586, -359, 98)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/004 (-37, -457, 98)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/005 (-37.0001, -388, 98)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/006 (-37, -582, 98)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´disable_units´ (delay 1)
+´add_door_blockers´ ElementNavObstacle 100002
+	operation add
+	position -300, -900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -375, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-269, -9.91821E-05, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-600, -500, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (-625, -450, 0)
+		5
+			guis_id 5
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/005 (-625, -350, 0)
+		6
+			guis_id 6
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/006 (-400, -500, 0)
+´randomize_necklace´ ElementRandom 100052
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´enable_necklace´ (delay 0)
+		´enable_necklace_2´ (delay 0)
+		´enable_necklace_3´ (delay 0)
+		´enable_necklace_4´ (delay 0)
+		´enable_necklace_5´ (delay 0)
+´func_sequence_007´ ElementUnitSequence 100053
+	position -900, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/006 (-37, -582, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100054
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/003 (-41, -574, 0)
+	on_executed
+		´func_sequence_007´ (delay 0)
+´enable_medal´ ElementEnableUnit 100055
+	position -900, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/006 (-37, -582, 98)
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´enable_necklace´ ElementEnableUnit 100056
+	position -800, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_2/002 (-38, -525, 97)
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´enable_medal_2´ ElementEnableUnit 100057
+	position -700, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/004 (-37, -457, 98)
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´enable_necklace_2´ ElementEnableUnit 100058
+	position -600, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_2/001 (-38, -425, 97)
+	on_executed
+		´logic_toggle_007´ (delay 0)
+´enable_medal_3´ ElementEnableUnit 100059
+	position -500, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/005 (-37.0001, -388, 98)
+	on_executed
+		´logic_toggle_008´ (delay 0)
+´enable_medal_4´ ElementEnableUnit 100060
+	position -400, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/001 (-586, -176, 98)
+	on_executed
+		´logic_toggle_009´ (delay 0)
+´enable_necklace_3´ ElementEnableUnit 100061
+	position -300, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_1/006 (-586, -225, 97)
+	on_executed
+		´logic_toggle_010´ (delay 0)
+´enable_medal_5´ ElementEnableUnit 100062
+	position -200, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/002 (-586, -291, 98)
+	on_executed
+		´logic_toggle_011´ (delay 0)
+´enable_necklace_4´ ElementEnableUnit 100063
+	position -100, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_1/005 (-586, -325, 97)
+	on_executed
+		´logic_toggle_012´ (delay 0)
+´enable_medal_6´ ElementEnableUnit 100064
+	position 0, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/003 (-586, -359, 98)
+	on_executed
+		´logic_toggle_013´ (delay 0)
+´enable_necklace_5´ ElementEnableUnit 100065
+	position 100, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_1/004 (-586, -425, 97)
+	on_executed
+		´logic_toggle_014´ (delay 0)
+´logic_toggle_004´ ElementToggle 100066
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_001´ DISABLED
+´logic_toggle_005´ ElementToggle 100067
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_002´ DISABLED
+´logic_toggle_006´ ElementToggle 100068
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_003´ DISABLED
+´logic_toggle_007´ ElementToggle 100069
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_005´ DISABLED
+´logic_toggle_008´ ElementToggle 100070
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_006´ DISABLED
+´logic_toggle_009´ ElementToggle 100071
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_007´ DISABLED
+´logic_toggle_010´ ElementToggle 100072
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_008´ DISABLED
+´logic_toggle_011´ ElementToggle 100073
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_009´ DISABLED
+´logic_toggle_012´ ElementToggle 100074
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_010´ DISABLED
+´logic_toggle_013´ ElementToggle 100075
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_011´ DISABLED
+´logic_toggle_014´ ElementToggle 100076
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_012´ DISABLED
+´disable_units´ ElementDisableUnit 100077
+	position -400, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/luxury_props/luxury_necklace_box_1/004 (-586, -425, 97)
+		2 units/world/props/luxury_props/luxury_necklace_box_1/005 (-586, -325, 97)
+		3 units/world/props/luxury_props/luxury_necklace_box_1/006 (-586, -225, 97)
+		4 units/world/props/luxury_props/luxury_necklace_box_2/001 (-38, -425, 97)
+		5 units/world/props/luxury_props/luxury_necklace_box_2/002 (-38, -525, 97)
+		6 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/001 (-586, -176, 98)
+		7 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/002 (-586, -291, 98)
+		8 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/003 (-586, -359, 98)
+		9 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/004 (-37, -457, 98)
+		10 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/005 (-37.0001, -388, 98)
+		11 units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/006 (-37, -582, 98)
+	on_executed
+		´randomize_necklace´ (delay 0)
+		´randomize_medal´ (delay 0)
+´func_sequence_008´ ElementUnitSequence 100078
+	position -800, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/luxury_props/luxury_necklace_box_2/002 (-38, -525, 97)
+			notify_unit_sequence enable_interact
+			time 0
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100079
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/002 (-41, -524, 0)
+	on_executed
+		´func_sequence_008´ (delay 0)
+´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100081
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/001 (-41, -474, 0)
+	on_executed
+		´func_sequence_010´ (delay 0)
+´func_sequence_010´ ElementUnitSequence 100082
+	position -700, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/004 (-37, -457, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_011´ ElementUnitSequence 100084
+	position -600, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/luxury_props/luxury_necklace_box_2/001 (-38, -425, 97)
+			notify_unit_sequence enable_interact
+			time 0
+´func_sequence_trigger_005´ ElementUnitSequenceTrigger 100085
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/007 (-41, -424, 0)
+	on_executed
+		´func_sequence_011´ (delay 0)
+´func_sequence_012´ ElementUnitSequence 100086
+	position -500, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/005 (-37.0001, -388, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_trigger_006´ ElementUnitSequenceTrigger 100087
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/011 (-41, -374, 0)
+	on_executed
+		´func_sequence_012´ (delay 0)
+´func_sequence_013´ ElementUnitSequence 100088
+	position -400, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/001 (-586, -176, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_trigger_007´ ElementUnitSequenceTrigger 100089
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/008 (-582, -175, 0)
+	on_executed
+		´func_sequence_013´ (delay 0)
+´func_sequence_014´ ElementUnitSequence 100090
+	position -300, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/luxury_props/luxury_necklace_box_1/006 (-586, -225, 97)
+			notify_unit_sequence enable_interact
+			time 0
+´func_sequence_trigger_008´ ElementUnitSequenceTrigger 100091
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/009 (-582, -225, 0)
+	on_executed
+		´func_sequence_014´ (delay 0)
+´func_sequence_015´ ElementUnitSequence 100092
+	position -200, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/002 (-586, -291, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_trigger_009´ ElementUnitSequenceTrigger 100093
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/010 (-582, -275, 0)
+	on_executed
+		´func_sequence_015´ (delay 0)
+´func_sequence_016´ ElementUnitSequence 100094
+	position -100, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/luxury_props/luxury_necklace_box_1/005 (-586, -325, 97)
+			notify_unit_sequence enable_interact
+			time 0
+´func_sequence_trigger_010´ ElementUnitSequenceTrigger 100095
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/004 (-582, -325, 0)
+	on_executed
+		´func_sequence_016´ (delay 0)
+´func_sequence_017´ ElementUnitSequence 100096
+	position 0, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_props_federali_chief_medal/pex_props_federali_chief_medal/003 (-586, -359, 98)
+			notify_unit_sequence show
+			time 0
+´func_sequence_trigger_011´ ElementUnitSequenceTrigger 100097
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/005 (-582, -375, 0)
+	on_executed
+		´func_sequence_017´ (delay 0)
+´func_sequence_018´ ElementUnitSequence 100098
+	position 100, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/luxury_props/luxury_necklace_box_1/004 (-586, -425, 97)
+			notify_unit_sequence enable_interact
+			time 0
+´func_sequence_trigger_012´ ElementUnitSequenceTrigger 100099
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/006 (-582, -425, 0)
+	on_executed
+		´func_sequence_018´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100083
+	DISABLED
+	position -300, -200, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´randomize_medal´ ElementRandom 100169
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´enable_medal_6´ (delay 0)
+		´enable_medal_5´ (delay 0)
+		´enable_medal_4´ (delay 0)
+		´enable_medal_3´ (delay 0)
+		´enable_medal_2´ (delay 0)
+		´enable_medal´ (delay 0)

@@ -1,0 +1,565 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_enable_interaction´ (delay 5)
+´seq_setup´ ElementUnitSequence 100005
+	position 775, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/gen_interactable_police_car_steering_wheel/gen_interactable_police_car_steering_wheel/001 (1754.55, -571.5, -14.7648)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence color_variation_white
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence state_position_for_crash
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence anim_trunk_close
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence mull_plane_enable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 650, 1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/001 (0, -2300, -194.584)
+		2 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/003 (-200, -2400, -194.584)
+		3 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/004 (-300, -2600, -194.584)
+		4 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/005 (-100, -2600, -195.584)
+		5 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/002 (50, -2550, -194.584)
+		6 units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable_interaction
+	on_executed
+		´seq_enable_gas_can´ (delay 0)
+´output_car_exploded´ ElementInstanceOutput 100008
+	event car_exploded
+	on_executed
+		´point_debug_001´ (delay 0)
+´seq_burn_car_004´ ElementUnitSequence 100026
+	position 725, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence state_start_burning
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence anim_crash
+			time 0.5
+	on_executed
+		´point_play_sound_001´ (delay 26.5)
+		´point_play_sound_003´ (delay 8)
+´point_play_sound_001´ ElementPlaySound 100027
+	append_prefix false
+	interrupt true
+	position -200, -2700, -102.579
+	rotation 0, 0, 0, -1
+	sound_event explosion_fire
+	use_instigator false
+	on_executed
+		´point_feedback_001´ (delay 5)
+´point_feedback_001´ ElementFeedback 100028
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1,2
+	camera_shake_attack 0,1
+	camera_shake_decay 0,5
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,75
+	camera_shake_sustain 0,5
+	effect mission_triggered
+	position -200, -2700, -2.90559
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´output_car_exploded´ (delay 0)
+		´point_explosion_001´ (delay 0)
+´point_play_sound_002´ ElementPlaySound 100029
+	append_prefix true
+	interrupt true
+	position -100, -2600, -102.579
+	rotation 0, 0, 0, -1
+	sound_event run_bruce_crash
+	use_instigator false
+´point_debug_001´ ElementDebug 100033
+	as_subtitle false
+	debug_string car_kaboom TURRET GONE!
+	show_instigator false
+´input_disable_interactions´ ElementInstanceInput 100010
+	event disable_interaction
+	on_executed
+		´disable_interactions´ (delay 0)
+		´input_disable_WP´ (delay 0)
+´point_explosion_001´ ElementExplosion 100037
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 100
+	effect mission_triggered
+	explosion_effect none
+	player_damage 90
+	position -200, -2700, -53.542
+	range 750
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´enable_burn_decal´ (delay 0)
+´enable_burn_decal´ ElementEnableUnit 100043
+	position 650, 625, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/001 (0, -2300, -194.584)
+		2 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/003 (-200, -2400, -194.584)
+		3 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/004 (-300, -2600, -194.584)
+		4 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/005 (-100, -2600, -195.584)
+		5 units/pd2_dlc_cro/burnedgravel_decal/burnedgravel_decal/002 (50, -2550, -194.584)
+	on_executed
+		´seq_burn_gas_can´ (delay 1.5)
+´func_nav_obstacle_003´ ElementNavObstacle 100048
+	operation add
+	position 725, 800, -2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (1.85259, -2300.38, -225)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-51.1804, -2392.24, -225)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-104.213, -2484.09, -225)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-157.246, -2575.95, -225)
+	on_executed
+		´remove_blockers_car_path´ (delay 0)
+´trigger_car_moved´ ElementUnitSequenceTrigger 100052
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/gen_interactable_police_car_steering_wheel/gen_interactable_police_car_steering_wheel/001 (1754.55, -571.5, -14.7648)
+	on_executed
+		´seq_burn_car_004´ (delay 0)
+		´func_nav_obstacle_003´ (delay 7.5)
+		´env_effect_stop_001´ (delay 0)
+´disable_interactions´ ElementUnitSequence 100012
+	position 1000, 1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/gen_interactable_police_car_steering_wheel/gen_interactable_police_car_steering_wheel/001 (1754.55, -571.5, -14.7648)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´disable_interactions_2´ (delay 0)
+´input_disable_WP´ ElementInstanceInput 100015
+	event disable_WP
+	on_executed
+		´remove_WP´ (delay 0)
+		´remove_WP_trunk´ (delay 0)
+´trigger_gas_can_placed´ ElementUnitSequenceTrigger 100018
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+	on_executed
+		´show_WP_shoot´ (delay 0)
+´seq_enable_gas_can´ ElementUnitSequence 100019
+	position 1225, 1625, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+			notify_unit_sequence fex_enabled
+			time 0
+	on_executed
+		´show_WP_trunk´ (delay 1)
+´point_play_sound_003´ ElementPlaySound 100020
+	append_prefix false
+	interrupt true
+	position -125, -2725, -140.748
+	rotation 0, 0, 0, -1
+	sound_event car_hit_gen_01
+	use_instigator false
+´WP_shoot´ ElementWaypoint 100011
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 1650, -600, 54.9185
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_WP_shoot´ MissionScriptElement 100013
+	on_executed
+		´WP_shoot´ (delay 1)
+		´output_gas_placed´ (delay 0)
+´remove_WP´ ElementOperator 100016
+	operation remove
+	elements
+		1 ´WP_shoot´
+	on_executed
+		´disable_WP´ (delay 0)
+´disable_WP´ ElementToggle 100021
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_shoot´
+´show_gas_can´ ElementUnitSequence 100024
+	position 725, 1050, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/gen_interactable_police_car_steering_wheel/gen_interactable_police_car_steering_wheel/001 (1754.55, -571.5, -14.7648)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence state_show_gas_can
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+			notify_unit_sequence state_hide
+			time 0
+	on_executed
+		´remove_WP´ (delay 0)
+		´effect_fire_start´ (delay 0)
+´trigger_shoot´ ElementUnitSequenceTrigger 100025
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_shot
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+	on_executed
+		´show_gas_can´ (delay 0)
+´picked_gas_can´ ElementUnitSequenceTrigger 100030
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+	on_executed
+		´add_gas_can_inventory´ (delay 0)
+´add_gas_can_inventory´ ElementEquipment 100034
+	amount 1
+	equipment gas
+	position 725, 1250, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´car_enabled_and_gas_can_picked´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100035
+	position 725, 1325, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+	on_executed
+		´seq_enable_gas_can_2´ (delay 0)
+´seq_enable_gas_can_2´ ElementUnitSequence 100036
+	position 800, 1325, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence anim_trunk_open
+			time 0
+	on_executed
+		´remove_WP_trunk´ (delay 0)
+´effect_fire_start´ ElementPlayEffect 100047
+	base_time 0
+	effect effects/particles/fire/test_fire
+	max_amount 0
+	position 1650, -586, 20.0319
+	random_time 0
+	rotation 0, 0, 0.382683, -0.92388
+	screen_space false
+	on_executed
+		´sound_fire_start´ (delay 0)
+´env_effect_stop_001´ ElementStopEffect 100050
+	operation kill
+	position 725, 875, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect_fire_start´
+	on_executed
+		´add_blockers_car_path´ (delay 0)
+´sound_fire_start´ ElementPlaySound 100046
+	append_prefix false
+	interrupt true
+	position 1650, -600, 25.1371
+	rotation 0, 0, 0, -1
+	sound_event tiny_fire_loop
+	use_instigator false
+´logic_operator_001´ ElementOperator 100049
+	operation remove
+	elements
+		1 ´sound_fire_start´
+´show_WP_trunk´ MissionScriptElement 100051
+	on_executed
+		´WP_trunk´ (delay 0)
+		´car_enabled_and_gas_can_picked´ (delay 0)
+´WP_trunk´ ElementWaypoint 100053
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 1934, -325, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_trunk´ ElementOperator 100054
+	operation remove
+	elements
+		1 ´WP_trunk´
+	on_executed
+		´disable_WP_trunk´ (delay 0)
+´disable_WP_trunk´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_trunk´
+´add_blockers_car_path´ ElementNavObstacle 100070
+	operation add
+	position 800, 875, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (92.6776, -2107.32, -250)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (1289.64, -960.356, -125)
+		3
+			guis_id 3
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (864.643, -1414.64, -200)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (1525, -775, -99.8777)
+	on_executed
+		´logic_operator_001´ (delay 1)
+´remove_blockers_car_path´ ElementNavObstacle 100077
+	operation remove
+	position 800, 800, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (92.6776, -2107.32, -250)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (1289.64, -960.356, -125)
+		3
+			guis_id 3
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (864.643, -1414.64, -200)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (1525, -775, -99.8777)
+	on_executed
+		´output_car_hit_van´ (delay 0)
+´output_car_hit_van´ ElementInstanceOutput 100078
+	event car_hit_van
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100079
+	as_subtitle false
+	debug_string car_hit_van
+	show_instigator false
+´interaction_open_trunk´ ElementInteraction 100080
+	host_only false
+	override_timer -1
+	position 1935.86, -316.515, 25
+	rotation 0, 0, -0.382683, -0.92388
+	tweak_data_id open_trunk
+	on_executed
+		100014 (delay 0) (alternative interacted)
+		´link_open_trunk´ (delay 0) (alternative interacted)
+´link_open_trunk´ MissionScriptElement 100081
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´play_pick_gasoline´ ElementPlaySound 100059
+	append_prefix false
+	interrupt true
+	position 1934, -325, 0
+	rotation 0, 0, 0, -1
+	sound_event gas_tank_pick_up
+	use_instigator false
+´gas_can_picked_up´ ElementUnitSequenceTrigger 100058
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_pku_gas_can/gen_pku_gas_can/001 (1867.68, -333.28, -40.0001)
+	on_executed
+		´play_pick_gasoline´ (delay 0)
+´sound_gas_can_place´ ElementPlaySound 100060
+	append_prefix false
+	interrupt true
+	position 1650, -600, 25.1371
+	rotation 0, 0, 0, -1
+	sound_event gas_tank_put_down
+	use_instigator false
+´gas_can_placed´ ElementUnitSequenceTrigger 100063
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_gas_can/fex_interactable_gas_can/001 (1635, -544, 4)
+	on_executed
+		´sound_gas_can_place´ (delay 0)
+´disable_interactions_2´ ElementToggle 100064
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_gas_can_placed´
+		2 ´trigger_shoot´
+		3 ´trigger_car_moved´
+´output_gas_placed´ ElementInstanceOutput 100065
+	event gasoline_placed
+	on_executed
+		´remove_WP_gas_can_place´ (delay 0)
+´seq_burn_gas_can´ ElementUnitSequence 100066
+	position 725, 625, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/str_vehicle_car_sedan_2_burned/str_vehicle_car_sedan_2_burned/001 (0, 0, 0)
+			notify_unit_sequence state_show_gas_can_burned
+			time 0
+´WP_gas_can_place´ ElementWaypoint 100023
+	TRIGGER TIMES 1
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 1650, -600, 54.919
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_gas_can_place´ ElementOperator 100067
+	operation remove
+	elements
+		1 ´WP_gas_can_place´
+´show_WP_place_gas_can´ MissionScriptElement 100068
+	on_executed
+		´WP_gas_can_place´ (delay 0)
+´car_enabled_and_gas_can_picked´ ElementCounter 100069
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´show_WP_place_gas_can´ (delay 0)

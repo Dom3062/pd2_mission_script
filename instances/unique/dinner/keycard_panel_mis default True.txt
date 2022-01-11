@@ -1,0 +1,50 @@
+´keycard_inserted´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (0, 0, 127.5)
+	on_executed
+		´access_granted´ (delay 0)
+´set_orig´ ElementUnitSequence 100010
+	EXECUTE ON STARTUP
+	position -200, 400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (0, 0, 127.5)
+			notify_unit_sequence orig
+			time 0
+	on_executed
+		´set_state_4´ (delay 0)
+´activate_panel´ ElementInstanceInput 100011
+	event Activate Panel
+	on_executed
+		´set_orig´ (delay 0)
+´set_state_4´ ElementUnitSequence 100012
+	position -100, 400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (0, 0, 127.5)
+			notify_unit_sequence state_4
+			time 0
+´keycard_inserted_output´ ElementInstanceOutput 100007
+	event keycard Inserted
+´access_granted´ ElementUnitSequence 100013
+	position 100, 400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (0, 0, 127.5)
+			notify_unit_sequence off
+			time 0
+	on_executed
+		´keycard_inserted_output´ (delay 0)

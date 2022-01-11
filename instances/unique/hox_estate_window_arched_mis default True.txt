@@ -1,0 +1,29 @@
+´window_opened´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_mcmansion/architecture/mcm_ext_house/mcm_a_ext_window_b_01/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence break_glass
+			notify_unit_id units/pd2_mcmansion/architecture/mcm_ext_house/mcm_a_ext_window_b_01/001 (0, 0, 0)
+	on_executed
+		´window_opened_output´ (delay 0)
+´window_opened_output´ ElementInstanceOutput 100004
+	event window_opened
+´disable_alarm_input´ ElementInstanceInput 100010
+	event disable_alarm
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100003
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_small_alarm/mcm_prop_small_alarm/001 (-18, -40, 100)
+			notify_unit_sequence blink_off
+			time 0

@@ -1,0 +1,322 @@
+´startup´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	BASE DELAY 2
+	on_executed
+		´close_container´ (delay 0)
+´close_container´ ElementUnitSequence 100005
+	position -1800, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence state_all_door_closed
+			time 0
+	on_executed
+		´disable_drills´ (delay 0)
+´activate_front_drill´ ElementInstanceInput 100006
+	event Activate Front Drill
+	on_executed
+		´close_front_door´ (delay 0)
+´open_container´ ElementInstanceInput 100007
+	event Open Container
+	on_executed
+		´color_blue001´ (delay 0)
+´open_container_sequence´ ElementUnitSequence 100008
+	position -1600, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence state_all_door_open
+			time 0
+	on_executed
+		´remove_door_blocker001´ (delay 0)
+´color_blue001´ ElementUnitSequence 100009
+	position -1600, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_blue
+			time 0
+	on_executed
+		´open_container_sequence´ (delay 0)
+´disable_drills´ ElementUnitSequence 100002
+	position -1800, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/back (0.000976563, -596, 150)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/front (0, 0.000472868, 150)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´add_door_blocker´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100003
+	operation add
+	position -1800, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+´remove_door_blocker001´ ElementNavObstacle 100010
+	operation remove
+	position -1600, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+´open_front_door´ ElementUnitSequence 100012
+	position -1300, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence anim_front_door_open
+			time 0
+	on_executed
+		´remove_door_blocker002´ (delay 0)
+´activate_back_drill´ ElementInstanceInput 100016
+	event Activate Back Drill
+	on_executed
+		´close_back_door´ (delay 0)
+´close_front_door´ ElementUnitSequence 100015
+	position -1500, 1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence state_front_door_closed
+			time 0
+	on_executed
+		´turn_on_front_interaction´ (delay 0)
+´close_back_door´ ElementUnitSequence 100017
+	position -1400, 1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence state_back_door_closed
+			time 0
+	on_executed
+		´turn_on_back_interaction´ (delay 0)
+´open_back_door´ ElementUnitSequence 100021
+	position -1200, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence anim_back_door_open
+			time 0
+	on_executed
+		´remove_door_blocker003´ (delay 0)
+´add_front_door_blocker´ ElementNavObstacle 100023
+	operation add
+	position -1500, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+´add_back_door_blocker´ ElementNavObstacle 100024
+	operation add
+	position -1400, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+´remove_door_blocker002´ ElementNavObstacle 100025
+	operation remove
+	position -1300, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´front_drill_completed´ (delay 0)
+´remove_door_blocker003´ ElementNavObstacle 100026
+	operation remove
+	position -1200, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´back_drill_completed´ (delay 0)
+´set_escape_start´ ElementInstanceInput 100027
+	event Set escape start
+	on_executed
+		´color_blue002´ (delay 0)
+´color_blue002´ ElementUnitSequence 100028
+	position -1700, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_blue
+			time 0
+´activate_start_drill´ ElementInstanceInput 100031
+	event Activate Start Drill
+	on_executed
+		´open_back_door_2´ (delay 0)
+´open_back_door_2´ ElementUnitSequence 100033
+	position -1600, 700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container/gen_prop_container/001 (0, -300, 0)
+			notify_unit_sequence state_back_door_open
+			time 0
+	on_executed
+		´remove_door_blocker004´ (delay 0)
+´start_drill_wp´ ElementWaypoint 100034
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 54, 180.668
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´start_drill_wp´
+	on_executed
+		´point_debug_002´ (delay 0)
+´turn_on_check´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_done´ DISABLED
+´point_debug_001´ ElementDebug 100038
+	as_subtitle true
+	debug_string Bain: Drill is done! keep moving forward! Follow the blue containers!
+	show_instigator false
+´front_drill_completed´ ElementInstanceOutput 100039
+	event Front Drill Completed
+´back_drill_completed´ ElementInstanceOutput 100040
+	event Back Drill Completed
+´point_debug_002´ ElementDebug 100041
+	as_subtitle false
+	debug_string drill_done
+	show_instigator false
+´remove_door_blocker004´ ElementNavObstacle 100042
+	operation remove
+	position -1600, 600, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+	on_executed
+		´activate_front_start_drill´ (delay 0)
+´turn_on_front_interaction´ ElementUnitSequence 100032
+	position -1500, 1000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/front (0, 0.000472868, 150)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´add_front_door_blocker´ (delay 0)
+´turn_on_back_interaction´ ElementUnitSequence 100013
+	position -1400, 1000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/back (0.000976563, -596, 150)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´add_back_door_blocker´ (delay 0)
+´front_interaction_done´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/front (0, 0.000472868, 150)
+	on_executed
+		´open_front_door´ (delay 0)
+´back_interaction_done´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/back (0.000976563, -596, 150)
+	on_executed
+		´open_back_door´ (delay 0)
+´activate_front_start_drill´ ElementUnitSequence 100011
+	position -1600, 500, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/front (0, 0.000472868, 150)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´turn_on_check´ (delay 0)
+		´start_drill_wp´ (delay 0)
+´start_done´ ElementUnitSequenceTrigger 100018
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dinner/equipment/din_interactable_pliers/din_interactable_pliers/front (0, 0.000472868, 150)
+	on_executed
+		´remove_waypoint´ (delay 0)

@@ -1,0 +1,131 @@
+´dmg_area´ ElementAreaTrigger 100000
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.5
+	position 0, -900, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on both
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_kill_zone_002´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100001
+	base_time 0
+	effect effects/payday2/environment/green_fire
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´start_fire´ ElementInstanceInput 100002
+	event start_fire
+	on_executed
+		´start_effect´ (delay 0)
+´stop_fire´ ElementInstanceInput 100003
+	event stop_fire
+´start_effect´ MissionScriptElement 100004
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´activate_dmg_trigger_area´ (delay 0)
+		´45sec_delay´ (delay 0)
+		´green_fire´ (delay 0)
+´activate_dmg_trigger_area´ ElementToggle 100005
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´dmg_area´ DISABLED
+		2 ´dmg_area_enter´ DISABLED
+		3 ´loop´
+		4 ´1sec´
+	on_executed
+		´loop´ (delay 0.2)
+´env_effect_stop_001´ ElementStopEffect 100007
+	operation fade_kill
+	position 0, -1300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´deactivate_dmg_trigger_area´ (delay 1)
+´deactivate_dmg_trigger_area´ ElementToggle 100008
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´dmg_area´ DISABLED
+		2 ´dmg_area_enter´ DISABLED
+		3 ´loop´
+		4 ´1sec´
+´point_shape_001´ ElementShape 100012
+	depth 700
+	height 225,261
+	position 0, 0, 100
+	radius 317,5
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 700
+´45sec_delay´ MissionScriptElement 100009
+	BASE DELAY 45
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´green_fire_stop´ (delay 0)
+´green_fire´ ElementPlaySound 100010
+	append_prefix false
+	interrupt true
+	position 0, 0, 75
+	rotation 0, 0, 0, -1
+	sound_event hlp_green_fire
+	use_instigator false
+´green_fire_stop´ ElementPlaySound 100011
+	append_prefix false
+	interrupt true
+	position 0, 0, 75
+	rotation 0, 0, 0, -1
+	sound_event hlp_green_fire_stop
+	use_instigator false
+´func_kill_zone_002´ ElementKillZone 100014
+	position 0, -1000, 0
+	rotation 0, 0, 0, -1
+	type gas
+´point_explosion_damage_001´ ElementExplosionDamage 100016
+	damage 5
+	position 0, 0, 50
+	range 300
+	rotation 0, 0, 0, -1
+´dmg_area_enter´ ElementAreaTrigger 100006
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.5
+	position -75, -900, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+´loop´ MissionScriptElement 100015
+	on_executed
+		´1sec´ (delay 0)
+´1sec´ MissionScriptElement 100017
+	on_executed
+		´loop´ (delay 1)
+		´point_explosion_damage_001´ (delay 0)

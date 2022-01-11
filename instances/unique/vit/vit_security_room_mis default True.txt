@@ -1,0 +1,69 @@
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100003
+	EXECUTE ON STARTUP
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 0.000579834, -257, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´death´ ElementEnemyDummyTrigger 100004
+	event death
+	position 100, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001´
+	on_executed
+		´enable_camera_interaction´ (delay 0)
+´tied´ ElementEnemyDummyTrigger 100005
+	event tied
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001´
+	on_executed
+		´enable_camera_interaction´ (delay 0)
+´enable_camera_interaction´ ElementUnitSequence 100006
+	TRIGGER TIMES 1
+	position 100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (-25, -347, 75)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´output_camera_guy_deded´ (delay 0)
+´output_camera_guy_deded´ ElementInstanceOutput 100002
+	event camera_guy_deded
+´trigger_global_event_001´ ElementGlobalEventTrigger 100018
+	TRIGGER TIMES 1
+	global_event police_called
+	position -100, -200, 0.0626831
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100020
+	position -100, -100, 0.0626678
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (-25, -347, 75)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_camera_interaction´

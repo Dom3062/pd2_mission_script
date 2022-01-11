@@ -1,0 +1,332 @@
+´interrupt_so´ ElementSpecialObjective 100001
+	TRIGGER TIMES 1
+	SO_access 9696
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	allow_followup_self false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 6, 75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 4500
+	search_position 0 100 25
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+	on_executed
+		´start_interrupting´ (delay 0)
+´start_interrupt´ ElementInstanceInput 100002
+	event start_interrupt
+	on_executed
+		´enable_interrupt_entities´ (delay 0)
+		´point_debug_002´ (delay 0)
+´anim_start´ ElementSpecialObjectiveTrigger 100003
+	event anim_start
+	position 100, 100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´open_box_once´ (delay 0)
+´open_box_once´ ElementUnitSequence 100004
+	TRIGGER TIMES 1
+	position 200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+			notify_unit_sequence open_box
+			time 0
+´anim_end´ ElementSpecialObjectiveTrigger 100005
+	DISABLED
+	event complete
+	position -99.9999, 200, 0
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´interrupted´ (delay 0)
+´anim_admin´ ElementSpecialObjectiveTrigger 100006
+	event administered
+	position 100, 0, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´administered_debug´ (delay 0)
+´administered_debug´ ElementDebug 100007
+	as_subtitle false
+	debug_string POWERBOX_INTERRUPT_ADMINISTERED!
+	show_instigator false
+´anim_failed´ ElementSpecialObjectiveTrigger 100009
+	DISABLED
+	event fail
+	position 100, 200, 0
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´failed_debug´ (delay 0)
+		´failed_interrupt´ (delay 0)
+´attempt_interrupt_so´ MissionScriptElement 100010
+	on_executed
+		´enable_and_action_so´ (delay 0) DISABLED
+´enable_interrupt_entities´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_and_action_so´ DISABLED
+		2 ´anim_end´ DISABLED
+		3 ´anim_failed´ DISABLED
+	on_executed
+		´attempt_interrupt_so´ (delay 0.05)
+´enable_and_action_so´ ElementToggle 100008
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´interrupt_so´ (delay 5)
+´interrupted´ MissionScriptElement 100012
+	on_executed
+		´disable_interrupt_entities´ (delay 0)
+		´enable_interaction´ (delay 0.05)
+		´power_wp001´ (delay 0)
+		´power_interrupted´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+´stop_interrupt´ ElementInstanceInput 100013
+	event stop_interrupt
+	on_executed
+		´disable_interrupt_entities´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+		´point_debug_001´ (delay 0)
+´disable_interrupt_entities´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_end´ DISABLED
+		2 ´enable_and_action_so´ DISABLED
+		3 ´anim_failed´ DISABLED
+		4 ´interrupt_so´
+	on_executed
+		´remove_so´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100015
+	position -200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+			notify_unit_sequence enable_interaction
+			time 0
+´power_wp001´ ElementWaypoint 100016
+	icon pd2_power
+	only_in_civilian false
+	only_on_instigator false
+	position 1.52588E-05, 21, 150
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´power_resumed´ ElementUnitSequenceTrigger 100017
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+	on_executed
+		´remove_both_wp´ (delay 0)
+		´power_resumed_2´ (delay 0)
+´remove_both_wp´ ElementOperator 100018
+	operation remove
+	elements
+		1 ´power_wp001´
+	on_executed
+		´defend_wp001´ (delay 0) DISABLED
+´power_resumed_2´ ElementInstanceOutput 100019
+	event power_resumed
+´remove_so´ ElementOperator 100020
+	operation remove
+	elements
+		1 ´interrupt_so´
+´failed_debug´ ElementDebug 100021
+	as_subtitle false
+	debug_string failed_interrupt
+	show_instigator false
+´power_interrupted´ ElementInstanceOutput 100022
+	event power_interrupted
+´start_interrupting´ ElementDebug 100023
+	as_subtitle false
+	debug_string start_interrupt
+	show_instigator false
+´failed_interrupt´ ElementInstanceOutput 100024
+	event failed_interrupt
+´set_defend´ ElementInstanceInput 100025
+	event set_defend
+	on_executed
+		´defend_wp001´ (delay 0) DISABLED
+´defend_wp001´ ElementWaypoint 100026
+	DISABLED
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 1.52588E-05, 21, 150
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´remove_defend_wp´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´defend_wp001´ DISABLED
+´enable_interaction_2´ ElementUnitSequence 100027
+	position 300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_interaction_input´ ElementInstanceInput 100029
+	DISABLED
+	event enable_interaction
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´interact_wp´ ElementWaypoint 100030
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 1.52588E-05, 21, 150
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´point_interaction_001´ ElementInteraction 100031
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, 33, 148.5
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_open_door
+	on_executed
+		´enable_interaction_2´ (delay 0) (alternative interacted)
+´logic_toggle_001´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_001´ DISABLED
+	on_executed
+		´interact_wp´ (delay 0)
+´power_on´ ElementUnitSequenceTrigger 100033
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+	on_executed
+		´logic_operator_001´ (delay 0)
+´power_on_output´ ElementInstanceOutput 100034
+	event power_on
+´logic_operator_001´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´interact_wp´
+	on_executed
+		´power_on_output´ (delay 0)
+´point_debug_001´ ElementDebug 100036
+	as_subtitle false
+	debug_string POWERBOX_INTERRUPTIONS_DISABLED!
+	show_instigator false
+´point_debug_002´ ElementDebug 100037
+	as_subtitle false
+	debug_string POWERBOX_INTERRUPTIONS_ENABLED!
+	show_instigator false
+´disable_the_powetbox´ ElementInstanceInput 100038
+	event DISABLE_POWERBOX
+	on_executed
+		´disable_everything´ (delay 0)
+		´point_debug_003´ (delay 0)
+´disable_everything´ ElementToggle 100039
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´administered_debug´
+		2 ´anim_admin´
+		3 ´anim_end´ DISABLED
+		4 ´anim_failed´ DISABLED
+		5 ´anim_start´
+		6 ´attempt_interrupt_so´
+		7 ´defend_wp001´ DISABLED
+		8 100039
+		9 ´disable_interrupt_entities´
+		10 ´enable_and_action_so´ DISABLED
+		11 ´enable_interaction´
+		12 ´enable_interaction_2´
+		13 ´enable_interaction_input´ DISABLED
+		14 ´enable_interrupt_entities´
+		15 ´failed_debug´
+		16 ´failed_interrupt´
+		17 ´interact_wp´
+		18 ´interrupted´
+		19 ´logic_operator_001´
+		20 ´logic_toggle_001´
+		21 ´open_box_once´
+		22 ´point_debug_001´
+		23 ´point_debug_002´
+		24 ´point_interaction_001´ DISABLED
+		25 ´power_interrupted´
+		26 ´power_on´
+		27 ´power_on_output´
+		28 ´power_resumed_2´
+		29 ´power_resumed´
+		30 ´power_wp001´
+		31 ´remove_both_wp´
+		32 ´remove_defend_wp´
+		33 ´remove_so´
+		34 ´set_defend´
+		35 ´start_interrupt´
+		36 ´start_interrupting´
+		37 ´stop_interrupt´
+	on_executed
+		´remove_all_waypoints´ (delay 0)
+´remove_all_waypoints´ ElementOperator 100040
+	operation remove
+	elements
+		1 ´defend_wp001´ DISABLED
+		2 ´interact_wp´
+		3 ´power_wp001´
+		4 ´interrupt_so´
+	on_executed
+		´disable_interactions´ (delay 0)
+´disable_interactions´ ElementUnitSequence 100041
+	position 0, 1000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (-5.32907E-12, 0, 150)
+			notify_unit_sequence disable_interaction
+			time 0
+´point_debug_003´ ElementDebug 100042
+	as_subtitle false
+	debug_string DISABLE_POWERBOX
+	show_instigator false

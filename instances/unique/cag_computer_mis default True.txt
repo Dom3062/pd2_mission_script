@@ -1,0 +1,459 @@
+´enable_keyboard´ ElementUnitSequence 100003
+	position -400, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+			notify_unit_sequence enable_interaction_no_glow
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence set_hack_time_state_6
+			time 0
+´once_keyboard_interacted´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+	on_executed
+		´link´ (delay 0)
+´start_count_down´ ElementUnitSequence 100005
+	position 150, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 2_we_get_signal
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence state_device_start
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_off
+			time 0
+	on_executed
+		´started_to_hack´ (delay 0)
+		´hacking_in_progress_waypoint´ (delay 0)
+		´1min´ (delay 0)
+		´30sec´ (delay 30)
+´timer_done_correct´ ElementUnitSequenceTrigger 100006
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+	on_executed
+		´timer_is_correct´ (delay 0)
+		´remove_waypoint´ (delay 0)
+´timer_done_wrong´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+	on_executed
+		´timer_is_wrong´ (delay 0)
+		´remove_waypoint´ (delay 0)
+´startup´ MissionScriptElement 100008
+	EXECUTE ON STARTUP
+	on_executed
+		´enable_keyboard´ (delay 0)
+		´pick_random_on_monitor_for_a´ (delay 0)
+		´pick_random_on_monitor_for_b´ (delay 0)
+´enable timer done correct´ ElementToggle 100009
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´timer_done_correct´ DISABLED
+´disable timer done wrong´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer_done_wrong´
+´correct_computer´ ElementInstanceInput 100011
+	event correct_computer_taken
+	on_executed
+		´enable timer done correct´ (delay 0)
+		´disable timer done wrong´ (delay 0)
+´timer_is_wrong´ ElementInstanceOutput 100080
+	event timer_is_wrong
+´timer_is_correct´ ElementInstanceOutput 100099
+	event timer_is_correct
+´show_outlines´ ElementInstanceInput 100135
+	event show_outlines
+	on_executed
+		´ON´ (delay 0)
+		´point_debug_004´ (delay 0)
+´hide_outlines´ ElementInstanceInput 100137
+	event hide_outlines
+	on_executed
+		´hide_outlines_sequence´ (delay 0)
+		´point_debug_005´ (delay 0)
+´hide_outlines_sequence´ ElementUnitSequence 100138
+	position -325, -25, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´OFF´ (delay 0)
+´show_outlines_sequence´ ElementUnitSequence 100140
+	position -250, 50, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´started_to_hack´ ElementInstanceOutput 100142
+	event started_to_hack
+´monitor_a_background_001´ ElementUnitSequence 100144
+	position -175, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_on
+			time 0
+´monitor_a_background_002´ ElementUnitSequence 100100
+	position -175, -325, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_on_v2
+			time 0
+´monitor_a_background_003´ ElementUnitSequence 100101
+	position -175, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_on_v3
+			time 0
+´monitor_a_background_004´ ElementUnitSequence 100102
+	position -175, -475, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_on_v4
+			time 0
+´monitor_a_background_005´ ElementUnitSequence 100103
+	position -175, -550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_on_v5
+			time 0
+´monitor_b_background_001´ ElementUnitSequence 100104
+	position -175, -700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_on_v1
+			time 0
+´monitor_b_background_002´ ElementUnitSequence 100105
+	position -175, -775, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_on_v2
+			time 0
+´monitor_b_background_003´ ElementUnitSequence 100106
+	position -175, -850, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_on_v3
+			time 0
+´monitor_b_background_004´ ElementUnitSequence 100107
+	position -175, -925, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_on_v4
+			time 0
+´pick_random_on_monitor_for_a´ ElementRandom 100108
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´monitor_a_background_001´ (delay 0)
+		´monitor_a_background_002´ (delay 0)
+		´monitor_a_background_003´ (delay 0)
+		´monitor_a_background_004´ (delay 0)
+		´monitor_a_background_005´ (delay 0)
+´pick_random_on_monitor_for_b´ ElementRandom 100109
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´monitor_b_background_001´ (delay 0)
+		´monitor_b_background_002´ (delay 0)
+		´monitor_b_background_003´ (delay 0)
+		´monitor_b_background_004´ (delay 0)
+´hacking_in_progress_waypoint´ ElementWaypoint 100012
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 27.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100013
+	operation remove
+	elements
+		1 ´hacking_in_progress_waypoint´
+´1_5minute´ ElementTeammateComment 100014
+	close_to_element true
+	comment g64
+	position 0, -75, 27.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´1min´ ElementTeammateComment 100015
+	close_to_element true
+	comment g63
+	position 50, -75, 27.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´30sec´ ElementTeammateComment 100016
+	close_to_element true
+	comment g62
+	position 100, -75, 27.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´ecm_ON´ ElementGlobalEventTrigger 100017
+	global_event ecm_jammer_on
+	position 100, 350, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´jam_2´ (delay 0)
+		´point_debug_003´ (delay 0)
+´ecm_OFF´ ElementGlobalEventTrigger 100018
+	global_event ecm_jammer_off
+	position 400, 350, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´un_jam´ (delay 0)
+		´point_debug_002´ (delay 0)
+´jam´ ElementUnitSequence 100019
+	position 125, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence power_off
+			time 0
+´resume´ ElementUnitSequence 100020
+	position 425, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence power_on
+			time 0
+´jam_2´ MissionScriptElement 100021
+	on_executed
+		´not used´ (delay 0)
+		´used´ (delay 0)
+		´toggle_outlines_off´ (delay 0)
+´un_jam´ MissionScriptElement 100022
+	on_executed
+		´not used_2´ (delay 0)
+		´used_2´ (delay 0)
+		´toggle_outlines_on´ (delay 0)
+´link´ MissionScriptElement 100026
+	on_executed
+		´start_count_down´ (delay 0)
+		´set 1´ (delay 0)
+´keyboard´ ElementCounter 100027
+	counter_target 0
+´set 1´ ElementCounterOperator 100028
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´keyboard´
+´used´ ElementCounterFilter 100029
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´keyboard´
+	on_executed
+		´link_3´ (delay 0)
+´not used´ ElementCounterFilter 100030
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´keyboard´
+	on_executed
+		´link_2´ (delay 0)
+		´off´ (delay 0)
+´disable´ ElementUnitSequence 100031
+	position 25, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´OFF´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_2´
+		2 ´link_4´ DISABLED
+´ON´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_2´
+		2 ´link_4´ DISABLED
+	on_executed
+		´show_outlines_sequence´ (delay 0)
+´link_2´ MissionScriptElement 100034
+	on_executed
+		´disable´ (delay 0)
+´link_3´ MissionScriptElement 100024
+	on_executed
+		´jam´ (delay 0)
+´not used_2´ ElementCounterFilter 100025
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´keyboard´
+	on_executed
+		´link_4´ (delay 0) DISABLED
+		´pick_random_on_monitor_for_a´ (delay 0)
+		´pick_random_on_monitor_for_b´ (delay 0)
+´used_2´ ElementCounterFilter 100035
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´keyboard´
+	on_executed
+		´link_5´ (delay 0)
+´link_4´ MissionScriptElement 100036
+	DISABLED
+	on_executed
+		´enable_keyboard_2´ (delay 0)
+´link_5´ MissionScriptElement 100037
+	on_executed
+		´resume´ (delay 0)
+´off´ ElementUnitSequence 100038
+	position 75, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (-24.0772, 23.0082, 0)
+			notify_unit_sequence 1_main_screen_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (35, 16, 0)
+			notify_unit_sequence main_screen_off
+			time 0
+´enable_keyboard_2´ ElementUnitSequence 100039
+	position 350, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-15.977, -10.75, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´toggle_outlines_off´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´show_outlines_sequence´
+´point_debug_002´ ElementDebug 100041
+	as_subtitle false
+	debug_string ecm_OFF
+	show_instigator false
+´point_debug_003´ ElementDebug 100042
+	as_subtitle false
+	debug_string ecm_ON
+	show_instigator false
+´point_debug_004´ ElementDebug 100043
+	as_subtitle false
+	debug_string from instance: show_outlines
+	show_instigator false
+´point_debug_005´ ElementDebug 100044
+	as_subtitle false
+	debug_string from instance: hide_outlines
+	show_instigator false
+´toggle_outlines_on´ ElementToggle 100023
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´show_outlines_sequence´

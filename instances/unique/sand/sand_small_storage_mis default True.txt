@@ -1,0 +1,66 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´sand_small_storage_blockers´ (delay 0)
+´documents_WP´ ElementWaypoint 100011
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´sand_small_storage_blockers´ ElementNavObstacle 100017
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-325, 7.46251E-05, 0)
+		2
+			guis_id 6
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-200, 5.93663E-05, 0)
+		3
+			guis_id 7
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (175, 25, 0)
+		4
+			guis_id 8
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (175, 150, 0)
+		5
+			guis_id 9
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (75, -300, 0)
+		6
+			guis_id 10
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/006 (-50, -300, 0)
+		7
+			guis_id 11
+			obj_name 13625218333002526821
+			unit_id units/pd2_dlc_dah/props/dah_prop_trash_can/dah_prop_trash_can/001 (-274, -219, 0)

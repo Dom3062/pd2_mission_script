@@ -1,0 +1,183 @@
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100001
+	enemy units/pd2_dlc_cage/characters/civ_female_bank_2/civ_female_bank_2
+	force_pickup none
+	position 21.0776, -5, 8.02975
+	rotation -0.0185099, 0.0185099, 0.706864, -0.706864
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+	on_executed
+		´play_female_operator´ (delay 0)
+´play_female_operator´ ElementPlaySound 100002
+	append_prefix false
+	interrupt false
+	position 10, -5, 117.5
+	rotation 0, 0, 0, -1
+	sound_event Play_bex_npc_rec_01
+	use_instigator true
+´on_death´ ElementEnemyDummyTrigger 100004
+	event death
+	position -150, -250, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´on_panic´ ElementEnemyDummyTrigger 100005
+	event panic
+	position -50, -250, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´func_nav_obstacle_001´ (delay 8)
+´on_tied´ ElementEnemyDummyTrigger 100006
+	event tied
+	position 50, -250, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´spawn_female_operator´ ElementInstanceInput 100007
+	event spawn_female_operator
+	on_executed
+		´ai_spawn_civilian_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100008
+	enemy units/payday2/characters/civ_male_business_2/civ_male_business_2
+	force_pickup none
+	position 21.0777, -5, 8.02974
+	rotation -0.0185099, 0.0185099, 0.706864, -0.706865
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+	on_executed
+		´play_male_operator´ (delay 0)
+´spawn_male_operator´ ElementInstanceInput 100009
+	event spawn_male_operator
+	on_executed
+		´ai_spawn_civilian_002´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100003
+	operation remove
+	elements
+		1 ´play_female_operator´
+		2 ´play_male_operator´
+´play_male_operator´ ElementPlaySound 100010
+	append_prefix false
+	interrupt false
+	position 10, -5, 117.5
+	rotation 0, 0, 0, -1
+	sound_event Play_bex_npc_rec_02
+	use_instigator true
+´func_nav_obstacle_001´ ElementNavObstacle 100012
+	TRIGGER TIMES 1
+	operation add
+	position -300, -200, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-74, -43, 2.5)
+´point_special_objective_001´ ElementSpecialObjective 100013
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste walk
+	path_stance ntl
+	path_style destination
+	patrol_path none
+	pose stand
+	position -48.9999, 93, 2
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 44,4481 69,163 2,5
+	so_action cmf_so_sit_table_left
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_002´
+		2 ´ai_spawn_civilian_001´
+´point_special_objective_002´ ElementSpecialObjective 100014
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste walk
+	path_stance ntl
+	path_style destination
+	patrol_path none
+	pose stand
+	position -37.9999, -95, 2
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 48,1175 -62,3755 2,5
+	so_action cmf_so_sit_table_right
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+´set_left´ ElementInstanceInput 100015
+	event set_left
+	on_executed
+		´point_special_objective_002´ (delay 2)
+´set_right´ ElementInstanceInput 100016
+	event set_right
+	on_executed
+		´point_special_objective_001´ (delay 2)
+´func_nav_obstacle_002´ ElementNavObstacle 100017
+	TRIGGER TIMES 1
+	operation add
+	position -300, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-74, -43, 2.5)
+´logic_link_001´ MissionScriptElement 100018
+	EXECUTE ON STARTUP
+	on_executed
+		´func_nav_obstacle_002´ (delay 5)
+´logic_toggle_001´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_link_001´
+		2 ´func_nav_obstacle_002´

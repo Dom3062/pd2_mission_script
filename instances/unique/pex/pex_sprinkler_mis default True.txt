@@ -1,0 +1,373 @@
+´input_fire_started´ ElementInstanceInput 100001
+	event fire_started
+	on_executed
+		´toggle_ON_SOs_WP´ (delay 0)
+´startup´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_interaction´ (delay 0)
+´interrupt_SO´ ElementSpecialObjective 100006
+	SO_access 6301180
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 26, 77, 75
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 0 100 0
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´initiate_SO´ ElementSpecialObjective 100007
+	SO_access 6301180
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	is_navigation_link false
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 26, 77, -25
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 2000
+	search_position 23,1041 230,54 2,5
+	so_action none
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interrupt_SO´
+´toggle_ON_SOs_WP´ ElementToggle 100008
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_SO´
+		2 ´initiate_SO´
+		3 ´success´
+		4 ´fail´
+		5 ´toggle_OFF_SOs´
+		6 ´toggle_ON_initiate_SO´
+		7 ´toggle_ON_SOs_execute_initiate´
+		8 ´remove_defend_WP_execute_interact_WP´
+		9 ´enable_valve´
+		10 ´output_turn_ON_water_vfx´
+		11 ´toggle_OFF_SOs_3´
+	on_executed
+		´set_power_off´ (delay 0)
+		´execute_initiate_SO´ (delay 15)
+		´start_defend_WP´ (delay 0) DISABLED
+´fail´ ElementSpecialObjectiveTrigger 100009
+	event fail
+	position -100, 100, 0
+	rotation 0, 0, -8.74228E-08, -1
+	elements
+		1 ´interrupt_SO´
+		2 ´initiate_SO´
+	on_executed
+		´toggle_OFF_SOs´ (delay 0)
+´success´ ElementSpecialObjectiveTrigger 100010
+	event complete
+	position -100, 200, 0
+	rotation 0, 0, -8.74228E-08, -1
+	elements
+		1 ´interrupt_SO´
+	on_executed
+		´toggle_OFF_SOs_3´ (delay 0)
+´toggle_OFF_SOs´ ElementToggle 100011
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´initiate_SO´
+		2 ´interrupt_SO´
+	on_executed
+		´toggle_ON_initiate_SO´ (delay 15)
+´toggle_ON_initiate_SO´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_SO´
+	on_executed
+		´toggle_ON_SOs_execute_initiate´ (delay 0)
+´toggle_ON_SOs_execute_initiate´ ElementToggle 100013
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_SO´
+	on_executed
+		´initiate_SO´ (delay 0)
+´enable_valve´ ElementUnitSequence 100015
+	position -100, 500, 0
+	rotation 0, 0, -8.74228E-08, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_pipes_valve/001 (1.19209E-05, 5, 113.5)
+			notify_unit_sequence set_turn_off_sprinklers_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_pipes_valve/001 (1.19209E-05, 5, 113.5)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´output_turn_ON_water_vfx´ (delay 0)
+´disable_valve´ ElementUnitSequence 100016
+	position 0, 500, 0
+	rotation 0, 0, -2.50343E-07, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_pipes_valve/001 (1.19209E-05, 5, 113.5)
+			notify_unit_sequence state_interaction_disable
+			time 0
+	on_executed
+		´output_turn_OFF_water_vfx´ (delay 0)
+´output_turn_OFF_water_vfx´ ElementInstanceOutput 100017
+	event output_turn_OFF_water_vfx
+	on_executed
+		´set_power_off´ (delay 0)
+´output_turn_ON_water_vfx´ ElementInstanceOutput 100018
+	event output_turn_ON_water_vfx
+	on_executed
+		´set_power_on´ (delay 0)
+´input_fire_finished´ ElementInstanceInput 100002
+	event stop_interrupts
+	on_executed
+		´toggle_OFF_everything´ (delay 0)
+´toggle_OFF_everything´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´startup´
+		2 ´input_fire_started´
+		3 ´toggle_ON_SOs_WP´
+		4 ´interrupt_SO´
+		5 ´initiate_SO´
+		6 ´fail´
+		7 ´success´
+		8 ´toggle_OFF_SOs´
+		9 ´toggle_ON_initiate_SO´
+		10 ´toggle_ON_SOs_execute_initiate´
+		11 ´remove_defend_WP_execute_interact_WP´
+		12 ´enable_valve´
+		13 ´output_turn_ON_water_vfx´
+		14 ´toggle_OFF_SOs_2´
+		15 ´input_pause_interrupts´
+		16 ´input_resume_interrupts´
+		17 ´remove_WPs_2´
+	on_executed
+		´if_power_on´ (delay 0)
+		´remove_SOs´ (delay 0)
+		´if_power_off´ (delay 0)
+´on_or_off´ ElementCounter 100020
+	counter_target 0
+´set_power_off´ ElementCounterOperator 100021
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´on_or_off´
+´set_power_on´ ElementCounterOperator 100022
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´on_or_off´
+´if_power_on´ ElementCounterFilter 100023
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´on_or_off´
+	on_executed
+		´logic_toggle_008´ (delay 0)
+´logic_toggle_008´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_valve´
+		2 ´output_turn_OFF_water_vfx´
+		3 ´remove_interact_WP´
+	on_executed
+		´remove_WPs´ (delay 0)
+´remove_SOs´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´interrupt_SO´
+		2 ´initiate_SO´
+´defend_wp´ ElementWaypoint 100026
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 29, 158
+	rotation 0, 0, -8.74228E-08, -1
+	text_id debug_none
+´interact_wp´ ElementWaypoint 100027
+	icon pd2_water_tap
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 29, 158
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_WP_execute_interact_WP´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´defend_wp´
+	on_executed
+		´enable_valve´ (delay 0)
+		´interact_wp´ (delay 0)
+´if_power_off´ ElementCounterFilter 100029
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´on_or_off´
+	on_executed
+		´logic_toggle_009´ (delay 0)
+´logic_toggle_009´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´remove_WPs´ (delay 0)
+´remove_interact_WP´ ElementOperator 100032
+	operation remove
+	elements
+		1 ´interact_wp´
+	on_executed
+		´disable_valve´ (delay 0)
+´remove_WPs´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´interact_wp´
+´point_spawn_player_001´ ElementPlayerSpawner 100036
+	DISABLED
+	position 300, -200, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state mask_off
+´input_pause_interrupts´ ElementInstanceInput 100037
+	event pause_interrupts_input
+	on_executed
+		´toggle_OFF_SOs_2´ (delay 0)
+´toggle_OFF_SOs_2´ ElementToggle 100038
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_SO´
+		2 ´initiate_SO´
+		3 ´remove_defend_WP_execute_interact_WP´
+		4 ´enable_valve´
+		5 ´output_turn_ON_water_vfx´
+		6 ´success´
+		7 ´fail´
+		8 ´toggle_OFF_SOs´
+		9 ´toggle_ON_initiate_SO´
+		10 ´toggle_ON_SOs_execute_initiate´
+		11 ´toggle_OFF_SOs_3´
+	on_executed
+		´remove_WPs_2´ (delay 0)
+´remove_WPs_2´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´initiate_SO´
+		2 ´interrupt_SO´
+		3 ´interact_wp´
+		4 ´defend_wp´
+´input_resume_interrupts´ ElementInstanceInput 100040
+	event resume_interrupts_input
+	on_executed
+		´toggle_ON_SOs_WP´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100055
+	position 700, 200, 0
+	rotation 0, 0, -8.74228E-08, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_pipes_valve/001 (1.19209E-05, 5, 113.5)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´player_interacted_with_valve´ ElementUnitSequenceTrigger 100056
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/architecture/res_ext_apartment/res_pipes_valve/001 (1.19209E-05, 5, 113.5)
+	on_executed
+		´remove_interact_WP´ (delay 0)
+´toggle_OFF_SOs_3´ ElementToggle 100000
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´initiate_SO´
+		2 ´interrupt_SO´
+	on_executed
+		´remove_defend_WP_execute_interact_WP´ (delay 0)
+		´remove_SOs´ (delay 0)
+´toggle_on_valve_interaction´ ElementInstanceInput 100003
+	event toggle_on_valve_interaction
+	on_executed
+		´enable_valve´ (delay 0)
+´start_tutorial_sprinkler´ ElementInstanceInput 100005
+	event start_tutorial_sprinkler
+	on_executed
+		´enable_interact_WP´ (delay 0)
+´enable_interact_WP´ MissionScriptElement 100014
+	on_executed
+		´interact_wp´ (delay 3)
+		´enable_valve´ (delay 3)
+		´remove_defend_WP´ (delay 3)
+´remove_defend_WP´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´defend_wp´
+	on_executed
+		´toggle_ON_defend_WP_execution´ (delay 0)
+´execute_initiate_SO´ MissionScriptElement 100043
+	on_executed
+		´initiate_SO´ (delay 0)
+´start_defend_WP´ MissionScriptElement 100033
+	DISABLED
+	on_executed
+		´defend_wp´ (delay 0)
+´toggle_ON_defend_WP_execution´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_defend_WP´ DISABLED

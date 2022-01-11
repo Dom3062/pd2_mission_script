@@ -1,0 +1,239 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´instance_input_show_blocker´ (delay 0)
+		´instance_input_enable_interaction_C4´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´seq_setup´ ElementUnitSequence 100006
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_double_door/rvd_int_double_door_v2/001 (-100, 0, 0)
+			notify_unit_sequence close_door
+			time 0
+´seq_enable_interaction_C4´ ElementUnitSequence 100009
+	position 700, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+			notify_unit_sequence state_interactable_c4_3
+			time 0
+	on_executed
+		´WP_C4´ (delay 0)
+´instance_input_enable_interaction_C4´ ElementInstanceInput 100010
+	event enable_interaction_C4
+	on_executed
+		´seq_enable_interaction_C4´ (delay 0)
+´WP_C4´ ElementWaypoint 100011
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -7, 138
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_blocker´ ElementEnableUnit 100012
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´instance_input_show_blocker´ ElementInstanceInput 100013
+	event show_blocker
+	on_executed
+		´enable_blocker´ (delay 0)
+		´add_door_blocker´ (delay 0)
+´remove_door_blocker´ ElementNavObstacle 100015
+	operation remove
+	position 1000, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -50, 0)
+´interacted_with_C4´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+	on_executed
+		´seq_trigger_explosive´ (delay 0)
+		´remove_WP´ (delay 0)
+		´teammate_comment_C4_applied´ (delay 0)
+´relay´ MissionScriptElement 100017
+	TRIGGER TIMES 1
+	on_executed
+		´remove_door_blocker´ (delay 0)
+		´disable_shit´ (delay 0)
+		´instance_output_C4_exploded´ (delay 0)
+		´remove_WP´ (delay 0)
+		´teammate_comment_inside´ (delay 0.5)
+´disable_shit´ ElementDisableUnit 100018
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´seq_trigger_explosive´ ElementUnitSequence 100020
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_double_door/rvd_int_double_door_v2/001 (-100, 0, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´open_door´ (delay 5)
+		´point_explosion_001´ (delay 5)
+´remove_WP´ ElementOperator 100021
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´WP_C4´
+´point_explosion_001´ ElementExplosion 100022
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 0,75
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,75
+	camera_shake_sustain 0,3
+	damage 40
+	effect mission_triggered
+	explosion_effect effects/payday2/particles/explosions/c4_wall_explosion
+	player_damage 10
+	position 0, -7, 163
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´add_door_blocker´ ElementNavObstacle 100023
+	operation add
+	position 600, -200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -50, 0)
+´instance_output_C4_exploded´ ElementInstanceOutput 100024
+	event C4_exploded
+´func_sequence_001´ ElementUnitSequence 100007
+	position 1300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id 200005
+			notify_unit_sequence state_interaction_enable
+			time 0
+´used_saw(open_door)´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_double_door/rvd_int_double_door_v2/001 (-100, 0, 0)
+	on_executed
+		´relay´ (delay 0)
+		´seq_hide_C4´ (delay 0)
+´open_door´ ElementUnitSequence 100028
+	position 900, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_double_door/rvd_int_double_door_v2/001 (-100, 0, 0)
+			notify_unit_sequence explode_door
+			time 0
+	on_executed
+		´relay´ (delay 0)
+´seq_hide_C4´ ElementUnitSequence 100019
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/gen_plant_c4 (1, 9, 142)
+			notify_unit_sequence state_vis_hide
+			time 0
+´teammate_comment_C4_applied´ ElementTeammateComment 100029
+	close_to_element true
+	comment v13
+	position 0, -5, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100030
+	as_subtitle false
+	debug_string from instance: teammate_comment_C4_applied
+	show_instigator false
+´teammate_comment_inside´ ElementTeammateComment 100031
+	close_to_element true
+	comment g08
+	position 50, 0, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100032
+	as_subtitle false
+	debug_string from instance: teammate_comment_inside
+	show_instigator false

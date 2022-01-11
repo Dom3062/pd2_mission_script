@@ -1,0 +1,591 @@
+´show_placeable_harddrive´ ElementUnitSequence 100011
+	position -275, -100, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´tog_on_2´ (delay 0)
+´seq_hack_finished´ ElementUnitSequenceTrigger 100014
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_reach_zero
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+	on_executed
+		´timer_complete´ (delay 0)
+		´sound_hack_complete´ (delay 0)
+´enable_new_harddrive´ ElementUnitSequence 100018
+	position 200, 575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/harddrive_pickup_002 (31, 35, 80.1251)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/harddrive_pickup_002 (31, 35, 80.1251)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/harddrive_pickup_002 (31, 35, 80.1251)
+			notify_unit_sequence state_outline_enable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´input_count_3_then_disable_pickup´ ElementInstanceInput 100020
+	event input_count_3_then_disable_pickup
+	on_executed
+		´counter´ (delay 0)
+´timer´ ElementTimer 100023
+	timer 60
+´timer_start´ ElementTimerOperator 100024
+	operation start
+	position 125, 450, 25
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´output_timer_started´ (delay 0)
+´seq_hack_started´ ElementUnitSequenceTrigger 100015
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+	on_executed
+		´timer_start´ (delay 0)
+		´tog_on´ (delay 0)
+		´tog_off_2´ (delay 0)
+		´tog_hd_disable´ (delay 0)
+		´sound_hack_start´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´output_timer_finished´ ElementInstanceOutput 100021
+	event output_timer_finished
+	on_executed
+		´disable_hack_pause´ (delay 0)
+´timer_pause´ ElementTimerOperator 100006
+	operation pause
+	position -425, 1350, 25
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´pause_timer´ (delay 0)
+´input_alarm_triggered´ ElementInstanceInput 100007
+	event input_alarm_triggered
+	on_executed
+		´timer_pause´ (delay 0)
+		´tog_hd_disable´ (delay 0)
+´pause_timer´ ElementUnitSequence 100008
+	position -350, 1350, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence timer_pause
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence black_on_light_red
+			time 0
+	on_executed
+		´alarm_triggered´ (delay 0)
+´timer_complete´ ElementUnitSequence 100009
+	position 125, 575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence black_on_light_green
+			time 0
+	on_executed
+		´output_timer_finished´ (delay 0.25)
+		´enable_new_harddrive´ (delay 0)
+´link_toggle´ MissionScriptElement 100012
+	DISABLED
+	on_executed
+		´show_placeable_harddrive´ (delay 0)
+´tog_hd_disable´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_toggle´ DISABLED
+		2 ´counter´
+		3 ´logic_toggle_001´
+		4 ´input_found_a_hd_train´
+´input_disable_all´ ElementInstanceInput 100001
+	event input_disable_ALL
+	on_executed
+		´tog_hd_disable´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100002
+	position -425, -575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence hide
+			time 0
+´seq_pickup_new_hd´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/harddrive_pickup_002 (31, 35, 80.1251)
+	on_executed
+		´output_new_hd´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´tog_off´ (delay 0)
+		´point_debug_001´ (delay 0)
+´output_new_hd´ ElementInstanceOutput 100013
+	event output_pickedup_new_hd
+´point_debug_001´ ElementDebug 100027
+	as_subtitle true
+	debug_string acquired new hd
+	show_instigator false
+´output_timer_started´ ElementInstanceOutput 100025
+	event output_timer_started
+	on_executed
+		´show_placeable_harddrive_2´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100028
+	icon pd2_generic_interact
+	position 25, 35, 99
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100029
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´counter´ ElementCounter 100030
+	counter_target 3
+	on_executed
+		´after_3_disable_pickup´ (delay 0)
+´after_3_disable_pickup´ ElementToggle 100031
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_new_harddrive´
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100032
+	as_subtitle true
+	debug_string LAST USE FOR HD ENABLED
+	show_instigator false
+´show_placeable_harddrive_2´ ElementUnitSequence 100033
+	position 350, 450, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´fuse_box_logic´ (delay 0)
+´alarm_triggered´ MissionScriptElement 100034
+	on_executed
+		´disable_hd_2´ (delay 0) DISABLED
+		´hide_placeable_harddrive001´ (delay 0) DISABLED
+		´remove_waypoint´ (delay 0)
+		´disable_hack_pause´ (delay 0)
+		´sound_hack_paused´ (delay 0) DISABLED
+´disable_hd_2´ ElementUnitSequence 100036
+	DISABLED
+	position 125, 1425, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/harddrive_pickup_002 (31, 35, 80.1251)
+			notify_unit_sequence disable_interaction
+			time 0
+´tog_off´ ElementToggle 100039
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_hd_2´ DISABLED
+´tog_on´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´disable_hd_2´ DISABLED
+´hide_placeable_harddrive001´ ElementUnitSequence 100019
+	DISABLED
+	position 125, 1250, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence hide
+			time 0
+´tog_off_2´ ElementToggle 100037
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hide_placeable_harddrive001´ DISABLED
+´tog_on_2´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´hide_placeable_harddrive001´ DISABLED
+´input_time_hard´ ElementInstanceInput 100041
+	event input_time_hard
+	on_executed
+		´time_add_hard´ (delay 0)
+´input_time_dw´ ElementInstanceInput 100042
+	event input_time_dw
+	on_executed
+		´time_add_dw´ (delay 0)
+´time_add_hard´ ElementTimerOperator 100044
+	operation add_time
+	position -75, 450, 25
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer´
+	on_executed
+		´tog_hard´ (delay 0)
+´time_add_dw´ ElementTimerOperator 100045
+	operation add_time
+	position -75, 525, 25
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+	on_executed
+		´tog_ovkdw´ (delay 0)
+´input_found_a_hd_train´ ElementInstanceInput 100026
+	event input_found_a_hd_train
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´counter´ (delay 0)
+´logic_toggle_001´ ElementToggle 100043
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_toggle´ DISABLED
+	on_executed
+		´link_toggle´ (delay 0.25) DISABLED
+´timer_pause_2´ ElementTimerOperator 100005
+	operation pause
+	position 575, 925, 25
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+		2 ´fuse_timer´
+	on_executed
+		´pause_timer_2´ (delay 0)
+		´point_debug_005´ (delay 0)
+´input_resume_hack´ ElementInstanceInput 100035
+	DISABLED
+	event input_resume_hack
+	on_executed
+		´timer_resume´ (delay 0)
+´timer_resume´ ElementTimerOperator 100046
+	operation start
+	position 575, 1000, 25
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´resume_timer´ (delay 0)
+		´point_debug_005´ (delay 0)
+		´timer_reset´ (delay 0)
+´pause_timer_2´ ElementUnitSequence 100047
+	position 650, 925, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence timer_pause
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence black_on_light_red
+			time 0
+	on_executed
+		´output_paused´ (delay 0)
+´resume_timer´ ElementUnitSequence 100054
+	position 650, 1000, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence timer_resume
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/security_timer_001 (3.00001, 34, 75)
+			notify_unit_sequence black_on_light_blue
+			time 0
+	on_executed
+		´sound_hack_start´ (delay 0)
+´enable_hack_pause´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´input_resume_hack´ DISABLED
+		2 ´pause_hack´ DISABLED
+´disable_hack_pause´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer_reset´
+		2 ´fuse_timer´
+		3 ´fuse_box_logic´
+		4 ´timer_start_2´
+		5 ´pause_hack´ DISABLED
+		6 ´input_resume_hack´ DISABLED
+´fuse_box_logic´ MissionScriptElement 100057
+	on_executed
+		´enable_hack_pause´ (delay 0)
+		´timer_start_2´ (delay 0)
+´easy´ MissionScriptElement 100058
+	on_executed
+		´chance_easy´ (delay 0)
+		´point_debug_004´ (delay 0)
+´very hard´ MissionScriptElement 100059
+	DISABLED
+	on_executed
+		´chance_hard´ (delay 0)
+		´point_debug_004´ (delay 0)
+´Ovk dw´ MissionScriptElement 100060
+	DISABLED
+	on_executed
+		´chance_ovkdw´ (delay 0)
+		´point_debug_004´ (delay 0)
+´pause_hack´ MissionScriptElement 100061
+	DISABLED
+	on_executed
+		´timer_pause_2´ (delay 0)
+´tog_hard´ ElementToggle 100062
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´easy´
+		2 ´very hard´ DISABLED
+´tog_ovkdw´ ElementToggle 100063
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´easy´
+		2 ´Ovk dw´ DISABLED
+´fuse_timer´ ElementTimer 100064
+	timer 29
+	on_executed
+		´easy´ (delay 0)
+		´very hard´ (delay 0) DISABLED
+		´Ovk dw´ (delay 0) DISABLED
+		´point_debug_003´ (delay 0)
+´chance_easy´ ElementLogicChance 100065
+	chance 20
+	position 725, 375, 25
+	rotation 0, 0, 0, -1
+´chance_hard´ ElementLogicChance 100066
+	chance 30
+	position 725, 450, 25
+	rotation 0, 0, 0, -1
+´chance_ovkdw´ ElementLogicChance 100067
+	chance 45
+	position 725, 525, 25
+	rotation 0, 0, 0, -1
+´timer_reset´ ElementTimerOperator 100068
+	operation set_time
+	position 500, 525, 25
+	rotation 0, 0, 0, -1
+	time 29
+	elements
+		1 ´fuse_timer´
+	on_executed
+		´timer_start_2´ (delay 0)
+		´point_debug_006´ (delay 0)
+´point_debug_003´ ElementDebug 100069
+	as_subtitle false
+	debug_string timer_now
+	show_instigator false
+´point_debug_004´ ElementDebug 100070
+	as_subtitle false
+	debug_string diff_picked
+	show_instigator false
+´success´ ElementLogicChanceTrigger 100071
+	outcome success
+	position 800, 525, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_ovkdw´
+	on_executed
+		´pause_hack´ (delay 0) DISABLED
+´success_2´ ElementLogicChanceTrigger 100072
+	outcome success
+	position 800, 450, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_hard´
+	on_executed
+		´pause_hack´ (delay 0) DISABLED
+´success_3´ ElementLogicChanceTrigger 100073
+	outcome success
+	position 800, 375, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_easy´
+	on_executed
+		´pause_hack´ (delay 0) DISABLED
+´timer_start_2´ ElementTimerOperator 100078
+	operation start
+	position 500, 375, 25
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´fuse_timer´
+´point_debug_005´ ElementDebug 100079
+	as_subtitle false
+	debug_string actioned
+	show_instigator false
+´point_debug_006´ ElementDebug 100080
+	as_subtitle false
+	debug_string timer_reset
+	show_instigator false
+´output_paused´ ElementInstanceOutput 100081
+	event timer_paused
+	on_executed
+		´sound_hack_jam´ (delay 0)
+´fail´ ElementLogicChanceTrigger 100004
+	outcome fail
+	position 875, 525, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_ovkdw´
+	on_executed
+		´link_fail´ (delay 0)
+´fail_2´ ElementLogicChanceTrigger 100082
+	outcome fail
+	position 875, 450, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_hard´
+	on_executed
+		´link_fail´ (delay 0)
+´fail_3´ ElementLogicChanceTrigger 100083
+	outcome fail
+	position 875, 375, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_easy´
+	on_executed
+		´link_fail´ (delay 0)
+´link_fail´ MissionScriptElement 100084
+	on_executed
+		´timer_reset´ (delay 0)
+´sound_hack_start´ ElementUnitSequence 100076
+	position 500, -50, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence state_hack_start
+			time 0
+´sound_hack_paused´ ElementUnitSequence 100077
+	DISABLED
+	position 500, 50, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence state_hack_paused
+			time 0
+´sound_hack_jam´ ElementUnitSequence 100085
+	position 550, 50, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence state_hack_jam
+			time 0
+´sound_hack_complete´ ElementUnitSequence 100086
+	position 550, -50, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/harddrive_001 (31, 35, 80.1251)
+			notify_unit_sequence state_hack_complete
+			time 0
+´logic_toggle_002´ ElementToggle 100050
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´sound_hack_paused´ DISABLED
+´input_disable_fuse_logic´ ElementInstanceInput 100051
+	event disable_fuse_logic
+	on_executed
+		´disable_hack_fuse_pause´ (delay 0)
+´disable_hack_fuse_pause´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer_reset´
+		2 ´fuse_timer´
+		3 ´fuse_box_logic´
+		4 ´timer_start_2´

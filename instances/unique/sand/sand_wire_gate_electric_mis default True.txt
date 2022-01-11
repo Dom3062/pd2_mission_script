@@ -1,0 +1,313 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´link_delay´ (delay 1)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position -400, -750, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´disable_interaction´ (delay 5)
+´output_gate_opened´ ElementInstanceOutput 100008
+	event gate_opened
+´seq_set_gate_closed´ ElementUnitSequence 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence state_closed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence set_fence_electrified
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence hide_locks
+			time 0
+	on_executed
+		´nav_obst_add´ (delay 0)
+´seq_open_gate_in´ ElementUnitSequence 100009
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+	on_executed
+		´link_open_out´ (delay 0)
+´sequence_trigger_gate_opened´ ElementUnitSequenceTrigger 100010
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_in
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+		2
+			guis_id 2
+			sequence open_out
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+		4
+			guis_id 4
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+	on_executed
+		´output_gate_opened´ (delay 0)
+´link_open_out´ MissionScriptElement 100014
+	on_executed
+		´nav_obst_remove´ (delay 0)
+		´toggle_off_disable_electricity´ (delay 0)
+´input_open_gate_in´ ElementInstanceInput 100007
+	event open_gate_in
+	on_executed
+		´link_open_gate´ (delay 0)
+´link_delay´ MissionScriptElement 100018
+	on_executed
+		´seq_set_gate_closed´ (delay 0)
+´link_open_gate´ MissionScriptElement 100004
+	on_executed
+		´seq_open_gate_in´ (delay 0)
+´input_open_gate_out´ ElementInstanceInput 100005
+	event open_gate_out
+	on_executed
+		´link_open_gate_2´ (delay 0)
+´seq_open_gate_out´ ElementUnitSequence 100023
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence open_out
+			time 0
+	on_executed
+		´link_open_out´ (delay 0)
+´link_open_gate_2´ MissionScriptElement 100026
+	on_executed
+		´seq_open_gate_out´ (delay 0)
+´input_disable_interactions´ ElementInstanceInput 100020
+	event deactivate_interactions
+	on_executed
+		´link_disable_interactions´ (delay 0)
+´link_disable_interactions´ MissionScriptElement 100022
+	on_executed
+		´seq_disable_interactions´ (delay 0)
+´seq_disable_interactions´ ElementUnitSequence 100048
+	position 2300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´seq_trigger_padlock´ ElementUnitSequenceTrigger 100001
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+		2
+			guis_id 2
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+	on_executed
+		´link_open_out´ (delay 0)
+´player_state_electrocution´ ElementPlayerState 100054
+	TRIGGER TIMES 1
+	position 3150, 200, 0
+	rotation 0, 0, 0, -1
+	state electrocution
+	use_instigator true
+	on_executed
+		´output_player_eletrocuted´ (delay 0)
+		´reset_trigger_times´ (delay 3)
+´input_disable_electric´ ElementInstanceInput 100059
+	event disable_eletric
+	on_executed
+		´link_disable_electric´ (delay 0)
+´input_enable_interactions´ ElementInstanceInput 100064
+	event enable_interactions
+	on_executed
+		´link_enable_interactions´ (delay 0)
+´link_enable_interactions´ MissionScriptElement 100065
+	on_executed
+		´seq_enable_interactions´ (delay 0)
+´seq_enable_interactions´ ElementUnitSequence 100066
+	position 2400, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´output_player_eletrocuted´ ElementInstanceOutput 100067
+	TRIGGER TIMES 1
+	event player_eletrocuted
+´player_is_electrified´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence trigger_electrifiy
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+	on_executed
+		´player_state_electrocution´ (delay 0)
+´disable_electricity´ ElementUnitSequence 100053
+	position 3350, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence set_fence_not_electrified
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´toggle_ON_stuff´ (delay 0)
+´reset_trigger_times´ ElementToggle 100055
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´player_is_electrified´
+		2 ´player_state_electrocution´
+´input_enable_gate_crash´ ElementInstanceInput 100012
+	event enable_gate_crash
+	on_executed
+		´link_gate_crash´ (delay 0)
+´link_gate_crash´ MissionScriptElement 100029
+	on_executed
+		´open_gate_crash´ (delay 0)
+		´toggle_off_electric´ (delay 0)
+		´link_disable_electric´ (delay 0)
+´open_gate_crash´ ElementUnitSequence 100056
+	position 1375, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence open_car_crash
+			time 0
+	on_executed
+		´link_open_out´ (delay 0)
+		´disable_interaction´ (delay 0.1)
+		´disable_electricity_2´ (delay 0)
+´toggle_off_electric´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´player_state_electrocution´
+		2 ´player_is_electrified´
+	on_executed
+		´player_state_electrocution001´ (delay 0)
+´link_disable_electric´ MissionScriptElement 100017
+	on_executed
+		´disable_electricity´ (delay 0)
+´nav_obst_remove´ ElementNavObstacle 100002
+	operation remove
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -75, 50)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -75, 50)
+´nav_obst_add´ ElementNavObstacle 100019
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -75, 50)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -75, 50)
+´disable_interaction´ ElementUnitSequence 100025
+	position 1375, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´disable_electricity_2´ ElementUnitSequence 100011
+	position 1375, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+			notify_unit_sequence set_fence_not_electrified
+			time 0
+´toggle_off_disable_electricity´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_electricity_2´
+´car_crash_trigger´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_car_crash
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_electrified_fence/sand_prop_electrified_fence/001 (-3.63798E-11, 0, 0)
+	on_executed
+		´output_gate_opened´ (delay 0)
+´toggle_ON_stuff´ ElementToggle 100028
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´sequence_trigger_gate_opened´ DISABLED
+		2 ´seq_trigger_padlock´ DISABLED
+´player_state_electrocution001´ ElementPlayerState 100030
+	TRIGGER TIMES 1
+	position 1575, 0, 0
+	rotation 0, 0, 0, -1
+	state standard
+	use_instigator true

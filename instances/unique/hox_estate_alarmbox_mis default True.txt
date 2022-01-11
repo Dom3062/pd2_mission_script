@@ -1,0 +1,246 @@
+´alarm_disabled_output´ ElementInstanceOutput 100002
+	event alarm_disabled
+´enable_alarm_input´ ElementInstanceInput 100003
+	event enable_alarm
+	on_executed
+		´enable_alarm´ (delay 0)
+		´set_30secs´ (delay 0)
+		´set_45secs´ (delay 0)
+´enable_alarm´ ElementUnitSequence 100004
+	position 200, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/architecture/hospital/props/securitycables/securitycable_interaction_red/001 (-6, -4.00002, 27)
+			notify_unit_sequence mat_red
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+			notify_unit_sequence state_attention_disabled
+			time 0
+	on_executed
+		´point_debug_002´ (delay 0)
+´alarm_cut´ ElementUnitSequenceTrigger 100005
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/hospital/props/securitycables/securitycable_interaction_red/001 (-6, -4.00002, 27)
+	on_executed
+		´alarm_disabled_output´ (delay 0)
+		´pause_countdown´ (delay 0)
+		´func_sequence_001´ (delay 0.5)
+		´disable_countdown´ (delay 0)
+´enable_cable_cut´ ElementUnitSequence 100006
+	position 200, 0, 100
+	rotation 0, 0, -2.68221E-07, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/hospital/props/securitycables/securitycable_interaction_red/001 (-6, -4.00002, 27)
+			notify_unit_sequence enable_interaction
+			time 0
+´box_opened´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+	on_executed
+		´enable_cable_cut´ (delay 0.25)
+´alarm_timer´ ElementTimer 100010
+	timer 20
+	on_executed
+		´alarm_triggered_output´ (delay 0)
+		´pause_all_sounds´ (delay 0)
+´start_countdown_input´ ElementInstanceInput 100011
+	event start_countdown
+	on_executed
+		´start_countdown´ (delay 0)
+´start_countdown´ ElementTimerOperator 100012
+	operation start
+	position 200, -100, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´alarm_timer´
+	on_executed
+		´loop´ (delay 0)
+		´func_dialogue_001´ (delay 0)
+´alarm_triggered_output´ ElementInstanceOutput 100013
+	event alarm_triggered
+	on_executed
+		´func_dialogue_002´ (delay 0.5)
+´pause_countdown´ ElementTimerOperator 100014
+	operation pause
+	position 99.9999, 100, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´alarm_timer´
+	on_executed
+		´pause_all_sounds´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100015
+	position 200, 200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+			notify_unit_sequence close_box
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´set_30secs´ ElementFilter 100016
+	difficulty_easy false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 200, -300, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´set30sec´ (delay 0)
+´set30sec´ ElementTimerOperator 100017
+	operation set_time
+	position 100, -300, 100
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´alarm_timer´
+´alarm_triggered_input´ ElementInstanceInput 100018
+	event alarm_triggered
+	on_executed
+		´pause_countdown_2´ (delay 0)
+		´func_sequence_002´ (delay 0)
+´pause_countdown_2´ ElementTimerOperator 100019
+	operation pause
+	position -200, -100, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´alarm_timer´
+	on_executed
+		´pause_all_sounds´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100020
+	position -300, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/hospital/props/securitycables/securitycable_interaction_red/001 (-6, -4.00002, 27)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/test/payday2/tst_interactable_security_box/tst_interactable_security_box/001 (-17, 0, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´disable_countdown´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´start_countdown_input´
+		2 ´start_countdown´
+´set_45secs´ ElementFilter 100022
+	difficulty_easy true
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 200, -400, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´set45sec´ (delay 0)
+´set45sec´ ElementTimerOperator 100023
+	operation set_time
+	position 100, -400, 100
+	rotation 0, 0, 0, -1
+	time 45
+	elements
+		1 ´alarm_timer´
+´loop´ ElementPlaySound 100024
+	append_prefix false
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´10sec´ ElementPlaySound 100025
+	append_prefix false
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_ticking_down_10sec
+	use_instigator false
+´loop_stop´ ElementPlaySound 100026
+	append_prefix false
+	position -100, -200, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´change_sound_at_10sec´ ElementTimerTrigger 100028
+	position 0, -200, 100
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´alarm_timer´
+	on_executed
+		´loop_stop´ (delay 0)
+		´10sec´ (delay 0.01)
+´pause_all_sounds´ MissionScriptElement 100029
+	on_executed
+		´loop_stop´ (delay 0)
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100030
+	as_subtitle false
+	debug_string paused_alarm_sounds
+	show_instigator false
+´func_dialogue_001´ ElementDialogue 100027
+	dialogue Play_pln_hb3_58
+	execute_on_executed_when_done false
+	use_position false
+´func_dialogue_002´ ElementDialogue 100031
+	dialogue Play_pln_hb3_57
+	execute_on_executed_when_done false
+	use_position false
+´point_debug_002´ ElementDebug 100032
+	as_subtitle false
+	debug_string setup_alarm_properly
+	show_instigator false

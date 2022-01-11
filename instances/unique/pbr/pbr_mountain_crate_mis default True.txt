@@ -1,0 +1,353 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100009
+	DISABLED
+	EXECUTE ON STARTUP
+	position 0, -600, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´bomb_parts´ (delay 5)
+´crate_opened´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_crate_wood_murkywater/bry_prop_crate_wood_murkywater/001 (0, 0, 0)
+	on_executed
+		´on_open_001´ (delay 0) DISABLED
+		´on_open_002´ (delay 0) DISABLED
+		´func_sequence_003´ (delay 0)
+´got_keycard´ ElementGlobalEventTrigger 100013
+	DISABLED
+	TRIGGER TIMES 1
+	global_event keycard
+	position 400, 200, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´plus_one_equipment´ (delay 0)
+		´got_keycard_2´ (delay 0) DISABLED
+		´point_teammate_comment_003´ (delay 0)
+´plus_one_equipment´ ElementInstanceOutput 100005
+	event plus_one_equipment
+	on_executed
+		´got_all_stuff´ (delay 0)
+´got_bomb´ ElementUnitSequenceTrigger 100014
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_breaching_charges/bry_pku_breaching_charges/breaching_charges (0, 7.62939E-06, 74)
+	on_executed
+		´plus_one_equipment´ (delay 0)
+		´got_bomb_part´ (delay 0)
+´got_all_stuff´ ElementCounter 100015
+	counter_target 1
+	on_executed
+		´remove_waypoint´ (delay 0)
+´remove_waypoint´ ElementOperator 100016
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´point_waypoint_001´ ElementWaypoint 100017
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 0, 110
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´crate_is_goal´ ElementInstanceInput 100018
+	DISABLED
+	event crate_is_goal
+	on_executed
+		´enable_discovery_trigger´ (delay 0)
+´found_crate´ ElementInstanceOutput 100019
+	TRIGGER TIMES 1
+	event found_crate
+´trigger_area_001´ ElementAreaTrigger 100020
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 650
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 12, -24.996
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´found_crate´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+		´point_teammate_comment_001´ (delay 0)
+´got_circle_cutter´ ElementUnitSequenceTrigger 100021
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+	on_executed
+		´plus_one_equipment´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´got_bomb_part´ ElementInstanceOutput 100022
+	TRIGGER TIMES 1
+	event got_bomb_part
+´enable_discovery_trigger´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´hide_contents´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´hide_contents´ ElementUnitSequence 100023
+	position 800, 300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard/bry_prop_keycard/001 (23.9732, 0, 70.0827)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_ir_strobe/bry_prop_ir_strobe/strobe_marker (-19, 36.5022, 113)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_breaching_charges/bry_pku_breaching_charges/breaching_charges (0, 7.62939E-06, 74)
+			notify_unit_sequence state_vis_hide
+			time 0
+´bomb_parts´ ElementInstanceInput 100024
+	BASE DELAY 1
+	event select_bomb_parts
+	on_executed
+		´picked_crate´ (delay 0)
+		´show_bomb´ (delay 0)
+´picked_crate´ MissionScriptElement 100025
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´enable_crate_is_goal´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´tools´ ElementInstanceInput 100028
+	BASE DELAY 1
+	event select_tools
+	on_executed
+		´picked_crate´ (delay 0)
+		´show_tools´ (delay 0)
+		´more_stuff_required´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100026
+	position 800, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_crate_wood_murkywater/bry_prop_crate_wood_murkywater/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0.05
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_ir_strobe/bry_prop_ir_strobe/strobe_marker (-19, 36.5022, 113)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_ir_strobe/bry_prop_ir_strobe/strobe_marker (-19, 36.5022, 113)
+			notify_unit_sequence blink
+			time 1
+´show_bomb´ ElementUnitSequence 100030
+	position 700, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_breaching_charges/bry_pku_breaching_charges/breaching_charges (0, 7.62939E-06, 74)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´enable_on_open001´ (delay 0)
+´show_tools´ ElementUnitSequence 100031
+	position 700, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard/bry_prop_keycard/001 (23.9732, 0, 70.0827)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard/bry_prop_keycard/001 (23.9732, 0, 70.0827)
+			notify_unit_sequence disable_interaction
+			time 1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+			notify_unit_sequence disable_interaction
+			time 1
+	on_executed
+		´enable_on_open002´ (delay 0)
+´enable_on_open001´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´on_open_001´ DISABLED
+´enable_on_open002´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´on_open_002´ DISABLED
+		2 ´got_keycard_2´ DISABLED
+		3 ´got_keycard´ DISABLED
+´on_open_001´ MissionScriptElement 100033
+	DISABLED
+	on_executed
+		´enable_bomb´ (delay 0)
+´on_open_002´ MissionScriptElement 100034
+	DISABLED
+	on_executed
+		´enable_tools´ (delay 0)
+´enable_tools´ ElementUnitSequence 100035
+	position 500, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard/bry_prop_keycard/001 (23.9732, 0, 70.0827)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_bomb´ ElementUnitSequence 100036
+	position 500, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_breaching_charges/bry_pku_breaching_charges/breaching_charges (0, 7.62939E-06, 74)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´got_keycard_2´ MissionScriptElement 100037
+	DISABLED
+´enable_crate_is_goal´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´crate_is_goal´ DISABLED
+´more_stuff_required´ ElementCounterOperator 100042
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´got_all_stuff´
+´func_sequence_003´ ElementUnitSequence 100006
+	position 300, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_ir_strobe/bry_prop_ir_strobe/strobe_marker (-19, 36.5022, 113)
+			notify_unit_sequence hide
+			time 0
+´func_sequence_004´ ElementUnitSequence 100002
+	position 300, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/001 (-7.02679, 19, 76.0827)
+			notify_unit_sequence hide
+			time 0
+´func_disable_unit_001´ ElementDisableUnit 100004
+	position 700, 300, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_crate_wood_murkywater/bry_prop_crate_wood_murkywater/001 (0, 0, 0)
+´func_enable_unit_001´ ElementEnableUnit 100007
+	position 700, -500, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_crate_wood_murkywater/bry_prop_crate_wood_murkywater/001 (0, 0, 0)
+´func_disable_unit_002´ ElementDisableUnit 100027
+	position 700, -600, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/standard_crate (0, 0, 0)
+´point_teammate_comment_001´ ElementTeammateComment 100038
+	close_to_element true
+	comment v05
+	position 0, 0, 100.004
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´found_first_already´ ElementInstanceInput 100039
+	event found_first_already
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_001´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_teammate_comment_002´ DISABLED
+´logic_toggle_002´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_teammate_comment_001´
+´point_teammate_comment_002´ ElementTeammateComment 100044
+	DISABLED
+	close_to_element true
+	comment v06
+	position 0, 0, 100.004
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_003´ ElementTeammateComment 100045
+	close_to_element true
+	comment v11
+	position 0, 0, 110
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

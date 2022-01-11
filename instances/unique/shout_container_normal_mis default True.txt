@@ -1,0 +1,670 @@
+´setup_startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´select_colour´ (delay 0.25)
+		´add_obstacles´ (delay 1)
+		´disable_units´ (delay 0)
+		´set_contents´ (delay 0.25)
+´select_colour´ ElementRandom 100004
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´set_colour_001´ (delay 0)
+		´set_colour_002´ (delay 0)
+		´set_colour_003´ (delay 0)
+		´set_colour_004´ (delay 0)
+´set_colour_001´ ElementUnitSequence 100005
+	position 500, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky/001 (0, 0, 0)
+			notify_unit_sequence var_set_color_blue
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence var_set_color_blue_front
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence var_set_color_blue_rear
+			time 0
+´set_colour_002´ ElementUnitSequence 100006
+	position 500, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky/001 (0, 0, 0)
+			notify_unit_sequence var_set_color_green
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence var_set_color_green_front
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence var_set_color_green_rear
+			time 0
+´set_colour_003´ ElementUnitSequence 100007
+	position 500, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky/001 (0, 0, 0)
+			notify_unit_sequence var_set_color_red
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence var_set_color_red_front
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence var_set_color_red_rear
+			time 0
+´set_colour_004´ ElementUnitSequence 100008
+	position 500, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky/001 (0, 0, 0)
+			notify_unit_sequence var_set_color_yellow
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence var_set_color_yellow_front
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence var_set_color_yellow_rear
+			time 0
+´dozer_001´ ElementSpawnEnemyDummy 100009
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 800, 300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´front´
+		2 ´back´
+	on_executed
+		´hunt´ (delay 0)
+´front´ MissionScriptElement 100010
+	position 0.000137329, 182, 16
+	rotation 0, 0, -2.68221E-07, -1
+´back´ MissionScriptElement 100011
+	position -0.000221252, -166, 17
+	rotation 0, 0, 1, -4.17233E-07
+´disable_front´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´front´
+		2 ´front_dozer_area´ DISABLED
+	on_executed
+		´spawn_dozer´ (delay 0) DISABLED
+´disable_back´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´back´
+		2 ´back_dozer_area´ DISABLED
+	on_executed
+		´spawn_dozer´ (delay 0) DISABLED
+´spawn_dozer´ MissionScriptElement 100014
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´diff_filter_001´ (delay 0)
+		´diff_filter_002´ (delay 0)
+		´diff_filter_003´ (delay 0)
+		´disable_units´ (delay 0)
+		´enable_dozer_units´ (delay 0.01)
+´opened_front´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+	on_executed
+		´disable_back´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+		´try_chance´ (delay 0)
+´opened_back´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+	on_executed
+		´disable_front´ (delay 0)
+		´func_nav_obstacle_002´ (delay 0)
+		´try_chance´ (delay 0)
+´diff_filter_001´ ElementFilter 100018
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´dozer_001´ (delay 0)
+´diff_filter_002´ ElementFilter 100019
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´dozer_002´ (delay 0)
+´diff_filter_003´ ElementFilter 100020
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´dozer_003´ (delay 0)
+´dozer_002´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 700, 300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´front´
+		2 ´back´
+	on_executed
+		´hunt´ (delay 0)
+´dozer_003´ ElementSpawnEnemyDummy 100022
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 600, 300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´front´
+		2 ´back´
+	on_executed
+		´hunt´ (delay 0)
+´enable_dozer´ ElementToggle 100023
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´spawn_dozer´ DISABLED
+		2 ´func_nav_obstacle_001´
+		3 ´func_nav_obstacle_002´
+´enable_dozer_2´ ElementInstanceInput 100024
+	BASE DELAY 3
+	event enable_dozer
+	on_executed
+		´enable_dozer´ (delay 0)
+		´disable_units´ (delay 0)
+		´disable_goodie´ (delay 0)
+´hide_container´ ElementInstanceInput 100025
+	BASE DELAY 2
+	event hide_container
+	on_executed
+		´hide_container_seq´ (delay 0)
+		´disable_dozer´ (delay 0)
+		´remove_obstacles´ (delay 0)
+		´disable_units´ (delay 0)
+´disable_dozer´ ElementToggle 100026
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spawn_dozer´ DISABLED
+		2 ´enable_dozer´
+´hide_container_seq´ ElementUnitSequence 100027
+	position 900, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´func_nav_obstacle_001´ ElementNavObstacle 100030
+	operation remove
+	position 1000, 300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/front_blocker (99.9999, 229, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100031
+	operation remove
+	position 1100, 300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/back_blocker (100, -325, 0)
+´remove_obstacles´ ElementNavObstacle 100032
+	operation remove
+	position 900, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/back_blocker (100, -325, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/front_blocker (99.9999, 229, 0)
+´add_obstacles´ ElementNavObstacle 100033
+	operation add
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/back_blocker (100, -325, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/front_blocker (99.9999, 229, 0)
+´set_contents´ ElementRandom 100002
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´cement_block´ (delay 0)
+		´two_crates´ (delay 0)
+		´military_crates_x2´ (delay 0)
+		´pallets´ (delay 0)
+´cement_block´ MissionScriptElement 100039
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+		´disable_enable_graph´ (delay 0)
+´disable_units´ ElementDisableUnit 100040
+	position 200, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-28, -292, -42)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (72, -292, -42)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (122, -292, -42)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (122, 268, -42)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/005 (71.9999, 268, -42)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/006 (-28.0001, 268, -42)
+		7 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/001 (-0.00012207, -194, 13)
+		8 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/002 (-0.000335693, 206, 13)
+		9 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/003 (-0.000213623, 5.99982, 13)
+		10 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/001 (-81, 2.26498E-06, 14)
+		11 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/002 (-79, 2.5034E-06, 125)
+		12 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/001 (-65.9879, -59.4482, 13)
+		13 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/004 (-71.0001, 52, 13)
+		14 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/005 (-66.0374, 51.3906, 130)
+		15 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet/001 (-101, -80, 91)
+		16 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_pile/001 (-69, 58, 15)
+		17 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/gold001 (-81, -75, 14)
+		18 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/gold002 (-79, -75, 125)
+		19 units/pd2_dlc1/equipment/gen_interactable_spawn_contraband_crate_2x1x1m/gen_interactable_spawn_contraband_crate_2x1x1m/001 (-66, 96, 10)
+´two_crates´ MissionScriptElement 100047
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´military_crates_x2´ MissionScriptElement 100049
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+		´logic_chance_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100053
+	position 600, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/001 (-0.00012207, -194, 13)
+		2 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/002 (-0.000335693, 206, 13)
+		3 units/payday2/props/gen_prop_cementbags/gen_prop_cementbags_f/003 (-0.000213623, 5.99982, 13)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-28, -292, -42)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (72, -292, -42)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (122, -292, -42)
+		7 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (122, 268, -42)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/005 (71.9999, 268, -42)
+		9 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/006 (-28.0001, 268, -42)
+´logic_chance_001´ ElementLogicChance 100054
+	chance 50
+	position 700, -700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_enable_unit_004´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100055
+	position 600, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/001 (-81, 2.26498E-06, 14)
+		2 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/002 (-79, 2.5034E-06, 125)
+´func_enable_unit_003´ ElementEnableUnit 100056
+	position 600, -700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/001 (-65.9879, -59.4482, 13)
+		2 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/004 (-71.0001, 52, 13)
+´func_enable_unit_004´ ElementEnableUnit 100052
+	position 800, -700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_military_ibc/ind_prop_military_ibc/005 (-66.0374, 51.3906, 130)
+´point_spawn_player_001´ ElementPlayerSpawner 100057
+	DISABLED
+	EXECUTE ON STARTUP
+	position 800, -1100, 0
+	rotation 0, 0, -0.382683, -0.92388
+	state standard
+´disable_enable_graph´ ElementToggle 100058
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_nav_obstacle_001´
+		2 ´func_nav_obstacle_002´
+		3 ´try_chance´
+´pallets´ MissionScriptElement 100061
+	on_executed
+		´func_enable_unit_005´ (delay 0)
+´func_enable_unit_005´ ElementEnableUnit 100062
+	position 600, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet/001 (-101, -80, 91)
+		2 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_pile/001 (-69, 58, 15)
+´front_dozer_area´ ElementAreaTrigger 100063
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 400, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´open_front´ (delay 0)
+´back_dozer_area´ ElementAreaTrigger 100064
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -400, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´open_back´ (delay 0)
+´open_front´ ElementUnitSequence 100065
+	position 1000, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence anim_door_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors/001 (116, 295, 18)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´opened_front´ (delay 0)
+´open_back´ ElementUnitSequence 100066
+	position 1100, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence anim_door_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_container_murky/gen_prop_container_murky_doors_vented/001 (-115, -295, 18)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´opened_back´ (delay 0)
+´hunt´ ElementSpecialObjective 100067
+	SO_access 16256
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 10
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 400, 300, 0
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position 500 300 0
+	so_action AI_hunt
+	trigger_on none
+	use_instigator true
+	followup_elements
+´show_gold´ ElementUnitSequence 100069
+	position 300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (-83, 67, 43)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´chance_of_goodie´ ElementLogicChance 100070
+	chance 5
+	position 1100, -600, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_001´ (delay 0)
+´try_chance´ MissionScriptElement 100071
+	TRIGGER TIMES 1
+	on_executed
+		´chance_of_goodie´ (delay 0)
+´bag_ammo´ ElementSpawnDeployable 100072
+	DISABLED
+	deployable_id ammo_bag
+	position -73, -196, 15
+	rotation 0, 0, 0.707107, -0.707107
+´bag_health´ ElementSpawnDeployable 100073
+	DISABLED
+	deployable_id doctor_bag
+	position -67.0002, 203, 15
+	rotation 0, 0, 0.707107, -0.707107
+´bag_grenade´ ElementSpawnDeployable 100074
+	deployable_id grenade_crate
+	position 82.9999, 3.00003, 15
+	rotation 0, 0, -0.707107, -0.707107
+´logic_random_001´ ElementRandom 100075
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´bag_ammo´ (delay 0) DISABLED
+		´bag_grenade´ (delay 0)
+		´bag_health´ (delay 0) DISABLED
+´disable_goodie´ ElementToggle 100076
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´try_chance´
+´enable_dozer_units´ ElementEnableUnit 100080
+	position 500, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc1/equipment/gen_interactable_spawn_contraband_crate_2x1x1m/gen_interactable_spawn_contraband_crate_2x1x1m/001 (-66, 96, 10)
+		2 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/gold001 (-81, -75, 14)
+		3 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/gold002 (-79, -75, 125)
+	on_executed
+		´activate_dozer_units´ (delay 0)
+´activate_dozer_units´ ElementUnitSequence 100081
+	position 400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_spawn_contraband_crate_2x1x1m/gen_interactable_spawn_contraband_crate_2x1x1m/001 (-66, 96, 10)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_spawn_contraband_crate_2x1x1m/gen_interactable_spawn_contraband_crate_2x1x1m/001 (-66, 96, 10)
+			notify_unit_sequence state_requires_crowbar
+			time 0
+´opened_crate´ ElementUnitSequenceTrigger 100083
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_spawn_contraband_crate_2x1x1m/gen_interactable_spawn_contraband_crate_2x1x1m/001 (-66, 96, 10)
+	on_executed
+		´show_gold´ (delay 0)

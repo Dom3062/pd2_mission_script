@@ -1,0 +1,32 @@
+´effect_fire_debris´ ElementPlayEffect 100001
+	EXECUTE ON STARTUP
+	base_time 0
+	effect effects/payday2/environment/fire_big
+	max_amount 0
+	position 11, 40, -99
+	random_time 0
+	rotation 0, 0, -0.382683, -0.92388
+	screen_space false
+´trigger_area_001´ ElementAreaTrigger 100008
+	amount 1
+	depth 500
+	height 150
+	instigator player
+	interval 0.1
+	position -12, 1, -69
+	radius 75
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on both
+	use_disabled_shapes false
+	width 0
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_kill_zone_001´ (delay 0)
+´func_kill_zone_001´ ElementKillZone 100015
+	position -200, 400, -100
+	rotation 0, 0, 0, -1
+	type fire

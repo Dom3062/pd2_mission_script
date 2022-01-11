@@ -1,0 +1,165 @@
+´phone_ringing_input´ ElementInstanceInput 100000
+	event phone_ringing
+	on_executed
+		´phone_ringing´ (delay 0)
+´phone_ringing´ ElementUnitSequence 100002
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_office_telephone/tag_prop_office_telephone/002 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´point_play_ringing´ (delay 0)
+		´wp_delay´ (delay 30)
+´point_play_ringing´ ElementPlaySound 100003
+	append_prefix false
+	interrupt true
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event branch_bank_phone_call
+	use_instigator false
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100004
+	on_executed
+		´point_play_ringing´ (delay 25)
+´logic_toggle_001´ ElementToggle 100005
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_play_ringing´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100006
+	operation remove
+	elements
+		1 ´point_play_ringing´
+´call_answered´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_office_telephone/tag_prop_office_telephone/002 (0, 0, 0)
+	on_executed
+		´point_play_answered´ (delay 0)
+		´call_answered_output´ (delay 0)
+´point_play_answered´ ElementPlaySound 100008
+	append_prefix false
+	interrupt true
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event branch_bank_phone_call_pickup
+	use_instigator false
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´call_answered_output´ ElementInstanceOutput 100009
+	event call_answered
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´wp_look´ ElementWaypoint 100010
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 44.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_delay´ MissionScriptElement 100011
+	on_executed
+		´wp_look´ (delay 0)
+´logic_toggle_002´ ElementToggle 100012
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_look´
+		2 ´wp_delay´
+	on_executed
+		´logic_operator_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100013
+	operation remove
+	elements
+		1 ´wp_look´
+´logic_toggle_003´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_001´
+		2 ´logic_link_001´
+		3 ´point_play_ringing´
+	on_executed
+		´point_play_answered´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´stopped_ringing´ (delay 0)
+		´logic_operator_002´ (delay 0)
+		´stop_ringing´ (delay 0)
+´stopped_ringing´ ElementInstanceOutput 100016
+	event stopped_ringing
+´stop_ringing´ ElementUnitSequence 100017
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_office_telephone/tag_prop_office_telephone/002 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´not_answered´ ElementInstanceInput 100018
+	event not_answered
+	on_executed
+		´logic_toggle_003´ (delay 0)
+		´point_play_answered´ (delay 0)
+´disable_telephone´ ElementInstanceInput 100014
+	event DISABLE_TELEPHONE
+	on_executed
+		´disable_everything´ (delay 0)
+		´point_play_answered´ (delay 0)
+		´point_debug_001´ (delay 0)
+´disable_everything´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´call_answered´
+		2 ´call_answered_output´
+		3 100019
+		4 ´logic_link_001´
+		5 ´logic_operator_001´
+		6 ´logic_operator_002´
+		7 ´logic_toggle_001´
+		8 ´logic_toggle_002´
+		9 ´logic_toggle_003´
+		10 ´not_answered´
+		11 ´phone_ringing´
+		12 ´phone_ringing_input´
+		13 ´point_play_answered´
+		14 ´point_play_ringing´
+		15 ´stop_ringing´
+		16 ´stopped_ringing´
+		17 ´wp_delay´
+		18 ´wp_look´
+	on_executed
+		´remove_waypoints´ (delay 0)
+´remove_waypoints´ ElementOperator 100020
+	operation remove
+	elements
+		1 ´wp_look´
+	on_executed
+		´shut_it_all_down´ (delay 0)
+´shut_it_all_down´ ElementUnitSequence 100021
+	position 400, -500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_office_telephone/tag_prop_office_telephone/002 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´point_debug_001´ ElementDebug 100022
+	as_subtitle false
+	debug_string DISABLE_TELEPHONE
+	show_instigator false

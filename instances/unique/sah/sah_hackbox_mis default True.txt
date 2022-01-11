@@ -1,0 +1,427 @@
+´enable_hackbox_interaction´ ElementInstanceInput 100001
+	event enable_hackbox_interaction
+	on_executed
+		´enable_hackbox´ (delay 0)
+´enable_hackbox´ ElementUnitSequence 100002
+	TRIGGER TIMES 1
+	position -200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence enable_interaction
+			time 0
+´hacking_started_trigger´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+	on_executed
+		´if_loud_and_interacted_with´ (delay 0)
+		´show_30s_ui´ (delay 0)
+		´show_120s´ (delay 0) DISABLED
+		´toggle_resume_on´ (delay 1)
+		´disable_outline_seq´ (delay 0)
+		´remove_WP_interact´ (delay 0)
+´hacking_started_output´ ElementInstanceOutput 100004
+	event hacking_started
+´hacking_completed_trigger´ ElementUnitSequenceTrigger 100005
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+	on_executed
+		´hacking_completed_output´ (delay 0)
+		´disable_stuff´ (delay 0)
+´hacking_completed_output´ ElementInstanceOutput 100000
+	event hacking_completed
+	on_executed
+		´toggle_anim_off´ (delay 0)
+´police_called_trigger´ ElementGlobalEventTrigger 100007
+	TRIGGER TIMES 1
+	global_event police_called
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´if_loud_and_interacted_with´ (delay 0)
+		´toggle´ (delay 0)
+´if_loud_and_interacted_with´ ElementCounter 100008
+	counter_target 2
+	on_executed
+		´toggle_kick_on´ (delay 0)
+		´WP_defend´ (delay 1)
+´Interrupt_kick´ ElementSpecialObjective 100009
+	DISABLED
+	SO_access 65012192
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -35, -191, 50
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -57,7303 -134,464 0
+	so_action e_so_container_kick
+	trigger_on none
+	use_instigator true
+	followup_elements
+´Interrupt_action´ ElementSpecialObjective 100010
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 65012192
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -35, -191, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 2000
+	search_position -74,2725 -126,899 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´Interrupt_kick´ DISABLED
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100011
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, -100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100012
+	position 0, -700, 0
+	rotation 0, 0, 0, -1
+	state standard
+´toggle_action_on´ ElementToggle 100013
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´Interrupt_action´ DISABLED
+	on_executed
+		´Interrupt_action´ (delay 10-15) DISABLED
+´toggle_kick_on´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Interrupt_kick´ DISABLED
+	on_executed
+		´toggle_action_on´ (delay 0.1)
+		´Interrupt_kick´ (delay 15-25) DISABLED
+´show_30s_ui´ ElementUnitSequence 100015
+	position -150, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence set_hack_time_30_sec
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence show_gui_30s
+			time 0
+	on_executed
+		´hacking_started_output´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100018
+	base_time 0
+	effect effects/particles/dest/sparks_lamp_dest
+	max_amount 0
+	position 0, -23, 70
+	random_time 0
+	rotation -0.707107, -2.10734E-08, -2.10734E-08, -0.707107
+	screen_space false
+´anim_start´ ElementSpecialObjectiveTrigger 100019
+	event anim_start
+	position 200, -300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Interrupt_kick´ DISABLED
+	on_executed
+		´sparks_fly´ (delay 0.8)
+´sparks_fly´ MissionScriptElement 100020
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´toggle_anim_off´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100021
+	event fail
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Interrupt_kick´ DISABLED
+	on_executed
+		´kick_fail_toggle_off´ (delay 0)
+´kick_fail_toggle_off´ ElementToggle 100022
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´sparks_fly´
+	on_executed
+		´toggle_kick_on´ (delay 0)
+´anim_complete´ ElementSpecialObjectiveTrigger 100023
+	event complete
+	position 400, -300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Interrupt_kick´ DISABLED
+	on_executed
+		´kick_completed´ (delay 0)
+´kick_completed´ MissionScriptElement 100024
+	on_executed
+		´interrupted´ (delay 0)
+		´WP_fix´ (delay 0)
+		´remove_WP_defend´ (delay 0)
+´interrupted´ ElementUnitSequence 100025
+	position 400, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´jammed´ (delay 0)
+´resume_hacking´ ElementUnitSequenceTrigger 100026
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+	on_executed
+		´resumed´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+		´WP_defend´ (delay 1)
+´resumed´ ElementUnitSequence 100027
+	position 500, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´toggle_kick_on´ (delay 0)
+		´resumed_2´ (delay 0)
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100028
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 450, -100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´toggle_resume_on´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´resume_hacking´ DISABLED
+´toggle_anim_off´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Interrupt_action´ DISABLED
+		2 ´Interrupt_kick´ DISABLED
+		3 ´toggle_kick_on´
+		4 ´toggle_action_on´
+	on_executed
+		´turn_anims_off´ (delay 1)
+´turn_anims_off´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´Interrupt_kick´ DISABLED
+		2 ´Interrupt_action´ DISABLED
+´disable_hackbox´ ElementUnitSequence 100032
+	EXECUTE ON STARTUP
+	position -300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence disable_interaction
+			time 0
+´area_player_closeby´ ElementAreaTrigger 100033
+	TRIGGER TIMES 1
+	amount 1
+	depth 234,5
+	height 370
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -118, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 319,2
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_hackbox´ (delay 0)
+		´WP_interact´ (delay 0)
+´toggle´ ElementToggle 100034
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´show_30s_ui´
+		2 ´show_120s´ DISABLED
+´show_120s´ ElementUnitSequence 100035
+	DISABLED
+	position -50, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence set_hack_time_120_sec
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hackbox/sah_interactable_hackbox/001 (-13, -7.00001, -1)
+			notify_unit_sequence show_gui
+			time 0
+	on_executed
+		´hacking_started_output´ (delay 0)
+´jammed´ ElementInstanceOutput 100006
+	event jammed
+´resumed_2´ ElementInstanceOutput 100037
+	event resumed
+´admin´ ElementSpecialObjectiveTrigger 100017
+	event administered
+	position 200, -150, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Interrupt_kick´ DISABLED
+		2 ´Interrupt_action´ DISABLED
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100038
+	as_subtitle false
+	debug_string from hackbox instance: admin
+	show_instigator false
+´test´ MissionScriptElement 100039
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´func_whisper_state_001´ (delay 0)
+		´test_delay´ (delay 1)
+´func_whisper_state_001´ ElementWhisperState 100040
+	disable_hud false
+	position 300, -675, 0
+	rotation 0, 0, 0, -1
+	state true
+´test_delay´ MissionScriptElement 100041
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+´WP_defend´ ElementWaypoint 100016
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 71
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_fix´ ElementWaypoint 100042
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 71
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_defend´ ElementOperator 100043
+	operation remove
+	elements
+		1 ´WP_defend´
+´disable_stuff´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_defend´
+		2 ´WP_fix´
+	on_executed
+		´remove_WP_defend´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+´remove_WP_fix´ ElementOperator 100046
+	operation remove
+	elements
+		1 ´WP_fix´
+´disable_outline_seq´ ElementToggle 100044
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_hackbox´
+´WP_interact´ ElementWaypoint 100047
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -23, 70
+	rotation -0.707107, -2.10734E-08, -2.10734E-08, -0.707107
+	text_id debug_none
+´remove_WP_interact´ ElementOperator 100048
+	operation remove
+	elements
+		1 ´WP_interact´

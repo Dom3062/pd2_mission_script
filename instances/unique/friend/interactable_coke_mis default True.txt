@@ -1,0 +1,216 @@
+´startup´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_both´ (delay 0)
+´hide_both´ ElementDisableUnit 100003
+	position -300, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_flat/props/flt_prop_cocaine_bag/flt_prop_cokebag_ripped/002 (0, 0, 0)
+		2 units/payday2/props/gen_prop_lab_recorder/gen_prop_lab_recorder/001 (2, 0, 6.004)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´show_unripped´ ElementEnableUnit 100005
+	position -200, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´show´ ElementInstanceInput 100004
+	event Show
+	on_executed
+		´show_unripped´ (delay 0)
+´enable_interaction´ ElementInstanceInput 100006
+	DISABLED
+	event Enable interaction
+	on_executed
+		´turn_on_close_trigger´ (delay 0)
+´turn_on_close_trigger´ ElementToggle 100007
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´func_sequence_001´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100008
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 390
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 62
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´set_correct´ ElementInstanceInput 100011
+	event Has mic
+	on_executed
+		´turn_on_mic_drop´ (delay 0)
+´turn_on_mic_drop´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´show_mic´ DISABLED
+	on_executed
+		´turn_off_wp_removal´ (delay 0)
+´show_mic´ ElementEnableUnit 100014
+	DISABLED
+	position 100, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_lab_recorder/gen_prop_lab_recorder/001 (2, 0, 6.004)
+	on_executed
+		´logic_operator_001´ (delay 0)
+´show_ripped´ ElementEnableUnit 100016
+	position 100, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_flat/props/flt_prop_cocaine_bag/flt_prop_cokebag_ripped/002 (0, 0, 0)
+	on_executed
+		´show_mic´ (delay 0) DISABLED
+		´remove_wp´ (delay 0)
+´found_it´ ElementInstanceOutput 100017
+	event Found it
+´disable_interaction´ ElementInstanceInput 100018
+	event Disable interaction
+	on_executed
+		´turn_off´ (delay 0)
+´turn_off´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+		2 ´enable_interaction´ DISABLED
+	on_executed
+		´remove_wp´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100020
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 0, 34.6684
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_wp´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´disable_coke_interaction´ (delay 0)
+´turn_off_wp_removal´ ElementToggle 100022
+	set_trigger_times -1
+	toggle off
+´press_to_interact´ ElementInteraction 100023
+	DISABLED
+	host_only false
+	override_timer 0,5
+	position 0, 0, 19
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_remove_bug
+	on_executed
+		´picked_up_mic´ (delay 0) (alternative interacted)
+´picked_up_mic´ MissionScriptElement 100024
+	on_executed
+		´picked_up_mic_output´ (delay 0)
+´picked_up_mic_output´ ElementInstanceOutput 100025
+	event Picked up mic
+	on_executed
+		´remove_wp´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction´ DISABLED
+	on_executed
+		´func_sequence_003´ (delay 0)
+´logic_operator_001´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´press_to_interact´ DISABLED
+	on_executed
+		´found_it´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100030
+	position 300, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_lab_recorder/gen_prop_lab_recorder/001 (2, 0, 6.004)
+´func_sequence_001´ ElementUnitSequence 100032
+	position -100, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_002´ ElementUnitSequence 100033
+	position -300, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´func_sequence_003´ ElementUnitSequence 100034
+	position -200, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+´opened´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+	on_executed
+		´show_mic´ (delay 0) DISABLED
+		´hide_standard´ (delay 0)
+´hide_standard´ ElementUnitSequence 100015
+	position 100, -200, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´show_ripped´ (delay 0)
+´disable_coke_interaction´ ElementUnitSequence 100009
+	position 200, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_cokebagvaria/sfm_prop_cokebagvaria/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0

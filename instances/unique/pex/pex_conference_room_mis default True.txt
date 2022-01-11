@@ -1,0 +1,273 @@
+´startup´ MissionScriptElement 100102
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_setup´ (delay 0)
+		´add_door_blockers´ (delay 0)
+		´OVKabove´ (delay 0)
+´seq_setup´ ElementUnitSequence 100006
+	position -800, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´add_door_blockers´ ElementNavObstacle 100000
+	operation add
+	position -700, -1000, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-395, -355, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-395, -445, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (-295, -445, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-295, -355, 0)
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100002
+	enemy units/payday2/characters/civ_female_casual_2/civ_female_casual_2
+	force_pickup none
+	position -275, -500, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state none
+	team default
+	orientation_elements
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100007
+	enemy units/payday2/characters/civ_female_casual_9/civ_female_casual_9
+	force_pickup none
+	position -275, -500, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state none
+	team default
+	orientation_elements
+´ai_spawn_civilian_003´ ElementSpawnCivilian 100009
+	enemy units/payday2/characters/civ_male_casual_6/civ_male_casual_6
+	force_pickup none
+	position -275, -500, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state none
+	team default
+	orientation_elements
+´OVKabove´ ElementFilter 100014
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -600, -900, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_spawn´ (delay 0)
+´link_spawn´ MissionScriptElement 100015
+	on_executed
+		´conference_civilian´ (delay 0)
+´civilian_positions´ ElementSpecialObjectiveGroup 100018
+	base_chance 1
+	mode randomizer
+	position -500, -1200, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+		1 ´point_special_objective_006´
+		2 ´point_special_objective_005´
+		3 ´point_special_objective_009´
+´civilian_anims´ ElementSpecialObjectiveGroup 100019
+	base_chance 1
+	mode randomizer
+	position -400, -1200, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´point_special_objective_003´
+		2 ´point_special_objective_002´
+´conference_civilian´ ElementSpawnCivilianGroup 100020
+	amount 1
+	ignore_disabled true
+	position -500, -1000, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_003´
+´spawned´ ElementEnemyDummyTrigger 100021
+	event spawn
+	position -500, -1100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´conference_civilian´
+	on_executed
+		´civilian_positions´ (delay 0)
+´point_special_objective_002´ ElementSpecialObjective 100023
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 5
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -300 -1300 0
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+		1 ´civilian_positions´
+´point_special_objective_003´ ElementSpecialObjective 100022
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 5
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -400, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -300 -1300 0
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+		1 ´civilian_positions´
+´point_special_objective_005´ ElementSpecialObjective 100026
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -84, -475, 0
+	rotation 0, 0, 1, 5.96046E-08
+	scan true
+	search_distance 0
+	search_position -114,313 -406,139 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´civilian_anims´
+´point_special_objective_006´ ElementSpecialObjective 100024
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -291, -112, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position -333,407 -97,6496 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´civilian_anims´
+´point_special_objective_009´ ElementSpecialObjective 100028
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -142, -140, 0
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -175,571 -81,6465 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´civilian_anims´

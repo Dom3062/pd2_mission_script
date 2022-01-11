@@ -1,0 +1,365 @@
+´hide_bombguy´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´hide_money´ (delay 0)
+		´hide_guy´ (delay 0)
+		´point_debug_005´ (delay 0)
+´hide_money´ ElementUnitSequence 100002
+	position 400, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/001 (-18, 7, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/002 (61, 38, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/003 (74, 27, 0)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/004 (-70, 31, 0)
+			notify_unit_sequence hide
+			time 0
+´trigger_area_001´ ElementAreaTrigger 100023
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 250
+	instigator player
+	interval 0.1
+	position -19, 25, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´you_got_5_seconds´ (delay 0)
+´you_got_5_seconds´ MissionScriptElement 100024
+	on_executed
+		´set_bomb´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´BOOM´ (delay 5)
+		´sound_beeping´ (delay 0)
+´set_bomb´ ElementUnitSequence 100025
+	position 0, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
+			notify_unit_sequence state_enable_interaction
+			time 0
+´point_debug_001´ ElementDebug 100031
+	as_subtitle false
+	debug_string you_got_5_seconds
+	show_instigator false
+´sound_beeping´ ElementPlaySound 100032
+	append_prefix false
+	position -25, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event window_c4_plant
+	use_instigator false
+´explosion´ ElementExplosion 100033
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 2
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 2
+	camera_shake_sustain 0,3
+	damage 40
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 10
+	position -28, 2, 143
+	range 400
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´disabled_bomb´ ElementUnitSequenceTrigger 100034
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
+	on_executed
+		´disable_bomb´ (delay 0)
+		´award_achievement_defuse_bomb´ (delay 0)
+		´func_experience_001´ (delay 0)
+´disable_bomb´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´BOOM´
+		2 ´sound_beeping´
+´BOOM´ MissionScriptElement 100036
+	TRIGGER TIMES 1
+	on_executed
+		´explosion´ (delay 0)
+		´remove_money´ (delay 0)
+		´disable_money_spawns´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´disable_money´ (delay 0)
+´remove_money´ ElementUnitSequence 100037
+	TRIGGER TIMES 1
+	position -200, -150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/001 (-18, 7, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/002 (61, 38, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/003 (74, 27, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/004 (-70, 31, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/001 (-18, 7, 0)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/002 (61, 38, 0)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/003 (74, 27, 0)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/004 (-70, 31, 0)
+			notify_unit_sequence hide
+			time 0
+´guy_exploded´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence switch_to_explode
+			notify_unit_id units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
+	on_executed
+		´point_debug_003´ (delay 0)
+		´disable_money´ (delay 0)
+		´remove_money´ (delay 0)
+		´disable_money_spawns´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´explosion´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´disable_money_spawns´ ElementToggle 100038
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+		2 ´you_got_5_seconds´
+´disable_money´ ElementDisableUnit 100029
+	TRIGGER TIMES 1
+	position -200, -50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/001 (-18, 7, 0)
+		2 units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/002 (61, 38, 0)
+		3 units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/003 (74, 27, 0)
+		4 units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/004 (-70, 31, 0)
+´random_amount_of_money´ ElementRandom 100007
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_random_002´ (delay 0)
+		´logic_random_003´ (delay 0)
+		´logic_random_004´ (delay 0)
+		´logic_random_005´ (delay 0)
+´logic_random_002´ ElementRandom 100008
+	amount 3
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_sequence_002´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´logic_random_003´ ElementRandom 100009
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_sequence_002´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´logic_random_004´ ElementRandom 100010
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_sequence_002´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100011
+	position 300, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/001 (-18, 7, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´func_sequence_002´ ElementUnitSequence 100012
+	position 400, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/002 (61, 38, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´func_sequence_003´ ElementUnitSequence 100013
+	position 500, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/003 (74, 27, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´func_sequence_004´ ElementUnitSequence 100014
+	position 400, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_bucket_of_money/gen_pku_bucket_of_money/004 (-70, 31, 0)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´point_debug_002´ ElementDebug 100020
+	as_subtitle false
+	debug_string boom
+	show_instigator false
+´point_debug_003´ ElementDebug 100016
+	as_subtitle false
+	debug_string guy exploded
+	show_instigator false
+´logic_random_005´ ElementRandom 100017
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_sequence_002´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´yes_this_is_bomb´ MissionScriptElement 100018
+	on_executed
+		´random_amount_of_money´ (delay 0)
+		´show_guy´ (delay 0)
+		´enable_bomb_area´ (delay 0)
+´func_instance_input_001´ ElementInstanceInput 100019
+	event show_bombguy
+	on_executed
+		´yes_this_is_bomb´ (delay 0)
+		´point_debug_006´ (delay 0)
+´show_guy´ ElementEnableUnit 100021
+	position 500, -50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
+´hide_guy´ ElementDisableUnit 100022
+	position 300, 50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
+´enable_bomb_area´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´award_achievement_defuse_bomb´ ElementAwardAchievment 100027
+	achievment pig_7
+	award_instigator false
+	position -100, -350, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_004´ ElementDebug 100028
+	as_subtitle false
+	debug_string well that was easy.
+	show_instigator false
+´point_debug_005´ ElementDebug 100030
+	as_subtitle false
+	debug_string hide bombguy
+	show_instigator false
+´point_debug_006´ ElementDebug 100040
+	as_subtitle false
+	debug_string spawn bombguy
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´BOOM´
+´func_experience_001´ ElementExperience 100041
+	TRIGGER TIMES 1
+	amount 2000
+	on_executed
+		´point_debug_007´ (delay 0)
+´point_debug_007´ ElementDebug 100042
+	as_subtitle false
+	debug_string + 2000
+	show_instigator false

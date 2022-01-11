@@ -1,0 +1,136 @@
+´call swat response´ ElementInstanceInput 100001
+	event call_swat_response
+	on_executed
+		´call first heli´ (delay 0)
+´call first heli´ ElementUnitSequence 100002
+	position -1500, 625, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´heli idle_2´ (delay 23)
+´heli fly out´ ElementUnitSequence 100003
+	position -1500, 375, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´hide heli´ (delay 23)
+´startup´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´hide helicopters´ (delay 1)
+´hide helicopters´ ElementUnitSequence 100005
+	position -1375, 625, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence hidden
+			time 0
+´hide heli´ ElementUnitSequence 100006
+	position -1500, 250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´call second heli´ (delay 15)
+´call second heli´ ElementUnitSequence 100007
+	position -1500, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´heli idle´ (delay 23)
+´heli idle´ ElementUnitSequence 100008
+	position -1500, -75, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence hover_idle
+			time 0
+	on_executed
+		´heli fly out_2´ (delay 10)
+		´second heli arrived´ (delay 0)
+´heli fly out_2´ ElementUnitSequence 100009
+	position -1500, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´heli hide´ (delay 23)
+´heli idle_2´ ElementUnitSequence 100010
+	position -1500, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, 0)
+			notify_unit_sequence hover_idle
+			time 0
+	on_executed
+		´heli fly out´ (delay 10)
+		´first heli arrived´ (delay 0)
+´heli hide´ ElementUnitSequence 100011
+	position -1500, -325, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/002 (0, -2900, 0)
+			notify_unit_sequence hidden
+			time 0
+´first heli arrived´ ElementInstanceOutput 100012
+	event first heli arrived
+´second heli arrived´ ElementInstanceOutput 100013
+	event second heli arrived

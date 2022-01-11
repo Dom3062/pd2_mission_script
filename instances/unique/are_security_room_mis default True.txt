@@ -1,0 +1,554 @@
+´set_override´ ElementInstanceInput 100045
+	event set_override
+	on_executed
+		´set_correct_time_state´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100048
+	position -100, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´set_wp´ MissionScriptElement 100049
+	on_executed
+		´interact_wp´ (delay 0)
+´computer_wp´ ElementWaypoint 100050
+	icon pd2_computer
+	only_in_civilian false
+	position 333, 266, 110
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´override_complete´ ElementUnitSequenceTrigger 100051
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+	on_executed
+		´override_complete_2´ (delay 0)
+		´remove_waypoint_and_so´ (delay 0)
+		´disable_interrupt´ (delay 0)
+´override_complete_2´ ElementInstanceOutput 100052
+	event override_complete
+´remove_waypoint_and_so´ ElementOperator 100054
+	operation remove
+	elements
+		1 ´computer_wp´
+		2 ´interrupt_hack_so´
+		3 ´interact_wp´
+´interrupt_hack_so´ ElementSpecialObjective 100046
+	SO_access 9720
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interval 5
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 263, 261, 2.5
+	rotation 0, 0, 0.594823, -0.803857
+	scan true
+	search_distance 4500
+	search_position -37,2666 2,50001 1,13163
+	so_action e_so_push_button
+	trigger_on none
+	followup_elements
+´started_hacking´ ElementUnitSequenceTrigger 100055
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´setup_interrupt´ (delay 0.5)
+		´started_override´ (delay 0)
+		´start_timer_hacking´ (delay 0)
+		´computer_wp´ (delay 0)
+		´remove_WP_interact´ (delay 0)
+´interrupt_local´ ElementToggle 100057
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_hack_so´
+	on_executed
+		´interrupt_hack_so´ (delay 0.05)
+		´local_interrupt´ (delay 0)
+´interrupt_succesful´ ElementSpecialObjectiveTrigger 100058
+	DISABLED
+	TRIGGER TIMES 1
+	event complete
+	position 300, -1000, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_hack_so´
+	on_executed
+		´interrupt_succesful_3´ (delay 0) DISABLED
+		´remove_WP_computer´ (delay 0)
+´interrupt_fail´ ElementSpecialObjectiveTrigger 100059
+	TRIGGER TIMES 1
+	event fail
+	position 400, -800, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_hack_so´
+	on_executed
+		´interrupt_failed_2´ (delay 0) DISABLED
+´power_off´ ElementUnitSequence 100060
+	position 100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´remove_waypoint_and_so´ (delay 0)
+´disable_interrupt´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_succesful_3´ DISABLED
+		2 ´interrupt_power_succesful´ DISABLED
+		3 ´interrupt_failed_2´ DISABLED
+		4 ´enable_interrupt_consequences´
+		5 ´setup_interrupt´
+		6 ´power_resumed´ DISABLED
+´point_debug_001´ ElementDebug 100063
+	as_subtitle false
+	debug_string started_override
+	show_instigator false
+´set_correct_time_state´ MissionScriptElement 100071
+	on_executed
+		´timestate_000´ (delay 0)
+		´enable_VO´ (delay 0)
+´timestate_000´ ElementUnitSequence 100080
+	position 100, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence set_hack_time_state_1
+			time 0
+	on_executed
+		´time_set_enable_int´ (delay 0)
+´timestate_001´ ElementUnitSequence 100081
+	position 100, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence set_hack_time_state_10
+			time 0
+	on_executed
+		´time_set_enable_int´ (delay 0)
+´timestate_002´ ElementUnitSequence 100082
+	position 100, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence set_hack_time_state_9
+			time 0
+	on_executed
+		´time_set_enable_int´ (delay 0)
+´timestate_003´ ElementUnitSequence 100083
+	position 100, -1900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence set_hack_time_state_8
+			time 0
+	on_executed
+		´time_set_enable_int´ (delay 0)
+´time_set_enable_int´ MissionScriptElement 100085
+	on_executed
+		´enable_interaction´ (delay 0)
+		´set_wp´ (delay 0)
+´select_interrupt´ ElementRandom 100079
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´interrupt_external´ (delay 0)
+		´interrupt_local´ (delay 0)
+´interrupt_external´ ElementInstanceOutput 100084
+	event interrupt_external
+	on_executed
+		´point_debug_002´ (delay 0)
+´interrupt_failed´ ElementInstanceInput 100087
+	event interrupt_failed
+	on_executed
+		´interrupt_failed_2´ (delay 0) DISABLED
+´interrupt_succesful_2´ ElementInstanceInput 100042
+	event interrupt_succesful
+	on_executed
+		´interrupt_power_succesful´ (delay 0) DISABLED
+´interrupt_failed_2´ MissionScriptElement 100001
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´delay´ (delay 0)
+´setup_interrupt´ MissionScriptElement 100000
+	on_executed
+		´select_interrupt´ (delay 0)
+		´enable_interrupt_consequences´ (delay 0)
+´enable_interrupt_consequences´ ElementToggle 100002
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_failed_2´ DISABLED
+		2 ´interrupt_succesful_3´ DISABLED
+		3 ´interrupt_power_succesful´ DISABLED
+		4 ´power_resumed´ DISABLED
+		5 ´interrupt_fail´
+		6 ´interrupt_succesful´ DISABLED
+´interrupt_succesful_3´ MissionScriptElement 100003
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´jammed_only´ (delay 0)
+		´timer_pause´ (delay 0)
+´interrupt_power_succesful´ MissionScriptElement 100004
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´power_off´ (delay 0)
+		´timer_pause´ (delay 0)
+´jammed_only´ ElementUnitSequence 100005
+	position 100, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´interact_wp´ (delay 0)
+´delay´ MissionScriptElement 100006
+	on_executed
+		´setup_interrupt´ (delay 6)
+´power_resumed´ MissionScriptElement 100007
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´power_resumed_3´ (delay 0)
+		´start_timer_hacking´ (delay 0)
+´power_resumed_2´ ElementInstanceInput 100008
+	event power_resumed
+	on_executed
+		´power_resumed´ (delay 0) DISABLED
+´power_resumed_3´ ElementUnitSequence 100009
+	position 100, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence power_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence state_device_jammed
+			time 0
+´started_override´ ElementInstanceOutput 100010
+	TRIGGER TIMES 1
+	event started_override
+´local_interrupt´ ElementDebug 100011
+	as_subtitle false
+	debug_string local interrupt
+	show_instigator false
+´point_debug_002´ ElementDebug 100012
+	as_subtitle false
+	debug_string external_interrupt
+	show_instigator false
+´camera_guard´ ElementSpawnEnemyDummy 100017
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 250, 250, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´both´ ElementCounter 100018
+	counter_target 2
+	on_executed
+		´cameras_disabled´ (delay 0)
+´on_weapons_hot´ ElementEnemyDummyTrigger 100019
+	TRIGGER TIMES 1
+	event weapons_hot
+	position -300, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´camera_guard´
+	on_executed
+		´both´ (delay 0)
+´cameras_disabled´ ElementInstanceOutput 100020
+	event cameras_disabled
+´point_special_objective_001´ ElementSpecialObjective 100023
+	SO_access 24
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 257, 258, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 200 -450 2,5
+	so_action e_so_ntl_idle_tired
+	trigger_on none
+	use_instigator true
+	followup_elements
+´timestate_004´ ElementUnitSequence 100025
+	position 100, -2000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (356.263, 270.082, 75)
+			notify_unit_sequence set_hack_time_state_7
+			time 0
+	on_executed
+		´time_set_enable_int´ (delay 0)
+´on_death´ ElementEnemyDummyTrigger 100026
+	event death
+	position -200, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´camera_guard´
+	on_executed
+		´on_weapons_hot´ (delay 0)
+´opened_security_room´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (95, 0, 0)
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+		´both´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100038
+	operation remove
+	position -400, -700, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (200, -38, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100039
+	operation add
+	position -300, -1100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (200, -38, 0)
+´startup´ MissionScriptElement 100040
+	EXECUTE ON STARTUP
+	BASE DELAY 1,5
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+		´camera_guard´ (delay 0)
+´area_player_inside´ ElementAreaTrigger 100107
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 300
+	instigator player
+	interval 0.1
+	position 177, 193, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_hurry´ (delay 0)
+´teammate_comment_hurry´ ElementTeammateComment 100108
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g09
+	position 150, 150, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_play_sound_001´ ElementPlaySound 100109
+	append_prefix false
+	position 50, 100, 50
+	rotation 0, 0, 0, -1
+	sound_event p17
+	use_instigator false
+´enable_VO´ ElementToggle 100111
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_inside´ DISABLED
+´teammate_comment_hurry001´ ElementTeammateComment 100112
+	close_to_element false
+	comment g09
+	position 323, 271, 210
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´timer_hacking´ ElementTimer 100113
+	timer 200
+´start_timer_hacking´ ElementTimerOperator 100114
+	operation start
+	position 200, -2200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_hacking´
+´trigger_timer_120s´ ElementTimerTrigger 100115
+	position 0, -2200, 0
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´timer_hacking´
+	on_executed
+		´teammate_comment_2min´ (delay 0)
+´trigger_timer_60s´ ElementTimerTrigger 100116
+	position -100, -2200, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer_hacking´
+	on_executed
+		´teammate_comment_1min´ (delay 0)
+´trigger_timer_30s´ ElementTimerTrigger 100117
+	position -200, -2200, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer_hacking´
+	on_executed
+		´teammate_comment_30s´ (delay 0)
+´trigger_timer_10s´ ElementTimerTrigger 100118
+	position -300, -2200, 0
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer_hacking´
+	on_executed
+		´teammate_comment_10s´ (delay 0)
+´teammate_comment_2min´ ElementTeammateComment 100119
+	close_to_element true
+	comment g65
+	position 323, 271, 210
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_1min´ ElementTeammateComment 100120
+	close_to_element true
+	comment g63
+	position 323, 271, 210
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_30s´ ElementTeammateComment 100121
+	close_to_element true
+	comment g62
+	position 323, 271, 210
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_10s´ ElementTeammateComment 100122
+	close_to_element true
+	comment p17
+	position 323, 271, 210
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´interact_wp´ ElementWaypoint 100123
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 333, 266, 110
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_interact´ ElementOperator 100124
+	operation remove
+	elements
+		1 ´interact_wp´
+´remove_WP_computer´ ElementOperator 100125
+	operation remove
+	elements
+		1 ´computer_wp´
+´timer_pause´ ElementTimerOperator 100110
+	operation pause
+	position 100, -2300, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_hacking´
+	on_executed
+		´teammate_comment_swear´ (delay 5-8)
+´teammate_comment_swear´ ElementTeammateComment 100126
+	close_to_element false
+	comment g60
+	position 100, -2400, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

@@ -1,0 +1,278 @@
+´trigger_area_001´ ElementAreaTrigger 100018
+	DISABLED
+	amount 1
+	depth 34,56
+	height 100
+	instigator loot
+	interval 0.01
+	position 0, -62, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 100
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove´ (delay 0)
+´remove´ ElementCarry 100019
+	operation remove
+	type_filter money
+	on_executed
+		´Bag Removed´ (delay 0)
+´Number of Bags´ ElementCounter 100020
+	counter_target 0
+´add´ ElementCounterOperator 100022
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´Number of Bags´
+	on_executed
+		´if open already - spawn bags´ (delay 0) DISABLED
+´No bags left´ ElementCounterFilter 100023
+	check_type less_than
+	needed_to_execute all
+	value 1
+	elements
+		1 ´Number of Bags´
+	on_executed
+		´trigger - on_2´ (delay 0)
+´Bag Removed´ ElementInstanceOutput 100021
+	event Bag in Vent
+	on_executed
+		´bag_sent´ (delay 0)
+´Bag Added´ ElementInstanceInput 100024
+	event Add Bag
+	on_executed
+		´waypoint - on´ (delay 0)
+		´bag_arrived´ (delay 0)
+´waypoint - bags ready´ ElementWaypoint 100025
+	icon pd2_loot
+	only_in_clean false
+	position 0, -100, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint - on´ MissionScriptElement 100026
+	on_executed
+		´waypoint - bags ready´ (delay 0)
+		´add´ (delay 0)
+´waypoint - remove´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´waypoint - bags ready´
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100032
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-75, -100, 100)
+	on_executed
+		´toggle - open - closed´ (delay 0)
+´open´ MissionScriptElement 100031
+	on_executed
+		´off´ (delay 0)
+´close´ MissionScriptElement 100033
+	DISABLED
+	on_executed
+		´off_2´ (delay 0)
+´toggle - open - closed´ ElementRandom 100034
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´open´ (delay 0)
+		´close´ (delay 0) DISABLED
+´enable button´ ElementUnitSequence 100035
+	position 1300, -1100, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-75, -100, 100)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´allow - close´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´close´ DISABLED
+	on_executed
+		´enable button´ (delay 0)
+		´waypoint - remove´ (delay 0)
+´allow - open´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open´
+	on_executed
+		´enable button´ (delay 0)
+´off´ ElementToggle 100038
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´open´
+	on_executed
+		´trigger - on´ (delay 0)
+´off_2´ ElementToggle 100039
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´close´ DISABLED
+	on_executed
+		´trigger - off´ (delay 0)
+´You have bags!´ ElementCounterFilter 100043
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´Number of Bags´
+	on_executed
+		´trigger- off´ (delay 0)
+´trigger - on´ ElementToggle 100044
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+		2 ´if open already - spawn bags´ DISABLED
+	on_executed
+		´open_2´ (delay 0)
+´slight delay´ MissionScriptElement 100046
+	BASE DELAY 0,25
+	on_executed
+		´You have bags!´ (delay 0)
+		´No bags left´ (delay 0)
+´spawn money bags´ ElementLootBag 100047
+	BASE DELAY 0,25
+	carry_id money
+	disable_orientation_on_use false
+	from_respawn false
+	position 0, -25, 75
+	push_multiplier 0,7
+	rotation -0.707107, 0, 0, -0.707107
+	spawn_dir 0,021099 -0,975485 0,21905
+	use_orientation_sequenced false
+	on_executed
+		´subtract´ (delay 0)
+´spawn bags´ MissionScriptElement 100048
+	on_executed
+		´spawn money bags´ (delay 0)
+´subtract´ ElementCounterOperator 100049
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´Number of Bags´
+	on_executed
+		´Last Check´ (delay 0)
+´trigger - off´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+		2 ´if open already - spawn bags´ DISABLED
+	on_executed
+		´close_2´ (delay 0)
+´Last Check´ MissionScriptElement 100054
+	on_executed
+		´slight delay´ (delay 0)
+´trigger- off´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´spawn bags´ (delay 0)
+´trigger - on_2´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´allow - close´ (delay 0)
+´enable chute´ ElementInstanceInput 100045
+	event enable_chute
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´enable_button´ ElementUnitSequence 100050
+	position -200, -200, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-75, -100, 100)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´remove chute´ ElementInstanceInput 100051
+	event remove_chute
+	on_executed
+		´remove button´ (delay 0)
+´logic_toggle_001´ ElementToggle 100053
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´remove chute´
+	on_executed
+		´enable_button´ (delay 0)
+´remove button´ ElementDisableUnit 100052
+	position -300, -100, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-75, -100, 100)
+´open_2´ ElementUnitSequence 100056
+	position 1200, -575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_barrier_small/are_prop_barrier_small/001 (5.96046E-08, -84, 50)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´slight delay´ (delay 0)
+´close_2´ ElementUnitSequence 100058
+	position 1400, -575, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_barrier_small/are_prop_barrier_small/001 (5.96046E-08, -84, 50)
+			notify_unit_sequence anim_door_close
+			time 0
+	on_executed
+		´allow - open´ (delay 0)
+´clear all bags´ ElementInstanceInput 100000
+	event Clear ALL Bags
+	on_executed
+		´logic_counter_operator_001´ (delay 0)
+´logic_counter_operator_001´ ElementCounterOperator 100001
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´Number of Bags´
+	on_executed
+		´waypoint - remove´ (delay 0)
+´if open already - spawn bags´ MissionScriptElement 100004
+	DISABLED
+	on_executed
+		´slight delay´ (delay 0)
+´bag_sent´ ElementPlaySound 100005
+	append_prefix false
+	position 0, -50, 50
+	rotation 0, 0, 0, -1
+	sound_event food_lift_bag_drop
+	use_instigator false
+´bag_arrived´ ElementPlaySound 100006
+	append_prefix false
+	position 0, -100, 150
+	rotation 0, 0, 0, -1
+	sound_event food_lift_bag_arrived
+	use_instigator false

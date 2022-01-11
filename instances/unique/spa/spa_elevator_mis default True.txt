@@ -1,0 +1,634 @@
+´elevator_door_open´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_crowbar
+			notify_unit_id units/equipment/requires_crowbar_interactive_template/requires_crowbar_interactive_template/001 (-199, -544, 1330)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_spa/architecture/int/spa_int_election/spa_int_election_elevator/main (-100, 9, 1200)
+	on_executed
+		´open_door/enable_zipline´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´enable_hatch_interaction´ (delay 0)
+		´point_waypoint_002´ (delay 0)
+		´func_instance_output_003´ (delay 0)
+´open_door/enable_zipline´ ElementUnitSequence 100029
+	position -275, 75, 1200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (-199, -176, 1154)
+			notify_unit_sequence state_zipline_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/003 (-221.416, -181.916, 1154)
+			notify_unit_sequence state_zipline_enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/architecture/int/spa_int_election/spa_int_election_elevator/main (-100, 9, 1200)
+			notify_unit_sequence disable_interaction
+			time 0
+´func_instance_input_001´ ElementInstanceInput 100033
+	event enable_interaction
+	on_executed
+		´enable_crowbar_interaction´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+´enable_crowbar_interaction´ ElementUnitSequence 100037
+	position -100, 275, 1200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_spa/architecture/int/spa_int_election/spa_int_election_elevator/main (-100, 9, 1200)
+			notify_unit_sequence enable_interaction
+			time 0
+´point_spawn_player_001´ ElementPlayerSpawner 100038
+	DISABLED
+	EXECUTE ON STARTUP
+	position -225, 275, 1200
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+	on_executed
+		´func_instance_input_001´ (delay 3)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100039
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1201, 738, 0
+	rotation 0, 0, 0.984808, 0.173648
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100040
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1400, 675, 0
+	rotation 0, 0, 0.979925, -0.199368
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100041
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1265, 846, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100042
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1414, 816, 0
+	rotation 0, 0, 0.993572, -0.113203
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´logic_filter_001´ ElementFilter 100044
+	DISABLED
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1200, 975, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´choose_random´ (delay 0) DISABLED
+´ovk´ ElementFilter 100045
+	DISABLED
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1300, 975, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´choose_random001´ (delay 0) DISABLED
+´dw´ ElementFilter 100046
+	DISABLED
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1400, 975, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´choose_random002´ (delay 0) DISABLED
+´ambush´ MissionScriptElement 100055
+	DISABLED
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0) DISABLED
+		´ai_spawn_enemy_003´ (delay 0) DISABLED
+		´ai_spawn_enemy_002´ (delay 0) DISABLED
+		´ai_spawn_enemy_004´ (delay 0) DISABLED
+		´point_debug_001´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´hostage´ MissionScriptElement 100056
+	DISABLED
+	on_executed
+		´point_debug_002´ (delay 0) DISABLED
+		´ai_spawn_enemy_015´ (delay 0) DISABLED
+		´ai_spawn_enemy_014´ (delay 0) DISABLED
+		´ai_spawn_enemy_013´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´choose_random´ ElementRandom 100057
+	DISABLED
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ambush´ (delay 0) DISABLED
+´choose_random001´ ElementRandom 100058
+	DISABLED
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ambush001´ (delay 0) DISABLED
+´choose_random002´ ElementRandom 100059
+	DISABLED
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ambush002´ (delay 0) DISABLED
+´ambush001´ MissionScriptElement 100060
+	DISABLED
+	on_executed
+		´point_debug_001´ (delay 0) DISABLED
+		´ai_spawn_enemy_007´ (delay 0) DISABLED
+		´ai_spawn_enemy_005´ (delay 0) DISABLED
+		´ai_spawn_enemy_008´ (delay 0) DISABLED
+		´ai_spawn_enemy_006´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´hostage001´ MissionScriptElement 100061
+	DISABLED
+	on_executed
+		´point_debug_002´ (delay 0) DISABLED
+		´ai_spawn_enemy_013´ (delay 0) DISABLED
+		´ai_spawn_enemy_017´ (delay 0) DISABLED
+		´ai_spawn_enemy_016´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´ambush002´ MissionScriptElement 100062
+	DISABLED
+	on_executed
+		´point_debug_001´ (delay 0) DISABLED
+		´ai_spawn_enemy_011´ (delay 0) DISABLED
+		´ai_spawn_enemy_009´ (delay 0) DISABLED
+		´ai_spawn_enemy_010´ (delay 0) DISABLED
+		´ai_spawn_enemy_012´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´hostage002´ MissionScriptElement 100063
+	DISABLED
+	on_executed
+		´point_debug_002´ (delay 0) DISABLED
+		´ai_spawn_enemy_018´ (delay 0) DISABLED
+		´ai_spawn_enemy_019´ (delay 0) DISABLED
+		´ai_spawn_enemy_013´ (delay 0) DISABLED
+		´open_ele_doors´ (delay 0) DISABLED
+´ai_spawn_enemy_013´ ElementSpawnEnemyDummy 100064
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1300, 850, 0
+	rotation 0, 0, 1, -4.17233E-07
+	spawn_action e_sp_loop_hands_up
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_014´ ElementSpawnEnemyDummy 100065
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1376, 738, 0
+	rotation 0, 0, 0.5373, -0.843391
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_015´ ElementSpawnEnemyDummy 100066
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1226, 738, 0
+	rotation 0, 0, -0.21644, -0.976296
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_debug_001´ ElementDebug 100067
+	DISABLED
+	as_subtitle false
+	debug_string ambush
+	show_instigator false
+´point_debug_002´ ElementDebug 100068
+	DISABLED
+	as_subtitle false
+	debug_string hostage
+	show_instigator false
+´ai_spawn_enemy_016´ ElementSpawnEnemyDummy 100069
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_1/ene_fbi_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1376, 738, 0
+	rotation 0, 0, 0.5373, -0.843391
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_017´ ElementSpawnEnemyDummy 100070
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1226, 738, 0
+	rotation 0, 0, -0.21644, -0.976296
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_018´ ElementSpawnEnemyDummy 100071
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1376, 738, 0
+	rotation 0, 0, 0.5373, -0.843391
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_019´ ElementSpawnEnemyDummy 100072
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1226, 738, 0
+	rotation 0, 0, -0.21644, -0.976296
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100047
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_1/ene_fbi_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1265, 846, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100048
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_1/ene_fbi_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1364, 816, 0
+	rotation 0, 0, 0.993572, -0.113203
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_007´ ElementSpawnEnemyDummy 100049
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_1/ene_fbi_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1226, 738, 0
+	rotation 0, 0, 0.984808, 0.173648
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_008´ ElementSpawnEnemyDummy 100050
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_1/ene_fbi_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1400, 700, 0
+	rotation 0, 0, 0.979925, -0.199368
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_009´ ElementSpawnEnemyDummy 100051
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1265, 846, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_010´ ElementSpawnEnemyDummy 100052
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1364, 816, 0
+	rotation 0, 0, 0.993572, -0.113203
+	spawn_action e_sp_aim_rifle_std
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_011´ ElementSpawnEnemyDummy 100053
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1226, 738, 0
+	rotation 0, 0, 0.984808, 0.173648
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_012´ ElementSpawnEnemyDummy 100054
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1400, 700, 0
+	rotation 0, 0, 0.979925, -0.199368
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+´open_ele_doors´ MissionScriptElement 100073
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´func_sequence_004´ (delay 1) DISABLED
+´func_sequence_004´ ElementUnitSequence 100074
+	DISABLED
+	position -1300, 1375, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+´point_waypoint_001´ ElementWaypoint 100000
+	icon pd2_generic_interact
+	only_in_civilian false
+	position -200, -25, 1325
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100082
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´disable_zipline/crowbar´ ElementUnitSequence 100017
+	position -400, 175, 1200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (-199, -176, 1154)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/003 (-221.416, -181.916, 1154)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/requires_crowbar_interactive_template/requires_crowbar_interactive_template/001 (-199, -544, 1330)
+			notify_unit_sequence disable_interaction
+			time 0
+´startup´ MissionScriptElement 100018
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_zipline/crowbar´ (delay 1)
+´enable_hatch_interaction´ ElementUnitSequence 100006
+	position -125, 75, 1200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_int_election_elevator_exterior/lxy_int_election_elevator_exterior/001 (-100, -6.10352E-05, -400)
+			notify_unit_sequence enable_interaction
+			time 0
+´trigger_area_001´ ElementAreaTrigger 100021
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -224, -200, -353
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_instance_output_001´ (delay 0)
+		´logic_operator_002´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100023
+	event player_inside_elevator
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_crowbar
+			notify_unit_id units/equipment/requires_crowbar_interactive_template/requires_crowbar_interactive_template/002 (-199, -551, -670)
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100027
+	position -200, 200, -400
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100028
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_fish/lxy_int_election_elevator_exterior/lxy_int_election_elevator_exterior/001 (-100, -6.10352E-05, -400)
+	on_executed
+		´point_debug_003´ (delay 0)
+		´func_instance_output_002´ (delay 0)
+´point_debug_003´ ElementDebug 100030
+	as_subtitle false
+	debug_string hatch_open
+	show_instigator false
+´func_instance_output_002´ ElementInstanceOutput 100031
+	event elevator_hatch_open
+´trigger_area_disable_zip_lines´ ElementAreaTrigger 100034
+	TRIGGER TIMES 1
+	amount all
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -168, -200, -321
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100035
+	position -100, 100, -400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (-199, -176, 1154)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/003 (-221.416, -181.916, 1154)
+			notify_unit_sequence state_zipline_disable
+			time 0
+´point_waypoint_002´ ElementWaypoint 100010
+	icon pd2_goto
+	only_in_civilian false
+	position -200, -200, -248
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_002´ ElementOperator 100043
+	operation remove
+	elements
+		1 ´point_waypoint_002´
+´func_instance_output_003´ ElementInstanceOutput 100077
+	event elevator_doors_open

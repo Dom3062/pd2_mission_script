@@ -1,0 +1,1006 @@
+´test_spawn_player´ ElementPlayerSpawner 100002
+	DISABLED
+	position 0, 600, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+	on_executed
+		´input_start_event´ (delay 4)
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 1400, 0, 0
+	rotation 0, 0, 1, -1.19209E-07
+	unit_ids
+		1 core/units/light_omni/light_omni/001 (0, 0, 300)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-50, 52, 201)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-50, 76, -100)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (51, 57.0001, -100)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (50, -50.9999, -100)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (-52, -50.9999, -100)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (-50, 76, -100)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/interior (50, 27.0001, -100)
+´seq_setup´ ElementUnitSequence 100006
+	position 1400, -100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/marker (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/005 (50, 0, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/006 (-50, 0, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/007 (0, -50, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+´input_start_event´ ElementInstanceInput 100009
+	event start_event
+	on_executed
+		´link_start_event´ (delay 0)
+´link_start_event´ MissionScriptElement 100010
+	on_executed
+		´show_stuff´ (delay 0)
+		´WP_event´ (delay 0)
+		´link_start_effects´ (delay 0)
+		´sound_overheat´ (delay 0)
+		´effect_heli_smoke001´ (delay 0)
+		´link_2´ (delay 0) DISABLED
+´show_stuff´ ElementUnitSequence 100011
+	position 1200, -150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/marker (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence state_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/005 (50, 0, 125)
+			notify_unit_sequence state_vis_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/006 (-50, 0, 125)
+			notify_unit_sequence state_vis_show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/007 (0, -50, 125)
+			notify_unit_sequence state_vis_show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´obstacle_add´ (delay 0)
+´timer´ ElementTimer 100012
+	timer 0
+´timer_start´ ElementTimerOperator 100013
+	operation start
+	position 1200, 500, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´sound_countdown_loop_start´ (delay 0)
+		´change_timer_color001´ (delay 0)
+		´60´ (delay 0)
+´timer_stop´ ElementTimerOperator 100014
+	operation pause
+	position 1000, 600, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+´timer_0´ ElementTimerTrigger 100015
+	DISABLED
+	position 1200, 800, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´link_success´ (delay 0)
+´link_success´ MissionScriptElement 100016
+	on_executed
+		´delay_2´ (delay 2)
+		´sound_countdown_loop_stop´ (delay 0)
+		´sound_overheat´ (delay 0)
+		´hide_marker´ (delay 0)
+		´disable_area_player_left´ (delay 0)
+		´env_effect_stop_fade_kill´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´link_fail´ MissionScriptElement 100017
+	on_executed
+		´timer_stop´ (delay 0)
+		´sound_countdown_loop_stop´ (delay 0)
+		´sound_power_down´ (delay 0)
+		´effect_stop_fog´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+		´hide_and_pause_everything´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´disable_event´ (delay 0)
+		´remove_WP_event´ (delay 0)
+		´obstacle_remove´ (delay 0)
+		´output_event_failed´ (delay 0)
+´area_all_player_entered´ ElementAreaTrigger 100018
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 500
+	height 1000
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 200
+	radius 329,8
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_all_player_inside´ (delay 0)
+´link_player_exited´ MissionScriptElement 100020
+	on_executed
+		´link_fail´ (delay 0)
+		´OFF´ (delay 0)
+´point_debug_001´ ElementDebug 100021
+	as_subtitle false
+	debug_string link_fail
+	show_instigator false
+´link_all_player_inside´ MissionScriptElement 100022
+	on_executed
+		´point_debug_002´ (delay 0)
+		´timer_add_time´ (delay 0)
+		´timer_start´ (delay 0.1)
+		´enable_area_player_left´ (delay 0)
+		´remove_WP_event´ (delay 0)
+		´event_started´ (delay 0)
+		´enable_all_bags´ (delay 0)
+´point_debug_002´ ElementDebug 100023
+	as_subtitle false
+	debug_string all_player_inside
+	show_instigator false
+´WP_event´ ElementWaypoint 100024
+	icon pd2_goto
+	only_in_civilian false
+	position 0, 0, 250
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_event´ ElementToggle 100025
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_all_player_entered´ DISABLED
+	on_executed
+		´enable_event_2´ (delay 0)
+´timer_add_time´ ElementTimerOperator 100026
+	operation set_time
+	position 1200, 600, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+´enable_event_2´ ElementEnableUnit 100030
+	position 1200, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/001 (0, 0, 300)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-50, 52, 201)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-50, 76, -100)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (51, 57.0001, -100)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (50, -50.9999, -100)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (-52, -50.9999, -100)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (-50, 76, -100)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/interior (50, 27.0001, -100)
+	on_executed
+		´safe_picked´ (delay 0)
+´effect_fog001´ ElementPlayEffect 100031
+	base_time 0
+	effect effects/payday2/environment/cane_white_fog
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´link_start_effects´ MissionScriptElement 100032
+	on_executed
+		´effect_fog001´ (delay 0)
+		´feedback_level_shake´ (delay 0)
+´effect_money_explosion001´ ElementPlayEffect 100033
+	base_time 0
+	effect effects/payday2/environment/money_explosion
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´effect_stop_fog´ ElementStopEffect 100035
+	operation kill
+	position 1000, 550, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect_fog001´
+´feedback_level_shake´ ElementFeedback 100036
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 2
+	effect mission_triggered
+	position 0, 0, 100
+	range -1
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´effect_vehicle_explosion´ ElementPlayEffect 100037
+	base_time 0
+	effect effects/payday2/particles/explosions/vehicle_explosion
+	max_amount 0
+	position 0, 67, 100
+	random_time 0
+	rotation 0.707107, 0, 0, -0.707107
+	screen_space false
+	on_executed
+		´sound_safe_open´ (delay 0)
+´sound_safe_open´ ElementPlaySound 100039
+	append_prefix false
+	interrupt true
+	position 0, 0, 50
+	rotation 0, 0, 0, -1
+	sound_event flashbang_explode_sfx_player
+	use_instigator false
+´remove_WP_event´ ElementOperator 100040
+	operation remove
+	elements
+		1 ´WP_event´
+´sound_bell_ring´ ElementPlaySound 100042
+	append_prefix false
+	interrupt true
+	position 900, 1600, 0
+	rotation 0, 0, 0.707107, -0.707107
+	sound_event bell_ring
+	use_instigator false
+´loot_bag_cloaker_cocaine001´ ElementLootBag 100043
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 0, 67, 125
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_gold001´ ElementLootBag 100044
+	DISABLED
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 50, 100
+	push_multiplier 0,5
+	rotation 8.92003E-08, 3.07148E-16, 0, -1
+	spawn_dir 0,0385464 0,756719 0,652605
+	on_executed
+		´sound_bell_ring´ (delay 0)
+´loot_bag_cloaker_money001´ ElementLootBag 100045
+	DISABLED
+	carry_id cloaker_money
+	from_respawn false
+	position 20, 67, 100
+	push_multiplier 0,5
+	rotation 1.17025E-07, -8.31513E-22, 7.10543E-15, -1
+	spawn_dir 0,157289 0,782932 0,601895
+	on_executed
+		´sound_bell_ring´ (delay 0)
+´link_give_reward´ MissionScriptElement 100046
+	on_executed
+		´delay_3´ (delay 0.1)
+´sound_win_boop001´ ElementPlaySound 100047
+	append_prefix false
+	interrupt true
+	position 900, 1100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	sound_event slot_machine_loose
+	use_instigator false
+	on_executed
+		´sound_win_boop002´ (delay 0.25)
+´sound_win_boop002´ ElementPlaySound 100048
+	append_prefix false
+	interrupt true
+	position 900, 1150, 0
+	rotation 0, 0, 0.707107, -0.707107
+	sound_event slot_machine_loose
+	use_instigator false
+	on_executed
+		´sound_win_boop003´ (delay 0.25)
+´sound_win_boop003´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position 900, 1200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	sound_event slot_machine_loose
+	use_instigator false
+´sound_countdown_loop_start´ ElementPlaySound 100050
+	append_prefix false
+	interrupt true
+	position 0, 0, 225
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´sound_countdown_loop_stop´ ElementPlaySound 100051
+	append_prefix false
+	interrupt true
+	position 900, 750, 0
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´sound_power_down´ ElementPlaySound 100052
+	append_prefix false
+	interrupt true
+	position 0, 0, 275
+	rotation 0, 0, 0, -1
+	sound_event plasma_drill_powerdown
+	use_instigator false
+´sound_overheat´ ElementPlaySound 100053
+	append_prefix false
+	interrupt true
+	position 0, 0, 50
+	rotation 0, 0, 0, -1
+	sound_event plasma_drill_overheat
+	use_instigator false
+´enable_area_player_left´ ElementToggle 100054
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´success´
+		2 ´60´
+		3 ´50´
+		4 ´40´
+		5 ´30´
+		6 ´20´
+		7 ´10´
+		8 ´fire´
+		9 ´shape_player_left´ DISABLED
+		10 ´empty´
+		11 ´link_fail´
+´change_timer_color001´ ElementUnitSequence 100041
+	position 1200, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/005 (50, 0, 125)
+			notify_unit_sequence black_on_light_green
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/006 (-50, 0, 125)
+			notify_unit_sequence black_on_light_green
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/007 (0, -50, 125)
+			notify_unit_sequence black_on_light_green
+			time 0
+´hide_and_pause_everything´ ElementUnitSequence 100055
+	position 800, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/005 (50, 0, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/006 (-50, 0, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/007 (0, -50, 125)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/005 (50, 0, 125)
+			notify_unit_sequence timer_pause
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/006 (-50, 0, 125)
+			notify_unit_sequence timer_pause
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/007 (0, -50, 125)
+			notify_unit_sequence timer_pause
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/marker (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence state_hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence reset_safe_animations
+			time 0
+´effect_heli_smoke001´ ElementPlayEffect 100056
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´effect_stop_heli_smoke´ (delay 2)
+´effect_stop_heli_smoke´ ElementStopEffect 100057
+	operation fade_kill
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect_heli_smoke001´
+´func_disable_unit_001´ ElementDisableUnit 100061
+	position 950, 650, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/001 (0, 0, 300)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-50, 52, 201)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-50, 76, -100)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (51, 57.0001, -100)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (50, -50.9999, -100)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (-52, -50.9999, -100)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (-50, 76, -100)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/interior (50, 27.0001, -100)
+´disable_event´ ElementToggle 100064
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_all_player_entered´ DISABLED
+		2 ´60´
+		3 ´50´
+		4 ´40´
+		5 ´30´
+		6 ´20´
+		7 ´10´
+		8 ´fire´
+´obstacle_add´ ElementNavObstacle 100066
+	operation add
+	position 1200, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	on_executed
+		´enable_event´ (delay 0)
+´obstacle_remove´ ElementNavObstacle 100067
+	operation remove
+	position 850, 650, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´delay_2´ MissionScriptElement 100068
+	on_executed
+		´safe_explode´ (delay 0)
+		´sound_win_boop001´ (delay 0)
+		´link_give_reward´ (delay 0.3)
+´safe_explode´ ElementUnitSequence 100069
+	position 900, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/safe (-50, 50, 0)
+			notify_unit_sequence anim_explosion_out
+			time 0
+	on_executed
+		´effect_money_explosion001´ (delay 0)
+		´effect_vehicle_explosion´ (delay 0)
+		´sound_safe_open´ (delay 0)
+´hide_marker´ ElementUnitSequence 100059
+	position 1200, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/marker (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´disable_area_player_left´ ElementToggle 100060
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´shape_player_left´ DISABLED
+		2 ´empty´
+		3 ´link_fail´
+		4 ´leave´
+´input_event_allow_cocaine´ ElementInstanceInput 100071
+	event allow_cocaine
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´input_event_allow_money´ ElementInstanceInput 100072
+	event allow_money
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´input_event_allow_gold´ ElementInstanceInput 100073
+	event allow_gold
+	on_executed
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+´logic_toggle_001´ ElementToggle 100074
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loot_bag_cloaker_cocaine001´
+		2 ´loot_bag_cloaker_cocaine002´
+		3 ´loot_bag_cloaker_cocaine003´
+		4 ´loot_bag_cloaker_cocaine004´
+		5 ´loot_bag_cloaker_cocaine005´
+		6 ´loot_bag_cloaker_cocaine006´
+		7 ´loot_bag_cloaker_cocaine007´
+		8 ´loot_bag_cloaker_cocaine008´
+		9 ´loot_bag_cloaker_cocaine009´
+		10 ´loot_bag_cloaker_cocaine010´
+		11 ´loot_bag_cloaker_cocaine011´
+		12 ´loot_bag_cloaker_cocaine012´
+		13 ´loot_bag_cloaker_cocaine013´
+		14 ´loot_bag_cloaker_cocaine014´
+		15 ´loot_bag_cloaker_cocaine015´
+´logic_toggle_002´ ElementToggle 100075
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loot_bag_cloaker_money001´ DISABLED
+´logic_toggle_003´ ElementToggle 100076
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loot_bag_cloaker_gold001´ DISABLED
+´logic_toggle_004´ ElementToggle 100077
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_bag_cloaker_money001´ DISABLED
+		2 ´loot_bag_cloaker_gold001´ DISABLED
+´logic_toggle_005´ ElementToggle 100078
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_bag_cloaker_cocaine001´
+		2 ´loot_bag_cloaker_gold001´ DISABLED
+		3 ´loot_bag_cloaker_cocaine002´
+		4 ´loot_bag_cloaker_cocaine003´
+		5 ´loot_bag_cloaker_cocaine004´
+		6 ´loot_bag_cloaker_cocaine005´
+		7 ´loot_bag_cloaker_cocaine006´
+		8 ´loot_bag_cloaker_cocaine007´
+		9 ´loot_bag_cloaker_cocaine008´
+		10 ´loot_bag_cloaker_cocaine009´
+		11 ´loot_bag_cloaker_cocaine010´
+		12 ´loot_bag_cloaker_cocaine011´
+		13 ´loot_bag_cloaker_cocaine012´
+		14 ´loot_bag_cloaker_cocaine013´
+		15 ´loot_bag_cloaker_cocaine014´
+		16 ´loot_bag_cloaker_cocaine015´
+´logic_toggle_006´ ElementToggle 100079
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_bag_cloaker_money001´ DISABLED
+		2 ´loot_bag_cloaker_cocaine001´
+		3 ´loot_bag_cloaker_cocaine002´
+		4 ´loot_bag_cloaker_cocaine003´
+		5 ´loot_bag_cloaker_cocaine004´
+		6 ´loot_bag_cloaker_cocaine005´
+		7 ´loot_bag_cloaker_cocaine006´
+		8 ´loot_bag_cloaker_cocaine007´
+		9 ´loot_bag_cloaker_cocaine008´
+		10 ´loot_bag_cloaker_cocaine009´
+		11 ´loot_bag_cloaker_cocaine010´
+		12 ´loot_bag_cloaker_cocaine011´
+		13 ´loot_bag_cloaker_cocaine012´
+		14 ´loot_bag_cloaker_cocaine013´
+		15 ´loot_bag_cloaker_cocaine014´
+		16 ´loot_bag_cloaker_cocaine015´
+´9´ ElementRandom 100080
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´loot_bag_cloaker_cocaine001´ (delay 0)
+		´loot_bag_cloaker_cocaine002´ (delay 0.2)
+		´loot_bag_cloaker_cocaine003´ (delay 0.5)
+		´loot_bag_cloaker_cocaine004´ (delay 0.8)
+		´loot_bag_cloaker_cocaine005´ (delay 1.1)
+		´loot_bag_cloaker_cocaine006´ (delay 1.5)
+		´loot_bag_cloaker_cocaine007´ (delay 1.8)
+		´loot_bag_cloaker_cocaine008´ (delay 2.2)
+		´loot_bag_cloaker_cocaine009´ (delay 2.7)
+		´loot_bag_cloaker_cocaine010´ (delay 3.1)
+		´loot_bag_cloaker_cocaine011´ (delay 3.5)
+		´loot_bag_cloaker_cocaine012´ (delay 3.8)
+		´loot_bag_cloaker_cocaine013´ (delay 4.1)
+		´loot_bag_cloaker_cocaine014´ (delay 4.5)
+		´loot_bag_cloaker_cocaine015´ (delay 5)
+´loot_bag_cloaker_cocaine002´ ElementLootBag 100092
+	carry_id cloaker_cocaine
+	from_respawn false
+	position -17, 67, 125
+	push_multiplier 0,4
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir 0,0133893 0,893349 0,449164
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine003´ ElementLootBag 100093
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 27, 64, 125
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine004´ ElementLootBag 100094
+	carry_id cloaker_cocaine
+	from_respawn false
+	position -10, 71, 141
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine005´ ElementLootBag 100095
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 16, 67, 141
+	push_multiplier 0,6
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine006´ ElementLootBag 100096
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 16, 86, 125
+	push_multiplier 1
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,485702 0,705041 -0,516732
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine007´ ElementLootBag 100097
+	carry_id cloaker_cocaine
+	from_respawn false
+	position -8, 83, 125
+	push_multiplier 0,8
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,141252 0,911838 -0,385486
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine008´ ElementLootBag 100098
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 4, 84, 115
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine009´ ElementLootBag 100099
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 4, 84, 168
+	push_multiplier 0,7
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine010´ ElementLootBag 100100
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 18, 84, 168
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir 0,381145 0,901585 -0,204626
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´delay_3´ MissionScriptElement 100081
+	on_executed
+		´9´ (delay 0.1)
+´loot_bag_cloaker_cocaine011´ ElementLootBag 100084
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 36, 75, 168
+	push_multiplier 1
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine012´ ElementLootBag 100090
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 13, 73, 168
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine013´ ElementLootBag 100091
+	carry_id cloaker_cocaine
+	from_respawn false
+	position -14, 76, 168
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir 0,129566 0,868457 -0,478532
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine014´ ElementLootBag 100101
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 14, 104, 168
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´loot_bag_cloaker_cocaine015´ ElementLootBag 100102
+	carry_id cloaker_cocaine
+	from_respawn false
+	position 14, 104, 84
+	push_multiplier 0,5
+	rotation -3.36807E-08, 0, 0, -1
+	spawn_dir -0,124622 0,938163 -0,322984
+	on_executed
+		´sound_bell_ring´ (delay 0)
+		´success´ (delay 0)
+´output_event_failed´ ElementInstanceOutput 100104
+	event event_failed
+´env_effect_stop_fade_kill´ ElementStopEffect 100105
+	operation fade_kill
+	position 1200, 1200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect_fog001´
+´output_success´ ElementInstanceOutput 100106
+	event success
+´link´ MissionScriptElement 100082
+	on_executed
+		´hide_and_pause_everything´ (delay 0)
+		´OFF´ (delay 0)
+		´obstacle_remove´ (delay 0)
+´clean_up´ ElementInstanceInput 100083
+	event clean_up
+	on_executed
+		´link´ (delay 0)
+´force_fail´ ElementInstanceInput 100085
+	event force_fail
+	on_executed
+		´link_player_exited´ (delay 0)
+´OFF´ ElementToggle 100086
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_bag_cloaker_cocaine001´
+		2 ´loot_bag_cloaker_cocaine002´
+		3 ´loot_bag_cloaker_cocaine003´
+		4 ´loot_bag_cloaker_cocaine004´
+		5 ´loot_bag_cloaker_cocaine005´
+		6 ´loot_bag_cloaker_cocaine006´
+		7 ´loot_bag_cloaker_cocaine007´
+		8 ´loot_bag_cloaker_cocaine008´
+		9 ´loot_bag_cloaker_cocaine009´
+		10 ´loot_bag_cloaker_cocaine010´
+		11 ´loot_bag_cloaker_cocaine011´
+		12 ´loot_bag_cloaker_cocaine012´
+		13 ´loot_bag_cloaker_cocaine013´
+		14 ´loot_bag_cloaker_cocaine014´
+		15 ´loot_bag_cloaker_cocaine015´
+		16 ´shape_player_left´ DISABLED
+		17 ´link_fail´
+		18 ´empty´
+		19 ´leave´
+´event_started´ ElementInstanceOutput 100063
+	event event_started
+´enable_all_bags´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loot_bag_cloaker_cocaine001´
+		2 ´loot_bag_cloaker_cocaine002´
+		3 ´loot_bag_cloaker_cocaine003´
+		4 ´loot_bag_cloaker_cocaine004´
+		5 ´loot_bag_cloaker_cocaine005´
+		6 ´loot_bag_cloaker_cocaine006´
+		7 ´loot_bag_cloaker_cocaine007´
+		8 ´loot_bag_cloaker_cocaine008´
+		9 ´loot_bag_cloaker_cocaine009´
+		10 ´loot_bag_cloaker_cocaine010´
+		11 ´loot_bag_cloaker_cocaine011´
+		12 ´loot_bag_cloaker_cocaine012´
+		13 ´loot_bag_cloaker_cocaine013´
+		14 ´loot_bag_cloaker_cocaine014´
+		15 ´loot_bag_cloaker_cocaine015´
+		16 ´leave´
+´success´ MissionScriptElement 100062
+	TRIGGER TIMES 1
+	on_executed
+		´output_success´ (delay 0.5)
+´60´ MissionScriptElement 100058
+	on_executed
+		´50´ (delay 10)
+´50´ MissionScriptElement 100070
+	on_executed
+		´40´ (delay 10)
+´40´ MissionScriptElement 100087
+	on_executed
+		´30´ (delay 10)
+´30´ MissionScriptElement 100088
+	on_executed
+		´20´ (delay 10)
+´20´ MissionScriptElement 100089
+	on_executed
+		´10´ (delay 10)
+´10´ MissionScriptElement 100103
+	on_executed
+		´fire´ (delay 10)
+´fire´ MissionScriptElement 100107
+	on_executed
+		´link_success´ (delay 0)
+´safe_picked´ ElementInstanceOutput 100108
+	event safe_picked
+´winter_settings´ ElementInstanceInput 100109
+	event winter_settings
+	on_executed
+		´ON´ (delay 0)
+´link_2´ MissionScriptElement 100110
+	DISABLED
+	on_executed
+		´red circle´ (delay 0)
+´red circle´ ElementUnitSequence 100111
+	position 1025, -150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/marker (0, 0, 0)
+			notify_unit_sequence state_color_red
+			time 0
+´func_disable_unit_002´ ElementDisableUnit 100118
+	position 1200, 1275, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (-50, 76, -100)
+´empty´ MissionScriptElement 100120
+	on_executed
+		´link_fail´ (delay 0)
+´shape_player_left´ ElementShape 100121
+	DISABLED
+	depth 500
+	height 1000
+	position 0, 0, 300
+	radius 350
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 500
+´leave´ ElementAreaReportTrigger 100122
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 950, 325, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_player_left´ DISABLED
+	use_shape_element_ids
+	unit_ids
+		1 100121
+	on_executed
+		´link_fail´ (delay 0) (alternative leave)
+		´empty´ (delay 0) (alternative empty)
+´ON´ ElementToggle 100019
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_2´ DISABLED

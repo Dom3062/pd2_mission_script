@@ -1,0 +1,1043 @@
+´point_waypoint_001´ ElementWaypoint 100017
+	icon pd2_loot
+	only_in_civilian false
+	position 0, 97, 172
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100018
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´removed_safe´ (delay 0)
+´point_shape_001´ ElementShape 100022
+	depth 1000
+	height 500
+	position 0, 0, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 800
+´Enter´ ElementAreaReportTrigger 100023
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position -1950, 100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+		1 100022
+	on_executed
+		´found_van´ (delay 0) (alternative enter)
+´link´ MissionScriptElement 100041
+	on_executed
+		´off´ (delay 0)
+´link_2´ MissionScriptElement 100042
+	on_executed
+		´off_2´ (delay 0)
+´off´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_2´
+	on_executed
+		´On_13´ (delay 0)
+´off_2´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Enter´
+		2 ´saw_retrieved_2´
+		3 ´safe_used_003´
+		4 ´spawn_russians_and_cops´
+		5 ´Link´
+		6 ´spawn_russians´
+		7 ´Found Van First Time´ DISABLED
+		8 ´Link_4´
+	on_executed
+		´hide_ALL´ (delay 0)
+´hide_ALL´ ElementUnitSequence 100046
+	position -1225, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/001 (26.146, 109.931, 80)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/002 (-28.5954, 69.672, 80)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/007 (24.1609, 39.687, 80)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/008 (-27.5916, 134.556, 80)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_interactable_saw/gen_interactable_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence hide_dummy
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´remove_van´ (delay 0)
+´enable_van´ ElementInstanceInput 100047
+	event van_state_enable
+	on_executed
+		´link´ (delay 0)
+´disable_van´ ElementInstanceInput 100048
+	event van_state_disable
+	on_executed
+		´link_2´ (delay 0)
+´van_chosen´ ElementInstanceOutput 100035
+	event van_chosen
+´found_van´ ElementInstanceOutput 100040
+	TRIGGER TIMES 1
+	event found_van
+´van_opened´ ElementInstanceOutput 100049
+	event van_opened
+´removed_safe´ ElementInstanceOutput 100050
+	event removed_safe
+´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100051
+	amount 2
+	position 0, 350, 25
+	rotation 0, 0, 0, -1
+´auto_start_hide´ ElementUnitSequence 100053
+	position -1425, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´saw_retrieved´ ElementUnitSequenceTrigger 100067
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+	on_executed
+		´saw_retrieved_2´ (delay 0)
+´saw_retrieved_2´ MissionScriptElement 100068
+	on_executed
+		´open_van´ (delay 0)
+		´enable´ (delay 0)
+´open_van´ ElementUnitSequence 100069
+	position -2275, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/vehicles/lxa_vehicle_truck_vlad/lxa_vehicle_truck_vlad/001 (8, -50, -8)
+			notify_unit_sequence anim_doors_open
+			time 2
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_interactable_saw/gen_interactable_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence hide_dummy
+			time 0
+	on_executed
+		´remove_waypoint_2´ (delay 0)
+´point_waypoint_saw´ ElementWaypoint 100070
+	icon pd2_generic_saw
+	only_in_civilian false
+	position 0, 293, 141
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´saw_started´ ElementUnitSequenceTrigger 100071
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_interactable_saw/gen_interactable_saw/001 (-1, 261.94, 126.342)
+	on_executed
+		´point_waypoint_saw´ (delay 0)
+		´saw_started_2´ (delay 0)
+		´point_area_min_police_force_001´ (delay 0)
+		´Link_4´ (delay 0)
+´remove_waypoint_2´ ElementOperator 100072
+	operation remove
+	elements
+		1 ´point_area_min_police_force_001´
+		2 ´point_waypoint_pickup´
+	on_executed
+		´van_opened´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+´remove_van´ ElementDisableUnit 100000
+	position -1225, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jolly/vehicles/lxa_vehicle_truck_vlad/lxa_vehicle_truck_vlad/001 (8, -50, -8)
+	on_executed
+		´temp´ (delay 0)
+´auto_start_link´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´auto_start_hide´ (delay 0)
+´saw_started_2´ ElementInstanceOutput 100004
+	TRIGGER TIMES 1
+	event saw_started
+´removed_safe_2´ MissionScriptElement 100010
+	on_executed
+		´safe_removed´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´All removed´ (delay 0)
+´safe_removed´ ElementDebug 100011
+	as_subtitle true
+	debug_string safe_removed
+	show_instigator false
+´TEMP´ MissionScriptElement 100013
+	DISABLED
+	on_executed
+		´enable_van´ (delay 0)
+		´func_equipment_001´ (delay 0)
+		´spawn_russians_and_cops´ (delay 0)
+´safe_used_003´ ElementUnitSequenceTrigger 100014
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/007 (24.1609, 39.687, 80)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/001 (26.146, 109.931, 80)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/008 (-27.5916, 134.556, 80)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/002 (-28.5954, 69.672, 80)
+		5
+			guis_id 5
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/003 (-29.8391, -3.31298, 80)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/009 (27.1609, -26.313, 80)
+		7
+			guis_id 7
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/006 (27.1609, -26.3128, 80)
+		8
+			guis_id 8
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/005 (-29.8391, -3.3128, 80)
+		9
+			guis_id 9
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/003 (-28.5954, 69.6723, 80)
+		10
+			guis_id 10
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/002 (24.1609, 39.6872, 80)
+		11
+			guis_id 11
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/001 (26.146, 109.931, 80)
+		12
+			guis_id 12
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/004 (-27.5916, 134.556, 80)
+	on_executed
+		´removed_safe_2´ (delay 0)
+´temp´ ElementDisableUnit 100009
+	position -1225, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jolly/vehicles/lxa_vehicle_truck_vlad/lxa_vehicle_truck_vlad/001 (8, -50, -8)
+		2 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/007 (24.1609, 39.687, 80)
+		3 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/008 (-27.5916, 134.556, 80)
+		4 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/001 (26.146, 109.931, 80)
+		5 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/002 (-28.5954, 69.672, 80)
+		6 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/009 (27.1609, -26.313, 80)
+		7 units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/003 (-29.8391, -3.31298, 80)
+		8 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/006 (27.1609, -26.3128, 80)
+		9 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/005 (-29.8391, -3.3128, 80)
+		10 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/003 (-28.5954, 69.6723, 80)
+		11 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/002 (24.1609, 39.6872, 80)
+		12 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/004 (-27.5916, 134.556, 80)
+		13 units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/001 (26.146, 109.931, 80)
+´spawn_russians_and_cops´ ElementInstanceInput 100020
+	event spawn_russians_and_cops
+	on_executed
+		´Link´ (delay 0)
+´Link´ MissionScriptElement 100028
+	on_executed
+		´spawn_russians´ (delay 0)
+´russian003´ ElementSpawnEnemyDummy 100031
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -150, 400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team converted_enemy
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´spawn_russians´ MissionScriptElement 100032
+	on_executed
+		´russian003´ (delay 0)
+		´russian004´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100083
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose crouch
+	position -150.008, 300.873, 0
+	rotation 0, 0, -0.325569, -0.945518
+	scan true
+	search_distance 0
+	search_position -300 400 0
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_002´ ElementSpecialObjective 100084
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose crouch
+	position 150, 300, 0
+	rotation 0, 0, 0.642788, -0.766044
+	scan true
+	search_distance 0
+	search_position -300 400 0
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´russian004´ ElementSpawnEnemyDummy 100082
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 150, 400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team converted_enemy
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´show_saw_pku´ ElementUnitSequence 100033
+	position -2150, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_saw/gen_pku_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_interactable_saw/gen_interactable_saw/001 (-1, 261.94, 126.342)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´remove_waypoint_3´ (delay 0)
+´Saw Finished´ ElementUnitSequenceTrigger 100034
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_interactable_saw/gen_interactable_saw/001 (-1, 261.94, 126.342)
+	on_executed
+		´Link_2´ (delay 0)
+´Link_2´ MissionScriptElement 100036
+	on_executed
+		´show_saw_pku´ (delay 0)
+´point_waypoint_pickup´ ElementWaypoint 100026
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 293, 141
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint_3´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´point_waypoint_saw´
+	on_executed
+		´link_3´ (delay 0)
+´link_3´ MissionScriptElement 100044
+	on_executed
+		´point_waypoint_pickup´ (delay 0)
+´func_equipment_001´ ElementEquipment 100052
+	amount 1
+	equipment saw
+	position -950, 200, 2.5
+	rotation 0, 0, 0, -1
+´pick 2 or 3 safes´ ElementRandom 100076
+	amount 2
+	amount_random 0
+	counter_id 100130
+	ignore_disabled true
+	on_executed
+		´pick safe´ (delay 0)
+		´pick safe_4´ (delay 0)
+		´pick safe_3´ (delay 0)
+		´pick safe_2´ (delay 0)
+		´pick safe_6´ (delay 0)
+		´pick safe_5´ (delay 0)
+´pick safes´ MissionScriptElement 100078
+	on_executed
+		´van_chosen´ (delay 0)
+		´2 step authentication´ (delay 0)
+´ovk´ ElementUnitSequence 100058
+	position -2225, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/005 (-29.8391, -3.3128, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_12´ (delay 0)
+´ovk_2´ ElementUnitSequence 100059
+	position -2225, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/003 (-28.5954, 69.6723, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_4´ (delay 0)
+´ovk_3´ ElementUnitSequence 100062
+	position -2225, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/004 (-27.5916, 134.556, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_6´ (delay 0)
+´enable´ MissionScriptElement 100075
+	on_executed
+		´safe´ (delay 0) DISABLED
+		´safe_2´ (delay 0) DISABLED
+		´safe_3´ (delay 0) DISABLED
+		´safe_4´ (delay 0) DISABLED
+		´safe_5´ (delay 0) DISABLED
+		´safe_6´ (delay 0) DISABLED
+		´ovk_4´ (delay 0) DISABLED
+		´ovk_5´ (delay 0) DISABLED
+		´ovk_6´ (delay 0) DISABLED
+		´ovk_7´ (delay 0) DISABLED
+		´ovk_8´ (delay 0) DISABLED
+		´ovk_9´ (delay 0) DISABLED
+´safe´ ElementUnitSequence 100087
+	DISABLED
+	position -2450, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/009 (27.1609, -26.313, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´safe_2´ ElementUnitSequence 100088
+	DISABLED
+	position -2650, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/003 (-29.8391, -3.31298, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´safe_3´ ElementUnitSequence 100089
+	DISABLED
+	position -2650, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/002 (-28.5954, 69.672, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´safe_4´ ElementUnitSequence 100090
+	DISABLED
+	position -2450, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/007 (24.1609, 39.687, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´safe_5´ ElementUnitSequence 100091
+	DISABLED
+	position -2450, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/001 (26.146, 109.931, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´safe_6´ ElementUnitSequence 100092
+	DISABLED
+	position -2650, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/008 (-27.5916, 134.556, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_4´ ElementUnitSequence 100079
+	DISABLED
+	position -2500, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/006 (27.1609, -26.3128, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_5´ ElementUnitSequence 100080
+	DISABLED
+	position -2500, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/002 (24.1609, 39.6872, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_6´ ElementUnitSequence 100085
+	DISABLED
+	position -2700, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/004 (-27.5916, 134.556, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_7´ ElementUnitSequence 100086
+	DISABLED
+	position -2700, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/003 (-28.5954, 69.6723, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_8´ ElementUnitSequence 100093
+	DISABLED
+	position -2700, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/005 (-29.8391, -3.3128, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´ovk_9´ ElementUnitSequence 100094
+	DISABLED
+	position -2500, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/001 (26.146, 109.931, 80)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´All removed´ ElementCounter 100012
+	counter_target 6
+	on_executed
+		´all_safes_removed´ (delay 0)
+		´func_dialogue_001´ (delay 0)
+´all_safes_removed´ ElementInstanceOutput 100123
+	event all_safes_removed
+´func_dialogue_001´ ElementDialogue 100124
+	dialogue Play_vld_as1_11
+	execute_on_executed_when_done false
+	use_position false
+´First truck Unloaded already´ ElementInstanceInput 100125
+	event first_truck_looted
+	on_executed
+		´OFF´ (delay 0)
+´OFF´ ElementToggle 100126
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´All removed´
+		2 ´func_dialogue_001´
+´pick safe´ ElementRandom 100106
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ovk_2´ (delay 0)
+		´norm´ (delay 0)
+´norm´ ElementUnitSequence 100015
+	position -2175, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/002 (-28.5954, 69.672, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On´ (delay 0)
+´pick safe_2´ ElementRandom 100001
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ovk´ (delay 0)
+		´norm_2´ (delay 0)
+´pick safe_3´ ElementRandom 100002
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´norm_3´ (delay 0)
+		´ovk_10´ (delay 0)
+´norm_2´ ElementUnitSequence 100054
+	position -2175, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/003 (-29.8391, -3.31298, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_11´ (delay 0)
+´norm_3´ ElementUnitSequence 100055
+	position -2025, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/009 (27.1609, -26.313, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_10´ (delay 0)
+´ovk_10´ ElementUnitSequence 100057
+	position -2075, 1150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/006 (27.1609, -26.3128, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_9´ (delay 0)
+´ovk_11´ ElementUnitSequence 100060
+	position -2075, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/002 (24.1609, 39.6872, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_2´ (delay 0)
+´norm_4´ ElementUnitSequence 100107
+	position -2025, 1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/007 (24.1609, 39.687, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_3´ (delay 0)
+´pick safe_4´ ElementRandom 100108
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´norm_4´ (delay 0)
+		´ovk_11´ (delay 0)
+´On´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe_3´ DISABLED
+´On_2´ ElementToggle 100066
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_5´ DISABLED
+´On_3´ ElementToggle 100109
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe_4´ DISABLED
+´pick safe_5´ ElementRandom 100110
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ovk_12´ (delay 0)
+		´norm_6´ (delay 0)
+´pick safe_6´ ElementRandom 100111
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´norm_5´ (delay 0)
+		´ovk_3´ (delay 0)
+´On_4´ ElementToggle 100061
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_7´ DISABLED
+´norm_5´ ElementUnitSequence 100063
+	position -2175, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/008 (-27.5916, 134.556, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_5´ (delay 0)
+´ovk_12´ ElementUnitSequence 100064
+	position -2075, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_ovk/gen_pku_safe_ovk/001 (26.146, 109.931, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_7´ (delay 0)
+´norm_6´ ElementUnitSequence 100065
+	position -2025, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/pickups/gen_pku_safe_wpn/gen_pku_safe_wpn/001 (26.146, 109.931, 80)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´On_8´ (delay 0)
+´On_5´ ElementToggle 100073
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe_6´ DISABLED
+´On_6´ ElementToggle 100074
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_6´ DISABLED
+´On_7´ ElementToggle 100112
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_9´ DISABLED
+´On_8´ ElementToggle 100113
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe_5´ DISABLED
+´On_9´ ElementToggle 100114
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_4´ DISABLED
+´On_10´ ElementToggle 100115
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe´ DISABLED
+´On_11´ ElementToggle 100116
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´safe_2´ DISABLED
+´On_12´ ElementToggle 100117
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ovk_8´ DISABLED
+´link_4´ MissionScriptElement 100118
+	on_executed
+		´3´ (delay 0)
+´link_5´ MissionScriptElement 100127
+	on_executed
+		´4´ (delay 0)
+´link_6´ MissionScriptElement 100128
+	on_executed
+		´5´ (delay 0)
+´link_7´ MissionScriptElement 100129
+	on_executed
+		´6´ (delay 0)
+´how many safes´ ElementCounter 100130
+	counter_target 2
+´3´ ElementCounterOperator 100131
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´how many safes´
+	on_executed
+		´Link_3´ (delay 0)
+´4´ ElementCounterOperator 100132
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´how many safes´
+	on_executed
+		´Link_3´ (delay 0)
+´5´ ElementCounterOperator 100133
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´how many safes´
+	on_executed
+		´Link_3´ (delay 0)
+´6´ ElementCounterOperator 100134
+	amount 6
+	operation set
+	instance_var_names
+	elements
+		1 ´how many safes´
+	on_executed
+		´Link_3´ (delay 0)
+´diff_hard´ ElementInstanceInput 100135
+	event diff_hard
+	on_executed
+		´link_4´ (delay 0)
+´diff_very_hard´ ElementInstanceInput 100136
+	event diff_very_hard
+	on_executed
+		´link_5´ (delay 0)
+´diff_deathwish´ ElementInstanceInput 100137
+	event diff_deathwish
+	on_executed
+		´link_7´ (delay 0)
+´diff_overkill´ ElementInstanceInput 100138
+	event diff_overkill
+	on_executed
+		´link_6´ (delay 0)
+´2 step authentication´ ElementCounter 100120
+	counter_target 2
+	on_executed
+		´pick 2 or 3 safes´ (delay 0)
+´Link_3´ MissionScriptElement 100121
+	on_executed
+		´2 step authentication´ (delay 0.1)
+´diff_normal´ ElementInstanceInput 100119
+	event diff_normal
+	on_executed
+		´link_8´ (delay 0)
+´link_8´ MissionScriptElement 100122
+	on_executed
+		´logic_counter_operator_001´ (delay 0)
+´logic_counter_operator_001´ ElementCounterOperator 100139
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´how many safes´
+	on_executed
+		´Link_3´ (delay 0)
+´first time find van´ ElementWaypoint 100140
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 293, 141
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_shape_002´ ElementShape 100141
+	depth 1800
+	height 505
+	position 0, 0, 50
+	radius 1220
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 1800
+´Found Van First Time´ ElementAreaReportTrigger 100142
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position -1600, 100, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_002´
+	use_shape_element_ids
+	unit_ids
+		1 100141
+	on_executed
+		´first time find van´ (delay 0) (alternative enter)
+´disable_find_van_waypoint´ ElementInstanceInput 100143
+	event disable_find_van_waypoint
+	on_executed
+		´Link_4´ (delay 0)
+´logic_operator_001´ ElementOperator 100144
+	operation remove
+	elements
+		1 ´first time find van´
+´Link_4´ MissionScriptElement 100145
+	on_executed
+		´OFF_2´ (delay 0)
+´OFF_2´ ElementToggle 100146
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Found Van First Time´ DISABLED
+	on_executed
+		´logic_operator_001´ (delay 0)
+´On_13´ ElementToggle 100147
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Found Van First Time´ DISABLED
+	on_executed
+		´pick safes´ (delay 0)

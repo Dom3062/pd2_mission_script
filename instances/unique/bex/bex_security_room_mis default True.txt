@@ -1,0 +1,161 @@
+´enemy_guard´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 225, -451, 0
+	rotation 0, 0, 0.991445, 0.130527
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100031
+	SO_access 24
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 175, -480, 0
+	rotation 0, 0, 0.965926, -0.258819
+	scan true
+	search_distance 0
+	search_position 211,469 -525,477 0
+	so_action e_so_guard_idle
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´enemy_guard´
+´start´ MissionScriptElement 100033
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100034
+	BASE DELAY 1
+	on_executed
+		´func_nav_add_obstacle´ (delay 0)
+		´func_close_door´ (delay 0)
+		´enemy_guard´ (delay 0)
+		´point_special_objective_001´ (delay 0)
+´func_instance_output_disable_security_cameras´ ElementInstanceOutput 100036
+	event disable_security_cameras
+´tied´ ElementEnemyDummyTrigger 100037
+	event tied
+	position 1000, -100, 300
+	rotation 0, 0, 0, -1
+	elements
+		1 ´enemy_guard´
+	on_executed
+		´guard_away_from_camera´ (delay 0)
+´death´ ElementEnemyDummyTrigger 100038
+	event death
+	position 1100, -100, 300
+	rotation 0, 0, 0, -1
+	elements
+		1 ´enemy_guard´
+	on_executed
+		´guard_away_from_camera´ (delay 0)
+´guard_away_from_camera´ MissionScriptElement 100039
+	on_executed
+		´func_instance_output_disable_security_cameras´ (delay 0)
+´func_nav_add_obstacle´ ElementNavObstacle 100040
+	operation add
+	position 500, -300, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 10538932928708543131
+			unit_id units/pd2_dlc_arena/props/are_prop_office_desk_set/are_prop_office_desk_right/001 (363.314, -506.514, 0)
+		2
+			guis_id 2
+			obj_name 2833354608876679347
+			unit_id units/pd2_dlc_arena/props/are_prop_office_desk_set/are_prop_office_desk_straight/002 (157.9, -568.414, 0)
+		3
+			guis_id 4
+			obj_name 13423968277995808125
+			unit_id units/payday2/props/gen_prop_security_servers/gen_prop_security_server_rack/001 (31.9999, -514, 0)
+		4
+			guis_id 5
+			obj_name 2833354608876679347
+			unit_id units/pd2_dlc_arena/props/are_prop_office_desk_set/are_prop_office_desk_straight/001 (278.871, -31.4146, 0)
+		5
+			guis_id 6
+			obj_name 5853101524583467607
+			unit_id units/pd2_dlc2/csgo_models/props_interiors/chair_office2/002 (257.285, -57.5151, 0)
+		6
+			guis_id 7
+			obj_name 5853101524583467607
+			unit_id units/pd2_dlc2/csgo_models/props_interiors/chair_office2/001 (292.314, -482.514, 0)
+		7
+			guis_id 10
+			obj_name 18332870947882135288
+			unit_id units/world/props/office/coathanger/coathanger/001 (360, -356, 0)
+´func_close_door´ ElementUnitSequence 100041
+	position 700, -300, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-3, -254, 0)
+			notify_unit_sequence activate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-3, -254, 0)
+			notify_unit_sequence anim_close_door
+			time 1
+	on_executed
+		´door_blocker´ (delay 0)
+´func_sequence_door_open´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-3, -254, 0)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-3, -254, 0)
+	on_executed
+		´door_blocker1´ (delay 0)
+´door_blocker´ ElementNavObstacle 100007
+	operation add
+	position 700, -400, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -250, 0)
+´door_blocker1´ ElementNavObstacle 100020
+	operation remove
+	position 800, -400, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -250, 0)

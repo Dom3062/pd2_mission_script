@@ -1,0 +1,197 @@
+´spooder_attack_tigger´ ElementAreaTrigger 100000
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 800
+	height 400
+	instigator player
+	interval 0.1
+	position 0, 300, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on while_inside
+	use_disabled_shapes false
+	width 800
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_attack_downed_trigger´ (delay 0.5)
+		´disable_flee_input´ (delay 0)
+		´seq_spooder_attack´ (delay 0)
+´player_downed_state´ ElementPlayerState 100001
+	DISABLED
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	state bleed_out
+	use_instigator true
+´spooder_attack_downed´ ElementAreaTrigger 100002
+	DISABLED
+	amount 1
+	depth 1000
+	height 400
+	instigator player
+	interval 0.1
+	position 0, 400, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on while_inside
+	use_disabled_shapes false
+	width 1300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´logic_toggle_001´ ElementToggle 100003
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spooder_attack_downed´ DISABLED
+	on_executed
+		´inst_out_spooder_attacked´ (delay 0)
+		´logic_toggle_002´ (delay 0.5)
+´enable_attack_downed_trigger´ ElementToggle 100004
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´spooder_attack_downed´ DISABLED
+	on_executed
+		´logic_toggle_001´ (delay 0.7)
+		´point_explosion_damage_001´ (delay 0)
+´inst_in_ready_up_spooder´ ElementInstanceInput 100006
+	event spooder_ready_up
+	on_executed
+		´enable_attack_trigger´ (delay 3)
+		´delay_until_flee´ (delay 0)
+		´seq_spooder_ready´ (delay 0)
+´inst_out_spooder_fled´ ElementInstanceOutput 100005
+	event spooder_fled
+´inst_out_spooder_attacked´ ElementInstanceOutput 100007
+	event spooder_attacked
+	on_executed
+		´inst_in_spooder_flee´ (delay 1)
+´inst_in_spooder_startup´ ElementInstanceInput 100008
+	event spooder_startup_reset
+	on_executed
+		´disable_attack_trigger´ (delay 0)
+		´disable_attack_downed_trigger´ (delay 0)
+		´seq_spooder_hide´ (delay 0)
+´disable_attack_trigger´ ElementToggle 100051
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spooder_attack_tigger´ DISABLED
+´disable_attack_downed_trigger´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spooder_attack_downed´ DISABLED
+´disable_spooder´ MissionScriptElement 100053
+	on_executed
+		´inst_in_spooder_flee´ (delay 0)
+´enable_attack_trigger´ ElementToggle 100054
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´spooder_attack_tigger´ DISABLED
+		2 ´inst_in_spooder_flee´
+		3 ´seq_flee_anim´
+´inst_in_spooder_flee´ ElementInstanceInput 100055
+	TRIGGER TIMES 1
+	event spooder_flee
+	on_executed
+		´disable_attack_trigger´ (delay 0)
+		´disable_attack_downed_trigger´ (delay 0)
+		´inst_out_spooder_fled´ (delay 1)
+		´seq_flee_anim´ (delay 0)
+´disable_flee_input´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_in_spooder_flee´
+´logic_toggle_002´ ElementToggle 100060
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´inst_in_spooder_flee´
+	on_executed
+		´disable_spooder´ (delay 0.5)
+´delay_until_flee´ MissionScriptElement 100061
+	on_executed
+		´inst_in_spooder_flee´ (delay 20-30)
+´seq_spooder_ready´ ElementUnitSequence 100066
+	position -900, 300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/001 (0, 700, -550)
+			notify_unit_sequence anim_enter
+			time 0
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´seq_spooder_attack´ ElementUnitSequence 100009
+	position -500, 600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/001 (0, 700, -550)
+			notify_unit_sequence anim_attack
+			time 0
+´point_explosion_damage_001´ ElementExplosionDamage 100010
+	damage 100
+	position 0, 200, 100
+	range 500
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_explosion_damage_002´ (delay 0)
+´seq_flee_anim´ ElementUnitSequence 100013
+	TRIGGER TIMES 1
+	position -500, 200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/001 (0, 700, -550)
+			notify_unit_sequence anim_exit
+			time 0
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100015
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_die
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/001 (0, 700, -550)
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_004´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+´seq_spooder_hide´ ElementUnitSequence 100011
+	position -900, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/001 (0, 700, -550)
+			notify_unit_sequence state_vis_hide
+			time 0
+´logic_toggle_003´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_flee_anim´
+	on_executed
+		´inst_in_spooder_flee´ (delay 0)
+´point_explosion_damage_002´ ElementExplosionDamage 100012
+	damage 100
+	position 0, 225, 100
+	range 500
+	rotation 0, 0, 0, -1

@@ -1,0 +1,91 @@
+´trigger_unit_damage_punching_bag´ ElementUnitDamage 100002
+	damage_types 
+	position -400, -450, 1900
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_gym_dragan_punchingbag/chl_prop_gym_dragan_punchingbag/001 (0, 0, 0)
+	on_executed
+		´logic_counter_operator_damage_rec´ (delay 0)
+		´bag_punched_output´ (delay 0)
+		´500_or_more´ (delay 0.1)
+´logic_counter_damage_set´ ElementCounter 100004
+	counter_target 0
+´logic_counter_operator_damage_rec´ ElementCounterOperator 100005
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´logic_counter_damage_set´
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´logic_custom_safehouse_filter_001´ (delay 1)
+		´hide_counter´ (delay 0)
+´logic_custom_safehouse_filter_001´ ElementCustomSafehouseFilter 100007
+	check_type greater_or_equal
+	position 0, -400, 1900
+	room_id dragan
+	room_tier 2
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´load´ (delay 0)
+´bag_punched_output´ ElementInstanceOutput 100009
+	event bag_punched
+´hide_counter´ ElementUnitSequence 100010
+	position 100, -300, 1900
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_damage_counter/chl_prop_damage_counter/001 (0, -3, 100)
+			notify_unit_sequence state_vis_hide
+			time 0
+´show_counter´ ElementUnitSequence 100011
+	position 0, -200, 1900
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_damage_counter/chl_prop_damage_counter/001 (0, -3, 100)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´set_color_on_counter´ (delay 0)
+´set_color_on_counter´ ElementUnitSequence 100012
+	position 0, -100, 1900
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_damage_counter/chl_prop_damage_counter/001 (0, -3, 100)
+			notify_unit_sequence light_yellow_on_black
+			time 0
+´load´ ElementLoadDelayed 100008
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_damage_counter/chl_prop_damage_counter/001 (0, -3, 100)
+		2 units/pd2_dlc_chill/props/chl_prop_gym_dragan_punchingbag/chl_prop_gym_dragan_punchingbag/001 (0, 0, 0)
+	on_executed
+		´show_counter´ (delay 0)
+´achievement_cac_18´ ElementAwardAchievment 100013
+	achievment cac_18
+	award_instigator true
+	position -400, -200, 1900
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100014
+	as_subtitle false
+	debug_string achievement_cac_18
+	show_instigator false
+´500_or_more´ ElementCounterFilter 100017
+	check_type greater_or_equal
+	needed_to_execute all
+	value 500
+	elements
+		1 ´logic_counter_damage_set´
+	on_executed
+		´achievement_cac_18´ (delay 0)

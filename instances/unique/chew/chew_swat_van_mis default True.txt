@@ -1,0 +1,233 @@
+´start´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´hide_swat_van´ (delay 0)
+´hide_swat_van´ ElementUnitSequence 100002
+	position 2500, 5900, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+´send_in_swat_van´ ElementInstanceInput 100003
+	event Send in swat van
+	on_executed
+		´send_in_anim´ (delay 0)
+´send_in_anim´ ElementUnitSequence 100004
+	position 2300, 5700, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_car_chw_arrive_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+´drive_forward´ ElementInstanceInput 100005
+	event Drive forward
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´drive_backward´ ElementInstanceInput 100006
+	event Drive backward
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´drive_forward001´ ElementUnitSequence 100007
+	position 2000, 5400, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_car_chw_move_fwd_15m
+			time 0
+´forward_done´ ElementUnitSequenceTrigger 100008
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´drive_forward001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100009
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´forward_done´ DISABLED
+	on_executed
+		´drive_forward001´ (delay 0)
+´logic_toggle_002´ ElementToggle 100010
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´backward_done´ DISABLED
+	on_executed
+		´drive_backwards´ (delay 0)
+´drive_backwards´ ElementUnitSequence 100011
+	position 2000, 5800, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_car_chw_move_bwd_15m
+			time 0
+´backward_done´ ElementUnitSequenceTrigger 100012
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´drive_backwards´ (delay 0)
+´drive_in_done´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´spawn_turret´ (delay 0)
+´spawn_turret´ ElementUnitSequence 100014
+	position 2300, 5900, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence turret_spawn
+			time 0
+	on_executed
+		´activate_turret´ (delay 0.1)
+´activate_turret´ ElementUnitSequence 100015
+	position 2200, 5900, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence turret_activate
+			time 0
+	on_executed
+		´turret_arrived´ (delay 0)
+´drive_backward_double´ ElementInstanceInput 100016
+	event Drive backward double
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100017
+	set_trigger_times 3
+	toggle on
+	elements
+		1 ´backward_done002´ DISABLED
+	on_executed
+		´drive_backwards´ (delay 0)
+´backward_done002´ ElementUnitSequenceTrigger 100020
+	DISABLED
+	TRIGGER TIMES 3
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+´drive_backward_triple´ ElementInstanceInput 100018
+	event Drive backward triple
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´logic_toggle_004´ ElementToggle 100019
+	set_trigger_times 5
+	toggle on
+	elements
+		1 ´backward_done003´ DISABLED
+	on_executed
+		´drive_backwards´ (delay 0)
+´backward_done003´ ElementUnitSequenceTrigger 100021
+	DISABLED
+	TRIGGER TIMES 5
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´drive_backwards´ (delay 0)
+´drive_forward_double´ ElementInstanceInput 100022
+	event Drive forward double
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´logic_toggle_005´ ElementToggle 100023
+	set_trigger_times 3
+	toggle on
+	elements
+		1 ´forward_done001´ DISABLED
+	on_executed
+		´drive_forward001´ (delay 0)
+´forward_done001´ ElementUnitSequenceTrigger 100024
+	DISABLED
+	TRIGGER TIMES 3
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´drive_forward001´ (delay 0)
+´drive_forward_double001´ ElementInstanceInput 100025
+	event Drive forward triple
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´logic_toggle_006´ ElementToggle 100026
+	set_trigger_times 5
+	toggle on
+	elements
+		1 ´forward_done002´ DISABLED
+	on_executed
+		´drive_forward001´ (delay 0)
+´forward_done002´ ElementUnitSequenceTrigger 100027
+	DISABLED
+	TRIGGER TIMES 5
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´drive_forward001´ (delay 0)
+´turret_arrived´ ElementInstanceOutput 100028
+	event Turret van arrived
+´turret_destroyed´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_turret_destroyed
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´leave´ (delay 0)
+´leave´ ElementUnitSequence 100030
+	position 2300, 5600, 6597.72
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_car_chw_leave_1
+			time 0

@@ -1,0 +1,89 @@
+´close_barrier´ ElementInstanceInput 100001
+	event close_barrier
+	on_executed
+		´close_door´ (delay 0)
+		´enable_open_barrier´ (delay 0)
+		´enable_collision´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´close_door´ ElementUnitSequence 100002
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_branch1/bnk_prop_branch1_security_shutter_b/001 (-100, 0, 300)
+			notify_unit_sequence close_shutters
+			time 0
+´disable_barrier_input´ ElementToggle 100004
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´close_barrier´
+´enable_open_barrier´ ElementToggle 100005
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open_barrier´ DISABLED
+´open_barrier´ MissionScriptElement 100006
+	DISABLED
+	on_executed
+		´open_door´ (delay 0)
+		´disable_collision´ (delay 0)
+		´func_nav_obstacle_002´ (delay 0)
+´open_door´ ElementUnitSequence 100007
+	position 400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_branch1/bnk_prop_branch1_security_shutter_b/001 (-100, 0, 300)
+			notify_unit_sequence open_shutters
+			time 0
+´disable_collision´ ElementDisableUnit 100010
+	position 400, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision_1m_2_bag/player_collision (50, 5.96046E-06, 0)
+		2 units/dev_tools/level_tools/dev_collision_1m_2_bag/001 (-50, -5.96046E-06, 0)
+´disable_collision_2´ ElementDisableUnit 100011
+	position -400, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision_1m_2_bag/001 (-50, -5.96046E-06, 0)
+		2 units/dev_tools/level_tools/dev_collision_1m_2_bag/player_collision (50, 5.96046E-06, 0)
+´setup´ MissionScriptElement 100012
+	EXECUTE ON STARTUP
+	BASE DELAY 1,75
+	on_executed
+		´disable_collision_2´ (delay 0)
+´enable_collision´ ElementEnableUnit 100013
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision_1m_2_bag/player_collision (50, 5.96046E-06, 0)
+		2 units/dev_tools/level_tools/dev_collision_1m_2_bag/001 (-50, -5.96046E-06, 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100015
+	operation add
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 0, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100016
+	operation remove
+	position 400, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 0, 0)
+´disable_barrier´ ElementInstanceInput 100003
+	event disable_barrier
+	on_executed
+		´disable_barrier_input´ (delay 0)
+		´open_barrier´ (delay 0) DISABLED

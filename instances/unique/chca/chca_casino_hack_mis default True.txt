@@ -1,0 +1,722 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´debug_turn_on´ (delay 1.1)
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´input_enable_vent_interaction´ (delay 0)
+		´input_firewall_down´ (delay 100)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_0_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+	on_executed
+		´turn_off_interaction´ (delay 0)
+´input_enable_vent_interaction´ ElementInstanceInput 100007
+	event enable_vent_computer
+	on_executed
+		´turn on´ (delay 0)
+´output_keyboard_interaction´ ElementInstanceOutput 100008
+	event keyboard_interaction
+´move_vent_down´ ElementUnitSequence 100015
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´enable_powerbox´ (delay 0)
+´enable_powerbox´ ElementEnableUnit 100009
+	TRIGGER TIMES 1
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´turn_on´ (delay 1.5)
+´keyboard_interaction´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100027
+	position 1700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_wp_keyboard´ (delay 0)
+´start_hack´ ElementUnitSequence 100020
+	TRIGGER TIMES 1
+	position 1300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_1_hacking
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence int_seq_monitor_off
+			time 0
+	on_executed
+		´show_tool´ (delay 0)
+		´defend´ (delay 0)
+		´output_hack_started´ (delay 0)
+		´start_timer´ (delay 0)
+´hack_done´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+	on_executed
+		´enable_keyboard´ (delay 0)
+		´output_keyboard_interaction´ (delay 1)
+´enable_keyboard´ ElementUnitSequence 100030
+	position 1600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_3_done
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence int_seq_monitor_on
+			time 0
+	on_executed
+		´turn_off_2´ (delay 0)
+´output_hack_done´ ElementInstanceOutput 100031
+	event hack_completed
+´turn_on´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´interaction_start_hack´ (delay 0)
+		´output_vent_moved´ (delay 0)
+´show_tool´ ElementEnableUnit 100033
+	position 1300, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+	on_executed
+		´remove_wp_ipda´ (delay 0)
+´defend´ ElementWaypoint 100034
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position -50, -25, 225
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interaction_start_hack´ ElementWaypoint 100036
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -50, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_wp_ipda´ ElementOperator 100037
+	operation remove
+	elements
+		1 ´interaction_start_hack´
+	on_executed
+		´turn_on_so´ (delay 0)
+´remove_wp_SO´ ElementOperator 100038
+	operation remove
+	elements
+		1 ´defend´
+		2 ´so_anim´
+		3 ´so_drag´
+		4 ´repair´
+	on_executed
+		´output_hack_done´ (delay 0)
+´remove_wp_keyboard´ ElementOperator 100039
+	operation remove
+	on_executed
+		´output_keyboard_interaction´ (delay 0)
+´turn on´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´seq_enable_interactions´ (delay 0)
+´output_vent_moved´ ElementInstanceOutput 100022
+	event pc_vent_moved
+´turn_off_interaction´ ElementToggle 100041
+	set_trigger_times -1
+	toggle off
+´debug_turn_on´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´turn_off_1´ (delay 0)
+´so_anim´ ElementSpecialObjective 100043
+	TRIGGER TIMES 1
+	SO_access 6302716
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -54.3179, -149.62, 75
+	rotation 0, 0, 0.130526, -0.991445
+	scan true
+	search_distance 0
+	search_position -50 -100 0
+	so_action e_so_pull_lever_var2
+	trigger_on none
+	followup_elements
+´so_drag´ ElementSpecialObjective 100044
+	TRIGGER TIMES 1
+	SO_access 6302716
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -49.9766, -150, 0
+	rotation 0, 0, 0.130526, -0.991445
+	scan true
+	search_distance 2000
+	search_position -50 -100 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_anim´
+´move_left´ ElementUnitSequence 100045
+	position 1000, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´enable_powerbox´ (delay 0)
+´move_right´ ElementUnitSequence 100046
+	position 1100, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´enable_powerbox´ (delay 0)
+´turn_off_1´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´move_left´
+		2 ´move_right´
+´turn_off_002´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´move_vent_down´
+		2 ´move_right´
+´turn_off_003´ ElementToggle 100049
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´move_left´
+		2 ´move_vent_down´
+´open_vent_down´ ElementInstanceInput 100050
+	event open_vent_down
+	on_executed
+		´turn_off_1´ (delay 0)
+´open_vent_left´ ElementInstanceInput 100051
+	event open_vent_left
+	on_executed
+		´turn_off_002´ (delay 0)
+´open_vent_right´ ElementInstanceInput 100052
+	event open_vent_right
+	on_executed
+		´turn_off_003´ (delay 0)
+´interrupt_succesful´ ElementSpecialObjectiveTrigger 100053
+	DISABLED
+	TRIGGER TIMES 1
+	event complete
+	position -100, -400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_anim´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´stop_interupt´ (delay 0)
+		´ai_stoped_hack´ (delay 0)
+´interrupt_fail´ ElementSpecialObjectiveTrigger 100054
+	DISABLED
+	TRIGGER TIMES 1
+	event fail
+	position 100, -400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_anim´
+		2 ´so_drag´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´turn_on_so´ (delay 0)
+´point_debug_001´ ElementDebug 100055
+	as_subtitle false
+	debug_string hack_interact_failed
+	show_instigator false
+´point_debug_002´ ElementDebug 100056
+	as_subtitle false
+	debug_string hack_interact_succesful
+	show_instigator false
+´resume_hacking´ ElementUnitSequence 100059
+	position 1500, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_1_hacking
+			time 0
+	on_executed
+		´turn_off´ (delay 0)
+		´turn_on_so´ (delay 0)
+		´defend´ (delay 0)
+´turn_off´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_repaiur´ (delay 0)
+´stop_interupt´ MissionScriptElement 100062
+	on_executed
+		´disable_interupt´ (delay 0)
+		´remove_innterupt_so´ (delay 0)
+´disable_interupt´ ElementToggle 100063
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_succesful´ DISABLED
+		2 ´interrupt_fail´ DISABLED
+		3 ´so_drag´
+		4 ´so_anim´
+´remove_innterupt_so´ ElementOperator 100064
+	operation remove
+	elements
+		1 ´so_drag´
+		2 ´so_anim´
+´ai_stoped_hack´ ElementUnitSequence 100065
+	position 1400, 300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_0_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´remove´ (delay 0)
+´turn_off_2´ ElementToggle 100071
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_fail´ DISABLED
+		2 ´interrupt_succesful´ DISABLED
+		3 ´point_debug_002´
+		4 ´point_debug_001´
+		5 ´disable_interupt´
+		6 ´stop_interupt´
+		7 ´remove_innterupt_so´
+		8 ´so_drag´
+		9 ´so_anim´
+		10 ´output_disable_firewall´
+		11 ´remove_defend_WP´
+		12 ´stop_hack´
+		13 ´logic_toggle_001´
+		14 ´trigger_timer_reached_0´
+		15 ´resume_timer´
+		16 ´pause_timer´
+		17 ´start_timer´
+		18 ´interrupt_timer´
+		19 ´input_firewall_down´
+		20 ´seq_resume_hack´
+	on_executed
+		´remove_wp_SO´ (delay 0)
+´turn_on_so´ ElementToggle 100072
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_fail´ DISABLED
+		2 ´interrupt_succesful´ DISABLED
+		3 ´so_drag´
+		4 ´so_anim´
+	on_executed
+		´so_drag´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100075
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100076
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100077
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´resumed_hack´ ElementUnitSequenceTrigger 100066
+	sequence_list
+		2
+			guis_id 2
+			sequence resumed_trigger
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+	on_executed
+		´resume_hacking´ (delay 0)
+		´point_debug_007´ (delay 0)
+´repair´ ElementWaypoint 100060
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position -50, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove´ ElementOperator 100067
+	operation remove
+	elements
+		1 ´defend´
+	on_executed
+		´show_repair´ (delay 0)
+´show_repair´ MissionScriptElement 100068
+	on_executed
+		´repair´ (delay 0)
+		´output_hack_stoped´ (delay 0)
+´remove_repaiur´ ElementOperator 100069
+	operation remove
+	elements
+		1 ´repair´
+	on_executed
+		´output_hack_resumed´ (delay 0)
+´output_hack_started´ ElementInstanceOutput 100070
+	event output_hack_started
+´output_hack_stoped´ ElementInstanceOutput 100073
+	event output_hack_stoped
+	on_executed
+		´pause_timer´ (delay 0)
+´output_hack_resumed´ ElementInstanceOutput 100074
+	event output_hack_resumed
+	on_executed
+		´resume_timer´ (delay 0)
+´interrupt_timer´ ElementTimer 100018
+	timer
+		1 60
+		2 15
+´trigger_timer_reached_0´ ElementTimerTrigger 100080
+	TRIGGER TIMES 1
+	position 2000, 0, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´interrupt_timer´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´stop_hack´ (delay 0)
+		´stop_interupt´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´start_timer´ ElementTimerOperator 100081
+	operation start
+	position 2000, 300, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´interrupt_timer´
+	on_executed
+		´point_debug_003´ (delay 0)
+´pause_timer´ ElementTimerOperator 100082
+	operation pause
+	position 2000, 200, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´interrupt_timer´
+	on_executed
+		´point_debug_004´ (delay 0)
+´resume_timer´ ElementTimerOperator 100083
+	operation start
+	position 2000, 100, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´interrupt_timer´
+	on_executed
+		´point_debug_005´ (delay 0)
+´point_debug_003´ ElementDebug 100084
+	as_subtitle false
+	debug_string timer_started
+	show_instigator false
+´point_debug_004´ ElementDebug 100085
+	as_subtitle false
+	debug_string timer_paused
+	show_instigator false
+´point_debug_005´ ElementDebug 100086
+	as_subtitle false
+	debug_string timer_resumed
+	show_instigator false
+´point_debug_006´ ElementDebug 100087
+	as_subtitle false
+	debug_string time_to_disable_firewall
+	show_instigator false
+´output_disable_firewall´ ElementInstanceOutput 100088
+	event hack_paused_disable_firewall
+´stop_hack´ ElementUnitSequence 100089
+	position 2000, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence state_2_stopped
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´remove_defend_WP´ (delay 0)
+´remove_defend_WP´ ElementOperator 100090
+	operation remove
+	elements
+		1 ´defend´
+	on_executed
+		´output_disable_firewall´ (delay 0)
+´input_firewall_down´ ElementInstanceInput 100091
+	event firewall_disabled
+	on_executed
+		´seq_resume_hack´ (delay 0)
+´seq_resume_hack´ ElementUnitSequence 100092
+	position 2300, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence power_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´repair´ (delay 0)
+´point_debug_007´ ElementDebug 100093
+	as_subtitle false
+	debug_string hack_resumed
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100094
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´resume_timer´
+		2 ´pause_timer´
+		3 ´start_timer´
+		4 ´point_debug_003´
+		5 ´point_debug_004´
+		6 ´point_debug_005´
+´trigger_hatch_open´ ElementUnitSequenceTrigger 100096
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_open
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+	on_executed
+		´func_sequence_002´ (delay 1.5)
+´func_sequence_002´ ElementUnitSequence 100097
+	position 1000, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´turn_on´ (delay 0)
+´trigger_hack_started´ ElementUnitSequenceTrigger 100098
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_hack
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+	on_executed
+		´start_hack´ (delay 0)
+´seq_enable_interactions´ ElementUnitSequence 100099
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´input_disable_interactions´ ElementInstanceInput 100010
+	TRIGGER TIMES 1
+	event disable_interactions
+	on_executed
+		´seq_disable_interactions´ (delay 0)
+´seq_disable_interactions´ ElementUnitSequence 100012
+	position 1200, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_skylight_barrier_hack/cas_skylight_barrier_hack/001 (-21.6733, 3.17885, 118.784)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_hack_device_casino/chca_interactable_hack_device_casino/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´disable_things´ (delay 0)
+´disable_things´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_hack_started´
+		2 ´resumed_hack´
+		3 ´hack_done´
+		4 ´keyboard_interaction´
+		5 ´output_disable_firewall´
+		6 ´output_keyboard_interaction´
+		7 ´output_hack_done´
+		8 ´output_hack_resumed´
+		9 ´output_hack_stoped´
+		10 ´output_hack_started´
+		11 ´defend´
+		12 ´interaction_start_hack´
+		13 ´repair´
+		14 ´trigger_hatch_open´
+		15 ´func_sequence_002´
+		16 ´so_drag´
+		17 ´so_anim´
+	on_executed
+		´remove_WPs´ (delay 0)
+´remove_WPs´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´interaction_start_hack´
+		2 ´defend´
+		3 ´repair´
+		4 ´so_drag´
+		5 ´so_anim´

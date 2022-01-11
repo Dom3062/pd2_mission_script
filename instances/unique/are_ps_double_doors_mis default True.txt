@@ -1,0 +1,298 @@
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100003
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 45
+	participate_to_group_ai true
+	position -175, -300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100004
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 45
+	participate_to_group_ai true
+	position -100, -300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100005
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 45
+	participate_to_group_ai true
+	position -25, -300, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100006
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 45
+	participate_to_group_ai true
+	position -25, -175, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100007
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 45
+	participate_to_group_ai true
+	position -175, -175, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´trigger_area_001´ ElementAreaTrigger 100008
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 404,928
+	height 270
+	instigator enemies
+	interval 0.1
+	position -100, -222, 107
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_empty
+	use_disabled_shapes false
+	width 400,35
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´close doors´ (delay 0)
+		´on´ (delay 0)
+		´link_remove´ (delay 0) DISABLED
+´func_nav_obstacle_001´ ElementNavObstacle 100009
+	operation add
+	position -200, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (7.29561E-05, -49.9999, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100010
+	operation remove
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 7
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (7.29561E-05, -49.9999, 0)
+´close doors´ ElementUnitSequence 100011
+	position -200, 175, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´open doors´ ElementUnitSequence 100012
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+			notify_unit_sequence open_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+		´point_debug_002´ (delay 0)
+´ai_enemy_group_001´ ElementSpawnEnemyGroup 100013
+	amount 0
+	ignore_disabled false
+	interval 10
+	spawn_type ordered
+	team default
+	preferred_spawn_groups
+		1 FBI_spoocs
+		2 tac_shield_wall_ranged
+		3 tac_tazer_flanking
+		4 tac_shield_wall_charge
+		5 tac_swat_rifle_flank
+		6 tac_shield_wall
+		7 tac_bull_rush
+		8 tac_tazer_charge
+	elements
+		1 ´ai_spawn_enemy_005´
+		2 ´ai_spawn_enemy_001´
+		3 ´ai_spawn_enemy_002´
+		4 ´ai_spawn_enemy_003´
+		5 ´ai_spawn_enemy_004´
+´on´ ElementToggle 100014
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´ai_enemy_trigger_001´
+´on_2´ ElementToggle 100015
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´ai_enemy_prefered_add_001´ ElementEnemyPreferedAdd 100016
+	spawn_groups
+		1 ´ai_enemy_group_001´
+´ai_enemy_prefered_remove_001´ ElementEnemyPreferedRemove 100017
+	elements
+		1 ´ai_enemy_prefered_add_001´
+´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100018
+	TRIGGER TIMES 1
+	event spawn
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_enemy_group_001´
+	on_executed
+		´on_2´ (delay 0)
+		´open doors´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100019
+	SO_access 15840
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interval 10
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -106,372 154,81 0,00400394
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´enable_spawn´ ElementInstanceInput 100020
+	event enable_door_spawn
+	on_executed
+		´ai_enemy_prefered_add_001´ (delay 0)
+		´on_3´ (delay 0)
+		´Activate chair´ (delay 0)
+´auto_start´ MissionScriptElement 100024
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´func_nav_obstacle_001´ (delay 2)
+´disable_spawn´ ElementInstanceInput 100000
+	event disable_door_spawn
+	on_executed
+		´on_4´ (delay 0)
+		´ai_enemy_prefered_remove_001´ (delay 0)
+´link_add´ MissionScriptElement 100001
+	on_executed
+		´ai_enemy_prefered_add_001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´off´ ElementToggle 100026
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_add´
+´on_3´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_add´
+	on_executed
+		´off_2´ (delay 0)
+´link_remove´ MissionScriptElement 100028
+	DISABLED
+	on_executed
+		´ai_enemy_prefered_remove_001´ (delay 0)
+´off_2´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_remove´ DISABLED
+´on_4´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_remove´ DISABLED
+	on_executed
+		´off´ (delay 0)
+´Activate chair´ MissionScriptElement 100036
+	TRIGGER TIMES 1
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´default´ ElementUnitSequence 100037
+	EXECUTE ON STARTUP
+	position -100, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+´doors closed´ ElementUnitSequenceTrigger 100040
+	sequence_list
+		2
+			guis_id 2
+			sequence door_closed
+			notify_unit_id units/pd2_dlc_arena/props/are_int_double_door_v2/are_int_double_door_v2/001 (6, 0, 0)
+	on_executed
+		´link_add´ (delay 0)
+´point_debug_001´ ElementDebug 100041
+	as_subtitle false
+	debug_string door closed
+	show_instigator false
+´point_debug_002´ ElementDebug 100042
+	as_subtitle false
+	debug_string door opened
+	show_instigator false

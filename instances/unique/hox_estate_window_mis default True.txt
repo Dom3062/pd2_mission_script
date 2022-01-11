@@ -1,0 +1,121 @@
+´window_opened´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+		2
+			guis_id 2
+			sequence break_glass
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+	on_executed
+		´window_opened_output´ (delay 0)
+		´disable_break_link´ (delay 0)
+´window_opened_output´ ElementInstanceOutput 100004
+	event window_opened
+´break_window´ ElementUnitSequence 100005
+	position 100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+			notify_unit_sequence break_glass
+			time 0
+´break_window_input´ ElementInstanceInput 100006
+	event break_window
+	on_executed
+		´break_window´ (delay 0)
+´disable_alarm_input´ ElementInstanceInput 100010
+	event disable_alarm
+	on_executed
+		´func_sequence_001´ (delay 0)
+´enable_window´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´enable_window_2´ (delay 0.2)
+´enable_window_2´ ElementUnitSequence 100009
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+			notify_unit_sequence interact_enable
+			time 0
+´gone_loud_input´ ElementInstanceInput 100003
+	event gone_loud
+	on_executed
+		´enable_int´ (delay 0)
+´enable_int´ ElementUnitSequence 100007
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline_no_sunray_mcmansion/001 (27, -50, 98)
+			notify_unit_sequence enable_interaction
+			time 0
+´used_planks´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline_no_sunray_mcmansion/001 (27, -50, 98)
+	on_executed
+		´planked_output´ (delay 0)
+		´disable_interaction´ (delay 0)
+´planked_output´ ElementInstanceOutput 100014
+	event window_planked
+´disable_break_link´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´break_window´
+´broke_planks´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence destroy_planks
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline_no_sunray_mcmansion/001 (27, -50, 98)
+	on_executed
+		´broke_planks_output´ (delay 0)
+		´enable_interaction´ (delay 0)
+´broke_planks_output´ ElementInstanceOutput 100017
+	event window_unplanked
+´func_sequence_001´ ElementUnitSequence 100018
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_small_alarm/mcm_prop_small_alarm/001 (-5, -108, 145.291)
+			notify_unit_sequence blink_off
+			time 0
+´disable_interaction´ ElementUnitSequence 100019
+	position 400, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+			notify_unit_sequence interact_disable
+			time 0
+´enable_interaction´ ElementUnitSequence 100020
+	position 500, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_window_house/mcm_prop_window/001 (5.96046E-06, -50, -2)
+			notify_unit_sequence interact_enable
+			time 0

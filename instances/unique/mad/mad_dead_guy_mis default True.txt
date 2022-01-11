@@ -1,0 +1,153 @@
+´activate_hand´ ElementInstanceInput 100007
+	event Activate hand
+	on_executed
+		´turn_on_trigger´ (delay 0)
+		´teammate_comment_find_it´ (delay 6)
+		´turn_on_hand_interaction´ (delay 0)
+´turn_on_trigger´ ElementToggle 100008
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_by_guy´ DISABLED
+´removed_hand_output´ ElementInstanceOutput 100009
+	event Removed hand
+´point_debug_001´ ElementDebug 100011
+	as_subtitle true
+	debug_string Jimmy: That was some nasty work right there.
+	show_instigator false
+´give_hand_equipment´ ElementEquipment 100013
+	amount 1
+	equipment hand
+	position -100, 800, 207.03
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_002´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´show_body´ ElementInstanceInput 100015
+	event Show body
+	on_executed
+		´show_body_2´ (delay 0)
+´start´ MissionScriptElement 100016
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_body´ (delay 0)
+´point_debug_002´ ElementDebug 100018
+	as_subtitle true
+	debug_string GOT HAND
+	show_instigator false
+´area_player_by_guy´ ElementAreaTrigger 100019
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	interval 0.1
+	position 0, 157, 107.03
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´WP_interact´ (delay 0)
+		´found_dead_output´ (delay 0)
+		´teammate_comment_there_he_is´ (delay 0)
+´WP_interact´ ElementWaypoint 100020
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 0, 127.488
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´WP_interact´
+	on_executed
+		´removed_hand_output´ (delay 0)
+´hide_body´ ElementUnitSequence 100001
+	position -100, 400, 207.03
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_dead_scientist/mad_prop_dead_scientist/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´show_body_2´ ElementUnitSequence 100002
+	position -100, 500, 207.03
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_dead_scientist/mad_prop_dead_scientist/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+´turn_on_hand_interaction´ ElementUnitSequence 100003
+	position 100, 600, 200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_dead_scientist/mad_prop_dead_scientist/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_dead_scientist/mad_prop_dead_scientist/001 (0, 0, 0)
+	on_executed
+		´give_hand_equipment´ (delay 0)
+		´teammate_comment_swear´ (delay 0.5)
+´found_dead_output´ ElementInstanceOutput 100006
+	event Found Dead Guy
+´teammate_comment_there_he_is´ ElementTeammateComment 100010
+	close_to_element false
+	comment v30
+	position 0, 250, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_003´ (delay 0)
+´soundbank_robbers´ ElementPlaySound 100012
+	append_prefix false
+	position -400, 800, 200
+	rotation 0, 0, 0, -1
+	sound_event v53
+	use_instigator false
+´teammate_comment_find_it´ ElementTeammateComment 100014
+	close_to_element true
+	comment v43
+	position -200, 700, 207.03
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_swear´ ElementTeammateComment 100022
+	close_to_element false
+	comment g60
+	position 200, 800, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_003´ ElementDebug 100023
+	as_subtitle false
+	debug_string teammate_comment_there_he_is
+	show_instigator false
+´point_debug_004´ ElementDebug 100017
+	as_subtitle false
+	debug_string teammate_comment_swear
+	show_instigator false

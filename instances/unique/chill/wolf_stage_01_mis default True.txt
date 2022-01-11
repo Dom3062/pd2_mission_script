@@ -1,0 +1,295 @@
+´func_enable_unit_001´ ElementEnableUnit 100069
+	position -100, -1600, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/S1_light_omni_003 (93.95, -94.5758, 124.988)
+		2 core/units/light_omni/light_omni/S1_light_omni_006 (-409, -200, 200)
+		3 units/lights/light_projection_01/light_projection_02/S1_light_projection_02_005 (109.6, -14.0823, 124.988)
+	on_executed
+		´s1´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100073
+	position 0, -1600, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/S2_light_omni_002 (93.95, -94.5758, 124.988)
+		2 core/units/light_omni/light_omni/S2_light_omni_005 (-419, -200, 200)
+		3 units/lights/light_projection_01/light_projection_02/S2_light_projection_02_002 (109.6, -14.0823, 124.988)
+		4 units/lights/light_projection_01/light_projection_02/S2_light_projection_02_004 (-57, -33, 165.109)
+	on_executed
+		´s2´ (delay 0)
+´func_enable_unit_003´ ElementEnableUnit 100075
+	position 100, -1600, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/S3_light_omni_001 (93.95, -94.5758, 124.988)
+		2 core/units/light_omni/light_omni/S3_light_omni_004 (-400, -200, 200)
+		3 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_001 (109.6, -14.0823, 124.988)
+		4 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_003 (-57, -33, 165.109)
+		5 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_006 (171, -137, 179.109)
+		6 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_007 (-331, -325, 299)
+	on_executed
+		´s3´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100008
+	position 300, -1500, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/S1_light_omni_003 (93.95, -94.5758, 124.988)
+		2 core/units/light_omni/light_omni/S1_light_omni_006 (-409, -200, 200)
+		3 units/lights/light_projection_01/light_projection_02/S1_light_projection_02_005 (109.6, -14.0823, 124.988)
+		4 core/units/light_omni/light_omni/S2_light_omni_002 (93.95, -94.5758, 124.988)
+		5 core/units/light_omni/light_omni/S2_light_omni_005 (-419, -200, 200)
+		6 units/lights/light_projection_01/light_projection_02/S2_light_projection_02_002 (109.6, -14.0823, 124.988)
+		7 units/lights/light_projection_01/light_projection_02/S2_light_projection_02_004 (-57, -33, 165.109)
+		8 core/units/light_omni/light_omni/S3_light_omni_001 (93.95, -94.5758, 124.988)
+		9 core/units/light_omni/light_omni/S3_light_omni_004 (-400, -200, 200)
+		10 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_001 (109.6, -14.0823, 124.988)
+		11 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_003 (-57, -33, 165.109)
+		12 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_006 (171, -137, 179.109)
+		13 units/lights/light_projection_01/light_projection_02/S3_light_projection_02_007 (-331, -325, 299)
+		14 units/pd2_dlc_chill/props/chl_prop_pku_tf2_turret/chl_prop_pku_tf2_turret/001 (-260, -204, 1.52588E-05)
+		15 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/001 (3909, -70, 75.1092)
+´tier_1´ ElementCustomSafehouseFilter 100018
+	check_type equal
+	position -100, -1500, 2.5
+	room_id german
+	room_tier 1
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´tier_2´ ElementCustomSafehouseFilter 100019
+	check_type equal
+	position 0, -1500, 2.5
+	room_id german
+	room_tier 2
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´tier_3´ ElementCustomSafehouseFilter 100020
+	check_type equal
+	position 100, -1500, 2.5
+	room_id german
+	room_tier 3
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+´startup´ MissionScriptElement 100021
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+		´disable_all´ (delay 0)
+´delay´ MissionScriptElement 100022
+	on_executed
+		´2´ (delay 0)
+´disable_all´ MissionScriptElement 100023
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´s1´ ElementLoadDelayed 100060
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_sentry_gun/chl_prop_sentry_gun_disassembled/S1_chl_prop_sentry_gun_disassembled_001 (53, -51, 75.1091)
+		2 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S1_chl_prop_tripmine_026 (-553, -210, 74.9083)
+		3 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S1_chl_prop_tripmine_027 (-589, -220, 114.149)
+		4 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cabinet/chl_prop_workshop_wolf_cabinet/S1_chl_prop_workshop_wolf_cabinet_003 (-588, -215, 75)
+		5 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cuttingboard/chl_prop_workshop_wolf_cuttingboard/S1_chl_prop_workshop_wolf_cuttingboard_003 (53, -51, 75.1091)
+		6 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desk/S1_chl_prop_workshop_wolf_desk_004 (-565, -250, 0)
+		7 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk_01/chl_prop_workshop_wolf_desk_01/S1_chl_prop_workshop_wolf_desk_01_001 (200, 0, 0)
+		8 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S1_chl_prop_workshop_wolf_desktidy_007 (-571, -214, 23.3852)
+		9 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S1_chl_prop_workshop_wolf_desktidy_008 (-575, -200, 23.3852)
+		10 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S1_chl_prop_workshop_wolf_desktidy_009 (-575, -304, 75.9083)
+		11 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S1_chl_prop_workshop_wolf_drawer_003 (-560, -209, 47)
+		12 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S1_chl_prop_workshop_wolf_stool_002 (75, -84, 0)
+		13 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S1_chl_prop_workshop_wolf_stool_007 (-522, -277, 1.52588E-05)
+		14 units/pd2_dlc_chill/props/chl_socketwire/chl_socket_wire/S1_chl_socket_wire_001 (-275, 0, 0)
+		15 200008
+		16 units/payday2/props/gen_prop_drill_static/gen_prop_drill_thermic_static/S1_gen_prop_drill_thermic_static_003 (-225, -26.0001, 1.52588E-05)
+		17 units/payday2/props/gen_prop_lab_computer/gen_prop_lab_computer/S1_gen_prop_lab_computer_003 (-576, -268, 74.9083)
+		18 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_broken/S1_gen_prop_long_lamp_broken_003 (12.9999, -200, 275)
+		19 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v2/S1_gen_prop_long_lamp_v2_007 (-412, -200, 275)
+		20 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S1_ind_prop_warehouse_box_b_001 (-555, -339, 0)
+		21 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S1_ind_prop_warehouse_box_b_003 (-366, -48, 108)
+		22 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_d/S1_ind_prop_warehouse_box_d_001 (-420, -44, 108)
+		23 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_d/S1_ind_prop_warehouse_box_d_002 (171, -50, 0)
+		24 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S1_ind_prop_warehouse_box_f_001 (160, -336, 108)
+		25 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_4/S1_ind_prop_warehouse_box_stack_4_001 (-75, -40, 0)
+		26 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_8/S1_ind_prop_warehouse_box_stack_8_001 (-380, -51, 0)
+		27 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_8/S1_ind_prop_warehouse_box_stack_8_003 (146, -300, 1.52588E-05)
+		28 units/payday2/props/mcm_prop_basement_fusebox_a/mcm_prop_basement_fusebox_a/S1_mcm_prop_basement_fusebox_a_003 (100, -7.62939E-06, 201.129)
+		29 200007
+		30 200006
+		31 units/payday2/props/off_prop_appliance_computer/off_prop_appliance_computer/S1_off_prop_appliance_computer_001 (119, -32, 23.8499)
+		32 units/payday2/props/off_prop_appliance_keyboard/off_prop_appliance_keyboard/S1_off_prop_appliance_keyboard_001 (66, -12, 75.1091)
+		33 units/payday2/props/off_prop_appliance_monitor/off_prop_appliance_monitor/S1_off_prop_appliance_monitor_001 (110, -12, 77.1091)
+		34 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/S1_off_prop_appliance_mouse_001 (120, -54, 75.1091)
+		35 units/payday2/props/off_prop_generic_shelf_wire/off_prop_generic_shelf_wire_a/S1_off_prop_generic_shelf_wire_a_001 (-526, -36, 0)
+		36 units/payday2/props/off_prop_generic_shelf_wire/off_prop_generic_shelf_wire_a/S1_off_prop_generic_shelf_wire_a_002 (-525, -111, 0)
+		37 units/world/props/poster/poster_earth_in_space/S1_poster_earth_in_space_004 (-601, -350, 132.694)
+´s2´ ElementLoadDelayed 100062
+	unit_ids
+		1 units/payday2/props/air_prop_office_binder/air_prop_office_binder_pack_4/S2_air_prop_office_binder_pack_4_002 (-83, -16, 132)
+		2 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small/S2_chl_prop_drill_small_001 (137, -326, 165.976)
+		3 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small_pieces/S2_chl_prop_drill_small_pieces_001 (171, -280, 129)
+		4 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/S2_chl_prop_ecm_jammer_001 (20, -67, 75.1091)
+		5 units/pd2_dlc_chill/props/chl_prop_sentry_gun/chl_prop_sentry_gun_disassembled/S2_chl_prop_sentry_gun_disassembled_002 (-38, -33, 77.1091)
+		6 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S2_chl_prop_tripmine_024 (-553, -210, 74.9083)
+		7 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S2_chl_prop_tripmine_025 (-589, -220, 114.149)
+		8 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S2_chl_prop_tripmine_031 (-14.0671, -56.9813, 32.1116)
+		9 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S2_chl_prop_tripmine_032 (-25, -56, 24.1092)
+		10 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S2_chl_prop_tripmine_033 (-8, -56, 24.1092)
+		11 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cabinet/chl_prop_workshop_wolf_cabinet/S2_chl_prop_workshop_wolf_cabinet_002 (-588, -215, 75)
+		12 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cabinet/chl_prop_workshop_wolf_cabinet/S2_chl_prop_workshop_wolf_cabinet_004 (-89, -13, 168.109)
+		13 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cuttingboard/chl_prop_workshop_wolf_cuttingboard/S2_chl_prop_workshop_wolf_cuttingboard_002 (36, -52, 75.1091)
+		14 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desk/S2_chl_prop_workshop_wolf_desk_003 (-565, -250, 0)
+		15 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk_02/chl_prop_workshop_wolf_desk_02/S2_chl_prop_workshop_wolf_desk_02_001 (200, 0, 0)
+		16 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S2_chl_prop_workshop_wolf_desktidy_004 (-575, -304, 75.9083)
+		17 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S2_chl_prop_workshop_wolf_desktidy_005 (-571, -214, 23.3852)
+		18 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S2_chl_prop_workshop_wolf_desktidy_006 (-575, -200, 23.3852)
+		19 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S2_chl_prop_workshop_wolf_desktidy_007 (49, -14, 77)
+		20 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S2_chl_prop_workshop_wolf_desktidy_009 (-12, -19, 77)
+		21 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S2_chl_prop_workshop_wolf_drawer_002 (-560, -209, 47)
+		22 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S2_chl_prop_workshop_wolf_drawer_004 (-98, -55, 46.4776)
+		23 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_oscillator/chl_prop_workshop_wolf_oscillator/S2_chl_prop_workshop_wolf_oscillator_002 (-98.8199, -26.0261, 75.1091)
+		24 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S2_chl_prop_workshop_wolf_stool_003 (75, -92, 0)
+		25 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S2_chl_prop_workshop_wolf_stool_006 (-522, -277, 1.52588E-05)
+		26 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S2_chl_prop_workshop_wolf_toolkit_bottom_004 (47.8, -45.8337, 34)
+		27 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_box/S2_chl_prop_workshop_wolf_toolkit_box_002 (44.1399, -40.6806, 22)
+		28 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_top/S2_chl_prop_workshop_wolf_toolkit_top_001 (42, -10, 107)
+		29 units/pd2_dlc_chill/props/chl_socketwire/chl_socket_wire/S2_chl_socket_wire_003 (-275, 0, 0)
+		30 units/payday2/props/gen_prop_drill_static/gen_prop_drill_thermic_static/S2_gen_prop_drill_thermic_static_001 (-565, -95, 0)
+		31 units/payday2/props/gen_prop_drill_static/gen_prop_drill_thermic_static/S2_gen_prop_drill_thermic_static_002 (-225, -30.0001, 1.52588E-05)
+		32 units/payday2/props/gen_prop_lab_computer/gen_prop_lab_computer/S2_gen_prop_lab_computer_002 (-576, -268, 74.9083)
+		33 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_broken/S2_gen_prop_long_lamp_broken_002 (13, -200, 275)
+		34 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v2/S2_gen_prop_long_lamp_v2_006 (-412, -200, 275)
+		35 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v3/S2_gen_prop_long_lamp_v3_002 (-57, -12, 131.109)
+		36 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S2_ind_prop_warehouse_box_b_002 (-555, -339, 0)
+		37 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S2_ind_prop_warehouse_box_f_002 (160, -336, 108)
+		38 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_b/S2_ind_prop_warehouse_box_plastic_b_002 (-66, -39, 24.8499)
+		39 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_c/S2_ind_prop_warehouse_box_plastic_c_002 (-24, -25, 24.8499)
+		40 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_shelf_a/S2_ind_prop_warehouse_box_plastic_shelf_a_002 (-375, -26.0001, 0)
+		41 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_8/S2_ind_prop_warehouse_box_stack_8_004 (146, -300, 1.52588E-05)
+		42 units/payday2/props/mcm_prop_basement_fusebox_a/mcm_prop_basement_fusebox_a/S2_mcm_prop_basement_fusebox_a_002 (100, 0, 201.129)
+		43 units/payday2/props/off_prop_appliance_computer/off_prop_appliance_computer/S2_off_prop_appliance_computer_002 (119, -32, 23.8499)
+		44 units/payday2/props/off_prop_appliance_keyboard/off_prop_appliance_keyboard/S2_off_prop_appliance_keyboard_002 (104, -30, 75.1091)
+		45 units/payday2/props/off_prop_appliance_monitor/off_prop_appliance_monitor/S2_off_prop_appliance_monitor_002 (110, -12, 77.1091)
+		46 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/S2_off_prop_appliance_mouse_004 (117, -67, 75.1091)
+		47 units/payday2/props/off_prop_generic_shelf_wire/off_prop_generic_shelf_wire_a/S2_off_prop_generic_shelf_wire_a_002 (-375, -26.0001, 1.52588E-05)
+		48 units/world/props/poster/poster_earth_in_space/S2_poster_earth_in_space_003 (-601, -350, 132.694)
+		49 units/world/props/tools/tools_screwdriver/S2_tools_screwdriver_002 (32, -42, 75.3795)
+´s3´ ElementLoadDelayed 100064
+	unit_ids
+		1 units/payday2/props/air_prop_office_binder/air_prop_office_binder_pack_3/S3_air_prop_office_binder_pack_3_001 (184, -172, 147.109)
+		2 units/payday2/props/air_prop_office_binder/air_prop_office_binder_pack_4/S3_air_prop_office_binder_pack_4_001 (-83, -16, 132)
+		3 units/payday2/props/air_prop_office_binder/air_prop_office_binder_red/S3_air_prop_office_binder_red_001 (-528, -32, 31.3427)
+		4 units/payday2/props/air_prop_office_binder/air_prop_office_binder_red/S3_air_prop_office_binder_red_001 (175, -20, 104.046)
+		5 units/payday2/props/air_prop_office_binder/air_prop_office_binder_red/S3_air_prop_office_binder_red_002 (158, -32, 146.973)
+		6 units/payday2/props/air_prop_office_binder/air_prop_office_binder_white/S3_air_prop_office_binder_white_001 (182, -17, 104.046)
+		7 units/payday2/props/air_prop_office_binder/air_prop_office_binder_yellow/S3_air_prop_office_binder_yellow_001 (192, -20, 104.046)
+		8 units/payday2/props/air_prop_office_binder/air_prop_office_binder_yellow/S3_air_prop_office_binder_yellow_002 (143, -16, 139.973)
+		9 units/pd2_dlc_born/props/bor_prop_garage_tooltrolley/bor_prop_garage_tooltrolley/S3_bor_prop_garage_tooltrolley_001 (-321, -187, 1.52588E-05)
+		10 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small/S3_chl_prop_drill_small_007 (134, -251, 103)
+		11 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small/S3_chl_prop_drill_small_008 (185, -339, 103)
+		12 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small/S3_chl_prop_drill_small_009 (132, -299, 103)
+		13 units/pd2_dlc_chill/props/chl_prop_drill_small/chl_prop_drill_small_pieces/S3_chl_prop_drill_small_pieces_003 (193, -286, 167)
+		14 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/S3_chl_prop_ecm_jammer_002 (-25.5208, -17.0456, 131.927)
+		15 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/S3_chl_prop_ecm_jammer_002 (161.693, -155.671, 23.8499)
+		16 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/S3_chl_prop_ecm_jammer_003 (182.611, -184.023, 23.8499)
+		17 units/pd2_dlc_chill/props/chl_prop_ecm_jammer/chl_prop_ecm_jammer/S3_chl_prop_ecm_jammer_004 (158.611, -184.023, 23.8499)
+		18 units/pd2_dlc_chill/props/chl_prop_office_computer/chl_prop_office_computer/S3_chl_prop_office_computer_001 (-576, -268, 74.9083)
+		19 units/pd2_dlc_chill/props/chl_prop_sentry_gun/chl_prop_sentry_gun/S3_chl_prop_sentry_gun_001 (-569.121, -87.3006, 74.9083)
+		20 units/pd2_dlc_chill/props/chl_prop_sentry_gun/chl_prop_sentry_gun_disassembled/S3_chl_prop_sentry_gun_disassembled_003 (-38, -33, 76.1091)
+		21 units/pd2_dlc_chill/props/chl_prop_sentry_gun/chl_prop_sentry_gun_disassembled/S3_chl_prop_sentry_gun_disassembled_004 (-569, -131, 75.9083)
+		22 units/pd2_dlc_chill/props/chl_prop_syndey_3dprinter/chl_prop_syndey_3dprinter/S3_chl_prop_syndey_3dprinter_001 (164, -184, 75.1091)
+		23 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_005 (-8, -56, 24.1092)
+		24 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_006 (-25, -56, 24.1092)
+		25 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_007 (-14.0671, -56.9813, 32.1116)
+		26 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_008 (-573, -165, 24.3852)
+		27 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_009 (-581, -150, 24.3852)
+		28 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_010 (-573, -135, 24.3852)
+		29 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_011 (-578, -120, 24.3852)
+		30 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_012 (-573, -128, 31.3852)
+		31 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_013 (-573, -158, 31.3852)
+		32 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_014 (-581, -143, 31.3852)
+		33 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_015 (-578, -152, 39.3852)
+		34 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_021 (-589, -220, 114.149)
+		35 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_022 (-553, -210, 74.9083)
+		36 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_023 (-363, -24, 28.2261)
+		37 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_034 (163, -261, 26)
+		38 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_035 (168, -248, 26)
+		39 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_036 (168, -275, 26)
+		40 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_037 (169, -288, 26)
+		41 units/pd2_dlc_chill/props/chl_prop_tripmine/chl_prop_tripmine/S3_chl_prop_tripmine_038 (168, -302, 26)
+		42 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cabinet/chl_prop_workshop_wolf_cabinet/S3_chl_prop_workshop_wolf_cabinet_001 (-588, -215, 75)
+		43 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cabinet/chl_prop_workshop_wolf_cabinet/S3_chl_prop_workshop_wolf_cabinet_003 (-89, -13, 168.109)
+		44 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_cuttingboard/chl_prop_workshop_wolf_cuttingboard/S3_chl_prop_workshop_wolf_cuttingboard_001 (54, -52, 75.1091)
+		45 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desk/S3_chl_prop_workshop_wolf_desk_001 (-565, -250, 0)
+		46 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desk/S3_chl_prop_workshop_wolf_desk_002 (-567, -120, 0)
+		47 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk_03/chl_prop_workshop_wolf_desk_03/S3_chl_prop_workshop_wolf_desk_03_001 (200, 0, 1.52588E-05)
+		48 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_001 (-575, -304, 75.9083)
+		49 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_002 (-575, -200, 23.3852)
+		50 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_003 (-571, -214, 23.3852)
+		51 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_004 (-9, -19, 76)
+		52 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_005 (153, -16, 170.674)
+		53 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_006 (168, -16, 170.674)
+		54 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_desktidy/S3_chl_prop_workshop_wolf_desktidy_010 (-12, -17, 168.365)
+		55 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S3_chl_prop_workshop_wolf_drawer_001 (-560, -290, 47)
+		56 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S3_chl_prop_workshop_wolf_drawer_002 (-98, -55, 46.4776)
+		57 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_drawer/S3_chl_prop_workshop_wolf_drawer_003 (164, -186, 47.1091)
+		58 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_oscillator/chl_prop_workshop_wolf_oscillator/S3_chl_prop_workshop_wolf_oscillator_003 (-101, -26, 75.1091)
+		59 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_pegboard/S3_chl_prop_workshop_wolf_pegboard_001 (-598, -145, 100)
+		60 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_desk/chl_prop_workshop_wolf_pegboard/S3_chl_prop_workshop_wolf_pegboard_002 (-598, -85, 100)
+		61 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S3_chl_prop_workshop_wolf_stool_004 (78, -81, 1.52588E-05)
+		62 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_stool/chl_prop_workshop_wolf_stool/S3_chl_prop_workshop_wolf_stool_005 (-522, -127, 1.52588E-05)
+		63 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S3_chl_prop_workshop_wolf_toolkit_bottom_001 (-564.149, -28.7904, 82.9083)
+		64 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S3_chl_prop_workshop_wolf_toolkit_bottom_001 (47.8, -45.8337, 34)
+		65 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S3_chl_prop_workshop_wolf_toolkit_bottom_002 (-597, -145, 125)
+		66 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S3_chl_prop_workshop_wolf_toolkit_bottom_002 (-81, -3, 106)
+		67 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_bottom/S3_chl_prop_workshop_wolf_toolkit_bottom_003 (46, -3, 106)
+		68 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_box/S3_chl_prop_workshop_wolf_toolkit_box_001 (-568.978, -27.4964, 71.9083)
+		69 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_box/S3_chl_prop_workshop_wolf_toolkit_box_001 (44.1399, -40.6806, 22)
+		70 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_top/S3_chl_prop_workshop_wolf_toolkit_top_001 (-597, -89, 125)
+		71 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_top/S3_chl_prop_workshop_wolf_toolkit_top_001 (41, -27, 52)
+		72 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_top/S3_chl_prop_workshop_wolf_toolkit_top_002 (-30, -2.99998, 106)
+		73 units/pd2_dlc_chill/props/chl_prop_workshop_wolf_toolkit/chl_prop_workshop_wolf_toolkit_top/S3_chl_prop_workshop_wolf_toolkit_top_003 (198, -111, 106)
+		74 units/pd2_dlc_chill/props/chl_socketwire/chl_socket_wire/S3_chl_socket_wire_002 (-275, 0, 0)
+		75 units/payday2/props/gen_prop_drill_static/gen_prop_drill_small_static/S3_gen_prop_drill_small_static_001 (197, -125, 76)
+		76 units/payday2/props/gen_prop_drill_static/gen_prop_drill_thermic_static/S3_gen_prop_drill_thermic_static_001 (-225, -26, 1.52588E-05)
+		77 units/payday2/props/gen_prop_lab_recorder/gen_prop_lab_recorder/S3_gen_prop_lab_recorder_001 (155.64, -25.1091, 75.1091)
+		78 units/payday2/props/gen_prop_lab_soldering_iron/gen_prop_lab_soldering_iron/S3_gen_prop_lab_soldering_iron_001 (54, -15, 75.1091)
+		79 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_broken/S3_gen_prop_long_lamp_broken_001 (13, -200, 275)
+		80 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v2/S3_gen_prop_long_lamp_v2_005 (-412, -200, 275)
+		81 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v3/S3_gen_prop_long_lamp_v3_001 (-57, -12, 131.109)
+		82 units/payday2/props/gen_prop_long_lamp/gen_prop_long_lamp_v3/S3_gen_prop_long_lamp_v3_003 (192, -137, 145.109)
+		83 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S3_ind_prop_warehouse_box_b_004 (167, -300, 200)
+		84 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_e/S3_ind_prop_warehouse_box_e_001 (-551, -30, 1.52588E-05)
+		85 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S3_ind_prop_warehouse_box_f_001 (170, -118, 23.8499)
+		86 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S3_ind_prop_warehouse_box_f_002 (-565, -29, 30)
+		87 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S3_ind_prop_warehouse_box_f_003 (168, -337, 26)
+		88 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S3_ind_prop_warehouse_box_f_003 (-568, -344, 1.52588E-05)
+		89 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_b/S3_ind_prop_warehouse_box_plastic_b_001 (-66, -39, 24.8499)
+		90 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_c/S3_ind_prop_warehouse_box_plastic_c_001 (-24, -25, 23.8499)
+		91 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_plastic_shelf_a/S3_ind_prop_warehouse_box_plastic_shelf_a_001 (-375, -26.0001, 0)
+		92 units/payday2/props/mcm_prop_basement_fusebox_a/mcm_prop_basement_fusebox_a/S3_mcm_prop_basement_fusebox_a_004 (100, 0, 201.129)
+		93 units/payday2/props/off_prop_appliance_computer/off_prop_appliance_computer/S3_off_prop_appliance_computer_003 (119, -32, 23.8499)
+		94 units/payday2/props/off_prop_appliance_keyboard/off_prop_appliance_keyboard/S3_off_prop_appliance_keyboard_003 (121, -43, 76.1091)
+		95 units/payday2/props/off_prop_appliance_monitor/off_prop_appliance_monitor/S3_off_prop_appliance_monitor_003 (110, -12, 77.1091)
+		96 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/S3_off_prop_appliance_mouse_003 (117, -67, 75.1091)
+		97 units/payday2/props/off_prop_generic_shelf_wire/off_prop_generic_shelf_wire_a/S3_off_prop_generic_shelf_wire_a_001 (-375, -26, 1.52588E-05)
+		98 units/payday2/props/off_prop_generic_shelf_wire/off_prop_generic_shelf_wire_a/S3_off_prop_generic_shelf_wire_a_003 (167, -300, 1.52588E-05)
+		99 units/world/props/oil_stains_decal/oil_stains_decal_01/S3_oil_stains_decal_01_001 (-282, -258, 1.52588E-05)
+		100 units/world/props/diamond_heist/apartment/apartment_livingroom/pictureframe/pictureframe2/S3_pictureframe2_001 (154, -18, 103.046)
+		101 units/world/props/poster/poster_earth_in_space/S3_poster_earth_in_space_002 (-601, -350, 132.694)
+		102 units/world/props/tools/tools_hammer/S3_tools_hammer_001 (23, -19, 76.1091)
+		103 units/world/props/tools/tools_hammer/S3_tools_hammer_002 (-275, -275, 1.52588E-05)
+		104 units/world/props/tools/tools_screwdriver/S3_tools_screwdriver_001 (82, -42, 75.3795)
+		105 units/world/props/tools/tools_screwdriver/S3_tools_screwdriver_003 (-325, -200, 0)
+´input_not_raid´ ElementInstanceInput 100000
+	event not_raid
+	on_executed
+		´2´ (delay 0)
+´2´ ElementCounter 100001
+	counter_target 2
+	on_executed
+		´tier_3´ (delay 0)
+		´tier_2´ (delay 0)
+		´tier_1´ (delay 0)

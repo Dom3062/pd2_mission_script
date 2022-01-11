@@ -1,0 +1,116 @@
+´player_in_range´ ElementShape 100006
+	depth 500
+	height 500
+	position -50, 0, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 500
+´auto_start´ MissionScriptElement 100031
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_vent´ (delay 0.1)
+´sound_grating´ ElementPlaySound 100034
+	append_prefix false
+	interrupt true
+	position -50, 0, 25
+	rotation 0, 0, 0, -1
+	sound_event cage_liftoff
+	use_instigator false
+´open_right´ ElementUnitSequence 100038
+	position 250, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_grilles/drk_prop_grilles/001 (0, -1, 0)
+			notify_unit_sequence open_vent_right_short
+			time 0
+´vent_used´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_grilles/drk_prop_grilles/001 (0, -1, 0)
+	on_executed
+		´OFF´ (delay 0)
+´disable_vent´ ElementUnitSequence 100018
+	position -50, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_grilles/drk_prop_grilles/001 (0, -1, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´vent_shape´ ElementShape 100000
+	depth 230
+	height 155
+	position -50, -65, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 205
+´in_or_out´ ElementAreaReportTrigger 100001
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -50, 150, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´vent_shape´
+	use_shape_element_ids
+	unit_ids
+		1 100000
+	on_executed
+		´inside´ (delay 0) (alternative enter)
+		´outside´ (delay 0) (alternative empty)
+´inside´ MissionScriptElement 100002
+	on_executed
+		´enable´ (delay 0)
+´outside´ MissionScriptElement 100022
+	on_executed
+		´disable´ (delay 0)
+´enable´ ElementUnitSequence 100028
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_grilles/drk_prop_grilles/001 (0, -1, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+´disable´ ElementUnitSequence 100029
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_grilles/drk_prop_grilles/001 (0, -1, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´OFF´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inside´
+		2 ´outside´
+		3 ´in_or_out´
+		4 ´vent_shape´
+		5 ´enable´
+		6 ´disable´
+	on_executed
+		´open_right´ (delay 0)

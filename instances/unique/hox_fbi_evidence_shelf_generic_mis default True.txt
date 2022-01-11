@@ -1,0 +1,383 @@
+´set_evidence´ ElementInstanceInput 100002
+	BASE DELAY 2
+	event set_evidence
+	on_executed
+		´set_random_evidence´ (delay 0)
+		´allow_interaction_if_evidence´ (delay 0)
+´set_random_evidence´ ElementRandom 100016
+	amount 1
+	ignore_disabled true
+	on_executed
+		´evidence000´ (delay 0)
+		´evidence001´ (delay 0)
+		´evidence002´ (delay 0)
+		´evidence003´ (delay 0)
+		´evidence004´ (delay 0)
+		´evidence005´ (delay 0)
+´evidence000´ MissionScriptElement 100017
+	on_executed
+		´set_evidence_000´ (delay 0)
+		´allow_interaction000´ (delay 0)
+´evidence001´ MissionScriptElement 100018
+	on_executed
+		´set_evidence_001´ (delay 0)
+		´allow_interaction001´ (delay 0)
+´evidence002´ MissionScriptElement 100019
+	on_executed
+		´set_evidence_002´ (delay 0)
+		´allow_interaction002´ (delay 0)
+´evidence003´ MissionScriptElement 100020
+	on_executed
+		´set_evidence_003´ (delay 0)
+		´allow_interaction003´ (delay 0)
+´evidence004´ MissionScriptElement 100021
+	on_executed
+		´set_evidence_004´ (delay 0)
+		´allow_interaction004´ (delay 0)
+´evidence005´ MissionScriptElement 100022
+	on_executed
+		´set_evidence_005´ (delay 0)
+		´allow_interaction005´ (delay 0)
+´set_evidence_000´ ElementUnitSequence 100023
+	position 200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_0_clean
+			time 0
+´set_evidence_001´ ElementUnitSequence 100024
+	position 100, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_1_clean
+			time 0
+´set_evidence_002´ ElementUnitSequence 100025
+	position 0, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_2_clean
+			time 0
+´set_evidence_003´ ElementUnitSequence 100026
+	position -100, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_3_clean
+			time 0
+´set_evidence_004´ ElementUnitSequence 100027
+	position -200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_4_clean
+			time 0
+´set_evidence_005´ ElementUnitSequence 100028
+	position -300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_5_clean
+			time 0
+´found_evidence´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_000 (88, 88, 30)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_001 (88, 88, 113)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_002 (88, -62, 72)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_003 (88, -62, 147)
+		5
+			guis_id 5
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_004 (88, 13, 191)
+		6
+			guis_id 6
+			sequence load
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_005 (88, 88, 235)
+	on_executed
+		´found_evidence_2´ (delay 0)
+		´hide_box000´ (delay 0) DISABLED
+		´hide_box001´ (delay 0) DISABLED
+		´hide_box002´ (delay 0) DISABLED
+		´hide_box003´ (delay 0) DISABLED
+		´hide_box004´ (delay 0) DISABLED
+		´hide_box005´ (delay 0) DISABLED
+		´point_debug_002´ (delay 0)
+´found_evidence_2´ ElementInstanceOutput 100030
+	event found_evidence
+´allow_interaction000´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact000´ DISABLED
+		2 ´hide_box000´ DISABLED
+´allow_interaction001´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact001´ DISABLED
+		2 ´hide_box001´ DISABLED
+´allow_interaction002´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact002´ DISABLED
+		2 ´hide_box002´ DISABLED
+´allow_interaction003´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact003´ DISABLED
+		2 ´hide_box003´ DISABLED
+´allow_interaction004´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact004´ DISABLED
+		2 ´hide_box004´ DISABLED
+´allow_interaction005´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interact005´ DISABLED
+		2 ´hide_box005´ DISABLED
+´allow_interaction_if_evidence´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´allow_interaction´ DISABLED
+´allow_interaction´ MissionScriptElement 100038
+	DISABLED
+	on_executed
+		´enable_interact000´ (delay 0) DISABLED
+		´enable_interact001´ (delay 0) DISABLED
+		´enable_interact002´ (delay 0) DISABLED
+		´enable_interact003´ (delay 0) DISABLED
+		´enable_interact004´ (delay 0) DISABLED
+		´enable_interact005´ (delay 0) DISABLED
+		´point_debug_001´ (delay 0)
+´enable_interact000´ ElementUnitSequence 100039
+	DISABLED
+	position 200, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_000 (88, 88, 30)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interact001´ ElementUnitSequence 100040
+	DISABLED
+	position 100, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_001 (88, 88, 113)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interact002´ ElementUnitSequence 100041
+	DISABLED
+	position 0, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_002 (88, -62, 72)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interact003´ ElementUnitSequence 100042
+	DISABLED
+	position -100, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_003 (88, -62, 147)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interact004´ ElementUnitSequence 100043
+	DISABLED
+	position -200, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_004 (88, 13, 191)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interact005´ ElementUnitSequence 100044
+	DISABLED
+	position -300, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_005 (88, 88, 235)
+			notify_unit_sequence interaction_enable
+			time 0
+´enable_interaction´ ElementInstanceInput 100045
+	event enable_interaction
+	on_executed
+		´allow_interaction´ (delay 0) DISABLED
+		´enable_interact000´ (delay 0) DISABLED
+		´enable_interact001´ (delay 0) DISABLED
+		´enable_interact002´ (delay 0) DISABLED
+		´enable_interact003´ (delay 0) DISABLED
+		´enable_interact004´ (delay 0) DISABLED
+		´enable_interact005´ (delay 0) DISABLED
+´hide_box000´ ElementUnitSequence 100046
+	DISABLED
+	position 200, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_0_searched
+			time 0
+´hide_box001´ ElementUnitSequence 100047
+	DISABLED
+	position 100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_1_searched
+			time 0
+´hide_box002´ ElementUnitSequence 100048
+	DISABLED
+	position 0, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_2_searched
+			time 0
+´hide_box003´ ElementUnitSequence 100049
+	DISABLED
+	position -100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_3_searched
+			time 0
+´hide_box004´ ElementUnitSequence 100050
+	DISABLED
+	position -200, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_4_searched
+			time 0
+´hide_box005´ ElementUnitSequence 100051
+	DISABLED
+	position -300, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_evidence_set/stn_prop_evidence_set/001 (75, -100, 0)
+			notify_unit_sequence evidence_set_5_searched
+			time 0
+´point_debug_001´ ElementDebug 100003
+	as_subtitle false
+	debug_string can use evidence
+	show_instigator false
+´point_debug_002´ ElementDebug 100004
+	as_subtitle false
+	debug_string found evidence
+	show_instigator false
+´disable_interaction´ ElementInstanceInput 100001
+	event disable_interaction
+	on_executed
+		´disable_interact_sequences´ (delay 0)
+´disable_interact_sequences´ ElementUnitSequence 100005
+	position -400, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_000 (88, 88, 30)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_001 (88, 88, 113)
+			notify_unit_sequence interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_002 (88, -62, 72)
+			notify_unit_sequence interaction_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_003 (88, -62, 147)
+			notify_unit_sequence interaction_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_004 (88, 13, 191)
+			notify_unit_sequence interaction_disable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_evidence/invisible_interaction_evidence/interact_evidence_005 (88, 88, 235)
+			notify_unit_sequence interaction_disable
+			time 0

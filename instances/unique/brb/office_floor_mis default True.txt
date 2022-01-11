@@ -1,0 +1,881 @@
+´nav_remove´ ElementNavObstacle 100006
+	operation remove
+	position 100, 600, 0.0039978
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, -25, 0.00400394)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-100, 75, 0.00400394)
+´input_activate_saw´ ElementInstanceInput 100007
+	event Activate saw
+	on_executed
+		´activate_wp´ (delay 0) DISABLED
+´output_saw_placed´ ElementInstanceOutput 100008
+	event Saw placed
+	on_executed
+		´activate_defend_wp´ (delay 0)
+´output_saw_interrupted´ ElementInstanceOutput 100009
+	event Saw interrupted
+	on_executed
+		´activate_fix_wp´ (delay 0)
+´output_saw_done´ ElementInstanceOutput 100010
+	event Saw done
+	on_executed
+		´activate_wp001´ (delay 0)
+´output_saw_taken´ ElementInstanceOutput 100011
+	event Saw taken
+	on_executed
+		´activate_c4´ (delay 0)
+´activate_wp´ MissionScriptElement 100012
+	DISABLED
+	on_executed
+		´saw_wp´ (delay 0)
+		´activate_saw´ (delay 0)
+		´enable_area_player_close_to_saw´ (delay 0)
+´activate_defend_wp´ MissionScriptElement 100013
+	on_executed
+		´defend_wp´ (delay 0)
+		´remove_saw_wp´ (delay 0)
+		´start_2´ (delay 0)
+´activate_fix_wp´ MissionScriptElement 100014
+	on_executed
+		´fix_wp´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+´output_saw_fixed´ ElementInstanceOutput 100015
+	event Saw fixed
+	on_executed
+		´activate_defend_wp_2´ (delay 0)
+´start´ MissionScriptElement 100018
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_saws´ (delay 1)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´hide_saws´ ElementUnitSequence 100019
+	position 0, 600, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (0, -25, 0.00390634)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence hide_dummy
+			time 0
+	on_executed
+		´nav_remove´ (delay 0)
+´saw_wp´ ElementWaypoint 100020
+	icon pd2_generic_saw
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 50.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´defend_wp´ ElementWaypoint 100021
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 50.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fix_wp´ ElementWaypoint 100022
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 50.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_saw_wp´ ElementOperator 100023
+	operation remove
+	elements
+		1 ´saw_wp´
+	on_executed
+		´start_interrupt´ (delay 5)
+´remove_defend_wp´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´defend_wp´
+	on_executed
+		´set_jammed´ (delay 0)
+´remove_fix_wp´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´fix_wp´
+	on_executed
+		´start_interrupt´ (delay 5)
+		´set_fixed´ (delay 0)
+´activate_defend_wp_2´ MissionScriptElement 100026
+	on_executed
+		´remove_fix_wp´ (delay 0)
+		´defend_wp´ (delay 0)
+´activate_wp001´ MissionScriptElement 100027
+	on_executed
+		´remove_defend_wp001´ (delay 0)
+		´interact_wp´ (delay 0)
+´remove_defend_wp001´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´fix_wp´
+		3 ´saw_wp´
+	on_executed
+		´remove_interrupt´ (delay 0)
+´interact_wp´ ElementWaypoint 100029
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 50.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_wp002´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´fix_wp´
+		3 ´saw_wp´
+		4 ´interact_wp´
+	on_executed
+		´nav_add´ (delay 0)
+´remove_interrupt´ MissionScriptElement 100031
+	on_executed
+		´turn_off_so´ (delay 0)
+		´turn_off´ (delay 0)
+´start_interrupt´ MissionScriptElement 100032
+	on_executed
+		´interrupt_logic_start´ (delay 0)
+´interrupt_logic_start´ MissionScriptElement 100033
+	on_executed
+		´turn_on_interrupt_entities´ (delay 0)
+´interrupt_so´ ElementSpecialObjective 100034
+	TRIGGER TIMES 1
+	SO_access 9440
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, 69, 0.00400543
+	rotation -1.33227E-15, -1.00583E-22, 1, -7.54979E-08
+	scan true
+	search_distance 2000
+	search_position 6,61639 297,457 0,00400394
+	so_action e_so_low_kicks
+	trigger_on none
+	followup_elements
+´loop´ MissionScriptElement 100039
+	on_executed
+		´turn_on_execute_so´ (delay 0) DISABLED
+´turn_on_execute_so´ ElementToggle 100040
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´interrupt_so´ (delay 1)
+´anim_complete´ ElementSpecialObjectiveTrigger 100041
+	DISABLED
+	event complete
+	position 800, 600, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´turn_off_so´ (delay 0)
+		´output_saw_interrupted´ (delay 0)
+		´chance_comment´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100042
+	DISABLED
+	event fail
+	position 800, 800, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´loop´ (delay 0)
+´turn_off_so´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_complete´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´remove_so´ (delay 0)
+´remove_so´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´interrupt_so´
+´turn_off´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_logic_start´
+		2 ´loop´
+		3 ´turn_on_execute_so´ DISABLED
+		4 ´anim_fail´ DISABLED
+		5 ´anim_complete´ DISABLED
+		6 ´turn_on_interrupt_entities´
+	on_executed
+		´activate_saw_pickup´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100046
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 100, 300, 0.0039978
+	rotation 0, 0, 0.92388, 0.382683
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100047
+	DISABLED
+	position -100, 300, 0.0039978
+	rotation 0, 0, 1, -5.96046E-08
+	state standard
+	on_executed
+		´chosen´ (delay 0)
+		´func_equipment_002´ (delay 0)
+		´input_activate_saw´ (delay 2)
+´activate_saw´ ElementUnitSequence 100048
+	position 100, 800, 0.00402832
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence state_set_timer_30
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence spawn_dummy
+			time 0
+	on_executed
+		´door_picked´ (delay 0)
+´saw_placed´ ElementUnitSequenceTrigger 100049
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+	on_executed
+		´output_saw_placed´ (delay 0)
+		´logic_toggle_001´ (delay 1)
+´saw_placed001´ ElementUnitSequenceTrigger 100050
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+´logic_toggle_001´ ElementToggle 100051
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_placed001´ DISABLED
+´set_jammed´ ElementUnitSequence 100052
+	position 200, 1000, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence set_jammed
+			time 0
+	on_executed
+		´pause´ (delay 0)
+		´On´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100053
+	DISABLED
+	amount 1
+	depth 185
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -200, 8, 0.00400543
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 184,45
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0) DISABLED
+´trigger_area_002´ ElementAreaTrigger 100054
+	DISABLED
+	amount 1
+	depth 185
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 200, 8, 0.00400543
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 184,45
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_equipment_001´ (delay 0)
+´func_equipment_001´ ElementEquipment 100055
+	amount 1
+	equipment saw
+	position 300, 100, 0.00400543
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_equipment_002´ (delay 0)
+´turn_on_interrupt_entities´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´anim_complete´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´loop´ (delay 0.05)
+´saw_done´ ElementUnitSequenceTrigger 100057
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id 100090
+		2
+			guis_id 2
+			sequence done
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+	on_executed
+		´output_saw_done´ (delay 0)
+		´teammate_comment_done´ (delay 1)
+´activate_saw_pickup´ ElementUnitSequence 100058
+	position 400, 1200, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (0, -25, 0.00390634)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (0, -25, 0.00390634)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_int_floor_with_hole/brb_int_floor_with_hole/001 (175, 200, 0.0039978)
+			notify_unit_sequence round_cut
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence hide_dummy
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence done
+			time 0
+	on_executed
+		´brb_012´ (delay 0)
+´saw_done001´ ElementUnitSequenceTrigger 100059
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_pku_circle_cutter/gen_pku_circle_cutter/001 (0, -25, 0.00390634)
+	on_executed
+		´output_saw_taken´ (delay 0)
+´nav_add´ ElementNavObstacle 100061
+	operation add
+	position 200, 1300, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, -25, 0.00400394)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-100, 75, 0.00400394)
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100062
+	position 300, 1300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence hide_dummy
+			time 0
+´teammate_comment_open_it_up´ ElementTeammateComment 100035
+	close_to_element false
+	comment v16
+	position 0, 150, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100036
+	as_subtitle false
+	debug_string from instance: teammate_comment_open_it_up
+	show_instigator false
+´area_player_close_to_saw´ ElementAreaTrigger 100037
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 100
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_open_it_up´ (delay 0)
+´enable_area_player_close_to_saw´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_saw´ DISABLED
+´teammate_comment_swear´ ElementTeammateComment 100063
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g60
+	position 0, 200, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100064
+	as_subtitle false
+	debug_string from instance: teammate_comment_swear
+	show_instigator false
+´chance_comment´ ElementLogicChance 100065
+	chance 40
+	position 50, 200, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´teammate_comment_swear´ (delay 0)
+´teammate_comment_done´ ElementTeammateComment 100066
+	close_to_element true
+	comment g60
+	position 0, 250, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100067
+	as_subtitle false
+	debug_string from instance: teammate_comment_done
+	show_instigator false
+´c4_placed´ ElementUnitSequenceTrigger 100099
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id 200005
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/002 (-21.4645, -3.53551, -11.9961)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/003 (-21.4645, -46.4644, -11.9961)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/004 (21.4645, -46.4644, -11.9961)
+	on_executed
+		´3´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100101
+	base_time 0
+	effect effects/payday2/particles/explosions/bag_explosion
+	max_amount 0
+	position 0, -25, 0.00390634
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_shake´ (delay 0)
+´3´ ElementCounter 100102
+	counter_target 3
+	on_executed
+		´env_effect_play_001´ (delay 5)
+		´blow_up´ (delay 0)
+		´OFF´ (delay 0)
+´blow_up´ ElementUnitSequence 100103
+	position 0, 1500, 0.00402832
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id 200005
+			notify_unit_sequence trigger_expolsive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/002 (-21.4645, -3.53551, -11.9961)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/003 (-21.4645, -46.4644, -11.9961)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/004 (21.4645, -46.4644, -11.9961)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_int_floor_with_hole/brb_int_floor_with_hole/001 (175, 200, 0.0039978)
+			notify_unit_sequence big_hole
+			time 5
+	on_executed
+		´remove´ (delay 0)
+´link´ MissionScriptElement 100104
+	on_executed
+		´waypoint_c4´ (delay 0)
+		´show_c4´ (delay 0)
+´spawn_c4´ ElementInstanceInput 100105
+	event spawn_c4
+	on_executed
+		´link´ (delay 0)
+´waypoint_c4´ ElementWaypoint 100106
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 50.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove´ ElementOperator 100107
+	operation remove
+	elements
+		1 ´waypoint_c4´
+	on_executed
+		´floor_blew_up´ (delay 5)
+´show_c4´ ElementUnitSequence 100109
+	position 0, 1400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id 200005
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/002 (-21.4645, -3.53551, -11.9961)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/003 (-21.4645, -46.4644, -11.9961)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/004 (21.4645, -46.4644, -11.9961)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´2 step´ (delay 0)
+´activate_c4´ MissionScriptElement 100000
+	on_executed
+		´remove_defend_wp002´ (delay 0)
+		´link´ (delay 0)
+´floor_blew_up´ ElementInstanceOutput 100003
+	event floor_blew_up
+	on_executed
+		´Go through floor´ (delay 0)
+´can_use´ MissionScriptElement 100005
+	on_executed
+		´toggle´ (delay 0)
+´toggle´ ElementToggle 100016
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_wp´ DISABLED
+		2 ´Go through floor´
+´chosen´ ElementInstanceInput 100017
+	event chosen
+	on_executed
+		´can_use´ (delay 0)
+´waypoint_go_through´ ElementWaypoint 100004
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 0
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´Go through floor´ MissionScriptElement 100060
+	on_executed
+		´waypoint_go_through´ (delay 0)
+		´ON´ (delay 0)
+		´brb_015´ (delay 0)
+´trigger_prevault´ ElementAreaTrigger 100068
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 175
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, -144
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´players fell through´ (delay 0) DISABLED
+´players fell through´ MissionScriptElement 100069
+	DISABLED
+	on_executed
+		´remove_2´ (delay 0)
+´ON´ ElementToggle 100070
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´players fell through´ DISABLED
+´remove_2´ ElementOperator 100071
+	operation remove
+	elements
+		1 ´waypoint_go_through´
+´point_shake´ ElementFeedback 100002
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 0, -125, -0.341927
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´point_explosion_damage_001´ (delay 0)
+		´explosion´ (delay 0)
+´func_equipment_002´ ElementEquipment 100073
+	amount 2
+	equipment c4
+	position 300, 150, 0.00400543
+	rotation 0, 0, 0, -1
+´point_explosion_damage_001´ ElementExplosionDamage 100075
+	damage 40
+	position 0, -25, -0.341927
+	range 300
+	rotation 0, 0, 0, -1
+´30´ ElementTimer 100076
+	timer 90
+´start_2´ ElementTimerOperator 100077
+	operation start
+	position -425, 1150, -49.996
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´30´
+´pause´ ElementTimerOperator 100078
+	operation pause
+	position -425, 1225, -49.996
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´30´
+´timer_done´ ElementTimerTrigger 100079
+	position -275, 1200, 0.00400543
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´30´
+	on_executed
+		´output_saw_done´ (delay 0)
+´set_fixed´ ElementUnitSequence 100080
+	position 200, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
+			notify_unit_sequence set_fixed
+			time 0
+	on_executed
+		´start_2´ (delay 0)
+´repair_cutter_interaction´ ElementInteraction 100081
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, -25, 51.6581
+	rotation 0, 0, 0, -1
+	tweak_data_id circle_cutter_jammed
+	on_executed
+		´output_saw_fixed´ (delay 0) (alternative interacted)
+´On´ ElementToggle 100082
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´repair_cutter_interaction´ DISABLED
+	on_executed
+		´brb_011´ (delay 0)
+´door_picked´ ElementInstanceOutput 100083
+	event door_picked
+	on_executed
+		´brb_010´ (delay 0)
+´reminder_delay´ MissionScriptElement 100089
+	on_executed
+		´brb_014´ (delay 0)
+´OFF´ ElementToggle 100090
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reminder_delay´
+´explosion´ ElementPlaySound 100096
+	append_prefix false
+	interrupt true
+	position 0, -23, 23
+	rotation 0, 0, 0, -1
+	sound_event c4_explode_metal
+	use_instigator false
+´brb_010´ ElementDialogue 100097
+	can_not_be_muted false
+	dialogue Play_loc_brb_10
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´brb_011´ ElementDialogue 100084
+	can_not_be_muted false
+	dialogue Play_loc_brb_11
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´brb_012´ ElementDialogue 100085
+	can_not_be_muted false
+	dialogue Play_loc_brb_12
+	execute_on_executed_when_done true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´2 step´ (delay 0)
+´brb_013´ ElementDialogue 100086
+	can_not_be_muted false
+	dialogue Play_loc_brb_13
+	execute_on_executed_when_done true
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´reminder_delay´ (delay 60-90)
+		´get_c4_equipment´ (delay 0)
+´brb_014´ ElementDialogue 100087
+	can_not_be_muted false
+	dialogue Play_loc_brb_14
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´brb_015´ ElementDialogue 100088
+	can_not_be_muted false
+	dialogue Play_loc_brb_15
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´get_c4_equipment´ ElementInstanceOutput 100095
+	event get_c4_equipment
+´2 step´ ElementCounter 100098
+	counter_target 2
+	on_executed
+		´brb_013´ (delay 0)

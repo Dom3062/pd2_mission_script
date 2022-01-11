@@ -1,0 +1,96 @@
+´hide_unbroken_vent´ ElementDisableUnit 100080
+	position 1050, 2375, 539.65
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/architecture/jry_hardware_store/jry_hardware_store_int_ducts_unbroken/001 (425, 1175, -0.000488281)
+´show_broken_vent´ ElementEnableUnit 100081
+	position 975, 2375, 539.65
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/architecture/jry_hardware_store/jry_hardware_store_int_ducts_broken/001 (425, 1175, -0.000488281)
+´hide_broken_vent´ ElementDisableUnit 100083
+	position 1175, 2375, 539.65
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/architecture/jry_hardware_store/jry_hardware_store_int_ducts_broken/001 (425, 1175, -0.000488281)
+´startup´ MissionScriptElement 100084
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_broken_vent´ (delay 0)
+		´add_door_blockers´ (delay 0)
+´destroy_vent´ ElementInstanceInput 100086
+	event destroy_vent
+	on_executed
+		´hide_unbroken_vent´ (delay 0)
+		´show_broken_vent´ (delay 0)
+´add_door_blockers´ ElementNavObstacle 100089
+	operation add
+	position 1275, 2375, 539.65
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (350, -1050, 0.000183105)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (544.454, -1296.97, 0.000183105)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (850, -1350, 0.000183105)
+´remove_door_blocker_001´ ElementNavObstacle 100101
+	operation remove
+	position 150, -975, 125
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (350, -1050, 0.000183105)
+´remove_door_blocker_002´ ElementNavObstacle 100103
+	operation remove
+	position 150, -1150, 125
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (544.454, -1296.97, 0.000183105)
+´remove_door_blocker_003´ ElementNavObstacle 100141
+	operation remove
+	position 150, -1325, 125
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (850, -1350, 0.000183105)
+´door_opened_001´ ElementUnitSequenceTrigger 100142
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_hcm/gen_interactable_door_hcm_double/001 (403, -954, -3.8147E-06)
+	on_executed
+		´remove_door_blocker_001´ (delay 0)
+´door_opened_002´ ElementUnitSequenceTrigger 100165
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_hcm/gen_interactable_door_hcm_double/002 (504.95, -1192.22, 9.53674E-05)
+	on_executed
+		´remove_door_blocker_002´ (delay 0)
+´door_opened_003´ ElementUnitSequenceTrigger 100166
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_hcm/gen_interactable_door_hcm_double/003 (747, -1303, 9.53674E-05)
+	on_executed
+		´remove_door_blocker_003´ (delay 0)

@@ -1,0 +1,70 @@
+´input_activate_crate´ ElementInstanceInput 100000
+	event Activate paper crate
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´took_bag´ ElementUnitSequenceTrigger 100002
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_pal/pickups/pal_pku_printer_paper/pal_pku_printer_paper_group/002 (-70, 53, 8)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´remove_waypoint´ (delay 0)
+´point_debug_001´ ElementDebug 100003
+	as_subtitle false
+	debug_string Took a paper bag
+	show_instigator false
+´point_waypoint_001´ ElementWaypoint 100008
+	icon pd2_generic_look
+	only_in_civilian false
+	position -50, 50, 147.519
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100015
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´deactivate_paper_crate´ ElementInstanceInput 100001
+	event deactivate_paper_crate
+	on_executed
+		´remove_waypoint´ (delay 0)
+´logic_link_001´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100005
+	position -2000, -100, 200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pal/props/pal_prop_shipping_crate/pal_prop_shipping_crate/002 (-51, 50, 0)
+			notify_unit_sequence state_requires_crowbar
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pal/props/pal_prop_shipping_crate/pal_prop_shipping_crate/002 (-51, 50, 0)
+			notify_unit_sequence interaction_enabled
+			time 1
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pal/props/pal_prop_shipping_crate/pal_prop_shipping_crate/002 (-51, 50, 0)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100010
+	position -2000, 0, 200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pal/pickups/pal_pku_printer_paper/pal_pku_printer_paper_group/002 (-70, 53, 8)
+			notify_unit_sequence state_interaction_enabled
+			time 0

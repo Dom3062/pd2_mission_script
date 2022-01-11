@@ -1,0 +1,158 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 1400, 425, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_´ ElementInstanceInput 100007
+	event none
+´output_´ ElementInstanceOutput 100008
+	event none
+´navlink_break_window_001´ ElementSpecialObjective 100010
+	SO_access 10232
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 39, -106, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 19,9054 86,9657 0
+	so_action e_nl_over_1m_jump_window
+	trigger_on none
+	followup_elements
+´navlink_break_window_002´ ElementSpecialObjective 100011
+	SO_access 10232
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -42, 109, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 19,1404 -96,9498 0
+	so_action e_nl_over_1m_jump_window
+	trigger_on none
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100012
+	event anim_act_04
+	position 600, -250, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´navlink_break_window_001´
+		2 ´navlink_break_window_002´
+	on_executed
+		´seq_break_window´ (delay 0)
+´seq_break_window´ ElementUnitSequence 100013
+	position 725, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_01/001 (0, 0, 200)
+			notify_unit_sequence break_window_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_01/001 (0, 0, 200)
+			notify_unit_sequence break_window_02
+			time 0
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_01/001 (0, 0, 200)
+			notify_unit_sequence enable_interaction
+			time 0
+´police_called´ ElementGlobalEventTrigger 100014
+	TRIGGER TIMES 1
+	global_event police_called
+	position 800, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´activate_navlinks´ (delay 0)
+´activate_navlinks´ MissionScriptElement 100016
+	on_executed
+		´navlink_break_window_001´ (delay 0)
+		´navlink_break_window_002´ (delay 0)
+		´seq_disable_lockpicking´ (delay 0)
+´trigger_broken_window´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_window_01
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_01/001 (0, 0, 200)
+	on_executed
+		´disable_breaking_window´ (delay 0)
+´disable_breaking_window´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_special_objective_001´
+´seq_disable_lockpicking´ ElementUnitSequence 100018
+	position 800, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_01/001 (0, 0, 200)
+			notify_unit_sequence disable_interaction
+			time 0

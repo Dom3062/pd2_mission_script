@@ -1,0 +1,264 @@
+´dealer spawn location´ MissionScriptElement 100003
+	position -76, -114, 0
+	rotation 0, 0, 0.0348995, -0.999391
+´roulette dealer´ ElementSpawnCivilian 100001
+	enemy units/pd2_dlc_casino/characters/civ_female_casino_3/civ_female_casino_3
+	force_pickup none
+	position 74, -969, 688.5
+	rotation 0, 0, 0, -1
+	state cf_sp_dealer_roulette
+	team default
+	orientation_elements
+		1 ´dealer spawn location´
+´spawn civilians´ ElementInstanceInput 100006
+	event spawn civilians
+	on_executed
+		´choose one´ (delay 0)
+		´drinking´ (delay 0)
+		´cheering´ (delay 0)
+´choose one´ ElementRandom 100007
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´roulette dealer´ (delay 0)
+		´roulette dealer_2´ (delay 0)
+		´roulette dealer_3´ (delay 0)
+´drinking´ ElementSpawnCivilian 100008
+	enemy units/pd2_dlc_casino/characters/civ_male_casino_1/civ_male_casino_1
+	force_pickup none
+	position -509, -975, 688.5
+	rotation 0, 0, -2.68221E-07, -1
+	state cm_sp_drink_stand_table_1m
+	team default
+	orientation_elements
+		1 ´man drinking spawn point´
+´man drinking spawn point´ MissionScriptElement 100009
+	position -361, -25, -0.5
+	rotation 0, 0, 1, -1.19209E-07
+´roulette dealer_2´ ElementSpawnCivilian 100004
+	enemy units/pd2_dlc_casino/characters/civ_female_casino_2/civ_female_casino_2
+	force_pickup none
+	position -126, -969, 688.5
+	rotation 0, 0, 0, -1
+	state cf_sp_dealer_roulette
+	team default
+	orientation_elements
+		1 ´dealer spawn location´
+´roulette dealer_3´ ElementSpawnCivilian 100005
+	enemy units/pd2_dlc_casino/characters/civ_female_casino_1/civ_female_casino_1
+	force_pickup none
+	position -326, -969, 688.5
+	rotation 0, 0, 0, -1
+	state cf_sp_dealer_roulette
+	team default
+	orientation_elements
+		1 ´dealer spawn location´
+´cheering´ ElementSpawnCivilian 100010
+	enemy units/payday2/characters/civ_female_bank_1/civ_female_bank_1
+	force_pickup none
+	position -717, -974, 688.5
+	rotation 0, 0, -6.25849E-07, -1
+	state cm_sp_casino_guest_sit_var2
+	team default
+	use_orientation_sequenced true
+	orientation_elements
+		1 ´stand cheer orient´
+	on_executed
+		´set instigator´ (delay 0)
+		´use instigator_4´ (delay 0.1)
+´stand cheer orient´ MissionScriptElement 100011
+	position -82.1065, 158.632, 2.5
+	rotation 0, 0, 0.999048, -0.0436198
+´cheer´ ElementSpecialObjective 100012
+	DISABLED
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -1050, -1150, 688.5
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -931,81 -1284,92 688,5
+	so_action cmf_so_slotmachine_win
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´use instigator_4´ (delay 3)
+´idle´ ElementSpecialObjective 100013
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -1050, -975, 688.5
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -821,826 -1045,34 688,5
+	so_action cmf_so_casino_guest
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´chance to win´ (delay 20) DISABLED
+´chance to win´ ElementLogicChance 100002
+	DISABLED
+	chance 20
+	position -1175, -975, 688.5
+	rotation 0, 0, 0, -1
+´win´ ElementLogicChanceTrigger 100014
+	outcome success
+	position -1125, -1075, 688.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance to win´ DISABLED
+	on_executed
+		´use instigator´ (delay 0)
+´lose´ ElementLogicChanceTrigger 100015
+	outcome fail
+	position -1225, -1075, 688.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance to win´ DISABLED
+	on_executed
+		´chance to be angry´ (delay 0)
+´lose_2´ ElementSpecialObjective 100016
+	DISABLED
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -1225, -1550, 688.5
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -1325,04 -1533,82 688,5
+	so_action cmf_so_slotmachine_loose
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´use instigator_4´ (delay 3)
+´chance to be angry´ ElementLogicChance 100017
+	chance 20
+	position -1225, -1200, 688.5
+	rotation 0, 0, 0, -1
+´win_2´ ElementLogicChanceTrigger 100018
+	outcome success
+	position -1225, -1325, 688.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance to be angry´
+	on_executed
+		´use instigator_2´ (delay 0)
+´lose_3´ ElementLogicChanceTrigger 100019
+	outcome fail
+	position -1125, -1325, 688.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance to be angry´
+	on_executed
+		´use instigator_3´ (delay 0)
+´set instigator´ ElementInstigatorOperator 100020
+	keep_on_use true
+	operation add_first
+	elements
+		1 ´instigator´ DISABLED
+´instigator´ ElementInstigator 100021
+	DISABLED
+´use instigator´ ElementInstigatorOperator 100022
+	keep_on_use true
+	operation use_first
+	elements
+		1 ´instigator´ DISABLED
+	on_executed
+		´cheer´ (delay 0) DISABLED
+´use instigator_2´ ElementInstigatorOperator 100023
+	keep_on_use true
+	operation use_first
+	elements
+		1 ´instigator´ DISABLED
+	on_executed
+		´lose_2´ (delay 0) DISABLED
+´use instigator_3´ ElementInstigatorOperator 100024
+	keep_on_use true
+	operation use_first
+	elements
+		1 ´instigator´ DISABLED
+	on_executed
+		´idle´ (delay 0)
+´use instigator_4´ ElementInstigatorOperator 100025
+	keep_on_use true
+	operation use_first
+	elements
+		1 ´instigator´ DISABLED
+	on_executed
+		´idle´ (delay 0)
+´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100000
+	TRIGGER TIMES 1
+	event death
+	position -1400, -1000, 688.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cheering´
+		2 ´drinking´
+		3 ´roulette dealer_3´
+		4 ´roulette dealer_2´
+		5 ´roulette dealer´
+	on_executed
+		´output_civie_dead´ (delay 0)
+´output_civie_dead´ ElementInstanceOutput 100026
+	TRIGGER TIMES 1
+	event civie_dead

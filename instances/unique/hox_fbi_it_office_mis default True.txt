@@ -1,0 +1,926 @@
+´set_right_office´ ElementInstanceInput 100016
+	BASE DELAY 3
+	event set_right_office
+	on_executed
+		´setup_server´ (delay 0)
+		´enable_server´ (delay 0)
+´setup´ MissionScriptElement 100017
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´disable_contour´ (delay 0)
+		´remove_two_front_wall_pics´ (delay 0)
+		´remove_one_side_wall´ (delay 0)
+		´remove_one_plant´ (delay 0)
+´setup_server´ MissionScriptElement 100023
+	on_executed
+		´random´ (delay 0)
+´random´ ElementRandom 100029
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´random_server001´ (delay 0)
+		´random_server002´ (delay 0) DISABLED
+		´random_server003´ (delay 0) DISABLED
+		´random_server004´ (delay 0) DISABLED
+		´random_server005´ (delay 0)
+		´random_server006´ (delay 0)
+		´random_server007´ (delay 0) DISABLED
+		´random_server008´ (delay 0) DISABLED
+		´random_server009´ (delay 0)
+		´random_server010´ (delay 0) DISABLED
+		´random_server011´ (delay 0)
+		´random_server012´ (delay 0) DISABLED
+		´random_server013´ (delay 0)
+´random_server001´ ElementUnitSequence 100031
+	position 200, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/001 (361, 234, 98.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server001´ (delay 0)
+´enable_interaction´ ElementInstanceInput 100033
+	DISABLED
+	BASE DELAY 3
+	event enable_interaction
+	on_executed
+		´server_int001´ (delay 0) DISABLED
+		´server_int002´ (delay 0) DISABLED
+		´server_int003´ (delay 0) DISABLED
+		´server_int004´ (delay 0) DISABLED
+		´server_int005´ (delay 0) DISABLED
+		´server_int006´ (delay 0) DISABLED
+		´server_int007´ (delay 0) DISABLED
+		´server_int008´ (delay 0) DISABLED
+		´server_int009´ (delay 0) DISABLED
+		´server_int010´ (delay 0) DISABLED
+		´server_int011´ (delay 0) DISABLED
+		´server_int012´ (delay 0) DISABLED
+		´server_int013´ (delay 0) DISABLED
+		´door_opened_and_interaction_enabled´ (delay 0)
+´enable_server´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction´ DISABLED
+		2 ´cloaker_sneaky_chance´ DISABLED
+´enable_server001´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int001´ DISABLED
+		2 ´cont_001´ DISABLED
+´server_int001´ ElementUnitSequence 100037
+	DISABLED
+	position -100, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/001 (361, 234, 98.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´opened_door´ ElementUnitSequenceTrigger 100063
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_a/001 (100, 25, 0)
+	on_executed
+		´allow_graph001´ (delay 0)
+		´door_opened_and_interaction_enabled´ (delay 0)
+		´only_hard_or_more´ (delay 0)
+´allow_graph001´ ElementInstanceOutput 100064
+	event allow_graph001
+´got_server´ ElementInstanceOutput 100065
+	event got_server
+´picked_up_server´ ElementUnitSequenceTrigger 100066
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/001 (361, 234, 98.7846)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/002 (206, 317, 73.7846)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/003 (176, 333, 98.7846)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/004 (378, 344, 98.7846)
+		5
+			guis_id 5
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/005 (393, 294, 98.7846)
+		6
+			guis_id 6
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/006 (388, 202, 25)
+		7
+			guis_id 7
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/007 (149, 332, 73.7846)
+		8
+			guis_id 8
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/008 (74, 332, 171.785)
+		9
+			guis_id 9
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/009 (228, 291, 25.0001)
+		14
+			guis_id 14
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/010 (103, 331, 100)
+		15
+			guis_id 15
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/011 (365.63, 294.227, 73.7846)
+		16
+			guis_id 16
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/012 (28, 331, 197)
+		17
+			guis_id 17
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/013 (406, 171, 25)
+	on_executed
+		´got_server´ (delay 0)
+´disable_contour´ ElementUnitSequence 100068
+	position 500, -1700, 2.5
+	rotation 0, 0, 1, -1.78814E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/001 (361, 234, 98.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/002 (206, 317, 73.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/003 (176, 333, 98.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/004 (378, 344, 98.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/005 (393, 294, 98.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/006 (388, 202, 25)
+			notify_unit_sequence state_contour_disable
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/007 (149, 332, 73.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/008 (74, 332, 171.785)
+			notify_unit_sequence state_contour_disable
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/009 (228, 291, 25.0001)
+			notify_unit_sequence state_contour_disable
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/010 (103, 331, 100)
+			notify_unit_sequence state_contour_disable
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/011 (365.63, 294.227, 73.7846)
+			notify_unit_sequence state_contour_disable
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/012 (28, 331, 197)
+			notify_unit_sequence state_contour_disable
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/013 (406, 171, 25)
+			notify_unit_sequence state_contour_disable
+			time 0
+´random_server002´ ElementUnitSequence 100030
+	DISABLED
+	position 200, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/002 (206, 317, 73.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server002´ (delay 0)
+´enable_server002´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int002´ DISABLED
+		2 ´cont_002´ DISABLED
+´server_int002´ ElementUnitSequence 100035
+	DISABLED
+	position -100, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/002 (206, 317, 73.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server003´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int003´ DISABLED
+		2 ´cont_003´ DISABLED
+´random_server003´ ElementUnitSequence 100039
+	DISABLED
+	position 200, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/003 (176, 333, 98.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server003´ (delay 0)
+´server_int003´ ElementUnitSequence 100040
+	DISABLED
+	position -100, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/003 (176, 333, 98.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server004´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int004´ DISABLED
+		2 ´cont_004´ DISABLED
+´random_server004´ ElementUnitSequence 100042
+	DISABLED
+	position 200, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/004 (378, 344, 98.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server004´ (delay 0)
+´server_int004´ ElementUnitSequence 100043
+	DISABLED
+	position -100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/004 (378, 344, 98.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server005´ ElementToggle 100044
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int005´ DISABLED
+		2 ´cont_005´ DISABLED
+´random_server005´ ElementUnitSequence 100045
+	position 200, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/005 (393, 294, 98.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server005´ (delay 0)
+´server_int005´ ElementUnitSequence 100046
+	DISABLED
+	position -100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/005 (393, 294, 98.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server006´ ElementToggle 100047
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int006´ DISABLED
+		2 ´cont_006´ DISABLED
+´random_server006´ ElementUnitSequence 100048
+	position 200, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/006 (388, 202, 25)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server006´ (delay 0)
+´server_int006´ ElementUnitSequence 100049
+	DISABLED
+	position -100, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/006 (388, 202, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server007´ ElementToggle 100050
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int007´ DISABLED
+		2 ´cont_007´ DISABLED
+´random_server007´ ElementUnitSequence 100051
+	DISABLED
+	position 200, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/007 (149, 332, 73.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server007´ (delay 0)
+´server_int007´ ElementUnitSequence 100052
+	DISABLED
+	position -100, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/007 (149, 332, 73.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server008´ ElementToggle 100053
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int008´ DISABLED
+		2 ´cont_008´ DISABLED
+´random_server008´ ElementUnitSequence 100054
+	DISABLED
+	position 200, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/008 (74, 332, 171.785)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server008´ (delay 0)
+´server_int008´ ElementUnitSequence 100055
+	DISABLED
+	position -100, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/008 (74, 332, 171.785)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server009´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int009´ DISABLED
+		2 ´cont_009´ DISABLED
+´random_server009´ ElementUnitSequence 100057
+	position 200, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/009 (228, 291, 25.0001)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server009´ (delay 0)
+´server_int009´ ElementUnitSequence 100058
+	DISABLED
+	position -100, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/009 (228, 291, 25.0001)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server010´ ElementToggle 100059
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int010´ DISABLED
+		2 ´cont_010´ DISABLED
+´random_server010´ ElementUnitSequence 100060
+	DISABLED
+	position 200, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/010 (103, 331, 100)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server010´ (delay 0)
+´server_int010´ ElementUnitSequence 100061
+	DISABLED
+	position -100, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/010 (103, 331, 100)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server011´ ElementToggle 100070
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int011´ DISABLED
+		2 ´cont_011´ DISABLED
+´random_server011´ ElementUnitSequence 100071
+	position 200, -1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/011 (365.63, 294.227, 73.7846)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server011´ (delay 0)
+´server_int011´ ElementUnitSequence 100072
+	DISABLED
+	position -100, -1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/011 (365.63, 294.227, 73.7846)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server012´ ElementToggle 100073
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int012´ DISABLED
+		2 ´cont_012´ DISABLED
+´random_server012´ ElementUnitSequence 100074
+	DISABLED
+	position 200, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/012 (28, 331, 197)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server012´ (delay 0)
+´server_int012´ ElementUnitSequence 100075
+	DISABLED
+	position -100, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/012 (28, 331, 197)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_server013´ ElementToggle 100076
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_int013´ DISABLED
+		2 ´cont_013´ DISABLED
+´random_server013´ ElementUnitSequence 100077
+	position 200, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/013 (406, 171, 25)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_server013´ (delay 0)
+´server_int013´ ElementUnitSequence 100078
+	DISABLED
+	position -100, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/013 (406, 171, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+´cont_001´ ElementUnitSequence 100080
+	DISABLED
+	position -200, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/001 (361, 234, 98.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_002´ ElementUnitSequence 100081
+	DISABLED
+	position -200, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/002 (206, 317, 73.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_003´ ElementUnitSequence 100082
+	DISABLED
+	position -200, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/003 (176, 333, 98.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_004´ ElementUnitSequence 100083
+	DISABLED
+	position -200, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/004 (378, 344, 98.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_005´ ElementUnitSequence 100084
+	DISABLED
+	position -200, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/005 (393, 294, 98.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_006´ ElementUnitSequence 100085
+	DISABLED
+	position -200, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/006 (388, 202, 25)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_007´ ElementUnitSequence 100086
+	DISABLED
+	position -200, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/007 (149, 332, 73.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_008´ ElementUnitSequence 100087
+	DISABLED
+	position -200, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/008 (74, 332, 171.785)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_009´ ElementUnitSequence 100088
+	DISABLED
+	position -200, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/009 (228, 291, 25.0001)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_010´ ElementUnitSequence 100089
+	DISABLED
+	position -200, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/010 (103, 331, 100)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_011´ ElementUnitSequence 100090
+	DISABLED
+	position -200, -1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/011 (365.63, 294.227, 73.7846)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_012´ ElementUnitSequence 100091
+	DISABLED
+	position -200, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/012 (28, 331, 197)
+			notify_unit_sequence state_contour_enable
+			time 0
+´cont_013´ ElementUnitSequence 100092
+	DISABLED
+	position -200, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_circuit_board/gen_pku_grab_circuit_board/013 (406, 171, 25)
+			notify_unit_sequence state_contour_enable
+			time 0
+´door_opened_and_interaction_enabled´ ElementCounter 100093
+	counter_target 2
+	on_executed
+		´cont_001´ (delay 0) DISABLED
+		´cont_002´ (delay 0) DISABLED
+		´cont_003´ (delay 0) DISABLED
+		´cont_004´ (delay 0) DISABLED
+		´cont_005´ (delay 0) DISABLED
+		´cont_006´ (delay 0) DISABLED
+		´cont_007´ (delay 0) DISABLED
+		´cont_008´ (delay 0) DISABLED
+		´cont_009´ (delay 0) DISABLED
+		´cont_010´ (delay 0) DISABLED
+		´cont_011´ (delay 0) DISABLED
+		´cont_012´ (delay 0) DISABLED
+		´cont_013´ (delay 0) DISABLED
+´it_sneaky_cloaker_spawn´ ElementSpawnEnemyDummy 100079
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_spook_1/ene_spook_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, 214, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´cloaker_sneaky_chance´ ElementLogicChance 100095
+	DISABLED
+	chance 25
+	position 500, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´it_sneaky_cloaker_spawn´ (delay 0)
+		´open_vent´ (delay 0)
+´open_vent´ ElementUnitSequence 100096
+	position 400, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/001 (225, 225, 325)
+			notify_unit_sequence release_vent
+			time 0
+´only_hard_or_more´ ElementFilter 100097
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´cloaker_sneaky_chance´ (delay 0) DISABLED
+´func_sequence_001´ ElementUnitSequence 100067
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_a/001 (100, 25, 0)
+			notify_unit_sequence activate_door
+			time 0
+´activate_door´ ElementInstanceInput 100099
+	event activate_door
+	on_executed
+		´func_sequence_001´ (delay 0)
+´remove_two_front_wall_pics´ ElementRandom 100107
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´front_wall001´ (delay 0)
+		´front_wall002´ (delay 0)
+		´front_wall003´ (delay 0)
+´front_wall001´ ElementDisableUnit 100108
+	position 500, -1500, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/lxa_prop_hallway_pictures/lxa_prop_hallway_picture_03/front_wall_pic001 (300, 375, 130.077)
+´front_wall002´ ElementDisableUnit 100109
+	position 500, -1400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/lxa_prop_hallway_pictures/lxa_prop_hallway_picture_04/front_wall_pic002 (189, 375, 130.1)
+´front_wall003´ ElementDisableUnit 100110
+	position 500, -1300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/lxa_prop_hallway_pictures/lxa_prop_hallway_picture_05/front_wall_pic003 (243, 375, 130.051)
+´remove_one_side_wall´ ElementRandom 100111
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´side_wall001´ (delay 0)
+		´side_wall002´ (delay 0)
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100112
+	on_executed
+		´side_wall002´ (delay 0)
+		´side_wall001´ (delay 0)
+´side_wall001´ ElementDisableUnit 100113
+	position 500, -1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/lxa_prop_hallway_pictures/lxa_prop_hallway_picture_01/left_wall_pic001 (25, 175, 132.181)
+´side_wall002´ ElementDisableUnit 100114
+	position 500, -1100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/lxa_prop_hallway_pictures/lxa_prop_hallway_picture_05/left_wall_pic002 (25, 175, 129.237)
+´remove_one_plant´ ElementRandom 100115
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´plant001´ (delay 0)
+		´plant002´ (delay 0)
+´plant001´ ElementDisableUnit 100116
+	position 500, -900, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/bnk_prop_lobby_plant_dracaenafragrans/bnk_prop_lobby_plant_dracaenafragrans_b/plant_001 (62, 64, 2.5)
+´plant002´ ElementDisableUnit 100117
+	position 500, -800, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/bnk_prop_lobby_plant_dracaenafragrans/bnk_prop_lobby_plant_dracaenafragrans_b/plant_002 (386, 61, 2.5)
+´used_keycard´ ElementInstanceOutput 100118
+	event used_keycard
+´used_keycard_2´ ElementUnitSequenceTrigger 100119
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door_keycard
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_a/001 (100, 25, 0)
+	on_executed
+		´used_keycard´ (delay 0)
+´set_tournament´ ElementInstanceInput 100120
+	event set_tournament
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100121
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´random_server005´
+		2 ´random_server006´
+		3 ´random_server009´
+		4 ´random_server011´
+		5 ´random_server013´
+		6 ´only_hard_or_more´
+		7 ´open_vent´
+		8 ´cloaker_sneaky_chance´ DISABLED
+´func_instance_input_001´ ElementInstanceInput 100122
+	event force_open
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100123
+	position -100, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_a/001 (100, 25, 0)
+			notify_unit_sequence open_door
+			time 0

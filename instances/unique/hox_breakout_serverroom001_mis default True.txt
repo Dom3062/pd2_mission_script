@@ -1,0 +1,886 @@
+´func_disable_unit_001´ ElementDisableUnit 100027
+	position 300, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_boss_large_bend/001 (-250, 375, 0)
+		2 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four/001 (-250, 400, 75)
+		3 units/payday2/props/off_prop_furniture_stool_strbrz/off_prop_furniture_stool_strbrz/001 (-300, 120, 0)
+		4 units/payday2/architecture/com_int_basement/com_int_basement_wall_2x3m_clean/001 (0, 200, 0)
+´func_sequence_001´ ElementUnitSequence 100028
+	position 300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´logic_link_001´ MissionScriptElement 100029
+	TRIGGER TIMES 1
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´func_sequence_001´ (delay 0)
+		´logic_counter_001´ (delay 1)
+		´func_nav_obstacle_002´ (delay 1)
+		´logic_counter_003´ (delay 1)
+		´logic_random_001´ (delay 0)
+		´logic_random_002´ (delay 0)
+		´logic_random_003´ (delay 0)
+´jag´ MissionScriptElement 100030
+	EXECUTE ON STARTUP
+	on_executed
+		´logic_link_001´ (delay 1)
+´func_instance_input_001´ ElementInstanceInput 100026
+	event enable_server
+	on_executed
+		´logic_counter_001´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100031
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence set_hack_time_state_5
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence disable_interaction
+			time 0
+´func_enable_unit_001´ ElementEnableUnit 100032
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_boss_large_bend/001 (-250, 375, 0)
+		2 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four/001 (-250, 400, 75)
+´logic_link_003´ MissionScriptElement 100033
+	on_executed
+		´func_sequence_002´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100034
+	position 300, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/str_prop_alley_trash_container/str_prop_alley_trash_container/001 (-150, 342, 0)
+		2 units/payday2/props/ind_prop_alley_garbage_bags/ind_prop_alley_garbage_bags_01/001 (-325, 325, 0)
+		3 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/001 (-420, -45, 0)
+		4 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/001 (-420, -100, 0)
+		5 units/world/props/prop_electricboxes/prop_electricbox_1/001 (-425, 300, 150)
+		6 units/world/props/mansion/man_prop_int_electric_circuit/man_prop_int_electric_circuit/001 (-424, 100, 0)
+		7 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/001 (-225, -200, 0)
+		8 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_b/001 (-150, -200, 0)
+		9 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/002 (-75, -200, 0)
+		10 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/002 (-333, -191, 0)
+		11 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/002 (-388, -191, 0)
+		12 units/payday2/props/ind_prop_mechanical_heater_station/ind_prop_mechanical_heater_station_a/001 (-150, -200, 0)
+		13 units/payday2/props/ind_prop_mechanical_generator_diesel/ind_prop_mechanical_generator_diesel/001 (-202, -109, 0)
+´func_instance_output_001´ ElementInstanceOutput 100000
+	event done_hack
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´func_sequence_005´ (delay 0)
+		´func_instance_output_005´ (delay 0)
+		´Hacking done´ (delay 0)
+´logic_counter_001´ ElementCounter 100037
+	counter_target 2
+	on_executed
+		´logic_link_003´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100038
+	TRIGGER TIMES 1
+	SO_access 15584
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style none
+	patrol_path none
+	pose none
+	position -250, 225, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 3000
+	search_position -300 200 0
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100039
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+	on_executed
+		´logic_toggle_001´ (delay 10)
+		´logic_link_002´ (delay 0) DISABLED
+		´logic_link_005´ (delay 0)
+		´func_sequence_010´ (delay 0)
+		´Player started hacking´ (delay 0)
+´logic_toggle_001´ ElementToggle 100040
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_special_objective_001´ (delay 0.1)
+´logic_toggle_002´ ElementToggle 100041
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_sequence_trigger_002´
+		2 ´logic_toggle_001´
+		3 ´point_special_objective_001´
+		4 ´trigger_special_objective_003´
+		5 ´trigger_special_objective_001´
+		6 ´trigger_special_objective_002´
+´logic_operator_001´ ElementOperator 100042
+	operation remove
+	elements
+		1 ´point_special_objective_001´
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100043
+	event administered
+	position -500, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_001´ (delay 0)
+´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100044
+	event complete
+	position -600, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´func_instance_output_004´ (delay 0)
+		´Cops interupted hacking´ (delay 0)
+		´point_teammate_comment_001´ (delay 0)
+´trigger_special_objective_003´ ElementSpecialObjectiveTrigger 100045
+	event fail
+	position -400, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´logic_toggle_001´ (delay 5)
+´point_debug_001´ ElementDebug 100046
+	as_subtitle false
+	debug_string serverroom_instance_admin
+	show_instigator false
+´point_debug_002´ ElementDebug 100047
+	as_subtitle false
+	debug_string serverroom_instance_completed
+	show_instigator false
+´point_debug_003´ ElementDebug 100048
+	as_subtitle false
+	debug_string serverroom_instance_fail
+	show_instigator false
+´func_sequence_003´ ElementUnitSequence 100049
+	position -600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_device_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence enable_interaction_no_glow
+			time 0
+	on_executed
+		´func_sequence_009´ (delay 0.1)
+´logic_toggle_003´ ElementToggle 100050
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_003´ DISABLED
+´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100051
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-20, 155, 0)
+	on_executed
+		´func_instance_output_002´ (delay 0)
+		´logic_link_004´ (delay 0)
+		´logic_counter_002´ (delay 0)
+		´point_area_min_police_force_001´ (delay 0)
+´func_instance_output_002´ ElementInstanceOutput 100052
+	event found_serverroom
+´func_instance_output_003´ ElementInstanceOutput 100053
+	event hack_restarted
+´func_instance_output_004´ ElementInstanceOutput 100054
+	event hack_interupted
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´logic_link_002´ MissionScriptElement 100055
+	DISABLED
+	on_executed
+		´func_instance_output_003´ (delay 0)
+		´func_sequence_006´ (delay 0)
+		´Player restarted hacking´ (delay 0)
+´logic_toggle_004´ ElementToggle 100056
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´logic_link_002´ DISABLED
+´func_sequence_004´ ElementUnitSequence 100057
+	DISABLED
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence enable_interaction_no_glow
+			time 0
+	on_executed
+		´logic_counter_002´ (delay 0)
+´logic_toggle_005´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_004´ DISABLED
+´func_instance_input_002´ ElementInstanceInput 100059
+	event enable_server_interaction
+	on_executed
+		´func_sequence_004´ (delay 0) DISABLED
+´bulldozer´ ElementSpawnEnemyDummy 100060
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -250, 200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´blackdozer´ ElementSpawnEnemyDummy 100061
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -250, 200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´skulldozer´ ElementSpawnEnemyDummy 100062
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -250, 200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´logic_filter_001´ ElementFilter 100063
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 900, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´bulldozer´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´logic_filter_002´ ElementFilter 100064
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 1000, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´blackdozer´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´logic_filter_003´ ElementFilter 100065
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 1100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´skulldozer´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´logic_link_004´ MissionScriptElement 100066
+	on_executed
+		´logic_chance_001´ (delay 0)
+´point_special_objective_002´ ElementSpecialObjective 100067
+	SO_access 4096
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -200, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 100 900 0
+	so_action AI_hunt
+	trigger_on none
+	use_instigator true
+	followup_elements
+´func_sequence_trigger_004´ ElementUnitSequenceTrigger 100069
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-20, 155, 0)
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100070
+	operation remove
+	position 100, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 100, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100071
+	operation add
+	position 300, 400, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 100, 0)
+		2
+			guis_id 2
+			obj_name 15747400312106593323
+			unit_id units/payday2/props/ind_prop_mechanical_generator_diesel/ind_prop_mechanical_generator_diesel/001 (-202, -109, 0)
+		3
+			guis_id 3
+			obj_name 11704766223762772885
+			unit_id units/payday2/props/ind_prop_mechanical_heater_station/ind_prop_mechanical_heater_station_a/001 (-150, -200, 0)
+´point_waypoint_001´ ElementWaypoint 100072
+	icon wp_standard
+	only_in_civilian false
+	position -276, 325, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_counter_002´ ElementCounter 100073
+	counter_target 2
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_operator_002´ ElementOperator 100074
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´func_sequence_005´ ElementUnitSequence 100075
+	position 500, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence set_tweakdata_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´func_sequence_trigger_005´ ElementUnitSequenceTrigger 100076
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (-275, 300, 75)
+	on_executed
+		´func_instance_output_001´ (delay 0)
+		´logic_operator_002´ (delay 0)
+´logic_toggle_006´ ElementToggle 100078
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_005´ DISABLED
+´func_sequence_006´ ElementUnitSequence 100079
+	position -100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_device_resumed
+			time 0
+´func_sequence_007´ ElementUnitSequence 100080
+	position -600, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´func_sequence_008´ (delay 1)
+´func_sequence_008´ ElementUnitSequence 100081
+	position -500, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´func_sequence_007´ (delay 1)
+´func_sequence_009´ ElementUnitSequence 100082
+	position -600, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´logic_link_005´ MissionScriptElement 100083
+	TRIGGER TIMES 1
+	on_executed
+		´func_sequence_008´ (delay 0)
+´func_sequence_010´ ElementUnitSequence 100084
+	TRIGGER TIMES 1
+	position 0, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-276, 344, 76)
+			notify_unit_sequence state_device_start
+			time 0
+´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100085
+	amount 1
+	position -250, 100, 0
+	rotation 0, 0, 0, -1
+´func_instance_output_005´ ElementInstanceOutput 100087
+	event done_computer
+´func_instance_input_003´ ElementInstanceInput 100089
+	event no_door
+	on_executed
+		´logic_counter_003´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100090
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/com_int_basement/com_int_basement_wall_2x3m_clean/001 (0, 200, 0)
+	on_executed
+		´func_sequence_011´ (delay 0)
+		´func_disable_unit_003´ (delay 0)
+´logic_counter_003´ ElementCounter 100091
+	counter_target 2
+	on_executed
+		´func_enable_unit_002´ (delay 1)
+´logic_toggle_007´ ElementToggle 100092
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_enable_unit_002´
+´func_sequence_011´ ElementUnitSequence 100093
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-20, 155, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-20, 155, 0)
+			notify_unit_sequence state_door_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/001 (20, 100, 220)
+			notify_unit_sequence light_off
+			time 0
+´func_disable_unit_003´ ElementDisableUnit 100095
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_private_sign/gen_prop_private_sign/001 (0, 100, 231)
+		2 units/payday2/architecture/com_int_basement/com_int_basement_wall_door_2x3m_clean/001 (0, 200, 0)
+´logic_link_006´ MissionScriptElement 100096
+´logic_random_001´ ElementRandom 100106
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_disable_unit_004´ (delay 0)
+		´func_disable_unit_005´ (delay 0)
+´func_disable_unit_004´ ElementDisableUnit 100107
+	position 300, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/001 (-420, -100, 0)
+		2 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/001 (-420, -45, 0)
+´func_disable_unit_005´ ElementDisableUnit 100108
+	position 300, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/002 (-388, -191, 0)
+		2 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/002 (-333, -191, 0)
+´func_disable_unit_006´ ElementDisableUnit 100115
+	position 525, 575, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_mechanical_generator_diesel/ind_prop_mechanical_generator_diesel/001 (-202, -109, 0)
+		2 units/payday2/props/ind_prop_mechanical_heater_station/ind_prop_mechanical_heater_station_a/001 (-150, -200, 0)
+´func_disable_unit_007´ ElementDisableUnit 100116
+	position 525, 650, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/001 (-225, -200, 0)
+		2 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_b/001 (-150, -200, 0)
+		3 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/002 (-75, -200, 0)
+		4 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/002 (-388, -191, 0)
+		5 units/payday2/props/gen_prop_door_protection/gen_prop_door_protection/001 (-420, -45, 0)
+		6 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/001 (-420, -100, 0)
+		7 units/payday2/props/gen_prop_door_metal/gen_prop_door_metal/002 (-333, -191, 0)
+		8 units/payday2/props/ind_prop_mechanical_heater_station/ind_prop_mechanical_heater_station_a/001 (-150, -200, 0)
+´func_disable_unit_008´ ElementDisableUnit 100117
+	position 625, 625, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_mechanical_generator_diesel/ind_prop_mechanical_generator_diesel/001 (-202, -109, 0)
+		2 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/001 (-225, -200, 0)
+		3 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_b/001 (-150, -200, 0)
+		4 units/payday2/props/ind_prop_mechanical_electricity_stations/ind_prop_mechanical_electricity_station_a/002 (-75, -200, 0)
+´logic_random_002´ ElementRandom 100118
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_disable_unit_007´ (delay 0)
+		´func_disable_unit_006´ (delay 0)
+		´func_disable_unit_008´ (delay 0)
+´logic_random_003´ ElementRandom 100113
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_link_007´ (delay 0)
+		´func_disable_unit_009´ (delay 0)
+´logic_link_007´ MissionScriptElement 100114
+´func_disable_unit_009´ ElementDisableUnit 100119
+	position 400, 825, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/str_prop_alley_trash_container/str_prop_alley_trash_container/001 (-150, 342, 0)
+		2 units/payday2/props/ind_prop_alley_garbage_bags/ind_prop_alley_garbage_bags_01/001 (-325, 325, 0)
+´Player started hacking´ ElementDialogue 100120
+	TRIGGER TIMES 1
+	dialogue Play_pln_hb1_14
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´Cops interupted hacking´ ElementDialogue 100121
+	dialogue Play_pln_hb1_15
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´Player restarted hacking´ ElementDialogue 100122
+	dialogue Play_pln_hb1_16
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´Hacking done´ ElementDialogue 100123
+	dialogue Play_pln_hb1_17
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´blackdozer001´ ElementSpawnEnemyDummy 100001
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -211, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_bulldozer_turn_chair
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´bulldozer001´ ElementSpawnEnemyDummy 100002
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -211, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_bulldozer_turn_chair
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´skulldozer001´ ElementSpawnEnemyDummy 100003
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -211, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_bulldozer_turn_chair
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´logic_chance_001´ ElementLogicChance 100005
+	chance 75
+	position 600, 1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_filter_001´ (delay 0)
+		´logic_filter_002´ (delay 0)
+		´logic_filter_003´ (delay 0)
+´logic_chance_trigger_001´ ElementLogicChanceTrigger 100006
+	outcome fail
+	position 600, 1400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´logic_chance_001´
+	on_executed
+		´sm_wish´ (delay 0)
+		´logic_filter_005´ (delay 0)
+		´logic_filter_006´ (delay 0)
+		´point_play_sound_001´ (delay 1)
+´sm_wish´ ElementFilter 100007
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 1300, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´bulldozer001´ (delay 0)
+		´func_enable_unit_003´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´logic_filter_005´ ElementFilter 100008
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 1400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´blackdozer001´ (delay 0)
+		´func_enable_unit_003´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´logic_filter_006´ ElementFilter 100009
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 500, 1500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	on_executed
+		´skulldozer001´ (delay 0)
+		´func_enable_unit_003´ (delay 0)
+		´point_teammate_comment_002´ (delay 1)
+´func_enable_unit_003´ ElementEnableUnit 100010
+	position 400, 1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/off_prop_furniture_stool_strbrz/off_prop_furniture_stool_strbrz/001 (-300, 120, 0)
+´point_play_sound_001´ ElementPlaySound 100012
+	append_prefix false
+	interrupt true
+	position -200, 100, 100
+	rotation 0, 0, 0, -1
+	sound_event bdz_entrance
+	use_instigator false
+´point_teammate_comment_001´ ElementTeammateComment 100013
+	close_to_element true
+	comment p09
+	position -700, -600, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_002´ ElementTeammateComment 100018
+	close_to_element false
+	comment g29
+	position 400, 1200, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true

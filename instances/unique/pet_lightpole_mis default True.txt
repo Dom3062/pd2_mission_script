@@ -1,0 +1,370 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100005
+	DISABLED
+	EXECUTE ON STARTUP
+	position -25, -3225, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´show_saw´ ElementUnitSequence 100007
+	position -1250, -350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+			notify_unit_sequence spawn_dummy
+			time 0
+	on_executed
+		´enable_player_close_again´ (delay 10)
+´timer_done´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+	on_executed
+		´kill_lightpole_hide_saw´ (delay 0.1)
+		´saw_done´ (delay 0)
+		´remove_saw_waypoint´ (delay 0)
+		´switch_to_ragdoll´ (delay 0)
+		´hide_goat´ (delay 0)
+		´disable_2´ (delay 0)
+		´its_done´ (delay 0)
+		´light_break´ (delay 0)
+´kill_lightpole_hide_saw´ ElementUnitSequence 100009
+	position -1250, -1050, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_prop_street_lamppost_corner_dynamic/pta_prop_street_lamppost_corner_dynamic/001 (0, 0, 0)
+			notify_unit_sequence make_dynamic
+			time 0
+´startup´ MissionScriptElement 100029
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_saw´ (delay 0)
+		´hide_goat´ (delay 0)
+´player_close´ ElementAreaTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 895
+	instigator player
+	interval 0.1
+	position -1400, -275, 2.5
+	radius 1156,09
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_2´ (delay 0)
+´goat_waypoint´ ElementWaypoint 100028
+	icon pd2_generic_look
+	only_in_civilian false
+	position -6, -104, 907.53
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_goat_waypoint´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´goat_waypoint´
+´player_close_again´ ElementAreaTrigger 100031
+	DISABLED
+	amount 1
+	depth 500
+	height 895
+	instigator player
+	interval 0.1
+	position -1400, -425, 2.5
+	radius 1202,98
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on both
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_again_2´ (delay 0)
+´enable_player_close_again´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close_again´ DISABLED
+		2 ´vehicle_close_again´ DISABLED
+´player_close_2´ MissionScriptElement 100033
+	TRIGGER TIMES 1
+	on_executed
+		´goat_waypoint´ (delay 0)
+		´show_saw´ (delay 0)
+		´player_close_3´ (delay 0)
+		´there´ (delay 0)
+´player_close_again_2´ MissionScriptElement 100034
+	TRIGGER TIMES 1
+	on_executed
+		´player_close_again_3´ (delay 0)
+		´5_s_reenable´ (delay 5)
+´player_close_3´ ElementInstanceOutput 100035
+	event player_close
+´player_close_again_3´ ElementInstanceOutput 100036
+	event player_close_again
+´saw_done´ ElementInstanceOutput 100037
+	event saw_done
+´hide_saw´ ElementUnitSequence 100038
+	position -1250, 25, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+			notify_unit_sequence hide_dummy
+			time 0
+´saw_waypoint´ ElementWaypoint 100039
+	icon pd2_generic_saw
+	only_in_civilian false
+	position 1, -25, 93.53
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_saw_waypoint´ ElementOperator 100040
+	operation remove
+	elements
+		1 ´saw_waypoint´
+´saw_interacted´ ElementUnitSequenceTrigger 100041
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+	on_executed
+		´remove_goat_waypoint´ (delay 0)
+		´saw_waypoint´ (delay 0)
+		´disable´ (delay 0)
+´enable_goat´ ElementInstanceInput 100042
+	event enable_goat
+	on_executed
+		´enable_player_close´ (delay 0)
+		´point_area_min_police_force_001´ (delay 0)
+		´show_lamp_goat´ (delay 0)
+´enable_player_close´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close´ DISABLED
+		2 ´vehicle_close´ DISABLED
+		3 ´trigger_team_comment´ DISABLED
+´vehicle_close´ ElementAreaTrigger 100049
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 895
+	instigator vehicle_with_players
+	interval 0.1
+	position -1400, -350, 2.5
+	radius 1156,09
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_2´ (delay 0.1)
+´vehicle_close_again´ ElementAreaTrigger 100050
+	DISABLED
+	amount 1
+	depth 500
+	height 895
+	instigator vehicle_with_players
+	interval 0.1
+	position -1400, -500, 2.5
+	radius 1202,98
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on both
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_again_2´ (delay 0.1)
+´5_s_reenable´ ElementToggle 100051
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´player_close_again_2´
+´disable´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_player_close_again´
+		2 ´player_close_again_2´
+		3 ´5_s_reenable´
+		4 ´vehicle_close_again´ DISABLED
+		5 ´player_close_again´ DISABLED
+´goat_picked_up´ ElementInstanceOutput 100053
+	event goat_picked_up
+´point_shape_001´ ElementShape 100054
+	depth 500
+	height 900
+	position 0, 0, 127.5
+	radius 1200
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 500
+´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100055
+	amount 1
+	position 0, 0, 225
+	rotation 0, 0, 0, -1
+´remove_police_force´ ElementOperator 100056
+	operation remove
+	elements
+		1 ´point_area_min_police_force_001´
+´hide_goat´ ElementUnitSequence 100003
+	position -1250, -50, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+			notify_unit_sequence state_vis_hide
+			time 0
+´show_lamp_goat´ ElementUnitSequence 100004
+	position -1250, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+			notify_unit_sequence anim_hang_lamp
+			time 0
+´switch_to_ragdoll´ ElementUnitSequence 100010
+	position -1250, -1125, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+			notify_unit_sequence switch_to_ragdoll
+			time 0
+	on_executed
+		´enable_interaction´ (delay 1)
+´any_interact_with_saw´ ElementUnitSequenceTrigger 100000
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
+´keep_them_away´ ElementTeammateComment 100012
+	close_to_element true
+	comment g16
+	position 0, -75, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´there´ ElementTeammateComment 100014
+	close_to_element true
+	comment g15
+	position 0, -75, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´trigger_team_comment´ ElementAreaTrigger 100013
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 30
+	position 25, -50, 150
+	radius 300
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´keep_them_away´ (delay 0)
+´disable_2´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_team_comment´ DISABLED
+´its_done´ ElementTeammateComment 100016
+	close_to_element true
+	comment v07
+	position 0, -125, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´goat_picked´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+	on_executed
+		´goat_picked_2´ (delay 0)
+		´remove_police_force´ (delay 120)
+		´goat_picked_up´ (delay 0)
+´goat_picked_2´ ElementInstanceOutput 100002
+	event goat_picked
+´enable_interaction´ ElementUnitSequence 100006
+	position -1175, -1125, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (3, -100, 808)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´light_break´ ElementPlaySound 100019
+	append_prefix false
+	position 0, -50, 100
+	rotation 0, 0, 0, -1
+	sound_event road_light_break
+	use_instigator false

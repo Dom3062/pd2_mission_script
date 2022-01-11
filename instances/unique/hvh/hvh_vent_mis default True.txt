@@ -1,0 +1,118 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´input_show_vent´ (delay 3)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, 300, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 1300, -100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	unit_ids
+		1 units/world/architecture/secret_stash/props/secret_stash_vent_7_shaft/001 (60, 0, 236)
+		2 units/world/architecture/secret_stash/props/secret_stash_vent_7/001 (-50.0002, 0, 125)
+´seq_setup´ ElementUnitSequence 100006
+	position 1400, -100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+´input_show_vent´ ElementInstanceInput 100009
+	event show_vent
+	on_executed
+		´enable_vent´ (delay 0)
+´enable_vent´ ElementEnableUnit 100010
+	position 1200, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/architecture/secret_stash/props/secret_stash_vent_7_shaft/001 (60, 0, 236)
+		2 units/world/architecture/secret_stash/props/secret_stash_vent_7/001 (-50.0002, 0, 125)
+´area_loot´ ElementAreaTrigger 100011
+	DISABLED
+	amount 1
+	depth 112,014
+	height 120
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 3, -84, 175
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 140,49
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´thrown_in_loot´ (delay 0)
+´thrown_in_loot´ MissionScriptElement 100012
+	on_executed
+		´remove´ (delay 0.5)
+		´output_secured_a_loot´ (delay 0)
+		´sound_bag_drop´ (delay 0)
+´WP_vent´ ElementWaypoint 100013
+	icon pd2_lootdrop
+	only_in_civilian false
+	position 0, -25, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_loot_drop´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_loot´ DISABLED
+	on_executed
+		´WP_vent´ (delay 0)
+´remove_WP_vent´ ElementOperator 100015
+	operation remove
+	elements
+		1 ´WP_vent´
+´disable_loot_drop´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_loot´ DISABLED
+´input_disable_lootdrop´ ElementInstanceInput 100017
+	event disable_lootdrop
+	on_executed
+		´remove_WP_vent´ (delay 0)
+		´disable_loot_drop´ (delay 0)
+´secure´ ElementCarry 100018
+	operation secure
+	type_filter none
+´remove´ ElementCarry 100019
+	operation remove
+	type_filter none
+	on_executed
+		´secure´ (delay 0)
+´input_hide_vent´ ElementInstanceInput 100020
+	DISABLED
+	event hide_vent
+´output_secured_a_loot´ ElementInstanceOutput 100021
+	event secured_a_loot
+´sound_bag_drop´ ElementPlaySound 100022
+	append_prefix false
+	interrupt true
+	position 0, -50, 150
+	rotation 0, 0, 0, -1
+	sound_event bag_medium_drop
+	use_instigator false
+´input_enable_loot_drop´ ElementInstanceInput 100023
+	event enable_loot_drop
+	on_executed
+		´enable_loot_drop´ (delay 0)

@@ -1,0 +1,201 @@
+´enable_interaction´ ElementInstanceInput 100000
+	event enable_interaction
+´show_crate_input´ ElementInstanceInput 100016
+	event show_crate
+	on_executed
+		´show_crate´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100017
+	EXECUTE ON STARTUP
+	position 400, 300, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´enable_loot001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100018
+	position 400, 500, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+´toggle_screws_on´ ElementUnitSequence 100020
+	position 300, 500, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+´toggle_blowtorch_on´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´blowtorch´ (delay 0)
+´screws_counter´ ElementCounter 100023
+	counter_target 4
+	on_executed
+		´remove_lid´ (delay 0)
+´screw_interact´ ElementUnitSequenceTrigger 100024
+	sequence_list
+	on_executed
+		´screws_counter´ (delay 0)
+´remove_lid´ ElementDisableUnit 100025
+	position 200, 800, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´enable_artifact´ (delay 0)
+´enable_unknown_loot_001´ ElementUnitSequence 100027
+	DISABLED
+	position 100, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown/001 (0, -7, 56.5)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_unknown_loot_004´ (delay 1) DISABLED
+´enable_artifact´ ElementEnableUnit 100028
+	position 300, 900, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+´blowtorch´ ElementInstanceOutput 100029
+	event blowtorch
+´opened´ ElementInstanceOutput 100026
+	event opened
+´enable_loot001´ ElementUnitSequence 100030
+	position 500, 300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+´loot_collected´ ElementUnitSequenceTrigger 100031
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown/001 (0, -7, 56.5)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown_02/001 (0, -7, 56.5)
+	on_executed
+		´loot_collected_output´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´loot_collected_output´ ElementInstanceOutput 100032
+	event loot_collected
+´enable_crowbar´ ElementUnitSequence 100001
+	position -100, 600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_crane_crate/des_prop_crane_crate/001 (0, 10, -0.500002)
+			notify_unit_sequence enable_interaction
+			time 0
+´crowbared_trigger´ ElementUnitSequenceTrigger 100002
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_des/props/des_prop_crane_crate/des_prop_crane_crate/001 (0, 10, -0.500002)
+	on_executed
+		´enable_loot´ (delay 0)
+		´opened´ (delay 0)
+´set_prop_unknown_input_001´ ElementInstanceInput 100003
+	event set_prop_unknown_001
+	on_executed
+		´toggle_prop_unknown_001´ (delay 0)
+´set_prop_unknown_input_002´ ElementInstanceInput 100006
+	event set_prop_unknown_002
+	on_executed
+		´toggle_prop_unknown_002´ (delay 0)
+´toggle_prop_unknown_001´ ElementToggle 100009
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_unknown_loot_001´ DISABLED
+		2 ´enable_unknown_loot_004´ DISABLED
+´toggle_prop_unknown_002´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_unknown_loot_002´ DISABLED
+		2 ´enable_unknown_loot_003´ DISABLED
+´enable_unknown_loot_002´ ElementUnitSequence 100011
+	DISABLED
+	position -100, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown_02/001 (0, -7, 56.5)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_unknown_loot_003´ (delay 1) DISABLED
+´enable_loot´ MissionScriptElement 100012
+	on_executed
+		´enable_unknown_loot_001´ (delay 0) DISABLED
+		´enable_unknown_loot_002´ (delay 0) DISABLED
+		´teammate_comment_found_it´ (delay 1)
+´show_crate´ ElementUnitSequence 100013
+	TRIGGER TIMES 1
+	position -100, 500, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_crane_crate/des_prop_crane_crate/001 (0, 10, -0.500002)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enable_crowbar´ (delay 1)
+´loot_wp´ ElementWaypoint 100007
+	icon pd2_loot
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -15, 113
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_unknown_loot_003´ ElementUnitSequence 100008
+	DISABLED
+	position -100, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown_02/001 (0, -7, 56.5)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´loot_wp´ (delay 0)
+´enable_unknown_loot_004´ ElementUnitSequence 100015
+	DISABLED
+	position 100, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_unknown/des_prop_unknown/001 (0, -7, 56.5)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´loot_wp´ (delay 0)
+´logic_operator_001´ ElementOperator 100022
+	operation remove
+	elements
+		1 ´loot_wp´
+´teammate_comment_found_it´ ElementTeammateComment 100019
+	close_to_element true
+	comment v04
+	position 0, 0, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100033
+	as_subtitle false
+	debug_string from crate instance: teammate_comment_found_it
+	show_instigator false

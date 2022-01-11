@@ -1,0 +1,416 @@
+´hide_stuff´ ElementUnitSequence 100022
+	EXECUTE ON STARTUP
+	position 1200, -75, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/001 (-3.6478E-05, 306, -8)
+			notify_unit_sequence hide
+			time 0
+´start_heli_logic´ MissionScriptElement 100023
+	on_executed
+		´heli_flies_in´ (delay 0)
+´heli_flies_in´ ElementUnitSequence 100024
+	position 1300, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence diamondheist
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence flyin_left_hover
+			time 0
+	on_executed
+		´heli_lands´ (delay 23)
+´open_both_heli_doors´ ElementUnitSequence 100026
+	position 1500, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence open_door_right
+			time 0
+	on_executed
+		´enable_trigger_volumes´ (delay 0)
+		´loot_waypoint´ (delay 0)
+		´escape_link´ (delay 0) DISABLED
+´loot_waypoint´ ElementWaypoint 100028
+	icon pd2_lootdrop
+	position 0, 69, 335
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_trigger_volumes´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loot_area_coke´ DISABLED
+		2 ´loot_area_coke001´ DISABLED
+		3 ´attempt_escape_insta´ DISABLED
+´secure_artifact´ ElementCarry 100033
+	operation secure
+	type_filter mus_artifact
+	on_executed
+		´remove_loot´ (delay 0)
+		´bag_secured_2´ (delay 0)
+´remove_loot´ ElementCarry 100034
+	operation remove
+	type_filter mus_artifact
+´add_loot_bags´ ElementUnitSequence 100039
+	DISABLED
+	position 1700, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence state_add_loot_bag
+			time 0
+´close_heli_doors´ ElementUnitSequence 100049
+	position 2150, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence close_door_right
+			time 0
+´disable_trigger_volumes´ ElementToggle 100050
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_area_coke´ DISABLED
+		2 ´loot_area_coke001´ DISABLED
+		3 ´escape_area´ DISABLED
+		4 ´attempt_escape_insta´ DISABLED
+	on_executed
+		´heli_hovers´ (delay 0)
+´remove_waypoints´ ElementOperator 100051
+	operation remove
+	elements
+		1 ´loot_waypoint´
+		2 ´escape_waypoint´
+´heli_flies_away´ ElementUnitSequence 100053
+	position 2450, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence hover_flyout_left
+			time 0
+	on_executed
+		´end_of_heli_logic´ (delay 23)
+´end_of_heli_logic´ MissionScriptElement 100055
+	on_executed
+		´helicopter_flew_away_completely´ (delay 0)
+		´hide_stuff´ (delay 0)
+´make_helicopter_come´ ElementInstanceInput 100001
+	event make_helicopter_come
+	on_executed
+		´start_heli_logic´ (delay 0)
+´helicopter_flew_away_completely´ ElementInstanceOutput 100002
+	event helicopter_flew_away_completely
+´loot_area_coke´ ElementAreaTrigger 100006
+	DISABLED
+	amount 1
+	depth 190
+	height 118,5
+	instigator loot
+	interval 0.1
+	position 6, 69, 337
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 131
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´secure_artifact´ (delay 0)
+		´add_loot_bags´ (delay 0) DISABLED
+		´bag_secured´ (delay 0)
+		´secure_diamond´ (delay 0)
+		´secure_artifact_paint´ (delay 0)
+´stop_heli_smoke_effects´ ElementStopEffect 100062
+	operation fade_kill
+	position -150, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´heli_smoke_effect´
+´heli_smoke_effect´ ElementPlayEffect 100063
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´4_sec_delay_to_play_effects´ MissionScriptElement 100065
+	on_executed
+		´heli_smoke_effect´ (delay 0)
+´2_sec_delay_to_stop_effects´ MissionScriptElement 100066
+	on_executed
+		´stop_heli_smoke_effects´ (delay 0)
+´loot_area_coke001´ ElementAreaTrigger 100005
+	DISABLED
+	amount 1
+	depth 190
+	height 97,5848
+	instigator loot
+	interval 0.1
+	position 3, 11, 536
+	radius 580
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 131
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove_loot´ (delay 0)
+		´bag_destroy_effect´ (delay 0.1)
+		´choose_1_fuck´ (delay 0)
+		´bag_destroy_effect001´ (delay 0)
+		´bag_destroy_effect003´ (delay 0.3)
+		´bag_destroy_effect004´ (delay 0)
+		´remove_loot001´ (delay 0)
+´bag_destroy_effect´ ElementPlayEffect 100007
+	base_time 0
+	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
+	max_amount 0
+	position -172, 11, 554
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´oh_fuck´ ElementTeammateComment 100008
+	close_to_element true
+	comment g29
+	position 3, -65, 433
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´oh_fuck001´ ElementTeammateComment 100010
+	close_to_element true
+	comment g60
+	position 3, -65, 483
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´choose_1_fuck´ ElementRandom 100011
+	amount 1
+	ignore_disabled true
+	on_executed
+		´oh_fuck001´ (delay 0)
+		´oh_fuck´ (delay 0)
+´bag_secured´ ElementTeammateComment 100012
+	close_to_element true
+	comment p27
+	position 3, -65, 533
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´bag_destroy_effect001´ ElementPlayEffect 100000
+	base_time 0
+	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
+	max_amount 0
+	position 337, 11, 554
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´bag_destroy_effect003´ ElementPlayEffect 100009
+	base_time 0
+	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
+	max_amount 0
+	position -147, 361, 554
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´bag_destroy_effect004´ ElementPlayEffect 100013
+	base_time 0
+	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
+	max_amount 0
+	position 53, -289, 554
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´heli_lands´ ElementUnitSequence 100003
+	position 1400, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence hover_land2
+			time 0
+	on_executed
+		´open_both_heli_doors´ (delay 7)
+		´4_sec_delay_to_play_effects´ (delay 4)
+		´helicopter_is_here´ (delay 6)
+´helicopter_is_here´ ElementInstanceOutput 100004
+	event helicopter_is_here
+´make_helicopter_leave´ ElementInstanceInput 100014
+	event make_helicopter_leave
+	on_executed
+		´close_heli_doors´ (delay 0)
+		´disable_trigger_volumes´ (delay 0)
+´heli_hovers´ ElementUnitSequence 100015
+	position 2350, -175, 275
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/heli (4, 386, 65)
+			notify_unit_sequence takeoff_hover
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/001 (-3.6478E-05, 306, -8)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´heli_flies_away´ (delay 5)
+		´remove_waypoints´ (delay 0)
+		´2_sec_delay_to_stop_effects´ (delay 2)
+´escape_area´ ElementAreaTrigger 100016
+	DISABLED
+	amount all
+	depth 299,307
+	height 445,56
+	instigator player
+	interval 0.1
+	position 1, 304, 162
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 403,927
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´players_escaped´ (delay 2)
+´players_escaped´ ElementInstanceOutput 100017
+	event players_escaped
+´escape_waypoint´ ElementWaypoint 100018
+	icon pd2_escape
+	position 1, 304, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´secure_diamond´ ElementCarry 100019
+	operation secure
+	type_filter hope_diamond
+	on_executed
+		´diamond_secured´ (delay 0)
+		´remove_loot002´ (delay 0)
+´secure_artifact_paint´ ElementCarry 100021
+	operation secure
+	type_filter mus_artifact_paint
+	on_executed
+		´bag_secured_2´ (delay 0)
+		´remove_loot001´ (delay 0)
+´enable_escape´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´escape_area´ DISABLED
+	on_executed
+		´escape_waypoint´ (delay 0)
+´escape_link´ MissionScriptElement 100029
+	DISABLED
+	on_executed
+		´enable_escape´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´escape_allowed´ ElementInstanceInput 100031
+	event escape_allowed
+	on_executed
+		´allow_escape´ (delay 0)
+		´attempt_escape_insta´ (delay 0.05) DISABLED
+´allow_escape´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´escape_link´ DISABLED
+´attempt_escape_insta´ MissionScriptElement 100035
+	DISABLED
+	on_executed
+		´escape_link´ (delay 0) DISABLED
+´func_sequence_001´ ElementUnitSequence 100036
+	position 1500, 300, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/001 (-3.6478E-05, 306, -8)
+			notify_unit_sequence show
+			time 0
+´diamond_secured´ ElementInstanceOutput 100037
+	event diamond_secured
+´bag_counter´ ElementCounter 100038
+	counter_target 4
+	on_executed
+		´set_4´ (delay 1)
+		´fully_loaded´ (delay 0)
+		´make_helicopter_leave´ (delay 0)
+´set_4´ ElementCounterOperator 100040
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´bag_counter´
+´fully_loaded´ ElementInstanceOutput 100041
+	event fully_loaded
+´bag_secured_2´ MissionScriptElement 100042
+	on_executed
+		´bag_counter´ (delay 0)
+		´bag_secured_3´ (delay 0)
+´remove_loot001´ ElementCarry 100043
+	operation remove
+	type_filter mus_artifact_paint
+´remove_loot002´ ElementCarry 100044
+	operation remove
+	type_filter hope_diamond
+´bag_secured_3´ ElementInstanceOutput 100045
+	event bag_secured

@@ -1,0 +1,249 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+	on_executed
+		´input_enable_interactions´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_keychain_forklift/chas_pku_keychain_forklift/001 (8.00002, -2.00006, 144)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_keychain_forklift/chas_pku_keychain_forklift/001 (8.00002, -2.00006, 144)
+			notify_unit_sequence switch_to_no_glow_mtr
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_interactions´ ElementInstanceInput 100012
+	event enable_interactions
+	on_executed
+		´seq_enable_interactions_keybox´ (delay 0)
+´locker_opened´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id 100008
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+	on_executed
+		´disable_outline_triggers´ (delay 0)
+´seq_enable_keycard´ ElementUnitSequence 100015
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_keychain_forklift/chas_pku_keychain_forklift/001 (8.00002, -2.00006, 144)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_keychain_forklift/chas_pku_keychain_forklift/001 (8.00002, -2.00006, 144)
+			notify_unit_sequence switch_to_glow_mtr
+			time 0
+´key_picked´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_keychain_forklift/chas_pku_keychain_forklift/001 (8.00002, -2.00006, 144)
+	on_executed
+		´remove_WP´ (delay 0)
+´output_got_key´ ElementInstanceOutput 100017
+	event got_forklift_key
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100018
+	as_subtitle false
+	debug_string got_forklift_key
+	show_instigator false
+´input_enable_outline´ ElementInstanceInput 100007
+	event enable_outline
+	on_executed
+		´seq_enable_outline´ (delay 0)
+´seq_enable_outline´ ElementUnitSequence 100009
+	position 1050, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+			notify_unit_sequence state_enable_outline
+			time 0
+´trigger_area_enable_outline´ ElementAreaTrigger 100010
+	DISABLED
+	amount 1
+	depth 200
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_outline´ (delay 0)
+´trigger_area_disable_outline´ ElementAreaTrigger 100019
+	DISABLED
+	amount all
+	depth 200
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´disable_outline´ (delay 0)
+´enable_outline´ MissionScriptElement 100020
+	on_executed
+		´enable_outline_2´ (delay 0)
+´disable_outline´ MissionScriptElement 100021
+	on_executed
+		´disable_outline_2´ (delay 0)
+´enable_outline_2´ ElementUnitSequence 100022
+	position 1175, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+			notify_unit_sequence state_enable_outline
+			time 0
+´disable_outline_2´ ElementUnitSequence 100023
+	position 1250, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+			notify_unit_sequence state_disable_outline
+			time 0
+´disable_outline_triggers´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_disable_outline´ DISABLED
+		2 ´trigger_area_enable_outline´ DISABLED
+		3 ´enable_outline´
+		4 ´disable_outline´
+	on_executed
+		´disable_outline_2´ (delay 0)
+		´seq_enable_keycard´ (delay 0)
+´seq_enable_interactions_keybox´ ElementUnitSequence 100014
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_keycard_cabinet/chas_prop_keycard_cabinet/001 (0, 0, 125)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´enable_area_triggers´ (delay 0)
+´enable_area_triggers´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_disable_outline´ DISABLED
+		2 ´trigger_area_enable_outline´ DISABLED
+´input_enable_WP´ ElementInstanceInput 100011
+	event enable_WP
+	on_executed
+		´link_show_WP´ (delay 0)
+´link_show_WP´ MissionScriptElement 100027
+	on_executed
+		´interact_WP´ (delay 0)
+´interact_WP´ ElementWaypoint 100028
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -50, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP´ ElementOperator 100029
+	operation remove
+	elements
+		1 ´interact_WP´
+	on_executed
+		´disable_WP´ (delay 0)
+´disable_WP´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_WP´
+	on_executed
+		´output_got_key´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100008
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1625, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´enable_interactions´ (delay 0)
+´enable_interactions´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on

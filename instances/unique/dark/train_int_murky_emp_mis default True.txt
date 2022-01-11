@@ -1,0 +1,3171 @@
+´door 1´ ElementUnitSequence 100232
+	position -750, 1450, 2.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/007 (774.199, 0, 149.615)
+			notify_unit_sequence anim_open_door
+			time 0
+´Doors Open´ MissionScriptElement 100234
+	TRIGGER TIMES 1
+	on_executed
+		´door 1_2´ (delay 0)
+		´door 2´ (delay 0)
+		´door 3´ (delay 0)
+		´door 4´ (delay 0)
+		´panel´ (delay 0)
+´Auto_Start´ MissionScriptElement 100197
+	EXECUTE ON STARTUP
+	on_executed
+		´Disable_Interaction´ (delay 0)
+		´Link_2´ (delay 0)
+		´dev´ (delay 0) DISABLED
+		´Start Lasers´ (delay 0)
+		´Link_3´ (delay 0)
+´Disable_Interaction´ ElementUnitSequence 100200
+	position 1325, 1100, 2.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_vault_light/gen_interactable_door_vault_light/door_vault_01 (575, -200, 149.615)
+			notify_unit_sequence state_steel_wall
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_vault_light/gen_interactable_door_vault_light/door_vault_01 (575, -200, 149.615)
+			notify_unit_sequence deactivate_door
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_end_lower (900, -7.9999, 155.615)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_end_upper (900, -2.99985, 155.615)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_mid_lower (175, -8, 155.615)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_mid_upper (-225, -3, 155.615)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/drk_interactable_military_laptop/drk_interactable_military_laptop/001 (424.826, 161.008, 243.615)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´disable_all´ (delay 0)
+´shape_train_interior´ ElementShape 100029
+	depth 2341,86
+	height 255,85
+	position -24.9995, 0, 274.615
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	width 385
+´inside_train´ ElementAreaReportTrigger 100032
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -1250, 1050, 2.5
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_train_interior´
+	use_shape_element_ids
+	unit_ids
+		1 100029
+	on_executed
+		´Player reached interior´ (delay 0) (alternative enter)
+´Link´ MissionScriptElement 100042
+	on_executed
+		´Start Selection´ (delay 0) DISABLED
+		´2 step authentication´ (delay 0)
+´Emp_Used´ ElementInstanceOutput 100054
+	event Emp_Used
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100061
+	as_subtitle false
+	debug_string emp_used
+	show_instigator false
+´Train_interior_reached´ ElementInstanceOutput 100064
+	event Train_interior_reached
+	on_executed
+		´Play Vo´ (delay 0)
+´Player reached interior´ MissionScriptElement 100065
+	on_executed
+		´Train_interior_reached´ (delay 0)
+		´What equipment do you need´ (delay 0)
+´Open_Train_Doors´ ElementInstanceInput 100002
+	event Open_Train_Doors
+	on_executed
+		´Doors Open´ (delay 0)
+´door 2´ MissionScriptElement 100003
+	on_executed
+		´door 2_2´ (delay 0)
+´door 3´ MissionScriptElement 100004
+	on_executed
+		´door 3_2´ (delay 0)
+´door 4´ MissionScriptElement 100005
+	on_executed
+		´door 4_2´ (delay 0)
+´door 1_2´ MissionScriptElement 100006
+	on_executed
+		´door 1´ (delay 0)
+´door 2_2´ ElementUnitSequence 100007
+	position -800, 1450, 2.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/008 (-825.75, 0, 149.615)
+			notify_unit_sequence anim_open_door
+			time 0
+´door 3_2´ ElementUnitSequence 100008
+	position -850, 1450, 2.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/005 (774.199, 0, 149.615)
+			notify_unit_sequence anim_open_door
+			time 0
+´door 4_2´ ElementUnitSequence 100009
+	position -900, 1450, 2.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/006 (-825.75, 0, 149.615)
+			notify_unit_sequence anim_open_door
+			time 0
+´Link_2´ MissionScriptElement 100025
+	on_executed
+		´Pick Panel´ (delay 0)
+´Pick Panel´ ElementRandom 100026
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´panel_1´ (delay 0)
+		´panel_2´ (delay 0)
+´panel_1´ MissionScriptElement 100028
+	on_executed
+		´off´ (delay 0)
+´panel_2´ MissionScriptElement 100030
+	on_executed
+		´off_2´ (delay 0)
+´off´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´1´
+		2 ´1_2´
+		3 ´link_3´
+		4 ´1_3´ DISABLED
+		5 ´1_4´ DISABLED
+	on_executed
+		´hide´ (delay 0)
+´off_2´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´2´
+		2 ´2_2´
+		3 ´link_4´
+		4 ´2_3´ DISABLED
+		5 ´2_4´ DISABLED
+	on_executed
+		´hide_2´ (delay 0)
+´Jammed´ MissionScriptElement 100036
+	on_executed
+		´1_2´ (delay 0)
+		´2_2´ (delay 0)
+		´1_3´ (delay 0) DISABLED
+		´2_3´ (delay 0) DISABLED
+´jam on´ ElementGlobalEventTrigger 100037
+	global_event ecm_jammer_on
+	position 1125, 1400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´set - cant use´ (delay 0)
+´jam off´ ElementGlobalEventTrigger 100038
+	global_event ecm_jammer_off
+	position 925, 1400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´set - can use´ (delay 0)
+´locked - interactable´ MissionScriptElement 100039
+	on_executed
+		´1´ (delay 0)
+		´2´ (delay 0)
+		´1_4´ (delay 0) DISABLED
+		´2_4´ (delay 0) DISABLED
+´hatch 1´ ElementUnitSequence 100040
+	position 1200, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´hatch 1_2´ ElementUnitSequence 100041
+	position 1000, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´1´ MissionScriptElement 100043
+	on_executed
+		´hatch 1_2´ (delay 0)
+´2´ MissionScriptElement 100044
+	on_executed
+		´hatch 2_2´ (delay 0)
+´1_2´ MissionScriptElement 100046
+	on_executed
+		´hatch 1´ (delay 0)
+´2_2´ MissionScriptElement 100047
+	on_executed
+		´hatch 2´ (delay 0)
+´panel´ ElementUnitSequence 100058
+	position -950, 1350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_doors_unlocked
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_doors_unlocked
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´panel off´ (delay 0)
+´panel off´ ElementToggle 100059
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´locked - interactable´
+		2 ´Jammed´
+	on_executed
+		´Doors_Hacked_Open´ (delay 0)
+´Doors_Hacked_Open´ ElementInstanceOutput 100060
+	event Doors_Hacked_Open
+	on_executed
+		´Enable Laser´ (delay 0)
+		´2 step authentication_2´ (delay 0)
+		´2 step_3´ (delay 0)
+´Link_3´ MissionScriptElement 100239
+	BASE DELAY 2
+	on_executed
+		´Harddrive´ (delay 0)
+		´Blowtorch´ (delay 0)
+		´Thermite´ (delay 0)
+		´keycard´ (delay 0)
+´door 2_3´ MissionScriptElement 100240
+	TRIGGER TIMES 1
+	on_executed
+		´disable_2´ (delay 0)
+´door 3_3´ MissionScriptElement 100241
+	TRIGGER TIMES 1
+	on_executed
+		´disable_3´ (delay 0)
+´door 4_3´ MissionScriptElement 100242
+	TRIGGER TIMES 1
+	on_executed
+		´disable_4´ (delay 0)
+´door 1_3´ MissionScriptElement 100243
+	TRIGGER TIMES 1
+	on_executed
+		´disable´ (delay 0)
+´disable´ ElementDisableUnit 100244
+	position 250, 1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_interactable_door_vault_light/gen_interactable_door_vault_light/door_vault_01 (575, -200, 149.615)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/001 (582.794, 79.5, 149.615)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/002 (612.239, 96.5, 149.615)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/003 (599.328, 171.595, 149.615)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (599.328, 196.595, 149.615)
+	on_executed
+		´Hide - disable´ (delay 0)
+´disable_2´ ElementDisableUnit 100245
+	position 50, 1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/002 (-600, -3, 150)
+		2 units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/door_blowtorch_01 (550, 1, 150.615)
+		3 units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate_frame/003 (554, 3.33786E-06, 123)
+		4 units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate_frame/004 (-600, -0.000959635, 123)
+	on_executed
+		´Hide - disable_2´ (delay 0)
+´disable_3´ ElementDisableUnit 100246
+	position -150, 1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate/door_thermite_01 (509, 2.98023E-06, 125)
+		2 units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate_frame/001 (484, 0, 123)
+	on_executed
+		´Hide - disable_3´ (delay 0)
+´disable_4´ ElementDisableUnit 100247
+	position -350, 1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (548, -79, 246.777)
+		2 units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (-597, 79, 246.777)
+		3 units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate_bars/door_keycard_frame_01 (550, 0, 150)
+		4 units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/door_keycard_01 (550, 0, 150)
+		5 units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/002 (-600, 0, 150)
+		6 units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate_bars/002 (-600, 0, 150)
+	on_executed
+		´Hide - disable_4´ (delay 0)
+´Hide - disable´ ElementUnitSequence 100249
+	position 250, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´Turn Off_4´ (delay 0)
+´Hide - disable_2´ ElementUnitSequence 100250
+	position 50, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´Turn Off´ (delay 0)
+´Hide - disable_3´ ElementUnitSequence 100251
+	position -150, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate/door_thermite_01 (509, 2.98023E-06, 125)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´Turn Off_2´ (delay 0)
+´Hide - disable_4´ ElementUnitSequence 100252
+	position -350, 1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (548, -79, 246.777)
+			notify_unit_sequence disable_interact
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (-597, 79, 246.777)
+			notify_unit_sequence disable_interact
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/door_keycard_01 (550, 0, 150)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/002 (-600, 0, 150)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´Turn Off_3´ (delay 0)
+´door 3a´ MissionScriptElement 100094
+	on_executed
+		´Open Door´ (delay 0)
+´door 4_4´ MissionScriptElement 100095
+	on_executed
+		´Open Door_2´ (delay 0)
+		´Open Door_3´ (delay 0)
+´Burn Finished´ ElementUnitSequenceTrigger 100117
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_thermite_burn
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate/door_thermite_01 (509, 2.98023E-06, 125)
+	on_executed
+		´door 3a´ (delay 0)
+´key used´ ElementUnitSequenceTrigger 100168
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (548, -79, 246.777)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (-597, 79, 246.777)
+	on_executed
+		´door 4_4´ (delay 0)
+´Open Door´ ElementUnitSequence 100170
+	position -1200, 2450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sewer_grate/drk_prop_sewer_grate/door_thermite_01 (509, 2.98023E-06, 125)
+			notify_unit_sequence dyn_grate_fall
+			time 0
+	on_executed
+		´door_open_thermite´ (delay 0)
+´Turn Off´ ElementToggle 100253
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´post - setup´
+		2 ´point_interaction_2´
+		3 ´point_interaction_1´
+		4 ´point_interaction_004´
+		5 ´point_interaction_003´
+		6 ´link_6´
+	on_executed
+		´Finished - Picking´ (delay 0)
+´Open Door_2´ ElementUnitSequence 100254
+	position -1350, 2450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/door_keycard_01 (550, 0, 150)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´door_open_keycard´ (delay 0)
+´Open Door_3´ ElementUnitSequence 100266
+	position -1450, 2450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_sliding_gate/drk_prop_sliding_gate/002 (-600, 0, 150)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´door_open_keycard´ (delay 0)
+´post - setup´ MissionScriptElement 100274
+	on_executed
+		´off_6´ (delay 0)
+		´2_10´ (delay 0)
+´post - setup_2´ MissionScriptElement 100275
+	on_executed
+		´off_3´ (delay 0)
+		´2_11´ (delay 0)
+´post - setup_3´ MissionScriptElement 100276
+	on_executed
+		´off_4´ (delay 0)
+		´2_10´ (delay 0)
+´post - setup_4´ MissionScriptElement 100277
+	on_executed
+		´off_5´ (delay 0)
+		´2_11´ (delay 0)
+´Turn Off_2´ ElementToggle 100278
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´post - setup_2´
+		2 ´link_7´
+	on_executed
+		´Finished - Picking´ (delay 0)
+´Turn Off_3´ ElementToggle 100279
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´post - setup_3´
+		2 ´link_8´
+	on_executed
+		´Finished - Picking´ (delay 0)
+´Turn Off_4´ ElementToggle 100280
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´post - setup_4´
+		2 ´link_5´
+	on_executed
+		´Finished - Picking´ (delay 0)
+´Finished - Picking´ MissionScriptElement 100281
+	on_executed
+		´3´ (delay 0)
+´3´ ElementCounter 100282
+	BASE DELAY 1
+	counter_target 3
+	on_executed
+		´post - setup_3´ (delay 0)
+		´post - setup_2´ (delay 0)
+		´post - setup´ (delay 0)
+		´post - setup_4´ (delay 0)
+		´pick_location´ (delay 0.5)
+		´point_debug_008´ (delay 0)
+´off_3´ ElementToggle 100271
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´door 1_2´
+		2 ´door 3´
+		3 ´link_2´
+	on_executed
+		´thermite_door´ (delay 0)
+´pick_bomb´ ElementRandom 100096
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´upper´ (delay 0) DISABLED
+		´lower´ (delay 0) DISABLED
+´link´ MissionScriptElement 100125
+	on_executed
+		´Choose EMP_2´ (delay 0)
+		´enable - cage vault´ (delay 0)
+		´ending_caution_strips - right´ (delay 0)
+		´enable_4´ (delay 0)
+		´enable_3´ (delay 0)
+´pick_location´ MissionScriptElement 100286
+	TRIGGER TIMES 1
+	on_executed
+		´Link´ (delay 0)
+´off_4´ ElementToggle 100290
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´
+	on_executed
+		´keycard_door´ (delay 0)
+´off_5´ ElementToggle 100291
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´door 1_2´
+		2 ´door 3´
+		3 ´link_2´
+	on_executed
+		´harddrive_door´ (delay 0)
+´link_2´ MissionScriptElement 100081
+	on_executed
+		´Choose EMP´ (delay 0)
+		´ending_caution_strips - left´ (delay 0)
+		´ending_caution_strips - right´ (delay 0)
+		´enable_4´ (delay 0)
+		´enable_3´ (delay 0)
+´Start Selection´ MissionScriptElement 100086
+	DISABLED
+	on_executed
+		´random layout´ (delay 0)
+´random layout´ ElementRandom 100088
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´link´ (delay 0)
+		´link_2´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100062
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 550, -2.18557E-06, 306.615
+	random_time 0
+	rotation 0.707107, 3.09086E-08, 0.707107, -3.09086E-08
+	screen_space false
+´env_effect_play_002´ ElementPlayEffect 100069
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 550, -1.74846E-06, 231.615
+	random_time 0
+	rotation 0.707107, 3.09086E-08, 0.707107, -3.09086E-08
+	screen_space false
+´point_interaction_1´ ElementInteraction 100070
+	host_only false
+	override_timer -1
+	position 570, 0, 231.615
+	rotation 0, 0, 1, -4.37114E-08
+	tweak_data_id hold_blow_torch
+	on_executed
+		´torch_01´ (delay 0) (alternative interacted)
+		´env_effect_play_002´ (delay 0) (alternative start)
+		´env_effect_stop_001´ (delay 0) (alternative interupt)
+		´Finished_2´ (delay 0) (alternative interacted)
+		´env_effect_play_008´ (delay 0) (alternative start)
+´torch_01´ ElementPlaySound 100091
+	append_prefix false
+	interrupt true
+	position -950, 2650, 2.5
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end_global
+	use_instigator false
+´point_interaction_2´ ElementInteraction 100335
+	host_only false
+	override_timer -1
+	position 570, 0, 308.615
+	rotation 0, 0, 1, -4.37114E-08
+	tweak_data_id hold_blow_torch
+	on_executed
+		´torch_01´ (delay 0) (alternative interacted)
+		´env_effect_play_001´ (delay 0) (alternative start)
+		´env_effect_stop_002´ (delay 0) (alternative interupt)
+		´Finished´ (delay 0) (alternative interacted)
+		´env_effect_play_007´ (delay 0) (alternative start)
+´env_effect_stop_001´ ElementStopEffect 100336
+	operation kill
+	position -950, 2500, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_002´
+		2 ´env_effect_play_008´
+´env_effect_stop_002´ ElementStopEffect 100337
+	operation kill
+	position -950, 2350, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+		2 ´env_effect_play_007´
+´Finished´ MissionScriptElement 100338
+	TRIGGER TIMES 1
+	on_executed
+		´show mark´ (delay 0)
+´show mark´ ElementUnitSequence 100339
+	position -950, 2300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/door_blowtorch_01 (550, 1, 150.615)
+			notify_unit_sequence show_decals_upper
+			time 0
+	on_executed
+		´env_effect_stop_002´ (delay 0)
+		´2 step´ (delay 0)
+´Finished_2´ MissionScriptElement 100340
+	TRIGGER TIMES 1
+	on_executed
+		´show mark_2´ (delay 0)
+´show mark_2´ ElementUnitSequence 100341
+	position -950, 2450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/door_blowtorch_01 (550, 1, 150.615)
+			notify_unit_sequence show_decals_lower
+			time 0
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´2 step´ (delay 0)
+´2 step´ ElementCounter 100123
+	counter_target 2
+	on_executed
+		´door_open´ (delay 0)
+´door_open´ ElementUnitSequence 100129
+	position -950, 2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/door_blowtorch_01 (550, 1, 150.615)
+			notify_unit_sequence open_gate
+			time 0
+	on_executed
+		´door_open_blowtorch´ (delay 0)
+´point_interaction_003´ ElementInteraction 100345
+	host_only false
+	override_timer -1
+	position -620, -2.00033, 307.615
+	rotation 7.23128E-09, 1.78814E-07, -1.62921E-07, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´Finished_3´ (delay 0) (alternative interacted)
+		´env_effect_stop_003´ (delay 0) (alternative interupt)
+		´env_effect_play_003´ (delay 0) (alternative start)
+		´torch_001´ (delay 0) (alternative interupt)
+		´env_effect_play_005´ (delay 0) (alternative start)
+´point_interaction_004´ ElementInteraction 100346
+	host_only false
+	override_timer -1
+	position -620, -2.00033, 228.615
+	rotation 7.23128E-09, 1.78814E-07, -1.62921E-07, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´env_effect_play_004´ (delay 0) (alternative start)
+		´Finished_4´ (delay 0) (alternative interacted)
+		´env_effect_stop_004´ (delay 0) (alternative interupt)
+		´torch_001´ (delay 0) (alternative interupt)
+		´env_effect_play_006´ (delay 0) (alternative start)
+´env_effect_play_003´ ElementPlayEffect 100347
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -600, -2.00032, 305.615
+	random_time 0
+	rotation -1.10089E-07, 0.707107, -1.20316E-07, -0.707107
+	screen_space false
+´env_effect_play_004´ ElementPlayEffect 100348
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -600, -2.00032, 231.615
+	random_time 0
+	rotation -1.10089E-07, 0.707107, -1.20316E-07, -0.707107
+	screen_space false
+´Finished_3´ MissionScriptElement 100349
+	on_executed
+		´show mark_3´ (delay 0)
+´show mark_3´ ElementUnitSequence 100350
+	position -1050, 2300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/002 (-600, -3, 150)
+			notify_unit_sequence show_decals_upper
+			time 0
+	on_executed
+		´2 step_2´ (delay 0)
+		´env_effect_stop_003´ (delay 0)
+´env_effect_stop_003´ ElementStopEffect 100351
+	operation fade_kill
+	position -1050, 2350, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_003´
+		2 ´env_effect_play_005´
+´Finished_4´ MissionScriptElement 100352
+	on_executed
+		´show mark_4´ (delay 0)
+´show mark_4´ ElementUnitSequence 100353
+	position -1050, 2450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/002 (-600, -3, 150)
+			notify_unit_sequence show_decals_lower
+			time 0
+	on_executed
+		´2 step_2´ (delay 0)
+		´env_effect_stop_004´ (delay 0)
+´env_effect_stop_004´ ElementStopEffect 100354
+	operation fade_kill
+	position -1050, 2500, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_004´
+		2 ´env_effect_play_006´
+´2 step_2´ ElementCounter 100355
+	counter_target 2
+	on_executed
+		´door_open_2´ (delay 0)
+´door_open_2´ ElementUnitSequence 100356
+	position -1050, 2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_mountain_gate/drk_prop_mountain_gate/002 (-600, -3, 150)
+			notify_unit_sequence open_gate
+			time 0
+	on_executed
+		´torch_001´ (delay 0)
+		´door_open_blowtorch´ (delay 0)
+´torch_001´ ElementPlaySound 100357
+	append_prefix false
+	interrupt true
+	position -1050, 2650, 2.5
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end_global
+	use_instigator false
+´off_6´ ElementToggle 100097
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´
+	on_executed
+		´blowtorch_door´ (delay 0)
+´Open Door_4´ ElementUnitSequence 100099
+	position -775, 2450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_vault_light/gen_interactable_door_vault_light/door_vault_01 (575, -200, 149.615)
+			notify_unit_sequence open_door_no_attention
+			time 0
+	on_executed
+		´off_17´ (delay 0)
+´hard_drive_placed´ ElementUnitSequenceTrigger 100100
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+	on_executed
+		´door 1 a´ (delay 0)
+´door 1 a´ MissionScriptElement 100076
+	on_executed
+		´Open Door_4´ (delay 0)
+´Door Setup´ ElementUnitSequence 100102
+	position 250, 2100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/drk_interactable_military_laptop/drk_interactable_military_laptop/001 (424.826, 161.008, 243.615)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´2 step authentication_2´ (delay 0)
+		´enable_front_servers´ (delay 0)
+´hide´ ElementUnitSequence 100107
+	position 1125, 1350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´hide_2´ ElementUnitSequence 100109
+	position 925, 1350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´link_3´ MissionScriptElement 100110
+	TRIGGER TIMES 1
+	on_executed
+		´panel open´ (delay 0)
+		´off_19´ (delay 0)
+´panel_used´ ElementUnitSequenceTrigger 100112
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+	on_executed
+		´link_3´ (delay 0)
+´enable´ ElementUnitSequence 100113
+	position 725, 1550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´On´ (delay 0)
+´controls_used´ ElementUnitSequenceTrigger 100114
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+	on_executed
+		´Doors Open´ (delay 0)
+´panel_used_2´ ElementUnitSequenceTrigger 100115
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+	on_executed
+		´link_4´ (delay 0)
+´link_4´ MissionScriptElement 100116
+	TRIGGER TIMES 1
+	on_executed
+		´panel open_2´ (delay 0)
+		´off_20´ (delay 0)
+´enable_2´ ElementUnitSequence 100118
+	position 525, 1550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´On_2´ (delay 0)
+´hatch 2´ ElementUnitSequence 100024
+	position 1100, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´hatch 2_2´ ElementUnitSequence 100120
+	position 900, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´1_3´ MissionScriptElement 100000
+	DISABLED
+	on_executed
+		´panel 1´ (delay 0)
+´panel 1´ ElementUnitSequence 100001
+	position 1150, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_doors_jammed
+			time 0
+´On´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´1_3´ DISABLED
+		2 ´1_4´ DISABLED
+	on_executed
+		´off_7´ (delay 0)
+´2_3´ MissionScriptElement 100048
+	DISABLED
+	on_executed
+		´panel 2´ (delay 0)
+´panel 2´ ElementUnitSequence 100055
+	position 1050, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_doors_jammed
+			time 0
+´1_4´ MissionScriptElement 100056
+	DISABLED
+	on_executed
+		´panel 1_2´ (delay 0)
+´panel 1_2´ ElementUnitSequence 100057
+	position 950, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_doors_locked
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´2_4´ MissionScriptElement 100119
+	DISABLED
+	on_executed
+		´panel 2_2´ (delay 0)
+´panel 2_2´ ElementUnitSequence 100121
+	position 850, 1650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_doors_locked
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´On_2´ ElementToggle 100122
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´2_4´ DISABLED
+		2 ´2_3´ DISABLED
+	on_executed
+		´off_8´ (delay 0)
+´blowtorch_door´ ElementInstanceOutput 100124
+	event blowtorch_door
+	on_executed
+		´point_debug_010´ (delay 0)
+´thermite_door´ ElementInstanceOutput 100126
+	event thermite_door
+	on_executed
+		´point_debug_009´ (delay 0)
+		´link_16´ (delay 0)
+´keycard_door´ ElementInstanceOutput 100127
+	event keycard_door
+	on_executed
+		´point_debug_004´ (delay 0)
+´harddrive_door´ ElementInstanceOutput 100128
+	event harddrive_door
+	on_executed
+		´Door Setup´ (delay 0)
+		´point_debug_011´ (delay 0)
+´What equipment do you need´ MissionScriptElement 100130
+	on_executed
+		´link_5´ (delay 0)
+		´link_6´ (delay 0)
+		´link_7´ (delay 0)
+		´link_8´ (delay 0)
+´link_5´ MissionScriptElement 100131
+	on_executed
+		´logic_link_001´ (delay 0) DISABLED
+		´2_6´ (delay 0)
+´emp_harddrive´ ElementInstanceOutput 100132
+	event emp_harddrive
+´emp_blowtorch´ ElementInstanceOutput 100133
+	event emp_blowtorch
+´emp_thermite´ ElementInstanceOutput 100134
+	event emp_thermite
+´emp_keycard´ ElementInstanceOutput 100135
+	event emp_keycard
+´link_6´ MissionScriptElement 100136
+	on_executed
+		´logic_link_002´ (delay 0) DISABLED
+		´2_7´ (delay 0)
+´link_7´ MissionScriptElement 100137
+	on_executed
+		´logic_link_003´ (delay 0) DISABLED
+		´2_8´ (delay 0)
+´link_8´ MissionScriptElement 100138
+	on_executed
+		´logic_link_004´ (delay 0) DISABLED
+		´2_9´ (delay 0)
+´param´ ElementInstanceParams 100423
+	position 1325, 950, 2.5
+	rotation 0, 0, 0, -1
+	params
+		1
+			default_value 1
+			type number
+			var_name var_train_number
+		2
+			default_value 1
+			type number
+			var_name var_loot_amount 
+		3
+			default_value 0
+			type number
+			var_name var_is_emp_train
+		4
+			default_value 0
+			type number
+			var_name var_what_door_am_i
+´link_9´ MissionScriptElement 100418
+	DISABLED
+	on_executed
+		´alarm_triggered´ (delay 0)
+´alarm_triggered´ ElementInstanceOutput 100431
+	event alarm_triggered
+	on_executed
+		´point_debug_007´ (delay 0)
+		´play_sound´ (delay 0)
+´point_debug_007´ ElementDebug 100435
+	as_subtitle true
+	debug_string ALARM SET OFF BY LAZER
+	show_instigator false
+´link_10´ MissionScriptElement 100050
+	TRIGGER TIMES 1
+	on_executed
+		´Emp_Used´ (delay 0)
+´emp_opened´ ElementUnitSequenceTrigger 100053
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_end_lower (900, -7.9999, 155.615)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_end_upper (900, -2.99985, 155.615)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_mid_lower (175, -8, 155.615)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_mid_upper (-225, -3, 155.615)
+	on_executed
+		´link_10´ (delay 0)
+´Choose EMP´ MissionScriptElement 100331
+	on_executed
+		´pick_bomb_2´ (delay 0)
+´pick_bomb_2´ ElementRandom 100360
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´upper_3´ (delay 0) DISABLED
+		´lower_3´ (delay 0) DISABLED
+´Choose EMP_2´ MissionScriptElement 100083
+	on_executed
+		´pick_bomb´ (delay 0)
+´alarm_sound_1´ ElementPlaySound 100486
+	append_prefix false
+	interrupt true
+	position 0, 0, 275
+	rotation 0, 0, 0, -1
+	sound_event alarm_the_bomb_on_slow_fade
+	use_instigator false
+´start_blink´ ElementUnitSequence 100487
+	position -100, 4800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_1 (-821, 0, 422)
+			notify_unit_sequence state_blinking
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_2 (779, 0, 422.219)
+			notify_unit_sequence state_blinking
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/alarm_omni_light_1 (-825, 0, 400)
+			notify_unit_sequence light_on
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/alarm_omni_light_2 (775, 0, 400)
+			notify_unit_sequence light_on
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/alarm_omni_light_1 (-825, 0, 400)
+			notify_unit_sequence light_flicker
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/alarm_omni_light_2 (775, 0, 400)
+			notify_unit_sequence light_flicker
+			time 0
+´enable_glow´ ElementEnableUnit 100488
+	position -100, 4700, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_1 (-821, 0, 422)
+		2 units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_2 (779, 0, 422.219)
+	on_executed
+		´start_blink´ (delay 0)
+´play_sound´ MissionScriptElement 100492
+	TRIGGER TIMES 1
+	on_executed
+		´alarm_sound_1´ (delay 0)
+		´enable_glow´ (delay 0)
+´disable_all´ ElementDisableUnit 100493
+	position 1325, 1200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_1 (-821, 0, 422)
+		2 units/pd2_dlc_casino/props/gen_prop_glow_01_orange_blink/gen_prop_glow_01_orange_blink/alarm_light_glow_2 (779, 0, 422.219)
+		3 units/payday2/architecture/bnk/bnk_int_fence_wall_short/012 (973.979, -95.6216, 150.615)
+		4 units/payday2/architecture/bnk/bnk_int_fence_wall_short/011 (973.979, 196.381, 150.615)
+		5 units/payday2/architecture/bnk/bnk_int_shelf_a/115 (1177, 199.996, 224.001)
+		6 units/payday2/architecture/bnk/bnk_int_shelf_a/114 (1177, 99.9958, 224.001)
+		7 units/payday2/architecture/bnk/bnk_int_fence_wall_short/013 (1173.98, 5.38077, 150.614)
+		8 units/payday2/architecture/bnk/bnk_int_shelf_a/113 (1177, -0.00415039, 224.001)
+		9 units/payday2/architecture/bnk/bnk_int_shelf_a/112 (1177, -100.004, 224.001)
+		10 units/payday2/architecture/bnk/bnk_int_shelf_a/110 (1177, -100.004, 149.001)
+		11 units/payday2/architecture/bnk/bnk_int_shelf_a/111 (1177, -0.00415039, 149.001)
+		12 units/payday2/architecture/bnk/bnk_int_shelf_a/109 (1177, 99.9958, 149.001)
+		13 units/payday2/architecture/bnk/bnk_int_shelf_a/108 (1177, 199.996, 149.001)
+		14 units/payday2/architecture/bnk/bnk_int_shelf_a/116 (1177, 199.996, 299.001)
+		15 units/payday2/architecture/bnk/bnk_int_shelf_a/117 (1177, 99.9958, 299.001)
+		16 units/payday2/architecture/bnk/bnk_int_shelf_a/118 (1177, -0.00415039, 299.001)
+		17 units/payday2/architecture/bnk/bnk_int_shelf_a/119 (1177, -100.004, 299.001)
+		18 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/001 (175, 100, 151.615)
+		19 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/002 (175, -100, 151.615)
+		20 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/003 (-225, -100, 151.615)
+		21 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/004 (-225, 100, 151.615)
+		22 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/005 (973, -99.9999, 151.615)
+		23 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/006 (973, 100, 151.615)
+		24 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/007 (773, 6.10352E-05, 149.615)
+		25 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/001 (775, 194, 150.615)
+		26 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/002 (775, -194, 150.615)
+		27 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/001 (350, 0, 150.615)
+		28 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/002 (4, 0, 150.615)
+		29 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/003 (-398, 0, 150.615)
+		30 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/004 (-53, 0, 150.615)
+		31 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/007 (811, 1, 150.615)
+		32 units/payday2/props/gen_prop_displaywall/gen_prop_displaywall/005 (976.729, 1.09998, 150.615)
+		33 units/payday2/props/gen_prop_displaywall/gen_prop_displaywall/006 (976.729, -198.9, 150.615)
+		34 units/payday2/architecture/bnk/bnk_int_shelf_a/097 (1020, -99.001, 359)
+		35 units/payday2/architecture/bnk/bnk_int_shelf_a/096 (1020, 0.999023, 359)
+		36 units/payday2/architecture/bnk/bnk_int_shelf_a/091 (1020, 100.999, 359)
+		37 units/payday2/architecture/bnk/bnk_int_shelf_a/090 (1020, 201, 359)
+		38 units/payday2/architecture/bnk/bnk_int_wall_corner_a/017 (1025, 200, 134.615)
+		39 units/payday2/architecture/bnk/bnk_int_wall_corner_a/018 (1026, 100, 133.615)
+		40 units/payday2/architecture/bnk/bnk_int_wall_corner_a/007 (1061, 100, 149.615)
+		41 units/payday2/architecture/bnk/bnk_int_wall_corner_a/006 (1061, 0, 149.615)
+		42 units/payday2/architecture/bnk/bnk_int_wall_corner_a/005 (1061, -100, 149.615)
+		43 units/payday2/architecture/bnk/bnk_int_wall_corner_a/016 (1061, -200, 149.615)
+		44 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/010 (1014, 200, 82.615)
+		45 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/011 (1014, 0, 82.615)
+		46 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/005 (779, 16.0002, 150)
+		47 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/006 (779, -6.99982, 150)
+		48 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/011 (644.046, -78.1939, 149)
+		49 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/007 (648.046, 83.806, 149)
+		50 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/008 (770.046, 83.806, 149)
+		51 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/010 (766.046, -78.1939, 149)
+		52 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/012 (899.046, -78.1939, 149)
+		53 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/009 (903.046, 83.806, 149)
+		54 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/003 (777, 173, 150)
+		55 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/004 (777, -172, 150)
+		56 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/010 (581, 0.000152588, 150.615)
+		57 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/011 (972, 0.000274658, 150.615)
+		58 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/002 (-945.046, 78.1939, 149)
+		59 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/004 (-949.046, -83.806, 149)
+		60 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/005 (-816.046, -83.806, 149)
+		61 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/006 (-812.046, 78.194, 149)
+		62 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/001 (-690.046, 78.1939, 149)
+		63 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/003 (-694.046, -83.806, 149)
+		64 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/009 (-627, -9.15527E-05, 150.615)
+		65 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/003 (-825, -16.0002, 150)
+		66 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/004 (-825, 6.99988, 150)
+		67 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/008 (-1018, -0.000152588, 150.615)
+		68 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/002 (-823, 172, 150)
+		69 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/001 (-823, -173, 150)
+		70 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/001 (173, 0, 398.615)
+		71 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/002 (-236, 4.57764E-05, 398.615)
+		72 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/003 (895, -9.15527E-05, 430.615)
+		73 core/units/light_spot/light_spot/001 (-225, -2.72989E-05, 350.615)
+		74 core/units/light_spot/light_spot/002 (175, -2.72989E-05, 350.615)
+		75 core/units/light_spot/light_spot/003 (900, -2.72989E-05, 350.615)
+		76 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/007 (425, 170, 150.615)
+		77 units/pd2_indiana/props/mus_prop_construction_cart_dywall/mus_prop_construction_cart_dywall/001 (445.602, -136.805, 150)
+		78 units/payday2/architecture/bnk/bnk_int_wall_corner_a/020 (-599, 200, 149.615)
+		79 units/payday2/architecture/bnk/bnk_int_shelf_a/002 (-463, 102, 421)
+		80 units/payday2/architecture/bnk/bnk_int_shelf_a/001 (-463, 101, 375)
+		81 units/payday2/architecture/bnk/bnk_int_wall_corner_a/019 (-473, 200, 149.615)
+		82 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/003 (-511, 135, 268)
+		83 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/002 (-511, 135, 209)
+		84 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/001 (-511, 135, 150)
+		85 units/payday2/architecture/bnk/bnk_int_shelf_a/003 (-552, -104, 375)
+		86 units/payday2/architecture/bnk/bnk_int_shelf_a/004 (-552, -105, 421)
+		87 units/payday2/architecture/bnk/bnk_int_wall_corner_a/021 (-599, -100, 149.615)
+		88 units/payday2/architecture/bnk/bnk_int_wall_corner_a/022 (-473, -100, 149.615)
+		89 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/004 (-511, -135, 268)
+		90 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/005 (-511, -135, 209)
+		91 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/006 (-511, -135, 150)
+		92 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_d/001 (426, 169.983, 209.615)
+		93 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/009 (1172, 98, 387.487)
+		94 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/010 (1172, -96, 387.487)
+		95 units/world/architecture/hospital/props/rooftop/light_red/light_red2/alarm_prop_light_2 (779.219, 0, 466.219)
+		96 units/world/architecture/hospital/props/rooftop/light_red/light_red2/alarm_prop_light_1 (-821, 0, 466)
+		97 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/004 (975, -195, 149.615)
+		98 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/003 (775, -195, 149.615)
+		99 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/001 (775, 195, 149.615)
+		100 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/002 (575, 195, 149.615)
+	on_executed
+		´disable_red_lights´ (delay 0)
+´what door am I´ ElementCounter 100073
+	counter_target 1
+´dev´ MissionScriptElement 100184
+	DISABLED
+	BASE DELAY 1
+	on_executed
+		´Link_3´ (delay 0)
+		´Pick_Emp_Part_2´ (delay 0)
+´trigger_laser_002´ ElementLaserTrigger 100368
+	DISABLED
+	color red
+	cycle_active_amount 1
+	cycle_interval 2
+	cycle_random true
+	cycle_type flow
+	instigator player
+	interval 0.1
+	skip_dummies false
+	visual_only false
+	connections
+		1
+			from 5
+			to 6
+		2
+			from 4
+			to 3
+		3
+			from 2
+			to 1
+	points
+		1
+			pos -26.0108, -95.6194, 200.63
+			rot -2.57169E-08, 3.75547E-14, 1.46031E-06, -1
+		2
+			pos -26.0309, 96.3801, 200.631
+			rot -3.67873E-14, -2.57162E-08, 1, 1.43051E-06
+		3
+			pos -26.0842, -95.6194, 250.71
+			rot -2.57169E-08, 3.75547E-14, 1.46031E-06, -1
+		4
+			pos -25.5706, 96.3801, 250.661
+			rot -3.67873E-14, -2.57162E-08, 1, 1.43051E-06
+		5
+			pos -25.6214, 96.3801, 300.635
+			rot -3.67873E-14, -2.57162E-08, 1, 1.43051E-06
+		6
+			pos -26.1792, -95.6194, 300.639
+			rot -2.57169E-08, 3.75547E-14, 1.46031E-06, -1
+	on_executed
+		´touched´ (delay 0) (alternative enter)
+´touched´ MissionScriptElement 100374
+	on_executed
+		´link_9´ (delay 0) DISABLED
+´Enable Laser´ MissionScriptElement 100375
+	on_executed
+		´On_3´ (delay 0)
+´On_3´ ElementToggle 100377
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_9´ DISABLED
+´Start Lasers´ MissionScriptElement 100228
+	on_executed
+		´logic_filter_001´ (delay 0)
+´off_7´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´1´
+		2 ´1_2´
+	on_executed
+		´allow ecm´ (delay 0)
+´off_8´ ElementToggle 100106
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´2´
+		2 ´2_2´
+	on_executed
+		´allow ecm´ (delay 0)
+´enable laser´ ElementToggle 100315
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_laser_002´ DISABLED
+´point_play_sound_001´ ElementPlaySound 100022
+	append_prefix false
+	interrupt true
+	position 900, 850, 2.5
+	rotation 0, 0, 0, -1
+	sound_event f13r_sin
+	use_instigator false
+´point_play_sound_002´ ElementPlaySound 100023
+	append_prefix false
+	interrupt true
+	position 800, 850, 2.5
+	rotation 0, 0, 0, -1
+	sound_event v53
+	use_instigator false
+´shape_train_lasers´ ElementShape 100327
+	depth 1100,74
+	height 256
+	position -24.9995, 0, 274.615
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	width 385
+´Harddrive´ ElementCounterFilter 100015
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´what door am I´
+	on_executed
+		´door 2_3´ (delay 0)
+		´door 3_3´ (delay 0)
+		´door 4_3´ (delay 0)
+´point_debug_008´ ElementDebug 100077
+	as_subtitle false
+	debug_string Success all 3 used
+	show_instigator false
+´point_debug_004´ ElementDebug 100074
+	as_subtitle false
+	debug_string keycard - chosen
+	show_instigator false
+´point_debug_009´ ElementDebug 100164
+	as_subtitle false
+	debug_string Thermite - chosen
+	show_instigator false
+´point_debug_010´ ElementDebug 100165
+	as_subtitle false
+	debug_string blowtorch - chosen
+	show_instigator false
+´point_debug_011´ ElementDebug 100166
+	as_subtitle false
+	debug_string harddrive - chosen
+	show_instigator false
+´Blowtorch´ ElementCounterFilter 100141
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´what door am I´
+	on_executed
+		´door 3_3´ (delay 0)
+		´door 4_3´ (delay 0)
+		´door 1_3´ (delay 0)
+´Thermite´ ElementCounterFilter 100143
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´what door am I´
+	on_executed
+		´door 4_3´ (delay 0)
+		´door 1_3´ (delay 0)
+		´door 2_3´ (delay 0)
+´keycard´ ElementCounterFilter 100144
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´what door am I´
+	on_executed
+		´door 1_3´ (delay 0)
+		´door 2_3´ (delay 0)
+		´door 3_3´ (delay 0)
+´set_door_Harddrive´ ElementInstanceInput 100145
+	event set_door_Harddrive
+	on_executed
+		´0´ (delay 0)
+´set_door_Blowtorch´ ElementInstanceInput 100167
+	event set_door_Blowtorch
+	on_executed
+		´1_5´ (delay 0)
+´set_door_Thermite´ ElementInstanceInput 100185
+	event set_door_Thermite
+	on_executed
+		´2_5´ (delay 0)
+´set_door_keycard´ ElementInstanceInput 100238
+	event set_door_keycard
+	on_executed
+		´3_2´ (delay 0)
+´0´ ElementCounterOperator 100248
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´what door am I´
+´1_5´ ElementCounterOperator 100258
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´what door am I´
+´3_2´ ElementCounterOperator 100259
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´what door am I´
+´2_5´ ElementCounterOperator 100260
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´what door am I´
+´Pick_Emp_Part_1´ ElementInstanceInput 100140
+	event Pick_Emp_Part_1
+	on_executed
+		´link_11´ (delay 0)
+´Pick_Emp_Part_2´ ElementInstanceInput 100268
+	event Pick_Emp_Part_2
+	on_executed
+		´link_12´ (delay 0)
+´link_11´ MissionScriptElement 100269
+	on_executed
+		´On - Upper´ (delay 0)
+´link_12´ MissionScriptElement 100270
+	on_executed
+		´On - Lower´ (delay 0)
+´Finished_5´ MissionScriptElement 100012
+	on_executed
+		´2 step authentication´ (delay 0)
+		´link_13´ (delay 0)
+		´On_4´ (delay 0)
+		´Off_5´ (delay 0)
+´2 step authentication´ ElementCounter 100051
+	counter_target 2
+	on_executed
+		´random layout´ (delay 0)
+´spawn_mid_loot´ MissionScriptElement 100011
+	on_executed
+		´pick rare location´ (delay 1)
+		´unhide_all´ (delay 0)
+´pick rare location´ ElementRandom 100272
+	amount 3
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´loot_1´ (delay 0)
+		´loot_1_2´ (delay 0)
+		´loot_1_3´ (delay 0)
+		´loot_1_4´ (delay 0)
+		´loot_1_5´ (delay 0) DISABLED
+		´loot_1_6´ (delay 0)
+		´loot_1_7´ (delay 0)
+		´loot_1_8´ (delay 0) DISABLED
+´loot_1´ MissionScriptElement 100273
+	on_executed
+		´set rare´ (delay 0)
+´loot_1_2´ MissionScriptElement 100283
+	on_executed
+		´set rare_2´ (delay 0)
+´loot_1_3´ MissionScriptElement 100284
+	on_executed
+		´set rare_3´ (delay 0)
+´loot_1_4´ MissionScriptElement 100285
+	on_executed
+		´set rare_4´ (delay 0)
+´loot_1_5´ MissionScriptElement 100287
+	DISABLED
+	on_executed
+		´set rare_5´ (delay 0)
+´loot_1_6´ MissionScriptElement 100292
+	on_executed
+		´set rare_6´ (delay 0)
+´loot_1_7´ MissionScriptElement 100293
+	on_executed
+		´set rare_7´ (delay 0)
+´loot_1_8´ MissionScriptElement 100294
+	DISABLED
+	on_executed
+		´set rare_8´ (delay 0)
+´set rare´ ElementUnitSequence 100295
+	position -2900, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/001 (75, -175, 149)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_9´ (delay 0)
+´off_9´ ElementToggle 100296
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2´
+	on_executed
+		´3 step authentications´ (delay 0)
+´3 step authentications´ ElementCounter 100298
+	BASE DELAY 1
+	counter_target 3
+	on_executed
+		´pick - medium´ (delay 0)
+´set rare_2´ ElementUnitSequence 100300
+	position -3000, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/002 (75.0001, -175, 249)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_10´ (delay 0)
+´off_10´ ElementToggle 100302
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_2´
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_3´ ElementUnitSequence 100303
+	position -3100, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/003 (-125, -175, 249)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_11´ (delay 0)
+´off_11´ ElementToggle 100332
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_3´
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_4´ ElementUnitSequence 100333
+	position -3200, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/004 (-125, -175, 149)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_12´ (delay 0)
+´off_12´ ElementToggle 100343
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_4´
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_5´ ElementUnitSequence 100358
+	position -3300, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/005 (75, 175, 149)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_13´ (delay 0)
+´off_13´ ElementToggle 100359
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_5´ DISABLED
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_6´ ElementUnitSequence 100361
+	position -3400, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/006 (75, 175, 249)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_14´ (delay 0)
+´off_14´ ElementToggle 100362
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_6´
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_7´ ElementUnitSequence 100364
+	position -3500, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/007 (-125, 175, 249)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_15´ (delay 0)
+´off_15´ ElementToggle 100366
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_7´
+	on_executed
+		´3 step authentications´ (delay 0)
+´set rare_8´ ElementUnitSequence 100367
+	position -3600, 1250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/008 (-125, 175, 149)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´off_16´ (delay 0)
+´off_16´ ElementToggle 100371
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loot_2_8´ DISABLED
+	on_executed
+		´3 step authentications´ (delay 0)
+´pick - medium´ ElementRandom 100378
+	amount 3
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´loot_2´ (delay 0)
+		´loot_2_2´ (delay 0)
+		´loot_2_3´ (delay 0)
+		´loot_2_4´ (delay 0)
+		´loot_2_5´ (delay 0) DISABLED
+		´loot_2_6´ (delay 0)
+		´loot_2_7´ (delay 0)
+		´loot_2_8´ (delay 0) DISABLED
+´loot_2´ MissionScriptElement 100380
+	on_executed
+		´set medium´ (delay 0)
+´loot_2_2´ MissionScriptElement 100381
+	on_executed
+		´set medium_2´ (delay 0)
+´loot_2_3´ MissionScriptElement 100382
+	on_executed
+		´set medium_3´ (delay 0)
+´loot_2_4´ MissionScriptElement 100383
+	on_executed
+		´set medium_4´ (delay 0)
+´loot_2_5´ MissionScriptElement 100384
+	DISABLED
+	on_executed
+		´set medium_5´ (delay 0)
+´loot_2_6´ MissionScriptElement 100385
+	on_executed
+		´set medium_6´ (delay 0)
+´loot_2_7´ MissionScriptElement 100386
+	on_executed
+		´set medium_7´ (delay 0)
+´loot_2_8´ MissionScriptElement 100388
+	DISABLED
+	on_executed
+		´set medium_8´ (delay 0)
+´set medium´ ElementUnitSequence 100390
+	position -2900, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/001 (75, -175, 149)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_2´ ElementUnitSequence 100391
+	position -3000, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/002 (75.0001, -175, 249)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_3´ ElementUnitSequence 100392
+	position -3100, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/003 (-125, -175, 249)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_4´ ElementUnitSequence 100393
+	position -3200, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/004 (-125, -175, 149)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_5´ ElementUnitSequence 100394
+	position -3300, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/005 (75, 175, 149)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_6´ ElementUnitSequence 100395
+	position -3400, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/006 (75, 175, 249)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_7´ ElementUnitSequence 100396
+	position -3500, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/007 (-125, 175, 249)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´set medium_8´ ElementUnitSequence 100397
+	position -3600, 1650, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/008 (-125, 175, 149)
+			notify_unit_sequence spawn_loot_1
+			time 0
+´unhide_all´ ElementUnitSequence 100406
+	position -3350, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/001 (75, -175, 149)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/002 (75.0001, -175, 249)
+			notify_unit_sequence state_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/003 (-125, -175, 249)
+			notify_unit_sequence state_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/004 (-125, -175, 149)
+			notify_unit_sequence state_show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/005 (75, 175, 149)
+			notify_unit_sequence state_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/006 (75, 175, 249)
+			notify_unit_sequence state_show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/007 (-125, 175, 249)
+			notify_unit_sequence state_show
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/008 (-125, 175, 149)
+			notify_unit_sequence state_hide
+			time 0
+	on_executed
+		´point_debug_012´ (delay 0)
+´show_loot´ ElementInstanceInput 100408
+	event Spawn_Loot
+	on_executed
+		´2_10´ (delay 0)
+		´2_11´ (delay 0)
+´point_debug_012´ ElementDebug 100409
+	as_subtitle false
+	debug_string Loot train spawned
+	show_instigator false
+´link_13´ MissionScriptElement 100410
+	on_executed
+		´enable - prop - red lightbulb´ (delay 0)
+´disable_red_lights´ ElementDisableUnit 100413
+	position 1325, 1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/005 (775, 0, 299.615)
+		2 core/units/light_omni/light_omni/003 (375, 0, 299.615)
+		3 core/units/light_omni/light_omni/004 (-25, 0, 299.615)
+		4 core/units/light_omni/light_omni/002 (-425, 0, 299.615)
+		5 core/units/light_omni/light_omni/001 (-825, 0, 299.615)
+´disable_white_lights´ ElementDisableUnit 100419
+	position 1200, 3500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/white_light_omni_010 (950, 0, 299.615)
+		2 core/units/light_omni/light_omni/white_light_omni_008 (375, 0, 299.615)
+		3 core/units/light_omni/light_omni/white_light_omni_009 (-25, 0, 299.615)
+		4 core/units/light_omni/light_omni/white_light_omni_007 (-425, 0, 299.615)
+		5 core/units/light_omni/light_omni/white_light_omni_006 (-825, 0, 299.615)
+		6 core/units/light_omni/light_omni/white_light_omni_011 (700, 0, 299.615)
+		7 units/pd2_dlc_dark/props/drk_prop_mechanical_lamp_small/drk_prop_mechanical_lamp_small/002 (779.219, -9, 460.219)
+		8 units/pd2_dlc_dark/props/drk_prop_mechanical_lamp_small/drk_prop_mechanical_lamp_small/001 (-821, -8, 460)
+´On - Lower´ ElementToggle 100429
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lower´ DISABLED
+		2 ´lower_3´ DISABLED
+	on_executed
+		´Finished_5´ (delay 0)
+´On - Upper´ ElementToggle 100430
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´upper´ DISABLED
+		2 ´upper_3´ DISABLED
+	on_executed
+		´Finished_5´ (delay 0)
+´upper´ MissionScriptElement 100432
+	DISABLED
+	on_executed
+		´upper_2´ (delay 0)
+´lower´ MissionScriptElement 100433
+	DISABLED
+	on_executed
+		´lower_2´ (delay 0)
+´upper_2´ ElementUnitSequence 100434
+	position 100, 3800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_end_upper (900, -2.99985, 155.615)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_end_upper (900, -2.99985, 155.615)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´disable_11´ (delay 0)
+´lower_2´ ElementUnitSequence 100436
+	position 0, 3800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_end_lower (900, -7.9999, 155.615)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´disable_11´ (delay 0)
+´upper_3´ MissionScriptElement 100437
+	DISABLED
+	on_executed
+		´upper_4´ (delay 0)
+´lower_3´ MissionScriptElement 100438
+	DISABLED
+	on_executed
+		´lower_4´ (delay 0)
+´upper_4´ ElementUnitSequence 100439
+	position 300, 3800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_mid_upper (-225, -3, 155.615)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_upper/bomb_mid_upper (-225, -3, 155.615)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´disable_5´ (delay 0)
+´lower_4´ ElementUnitSequence 100440
+	position 200, 3800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_bomb_rack/drk_prop_bomb_rack_lower/bomb_mid_lower (175, -8, 155.615)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´disable_6´ (delay 0)
+´disable_5´ ElementDisableUnit 100441
+	position 300, 3900, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_shelf_a/088 (-28.0012, -201.001, 242)
+		2 units/payday2/architecture/bnk/bnk_int_shelf_a/089 (-128.001, -201.001, 242)
+		3 units/payday2/architecture/bnk/bnk_int_shelf_a/083 (-228, 201, 242)
+		4 units/payday2/architecture/bnk/bnk_int_shelf_a/082 (-128, 200.999, 242)
+	on_executed
+		´enable_light´ (delay 0)
+´disable_6´ ElementDisableUnit 100442
+	position 200, 3900, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_shelf_a/093 (176.999, -201.002, 242.001)
+		2 units/payday2/architecture/bnk/bnk_int_shelf_a/092 (76.9988, -201.001, 242)
+		3 units/payday2/architecture/bnk/bnk_int_shelf_a/087 (-23, 200.999, 242)
+		4 units/payday2/architecture/bnk/bnk_int_shelf_a/086 (77, 200.999, 242)
+	on_executed
+		´enable_light_2´ (delay 0)
+´Play_pln_drk_08´ ElementDialogue 100045
+	can_not_be_muted false
+	dialogue Play_pln_drk_08
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Play_pln_drk_024´ (delay 2)
+´Play_pln_drk_08_2´ ElementDialogue 100052
+	can_not_be_muted false
+	dialogue Play_pln_drk_08
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Play_pln_drk_014´ (delay 1)
+´Play_pln_drk_08_3´ ElementDialogue 100297
+	can_not_be_muted false
+	dialogue Play_pln_drk_08
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Play_pln_drk_019´ (delay 1)
+´Play_pln_drk_08_4´ ElementDialogue 100301
+	can_not_be_muted false
+	dialogue Play_pln_drk_08
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Play_pln_drk_09´ (delay 1)
+´Play_pln_drk_024´ ElementDialogue 100306
+	can_not_be_muted false
+	dialogue Play_pln_drk_24
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´difficulty lock´ (delay 2)
+´Play_pln_drk_09´ ElementDialogue 100313
+	can_not_be_muted false
+	dialogue Play_pln_drk_09
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´difficulty lock_4´ (delay 2)
+´Play_pln_drk_010´ ElementDialogue 100317
+	can_not_be_muted false
+	dialogue Play_pln_drk_10
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´reminder_4´ (delay 0)
+´Play_pln_drk_019´ ElementDialogue 100320
+	can_not_be_muted false
+	dialogue Play_pln_drk_19
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´difficulty lock_3´ (delay 2)
+´Play_pln_drk_014´ ElementDialogue 100322
+	can_not_be_muted false
+	dialogue Play_pln_drk_14
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´difficulty lock_2´ (delay 2)
+´Play_pln_drk_015´ ElementDialogue 100363
+	can_not_be_muted false
+	dialogue Play_pln_drk_15
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´reminder_2´ (delay 0)
+´Play_pln_drk_020´ ElementDialogue 100365
+	can_not_be_muted false
+	dialogue Play_pln_drk_20
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´reminder_3´ (delay 0)
+´Play_pln_drk_025´ ElementDialogue 100370
+	can_not_be_muted false
+	dialogue Play_pln_drk_25
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´reminder´ (delay 0)
+´difficulty lock´ ElementFilter 100372
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1800, 2300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Play_pln_drk_025´ (delay 0)
+´difficulty lock_2´ ElementFilter 100376
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2000, 2300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Play_pln_drk_015´ (delay 0)
+´difficulty lock_3´ ElementFilter 100379
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2200, 2300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Play_pln_drk_020´ (delay 0)
+´difficulty lock_4´ ElementFilter 100389
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2400, 2300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Play_pln_drk_010´ (delay 0)
+´point_play_sound_003´ ElementPlaySound 100412
+	append_prefix false
+	interrupt true
+	position 700, 850, 2.5
+	rotation 0, 0, 0, -1
+	sound_event Play_pln_drk_43
+	use_instigator false
+´logic_link_001´ MissionScriptElement 100154
+	DISABLED
+	on_executed
+		´Play_pln_drk_08´ (delay 0)
+´logic_link_002´ MissionScriptElement 100155
+	DISABLED
+	on_executed
+		´Play_pln_drk_08_2´ (delay 0)
+´logic_link_003´ MissionScriptElement 100156
+	DISABLED
+	on_executed
+		´Play_pln_drk_08_3´ (delay 0)
+´logic_link_004´ MissionScriptElement 100157
+	DISABLED
+	on_executed
+		´Play_pln_drk_08_4´ (delay 0)
+´On_4´ ElementToggle 100422
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´logic_link_001´ DISABLED
+		2 ´logic_link_002´ DISABLED
+		3 ´logic_link_003´ DISABLED
+		4 ´logic_link_004´ DISABLED
+	on_executed
+		´emp_train´ (delay 0)
+´reminder´ MissionScriptElement 100325
+	BASE DELAY 120
+	base_delay_rand 30
+	on_executed
+		´Play_pln_drk_026´ (delay 0)
+´reminder_2´ MissionScriptElement 100326
+	BASE DELAY 120
+	base_delay_rand 30
+	on_executed
+		´Play_pln_drk_016´ (delay 0)
+´reminder_3´ MissionScriptElement 100328
+	BASE DELAY 120
+	base_delay_rand 30
+	on_executed
+		´Play_pln_drk_021´ (delay 0)
+´reminder_4´ MissionScriptElement 100329
+	BASE DELAY 120
+	base_delay_rand 30
+	on_executed
+		´Play_pln_drk_011´ (delay 0)
+´disable_7´ ElementInstanceInput 100330
+	event disable_reminder_hd
+	on_executed
+		´Off´ (delay 0)
+´Off´ ElementToggle 100426
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reminder´
+		2 ´Play_pln_drk_026´
+´disable_8´ ElementInstanceInput 100425
+	event disable_reminder_bt
+	on_executed
+		´Off_2´ (delay 0)
+´disable_9´ ElementInstanceInput 100427
+	event disable_reminder_therm
+	on_executed
+		´Off_3´ (delay 0)
+´disable_10´ ElementInstanceInput 100443
+	event disable_reminder_key
+	on_executed
+		´Off_4´ (delay 0)
+´Off_2´ ElementToggle 100444
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reminder_2´
+		2 ´Play_pln_drk_016´
+´Off_3´ ElementToggle 100445
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reminder_3´
+		2 ´Play_pln_drk_021´
+´Off_4´ ElementToggle 100446
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reminder_4´
+		2 ´Play_pln_drk_011´
+´Play_pln_drk_011´ ElementDialogue 100447
+	can_not_be_muted false
+	dialogue Play_pln_drk_11
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+´Play_pln_drk_016´ ElementDialogue 100448
+	can_not_be_muted false
+	dialogue Play_pln_drk_16
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+´Play_pln_drk_021´ ElementDialogue 100449
+	can_not_be_muted false
+	dialogue Play_pln_drk_21
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+´Play_pln_drk_026´ ElementDialogue 100450
+	can_not_be_muted false
+	dialogue Play_pln_drk_26
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+´2_6´ ElementCounter 100451
+	counter_target 2
+	on_executed
+		´emp_harddrive´ (delay 0)
+´2_7´ ElementCounter 100452
+	counter_target 2
+	on_executed
+		´emp_blowtorch´ (delay 0)
+´2_8´ ElementCounter 100453
+	counter_target 2
+	on_executed
+		´emp_thermite´ (delay 0)
+´2_9´ ElementCounter 100454
+	counter_target 2
+	on_executed
+		´emp_keycard´ (delay 0)
+´emp_train´ MissionScriptElement 100455
+	on_executed
+		´2_6´ (delay 0)
+		´2_7´ (delay 0)
+		´2_8´ (delay 0)
+		´2_9´ (delay 0)
+´door_open_thermite´ ElementInstanceOutput 100456
+	TRIGGER TIMES 1
+	event door_open_thermite
+´door_open_keycard´ ElementInstanceOutput 100457
+	TRIGGER TIMES 1
+	event door_open_keycard
+´door_open_blowtorch´ ElementInstanceOutput 100458
+	TRIGGER TIMES 1
+	event door_open_blowtorch
+´door_open_harddrive´ ElementInstanceOutput 100459
+	TRIGGER TIMES 1
+	event door_open_harddrive
+´enable_3´ ElementEnableUnit 100468
+	position 100, 3400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/002 (4, 0, 150.615)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/001 (350, 0, 150.615)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/002 (175, -100, 151.615)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/001 (175, 100, 151.615)
+´enable_4´ ElementEnableUnit 100469
+	position 100, 3350, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/003 (-398, 0, 150.615)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/003 (-225, -100, 151.615)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/004 (-225, 100, 151.615)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/004 (-53, 0, 150.615)
+´disable_11´ ElementDisableUnit 100471
+	position 50, 3900, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/001 (976, 100, 149.615)
+		2 units/payday2/architecture/bnk/bnk_int_wall_corner_a/002 (975, 0, 149.615)
+		3 units/payday2/architecture/bnk/bnk_int_wall_corner_a/001 (975, 100, 149.615)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/003 (1175, 100, 149.615)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/004 (975, -99.9998, 149.615)
+	on_executed
+		´enable_5´ (delay 0)
+´enable_5´ ElementEnableUnit 100472
+	position 50, 4000, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/007 (773, 6.10352E-05, 149.615)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/006 (973, 100, 151.615)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/005 (973, -99.9999, 151.615)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_2m/007 (811, 1, 150.615)
+		5 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/002 (775, -194, 150.615)
+		6 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/001 (775, 194, 150.615)
+		7 core/units/light_spot/light_spot/003 (900, -2.72989E-05, 350.615)
+		8 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/003 (895, -9.15527E-05, 430.615)
+´spawn_end_loot´ MissionScriptElement 100510
+	on_executed
+		´unhide_all_2´ (delay 0)
+		´point_debug_012´ (delay 0)
+´unhide_all_2´ ElementUnitSequence 100511
+	position -3950, 1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/012 (1150, 100, 307)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/016 (1150, -100, 307)
+			notify_unit_sequence state_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/015 (1150, -100, 232)
+			notify_unit_sequence state_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/011 (1150, 100, 232)
+			notify_unit_sequence state_show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/010 (1150, 100, 157)
+			notify_unit_sequence state_show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/014 (1150, -100, 157)
+			notify_unit_sequence state_show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/010 (1150, 100, 157)
+			notify_unit_sequence spawn_loot_2
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/011 (1150, 100, 232)
+			notify_unit_sequence spawn_loot_2
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/012 (1150, 100, 307)
+			notify_unit_sequence spawn_loot_2
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/014 (1150, -100, 157)
+			notify_unit_sequence spawn_loot_2
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/015 (1150, -100, 232)
+			notify_unit_sequence spawn_loot_2
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_pku_dark_loot_crate/gen_pku_dark_loot_crate_01/016 (1150, -100, 307)
+			notify_unit_sequence spawn_loot_2
+			time 0
+	on_executed
+		´disable_12´ (delay 0)
+´enable_racks´ ElementEnableUnit 100516
+	position -3950, 1300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_fence_wall_short/013 (1173.98, 5.38077, 150.614)
+		2 units/payday2/architecture/bnk/bnk_int_shelf_a/118 (1177, -0.00415039, 299.001)
+		3 units/payday2/architecture/bnk/bnk_int_shelf_a/119 (1177, -100.004, 299.001)
+		4 units/payday2/architecture/bnk/bnk_int_shelf_a/117 (1177, 99.9958, 299.001)
+		5 units/payday2/architecture/bnk/bnk_int_shelf_a/116 (1177, 199.996, 299.001)
+		6 units/payday2/architecture/bnk/bnk_int_shelf_a/115 (1177, 199.996, 224.001)
+		7 units/payday2/architecture/bnk/bnk_int_shelf_a/114 (1177, 99.9958, 224.001)
+		8 units/payday2/architecture/bnk/bnk_int_shelf_a/113 (1177, -0.00415039, 224.001)
+		9 units/payday2/architecture/bnk/bnk_int_shelf_a/112 (1177, -100.004, 224.001)
+		10 units/payday2/architecture/bnk/bnk_int_shelf_a/108 (1177, 199.996, 149.001)
+		11 units/payday2/architecture/bnk/bnk_int_shelf_a/109 (1177, 99.9958, 149.001)
+		12 units/payday2/architecture/bnk/bnk_int_shelf_a/111 (1177, -0.00415039, 149.001)
+		13 units/payday2/architecture/bnk/bnk_int_shelf_a/110 (1177, -100.004, 149.001)
+		14 units/payday2/architecture/bnk/bnk_int_fence_wall_short/011 (973.979, 196.381, 150.615)
+		15 units/payday2/architecture/bnk/bnk_int_fence_wall_short/012 (973.979, -95.6216, 150.615)
+		16 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/009 (1172, 98, 387.487)
+		17 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/010 (1172, -96, 387.487)
+	on_executed
+		´ending_caution_strips - left´ (delay 0)
+´disable_12´ ElementDisableUnit 100517
+	position -3950, 1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/001 (976, 100, 149.615)
+		2 units/payday2/architecture/bnk/bnk_int_wall_corner_a/002 (975, 0, 149.615)
+		3 units/payday2/architecture/bnk/bnk_int_wall_corner_a/001 (975, 100, 149.615)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/003 (1175, 100, 149.615)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/004 (975, -99.9998, 149.615)
+	on_executed
+		´enable_racks´ (delay 0)
+´2_10´ ElementCounter 100520
+	counter_target 2
+	on_executed
+		´spawn_mid_loot´ (delay 0)
+´2_11´ ElementCounter 100521
+	counter_target 2
+	on_executed
+		´spawn_end_loot´ (delay 0)
+´enable - cage vault´ ElementEnableUnit 100212
+	position 0, 3400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_displaywall/gen_prop_displaywall/006 (976.729, -198.9, 150.615)
+		2 units/payday2/props/gen_prop_displaywall/gen_prop_displaywall/005 (976.729, 1.09998, 150.615)
+		3 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/010 (1014, 200, 82.615)
+		4 units/payday2/architecture/bnk/bnk_int_panel_wall2m_a1/011 (1014, 0, 82.615)
+		5 units/payday2/architecture/bnk/bnk_int_shelf_a/090 (1020, 201, 359)
+		6 units/payday2/architecture/bnk/bnk_int_shelf_a/091 (1020, 100.999, 359)
+		7 units/payday2/architecture/bnk/bnk_int_shelf_a/096 (1020, 0.999023, 359)
+		8 units/payday2/architecture/bnk/bnk_int_shelf_a/097 (1020, -99.001, 359)
+		9 units/payday2/architecture/bnk/bnk_int_wall_corner_a/017 (1025, 200, 134.615)
+		10 units/payday2/architecture/bnk/bnk_int_wall_corner_a/018 (1026, 100, 133.615)
+		11 units/payday2/architecture/bnk/bnk_int_wall_corner_a/007 (1061, 100, 149.615)
+		12 units/payday2/architecture/bnk/bnk_int_wall_corner_a/006 (1061, 0, 149.615)
+		13 units/payday2/architecture/bnk/bnk_int_wall_corner_a/005 (1061, -100, 149.615)
+		14 units/payday2/architecture/bnk/bnk_int_wall_corner_a/016 (1061, -200, 149.615)
+´ending_caution_strips - right´ ElementEnableUnit 100539
+	position 250, 3400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/001 (-823, -173, 150)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/003 (-694.046, -83.806, 149)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/009 (-627, -9.15527E-05, 150.615)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/005 (-816.046, -83.806, 149)
+		5 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/004 (-949.046, -83.806, 149)
+		6 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/008 (-1018, -0.000152588, 150.615)
+		7 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/003 (-825, -16.0002, 150)
+		8 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/004 (-825, 6.99988, 150)
+		9 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/002 (-945.046, 78.1939, 149)
+		10 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/006 (-812.046, 78.194, 149)
+		11 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/001 (-690.046, 78.1939, 149)
+		12 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/002 (-823, 172, 150)
+´ending_caution_strips - left´ ElementEnableUnit 100552
+	position 250, 3350, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/003 (777, 173, 150)
+		2 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/010 (581, 0.000152588, 150.615)
+		3 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/007 (648.046, 83.806, 149)
+		4 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/008 (770.046, 83.806, 149)
+		5 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/009 (903.046, 83.806, 149)
+		6 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_4m/011 (972, 0.000274658, 150.615)
+		7 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/005 (779, 16.0002, 150)
+		8 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_02_4m/006 (779, -6.99982, 150)
+		9 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/012 (899.046, -78.1939, 149)
+		10 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/010 (766.046, -78.1939, 149)
+		11 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_01_2m/011 (644.046, -78.1939, 149)
+		12 units/payday2/architecture/ind/ind_ext_level/ind_ext_stripes_03_4m/004 (777, -172, 150)
+´enable_light´ ElementEnableUnit 100559
+	position 300, 4000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_spot/light_spot/001 (-225, -2.72989E-05, 350.615)
+		2 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/002 (-236, 4.57764E-05, 398.615)
+´enable_light_2´ ElementEnableUnit 100560
+	position 200, 4000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc1/props/ind_ext_prop_details/ind_ext_prop_lamp_02_on/001 (173, 0, 398.615)
+		2 core/units/light_spot/light_spot/002 (175, -2.72989E-05, 350.615)
+´enable_front_servers´ ElementEnableUnit 100578
+	position 250, 2200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_wall_corner_a/020 (-599, 200, 149.615)
+		2 units/payday2/architecture/bnk/bnk_int_wall_corner_a/019 (-473, 200, 149.615)
+		3 units/payday2/architecture/bnk/bnk_int_shelf_a/001 (-463, 101, 375)
+		4 units/payday2/architecture/bnk/bnk_int_shelf_a/002 (-463, 102, 421)
+		5 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/003 (-511, 135, 268)
+		6 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/002 (-511, 135, 209)
+		7 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/001 (-511, 135, 150)
+		8 units/payday2/architecture/bnk/bnk_int_wall_corner_a/022 (-473, -100, 149.615)
+		9 units/payday2/architecture/bnk/bnk_int_wall_corner_a/021 (-599, -100, 149.615)
+		10 units/payday2/architecture/bnk/bnk_int_shelf_a/003 (-552, -104, 375)
+		11 units/payday2/architecture/bnk/bnk_int_shelf_a/004 (-552, -105, 421)
+		12 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/004 (-511, -135, 268)
+		13 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/005 (-511, -135, 209)
+		14 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/006 (-511, -135, 150)
+		15 units/pd2_indiana/props/mus_prop_construction_cart_dywall/mus_prop_construction_cart_dywall/001 (445.602, -136.805, 150)
+		16 units/pd2_dlc_dark/equipment/drk_interactable_military_laptop/drk_interactable_military_laptop/001 (424.826, 161.008, 243.615)
+		17 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/007 (425, 170, 150.615)
+		18 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_d/001 (426, 169.983, 209.615)
+		19 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/002 (575, 195, 149.615)
+		20 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/001 (775, 195, 149.615)
+		21 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/004 (975, -195, 149.615)
+		22 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/003 (775, -195, 149.615)
+	on_executed
+		´On_5´ (delay 0)
+´shape_hd_outline´ ElementShape 100581
+	depth 325
+	height 220
+	position 400, 0, 250.615
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 234,95
+´link_14´ MissionScriptElement 100584
+	DISABLED
+	on_executed
+		´show´ (delay 0)
+´link_15´ MissionScriptElement 100585
+	DISABLED
+	on_executed
+		´hide_3´ (delay 0)
+´off_17´ ElementToggle 100586
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_15´ DISABLED
+		2 ´link_14´ DISABLED
+		3 ´outside´
+		4 ´inside´
+	on_executed
+		´door_open_harddrive´ (delay 0)
+´On_5´ ElementToggle 100587
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_14´ DISABLED
+		2 ´link_15´ DISABLED
+		3 ´add cam´ DISABLED
+´show´ ElementUnitSequence 100588
+	position 300, 2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence enable_interaction
+			time 0
+´hide_3´ ElementUnitSequence 100589
+	position 200, 2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_place_harddrive/001 (440.806, 158.722, 220.615)
+			notify_unit_sequence hide
+			time 0
+´outside´ ElementAreaReportTrigger 100590
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 200, 2400, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_hd_outline´
+	use_shape_element_ids
+	unit_ids
+		1 100581
+	on_executed
+		´link_15´ (delay 0) DISABLED (alternative empty)
+´inside´ ElementAreaReportTrigger 100591
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 300, 2400, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_hd_outline´
+	use_shape_element_ids
+	unit_ids
+		1 100581
+	on_executed
+		´link_14´ (delay 0) DISABLED (alternative enter)
+´inside_2´ ElementAreaReportTrigger 100174
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 250, 2400, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_hd_outline´
+	use_shape_element_ids
+	unit_ids
+		1 100581
+	on_executed
+		´add cam´ (delay 0) DISABLED (alternative enter)
+´add cam´ MissionScriptElement 100187
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´On_6´ (delay 0)
+´vault_camera´ ElementAccessCamera 100202
+	DISABLED
+	pitch_limit 25
+	position 600, -150, 374.615
+	rotation 0.224144, -0.12941, 0.482963, -0.836516
+	text_id debug_none
+	yaw_limit 25
+´On_6´ ElementToggle 100205
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´vault_camera´ DISABLED
+´link_16´ MissionScriptElement 100583
+	on_executed
+		´2 step authentication_2´ (delay 0)
+		´enable001´ (delay 0)
+´2 step authentication_2´ ElementCounter 100592
+	counter_target 2
+	on_executed
+		´disable_doors´ (delay 0)
+´disable_doors´ ElementUnitSequence 100593
+	position -950, 1600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/005 (774.199, 0, 149.615)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_train_cargo_carriage/drk_prop_train_cargo_doors/007 (774.199, 0, 149.615)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100594
+	as_subtitle false
+	debug_string disable_sideback_doors
+	show_instigator false
+´enable001´ ElementEnableUnit 100582
+	position -150, 2200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/bnk/bnk_int_shelf_a/001 (-463, 101, 375)
+		2 units/payday2/architecture/bnk/bnk_int_shelf_a/002 (-463, 102, 421)
+		3 units/payday2/architecture/bnk/bnk_int_shelf_a/003 (-552, -104, 375)
+		4 units/payday2/architecture/bnk/bnk_int_shelf_a/004 (-552, -105, 421)
+		5 units/payday2/architecture/bnk/bnk_int_wall_corner_a/019 (-473, 200, 149.615)
+		6 units/payday2/architecture/bnk/bnk_int_wall_corner_a/020 (-599, 200, 149.615)
+		7 units/payday2/architecture/bnk/bnk_int_wall_corner_a/021 (-599, -100, 149.615)
+		8 units/payday2/architecture/bnk/bnk_int_wall_corner_a/022 (-473, -100, 149.615)
+		9 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/001 (-511, 135, 150)
+		10 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/002 (-511, 135, 209)
+		11 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/003 (-511, 135, 268)
+		12 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/004 (-511, -135, 268)
+		13 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/005 (-511, -135, 209)
+		14 units/pd2_dlc_dark/props/drk_mobile_sever_rack/drk_prop_mobile_server_rack_c/006 (-511, -135, 150)
+		15 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/003 (775, -195, 149.615)
+		16 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/004 (975, -195, 149.615)
+		17 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/002 (575, 195, 149.615)
+		18 units/pd2_dlc_dark/props/drk_int_train_panel_wall/drk_int_train_panel_wall/001 (775, 195, 149.615)
+´enable - prop - red lightbulb´ ElementEnableUnit 100473
+	position 1200, 3200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/architecture/hospital/props/rooftop/light_red/light_red2/alarm_prop_light_2 (779.219, 0, 466.219)
+		2 units/world/architecture/hospital/props/rooftop/light_red/light_red2/alarm_prop_light_1 (-821, 0, 466)
+	on_executed
+		´2 step_3´ (delay 0)
+´Play_pln_drk_47´ ElementDialogue 100031
+	TRIGGER TIMES 1
+	can_not_be_muted false
+	dialogue Play_pln_drk_47
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+´Off_5´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Play Vo´
+		2 ´Play_pln_drk_47´
+´Play Vo´ MissionScriptElement 100018
+	TRIGGER TIMES 1
+	on_executed
+		´Play_pln_drk_47´ (delay 0)
+´Emp_located_in_level´ ElementInstanceInput 100020
+	event Emp_located_in_level
+	on_executed
+		´Off_5´ (delay 0)
+´2 step_3´ ElementCounter 100019
+	counter_target 2
+	on_executed
+		´enable - light - red´ (delay 0)
+´enable - light - red´ ElementEnableUnit 100021
+	position 1200, 3400, -2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/001 (-825, 0, 299.615)
+		2 core/units/light_omni/light_omni/002 (-425, 0, 299.615)
+		3 core/units/light_omni/light_omni/003 (375, 0, 299.615)
+		4 core/units/light_omni/light_omni/004 (-25, 0, 299.615)
+		5 core/units/light_omni/light_omni/005 (775, 0, 299.615)
+	on_executed
+		´disable_white_lights´ (delay 0)
+´panel ´ ElementCounter 100027
+	counter_target 0
+´ecm´ ElementCounter 100067
+	counter_target 1
+´panel open´ ElementCounterFilter 100103
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´panel ´
+	on_executed
+		´enable´ (delay 0)
+´off_18´ ElementCounterFilter 100105
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´ecm´
+	on_executed
+		´locked - interactable´ (delay 0)
+´on´ ElementCounterFilter 100319
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´ecm´
+	on_executed
+		´Jammed´ (delay 0)
+´allow ecm´ ElementCounterOperator 100321
+	TRIGGER TIMES 1
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´ecm´
+´panel open_2´ ElementCounterFilter 100323
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´panel ´
+	on_executed
+		´enable_2´ (delay 0)
+´set - can use´ ElementCounterOperator 100324
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´panel ´
+	on_executed
+		´off_18´ (delay 0)
+´set - cant use´ ElementCounterOperator 100579
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´panel ´
+	on_executed
+		´on´ (delay 0)
+´off_19´ ElementCounterFilter 100595
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´ecm´
+	on_executed
+		´jammed´ (delay 0)
+´jammed´ ElementUnitSequence 100596
+	position 675, 1550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/001 (-27.0047, 207.371, 182.02)
+			notify_unit_sequence state_doors_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/001 (-97, 210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´On´ (delay 0)
+´off_20´ ElementCounterFilter 100597
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´ecm´
+	on_executed
+		´jammed_2´ (delay 0)
+´jammed_2´ ElementUnitSequence 100598
+	position 475, 1550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_security_panel/002 (26.0045, -207.371, 182.02)
+			notify_unit_sequence state_doors_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_security_control_panel/drk_prop_train_side/002 (95.9998, -210, 162)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´On_2´ (delay 0)
+´env_effect_play_005´ ElementPlayEffect 100599
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -594, -2.00032, 305.615
+	random_time 0
+	rotation 1.20316E-07, -0.707107, -1.10089E-07, -0.707107
+	screen_space false
+´env_effect_play_006´ ElementPlayEffect 100600
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -594, -2.00032, 231.615
+	random_time 0
+	rotation 1.20316E-07, -0.707107, -1.10089E-07, -0.707107
+	screen_space false
+´env_effect_play_007´ ElementPlayEffect 100601
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 548, -2.36042E-06, 306.615
+	random_time 0
+	rotation 0.707107, 3.09086E-08, -0.707107, 3.09086E-08
+	screen_space false
+´env_effect_play_008´ ElementPlayEffect 100602
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 548, -1.92331E-06, 231.615
+	random_time 0
+	rotation 0.707107, 3.09086E-08, -0.707107, 3.09086E-08
+	screen_space false
+´exterior_alarm_triggered´ ElementInstanceInput 100603
+	event exterior_alarm_triggered
+	on_executed
+		´disable_interior_alarm´ (delay 0)
+´disable_interior_alarm´ MissionScriptElement 100604
+	on_executed
+		´Off_6´ (delay 0)
+´Off_6´ ElementToggle 100605
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_sound´
+		2 ´enable_glow´
+		3 ´start_blink´
+		4 ´alarm_triggered´
+		5 ´point_debug_007´
+´logic_filter_001´ ElementFilter 100606
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 200, 4400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´enable laser´ (delay 0)

@@ -1,0 +1,181 @@
+´camera_guard´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_security_1/ene_security_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 625, 75, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´dead´ ElementEnemyDummyTrigger 100031
+	event death
+	position 500, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)
+´kill_cameras´ MissionScriptElement 100032
+	TRIGGER TIMES 1
+	on_executed
+		´output_disable_cameras´ (delay 0)
+		´point_debug_001´ (delay 0)
+´output_disable_cameras´ ElementInstanceOutput 100033
+	event disable_cameras
+´setup_show´ MissionScriptElement 100034
+	on_executed
+		´show_me´ (delay 0)
+		´enabler´ (delay 0)
+		´camera_guard´ (delay 0)
+´point_debug_001´ ElementDebug 100035
+	as_subtitle false
+	debug_string disable cameras in front
+	show_instigator false
+´show_me´ ElementUnitSequence 100036
+	position 400, 400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (728.859, 51.7094, 74.5)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (453.85, 270.725, 0)
+			notify_unit_sequence state_door_close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (453.85, 270.725, 0)
+			notify_unit_sequence state_door_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (453.85, 270.725, 0)
+			notify_unit_sequence activate_door
+			time 0
+´add_obstacle´ ElementNavObstacle 100038
+	operation add
+	position 400, 500, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (350, 200, 0)
+´done_opened´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (453.85, 270.725, 0)
+	on_executed
+		´remove_obstacle´ (delay 0)
+		´remove_SO_crouch´ (delay 0)
+´remove_obstacle´ ElementNavObstacle 100040
+	operation remove
+	position 400, 100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (350, 200, 0)
+´setup_hide´ MissionScriptElement 100041
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´hide´ (delay 0)
+		´add_obstacle´ (delay 0)
+		´hider´ (delay 0)
+´hide´ ElementUnitSequence 100042
+	position 500, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (453.85, 270.725, 0)
+			notify_unit_sequence state_door_hide
+			time 0
+´input_show_camera_room´ ElementInstanceInput 100043
+	event show_camera_room
+	on_executed
+		´setup_show´ (delay 0)
+´SO_crouch´ ElementSpecialObjective 100044
+	SO_access 24
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose crouch
+	position 414, -4, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 400 -50 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+´alert´ ElementEnemyDummyTrigger 100045
+	event alerted
+	position 500, 125, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´SO_crouch´ (delay 2)
+´remove_SO_crouch´ ElementOperator 100046
+	operation remove
+	elements
+		1 ´SO_crouch´
+´hider´ ElementDisableUnit 100050
+	position 300, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_c_int/gov_c_int_bank_sign_security/001 (400, 275, 250)
+´enabler´ ElementEnableUnit 100051
+	position 300, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_c_int/gov_c_int_bank_sign_security/001 (400, 275, 250)
+´panic´ ElementEnemyDummyTrigger 100026
+	event panic
+	position 550, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)
+´tied´ ElementEnemyDummyTrigger 100027
+	event tied
+	position 600, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)

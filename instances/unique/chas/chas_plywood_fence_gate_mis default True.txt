@@ -1,0 +1,187 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´link_delay´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´output_gate_opened´ ElementInstanceOutput 100008
+	event gate_opened
+´seq_set_gate_closed´ ElementUnitSequence 100006
+	position 550, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flat_prop_plywood_fence/flt_prop_plywood_fence_door/001 (3, 0, 0)
+			notify_unit_sequence close
+			time 0
+´seq_open_gate´ ElementUnitSequence 100009
+	position 875, 75, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flat_prop_plywood_fence/flt_prop_plywood_fence_door/001 (3, 0, 0)
+			notify_unit_sequence open_90_deg
+			time 0
+	on_executed
+		´link_gate_opened´ (delay 0)
+´sequence_trigger_gate_opened´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open
+			notify_unit_id units/pd2_dlc_flat/props/flat_prop_plywood_fence/flt_prop_plywood_fence_door/001 (3, 0, 0)
+		2
+			guis_id 2
+			sequence open_90_deg
+			notify_unit_id units/pd2_dlc_flat/props/flat_prop_plywood_fence/flt_prop_plywood_fence_door/001 (3, 0, 0)
+		3
+			guis_id 3
+			sequence open_fast
+			notify_unit_id units/pd2_dlc_flat/props/flat_prop_plywood_fence/flt_prop_plywood_fence_door/001 (3, 0, 0)
+	on_executed
+		´output_gate_opened´ (delay 0)
+		´link_´ (delay 0)
+´seq_trigger_padlock´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_bullet_hit
+			notify_unit_id units/payday2/equipment/gen_interactable_padlock/gen_interactable_padlock/001 (107, -5, 110)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_padlock/gen_interactable_padlock/001 (107, -5, 110)
+	on_executed
+		´link_open_gate´ (delay 0)
+´link_open_gate´ MissionScriptElement 100013
+	on_executed
+		´seq_open_gate´ (delay 0)
+´link_gate_opened´ MissionScriptElement 100014
+	on_executed
+		´nav_remove_door_blocker´ (delay 0)
+		´disable_padlock´ (delay 0)
+		´disable_navlink´ (delay 0)
+´input_open_gate´ ElementInstanceInput 100007
+	event open_gate
+	on_executed
+		´link_open_gate´ (delay 0)
+´link_´ MissionScriptElement 100015
+´navlink_001´ ElementSpecialObjective 100016
+	SO_access 6546880
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style precise
+	patrol_path none
+	pose none
+	position 150, -75, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 128,512 100,834 0
+	so_action e_nl_climb_over_2m
+	trigger_on none
+	followup_elements
+´navlink_002´ ElementSpecialObjective 100017
+	SO_access 255424
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style precise
+	patrol_path none
+	pose none
+	position 0, 75, 0
+	rotation 0, 0, 1, -4.37114E-08
+	scan true
+	search_distance 0
+	search_position 24,1599 -99,2139 0
+	so_action e_nl_climb_over_2m
+	trigger_on none
+	followup_elements
+´operator_remove_navlinks´ ElementOperator 100019
+	operation remove
+	elements
+		1 ´navlink_001´
+		2 ´navlink_002´
+´link_delay´ MissionScriptElement 100018
+	on_executed
+		´seq_set_gate_closed´ (delay 0)
+		´navlink_002´ (delay 0)
+		´navlink_001´ (delay 0)
+		´enable_padlock´ (delay 0)
+		´func_add_door_blockers´ (delay 0)
+´nav_remove_door_blocker´ ElementNavObstacle 100021
+	operation remove
+	position 925, -150, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (25, -50, 0)
+´disable_padlock´ ElementDisableUnit 100022
+	position 875, -275, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_interactable_padlock/gen_interactable_padlock/001 (107, -5, 110)
+´enable_padlock´ ElementEnableUnit 100020
+	position 650, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_interactable_padlock/gen_interactable_padlock/001 (107, -5, 110)
+´func_add_door_blockers´ ElementNavObstacle 100024
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (25, -50, 0)
+´disable_navlink´ ElementToggle 100025
+	BASE DELAY 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´navlink_001´
+		2 ´navlink_002´
+	on_executed
+		´operator_remove_navlinks´ (delay 0)

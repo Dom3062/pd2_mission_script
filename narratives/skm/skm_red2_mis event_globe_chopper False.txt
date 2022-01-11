@@ -1,0 +1,228 @@
+´heli_globe_flyin´ ElementUnitSequence 100360
+	position -1300, 1900, 1500
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/vehicles/helicopter/helicopter_ranger/helicopter_cops/002 (-1621, 2690, -75)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/vehicles/helicopter/helicopter_ranger/helicopter_cops/002 (-1621, 2690, -75)
+			notify_unit_sequence flyin_left_hover
+			time 0
+´shatter001´ ElementUnitSequence 100597
+	position -1400, 1700, 1500
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_building_windows/red_prop_building_window_02/001 (-1525, 2627, 1443)
+			notify_unit_sequence shatter_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_building_windows/red_prop_building_window_02/001 (-1525, 2627, 1443)
+			notify_unit_sequence shatter_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_building_windows/red_prop_building_window_02/001 (-1525, 2627, 1443)
+			notify_unit_sequence shatter_03
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_building_windows/red_prop_building_window_02/001 (-1525, 2627, 1443)
+			notify_unit_sequence shatter_04
+			time 0
+	on_executed
+		´point_debug_121´ (delay 0)
+´start_crackin_2´ MissionScriptElement 100615
+	on_executed
+		´func_sequence_095´ (delay 0.43)
+		´point_teammate_comment_chopper_2´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+		´spawn_dudes_2´ (delay 0)
+´heli_flyout´ ElementUnitSequence 100616
+	position -1900, 1800, 1500
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/vehicles/helicopter/helicopter_ranger/helicopter_cops/002 (-1621, 2690, -75)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´env_effect_stop_008´ (delay 0)
+´start_helicopter_globe´ MissionScriptElement 100624
+	on_executed
+		´start_crackin_2´ (delay 26)
+		´heli_globe_flyin´ (delay 0)
+		´point_debug_041´ (delay 0)
+´spawn_dudes_2´ MissionScriptElement 100625
+	on_executed
+		´heli_flyout´ (delay 16)
+		´heli_hidden´ (delay 32)
+		´open_doors_heli_2´ (delay 0)
+		´ai_spawn_enemy_015´ (delay 1)
+		´ai_spawn_enemy_014´ (delay 2)
+		´ai_spawn_enemy_021´ (delay 6)
+		´ai_spawn_enemy_020´ (delay 7)
+		´shatter001´ (delay 3)
+		´func_execute_in_other_mission_015´ (delay 5)
+´func_sequence_095´ ElementUnitSequence 100919
+	position -1900, 2550, -24.9748
+	rotation 0, 0, 0, -1
+	trigger_list
+´point_teammate_comment_chopper_2´ ElementTeammateComment 103456
+	close_to_element true
+	comment p41
+	position -1175, 2650, 150
+	radius 2000
+	rotation 0, 0, -0.707107, -0.707107
+	use_instigator false
+´heli_hidden´ ElementUnitSequence 106861
+	position -1900, 1700, 1500
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/vehicles/helicopter/helicopter_ranger/helicopter_cops/002 (-1621, 2690, -75)
+			notify_unit_sequence hidden
+			time 0
+´point_debug_041´ ElementDebug 106862
+	as_subtitle false
+	debug_string start_helicopter_globe
+	show_instigator false
+´open_doors_heli_2´ ElementUnitSequence 106868
+	position -2000, 2000, 1500
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/vehicles/helicopter/helicopter_ranger/helicopter_cops/002 (-1621, 2690, -75)
+			notify_unit_sequence open_door_left
+			time 0
+´ai_spawn_enemy_014´ ElementSpawnEnemyDummy 106869
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -1495, 2512, -25
+	rotation 0, 0, 0.358368, -0.93358
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´AI_hunt_heli_left´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 106871
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position -1525, 2625, 1488.5
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_stop_008´ ElementStopEffect 106872
+	operation fade_kill
+	position -2000, 1800, 1475.85
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+´ai_spawn_enemy_015´ ElementSpawnEnemyDummy 106873
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -1411, 2582, -25
+	rotation 0, 0, 0.358368, -0.93358
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´AI_hunt_heli_left´ (delay 0)
+´AI_hunt_heli_left´ ElementSpecialObjective 106874
+	SO_access 0
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -1450, 2450, 225.025
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -1650 2500 -24,9749
+	so_action AI_hunt
+	trigger_on none
+	use_instigator true
+	followup_elements
+´ai_spawn_enemy_020´ ElementSpawnEnemyDummy 106856
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -1467, 2489, -25
+	rotation 0, 0, 0.358368, -0.93358
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´AI_hunt_heli_left´ (delay 0)
+´ai_spawn_enemy_021´ ElementSpawnEnemyDummy 106858
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -1389, 2558, -25
+	rotation 0, 0, 0.358368, -0.93358
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´AI_hunt_heli_left´ (delay 0)
+´point_debug_121´ ElementDebug 106859
+	as_subtitle false
+	debug_string shatter
+	show_instigator false
+´func_execute_in_other_mission_015´ ElementExecuteInOtherMission 106896
+	position -1900, 2100, 1500
+	rotation 0, 0, 0, -1
+	on_executed
+		´enable_spawn_skylight_left´ (delay 0)

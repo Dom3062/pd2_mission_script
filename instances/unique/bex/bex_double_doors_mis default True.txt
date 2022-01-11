@@ -1,0 +1,390 @@
+´door_area´ ElementAreaTrigger 100001
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 368,9
+	height 164,268
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -100, 0, 77
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 285
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´police_called´ ElementGlobalEventTrigger 100002
+	TRIGGER TIMES 1
+	global_event police_called
+	position -400, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100003
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´door_area´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+´so_kick_in´ ElementSpecialObjective 100004
+	DISABLED
+	SO_access 6291960
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -102, -145, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -100 -200 100
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´so_kick_out´ ElementSpecialObjective 100005
+	DISABLED
+	SO_access 6291960
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -102, 150, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position -100 -200 100
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´kick_in´ ElementUnitSequence 100006
+	position 400, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+			notify_unit_sequence kick_in
+			time 0
+	on_executed
+		´remove´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´initiate_kick_out´ ElementSpecialObjective 100008
+	DISABLED
+	SO_access 23069176
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style none
+	patrol_path none
+	pose none
+	position -100, 150, 0
+	rotation 0, 0, 1, -7.54979E-08
+	scan true
+	search_distance 500
+	search_position -54,9395 493,961 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_kick_out´ DISABLED
+´initiate_kick_in´ ElementSpecialObjective 100009
+	DISABLED
+	SO_access 23069152
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 7
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style none
+	patrol_path none
+	pose none
+	position -102, -145, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position -89,0915 -453,325 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_kick_in´ DISABLED
+´logic_toggle_002´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_kick_in´ DISABLED
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_kick_in´ DISABLED
+	on_executed
+		´initiate_kick_in´ (delay 0.2) DISABLED
+´fail´ ElementSpecialObjectiveTrigger 100012
+	event fail
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´initiate_kick_in´ DISABLED
+		2 ´so_kick_in´ DISABLED
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´logic_toggle_004´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_kick_in´ DISABLED
+		2 ´initiate_kick_in´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 5-8)
+´success´ ElementSpecialObjectiveTrigger 100014
+	event anim_start
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_kick_in´ DISABLED
+	on_executed
+		´kick_in´ (delay 0.5)
+´logic_toggle_005´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´success´
+		2 ´fail´
+		3 ´logic_toggle_004´
+		4 ´logic_toggle_003´
+		5 ´logic_toggle_002´
+		6 ´initiate_kick_in´ DISABLED
+		7 ´so_kick_in´ DISABLED
+		8 ´so_kick_out´ DISABLED
+		9 ´initiate_kick_out´ DISABLED
+		10 ´door_area´ DISABLED
+	on_executed
+		´logic_operator_001´ (delay 0)
+´startup´ MissionScriptElement 100017
+	EXECUTE ON STARTUP
+	on_executed
+		´add´ (delay 0)
+´add´ ElementNavObstacle 100018
+	operation add
+	position -300, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (3.05176E-05, -49, 0)
+	on_executed
+		´seq_setup´ (delay 0)
+´remove´ ElementNavObstacle 100019
+	TRIGGER TIMES 1
+	operation remove
+	position 400, 0, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (3.05176E-05, -49, 0)
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´point_debug_001´ ElementDebug 100020
+	as_subtitle false
+	debug_string DOOR KICKING ENGAGED
+	show_instigator false
+´open_doors_input´ ElementInstanceInput 100021
+	event open_doors
+´open_in´ ElementUnitSequence 100022
+	position -200, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+			notify_unit_sequence open_in
+			time 0
+	on_executed
+		´remove´ (delay 1)
+´opened´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence explode_in
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		2
+			guis_id 2
+			sequence explode_out
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		4
+			guis_id 4
+			sequence open_in
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		5
+			guis_id 5
+			sequence open
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		6
+			guis_id 6
+			sequence kick_in
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+		7
+			guis_id 7
+			sequence kick_out
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+	on_executed
+		´remove´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100025
+	DISABLED
+	EXECUTE ON STARTUP
+	position -75, -300, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´logic_operator_001´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´initiate_kick_in´ DISABLED
+		2 ´so_kick_in´ DISABLED
+		3 ´so_kick_out´ DISABLED
+		4 ´initiate_kick_out´ DISABLED
+´logic_toggle_006´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_kick_out´ DISABLED
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_007´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_kick_out´ DISABLED
+	on_executed
+		´initiate_kick_out´ (delay 0.1) DISABLED
+´logic_toggle_008´ ElementToggle 100007
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_kick_out´ DISABLED
+		2 ´initiate_kick_out´ DISABLED
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´fail_2´ ElementSpecialObjectiveTrigger 100028
+	event fail
+	position 200, 350, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_kick_out´ DISABLED
+		2 ´initiate_kick_out´ DISABLED
+	on_executed
+		´logic_toggle_008´ (delay 0)
+´success_2´ ElementSpecialObjectiveTrigger 100029
+	event anim_start
+	position 300, 350, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_kick_out´ DISABLED
+	on_executed
+		´kick_out´ (delay 0.5)
+´kick_out´ ElementUnitSequence 100030
+	position 400, 350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+			notify_unit_sequence kick_out
+			time 0
+	on_executed
+		´remove´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´seq_setup´ ElementUnitSequence 100031
+	position -300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+			notify_unit_sequence state_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/equipment/bex_interactable_door_wooden_white/bex_interactable_door_wooden_white_double/001 (-200, -4.76837E-05, 0)
+			notify_unit_sequence enable_interaction
+			time 0

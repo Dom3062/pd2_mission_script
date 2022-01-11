@@ -1,0 +1,2168 @@
+´Auto_Start´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´ovk_above´ (delay 0)
+		´remove_4´ (delay 0)
+´disable_all´ ElementDisableUnit 100006
+	position -1275, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+		2 units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/002 (0, 7.15254E-05, 0)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (97, -48, 0)
+		4 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/002 (-1, -48, 0)
+		5 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/004 (-1, -23, 0)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/003 (97, -23, 0)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/005 (97, 2, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/006 (-1, 2, 0)
+		9 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/008 (-1, 26, 0)
+		10 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/007 (97, 26, 0)
+	on_executed
+		´hide_all´ (delay 0)
+´hide_all´ ElementUnitSequence 100007
+	position -1275, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence deactivate
+			time 0
+	on_executed
+		´OFF_3´ (delay 0)
+´Start´ ElementInstanceInput 100008
+	event Start
+	on_executed
+		´Link´ (delay 0)
+´Link´ MissionScriptElement 100009
+	on_executed
+		´intro_green_smoke´ (delay 0)
+		´debug´ (delay 0)
+		´Wheel_appeared´ (delay 0)
+		´add´ (delay 0)
+		´POOF´ (delay 0)
+´enable_all´ ElementEnableUnit 100010
+	position -950, -350, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+	on_executed
+		´again_enabled´ (delay 0) DISABLED
+´show_all´ ElementUnitSequence 100011
+	position -950, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence activate
+			time 0
+	on_executed
+		´waypoint_goto_wheel´ (delay 0)
+		´ovk_above_2´ (delay 0)
+		´vh_below´ (delay 0)
+		´enable_all´ (delay 0)
+		´drill_explodes001´ (delay 0)
+		´box_appear´ (delay 0)
+´drill_used´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+	on_executed
+		´drill_used_2´ (delay 0)
+´drill_finished´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+	on_executed
+		´drill_finished_2´ (delay 0)
+´drill_used_2´ MissionScriptElement 100014
+	TRIGGER TIMES 1
+	on_executed
+		´OFF´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´select_punishments´ (delay 0)
+´drill_finished_2´ MissionScriptElement 100015
+	TRIGGER TIMES 1
+	on_executed
+		´ON´ (delay 0)
+		´point_debug_002´ (delay 0)
+´OFF´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´deactivate´
+		2 ´interact´
+	on_executed
+		´drill_used_3´ (delay 0)
+´ON´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´deactivate´
+	on_executed
+		´drill_finished_3´ (delay 0)
+´wheel_END´ MissionScriptElement 100018
+	on_executed
+		´glass_break´ (delay 0)
+		´remove_3´ (delay 0)
+´disable´ ElementDisableUnit 100019
+	position -750, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (97, -48, 0)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/002 (-1, -48, 0)
+		4 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/004 (-1, -23, 0)
+		5 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/003 (97, -23, 0)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/005 (97, 2, 0)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/006 (-1, 2, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/008 (-1, 26, 0)
+		9 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/007 (97, 26, 0)
+	on_executed
+		´disable_2´ (delay 0)
+´disable_2´ ElementUnitSequence 100020
+	position -750, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence deactivate
+			time 0.1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_hide
+			time 0.1
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence reset
+			time 0
+	on_executed
+		´OFF_2´ (delay 0)
+´drill_used_3´ ElementInstanceOutput 100021
+	event drill_used
+	on_executed
+		´disable_waypoint´ (delay 0)
+		´waypoint_defend_wheel´ (delay 0)
+´drill_finished_3´ ElementInstanceOutput 100022
+	event drill_finished
+	on_executed
+		´OFF_5´ (delay 0)
+		´3 step´ (delay 0) DISABLED
+		´2 step´ (delay 0)
+´wheel_finished´ MissionScriptElement 100023
+	on_executed
+		´Start_Timer´ (delay 0)
+´select_punishments´ MissionScriptElement 100032
+	on_executed
+		´Start_spin´ (delay 0)
+´random´ ElementRandom 100034
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´set_Drill´ (delay 0)
+		´set_Flame001´ (delay 0)
+		´set_Dozer001´ (delay 0)
+		´set_Smoke001´ (delay 0)
+		´set_Sniper001´ (delay 0)
+		´set_Random´ (delay 0)
+´set_001´ ElementInstanceOutput 100036
+	event set_1
+´set_002´ ElementInstanceOutput 100038
+	event set_2
+´set_003´ ElementInstanceOutput 100042
+	event set_3
+´set_004´ ElementInstanceOutput 100045
+	event set_4
+´set_005´ ElementInstanceOutput 100048
+	event set_5
+´set_006´ ElementInstanceOutput 100051
+	event set_6
+´point_debug_001´ ElementDebug 100053
+	as_subtitle false
+	debug_string drill_used
+	show_instigator false
+´point_debug_002´ ElementDebug 100054
+	as_subtitle false
+	debug_string drill_finished
+	show_instigator false
+´debug´ ElementDebug 100055
+	as_subtitle false
+	debug_string wheel_appeared
+	show_instigator false
+´you_win´ ElementPlayEffect 100057
+	base_time 0
+	effect effects/payday2/environment/money_explosion
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´Start_Timer´ MissionScriptElement 100058
+	on_executed
+		´start´ (delay 0)
+		´start_2´ (delay 0)
+		´timer_start_sound´ (delay 0)
+´timer´ ElementTimer 100060
+	timer 60
+´set time 60´ ElementTimerOperator 100063
+	operation set_time
+	position -950, 0, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+	on_executed
+		´On_2´ (delay 0)
+´disable_keycard´ MissionScriptElement 100070
+	on_executed
+		´wheel_END´ (delay 0)
+		´cleanup´ (delay 0)
+		´drill_explodes001´ (delay 0)
+		´intro_green_smoke´ (delay 0)
+		´box_disappear´ (delay 0)
+´setup´ ElementUnitSequence 100072
+	position 0, -150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence interact_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence switch_to_glow_mtr
+			time 0
+´cleanup´ ElementUnitSequence 100073
+	position -500, 250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_keycard_box/bry_prop_keycard_box/001 (-99, 14, 104)
+			notify_unit_sequence close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence light_off_all
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence move_down
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_flatbed_hatch/chw_prop_train_flatbed_hatch_2/002 (0, 195, -290)
+			notify_unit_sequence anim_hatch_close_90
+			time 2
+	on_executed
+		´keycard_taken´ (delay 0)
+´you_win001´ ElementPlayEffect 100075
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position -100, -7, 100
+	random_time 0
+	rotation 0.707107, 0, 0, -0.707107
+	screen_space false
+´glass_break´ ElementPlayEffect 100076
+	base_time 0
+	effect effects/payday2/particles/window/panorama_window
+	max_amount 0
+	position -100, 0, 100
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´fx_stop´ ElementStopEffect 100077
+	operation fade_kill
+	position -750, -250, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´intro_green_smoke´
+´OFF_2´ ElementToggle 100078
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact´
+	on_executed
+		´Off´ (delay 0)
+´OFF_3´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact´
+´waypoint_goto_wheel´ ElementWaypoint 100091
+	icon pd2_drill
+	only_in_civilian false
+	position 0, -64, 256
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´disable_waypoint´ ElementOperator 100092
+	operation remove
+	elements
+		1 ´waypoint_goto_wheel´
+		2 ´waypoint_grab_keycard´
+	on_executed
+		´On_3´ (delay 0)
+´waypoint_defend_wheel´ ElementWaypoint 100093
+	icon pd2_defend
+	only_in_civilian false
+	position 0, -64, 256
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´disable_waypoint_2´ ElementOperator 100094
+	operation remove
+	elements
+		1 ´waypoint_defend_wheel´
+		2 ´waypoint_grab_keycard´
+	on_executed
+		´reset_wheel_anim´ (delay 0)
+´waypoint_grab_keycard´ ElementWaypoint 100095
+	icon pd2_generic_interact
+	only_in_civilian false
+	position -100, -10, 122
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´disable_defend´ ElementOperator 100096
+	operation remove
+	elements
+		1 ´waypoint_defend_wheel´
+	on_executed
+		´Finish´ (delay 0)
+´wheel_finished_2´ ElementInstanceOutput 100090
+	event wheel_finished
+	on_executed
+		´debug_3´ (delay 0)
+		´2 sec delay - ON´ (delay 2)
+´2 sec delay - ON´ ElementToggle 100000
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´drill_used_2´
+		2 ´drill_finished_2´
+		3 ´interact´
+	on_executed
+		´keycard´ (delay 0)
+´keycard´ ElementCounterFilter 100067
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter´
+	on_executed
+		´setup´ (delay 0)
+		´waypoint_grab_keycard´ (delay 0)
+		´you_win001´ (delay 0)
+		´you_win´ (delay 0)
+´counter´ ElementCounter 100103
+	counter_target 0
+´counter_2´ ElementCounter 100107
+	counter_target 0
+´clock_finished´ ElementCounterFilter 100108
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_2´
+	on_executed
+		´Set 0´ (delay 0)
+´Off´ ElementCounterOperator 100110
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_2´
+		2 ´counter´
+		3 ´counter_3´
+	on_executed
+		´set 2´ (delay 0)
+´wheel_kicked´ ElementCounterFilter 100111
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_3´
+	on_executed
+		´wheel_broke´ (delay 0)
+´counter_3´ ElementCounter 100112
+	counter_target 0
+´Set 1´ ElementCounterOperator 100113
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_2´
+		2 ´counter_3´
+		3 ´counter´
+	on_executed
+		´set time 60´ (delay 0)
+´Set 0´ ElementCounterOperator 100087
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_3´
+	on_executed
+		´disable_defend´ (delay 0)
+´start´ MissionScriptElement 100069
+	on_executed
+		´60_2´ (delay 0)
+´5´ MissionScriptElement 100084
+	on_executed
+		´5_2´ (delay 0)
+		´0_2´ (delay 5)
+´10´ MissionScriptElement 100109
+	on_executed
+		´10_2´ (delay 0)
+		´5´ (delay 5)
+´15´ MissionScriptElement 100114
+	on_executed
+		´15_2´ (delay 0)
+		´10´ (delay 5)
+´20´ MissionScriptElement 100115
+	on_executed
+		´20_2´ (delay 0)
+		´15´ (delay 5)
+´25´ MissionScriptElement 100116
+	on_executed
+		´25_2´ (delay 0)
+		´20´ (delay 5)
+´30´ MissionScriptElement 100117
+	on_executed
+		´25´ (delay 5)
+		´30_2´ (delay 0)
+´5_2´ ElementCounterOperator 100118
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 5´ (delay 0)
+´5_3´ ElementCounterFilter 100119
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´timeline´
+	on_executed
+		´5´ (delay 0)
+´timeline´ ElementCounter 100120
+	counter_target 0
+´10_2´ ElementCounterOperator 100121
+	amount 10
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 10´ (delay 0)
+´15_2´ ElementCounterOperator 100122
+	amount 15
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 15´ (delay 0)
+´20_2´ ElementCounterOperator 100123
+	amount 20
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 20´ (delay 0)
+´25_2´ ElementCounterOperator 100124
+	amount 25
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 25´ (delay 0)
+´30_2´ ElementCounterOperator 100125
+	amount 30
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 30´ (delay 0)
+´10_3´ ElementCounterFilter 100126
+	check_type equal
+	needed_to_execute all
+	value 10
+	elements
+		1 ´timeline´
+	on_executed
+		´10´ (delay 0)
+´15_3´ ElementCounterFilter 100127
+	check_type equal
+	needed_to_execute all
+	value 15
+	elements
+		1 ´timeline´
+	on_executed
+		´15´ (delay 0)
+´20_3´ ElementCounterFilter 100128
+	check_type equal
+	needed_to_execute all
+	value 20
+	elements
+		1 ´timeline´
+	on_executed
+		´20´ (delay 0)
+´25_3´ ElementCounterFilter 100129
+	check_type equal
+	needed_to_execute all
+	value 25
+	elements
+		1 ´timeline´
+	on_executed
+		´25´ (delay 0)
+´30_3´ ElementCounterFilter 100130
+	check_type equal
+	needed_to_execute all
+	value 30
+	elements
+		1 ´timeline´
+	on_executed
+		´30´ (delay 0)
+´0´ ElementCounterFilter 100131
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´timeline´
+	on_executed
+		´0_2´ (delay 0)
+		´teammate_comment_its_done´ (delay 0)
+´0_2´ MissionScriptElement 100133
+	on_executed
+		´0_3´ (delay 0)
+		´clock_finished´ (delay 0)
+´0_3´ ElementCounterOperator 100134
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 0´ (delay 0)
+´wheel_broke´ MissionScriptElement 100136
+	on_executed
+		´set 0_2´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´teammate_comment_swear´ (delay 1)
+´pause_wheel´ ElementTimerOperator 100137
+	operation pause
+	position -1400, -850, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´set 30 seconds´ (delay 0)
+´set 30´ ElementTimerOperator 100138
+	operation set_time
+	position 0, -1100, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+		´timer_half_way´ (delay 0)
+´resume_time´ MissionScriptElement 100139
+	BASE DELAY 0,25
+	on_executed
+		´30_3´ (delay 0)
+		´25_3´ (delay 0)
+		´20_3´ (delay 0)
+		´15_3´ (delay 0)
+		´10_3´ (delay 0)
+		´5_3´ (delay 0)
+		´0´ (delay 0)
+		´35_3´ (delay 0)
+		´40_3´ (delay 0)
+		´45_3´ (delay 0)
+		´50_3´ (delay 0)
+		´55_3´ (delay 0)
+		´60´ (delay 0)
+´red´ ElementUnitSequence 100140
+	position -1400, -950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence red_on_black
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence sound_interrupt
+			time 0.1
+	on_executed
+		´ON_3´ (delay 0)
+´set 25´ ElementTimerOperator 100141
+	operation set_time
+	position 50, -1100, 0
+	rotation 0, 0, 0, -1
+	time 25
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´set 20´ ElementTimerOperator 100142
+	operation set_time
+	position 100, -1100, 0
+	rotation 0, 0, 0, -1
+	time 20
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´set 15´ ElementTimerOperator 100143
+	operation set_time
+	position 150, -1100, 0
+	rotation 0, 0, 0, -1
+	time 15
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´set 10´ ElementTimerOperator 100144
+	operation set_time
+	position 200, -1100, 0
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´set 5´ ElementTimerOperator 100145
+	operation set_time
+	position 250, -1100, 0
+	rotation 0, 0, 0, -1
+	time 5
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´set 0´ ElementTimerOperator 100146
+	operation set_time
+	position 300, -1100, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´off´ ElementToggle 100147
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´30´
+		2 ´25´
+		3 ´20´
+		4 ´15´
+		5 ´10´
+		6 ´5´
+		7 ´0_2´
+		8 ´35_2´
+		9 ´40_2´
+		10 ´45_2´
+		11 ´50_2´
+		12 ´55_2´
+		13 ´60_2´
+	on_executed
+		´pause_wheel´ (delay 0)
+´On´ ElementToggle 100148
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´30´
+		2 ´25´
+		3 ´20´
+		4 ´15´
+		5 ´10´
+		6 ´5´
+		7 ´0_2´
+		8 ´35_2´
+		9 ´40_2´
+		10 ´45_2´
+		11 ´50_2´
+		12 ´55_2´
+		13 ´60_2´
+	on_executed
+		´1 second delay´ (delay 0)
+´set 30 seconds´ ElementTimerOperator 100149
+	operation set_time
+	position -1400, -900, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer´
+	on_executed
+		´red´ (delay 0)
+´start - penalty´ ElementTimerOperator 100150
+	operation start
+	position -1300, -800, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´sound_interrupt´ (delay 0)
+´30 second penalty´ MissionScriptElement 100151
+	BASE DELAY 30
+	on_executed
+		´On´ (delay 0)
+´penalty - finished´ ElementUnitSequence 100152
+	position -1300, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence light_yellow_on_black
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence sound_tick_normal
+			time 0
+	on_executed
+		´set 1´ (delay 0)
+´1 second delay´ MissionScriptElement 100153
+	BASE DELAY 1
+	on_executed
+		´Start_Timer_Again´ (delay 0)
+´Start - Timer´ ElementTimerOperator 100154
+	operation start
+	position 0, -1150, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´point_debug_004´ (delay 0)
+´set 0_2´ ElementCounterOperator 100061
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_3´
+	on_executed
+		´off´ (delay 0)
+´set 1´ ElementCounterOperator 100062
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_3´
+	on_executed
+		´Wheel_Fixed´ (delay 0)
+´Finish´ MissionScriptElement 100157
+	on_executed
+		´remove_2´ (delay 0)
+		´green´ (delay 0)
+		´bell_ding´ (delay 0)
+´link´ MissionScriptElement 100160
+	DISABLED
+	on_executed
+		´off_2´ (delay 0)
+		´debug_2´ (delay 0)
+´off_2´ ElementToggle 100161
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´ DISABLED
+		2 ´fix_wheel_interaction´ DISABLED
+	on_executed
+		´remove_waypoint_2´ (delay 0)
+´remove_waypoint´ ElementOperator 100162
+	operation remove
+	elements
+		1 ´waypoint_defend_wheel´
+	on_executed
+		´wheel_broke_2´ (delay 0)
+		´waypoint_fix_wheel´ (delay 0)
+´Start_Timer_Again´ MissionScriptElement 100159
+	on_executed
+		´resume_time´ (delay 0)
+		´penalty - finished´ (delay 0)
+´remove_waypoint_2´ ElementOperator 100102
+	operation remove
+	elements
+		1 ´waypoint_fix_wheel´
+	on_executed
+		´wheel_FIXED´ (delay 0)
+		´waypoint_defend_wheel´ (delay 0)
+´60´ ElementCounterFilter 100164
+	check_type equal
+	needed_to_execute all
+	value 60
+	elements
+		1 ´timeline´
+	on_executed
+		´60_2´ (delay 0)
+´60_2´ MissionScriptElement 100165
+	on_executed
+		´60_3´ (delay 0)
+		´55_2´ (delay 5)
+´60_3´ ElementCounterOperator 100166
+	amount 60
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 60´ (delay 0)
+´set 60´ ElementTimerOperator 100167
+	operation set_time
+	position -300, -1100, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´55´ ElementCounterOperator 100168
+	amount 55
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 55´ (delay 0)
+´set 55´ ElementTimerOperator 100169
+	operation set_time
+	position -250, -1100, 0
+	rotation 0, 0, 0, -1
+	time 55
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´55_2´ MissionScriptElement 100170
+	on_executed
+		´55´ (delay 0)
+		´50_2´ (delay 5)
+´55_3´ ElementCounterFilter 100171
+	check_type equal
+	needed_to_execute all
+	value 55
+	elements
+		1 ´timeline´
+	on_executed
+		´55_2´ (delay 0)
+´50´ ElementCounterOperator 100172
+	amount 50
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 50´ (delay 0)
+´set 50´ ElementTimerOperator 100173
+	operation set_time
+	position -200, -1100, 0
+	rotation 0, 0, 0, -1
+	time 50
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´50_2´ MissionScriptElement 100174
+	on_executed
+		´50´ (delay 0)
+		´45_2´ (delay 5)
+´50_3´ ElementCounterFilter 100175
+	check_type equal
+	needed_to_execute all
+	value 50
+	elements
+		1 ´timeline´
+	on_executed
+		´50_2´ (delay 0)
+´45´ ElementCounterOperator 100176
+	amount 45
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 45´ (delay 0)
+´set 45´ ElementTimerOperator 100177
+	operation set_time
+	position -150, -1100, 0
+	rotation 0, 0, 0, -1
+	time 45
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´45_2´ MissionScriptElement 100178
+	on_executed
+		´45´ (delay 0)
+		´40_2´ (delay 5)
+´45_3´ ElementCounterFilter 100179
+	check_type equal
+	needed_to_execute all
+	value 45
+	elements
+		1 ´timeline´
+	on_executed
+		´45_2´ (delay 0)
+´40´ ElementCounterOperator 100180
+	amount 40
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 40´ (delay 0)
+´set 40´ ElementTimerOperator 100181
+	operation set_time
+	position -100, -1100, 0
+	rotation 0, 0, 0, -1
+	time 40
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´40_2´ MissionScriptElement 100182
+	on_executed
+		´40´ (delay 0)
+		´35_2´ (delay 5)
+´40_3´ ElementCounterFilter 100183
+	check_type equal
+	needed_to_execute all
+	value 40
+	elements
+		1 ´timeline´
+	on_executed
+		´40_2´ (delay 0)
+´35´ ElementCounterOperator 100184
+	amount 35
+	operation set
+	instance_var_names
+	elements
+		1 ´timeline´
+	on_executed
+		´set 35´ (delay 0)
+´set 35´ ElementTimerOperator 100185
+	operation set_time
+	position -50, -1100, 0
+	rotation 0, 0, 0, -1
+	time 35
+	elements
+		1 ´timer´
+	on_executed
+		´Start - Timer´ (delay 0)
+´35_2´ MissionScriptElement 100186
+	on_executed
+		´35´ (delay 0)
+		´30´ (delay 5)
+´35_3´ ElementCounterFilter 100187
+	check_type equal
+	needed_to_execute all
+	value 35
+	elements
+		1 ´timeline´
+	on_executed
+		´35_2´ (delay 0)
+´wheel_broke_2´ ElementInstanceOutput 100082
+	event Wheel_Broke
+´wheel_FIXED´ ElementInstanceOutput 100132
+	event Wheel_FIXED
+	on_executed
+		´start - penalty´ (delay 0)
+´keycard_taken´ ElementInstanceOutput 100135
+	event keycard_taken
+	on_executed
+		´disable_3´ (delay 2.75)
+´debug_2´ ElementDebug 100156
+	as_subtitle false
+	debug_string drill_has_been_repaired
+	show_instigator false
+´point_debug_003´ ElementDebug 100188
+	as_subtitle false
+	debug_string pause_clock
+	show_instigator false
+´point_debug_004´ ElementDebug 100189
+	as_subtitle false
+	debug_string 5 second TICk
+	show_instigator false
+´debug_3´ ElementDebug 100190
+	as_subtitle false
+	debug_string Wheel_FINISHED
+	show_instigator false
+´On_2´ ElementToggle 100206
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´move_up´ (delay 0)
+´kill_all´ ElementInstanceInput 100202
+	event kill_all
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100208
+	on_executed
+		´OFF_4´ (delay 0)
+´OFF_4´ ElementToggle 100209
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_keycard´
+		2 ´cleanup´
+		3 ´keycard_taken´
+		4 ´set_001´
+		5 ´set_002´
+		6 ´set_003´
+		7 ´set_004´
+		8 ´set_005´
+		9 ´set_006´
+		10 ´wheel_finished_2´
+		11 ´wheel_FIXED´
+		12 ´wheel_broke_2´
+		13 ´start´
+		14 ´60_2´
+		15 ´55_2´
+		16 ´50_2´
+		17 ´45_2´
+		18 ´40_2´
+		19 ´35_2´
+		20 ´30´
+		21 ´25´
+		22 ´20´
+		23 ´15´
+		24 ´10´
+		25 ´5´
+		26 ´0_2´
+		27 ´drill_finished_3´
+		28 ´drill_finished_2´
+		29 ´drill_used_2´
+		30 ´wheel_finished´
+		31 ´select_punishments´
+		32 ´Start_Timer´
+		33 ´link´ DISABLED
+		34 ´off_2´
+		35 ´Start_Timer_Again´
+		36 ´set 1´
+		37 ´remove_waypoint_2´
+		38 ´Finish´
+		39 ´disable_defend´
+		40 ´Set 0´
+		41 ´clock_finished´
+		42 ´counter_2´
+		43 ´2 sec delay - ON´
+		44 ´OFF´
+		45 ´ON´
+		46 ´drill_used_3´
+		47 ´wheel_END´
+		48 ´disable´
+		49 ´Start´
+		50 ´Link´
+		51 ´setup´
+		52 ´keycard´
+		53 ´fix_wheel_interaction´ DISABLED
+		54 ´reset_wheel´
+		55 ´selection´
+		56 ´random´
+		57 ´On_4´
+		58 ´ovk_above´
+		59 ´Wheel_appeared´
+		60 ´interact´
+	on_executed
+		´remove´ (delay 0)
+´remove´ ElementOperator 100210
+	operation remove
+	elements
+		1 ´waypoint_defend_wheel´
+		2 ´waypoint_goto_wheel´
+		3 ´waypoint_grab_keycard´
+	on_executed
+		´kill´ (delay 0)
+´kill´ ElementStopEffect 100005
+	operation fade_kill
+	position -1150, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´glass_break´
+		2 ´you_win´
+		3 ´you_win001´
+	on_executed
+		´power_off´ (delay 0) DISABLED
+		´deactivate´ (delay 0)
+		´remove_5´ (delay 0)
+´power_off´ ElementUnitSequence 100211
+	DISABLED
+	position -1175, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence power_off
+			time 0.1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_hide
+			time 0.1
+´deactivate´ ElementUnitSequence 100213
+	position -1125, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence deactivate
+			time 0.1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_hide
+			time 0.1
+´On_3´ ElementToggle 100214
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´power_off´ DISABLED
+´OFF_5´ ElementToggle 100215
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´power_off´ DISABLED
+	on_executed
+		´drill_explodes´ (delay 0)
+		´remove_drill_show_clock´ (delay 0)
+		´POOF´ (delay 0)
+´waypoint_fix_wheel´ ElementWaypoint 100212
+	icon pd2_fix
+	only_in_civilian false
+	position 0, -64, 256
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´selection´ ElementCounter 100217
+	counter_target 0
+´1´ ElementCounterFilter 100219
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´selection´
+	on_executed
+		´set_002´ (delay 0)
+´5_4´ ElementCounterFilter 100220
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´selection´
+	on_executed
+		´set_003´ (delay 0)
+´2´ ElementCounterFilter 100221
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´selection´
+	on_executed
+		´set_004´ (delay 0)
+´6´ ElementCounterFilter 100222
+	check_type equal
+	needed_to_execute all
+	value 6
+	elements
+		1 ´selection´
+	on_executed
+		´set_005´ (delay 0)
+´3´ ElementCounterFilter 100223
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´selection´
+	on_executed
+		´set_006´ (delay 0)
+´7´ ElementCounterFilter 100224
+	check_type equal
+	needed_to_execute all
+	value 7
+	elements
+		1 ´selection´
+	on_executed
+		´set_001´ (delay 0)
+´4´ ElementCounterFilter 100225
+	check_type equal
+	needed_to_execute all
+	value 4
+´Flame - 1´ ElementUnitSequence 100227
+	position 650, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_1
+			time 0
+	on_executed
+		´1_2´ (delay 0)
+´Dozer - 5´ ElementUnitSequence 100228
+	position 650, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_5
+			time 0
+	on_executed
+		´5_5´ (delay 0)
+´Smoke - 2´ ElementUnitSequence 100229
+	position 650, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_2
+			time 0
+	on_executed
+		´2_2´ (delay 0)
+´Sniper - 6´ ElementUnitSequence 100230
+	position 650, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_6
+			time 0
+	on_executed
+		´6_2´ (delay 0)
+´Random - 3´ ElementUnitSequence 100231
+	position 650, -450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_3
+			time 0
+	on_executed
+		´3_2´ (delay 0)
+´key - 4´ ElementUnitSequence 100232
+	position 475, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´set_Dozer001´ MissionScriptElement 100233
+	TRIGGER TIMES 1
+	on_executed
+		´Dozer - 5´ (delay 0)
+´set_Flame001´ MissionScriptElement 100234
+	TRIGGER TIMES 1
+	on_executed
+		´Flame - 1´ (delay 0)
+´set_Smoke001´ MissionScriptElement 100235
+	TRIGGER TIMES 1
+	on_executed
+		´Smoke - 2´ (delay 0)
+´set_Drill´ MissionScriptElement 100236
+	TRIGGER TIMES 1
+	on_executed
+		´interior´ (delay 0)
+		´loop´ (delay 0) DISABLED
+´set_Sniper001´ MissionScriptElement 100237
+	TRIGGER TIMES 1
+	on_executed
+		´Sniper - 6´ (delay 0)
+´set_Random´ MissionScriptElement 100238
+	TRIGGER TIMES 1
+	on_executed
+		´Random - 3´ (delay 0)
+´DRILL -7´ ElementUnitSequence 100239
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_7
+			time 0
+	on_executed
+		´7_2´ (delay 0)
+´0_4´ ElementUnitSequenceTrigger 100241
+	sequence_list
+		1
+			guis_id 1
+			sequence spin_finished
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+	on_executed
+		´1´ (delay 0)
+		´5_4´ (delay 0)
+		´2´ (delay 0)
+		´6´ (delay 0)
+		´3´ (delay 0)
+		´7´ (delay 0)
+		´again´ (delay 0) DISABLED
+		´3 step´ (delay 0) DISABLED
+		´2 step´ (delay 0)
+		´bell_ding´ (delay 0)
+´1_2´ ElementCounterOperator 100243
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´5_5´ ElementCounterOperator 100244
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´2_2´ ElementCounterOperator 100245
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´6_2´ ElementCounterOperator 100246
+	amount 6
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´3_2´ ElementCounterOperator 100247
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´7_2´ ElementCounterOperator 100249
+	amount 7
+	operation set
+	instance_var_names
+	elements
+		1 ´selection´
+´reset_wheel_anim´ MissionScriptElement 100035
+	on_executed
+		´reset_wheel´ (delay 0)
+		´On 1´ (delay 0)
+´7_3´ ElementCounterFilter 100037
+	check_type equal
+	needed_to_execute all
+	value 7
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Drills´ (delay 0)
+´3_3´ ElementCounterFilter 100041
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Random´ (delay 0)
+´6_3´ ElementCounterFilter 100044
+	check_type equal
+	needed_to_execute all
+	value 6
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Sniper´ (delay 0)
+´2_3´ ElementCounterFilter 100047
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Smoke´ (delay 0)
+´5_6´ ElementCounterFilter 100050
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Dozer´ (delay 0)
+´1_3´ ElementCounterFilter 100250
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´selection´
+	on_executed
+		´reset_Flame´ (delay 0)
+´reset_Flame´ ElementUnitSequence 100252
+	position 1075, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_1
+			time 0
+´reset_Dozer´ ElementUnitSequence 100251
+	position 1075, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_5
+			time 0
+´reset_Smoke´ ElementUnitSequence 100253
+	position 1075, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_2
+			time 0
+´reset_Sniper´ ElementUnitSequence 100254
+	position 1075, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_6
+			time 0
+´reset_Random´ ElementUnitSequence 100255
+	position 1075, -450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_3
+			time 0
+´reset_Drills´ ElementUnitSequence 100256
+	position 1075, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence reset_7
+			time 0
+´reset_wheel´ MissionScriptElement 100257
+	on_executed
+		´1_3´ (delay 0)
+		´5_6´ (delay 0)
+		´2_3´ (delay 0)
+		´6_3´ (delay 0)
+		´3_3´ (delay 0)
+		´7_3´ (delay 0)
+´drill_explodes´ ElementPlayEffect 100259
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position 0, -38, 230
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´remove_drill_show_clock´ ElementUnitSequence 100260
+	position 50, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence deactivate
+			time 0.1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence state_hide
+			time 0.1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence reset
+			time 0
+´fix_wheel_interaction´ ElementInteraction 100001
+	DISABLED
+	host_only false
+	override_timer 3
+	position -1, -63, 221
+	rotation 0, 0, 0, -1
+	tweak_data_id repair_wheel
+	on_executed
+		´link´ (delay 0) DISABLED (alternative interacted)
+´again´ MissionScriptElement 100002
+	DISABLED
+	BASE DELAY 2
+	TRIGGER TIMES 1
+	on_executed
+		´random´ (delay 3)
+		´reset_wheel´ (delay 0)
+´On_4´ ElementToggle 100026
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´again_enabled´ DISABLED
+		2 ´3 step´ DISABLED
+		3 ´again´ DISABLED
+	on_executed
+		´Off_2´ (delay 0)
+´bell_ding´ ElementPlaySound 100027
+	append_prefix false
+	interrupt true
+	position 4, -54, 238
+	rotation 0, 0, 0, -1
+	sound_event bell_ring
+	use_instigator false
+´again_enabled´ MissionScriptElement 100028
+	DISABLED
+	on_executed
+		´On_4´ (delay 0)
+´On 1´ ElementToggle 100163
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´set_Drill´
+		2 ´set_Flame001´
+		3 ´set_Dozer001´
+		4 ´set_Smoke001´
+		5 ´set_Sniper001´
+		6 ´set_Random´
+		7 ´drill_used´
+		8 ´drill_finished´
+		9 ´drill_used_2´
+		10 ´drill_finished_2´
+	on_executed
+		´fx_stop´ (delay 0)
+´ovk_above´ ElementFilter 100025
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 750, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´On_4´ (delay 0)
+´vh_below´ ElementFilter 100029
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1075, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´10 seconds´ (delay 0)
+´ovk_above_2´ ElementFilter 100030
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -1025, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´20 seconds´ (delay 0)
+´10 seconds´ ElementUnitSequence 100031
+	position -1075, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence set_hack_time_10s
+			time 0
+´20 seconds´ ElementUnitSequence 100158
+	position -1025, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam_or_upgrades/001 (0, -35, 234)
+			notify_unit_sequence set_hack_time_25s
+			time 0
+´kick_wheel´ ElementSpecialObjective 100218
+	TRIGGER TIMES 1
+	SO_access 192
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 4
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, -225, 0
+	repeatable false
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 3000
+	search_position 100 -150 0
+	so_action e_so_try_kick_door
+	trigger_on none
+	followup_elements
+´anim_finished´ ElementSpecialObjectiveTrigger 100226
+	event complete
+	position 1325, -50, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´kick_wheel´
+	on_executed
+		´remove_2´ (delay 0)
+		´break_wheel´ (delay 0)
+´break_wheel´ MissionScriptElement 100240
+	on_executed
+		´wheel_kicked´ (delay 0)
+´remove_2´ ElementOperator 100242
+	operation remove
+	elements
+		1 ´kick_wheel´
+	on_executed
+		´OFF_6´ (delay 0)
+´failed´ ElementSpecialObjectiveTrigger 100248
+	event fail
+	position 1375, -50, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´kick_wheel´
+	on_executed
+		´link_3´ (delay 0)
+´link_3´ MissionScriptElement 100258
+	on_executed
+		´link_4´ (delay 0)
+´OFF_6´ ElementToggle 100261
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_finished´
+		2 ´failed´
+		3 ´kick_wheel´
+´start_2´ MissionScriptElement 100262
+	on_executed
+		´ON_2´ (delay 0)
+´ON_2´ ElementToggle 100263
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´anim_finished´
+		2 ´failed´
+		3 ´ON 1´ DISABLED
+	on_executed
+		´link_4´ (delay 0.1)
+´link_4´ MissionScriptElement 100264
+	on_executed
+		´ON 1´ (delay 0) DISABLED
+´ON 1´ ElementToggle 100265
+	DISABLED
+	BASE DELAY 5
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´kick_wheel´
+	on_executed
+		´kick_wheel´ (delay 0)
+´interior´ MissionScriptElement 100266
+	on_executed
+		´DRILL -7´ (delay 0)
+´inside_wheel´ ElementInstanceInput 100267
+	event inside_wheel
+	on_executed
+		´link_5´ (delay 0)
+´link_5´ MissionScriptElement 100268
+	on_executed
+		´OFF_7´ (delay 0)
+´OFF_7´ ElementToggle 100269
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interior´
+	on_executed
+		´On_5´ (delay 0)
+´Start_spin´ ElementUnitSequence 100270
+	position 600, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence spin_startup
+			time 0
+´loop_finished´ ElementUnitSequenceTrigger 100271
+	sequence_list
+		1
+			guis_id 1
+			sequence loop_finished
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+	on_executed
+		´random´ (delay 0)
+´Up_finished´ ElementUnitSequenceTrigger 100272
+	sequence_list
+		1
+			guis_id 1
+			sequence move_up_finished
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+	on_executed
+		´link_6´ (delay 0)
+´move_up´ ElementUnitSequence 100273
+	position -950, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel/hlp_interactable_wheel/001 (0, 7.15254E-05, 0)
+			notify_unit_sequence move_up
+			time 1
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence light_yellow_on_black
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_flatbed_hatch/chw_prop_train_flatbed_hatch_2/002 (0, 195, -290)
+			notify_unit_sequence anim_hatch_open_90
+			time 0
+´drill_explodes001´ ElementPlayEffect 100274
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position -100, -8, 101
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´intro_green_smoke´ ElementPlayEffect 100275
+	base_time 0
+	effect effects/payday2/environment/nail_green_smoke_explosion
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´stop´ ElementStopEffect 100276
+	operation fade_kill
+	position -950, -250, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´intro_green_smoke´
+	on_executed
+		´show_all´ (delay 0)
+´link_6´ MissionScriptElement 100277
+	on_executed
+		´stop´ (delay 0)
+´3 step´ ElementCounter 100278
+	DISABLED
+	counter_target 3
+	on_executed
+		´wheel_finished´ (delay 0)
+´set 2´ ElementCounterOperator 100279
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´2 step´
+	on_executed
+		´set 3´ (delay 0)
+´2 step´ ElementCounter 100280
+	counter_target 2
+	on_executed
+		´wheel_finished´ (delay 0)
+´Off_2´ ElementToggle 100281
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´2 step´
+´set 3´ ElementCounterOperator 100282
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´3 step´ DISABLED
+	on_executed
+		´disable_waypoint_2´ (delay 0)
+´enable_clip´ ElementEnableUnit 100049
+	position -950, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (97, -48, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/002 (-1, -48, 0)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/004 (-1, -23, 0)
+		4 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/003 (97, -23, 0)
+		5 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/005 (97, 2, 0)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/006 (-1, 2, 0)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/008 (-1, 26, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/007 (97, 26, 0)
+	on_executed
+		´Set 1´ (delay 0)
+´On_5´ ElementToggle 100052
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loop´ DISABLED
+´loop´ MissionScriptElement 100056
+	DISABLED
+	BASE DELAY 0,25
+	on_executed
+		´random´ (delay 0)
+´green´ ElementUnitSequence 100068
+	position 700, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence green_on_black
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence sound_tick_normal_stop
+			time 0
+	on_executed
+		´wheel_finished_2´ (delay 0)
+´timer_half_way´ ElementInstanceOutput 100071
+	event timer_half_way
+´Wheel_appeared´ ElementInstanceOutput 100079
+	event wheel_appeared
+´interact´ ElementUnitSequenceTrigger 100059
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_help/pickups/gen_pku_keycard_infinite/gen_pku_keycard_infinite/001 (-96.9645, 0, 96.5463)
+	on_executed
+		´disable_keycard´ (delay 0)
+		´teammate_comment_keycard_taken´ (delay 0) DISABLED
+´POOF´ ElementPlaySound 100065
+	append_prefix false
+	interrupt true
+	position 0, -75, 225
+	rotation 0, 0, 0, -1
+	sound_event hlp_poof_big
+	use_instigator false
+´ON_3´ ElementToggle 100080
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´fix_wheel_interaction´ DISABLED
+		2 ´link´ DISABLED
+	on_executed
+		´remove_waypoint´ (delay 0)
+´Wheel_Fixed´ MissionScriptElement 100086
+	on_executed
+		´start_2´ (delay 0)
+´add´ ElementNavObstacle 100097
+	operation add
+	position -950, 150, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	on_executed
+		´enable_clip´ (delay 0)
+´remove_3´ ElementNavObstacle 100098
+	operation remove
+	position -750, 250, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	on_executed
+		´disable´ (delay 0)
+´remove_4´ ElementNavObstacle 100099
+	operation remove
+	position -1275, 250, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	on_executed
+		´disable_all´ (delay 0)
+´remove_5´ ElementNavObstacle 100100
+	operation remove
+	position -1150, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+´teammate_comment_its_done´ ElementTeammateComment 100101
+	close_to_element true
+	comment v25
+	position 0, -100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_swear´ ElementTeammateComment 100104
+	close_to_element true
+	comment g60
+	position 0, -100, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´box_disappear´ ElementPlaySound 100105
+	append_prefix false
+	interrupt true
+	position -100, -10, 122
+	rotation 0, 0, 0, -1
+	sound_event hlp_keycard_box_disappear
+	use_instigator false
+´box_appear´ ElementPlaySound 100106
+	append_prefix false
+	interrupt true
+	position -100, -10, 122
+	rotation 0, 0, 0, -1
+	sound_event hlp_keycard_box_appear
+	use_instigator false
+´sound_interrupt´ ElementUnitSequence 100155
+	position -1300, -850, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence sound_tick_additional
+			time 0
+	on_executed
+		´30 second penalty´ (delay 0)
+´disable_3´ ElementDisableUnit 100197
+	position -500, 150, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´timer_start_sound´ ElementUnitSequence 100204
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_wheel_timer/hlp_interactable_wheel_timer/001 (0, -33, 230)
+			notify_unit_sequence sound_tick_normal
+			time 0
+´teammate_comment_keycard_taken´ ElementTeammateComment 100191
+	DISABLED
+	close_to_element false
+	comment v11
+	position -425, 350, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true

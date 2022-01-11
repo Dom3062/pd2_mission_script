@@ -1,0 +1,537 @@
+´interacted_with_caustic_soda´ ElementUnitSequenceTrigger 100046
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_caustic_cooler/gen_pku_methlab_caustic_cooler/002 (88.3954, 129.008, 92.9999)
+	on_executed
+		´caus_soda´ (delay 0)
+´interacted_with_hydrogen_chloride´ ElementUnitSequenceTrigger 100047
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_liquid_meth/gen_pku_methlab_liquid_meth/002 (150.999, 129, 92.9999)
+	on_executed
+		´hydr_chlor´ (delay 0)
+´interacted_with_meth´ ElementUnitSequenceTrigger 100049
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+	on_executed
+		´meth_taken´ (delay 0)
+´interacted_with_muriatic_acid´ ElementUnitSequenceTrigger 100050
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_bubbling/gen_pku_methlab_bubbling/002 (100.999, -250, 93.9999)
+	on_executed
+		´mur_acid´ (delay 0)
+´mur_acid´ MissionScriptElement 100048
+	on_executed
+		´instance_output_interacted_with_muriatic_acid´ (delay 0)
+		´sound_add_ingredient´ (delay 0)
+		´disable_interaction_methlab´ (delay 0)
+´hydr_chlor´ MissionScriptElement 100051
+	on_executed
+		´instance_output_interacted_with_hydrogen_chloride´ (delay 0)
+		´sound_add_ingredient´ (delay 0)
+		´disable_interaction_methlab´ (delay 0)
+´caus_soda´ MissionScriptElement 100052
+	on_executed
+		´instance_output_interacted_with_caustic_chloride´ (delay 0)
+		´sound_add_ingredient´ (delay 0)
+		´disable_interaction_methlab´ (delay 0)
+´instance_output_interacted_with_muriatic_acid´ ElementInstanceOutput 100053
+	event interacted_with_muriatic_acid
+´instance_output_interacted_with_hydrogen_chloride´ ElementInstanceOutput 100054
+	event interacted_with_hydrogen_chloride
+´instance_output_interacted_with_caustic_chloride´ ElementInstanceOutput 100055
+	event interacted_with_caustic_soda
+´meth_taken´ MissionScriptElement 100056
+	on_executed
+		´instance_output_meth_taken´ (delay 0)
+		´remove_WP_meth´ (delay 0)
+´instance_output_meth_taken´ ElementInstanceOutput 100057
+	event meth_taken
+´setup´ MissionScriptElement 100061
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´disabler´ (delay 0)
+		´sound_methlab´ (delay 0)
+		´seq_hider´ (delay 0)
+´seq_hider´ ElementUnitSequence 100062
+	position -450, 300, 100
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_bubbling/gen_pku_methlab_bubbling/002 (100.999, -250, 93.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_caustic_cooler/gen_pku_methlab_caustic_cooler/002 (88.3954, 129.008, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_liquid_meth/gen_pku_methlab_liquid_meth/002 (150.999, 129, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_vis_hide
+			time 0
+´disabler´ ElementDisableUnit 100063
+	position -450, 200, 100
+	rotation 0, 0, -0.707107, -0.707107
+	unit_ids
+´seq_show_meth´ ElementUnitSequence 100064
+	position -350, -350, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´show_meth´ MissionScriptElement 100065
+	on_executed
+		´seq_show_meth´ (delay 0)
+		´WP_meth´ (delay 0)
+		´effect_stop´ (delay 0)
+		´remove_WP_methlab´ (delay 0)
+´instance_input_show_meth´ ElementInstanceInput 100066
+	event show_meth
+	on_executed
+		´show_meth´ (delay 0)
+´WP_meth´ ElementWaypoint 100067
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position -61, -224, 172
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_methlab´ ElementWaypoint 100068
+	icon pd2_methlab
+	only_in_civilian false
+	only_on_instigator false
+	position 25, -48, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´area_methlab_found´ ElementAreaTrigger 100069
+	TRIGGER TIMES 1
+	amount 1
+	depth 800
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -7.62939E-06, -48, 125
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´methlab_found´ (delay 0)
+´methlab_found´ MissionScriptElement 100070
+	on_executed
+		´instance_output_methlab_found´ (delay 0)
+		´blurzone_start_cooking´ (delay 0)
+		´effect004´ (delay 0)
+		´effect005´ (delay 0)
+		´effect006´ (delay 0)
+´remove_WP_methlab´ ElementOperator 100071
+	operation remove
+	elements
+		1 ´WP_methlab´
+´instance_output_methlab_found´ ElementInstanceOutput 100072
+	event methlab_found
+´instance_input_wrong´ ElementInstanceInput 100073
+	event wrong
+	on_executed
+		´wrong´ (delay 0)
+´instance_input_right´ ElementInstanceInput 100074
+	event right
+	on_executed
+		´right´ (delay 0)
+´right´ MissionScriptElement 100075
+	on_executed
+		´remove_WP_methlab´ (delay 0)
+´wrong´ MissionScriptElement 100076
+	on_executed
+		´remove_WP_methlab´ (delay 0)
+		´sound_methlab_stop´ (delay 0)
+		´effect_stop´ (delay 0)
+		´teammate_comment_swear´ (delay 0)
+		´explode´ (delay 5)
+		´sound_explosion´ (delay 0)
+		´disable_interaction_methlab´ (delay 0)
+		´effect_starting_fire001´ (delay 0)
+		´effect_starting_fire002´ (delay 0)
+´instance_input_ready´ ElementInstanceInput 100077
+	event ready
+	on_executed
+		´ready´ (delay 0)
+´ready´ MissionScriptElement 100078
+	on_executed
+		´enable_interaction_methlab´ (delay 0)
+		´blurzone_start_cooking´ (delay 0)
+		´WP_methlab´ (delay 0)
+´remove_WP_meth´ ElementOperator 100079
+	operation remove
+	elements
+		1 ´WP_meth´
+´enable_interaction_methlab´ ElementUnitSequence 100080
+	position -350, -450, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_bubbling/gen_pku_methlab_bubbling/002 (100.999, -250, 93.9999)
+			notify_unit_sequence interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_caustic_cooler/gen_pku_methlab_caustic_cooler/002 (88.3954, 129.008, 92.9999)
+			notify_unit_sequence interaction_enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_liquid_meth/gen_pku_methlab_liquid_meth/002 (150.999, 129, 92.9999)
+			notify_unit_sequence interaction_enable
+			time 0
+´effect001´ ElementPlayEffect 100081
+	base_time 0
+	effect effects/payday2/environment/smoke_alex_must_die_1
+	max_amount 0
+	position 51, -209, 157
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´effect002´ ElementPlayEffect 100082
+	base_time 0
+	effect effects/payday2/environment/bubble_alex_must_die_1
+	max_amount 0
+	position 102, -249, 212
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´effect003´ ElementPlayEffect 100083
+	base_time 0
+	effect effects/payday2/environment/smoke_alex_must_die_1
+	max_amount 0
+	position 23, -249, 212
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´effect004´ ElementPlayEffect 100084
+	base_time 0
+	effect effects/payday2/environment/bubble_alex_must_die_1
+	max_amount 0
+	position 23, -239, 137
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´effect005´ ElementPlayEffect 100085
+	base_time 0
+	effect effects/payday2/environment/smoke_alex_must_die_1
+	max_amount 0
+	position 87, 130, 162
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´effect006´ ElementPlayEffect 100086
+	base_time 0
+	effect effects/payday2/environment/bubble_alex_must_die_1
+	max_amount 0
+	position 182, -253, 134
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´sound_methlab´ ElementPlaySound 100087
+	append_prefix false
+	interrupt true
+	position 25, -48, 50
+	rotation 0, 0, 0, -1
+	sound_event cooking_meth
+	use_instigator false
+´sound_methlab_stop´ ElementPlaySound 100088
+	append_prefix false
+	interrupt true
+	position 75, -48, 50
+	rotation 0, 0, 0, -1
+	sound_event cooking_meth_stop
+	use_instigator false
+´effect_stop´ ElementStopEffect 100089
+	operation fade_kill
+	position -250, -350, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect002´
+		2 ´effect003´
+		3 ´effect001´
+´effect_fire´ ElementPlayEffect 100090
+	base_time 0
+	effect effects/payday2/environment/fire_alex_must_die_1
+	max_amount 0
+	position -15, 10, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´teammate_comment_swear´ ElementTeammateComment 100091
+	close_to_element true
+	comment g60
+	position 25, -48, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´explode´ MissionScriptElement 100092
+	on_executed
+		´effect_fire´ (delay 0)
+		´destroy_methlab´ (delay 0)
+		´explosion_damage´ (delay 0)
+		´enable_area_damage´ (delay 0)
+		´blurzone_fire´ (delay 0)
+´sound_add_ingredient´ ElementPlaySound 100094
+	append_prefix false
+	interrupt true
+	position -25, -48, 50
+	rotation 0, 0, 0, -1
+	sound_event add_meth_ingredients
+	use_instigator false
+´destroy_methlab´ ElementUnitSequence 100095
+	position -150, -550, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_bubbling/gen_pku_methlab_bubbling/002 (100.999, -250, 93.9999)
+			notify_unit_sequence Destroyed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_caustic_cooler/gen_pku_methlab_caustic_cooler/002 (88.3954, 129.008, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_drying_meth/gen_pku_methlab_drying_meth/002 (-53, -202, 0)
+			notify_unit_sequence interaction_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_liquid_meth/gen_pku_methlab_liquid_meth/002 (150.999, 129, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_vis_hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_methlab_meth/gen_prop_methlab_meth/002 (-56.0013, -221, 96.9999)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´blurzone_start_cooking´ ElementBlurZone 100096
+	height 20
+	mode 1
+	position -7.62939E-06, -23, 100
+	radius 320
+	rotation 0, 0, 0, -1
+´blurzone_end´ ElementBlurZone 100097
+	height 200
+	mode 0
+	position -7.62939E-06, -23, 50
+	radius 300
+	rotation 0, 0, 0, -1
+´sound_explosion´ ElementPlaySound 100098
+	append_prefix false
+	interrupt true
+	position 125, -48, 50
+	rotation 0, 0, 0, -1
+	sound_event explosion_fire
+	use_instigator false
+´disable_interaction_methlab´ ElementUnitSequence 100000
+	position -650, -50, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_bubbling/gen_pku_methlab_bubbling/002 (100.999, -250, 93.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_caustic_cooler/gen_pku_methlab_caustic_cooler/002 (88.3954, 129.008, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_methlab_liquid_meth/gen_pku_methlab_liquid_meth/002 (150.999, 129, 92.9999)
+			notify_unit_sequence interaction_disable
+			time 0
+´explosion_damage´ ElementExplosionDamage 100004
+	damage 40
+	position 25, -48, 150
+	range 450
+	rotation 0, 0, 0, -1
+´area_fire_damage´ ElementAreaTrigger 100005
+	DISABLED
+	amount 1
+	depth 800
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.5
+	position 25, -48, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on both
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´kill_zone_fire´ (delay 0)
+´enable_area_damage´ ElementToggle 100006
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_fire_damage´ DISABLED
+´kill_zone_fire´ ElementKillZone 100007
+	position 50, -550, 100
+	rotation 0, 0, 0, -1
+	type fire
+´blurzone_fire´ ElementBlurZone 100109
+	height 200
+	mode 2
+	position 75, 2, 100
+	radius 600
+	rotation 0, 0, 0, -1
+´area_fire_damage_bag´ ElementAreaTrigger 100008
+	DISABLED
+	amount 1
+	depth 800
+	height 300
+	instigator loot
+	instigator_name 
+	interval 5
+	position 25, -48, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on both
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´destroy_meth´ (delay 0) DISABLED
+´destroy_meth´ ElementCarry 100009
+	DISABLED
+	operation remove
+	type_filter meth
+´cook001´ ElementSpawnCivilian 100023
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 50, 25, 0
+	rotation 0, 0, 0, -1
+	state cf_sp_stand_look_up
+	team default
+	orientation_elements
+´cook002´ ElementSpawnCivilian 100024
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 75, -125, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state cf_sp_stand_look_up
+	team default
+	orientation_elements
+´instance_input_spawn_cooks´ ElementInstanceInput 100025
+	event spawn_cooks
+	on_executed
+		´spawn_cooks´ (delay 0)
+´spawn_cooks´ MissionScriptElement 100026
+	on_executed
+		´cook002´ (delay 0)
+		´cook001´ (delay 0)
+´instance_input_kill_cooks´ ElementInstanceInput 100027
+	event kill_cooks
+	on_executed
+		´kill_cooks´ (delay 0)
+´kill_cooks´ MissionScriptElement 100028
+	on_executed
+		´ai_remove_001´ (delay 0)
+´ai_remove_001´ ElementAIRemove 100029
+	force_ragdoll false
+	position -350, -850, 100
+	rotation 0, 0, 0, -1
+	true_death true
+	use_instigator false
+	elements
+		1 ´cook002´
+		2 ´cook001´
+´effect_starting_fire001´ ElementPlayEffect 100001
+	base_time 0
+	effect effects/payday2/environment/starting_fire_alex_must_die_1
+	max_amount 0
+	position 30, 117, 162
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false
+´effect_starting_fire002´ ElementPlayEffect 100002
+	base_time 0
+	effect effects/payday2/environment/starting_fire_alex_must_die_1
+	max_amount 0
+	position 30.0001, -231, 162
+	random_time 0
+	rotation 0, 0, 1, -1.19209E-07
+	screen_space false

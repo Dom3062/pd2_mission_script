@@ -1,0 +1,348 @@
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´debug´ (delay 0) DISABLED
+		´func_disable_unit_002´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100004
+	position 0, 900, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´debug´ MissionScriptElement 100005
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´seq_show_c4´ (delay 0)
+´input_enable_c4´ ElementInstanceInput 100006
+	event input_enable_c4
+	on_executed
+		´seq_show_c4´ (delay 0)
+		´enable´ (delay 0)
+´seq_show_c4´ ElementUnitSequence 100007
+	BASE DELAY 1
+	position 1500, 700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (799, 7, 153.58)
+			notify_unit_sequence show_interactive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/002 (-777, 6, 154.586)
+			notify_unit_sequence show_interactive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/003 (14, -11, 139.097)
+			notify_unit_sequence show_interactive
+			time 0
+	on_executed
+		´waypoint_c4_001´ (delay 0)
+		´waypoint_c4_002´ (delay 0)
+		´waypoint_c4_003´ (delay 0)
+´interacted_c4_001´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (799, 7, 153.58)
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´amount_of_c4´ ElementCounter 100011
+	counter_target 0
+´add1´ ElementCounterOperator 100012
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´amount_of_c4´
+´placed_all_c4´ ElementCounterTrigger 100013
+	amount 3
+	trigger_type value
+	elements
+		1 ´amount_of_c4´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´seq_trigger_explosive´ (delay 0)
+		´teammate_comment_stand_back´ (delay 0.5)
+´point_debug_001´ ElementDebug 100014
+	as_subtitle false
+	debug_string from instance: player placed all c4
+	show_instigator false
+´seq_trigger_explosive´ ElementUnitSequence 100015
+	BASE DELAY 5
+	position 1800, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (799, 7, 153.58)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/002 (-777, 6, 154.586)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/003 (14, -11, 139.097)
+			notify_unit_sequence trigger_expolsive
+			time 0
+	on_executed
+		´link_c4_exploded´ (delay 0)
+´link_c4_exploded´ MissionScriptElement 100016
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´env_effect_play_002´ (delay 0)
+		´env_effect_play_003´ (delay 0)
+		´output_c4_exploded´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+		´gate_explode´ (delay 0)
+		´teammate_comment_that_was_loud´ (delay 1)
+		´env_effect_play_004´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+		´point_play_sound_002´ (delay 0)
+		´point_play_sound_003´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100017
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position 799, 14, 149
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_002´ ElementPlayEffect 100018
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position 14, 0, 147.091
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_003´ ElementPlayEffect 100019
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position -771, 11, 149
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´interacted_c4_002´ ElementUnitSequenceTrigger 100022
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/c4_plantable/002 (-777, 6, 154.586)
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´interacted_c4_003´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/equipment/c4_charge/c4_plantable/003 (14, -11, 139.097)
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´output_c4_exploded´ ElementInstanceOutput 100024
+	event output_c4_exploded
+´func_enable_unit_001´ ElementEnableUnit 100025
+	position 1900, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_001´ ElementDisableUnit 100026
+	position 1900, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_002´ ElementDisableUnit 100029
+	position 1200, 700, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´waypoint_c4_001´ ElementWaypoint 100030
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 799, 14, 149
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_c4_002´ ElementWaypoint 100031
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 14, 6, 149
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_c4_003´ ElementWaypoint 100032
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position -771, 11, 149
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint_c4_001´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´waypoint_c4_001´
+	on_executed
+		´add1´ (delay 0)
+´remove_waypoint_c4_002´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´waypoint_c4_003´
+	on_executed
+		´add1´ (delay 0)
+´remove_waypoint_c4_003´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´waypoint_c4_002´
+	on_executed
+		´add1´ (delay 0)
+´logic_toggle_001´ ElementToggle 100036
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´waypoint_c4_001´
+	on_executed
+		´remove_waypoint_c4_001´ (delay 0)
+´logic_toggle_002´ ElementToggle 100037
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´waypoint_c4_002´
+	on_executed
+		´remove_waypoint_c4_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100038
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´waypoint_c4_003´
+	on_executed
+		´remove_waypoint_c4_002´ (delay 0)
+´input_open_runway´ ElementInstanceInput 100039
+	event open_runway
+	on_executed
+		´seq_open_runway´ (delay 0)
+		´func_disable_unit_003´ (delay 1)
+		´enable´ (delay 0)
+´seq_open_runway´ ElementUnitSequence 100040
+	position 1600, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_runway_gate_rail/mex_prop_runway_gate_rail/001 (0, 0, 0)
+			notify_unit_sequence anim_open
+			time 0
+´func_disable_unit_003´ ElementDisableUnit 100043
+	position 1600, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_002´ (delay 1)
+´func_enable_unit_002´ ElementEnableUnit 100044
+	position 1600, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´gate_explode´ ElementUnitSequence 100000
+	position 2000, 400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_runway_gate_rail/mex_prop_runway_gate_rail/001 (0, 0, 0)
+			notify_unit_sequence anim_explode
+			time 0
+´teammate_comment_lets_open_it_up´ ElementTeammateComment 100010
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v16
+	position 50, 250, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´area_player_close_to_gate´ ElementAreaTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 907,2
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 50, 25, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1939,65
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_lets_open_it_up´ (delay 1)
+´enable´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_gate´ DISABLED
+´teammate_comment_stand_back´ ElementTeammateComment 100041
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v13
+	position 50, 100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_that_was_loud´ ElementTeammateComment 100042
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v54
+	position 50, 175, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´env_effect_play_004´ ElementPlayEffect 100046
+	TRIGGER TIMES 1
+	base_time 0
+	effect effects/payday2/environment/environment_smoke
+	max_amount 0
+	position 14, 6, 99
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´point_play_sound_001´ ElementPlaySound 100047
+	append_prefix false
+	interrupt true
+	position 799, 14, 149
+	rotation 0, 0, 0, -1
+	sound_event c4_explode_metal
+	use_instigator false
+´point_play_sound_002´ ElementPlaySound 100048
+	append_prefix false
+	interrupt true
+	position 14, 6, 149
+	rotation 0, 0, 0, -1
+	sound_event c4_explode_metal
+	use_instigator false
+´point_play_sound_003´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position -771, 11, 149
+	rotation 0, 0, 0, -1
+	sound_event c4_explode_metal
+	use_instigator false

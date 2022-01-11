@@ -1,0 +1,58 @@
+´on interact´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline/001 (0, 0, 184)
+	on_executed
+		´added´ (delay 0)
+´added´ ElementInstanceOutput 100005
+	event boards_added
+	on_executed
+		´point_debug_001´ (delay 0)
+´on break´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence destroy_planks
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline/001 (0, 0, 184)
+	on_executed
+		´broken´ (delay 0)
+´broken´ ElementInstanceOutput 100007
+	event boards_broke
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_001´ ElementDebug 100008
+	as_subtitle false
+	debug_string interacted
+	show_instigator false
+´point_debug_002´ ElementDebug 100009
+	as_subtitle false
+	debug_string broken
+	show_instigator false
+´auto´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´func_disable_unit_001´ (delay 0.25)
+´func_disable_unit_001´ ElementDisableUnit 100012
+	position -100, 300, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/architecture/secret_stash/props/secret_stash_planks_outline/002 (0, 0, 184)
+		2 units/world/props/box/a4paperbox_02/001 (8, 2, 97)
+´disable_window´ ElementInstanceInput 100014
+	event disable_window
+	on_executed
+		´disable_window_2´ (delay 0)
+´disable_window_2´ ElementUnitSequence 100015
+	position -200, 200, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_planks_outline/001 (0, 0, 184)
+			notify_unit_sequence hide
+			time 0

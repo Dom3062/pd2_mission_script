@@ -1,0 +1,145 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´eanble_outline´ (delay 3)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_laptop_firewall/chca_interactable_laptop_firewall/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_laptop_firewall/chca_interactable_laptop_firewall/001 (0, 0, 0)
+			notify_unit_sequence disable_outline
+			time 0
+´input_enable_laptop´ ElementInstanceInput 100007
+	event enable_laptop
+	on_executed
+		´eanble_outline´ (delay 0)
+´output_laptop_interaction_finished´ ElementInstanceOutput 100008
+	event laptop_interaction_finished
+	on_executed
+		´point_debug_001´ (delay 0)
+´eanble_outline´ ElementUnitSequence 100011
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_laptop_firewall/chca_interactable_laptop_firewall/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_laptop_firewall/chca_interactable_laptop_firewall/001 (0, 0, 0)
+			notify_unit_sequence enable_outline
+			time 0
+	on_executed
+		´enable_interaction´ (delay 0)
+´enable_interaction´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´disable_outline´ ElementUnitSequence 100013
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´turns_of_wp´ (delay 0)
+´laptop_interacted:with´ MissionScriptElement 100014
+	on_executed
+		´disable_outline´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100015
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´players_enter_trigger´ (delay 0)
+´players_enter_trigger´ MissionScriptElement 100016
+	on_executed
+		´output_player_close_to_laptop´ (delay 0)
+´output_player_close_to_laptop´ ElementInstanceOutput 100017
+	event player_close_to_laptop
+´turns_off´ ElementToggle 100006
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+		2 ´point_waypoint_001´
+	on_executed
+		´output_laptop_interaction_finished´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100018
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_waypoint´ ElementInstanceInput 100019
+	event enable_laptop_int_waypoint
+	on_executed
+		´enable´ (delay 0)
+´enable´ MissionScriptElement 100020
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´turns_of_wp´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´turns_off´ (delay 0)
+´ftrigger_laptop_interacted_with´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_laptop_firewall/chca_interactable_laptop_firewall/001 (0, 0, 0)
+	on_executed
+		´laptop_interacted:with´ (delay 0)
+´point_debug_001´ ElementDebug 100024
+	as_subtitle false
+	debug_string firewall_gone
+	show_instigator false

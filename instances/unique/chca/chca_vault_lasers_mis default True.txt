@@ -1,0 +1,163 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´laser_humright001´ (delay 0)
+		´laser_hum_left001´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2400, 450, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´input_disable_lasers´ ElementInstanceInput 100006
+	event disable_lasers
+	on_executed
+		´disable_lasers´ (delay 0)
+´disable_lasers´ MissionScriptElement 100007
+	on_executed
+		´remove_hum_laser´ (delay 0)
+´remove_hum_laser´ ElementOperator 100008
+	operation remove
+	elements
+		1 ´laser_humright001´
+		2 ´laser_hum_left001´
+	on_executed
+		´func_disable_unit_003´ (delay 0)
+´func_disable_unit_003´ ElementDisableUnit 100009
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/001 (-83, -12, 38)
+		2 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/002 (-83, -12, 88)
+		3 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/003 (-83, -12, 138)
+		4 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/004 (-83, -12, 188)
+		5 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/005 (-83, -12, 63)
+		6 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/006 (-83, -12, 113)
+		7 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/007 (-83, -12, 163)
+		8 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/008 (-83, -12, 213)
+	on_executed
+		´disable_lasers_2´ (delay 0)
+´disable_lasers_2´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´laser_trigger_area001´
+		2 ´laser_warning_right001´
+		3 ´laser_warning_left001´
+	on_executed
+		´func_instance_output_001´ (delay 0)
+		´laser_shutdown_right001´ (delay 0)
+		´laser_shutdown_leff001´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100011
+	event lasers_disabled
+´laser_trigger_area001´ ElementAreaTrigger 100012
+	TRIGGER TIMES 1
+	amount 1
+	depth 75
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 19, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 350
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´lasers_triggered´ (delay 0)
+		´laser_warning_right001´ (delay 0)
+		´laser_warning_left001´ (delay 0)
+´lasers_triggered´ MissionScriptElement 100013
+	on_executed
+		´remove_hum_laser_2´ (delay 2)
+´remove_hum_laser_2´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´laser_humright001´
+		2 ´laser_hum_left001´
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100015
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/001 (-83, -12, 38)
+		2 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/002 (-83, -12, 88)
+		3 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/003 (-83, -12, 138)
+		4 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/004 (-83, -12, 188)
+		5 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/005 (-83, -12, 63)
+		6 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/006 (-83, -12, 113)
+		7 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/007 (-83, -12, 163)
+		8 units/pd2_dlc_arena/props/are_prop_laser/are_prop_laser_8m/008 (-83, -12, 213)
+	on_executed
+		´lasers_triggered_2´ (delay 0)
+		´laser_shutdown_right001´ (delay 0)
+		´laser_shutdown_leff001´ (delay 0)
+´lasers_triggered_2´ ElementInstanceOutput 100016
+	event lasers_triggered
+´laser_humright001´ ElementPlaySound 100017
+	append_prefix false
+	interrupt false
+	position 138, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_hum_right
+	use_instigator false
+´laser_warning_right001´ ElementPlaySound 100018
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt false
+	position 138, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_warning_on_right
+	use_instigator false
+´laser_shutdown_right001´ ElementPlaySound 100019
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt false
+	position 138, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_shutdown_right
+	use_instigator false
+´laser_shutdown_leff001´ ElementPlaySound 100020
+	TRIGGER TIMES 1
+	append_prefix true
+	interrupt false
+	position -137, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_shutdown_left
+	use_instigator false
+´laser_warning_left001´ ElementPlaySound 100021
+	TRIGGER TIMES 1
+	append_prefix true
+	interrupt false
+	position -137, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_warning_on_left
+	use_instigator false
+´laser_hum_left001´ ElementPlaySound 100022
+	append_prefix false
+	interrupt false
+	position -137, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event laser_hum_left
+	use_instigator false

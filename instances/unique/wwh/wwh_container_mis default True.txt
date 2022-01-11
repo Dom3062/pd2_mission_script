@@ -1,0 +1,588 @@
+´start´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100002
+	on_executed
+		´set_random_color´ (delay 0)
+		´hide_tools´ (delay 0)
+´set_random_color´ ElementRandom 100003
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´set_color005´ (delay 0)
+		´set_color004´ (delay 0)
+		´set_color003´ (delay 0)
+		´set_color002´ (delay 0)
+		´set_color001´ (delay 0)
+´set_color001´ ElementUnitSequence 100004
+	position -400, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_blue
+			time 0
+´set_color002´ ElementUnitSequence 100005
+	position -500, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_green
+			time 0
+´set_color003´ ElementUnitSequence 100006
+	position -600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_red
+			time 0
+´set_color004´ ElementUnitSequence 100007
+	position -400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_white
+			time 0
+´set_color005´ ElementUnitSequence 100008
+	position -500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence var_set_color_yellow
+			time 0
+´set_tool_container´ ElementInstanceInput 100009
+	BASE DELAY 1
+	event set tool container
+	on_executed
+		´turn_on_so´ (delay 0)
+´turn_on_so´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open_container_so´ DISABLED
+		2 ´activate_tool_pickup´ DISABLED
+		3 ´activate_loot_drop_off´ DISABLED
+		4 ´wait_container_so001´ DISABLED
+	on_executed
+		´show_tools´ (delay 0)
+´open_container_so´ ElementSpecialObjective 100011
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 132
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 3, 60, 0
+	rotation 0, 0, 1, 4.47035E-08
+	scan true
+	search_distance 0
+	search_position -100 100 0
+	so_action e_so_open_container
+	trigger_on none
+	use_instigator true
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100012
+	TRIGGER TIMES 1
+	event anim_start
+	position 100, 200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´open_container_so´ DISABLED
+	on_executed
+		´open_door´ (delay 1.75)
+´open_door´ ElementUnitSequence 100013
+	position 100, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence anim_front_door_open
+			time 0
+	on_executed
+		´logic_counter_002´ (delay 0)
+´show_tools´ ElementUnitSequence 100014
+	position -900, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (-87.8281, -375.46, 20)
+			notify_unit_sequence show_prop_only
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+´hide_tools´ ElementUnitSequence 100016
+	position -600, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (-31, -263, 6.004)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (-87.8281, -375.46, 20)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (-87.8281, -375.46, 20)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´picked_up_saw´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (-87.8281, -375.46, 20)
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100018
+	on_executed
+		´picked_up_tool_output´ (delay 0)
+´picked_up_tool_output´ ElementInstanceOutput 100019
+	event Picked up tool
+	on_executed
+		´remove_wp´ (delay 0)
+´activate_tool_pickup´ ElementInstanceInput 100020
+	DISABLED
+	event Activate tool pickup
+	on_executed
+		´2´ (delay 0)
+´enable_tool_interaction´ ElementUnitSequence 100021
+	position -1100, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (-87.8281, -375.46, 20)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´activate_wp´ (delay 0)
+´activate_wp´ MissionScriptElement 100023
+	on_executed
+		´tool_wp´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´remove_wp´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´tool_wp´
+´tool_wp´ ElementWaypoint 100025
+	icon pd2_generic_saw
+	only_in_civilian false
+	position -88, -390, 85
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_debug_001´ ElementDebug 100026
+	as_subtitle false
+	debug_string PICkED A CONTAINER
+	show_instigator false
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100027
+	DISABLED
+	amount 1
+	depth 575,598
+	height 198,949
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position -2, -306, 113
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 256,608
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´secure_weapons´ (delay 0)
+		´secure_money´ (delay 0)
+´activate_loot_drop_off´ ElementInstanceInput 100028
+	DISABLED
+	event Activate loot drop off
+	on_executed
+		´logic_counter_002´ (delay 0)
+´turn_on_trigger´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´activate_loot_drop_wp´ (delay 0)
+´activate_loot_drop_wp´ MissionScriptElement 100030
+	on_executed
+		´loot_drop_wp´ (delay 0)
+		´func_sequence_002´ (delay 0)
+´loot_drop_wp´ ElementWaypoint 100031
+	icon pd2_lootdrop
+	only_in_civilian false
+	position 0, -250, 85
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´secure_weapons´ ElementCarry 100032
+	operation secure
+	type_filter weapon
+	on_executed
+		´func_carry_002´ (delay 0)
+		´600´ (delay 0)
+´func_carry_002´ ElementCarry 100033
+	operation remove
+	type_filter none
+	on_executed
+		´logic_counter_001´ (delay 0)
+		´add_lootbag´ (delay 0)
+´logic_counter_001´ ElementCounter 100034
+	counter_target 8
+	on_executed
+		´turn_off_trigger´ (delay 0)
+´turn_off_trigger´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´remove_wp_2´ (delay 0)
+´remove_wp_2´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´loot_drop_wp´
+	on_executed
+		´func_sequence_001´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100038
+	instigator enemies
+	invert false
+	rules
+		enemies
+			enemy_names
+				1 units/pd2_dlc_wwh/characters/ene_female_crew/ene_female_crew
+				2 units/pd2_dlc_wwh/characters/ene_male_crew_01/ene_male_crew_01
+				3 units/pd2_dlc_wwh/characters/ene_male_crew_02/ene_male_crew_02
+´wait_container_so001´ ElementSpecialObjective 100039
+	DISABLED
+	SO_access 132
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 3, 60, 0
+	rotation 0, 0, 1, 8.9407E-08
+	scan true
+	search_distance 0
+	search_position -100 100 0
+	so_action e_so_idle_by_container
+	trigger_on none
+	use_instigator true
+	followup_elements
+´gangster_waiting´ ElementSpecialObjectiveTrigger 100040
+	event anim_start
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´wait_container_so001´ DISABLED
+	on_executed
+		´2´ (delay 0)
+		´instigator_storer´ (delay 0)
+´2´ ElementCounter 100041
+	counter_target 2
+	on_executed
+		´activate_wp_2´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100043
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 37, 158
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´activate_wp_2´ MissionScriptElement 100044
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´turn_on_outline_trigger´ (delay 0)
+´turn_on_outline_trigger´ ElementToggle 100045
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´first_trigger´ DISABLED
+´first_trigger´ MissionScriptElement 100046
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´func_set_outline_001´ (delay 0)
+´second_trigger´ MissionScriptElement 100047
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´open_container_so´ (delay 0) DISABLED
+		´point_debug_002´ (delay 0)
+		´func_instance_output_001´ (delay 10)
+		´point_play_sound_001´ (delay 0)
+´func_set_outline_001´ ElementSetOutline 100048
+	clear_previous false
+	position -200, 300, 0
+	rotation 0, 0, 0, -1
+	set_outline true
+	use_instigator true
+	on_executed
+		´turn_on_player_trigger´ (delay 0)
+´turn_on_player_trigger´ ElementToggle 100049
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´player_trigger´ DISABLED
+´player_trigger´ ElementAreaTrigger 100050
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 343,875
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 172, 231
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 351
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_trigger_triggered´ (delay 2)
+		´teammate_comment_there_he_is´ (delay 0)
+´player_trigger_triggered´ MissionScriptElement 100051
+	on_executed
+		´turn_on_enemy_trigger_again´ (delay 0)
+´turn_on_enemy_trigger_again´ ElementToggle 100052
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´second_trigger´ DISABLED
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100042
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_front_door_open
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+	on_executed
+		´enable_tool_interaction´ (delay 0.5)
+´logic_operator_001´ ElementOperator 100053
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´so_input´ ElementInstanceInput 100054
+	event So input
+	on_executed
+		´wait_container_so001´ (delay 0) DISABLED
+´point_debug_002´ ElementDebug 100056
+	as_subtitle false
+	debug_string second_trigger_triggerd
+	show_instigator false
+´func_instance_output_001´ ElementInstanceOutput 100057
+	event instigator_output
+	on_executed
+		´func_set_outline_002´ (delay 0)
+´func_set_outline_002´ ElementSetOutline 100058
+	clear_previous false
+	position -500, 400, 0
+	rotation 0, 0, 0, -1
+	set_outline false
+	use_instigator true
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100064
+	position -700, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/004 (-9, -500, 81.7743)
+		2 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/002 (-83, -500, 81.7743)
+		3 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/003 (-9, -500, 14.7743)
+		4 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/001 (-83, -500, 14.7743)
+		5 units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_03/001 (73, -181, 266.234)
+´func_enable_unit_001´ ElementEnableUnit 100065
+	position -900, 0, 0.00400543
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/004 (-9, -500, 81.7743)
+		2 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/002 (-83, -500, 81.7743)
+		3 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/001 (-83, -500, 14.7743)
+		4 units/pd2_dlc_friend/props/sfm_interactable_shipping_crate_2x1x1m/sfm_interactable_shipping_crate_2x1x1m/003 (-9, -500, 14.7743)
+		5 units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_03/001 (73, -181, 266.234)
+´point_play_sound_001´ ElementPlaySound 100066
+	append_prefix false
+	interrupt true
+	position 3.00001, 117, 0
+	rotation 0, 0, 1, 4.47035E-08
+	sound_event Play_crw_wwh_01
+	use_instigator true
+´add_lootbag´ ElementUnitSequence 100022
+	position -1600, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_container/wwh_prop_container/001 (0, -300, 0)
+			notify_unit_sequence action_add_lootbag
+			time 0
+´logic_counter_002´ ElementCounter 100067
+	counter_target 2
+	on_executed
+		´turn_on_trigger´ (delay 0)
+´secure_money´ ElementCarry 100068
+	operation secure
+	type_filter money
+	on_executed
+		´func_carry_002´ (delay 0)
+		´400´ (delay 0)
+´600´ ElementExperience 100069
+	amount 600
+´400´ ElementExperience 100070
+	amount 400
+´instigator_storer´ MissionScriptElement 100071
+	on_executed
+		´instigator_storer001´ (delay 1.5)
+´instigator_storer001´ MissionScriptElement 100072
+	on_executed
+		´instigator_storer´ (delay 0)
+		´first_trigger´ (delay 0) DISABLED
+		´second_trigger´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100073
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´instigator_storer´
+		2 ´instigator_storer001´
+´teammate_comment_got_it´ ElementTeammateComment 100074
+	close_to_element false
+	comment v04
+	position 0, -200, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100075
+	as_subtitle false
+	debug_string from instance: teammate_comment_got_it
+	show_instigator false
+´area_player_close_to_equipment´ ElementAreaTrigger 100076
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -13, -275, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 260
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_got_it´ (delay 0)
+´teammate_comment_there_he_is´ ElementTeammateComment 100077
+	close_to_element true
+	comment v30
+	position 0, 50, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_004´ ElementDebug 100078
+	as_subtitle false
+	debug_string from instance: teammate_comment_there_he_is
+	show_instigator false
+´func_sequence_001´ ElementUnitSequence 100080
+	position -1500, 200, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (-31, -263, 6.004)
+			notify_unit_sequence hide
+			time 0
+´func_sequence_002´ ElementUnitSequence 100081
+	position -1350, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (-31, -263, 6.004)
+			notify_unit_sequence show
+			time 0

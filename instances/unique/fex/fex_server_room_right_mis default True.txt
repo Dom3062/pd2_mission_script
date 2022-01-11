@@ -1,0 +1,547 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´add_additional_door_blockers´ (delay 0)
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´logic_link_001´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2375, 100, 0
+	rotation 0, 0, 0, -1
+	state standard
+´add_door_blockers´ ElementNavObstacle 100086
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-873, 60, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-50, 275, 0)
+´output_server_room_found´ ElementInstanceOutput 100006
+	event server_room_found
+´remove_WP´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´?_WP´
+	on_executed
+		´output_server_room_found´ (delay 0)
+´toggle_ON_trigger_area0´ ElementToggle 100008
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´server_room_found´ DISABLED
+´enable_?_WP´ MissionScriptElement 100009
+	on_executed
+		´?_WP´ (delay 0)
+´toggle_OFF_WP´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´?_WP´
+		2 ´enable_?_WP´
+		3 ´input_enable_?_WP´
+	on_executed
+		´remove_WP´ (delay 0)
+´enable_server_trigger´ ElementInstanceInput 100011
+	event enable_server_trigger
+	on_executed
+		´toggle_ON_trigger_area0´ (delay 0)
+´input_enable_?_WP´ ElementInstanceInput 100012
+	event enable_?_WP
+	on_executed
+		´enable_?_WP´ (delay 0)
+´?_WP´ ElementWaypoint 100020
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position -575, 300, 197.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´server_room_found´ ElementAreaTrigger 100021
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -575, 325, 147.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´toggle_OFF_WP´ (delay 0)
+´remove_door_blocker´ ElementNavObstacle 100095
+	operation remove
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-50, 275, 0)
+	on_executed
+		´toggle_OFF´ (delay 0)
+´door_opened´ ElementUnitSequenceTrigger 100096
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		2
+			guis_id 2
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		3
+			guis_id 3
+			sequence sobj_swat_breach_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		4
+			guis_id 4
+			sequence sobj_swat_breach_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		5
+			guis_id 5
+			sequence anim_explosion_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		6
+			guis_id 6
+			sequence anim_explosion_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		7
+			guis_id 7
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		8
+			guis_id 8
+			sequence door_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		9
+			guis_id 9
+			sequence int_seq_saw_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+		10
+			guis_id 10
+			sequence int_seq_saw_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´add_additional_door_blockers´ ElementNavObstacle 100013
+	operation add
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-25, 550, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, 550, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-825, 550, 0)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-1050, 550, 0)
+		5
+			guis_id 5
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-1050, 550, 0)
+		6
+			guis_id 6
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (-575, 550, 0)
+		7
+			guis_id 7
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-25, 550, 0)
+		8
+			guis_id 8
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/003 (-265, 0, 0)
+		9
+			guis_id 9
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-665, -3.15905E-05, 0)
+´fail´ ElementSpecialObjectiveTrigger 100076
+	event fail
+	position 1200, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_open_door002´
+		2 ´initiate_open_door002´
+	on_executed
+		´toggle_OFF_SOs´ (delay 0)
+´success´ ElementSpecialObjectiveTrigger 100077
+	event anim_start
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_open_door002´
+		2 ´initiate_open_door002´
+	on_executed
+		´open_door´ (delay 0.5)
+		´toggle_OFF´ (delay 0)
+´open_door´ ElementUnitSequence 100078
+	position 1100, -99.9999, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+			notify_unit_sequence open_door
+			time 0
+´toggle_OFF_SOs´ ElementToggle 100087
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_open_door002´
+		2 ´initiate_open_door002´
+	on_executed
+		´toggle_ON_open_SO´ (delay 5-8)
+´toggle_ON_initial_SO´ ElementToggle 100088
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_open_door002´
+	on_executed
+		´initiate_open_door002´ (delay 0.2)
+´remove_door_blocker_2´ ElementNavObstacle 100089
+	operation remove
+	position 1400, -99.9999, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-873, 60, 0)
+	on_executed
+		´toggle_OFF_SOs_2´ (delay 0)
+´toggle_ON_open_SO´ ElementToggle 100101
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_open_door002´
+	on_executed
+		´toggle_ON_initial_SO´ (delay 0)
+´toggle_OFF´ ElementToggle 100102
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´success´
+		2 ´fail´
+		3 ´toggle_OFF_SOs´
+		4 ´toggle_ON_initial_SO´
+		5 ´toggle_ON_open_SO´
+		6 ´initiate_open_door002´
+		7 ´so_open_door002´
+	on_executed
+		´remove_SOs´ (delay 0)
+´open_door_2´ ElementUnitSequence 100103
+	position 1500, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+			notify_unit_sequence open_door
+			time 0
+´door_opened_2´ ElementUnitSequenceTrigger 100104
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		2
+			guis_id 2
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		3
+			guis_id 3
+			sequence sobj_swat_breach_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		4
+			guis_id 4
+			sequence sobj_swat_breach_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		5
+			guis_id 5
+			sequence anim_explosion_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		6
+			guis_id 6
+			sequence anim_explosion_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		7
+			guis_id 7
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		8
+			guis_id 8
+			sequence door_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		9
+			guis_id 9
+			sequence int_seq_saw_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+		10
+			guis_id 10
+			sequence int_seq_saw_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+	on_executed
+		´remove_door_blocker_2´ (delay 0)
+´remove_SOs´ ElementOperator 100105
+	operation remove
+	elements
+		1 ´initiate_open_door002´
+		2 ´so_open_door002´
+´success_2´ ElementSpecialObjectiveTrigger 100106
+	event anim_start
+	position 1500, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´initiate_open_door001´
+		2 ´so_open_door001´
+	on_executed
+		´open_door_2´ (delay 0.5)
+		´toggle_OFF_SOs_2´ (delay 0)
+´toggle_OFF_SOs_2´ ElementToggle 100107
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´success_2´
+		2 ´fail_2´
+		3 ´toggle_ON_initial_SO_2´
+		4 ´toggle_ON_open_SO_2´
+		5 ´toggle_OFF_SOs_3´
+		6 ´initiate_open_door001´
+		7 ´so_open_door001´
+	on_executed
+		´remove_SOs_2´ (delay 0)
+´fail_2´ ElementSpecialObjectiveTrigger 100108
+	event fail
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´initiate_open_door001´
+		2 ´so_open_door001´
+	on_executed
+		´toggle_OFF_SOs_3´ (delay 0)
+´enable_SOs´ MissionScriptElement 100109
+	on_executed
+		´toggle_ON_open_SO´ (delay 0)
+		´toggle_ON_open_SO_2´ (delay 0)
+´remove_SOs_2´ ElementOperator 100110
+	operation remove
+	elements
+		1 ´initiate_open_door001´
+		2 ´so_open_door001´
+´toggle_OFF_SOs_3´ ElementToggle 100111
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´initiate_open_door001´
+		2 ´so_open_door001´
+	on_executed
+		´toggle_ON_open_SO_2´ (delay 5-8)
+´input_enable_door_SOs´ ElementInstanceInput 100112
+	event enable_door_SOs
+	on_executed
+		´enable_SOs´ (delay 0)
+´toggle_ON_initial_SO_2´ ElementToggle 100113
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_open_door001´
+	on_executed
+		´initiate_open_door001´ (delay 0.2)
+´toggle_ON_open_SO_2´ ElementToggle 100114
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_open_door001´
+	on_executed
+		´toggle_ON_initial_SO_2´ (delay 0)
+´initiate_open_door001´ ElementSpecialObjective 100124
+	SO_access 23078396
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -919, -138, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position -902,245 -257,121 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_open_door001´
+´so_open_door001´ ElementSpecialObjective 100125
+	SO_access 23078396
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -919, -138, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -906,759 -249,123 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´initiate_open_door002´ ElementSpecialObjective 100128
+	SO_access 23078396
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 131, 232, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 1000
+	search_position 202,353 218,205 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_open_door002´
+´so_open_door002´ ElementSpecialObjective 100129
+	SO_access 23078396
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 131, 232, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 209,882 222,483 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´logic_link_001´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+			notify_unit_sequence state_door_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+			notify_unit_sequence state_door_close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (-870, 22, 0)
+			notify_unit_sequence activate_door
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (-21.0001, 280, 0)
+			notify_unit_sequence activate_door
+			time 0
+	on_executed
+		´add_door_blockers´ (delay 0)

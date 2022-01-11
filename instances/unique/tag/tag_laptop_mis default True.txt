@@ -1,0 +1,187 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0.5)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´ai_spawn_enemy_001´ (delay 5)
+		´input_show_laptop´ (delay 0)
+		´input_enable_interaction´ (delay 2)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence set_hack_time_30
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence  interact_disabled 
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence  hide 
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_01/001 (0, 67.7523, 104.485)
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable_interaction
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100010
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence  interact_enabled 
+			time 0
+´timer_done_incorrect´ ElementUnitSequenceTrigger 100011
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+	on_executed
+		´seq_set_hack_again´ (delay 3)
+		´output_timer_done´ (delay 0)
+´seq_set_hack_again´ ElementUnitSequence 100013
+	position 1350, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence state_reset
+			time 0
+´output_timer_done´ ElementInstanceOutput 100014
+	event timer_done_incorrect
+´input_disable_interaction´ ElementInstanceInput 100015
+	event disable_interaction
+	on_executed
+		´link_disable_interaction´ (delay 0)
+´link_disable_interaction´ MissionScriptElement 100016
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+		´disable´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100017
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence  interact_disabled 
+			time 0
+´output_started_hacking_incorrect´ ElementInstanceOutput 100012
+	event started_hacking_incorrect
+´started_hacking_incorrect´ ElementUnitSequenceTrigger 100019
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+	on_executed
+		´output_started_hacking_incorrect´ (delay 0)
+´disable´ ElementToggle 100020
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer_done_incorrect´
+		2 ´timer_done_incorrect001´ DISABLED
+´timer_done_incorrect001´ ElementUnitSequenceTrigger 100021
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+	on_executed
+		´output_timer_done_correct´ (delay 0)
+		´seq_set_hack_again´ (delay 3)
+´output_timer_done_correct´ ElementInstanceOutput 100022
+	event timer_done_correct
+´toggle´ ElementToggle 100023
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´timer_done_incorrect´
+		2 ´timer_done_incorrect001´ DISABLED
+		3 ´started_hacking_incorrect´
+		4 ´started_hacking_correct´ DISABLED
+´input_is_correct´ ElementInstanceInput 100024
+	event is_correct
+	on_executed
+		´toggle´ (delay 0)
+´started_hacking_correct´ ElementUnitSequenceTrigger 100025
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+	on_executed
+		´output_started_hacking_correct´ (delay 0)
+´output_started_hacking_correct´ ElementInstanceOutput 100026
+	event started_hacking_correct
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100027
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_secret_service_2/ene_secret_service_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 100, -100, 0
+	rotation 0, 0, -0.382683, -0.92388
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´input_show_laptop´ ElementInstanceInput 100028
+	event show_laptop
+	on_executed
+		´seq_show_laptop´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´seq_show_laptop´ ElementUnitSequence 100030
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/equipment/tag_interactable_laptop/tag_interactable_laptop/001 (0, 0, 0)
+			notify_unit_sequence  show 
+			time 0
+´func_enable_unit_001´ ElementEnableUnit 100008
+	position 800, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_01/001 (0, 67.7523, 104.485)

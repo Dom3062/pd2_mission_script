@@ -1,0 +1,202 @@
+´timer_start´ ElementTimerOperator 100004
+	operation start
+	position -500, -1200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´sound_countdown´ (delay 0)
+´startup´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´seq_enable´ (delay 0)
+		´debug´ (delay 0) DISABLED
+		´func_nav_obstacle_001´ (delay 0)
+´seq_enable´ ElementUnitSequence 100010
+	position -300, -800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_vault_door_light/bnk_prop_vault_door_light_steel_wall/001 (-0.00012207, 200, 0.959015)
+			notify_unit_sequence state_closed
+			time 0
+´debug´ MissionScriptElement 100011
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100012
+	position -700, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+´timer´ ElementTimer 100017
+	timer 60
+	on_executed
+		´link_open_vault´ (delay 0)
+´player_used_reader_001´ ElementUnitSequenceTrigger 100019
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (2.38419E-05, 167, 127.527)
+	on_executed
+		´used_both_readers´ (delay 0)
+´player_used_reader_002´ ElementUnitSequenceTrigger 100020
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/002 (1.49012E-06, -168, 127.527)
+	on_executed
+		´used_both_readers´ (delay 0)
+´used_both_readers´ ElementCounter 100021
+	counter_target 2
+	on_executed
+		´link_start_timer´ (delay 0)
+´output_opened_vault´ ElementInstanceOutput 100025
+	event output_opened_vault
+´link_open_vault´ MissionScriptElement 100018
+	BASE DELAY 1
+	on_executed
+		´output_opened_vault´ (delay 0)
+		´func_nav_obstacle_002´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´link_start_timer´ MissionScriptElement 100050
+	on_executed
+		´timer_start´ (delay 2)
+´func_nav_obstacle_001´ ElementNavObstacle 100052
+	operation add
+	position -400, -800, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100053
+	operation remove
+	position -800, -1100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
+´sound_countdown´ ElementPlaySound 100001
+	append_prefix false
+	interrupt true
+	position 0, 0, 275
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´sound_countdown_10s´ ElementPlaySound 100002
+	append_prefix false
+	interrupt true
+	position 0, 0, 275
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_ticking_down_10sec
+	use_instigator false
+´sound_countdown_stop´ ElementPlaySound 100013
+	append_prefix false
+	interrupt true
+	position -50, 0, 275
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´10s´ ElementTimerTrigger 100014
+	position -700, -1300, 0
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer´
+	on_executed
+		´sound_countdown_stop´ (delay 0)
+		´sound_countdown_10s´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100007
+	position -800, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_vault_door_light/bnk_prop_vault_door_light_steel_wall/001 (-0.00012207, 200, 0.959015)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´pause_timer´ ElementTimerOperator 100006
+	operation pause
+	position -600, -1100, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´sound_countdown_stop´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100008
+	TRIGGER TIMES 1
+	global_event police_called
+	position -400, -1100, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´pause_timer_2´ (delay 0)
+´pause_timer_2´ ElementUnitSequence 100015
+	position -500, -1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/002 (0, 0, 276)
+			notify_unit_sequence red_on_black
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/002 (0, 0, 276)
+			notify_unit_sequence timer_pause
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (2.38419E-05, 167, 127.527)
+			notify_unit_sequence interact_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/002 (1.49012E-06, -168, 127.527)
+			notify_unit_sequence interact_disable
+			time 0
+	on_executed
+		´pause_timer´ (delay 0)
+´logic_toggle_001´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´player_used_reader_001´
+		2 ´player_used_reader_002´
+		3 ´used_both_readers´
+		4 ´link_start_timer´
+		5 ´timer_start´
+		6 ´timer´
+		7 ´link_open_vault´
+		8 ´10s´
+		9 ´func_nav_obstacle_002´
+		10 ´output_opened_vault´
+		11 ´func_sequence_001´
+´logic_toggle_002´ ElementToggle 100022
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_001´
+		2 ´pause_timer´
+		3 ´police_called´
+		4 ´pause_timer_2´

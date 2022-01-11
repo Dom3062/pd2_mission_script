@@ -1,0 +1,135 @@
+´take_cup´ ElementInteraction 100001
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, 5, 11
+	rotation 0, 0, 0, -1
+	tweak_data_id bex_take_cup
+´cup_taken´ ElementInstanceOutput 100002
+	event cup_taken
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´enable_input´ ElementInstanceInput 100004
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+		´enable_interaction_directional´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100005
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´logic_link_001´ (delay 0)
+´disable_interaction´ ElementInstanceInput 100006
+	event disable_interaction
+	on_executed
+		´disable_interaction_2´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100009
+	position 100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_cup/bex_cup/001 (0, 3, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´cup_taken_2´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_cup/bex_cup/001 (0, 3, 0)
+	on_executed
+		´cup_taken´ (delay 0)
+´disable_interaction_2´ ElementUnitSequence 100003
+	position -100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_cup/bex_cup/001 (0, 3, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100007
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 285
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´play_vlad_vo´ (delay 0)
+´play_vlad_vo´ ElementInstanceOutput 100010
+	event play_vlad_vo
+´point_waypoint_001´ ElementWaypoint 100011
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 5, 28.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_link_001´ MissionScriptElement 100012
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_toggle_002´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_link_001´
+		2 ´point_waypoint_001´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´enable_wp´ ElementInstanceInput 100015
+	event enable_wp
+	on_executed
+		´logic_link_001´ (delay 120)
+´enable_directional_interaction´ ElementInstanceInput 100016
+	event enable_directional_interaction
+	on_executed
+		´toggle_on_special_interaction´ (delay 0)
+´enable_interaction_directional´ ElementUnitSequence 100017
+	DISABLED
+	position -300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_cup/bex_cup/001 (0, 3, 0)
+			notify_unit_sequence state_interaction_enabled_directional
+			time 0
+´toggle_on_special_interaction´ ElementToggle 100018
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_directional´ DISABLED
+	on_executed
+		´toggle_off_default_interaction´ (delay 0)
+´toggle_off_default_interaction´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_interaction´

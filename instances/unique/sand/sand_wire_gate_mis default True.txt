@@ -1,0 +1,571 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´link_delay´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position -400, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´output_gate_opened´ ElementInstanceOutput 100008
+	event gate_opened
+´seq_set_gate_closed´ ElementUnitSequence 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence state_closed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence hide_padlock
+			time 0
+	on_executed
+		´add_sand_wire_gate_blockers´ (delay 0)
+´seq_open_gate_in´ ElementUnitSequence 100009
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+	on_executed
+		´link_open_out´ (delay 0)
+		´link_open_in´ (delay 0)
+´sequence_trigger_gate_opened´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_in
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence open_out
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+		4
+			guis_id 4
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+	on_executed
+		´output_gate_opened´ (delay 0)
+		´link_comment´ (delay 0)
+´link_open_out´ MissionScriptElement 100014
+	on_executed
+		´nav_remove_gate_blocker´ (delay 0)
+´input_open_gate_in´ ElementInstanceInput 100007
+	event open_gate_in
+	on_executed
+		´link_open_gate´ (delay 0)
+´link_delay´ MissionScriptElement 100018
+	on_executed
+		´seq_set_gate_closed´ (delay 0)
+´nav_remove_gate_blocker´ ElementNavObstacle 100021
+	operation remove
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 3
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (25, -50, 0)
+		2
+			guis_id 4
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	on_executed
+		´disable_stuff´ (delay 0)
+´disable_stuff´ ElementToggle 100025
+	BASE DELAY 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_close_in´
+		2 ´link_close_out´
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´link_open_gate´ MissionScriptElement 100004
+	on_executed
+		´seq_open_gate_in´ (delay 0)
+		´toggle_off´ (delay 0)
+´input_open_gate_out´ ElementInstanceInput 100005
+	event open_gate_out
+	on_executed
+		´link_open_gate_2´ (delay 0)
+´seq_open_gate_out´ ElementUnitSequence 100023
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence open_out
+			time 0
+	on_executed
+		´link_open_out´ (delay 0)
+		´link_open_out_2´ (delay 0)
+´link_open_gate_2´ MissionScriptElement 100026
+	on_executed
+		´seq_open_gate_out´ (delay 0)
+		´toggle_off´ (delay 0)
+´input_close_gate_in´ ElementInstanceInput 100037
+	event close_gate_in
+	on_executed
+		´link_close_gate_in´ (delay 0)
+´input_close_gate_out´ ElementInstanceInput 100038
+	event close_gate_out
+	on_executed
+		´link_close_gate_out´ (delay 0)
+´link_close_gate_in´ MissionScriptElement 100036
+	on_executed
+		´seq_close_gate_in´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´link_close_gate_out´ MissionScriptElement 100039
+	on_executed
+		´seq_close_gate_out´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´seq_close_gate_in´ ElementUnitSequence 100040
+	position 1700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence close_in_no_lock_no_interaction
+			time 0
+	on_executed
+		´link_gates_closed´ (delay 0)
+		´link_close_in´ (delay 0)
+´seq_close_gate_out´ ElementUnitSequence 100041
+	position 1900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence close_out_no_lock_no_interaction
+			time 0
+	on_executed
+		´link_gates_closed´ (delay 0)
+		´link_close_out´ (delay 0)
+´link_gates_closed´ MissionScriptElement 100042
+	on_executed
+		´nav_add_gate_blocker´ (delay 0)
+		´seq_hide_lock´ (delay 0.5) DISABLED
+		´func_disable_unit_002´ (delay 0)
+´nav_add_gate_blocker´ ElementNavObstacle 100043
+	operation add
+	position 1850, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (25, -50, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+´input_disable_interaction´ ElementInstanceInput 100020
+	event deactivate_interactions
+	on_executed
+		´link_disable_interaction´ (delay 0)
+´link_disable_interaction´ MissionScriptElement 100022
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100048
+	position 2300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´nav_add_blocker_out´ ElementNavObstacle 100029
+	TRIGGER TIMES 1
+	operation add
+	position 1300, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+´link_open_out_2´ MissionScriptElement 100030
+	on_executed
+		´nav_add_blocker_out´ (delay 0)
+		´toggle_on_close_out´ (delay 0)
+		´func_enable_unit_002´ (delay 0)
+´link_open_in´ MissionScriptElement 100033
+	on_executed
+		´nav_add_blocker_in´ (delay 0)
+		´toggle_on_close_in´ (delay 0)
+´nav_add_blocker_in´ ElementNavObstacle 100034
+	operation add
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (44.7115, -125.813, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-768.001, -143.001, 0)
+´link_close_in´ MissionScriptElement 100049
+	on_executed
+		´nav_remove_blocker_in´ (delay 0)
+´link_close_out´ MissionScriptElement 100050
+	on_executed
+		´nav_remove_blocker_out´ (delay 0)
+´nav_remove_blocker_in´ ElementNavObstacle 100051
+	operation remove
+	position 1600, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (44.7115, -125.813, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-768.001, -143.001, 0)
+´nav_remove_blocker_out´ ElementNavObstacle 100052
+	operation remove
+	position 2000, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+´seq_trigger_padlock´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+	on_executed
+		´link_open_out´ (delay 0)
+		´func_enable_unit_002´ (delay 0)
+´toggle_on_close_in´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_close_in´
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+´toggle_on_close_out´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_close_out´
+´input_enable_interaction´ ElementInstanceInput 100053
+	event activate_interaction
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´link_enable_interaction´ MissionScriptElement 100054
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100055
+	position 2450, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´add_sand_wire_gate_blockers´ ElementNavObstacle 100016
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (25, -50, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_disable_unit_003´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100064
+	position 1100, -300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/001 (-787, -18.0003, 0)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/002 (-587, -18.0002, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/003 (-187, -18.0001, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/004 (-387, -18.0001, 0)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/005 (-187, -18.0001, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/006 (-387, -18.0001, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/007 (-587, -18.0002, 200)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/008 (-787, -18.0003, 200)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/009 (-187, 18.9998, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/010 (-387, 18.9997, 200)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/011 (-587, 18.9997, 200)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/012 (-587, 18.9997, 0)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/013 (-387, 18.9997, 0)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/014 (-187, 18.9998, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/015 (13, 19, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/016 (13, 19, 200)
+´func_enable_unit_001´ ElementEnableUnit 100065
+	position 1800, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/001 (-787, -18.0003, 0)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/002 (-587, -18.0002, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/003 (-187, -18.0001, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/004 (-387, -18.0001, 0)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/005 (-187, -18.0001, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/006 (-387, -18.0001, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/007 (-587, -18.0002, 200)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/008 (-787, -18.0003, 200)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/009 (-187, 18.9998, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/010 (-387, 18.9997, 200)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/011 (-587, 18.9997, 200)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/012 (-587, 18.9997, 0)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/013 (-387, 18.9997, 0)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/014 (-187, 18.9998, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/015 (13, 19, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/016 (13, 19, 200)
+´link_show_padlock´ MissionScriptElement 100028
+	on_executed
+		´seq_show_padlock´ (delay 0)
+´input_show_padlock´ ElementInstanceInput 100027
+	event show_padlock
+	on_executed
+		´link_show_padlock´ (delay 0)
+´seq_show_padlock´ ElementUnitSequence 100066
+	position 2600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence show_padlock
+			time 0
+´seq_hide_lock´ ElementUnitSequence 100067
+	DISABLED
+	position 1750, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence hide_padlock
+			time 0
+´link_comment´ MissionScriptElement 100068
+	on_executed
+		´toggle_off_2´ (delay 1)
+		´counter_2´ (delay 0)
+´randomize_VO_comment´ ElementRandom 100069
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´link_blank´ (delay 0)
+		´teammate_comment_lets_go´ (delay 0)
+		´teammate_comment_time_to_go´ (delay 0)
+´teammate_comment_lets_go´ ElementTeammateComment 100070
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g13
+	position -475, -75, 75
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_time_to_go´ ElementTeammateComment 100072
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g17
+	position -325, -75, 75
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´link_blank´ MissionScriptElement 100073
+´toggle_off´ ElementToggle 100071
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_comment´
+		2 ´randomize_VO_comment´
+´input_hide_padlock´ ElementInstanceInput 100074
+	event hide_padlock
+	on_executed
+		´link_hide_padlock´ (delay 0)
+´link_hide_padlock´ MissionScriptElement 100075
+	on_executed
+		´seq_hide_padlock´ (delay 0)
+´seq_hide_padlock´ ElementUnitSequence 100076
+	position 2700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (0, 0, 0)
+			notify_unit_sequence hide_padlock
+			time 0
+´police_called´ ElementGlobalEventTrigger 100077
+	TRIGGER TIMES 1
+	global_event police_called
+	position 3250, 200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´counter_2´ (delay 0)
+´toggle_off_2´ ElementToggle 100078
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´teammate_comment_time_to_go´
+		2 ´teammate_comment_lets_go´
+		3 ´police_called´
+´counter_2´ ElementCounter 100079
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´randomize_VO_comment´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100096
+	position 1300, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/025 (-1.55222, -6.20288, 200)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/026 (63.5614, 182.901, 200)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/027 (63.5614, 182.901, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/028 (-1.55222, -6.20288, 0)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/030 (112.202, 389.627, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/029 (43.7981, 201.689, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/032 (43.7981, 201.689, 0)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/031 (112.202, 389.627, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/018 (-792.059, 183.254, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/019 (-792.059, 183.254, 0)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/020 (-764.224, -14.7993, 0)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/017 (-764.224, -14.7993, 200)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/022 (-845.64, 377.689, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/021 (-817.805, 179.636, 200)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/024 (-817.805, 179.636, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/023 (-845.64, 377.689, 0)
+´func_disable_unit_002´ ElementDisableUnit 100097
+	position 1800, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/026 (63.5614, 182.901, 200)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/025 (-1.55222, -6.20288, 200)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/028 (-1.55222, -6.20288, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/027 (63.5614, 182.901, 0)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/029 (43.7981, 201.689, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/030 (112.202, 389.627, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/031 (112.202, 389.627, 0)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/032 (43.7981, 201.689, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/017 (-764.224, -14.7993, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/018 (-792.059, 183.254, 200)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/020 (-764.224, -14.7993, 0)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/019 (-792.059, 183.254, 0)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/021 (-817.805, 179.636, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/024 (-817.805, 179.636, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/023 (-845.64, 377.689, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/022 (-845.64, 377.689, 200)
+		17 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/045 (13.2536, -214.21, 200)
+		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/047 (27.2048, -413.722, 200)
+		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/046 (13.2536, -214.21, 0)
+		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/048 (27.2048, -413.722, 0)
+		21 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/044 (-29.6273, -16.7196, 200)
+		22 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/043 (-15.6758, -216.232, 200)
+		23 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/042 (-15.6758, -216.232, 0)
+		24 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/041 (-29.6273, -16.7196, 0)
+		25 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/037 (-827.204, -209.311, 200)
+		26 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/038 (-885.679, -400.572, 200)
+		27 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/039 (-885.679, -400.572, 0)
+		28 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/040 (-827.204, -209.311, 0)
+		29 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/034 (-804.113, -7.23239, 200)
+		30 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/033 (-862.588, -198.493, 200)
+		31 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/036 (-862.588, -198.493, 0)
+		32 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/035 (-804.113, -7.23238, 0)
+´func_enable_unit_003´ ElementEnableUnit 100114
+	position 900, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/045 (13.2536, -214.21, 200)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/046 (13.2536, -214.21, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/048 (27.2048, -413.722, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/047 (27.2048, -413.722, 200)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/044 (-29.6273, -16.7196, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/043 (-15.6758, -216.232, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/042 (-15.6758, -216.232, 0)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/041 (-29.6273, -16.7196, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/037 (-827.204, -209.311, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/040 (-827.204, -209.311, 0)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/039 (-885.679, -400.572, 0)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/038 (-885.679, -400.572, 200)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/034 (-804.113, -7.23239, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/035 (-804.113, -7.23238, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/036 (-862.588, -198.493, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/033 (-862.588, -198.493, 200)
+´func_disable_unit_003´ ElementDisableUnit 100115
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/045 (13.2536, -214.21, 200)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/046 (13.2536, -214.21, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/048 (27.2048, -413.722, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/047 (27.2048, -413.722, 200)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/044 (-29.6273, -16.7196, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/043 (-15.6758, -216.232, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/042 (-15.6758, -216.232, 0)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/041 (-29.6273, -16.7196, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/037 (-827.204, -209.311, 200)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/040 (-827.204, -209.311, 0)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/039 (-885.679, -400.572, 0)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/038 (-885.679, -400.572, 200)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/034 (-804.113, -7.23239, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/033 (-862.588, -198.493, 200)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/036 (-862.588, -198.493, 0)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/035 (-804.113, -7.23238, 0)
+		17 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/026 (63.5614, 182.901, 200)
+		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/027 (63.5614, 182.901, 0)
+		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/028 (-1.55222, -6.20288, 0)
+		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/025 (-1.55222, -6.20288, 200)
+		21 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/029 (43.7981, 201.689, 200)
+		22 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/030 (112.202, 389.627, 200)
+		23 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/031 (112.202, 389.627, 0)
+		24 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/032 (43.7981, 201.689, 0)
+		25 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/017 (-764.224, -14.7993, 200)
+		26 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/018 (-792.059, 183.254, 200)
+		27 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/019 (-792.059, 183.254, 0)
+		28 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/020 (-764.224, -14.7993, 0)
+		29 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/021 (-817.805, 179.636, 200)
+		30 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/024 (-817.805, 179.636, 0)
+		31 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/023 (-845.64, 377.689, 0)
+		32 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x2x2m/022 (-845.64, 377.689, 200)

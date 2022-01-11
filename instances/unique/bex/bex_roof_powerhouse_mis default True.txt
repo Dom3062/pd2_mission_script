@@ -1,0 +1,227 @@
+´set_correct´ ElementInstanceInput 100010
+	event set_correct
+	on_executed
+		´show_circuitbreaker´ (delay 0)
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_setup´ (delay 0)
+´show_circuitbreaker´ ElementUnitSequence 100014
+	position 600, 1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´toggle_ON_point_interaction´ (delay 0)
+´toggle_ON_point_interaction´ ElementToggle 100015
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_001´ DISABLED
+		2 ´toggle_ON_interact_WP´ DISABLED
+´interacted´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+	on_executed
+		´laser_off´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100017
+	position 500, 1000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+			notify_unit_sequence turn_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+			notify_unit_sequence set_interaction_turn_off_power
+			time 0
+´laser_off´ ElementInstanceOutput 100018
+	event laser_off
+´seq_setup´ ElementUnitSequence 100012
+	position 700, 1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_circuitbreaker/suburbia_circuitbreaker/001 (359, 227, 128)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+			notify_unit_sequence state_door_close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+			notify_unit_sequence activate_door
+			time 0
+	on_executed
+		´add_door_blockers´ (delay 0)
+´add_door_blockers´ ElementNavObstacle 100024
+	operation add
+	position 700, 1200, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (244, 439, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (400, 495, 0)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (100, 495, 0)
+		4
+			guis_id 4
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (350, 44, 0)
+		5
+			guis_id 5
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/003 (49.9999, 444, 0)
+		6
+			guis_id 6
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (1.35899E-05, 81, 0)
+´remove_door_blocker´ ElementNavObstacle 100025
+	operation remove
+	position 700, 1500, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (244, 439, 0)
+´door_opened´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+		3
+			guis_id 3
+			sequence int_seq_saw_in
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+		4
+			guis_id 4
+			sequence int_seq_saw_out
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (247, 498, 13)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´point_debug_001´ ElementDebug 100027
+	as_subtitle false
+	debug_string box_opened
+	show_instigator false
+´point_interaction_001´ ElementInteraction 100009
+	DISABLED
+	host_only false
+	override_timer -1
+	position 339, 226, 129
+	rotation 0, 0, -0.707107, -0.707107
+	tweak_data_id hold_open_door
+	on_executed
+		´point_debug_001´ (delay 0) (alternative interacted)
+		´enable_interaction´ (delay 0) (alternative interacted)
+´show_wp´ ElementInstanceInput 100028
+	event show_wp
+	on_executed
+		´question_mark_wp´ (delay 0)
+		´toggle_ON_interact_WP´ (delay 0) DISABLED
+´hide_wp´ ElementInstanceInput 100029
+	event hide_wp
+	on_executed
+		´remove_question_WP´ (delay 0)
+		´toggle_OFF_interact_area´ (delay 0)
+´interact_wp´ ElementWaypoint 100030
+	DISABLED
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 333, 226, 161
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´question_mark_wp´ ElementWaypoint 100031
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 200, 246, 161
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_area_001´ ElementAreaTrigger 100032
+	TRIGGER TIMES 1
+	amount 1
+	depth 415
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 200, 238, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 245
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´interact_wp´ (delay 0) DISABLED
+		´remove_question_WP´ (delay 0)
+´remove_question_WP´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´question_mark_wp´
+´toggle_OFF_interact_area´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´
+		2 ´point_debug_001´
+		3 ´remove_question_WP´
+	on_executed
+		´remove_waypoints´ (delay 0)
+´remove_waypoints´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´question_mark_wp´
+		2 ´interact_wp´ DISABLED
+´toggle_ON_interact_WP´ ElementToggle 100036
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interact_wp´ DISABLED

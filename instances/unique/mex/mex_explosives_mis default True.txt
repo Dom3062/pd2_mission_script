@@ -1,0 +1,743 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´set´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_show_breaching_charges´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -125, -5)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/001 (-38, 1, 142)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/002 (37, 1, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/001 (-65, -55, 9)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/002 (108, -56, 9)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (0, 2, 71)
+			notify_unit_sequence state_vis_hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_breaching_detonator/mex_prop_breaching_detonator/001 (0, 2, -44)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_show_breaching_charges´ ElementInstanceInput 100007
+	event show_breaching_charges
+	on_executed
+		´seq_show_breaching_charges´ (delay 0)
+		´enable_area_drop_off´ (delay 0)
+		´WP_drop_off´ (delay 0)
+		´teammate_comment_lets_open_it_up´ (delay 3-6)
+´area_drop_off´ ElementAreaTrigger 100011
+	DISABLED
+	TRIGGER TIMES 2
+	amount 1
+	depth 200
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, -125, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+		1 ´rule_breaching_charges´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_dropped_off_breaching_charge´ (delay 0)
+		´2´ (delay 0)
+		´remove_breaching_charges´ (delay 0)
+´rule_breaching_charges´ ElementInstigatorRule 100012
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 breaching_charges
+´seq_show_breaching_charges´ ElementUnitSequence 100013
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -125, -5)
+			notify_unit_sequence show
+			time 0
+´link_dropped_off_breaching_charge´ MissionScriptElement 100016
+	TRIGGER TIMES 1
+	on_executed
+		´seq_show_left_charge´ (delay 0)
+´seq_show_left_charge´ ElementUnitSequence 100017
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/001 (-65, -55, 9)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/001 (-38, 1, 142)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/001 (-38, 1, 142)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´sound_bag_drop001´ (delay 0)
+´2´ ElementCounter 100018
+	counter_target 2
+	on_executed
+		´seq_show_right_charge_hide_drop_marker´ (delay 0)
+		´remove_WP_drop_off´ (delay 0)
+´seq_show_right_charge_hide_drop_marker´ ElementUnitSequence 100019
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/002 (108, -56, 9)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -125, -5)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/002 (37, 1, 148)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/002 (37, 1, 148)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´sound_bag_drop002´ (delay 0)
+´WP_drop_off´ ElementWaypoint 100020
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -125, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_area_drop_off´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_drop_off´ DISABLED
+´remove_WP_drop_off´ ElementOperator 100022
+	operation remove
+	elements
+		1 ´WP_drop_off´
+´remove_breaching_charges´ ElementCarry 100023
+	TRIGGER TIMES 2
+	operation remove
+	type_filter breaching_charges
+´output_all_breaching_charges_placed´ ElementInstanceOutput 100024
+	event all_breaching_charges_placed
+´placed_charges001´ ElementUnitSequenceTrigger 100025
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/001 (-38, 1, 142)
+	on_executed
+		´2_2´ (delay 0)
+		´output_placed_a_breaching_charge´ (delay 0)
+´placed_charges002´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/002 (37, 1, 148)
+	on_executed
+		´2_2´ (delay 0)
+		´output_placed_a_breaching_charge´ (delay 0)
+´2_2´ ElementCounter 100027
+	counter_target 2
+	on_executed
+		´output_all_breaching_charges_placed´ (delay 0)
+		´seq_enable_interaction_detonator´ (delay 0)
+´seq_enable_interaction_detonator´ ElementUnitSequence 100028
+	position 1000, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_breaching_detonator/mex_prop_breaching_detonator/001 (0, 2, -44)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´WP_detonator´ (delay 0)
+´interacted_detonator´ ElementUnitSequenceTrigger 100030
+	sequence_list
+		1
+			guis_id 1
+			sequence done_interaction
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_breaching_detonator/mex_prop_breaching_detonator/001 (0, 2, -44)
+	on_executed
+		´seq_show_timer´ (delay 0)
+		´remove_WP_detonator´ (delay 0)
+		´output_detonator_placed´ (delay 0)
+		´teammate_comment_explosives_applied´ (delay 0.5)
+´seq_show_timer´ ElementUnitSequence 100031
+	position 1000, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (0, 2, 71)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´start´ (delay 0)
+´timer´ ElementTimer 100033
+	timer 0
+´start´ ElementTimerOperator 100034
+	operation start
+	position 900, -700, 0
+	rotation 0, 0, 0, -1
+	time 5
+	elements
+		1 ´timer´
+	on_executed
+		´seq_show_timer_green´ (delay 0)
+		´sound_ticking_loop´ (delay 0)
+		´link_start_interrupt´ (delay 0)
+´set´ ElementTimerOperator 100035
+	TRIGGER TIMES 1
+	operation set_time
+	position 600, -800, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+´10s´ ElementTimerTrigger 100036
+	position 900, -900, 0
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer´
+	on_executed
+		´sound_ticking_10s´ (delay 0.01)
+		´sound_ticking_loop001´ (delay 0)
+		´teammate_comment_any_second_now´ (delay 1)
+´0s´ ElementTimerTrigger 100037
+	position 1100, -900, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´boom_breaching_charge´ (delay 0)
+		´sound_ticking_loop001´ (delay 0)
+´seq_show_timer_red´ ElementUnitSequence 100038
+	position 1100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (0, 2, 71)
+			notify_unit_sequence light_red_on_black
+			time 0
+´seq_show_timer_green´ ElementUnitSequence 100039
+	position 900, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (0, 2, 71)
+			notify_unit_sequence light_green_on_black
+			time 0
+´pause´ ElementTimerOperator 100040
+	operation pause
+	position 1100, -700, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´seq_show_timer_red´ (delay 0)
+		´sound_ticking_loop001´ (delay 0)
+´effect_breaching_charge´ ElementPlayEffect 100041
+	base_time 0
+	effect effects/payday2/particles/explosions/breaching_charge_explosion
+	max_amount 0
+	position 0, 0, 100
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´boom_breaching_charge´ MissionScriptElement 100042
+	on_executed
+		´effect_breaching_charge´ (delay 0)
+		´point_explosion_damage_001´ (delay 1)
+		´point_explosion_001´ (delay 1)
+		´sound_explosion´ (delay 0)
+		´disable_interrupt´ (delay 0)
+		´teammate_comment_that_was_loud´ (delay 2)
+		´seq_hide_all_explosives_stuff´ (delay 1)
+		´output_door_exploded´ (delay 1)
+´point_explosion_damage_001´ ElementExplosionDamage 100043
+	damage 100
+	position 0, -25, 0
+	range 500
+	rotation 0, 0, 0, -1
+´point_explosion_001´ ElementExplosion 100044
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 0
+	effect mission_triggered
+	explosion_effect none
+	player_damage 0
+	position 0, -25, 50
+	range 2500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event no_sound
+	use_camera_shake true
+	use_rumble true
+´sound_explosion´ ElementPlaySound 100045
+	append_prefix false
+	interrupt true
+	position 0, -17, 75
+	rotation 0, 0, 0, -1
+	sound_event blast_door_explosion
+	use_instigator false
+´output_door_exploded´ ElementInstanceOutput 100046
+	event door_exploded
+´seq_hide_all_explosives_stuff´ ElementUnitSequence 100047
+	position 1000, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/001 (-38, 1, 142)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_breaching_charge/bry_prop_breaching_charge/002 (37, 1, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (0, 2, 71)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/001 (-65, -55, 9)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_toolbag_static/gen_pku_toolbag_static/002 (108, -56, 9)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_breaching_detonator/mex_prop_breaching_detonator/001 (0, 2, -44)
+			notify_unit_sequence hide
+			time 0
+´WP_detonator´ ElementWaypoint 100048
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -13, 102.658
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_detonator´ ElementOperator 100049
+	operation remove
+	elements
+		1 ´WP_detonator´
+´sound_ticking_10s´ ElementPlaySound 100050
+	append_prefix false
+	interrupt true
+	position 0, -34, 75
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_ticking_down_10sec
+	use_instigator false
+´sound_ticking_loop´ ElementPlaySound 100051
+	append_prefix false
+	interrupt true
+	position 11, -34, 75
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´sound_ticking_loop001´ ElementPlaySound 100052
+	append_prefix false
+	interrupt true
+	position 1200, -700, 0
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´output_detonator_placed´ ElementInstanceOutput 100053
+	TRIGGER TIMES 1
+	event detonator_placed
+´output_placed_a_breaching_charge´ ElementInstanceOutput 100054
+	event placed_a_breaching_charge
+´SO_none´ ElementSpecialObjective 100055
+	TRIGGER TIMES 1
+	SO_access 504
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interrupt_objective false
+	interval 7
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 25, -200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 5000
+	search_position 0 -150 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_interrupt´
+´link_start_interrupt´ MissionScriptElement 100056
+	on_executed
+		´enable_once´ (delay 0)
+´enable_once´ ElementToggle 100057
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´SO_none´
+	on_executed
+		´SO_none´ (delay 0.05)
+´SO_interrupt´ ElementSpecialObjective 100058
+	SO_access 504
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 25, -200, 50
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position 0 -150 0
+	so_action e_so_disarm_bomb
+	trigger_on none
+	use_instigator true
+	followup_elements
+´fail´ ElementSpecialObjectiveTrigger 100059
+	event fail
+	position -100, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_none´
+		2 ´SO_interrupt´
+	on_executed
+		´link_start_interrupt´ (delay 5)
+´admin´ ElementSpecialObjectiveTrigger 100060
+	event administered
+	position -200, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_none´
+´complete´ ElementSpecialObjectiveTrigger 100061
+	event complete
+	position -300, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_interrupt´
+	on_executed
+		´link_interrupted´ (delay 0)
+´link_interrupted´ MissionScriptElement 100062
+	on_executed
+		´pause´ (delay 0)
+		´seq_enable_interaction_detonator´ (delay 1)
+		´teammate_comment_swear´ (delay 0.5)
+		´debug_Locke_VO_loud001´ (delay 1.5)
+´disable_interrupt´ ElementToggle 100063
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_interrupted´
+		2 ´SO_none´
+		3 ´SO_interrupt´
+		4 ´link_start_interrupt´
+		5 ´enable_once´
+´debug_Locke_VO_loud001´ ElementDebug 100066
+	as_subtitle true
+	debug_string Locke: "The detonator stopped! Get it working again!"
+	show_instigator false
+	on_executed
+		´loc_mex_58´ (delay 0)
+´debug_Locke_VO_loud002´ ElementDebug 100067
+	as_subtitle true
+	debug_string Locke: "And... boom."
+	show_instigator false
+	on_executed
+		´loc_mex_59´ (delay 0)
+´4s´ ElementTimerTrigger 100068
+	position 1000, -900, 0
+	rotation 0, 0, 0, -1
+	time 4
+	elements
+		1 ´timer´
+	on_executed
+		´debug_Locke_VO_loud002´ (delay 0)
+´loc_mex_58´ ElementDialogue 100029
+	can_not_be_muted false
+	dialogue Play_loc_mex_58
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´loc_mex_59´ ElementDialogue 100070
+	can_not_be_muted false
+	dialogue Play_loc_mex_59
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´teammate_comment_explosives_applied´ ElementTeammateComment 100064
+	close_to_element true
+	comment v13
+	position 0, -50, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_001´ (delay 0)
+´teammate_comment_lets_open_it_up´ ElementTeammateComment 100065
+	close_to_element true
+	comment v15
+	position 0, -50, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_that_was_loud´ ElementTeammateComment 100071
+	close_to_element true
+	comment v54
+	position 0, -50, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_003´ (delay 0)
+´30s´ ElementTimerTrigger 100072
+	position 800, -900, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer´
+	on_executed
+		´teammate_comment_30s´ (delay 0)
+´teammate_comment_30s´ ElementTeammateComment 100073
+	close_to_element true
+	comment g62
+	position 0, -50, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_004´ (delay 0)
+´teammate_comment_60s´ ElementTeammateComment 100074
+	close_to_element true
+	comment g63
+	position 0, -50, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_005´ (delay 0)
+´60s´ ElementTimerTrigger 100075
+	position 700, -900, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer´
+	on_executed
+		´teammate_comment_60s´ (delay 0.5)
+´teammate_comment_any_second_now´ ElementTeammateComment 100076
+	close_to_element true
+	comment p17
+	position 0, -50, 250
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_006´ (delay 0)
+´sound_bag_drop001´ ElementPlaySound 100077
+	append_prefix false
+	interrupt true
+	position -76, -56, 28
+	rotation 0, 0, 0, -1
+	sound_event bag_medium_drop
+	use_instigator false
+´sound_bag_drop002´ ElementPlaySound 100078
+	append_prefix false
+	interrupt true
+	position 94, -56, 28
+	rotation 0, 0, 0, -1
+	sound_event bag_medium_drop
+	use_instigator false
+´teammate_comment_swear´ ElementTeammateComment 100079
+	close_to_element true
+	comment g29
+	position 0, -50, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_001´ ElementDebug 100080
+	as_subtitle false
+	debug_string from instance: teammate_comment_explosives_applied
+	show_instigator false
+´point_debug_002´ ElementDebug 100081
+	as_subtitle false
+	debug_string from instance: teammate_comment_swear
+	show_instigator false
+´point_debug_003´ ElementDebug 100082
+	as_subtitle false
+	debug_string from instance: teammate_comment_that_was_loud
+	show_instigator false
+´point_debug_004´ ElementDebug 100083
+	as_subtitle false
+	debug_string from instance: teammate_comment_30s
+	show_instigator false
+´point_debug_005´ ElementDebug 100084
+	as_subtitle false
+	debug_string from instance: teammate_comment_60s
+	show_instigator false
+´point_debug_006´ ElementDebug 100085
+	as_subtitle false
+	debug_string from instance: teammate_comment_any_second_now
+	show_instigator false
+´input_door_opened_correct_code´ ElementInstanceInput 100086
+	event door_opened_remove_charges
+	on_executed
+		´seq_hide_all_explosives_stuff´ (delay 0)
+		´disable_interrupt´ (delay 0)
+		´remove_WP_drop_off´ (delay 0)
+		´seq_hide_drop_marker´ (delay 0)
+´seq_hide_drop_marker´ ElementUnitSequence 100088
+	position 1000, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -125, -5)
+			notify_unit_sequence hide
+			time 0

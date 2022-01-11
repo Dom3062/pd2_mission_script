@@ -1,0 +1,465 @@
+´secure´ ElementShape 100003
+	depth 500
+	height 500
+	position 475, 400, -425
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 500
+´secure_2´ ElementAreaReportTrigger 100004
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	interval 0.1
+	position 650, -450, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+		1 ´secure´
+	use_shape_element_ids
+	unit_ids
+		1 100003
+	on_executed
+		´func_carry_001´ (delay 0) (alternative enter)
+´func_carry_001´ ElementCarry 100005
+	operation remove
+	type_filter present
+	on_executed
+		´func_carry_002´ (delay 0)
+´func_carry_002´ ElementCarry 100006
+	operation secure
+	type_filter present
+	on_executed
+		´present_secured´ (delay 0)
+		´point_debug_002´ (delay 0)
+´default´ ElementUnitSequence 100007
+	position 550, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´Auto Start´ MissionScriptElement 100010
+	EXECUTE ON STARTUP
+	on_executed
+		´default´ (delay 0)
+´Open´ MissionScriptElement 100011
+	on_executed
+		´Close´ (delay 0)
+		´leaving vo´ (delay 0)
+		´open gate´ (delay 0)
+´open´ ElementInstanceInput 100012
+	event open
+	on_executed
+		´Open´ (delay 60)
+		´Start Vo´ (delay 0)
+´Close´ MissionScriptElement 100013
+	BASE DELAY 207
+	on_executed
+		´Off_3´ (delay 0)
+		´close gate´ (delay 3)
+´show_waypoint´ MissionScriptElement 100014
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´On_3´ (delay 0)
+´remove_waypoint´ ElementOperator 100015
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´closed´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100016
+	icon pd2_lootdrop
+	only_in_civilian false
+	position 466, 407, 190.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´Testing´ MissionScriptElement 100021
+	DISABLED
+	BASE DELAY 10
+	on_executed
+		´spawn_trap_equipment´ (delay 2)
+		´open´ (delay 0)
+		´Open´ (delay 0)
+´closed´ ElementInstanceOutput 100058
+	event closed
+	on_executed
+		´Off´ (delay 0)
+		´On_2´ (delay 0)
+´present_secured´ ElementInstanceOutput 100056
+	event present_secured
+	on_executed
+		´Counter´ (delay 0)
+´spawn_trap_equipment´ ElementLootBag 100057
+	carry_id equipment_bag_global_event
+	from_respawn false
+	position 518, 400, -425
+	push_multiplier 1,9
+	rotation 0, 0, 0, -1
+	spawn_dir -0,19485 0,0221623 0,980582
+´spawn gift´ MissionScriptElement 100059
+	DISABLED
+	on_executed
+		´spawn_trap_equipment´ (delay 0)
+		´Off´ (delay 0)
+		´trap_bag_spawned´ (delay 0)
+		´debug´ (delay 0)
+´On´ ElementToggle 100060
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´spawn gift´ DISABLED
+	on_executed
+		´Link´ (delay 0.25)
+´Off´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spawn gift´ DISABLED
+	on_executed
+		´set 4´ (delay 0)
+´Link´ MissionScriptElement 100062
+	on_executed
+		´spawn gift´ (delay 0) DISABLED
+´Disable_Trap_Spawn´ ElementInstanceInput 100063
+	event disable_trap_bags
+	on_executed
+		´Off_2´ (delay 0)
+´Off_2´ ElementToggle 100064
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Link´
+´trap_bag_spawned´ ElementInstanceOutput 100065
+	event trap_bag_spawned
+´Counter´ ElementCounter 100066
+	TRIGGER TIMES 1
+	counter_target 4
+	on_executed
+		´On´ (delay 0)
+´set 4´ ElementCounterOperator 100068
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´Counter´
+´On_2´ ElementToggle 100067
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´Counter´
+´secure - equipment´ ElementAreaReportTrigger 100070
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	interval 0.1
+	position 650, -1550, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+		1 ´data_instigator_rule_002´
+	spawn_unit_elements
+		1 ´remove_equipment´
+	use_shape_element_ids
+	unit_ids
+		1 100076
+	on_executed
+		´func_carry_003´ (delay 0) (alternative enter)
+´func_carry_003´ ElementCarry 100071
+	operation remove
+	type_filter equipment_bag_global_event
+	on_executed
+		´spawn_new_bag´ (delay 0)
+		´bag lost - forever´ (delay 0) DISABLED
+´equipment bag lost´ ElementInstanceOutput 100069
+	event equipment_bag_lost
+	on_executed
+		´point_debug_001´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100072
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 coke
+				2 present
+´data_instigator_rule_002´ ElementInstigatorRule 100073
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 equipment_bag_global_event
+´debug´ ElementDebug 100074
+	as_subtitle true
+	debug_string BOAT : Here is a present from VLAD
+	show_instigator false
+´point_debug_002´ ElementDebug 100075
+	as_subtitle false
+	debug_string coke
+	show_instigator false
+´remove_equipment´ ElementShape 100076
+	depth 3490,95
+	height 286,7
+	position 475, 400, -625
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 3458,56
+´30 seconds´ ElementDebug 100077
+	as_subtitle true
+	debug_string BOAT: I'll be there in 30 seconds
+	show_instigator false
+	on_executed
+		´Im here´ (delay 30)
+´Start Vo´ MissionScriptElement 100078
+	on_executed
+		´1 min´ (delay 0)
+		´boat_1min´ (delay 0)
+		´boat_on_its_way´ (delay 0)
+´1 min´ ElementDebug 100079
+	as_subtitle true
+	debug_string BOAT: I'll be there in 1 min
+	show_instigator false
+	on_executed
+		´30 seconds´ (delay 30)
+´leaving vo´ MissionScriptElement 100080
+	on_executed
+		´3 mins´ (delay 30)
+		´boat_2mins´ (delay 90)
+´2 mins´ ElementDebug 100081
+	as_subtitle true
+	debug_string BOAT: Leaving in 2 mins
+	show_instigator false
+	on_executed
+		´1 min_2´ (delay 60)
+´1 min_2´ ElementDebug 100082
+	as_subtitle true
+	debug_string BOAT: Leaving in 1 min
+	show_instigator false
+	on_executed
+		´30 sec´ (delay 30)
+´30 sec´ ElementDebug 100083
+	as_subtitle true
+	debug_string BOAT: Leaving in 30 sec
+	show_instigator false
+	on_executed
+		´Leaving´ (delay 30)
+´Leaving´ ElementDebug 100084
+	as_subtitle true
+	debug_string BOAT: Ok, ill be back later
+	show_instigator false
+´Im here´ ElementDebug 100085
+	as_subtitle true
+	debug_string BOAT: I'm here!
+	show_instigator false
+´spawn_new_bag´ MissionScriptElement 100086
+	on_executed
+		´spawn_trap_equipment´ (delay 0)
+´On_3´ ElementToggle 100087
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´spawn_new_bag´
+	on_executed
+		´Off_4´ (delay 0)
+´Off_3´ ElementToggle 100088
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spawn_new_bag´
+	on_executed
+		´On_4´ (delay 0)
+´bag lost - forever´ MissionScriptElement 100089
+	DISABLED
+	on_executed
+		´equipment bag lost´ (delay 0)
+´Off_4´ ElementToggle 100091
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´bag lost - forever´ DISABLED
+	on_executed
+		´boat_arrived´ (delay 0)
+´point_debug_001´ ElementDebug 100092
+	as_subtitle false
+	debug_string bag lost
+	show_instigator false
+´On_4´ ElementToggle 100090
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´bag lost - forever´ DISABLED
+´open gate´ ElementUnitSequence 100008
+	position 450, -900, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/props/cne_props_chimney/cne_prop_chimney/001 (468, 411, 24)
+			notify_unit_sequence anim_grate_open
+			time 0
+	on_executed
+		´show_waypoint´ (delay 0)
+´close gate´ ElementUnitSequence 100009
+	position 450, -1050, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/props/cne_props_chimney/cne_prop_chimney/001 (468, 411, 24)
+			notify_unit_sequence anim_grate_close
+			time 0
+	on_executed
+		´remove_waypoint´ (delay 0)
+´3 mins´ ElementDebug 100019
+	as_subtitle true
+	debug_string BOAT: Leaving in 3 mins
+	show_instigator false
+	on_executed
+		´2 mins´ (delay 60)
+´boat_arrived´ ElementInstanceOutput 100020
+	event boat_arrived
+´boat_1min´ ElementDialogue 100027
+	dialogue Play_bot_a05
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´boat_30sec´ (delay 30)
+´point_play_sound_001´ ElementPlaySound 100028
+	append_prefix false
+	position 450, -300, 2.5
+	rotation 0, 0, 0, -1
+	sound_event Play_bot_a08
+	use_instigator false
+´boat_30sec´ ElementDialogue 100029
+	dialogue Play_bot_a06
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´boat_im_here´ (delay 30)
+´boat_im_here´ ElementDialogue 100030
+	dialogue Play_bot_a07
+	execute_on_executed_when_done false
+	use_position false
+´boat_2mins´ ElementDialogue 100031
+	dialogue Play_bot_a58
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´boat_1 min´ (delay 60)
+´30 seconds_2´ ElementDialogue 100032
+	dialogue Play_bot_a60
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´10 sec´ (delay 20)
+´boat_1 min´ ElementDialogue 100033
+	dialogue Play_bot_a59
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´30 seconds_2´ (delay 30)
+´10 sec´ ElementDialogue 100034
+	dialogue Play_bot_a61
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´boat_2mins004´ (delay 10)
+´boat_2mins004´ ElementDialogue 100035
+	dialogue Play_bot_a62
+	execute_on_executed_when_done true
+	use_position false
+´point_play_sound_002´ ElementPlaySound 100036
+	append_prefix false
+	position 375, -300, 2.5
+	rotation 0, 0, 0, -1
+	sound_event Play_vld_can_11
+	use_instigator false
+´boat_on_its_way´ ElementInstanceOutput 100037
+	event boat_on_its_way
+´secure - safe loot´ ElementAreaReportTrigger 100038
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	interval 0.1
+	position 650, -1950, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+		1 ´data_instigator_rule_003´
+	spawn_unit_elements
+		1 ´remove_equipment´
+	use_shape_element_ids
+	unit_ids
+		1 100076
+	on_executed
+		´func_carry_004´ (delay 0) (alternative enter)
+		´func_carry_006´ (delay 0) (alternative enter)
+		´func_carry_007´ (delay 0) (alternative enter)
+		´func_carry_008´ (delay 0) (alternative enter)
+´data_instigator_rule_003´ ElementInstigatorRule 100039
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 coke
+				2 diamonds
+				3 money
+				4 sandwich
+´func_carry_004´ ElementCarry 100040
+	operation remove
+	type_filter money
+	on_executed
+		´func_carry_005´ (delay 0)
+´func_carry_006´ ElementCarry 100042
+	operation remove
+	type_filter diamonds
+	on_executed
+		´func_carry_011´ (delay 0)
+´func_carry_007´ ElementCarry 100043
+	operation remove
+	type_filter coke
+	on_executed
+		´func_carry_010´ (delay 0)
+´func_carry_008´ ElementCarry 100044
+	operation remove
+	type_filter sandwich
+	on_executed
+		´func_carry_009´ (delay 0)
+´func_carry_009´ ElementCarry 100041
+	operation secure
+	type_filter sandwich
+	on_executed
+		´safe_loot_secured´ (delay 0)
+´func_carry_010´ ElementCarry 100045
+	operation secure
+	type_filter coke
+	on_executed
+		´safe_loot_secured´ (delay 0)
+´func_carry_011´ ElementCarry 100046
+	operation secure
+	type_filter diamonds
+	on_executed
+		´safe_loot_secured´ (delay 0)
+´func_carry_005´ ElementCarry 100047
+	operation secure
+	type_filter money
+	on_executed
+		´safe_loot_secured´ (delay 0)
+´safe_loot_secured´ ElementInstanceOutput 100022
+	event safe_loot_secured

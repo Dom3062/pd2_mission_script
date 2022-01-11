@@ -1,0 +1,308 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	BASE DELAY 3
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (214, 28, 144)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/002 (215.098, 158.294, 59)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/003 (-236, 165, 73)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/004 (-238, -134, 187)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´add_door_blockers´ (delay 0)
+´input_start_objective´ ElementInstanceInput 100007
+	event start_objective
+	on_executed
+		´enable_WP´ (delay 0)
+´enable_interaction´ MissionScriptElement 100023
+	on_executed
+		´toggle_OFF_WP´ (delay 0)
+´randomize_server_interaction´ ElementRandom 100026
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´enable_interaction_HDD001´ (delay 0)
+		´enable_interaction_HDD002´ (delay 0)
+		´enable_interaction_HDD003´ (delay 0)
+		´enable_interaction_HDD004´ (delay 0)
+´enable_interaction_HDD001´ ElementUnitSequence 100027
+	position 900, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (214, 28, 144)
+			notify_unit_sequence  enable_interaction_half_circle 
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (214, 28, 144)
+			notify_unit_sequence state_outline_enable
+			time 0
+	on_executed
+		´interact_WP001´ (delay 0)
+		´output_HDD_available´ (delay 0)
+´enable_interaction_HDD002´ ElementUnitSequence 100028
+	position 1000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/002 (215.098, 158.294, 59)
+			notify_unit_sequence  enable_interaction_half_circle 
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/002 (215.098, 158.294, 59)
+			notify_unit_sequence state_outline_enable
+			time 0
+	on_executed
+		´interact_WP002´ (delay 0)
+		´output_HDD_available´ (delay 0)
+´enable_interaction_HDD003´ ElementUnitSequence 100029
+	position 1200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/003 (-236, 165, 73)
+			notify_unit_sequence  enable_interaction_half_circle 
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/003 (-236, 165, 73)
+			notify_unit_sequence state_outline_enable
+			time 0
+	on_executed
+		´interact_WP003´ (delay 0)
+		´output_HDD_available´ (delay 0)
+´enable_interaction_HDD004´ ElementUnitSequence 100030
+	position 1300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/004 (-238, -134, 187)
+			notify_unit_sequence  enable_interaction_half_circle 
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/004 (-238, -134, 187)
+			notify_unit_sequence state_outline_enable
+			time 0
+	on_executed
+		´interact_WP004´ (delay 0)
+		´output_HDD_available´ (delay 0)
+´server_interacted_with´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (214, 28, 144)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/002 (215.098, 158.294, 59)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/003 (-236, 165, 73)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/004 (-238, -134, 187)
+	on_executed
+		´remove_WPs´ (delay 0)
+		´link_comment´ (delay 0)
+´output_HDD_taken´ ElementInstanceOutput 100015
+	event server_taken
+´interact_WP001´ ElementWaypoint 100033
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 175, 25, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interact_WP002´ ElementWaypoint 100034
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 182, 157, 102.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interact_WP003´ ElementWaypoint 100035
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -200, 175, 102.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interact_WP004´ ElementWaypoint 100036
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -200, -134, 227.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WPs´ ElementOperator 100037
+	operation remove
+	elements
+		1 ´interact_WP001´
+		2 ´interact_WP002´
+		3 ´interact_WP003´
+		4 ´interact_WP004´
+	on_executed
+		´output_HDD_taken´ (delay 0)
+´point_shape_001´ ElementShape 100039
+	depth 675
+	height 300
+	position -13, 37, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 575
+´IT_room_found_LOUD´ ElementAreaTrigger 100040
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 900, 300, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_interaction´ (delay 0)
+´enable_WP´ MissionScriptElement 100041
+	on_executed
+		´toggle_ON_obj´ (delay 0)
+		´goto_WP´ (delay 60)
+´toggle_ON_obj´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´IT_room_found_LOUD´ DISABLED
+´goto_WP´ ElementWaypoint 100008
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 300
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´output_server_room_found´ ElementInstanceOutput 100017
+	event server_room_found
+´toggle_OFF_WP´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´goto_WP´
+	on_executed
+		´remove_goto_WP´ (delay 0)
+´remove_goto_WP´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´goto_WP´
+	on_executed
+		´output_server_room_found´ (delay 0)
+´output_HDD_available´ ElementInstanceOutput 100045
+	event server_available
+´add_door_blockers´ ElementNavObstacle 100047
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (169, -31, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (169, 94, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-300, -151, 0)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-300, 59, 0)
+		5
+			guis_id 5
+			obj_name 11069904246521265821
+			unit_id units/pd2_dlc_berry/props/bry_prop_servers/bry_prop_server_02/001 (-219, 173, 0)
+´input_hack_done_randomize_server´ ElementInstanceInput 100038
+	event hack_done_randomize_server
+	on_executed
+		´randomize_server_interaction´ (delay 0)
+´teammate_comment_lets_go´ ElementTeammateComment 100021
+	close_to_element true
+	comment g13
+	position 25, 100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´link_comment´ MissionScriptElement 100022
+	on_executed
+		´teammate_comment_lets_go´ (delay 0)

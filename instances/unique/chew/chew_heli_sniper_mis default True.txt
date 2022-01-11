@@ -1,0 +1,577 @@
+´spawn_left1_helicopter001_normal´ ElementSpawnEnemyDummy 100014
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup no_pickup
+	interval 5
+	participate_to_group_ai false
+	position 75, 32, 1600.5
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_aim_rifle_crh
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´left_back_facing´ (delay 0) DISABLED
+		´left_mid_facing´ (delay 0) DISABLED
+		´left_forward_facing´ (delay 0) DISABLED
+		´right_forward_facing´ (delay 0) DISABLED
+		´right_mid_facing´ (delay 0) DISABLED
+		´right_back_facing´ (delay 0) DISABLED
+´arrive_helicopter_swat001´ MissionScriptElement 100019
+	on_executed
+		´show_helicopter001´ (delay 0) DISABLED
+		´show_helicopter002´ (delay 0) DISABLED
+´show_helicopter001´ ElementUnitSequence 100020
+	DISABLED
+	position -600, 1050, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence flyin_left_hover
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence state_collision_enabled
+			time 0
+	on_executed
+		´spawn_sniper_helicopter´ (delay 23)
+´open_doors_left´ ElementUnitSequence 100021
+	DISABLED
+	position -600, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence open_door_left
+			time 0
+´close_doors_left´ ElementUnitSequence 100022
+	DISABLED
+	position -600, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence close_door_left
+			time 0
+	on_executed
+		´flyout_helicopter´ (delay 2-5)
+´spawn_sniper_helicopter´ MissionScriptElement 100023
+	on_executed
+		´spawn_left1_helicopter001_normal´ (delay 2)
+		´open_doors_left´ (delay 1) DISABLED
+		´open_doors_right´ (delay 0) DISABLED
+´flyout_helicopter´ ElementUnitSequence 100025
+	position -600, 425, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´hide_helicopter´ (delay 23)
+´hide_helicopter´ ElementUnitSequence 100026
+	position -600, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´helicopter_sniper_logic_finished´ (delay 0)
+´start_helicopter_sniper_logic´ ElementInstanceInput 100000
+	event start_helicopter_sniper_logic
+	on_executed
+		´arrive_helicopter_swat001´ (delay 0)
+´helicopter_sniper_logic_finished´ ElementInstanceOutput 100001
+	event helicopter_sniper_logic_finished
+´auto_hide_helicopter´ ElementUnitSequence 100002
+	EXECUTE ON STARTUP
+	position -700, 1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´hide_mkp´ (delay 1)
+´sniper_dies´ ElementEnemyDummyTrigger 100005
+	event death
+	position -600, 675, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´spawn_left1_helicopter001_normal´
+	on_executed
+		´close_doors_left´ (delay 2-4) DISABLED
+		´close_doors_right´ (delay 2-4) DISABLED
+		´disable_collision´ (delay 0)
+´hide_mkp´ ElementDisableUnit 100004
+	position -700, 1175, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/mkp/mkp_int_floor_2x2m_a/001 (-85, -63, 1600.5)
+		2 units/payday2/architecture/mkp/mkp_int_floor_2x2m_a/002 (-85, -63, 1600.5)
+		3 units/payday2/architecture/mkp/mkp_int_floor_2x2m_a/003 (-10, -63, 1600.5)
+´left_back_facing´ ElementSpecialObjective 100006
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position -48, 82, 1600.5
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´disable_collision´ ElementUnitSequence 100007
+	position -700, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence state_collision_disabled
+			time 0
+´disable_heli´ ElementInstanceInput 100015
+	event disable_heli
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100016
+	position -1100, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hover_flyout_right
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 25
+´logic_toggle_001´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´start_helicopter_sniper_logic´
+		2 ´helicopter_sniper_logic_finished´
+		3 ´sniper_dies´
+´left_forward_facing´ ElementSpecialObjective 100031
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position -48, -18, 1600.5
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´left_mid_facing´ ElementSpecialObjective 100032
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position -48, 32, 1600.5
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´right_back_facing´ ElementSpecialObjective 100033
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position 143, 86, 1600.5
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´right_mid_facing´ ElementSpecialObjective 100034
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position 143, 36, 1600.5
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´right_forward_facing´ ElementSpecialObjective 100035
+	DISABLED
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose crouch
+	position 143, -14, 1600.5
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 25 100 1600,5
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´open_doors_right´ ElementUnitSequence 100036
+	DISABLED
+	position -500, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence open_door_right
+			time 0
+´close_doors_right´ ElementUnitSequence 100037
+	DISABLED
+	position -500, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´flyout_helicopter001´ (delay 2-5)
+´enable_left_001´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open_doors_left´ DISABLED
+		2 ´close_doors_left´ DISABLED
+		3 ´show_helicopter002´ DISABLED
+´func_instance_params_001´ ElementInstanceParams 100039
+	position 100, 1300, 2.5
+	rotation 0, 0, 0, -1
+	params
+		1
+			default_value 0
+			type number
+			var_name var_sniper_left_forward_facing
+		2
+			default_value 0
+			type number
+			var_name var_sniper_left_mid_facing
+		3
+			default_value 0
+			type number
+			var_name var_sniper_left_back_facing
+		4
+			default_value 0
+			type number
+			var_name var_sniper_right_forward_facing
+		5
+			default_value 0
+			type number
+			var_name var_sniper_right_mid_facing
+		6
+			default_value 0
+			type number
+			var_name var_sniper_right_back_facing
+´var_001´ ElementCounter 100040
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_left_back_facing
+´var_002´ ElementCounter 100041
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_left_mid_facing
+´var_003´ ElementCounter 100042
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_left_forward_facing
+´var_004´ ElementCounter 100043
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_right_back_facing
+´var_005´ ElementCounter 100044
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_right_mid_facing
+´var_006´ ElementCounter 100045
+	counter_target 0
+	instance_var_names
+		counter_target var_sniper_right_forward_facing
+´setup_sniper_pos´ MissionScriptElement 100046
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´var_filter_001´ (delay 0)
+		´var_filter_002´ (delay 0)
+		´var_filter_003´ (delay 0)
+		´var_filter_004´ (delay 0)
+		´var_filter_005´ (delay 0)
+		´var_filter_006´ (delay 0)
+´var_filter_001´ ElementCounterFilter 100047
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_001´
+	on_executed
+		´enable_left_001´ (delay 0)
+		´enable_pos_001´ (delay 0)
+´var_filter_002´ ElementCounterFilter 100048
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_002´
+	on_executed
+		´enable_left_001´ (delay 0)
+		´enable_pos_002´ (delay 0)
+´var_filter_003´ ElementCounterFilter 100049
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_003´
+	on_executed
+		´enable_left_001´ (delay 0)
+		´enable_pos_003´ (delay 0)
+´var_filter_004´ ElementCounterFilter 100050
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_004´
+	on_executed
+		´enable_right_001´ (delay 0)
+		´enable_pos_004´ (delay 0)
+´var_filter_005´ ElementCounterFilter 100051
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_005´
+	on_executed
+		´enable_right_001´ (delay 0)
+		´enable_pos_005´ (delay 0)
+´var_filter_006´ ElementCounterFilter 100052
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´var_006´
+	on_executed
+		´enable_right_001´ (delay 0)
+		´enable_pos_006´ (delay 0)
+´enable_right_001´ ElementToggle 100053
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´close_doors_right´ DISABLED
+		2 ´open_doors_right´ DISABLED
+		3 ´show_helicopter001´ DISABLED
+´enable_pos_001´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´left_back_facing´ DISABLED
+´enable_pos_002´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´left_mid_facing´ DISABLED
+´enable_pos_003´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´left_forward_facing´ DISABLED
+´enable_pos_004´ ElementToggle 100057
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´right_back_facing´ DISABLED
+´enable_pos_005´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´right_mid_facing´ DISABLED
+´enable_pos_006´ ElementToggle 100059
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´right_forward_facing´ DISABLED
+´flyout_helicopter001´ ElementUnitSequence 100060
+	position -500, 425, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´hide_helicopter´ (delay 23)
+´show_helicopter002´ ElementUnitSequence 100061
+	DISABLED
+	position -500, 1050, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence flyin_right_hover
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence swat
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence state_collision_enabled
+			time 0
+	on_executed
+		´spawn_sniper_helicopter´ (delay 23)

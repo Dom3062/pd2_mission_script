@@ -1,0 +1,320 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´ai_spawn_enemy_001´ (delay 5)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+´seq_setup´ ElementUnitSequence 100006
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence disable_interaction
+			time 0
+´seq_enable_interaction´ ElementUnitSequence 100008
+	position 600, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence enable_interaction
+			time 0
+´start_enable_interaction´ MissionScriptElement 100009
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+		´WP_interact´ (delay 0)
+´instance_input_start_enable_interaction´ ElementInstanceInput 100010
+	event start_enable_interaction
+	on_executed
+		´start_enable_interaction´ (delay 0)
+´WP_interact´ ElementWaypoint 100011
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -24, 165
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_interact´ ElementOperator 100012
+	operation remove
+	elements
+		1 ´WP_interact´
+´done_opened´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+	on_executed
+		´seq_enable_set_device´ (delay 0.5)
+		´enable´ (delay 1)
+´seq_enable_set_device´ ElementUnitSequence 100014
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence set_hack_time_60_sec
+			time 0
+´done_placed_device´ ElementUnitSequenceTrigger 100015
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+	on_executed
+		´remove_WP_interact´ (delay 0)
+		´start_interrupt´ (delay 0)
+		´WP_defend´ (delay 1)
+		´instance_output_player_set_up_device´ (delay 0)
+´SO_interrupt_none´ ElementSpecialObjective 100016
+	SO_access 12792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -85, 0
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 3000
+	search_position 0 -100 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_interrupt´
+´SO_interrupt´ ElementSpecialObjective 100017
+	SO_access 12792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -85, 75
+	repeatable false
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 3000
+	search_position 0 -100 0
+	so_action e_so_push_button
+	trigger_on none
+	use_instigator true
+	followup_elements
+´enable´ ElementToggle 100018
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´done_placed_device´ DISABLED
+´start_interrupt´ MissionScriptElement 100020
+	on_executed
+		´SO_interrupt_none´ (delay 10)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100019
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´fail´ ElementSpecialObjectiveTrigger 100023
+	event fail
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_interrupt_none´
+		2 ´SO_interrupt´
+	on_executed
+		´start_interrupt´ (delay 0)
+´complete´ ElementSpecialObjectiveTrigger 100024
+	event complete
+	position 1200, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_interrupt´
+	on_executed
+		´seq_set_jammed´ (delay 0)
+		´enable_once´ (delay 0)
+		´instance_output_device_jammed´ (delay 0)
+´seq_set_jammed´ ElementUnitSequence 100025
+	position 1200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´WP_fix´ (delay 1)
+		´remove_WP_defend´ (delay 0)
+´seq_set_resumed´ ElementUnitSequence 100026
+	position 1300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´start_interrupt´ (delay 0)
+		´WP_defend´ (delay 1)
+´done_placed_device001´ ElementUnitSequenceTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+	on_executed
+		´seq_set_resumed´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+		´instance_output_device_fixed´ (delay 0)
+´enable_once´ ElementToggle 100028
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´done_placed_device001´ DISABLED
+´timer_done´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+	on_executed
+		´disable´ (delay 0)
+		´instance_output_timer_done´ (delay 0)
+		´remove_WPs´ (delay 0)
+´disable´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fail´
+		2 ´complete´
+		3 ´SO_interrupt_none´
+		4 ´SO_interrupt´
+		5 ´WP_defend´
+´WP_fix´ ElementWaypoint 100031
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -24, 165
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_fix´ ElementOperator 100032
+	operation remove
+	elements
+		1 ´WP_fix´
+´instance_output_timer_done´ ElementInstanceOutput 100033
+	event timer_done
+´WP_defend´ ElementWaypoint 100034
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -24, 165
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WPs´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´WP_fix´
+		2 ´WP_defend´
+		3 ´WP_interact´
+´remove_WP_defend´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´WP_defend´
+´instance_input_show´ ElementInstanceInput 100021
+	event show
+	on_executed
+		´start_show_box´ (delay 0)
+´show_box´ ElementEnableUnit 100022
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/suburbia_hackbox/suburbia_hackbox/001 (0, 0, 125)
+´start_show_box´ MissionScriptElement 100037
+	on_executed
+		´show_box´ (delay 0)
+´instance_output_player_set_up_device´ ElementInstanceOutput 100038
+	TRIGGER TIMES 1
+	event player_set_up_device
+´instance_output_device_jammed´ ElementInstanceOutput 100039
+	event device_jammed
+´instance_output_device_fixed´ ElementInstanceOutput 100040
+	event device_fixed

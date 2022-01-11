@@ -1,0 +1,431 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+		´input_show_interact_WP´ (delay 1)
+		´func_equipment_001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_show_interact_WP´ ElementInstanceInput 100007
+	event show_interact_WP
+	on_executed
+		´WP_interact_generic´ (delay 0)
+		´comment_consider_it_done´ (delay 5)
+		´enable_area_player_here_with_blowtorch´ (delay 0)
+´point_interaction_001´ ElementInteraction 100009
+	DISABLED
+	host_only false
+	override_timer 3
+	position -39, -1, 87
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´end001´ (delay 0) (alternative interacted)
+		´start001´ (delay 0) (alternative start)
+		´interrupt001´ (delay 0) (alternative interupt)
+´point_interaction_002´ ElementInteraction 100010
+	DISABLED
+	host_only false
+	override_timer 3
+	position 47, -1, 87
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start002´ (delay 0) (alternative start)
+		´end002´ (delay 0) (alternative interacted)
+		´interrupt002´ (delay 0) (alternative interupt)
+´point_interaction_003´ ElementInteraction 100011
+	DISABLED
+	host_only false
+	override_timer 3
+	position 47, -1, 240
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start004´ (delay 0) (alternative start)
+		´end004´ (delay 0) (alternative interacted)
+		´interrupt004´ (delay 0) (alternative interupt)
+´point_interaction_004´ ElementInteraction 100012
+	DISABLED
+	host_only false
+	override_timer 3
+	position -35, -1, 238
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start003´ (delay 0) (alternative start)
+		´end003´ (delay 0) (alternative interacted)
+		´interrupt003´ (delay 0) (alternative interupt)
+´func_equipment_001´ ElementEquipment 100013
+	amount 1
+	equipment blow_torch
+	position 1400, 100, 0
+	rotation 0, 0, 0, -1
+´env_effect_play_001´ ElementPlayEffect 100014
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -39, -1, 87
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´env_effect_play_002´ ElementPlayEffect 100015
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 47, -1, 87
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´env_effect_play_003´ ElementPlayEffect 100016
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -35, -1, 238
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´env_effect_play_004´ ElementPlayEffect 100017
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 47, -1, 240
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´sound_blowtorch_end001´ ElementPlaySound 100019
+	append_prefix false
+	interrupt true
+	position -39, -1, 87
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event bar_blowtorch_end
+	use_instigator false
+´env_effect_stop_001´ ElementStopEffect 100020
+	operation kill
+	position -100, -125, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´sound_blowtorch_end001´ (delay 0)
+´end001´ MissionScriptElement 100021
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´remove_WP_interact001´ (delay 0)
+		´4´ (delay 0)
+´start001´ MissionScriptElement 100023
+	TRIGGER TIMES 1
+	on_executed
+		´env_effect_play_001´ (delay 0)
+´interrupt001´ MissionScriptElement 100024
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´logic_toggle_001´ (delay 0.01)
+´logic_toggle_001´ ElementToggle 100025
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´start001´
+´sound_blowtorch_end002´ ElementPlaySound 100026
+	append_prefix false
+	interrupt true
+	position 47, -1, 87
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event bar_blowtorch_end
+	use_instigator false
+´sound_blowtorch_end003´ ElementPlaySound 100027
+	append_prefix false
+	interrupt true
+	position -35, -1, 238
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event bar_blowtorch_end
+	use_instigator false
+´sound_blowtorch_end004´ ElementPlaySound 100029
+	append_prefix false
+	interrupt true
+	position 47, -1, 240
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event bar_blowtorch_end
+	use_instigator false
+´interrupt002´ MissionScriptElement 100031
+	on_executed
+		´env_effect_stop_002´ (delay 0)
+		´logic_toggle_002´ (delay 0.01)
+´end002´ MissionScriptElement 100032
+	on_executed
+		´remove_WP_interact002´ (delay 0)
+		´env_effect_stop_002´ (delay 0)
+		´4´ (delay 0)
+´start002´ MissionScriptElement 100033
+	TRIGGER TIMES 1
+	on_executed
+		´env_effect_play_002´ (delay 0)
+´start003´ MissionScriptElement 100034
+	TRIGGER TIMES 1
+	on_executed
+		´env_effect_play_003´ (delay 0)
+´end003´ MissionScriptElement 100035
+	on_executed
+		´remove_WP_interact003´ (delay 0)
+		´env_effect_stop_003´ (delay 0)
+		´4´ (delay 0)
+´interrupt003´ MissionScriptElement 100036
+	on_executed
+		´env_effect_stop_003´ (delay 0)
+		´logic_toggle_003´ (delay 0.01)
+´start004´ MissionScriptElement 100037
+	TRIGGER TIMES 1
+	on_executed
+		´env_effect_play_004´ (delay 0)
+´end004´ MissionScriptElement 100038
+	on_executed
+		´remove_WP_interact004´ (delay 0)
+		´env_effect_stop_004´ (delay 0)
+		´4´ (delay 0)
+´interrupt004´ MissionScriptElement 100039
+	on_executed
+		´env_effect_stop_004´ (delay 0)
+		´logic_toggle_004´ (delay 0.01)
+´area_player_here_with_blowtorch´ ElementAreaTrigger 100040
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 524
+	rules_element_ids
+		1 ´rule_blowtorch´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´disable_WP_generic_interact´ (delay 0)
+		´enable_interactions´ (delay 2)
+		´logic_toggle_006´ (delay 0)
+		´remove_WP_interact_generic´ (delay 1.5)
+´rule_blowtorch´ ElementInstigatorRule 100041
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 blow_torch
+´WP_interact_generic´ ElementWaypoint 100042
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+	on_executed
+		´point_debug_002´ (delay 0)
+´remove_WP_interact_generic´ ElementOperator 100043
+	operation remove
+	elements
+		1 ´WP_interact_generic´
+´WP_interact001´ ElementWaypoint 100044
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -39, -1, 87
+	rotation -0.707107, 0, 0, -0.707107
+	text_id debug_none
+´WP_interact002´ ElementWaypoint 100045
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 47, -1, 87
+	rotation -0.707107, 0, 0, -0.707107
+	text_id debug_none
+´WP_interact003´ ElementWaypoint 100046
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -35, -1, 238
+	rotation -0.707107, 0, 0, -0.707107
+	text_id debug_none
+´WP_interact004´ ElementWaypoint 100047
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 47, -1, 240
+	rotation -0.707107, 0, 0, -0.707107
+	text_id debug_none
+´remove_WP_interact001´ ElementOperator 100048
+	operation remove
+	elements
+		1 ´WP_interact001´
+´remove_WP_interact002´ ElementOperator 100049
+	operation remove
+	elements
+		1 ´WP_interact002´
+´remove_WP_interact003´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´WP_interact003´
+´remove_WP_interact004´ ElementOperator 100051
+	operation remove
+	elements
+		1 ´WP_interact004´
+´env_effect_stop_002´ ElementStopEffect 100052
+	operation kill
+	position 150, -125, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_002´
+	on_executed
+		´sound_blowtorch_end002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100053
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´start002´
+´env_effect_stop_003´ ElementStopEffect 100054
+	operation kill
+	position -100, -125, 225
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_003´
+	on_executed
+		´sound_blowtorch_end003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100055
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´start003´
+´env_effect_stop_004´ ElementStopEffect 100056
+	operation kill
+	position 150, -125, 225
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_004´
+	on_executed
+		´sound_blowtorch_end004´ (delay 0)
+´logic_toggle_004´ ElementToggle 100057
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´start004´
+´disable_WP_generic_interact´ ElementToggle 100058
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_interact_generic´
+´4´ ElementCounter 100059
+	counter_target 4
+	on_executed
+		´all_done´ (delay 0)
+´all_done´ MissionScriptElement 100060
+	on_executed
+		´output_done_all_blowtorch_interactions´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´comment_all_done´ (delay 0.5)
+		´func_sequence_001´ (delay 0)
+´output_done_all_blowtorch_interactions´ ElementInstanceOutput 100061
+	event done_all_blowtorch_interactions
+´point_debug_001´ ElementDebug 100018
+	as_subtitle false
+	debug_string GOOD
+	show_instigator false
+´comment_consider_it_done´ ElementTeammateComment 100008
+	close_to_element true
+	comment v01
+	position 0, -150, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_all_done´ ElementTeammateComment 100022
+	close_to_element true
+	comment v08
+	position 0, -50, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´enable_area_player_here_with_blowtorch´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_here_with_blowtorch´ DISABLED
+´point_debug_002´ ElementDebug 100063
+	as_subtitle false
+	debug_string WP_interact_generic
+	show_instigator false
+´enable_interactions´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_001´ DISABLED
+		2 ´point_interaction_002´ DISABLED
+		3 ´point_interaction_003´ DISABLED
+		4 ´point_interaction_004´ DISABLED
+	on_executed
+		´WP_interact001´ (delay 0)
+		´WP_interact002´ (delay 0)
+		´WP_interact003´ (delay 0)
+		´WP_interact004´ (delay 0)
+		´comment_consider_open_it_up´ (delay 2-3) DISABLED
+´logic_toggle_006´ ElementToggle 100065
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_interact_generic´
+´comment_consider_open_it_up´ ElementTeammateComment 100066
+	DISABLED
+	close_to_element true
+	comment v16
+	position 0, -67, 75
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´trigger_global_event_001´ ElementGlobalEventTrigger 100067
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´logic_toggle_005´ ElementToggle 100068
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´comment_consider_open_it_up´ DISABLED
+´func_sequence_001´ ElementUnitSequence 100069
+	position 1000, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_vault_glass/sah_vault_glass/001 (475, 3349, 102)
+			notify_unit_sequence state_open
+			time 0

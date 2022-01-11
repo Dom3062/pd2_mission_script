@@ -1,0 +1,372 @@
+´Game Start´ MissionScriptElement 100003
+	on_executed
+		´enable - door´ (delay 0)
+		´button_pushed´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´On 1_2´ (delay 0)
+´Door Open´ ElementUnitSequence 100004
+	TRIGGER TIMES 1
+	position 1050, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/are_int_double_door/are_int_double_door/001 (25, 100, 0)
+			notify_unit_sequence open_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/are_int_double_door/are_int_double_door/001 (25, 100, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´Start´ (delay 0)
+		´disable_collision´ (delay 0)
+´Count Down - 3´ MissionScriptElement 100008
+	on_executed
+		´Door Open´ (delay 3)
+		´1´ (delay 0)
+´Start´ MissionScriptElement 100018
+	on_executed
+		´On´ (delay 0)
+		´kill_timer_countdown_start´ (delay 0)
+		´kill_door_open´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100022
+	TRIGGER TIMES 1
+	amount 1
+	depth 385
+	height 505
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 23, -200, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´kill_zone_finished´ (delay 0)
+		´kill_room_cross_line´ (delay 0)
+´enable - door´ ElementEnableUnit 100034
+	position 850, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´Count Down - 3´ (delay 0)
+´link´ MissionScriptElement 100035
+	on_executed
+		´On 1´ (delay 0)
+´On 1´ ElementToggle 100025
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_interaction_001´
+	on_executed
+		´disable_button´ (delay 0.25)
+		´interact_with_me´ (delay 0)
+´On´ ElementToggle 100026
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´trigger_area_001´
+´1´ ElementUnitSequence 100030
+	position 950, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/001 (25, 150, 225)
+			notify_unit_sequence green_light
+			time 0
+	on_executed
+		´2´ (delay 1)
+		´kill_timer_countdown_ready´ (delay 0)
+´2´ ElementUnitSequence 100031
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/002 (25, 200, 225)
+			notify_unit_sequence green_light
+			time 0
+	on_executed
+		´002´ (delay 1)
+		´kill_timer_countdown_ready´ (delay 0)
+´002´ ElementUnitSequence 100032
+	position 1050, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/003 (25, 250, 225)
+			notify_unit_sequence green_light
+			time 0
+	on_executed
+		´kill_timer_countdown_ready´ (delay 0)
+´kill_timer_countdown_ready´ ElementPlaySound 100037
+	append_prefix false
+	interrupt true
+	position 50, 200, 200
+	rotation 0, 0, 0, -1
+	sound_event kill_timer_countdown_ready
+	use_instigator false
+´red_lights´ ElementUnitSequence 100039
+	position 1100, 350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/001 (25, 150, 225)
+			notify_unit_sequence red_light
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/002 (25, 200, 225)
+			notify_unit_sequence red_light
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/003 (25, 250, 225)
+			notify_unit_sequence red_light
+			time 0
+´button_pushed´ ElementInstanceOutput 100052
+	event button_pushed
+´disable_button´ ElementUnitSequence 100013
+	position 750, 350, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_info_button_gensec/are_prop_info_button_gensec/001 (29, 350, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´disable_ALL´ ElementDisableUnit 100136
+	position 750, 25, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/003 (125, 25, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/004 (0.000227034, 6.10352E-05, 0)
+´AUTO START´ MissionScriptElement 100137
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_ALL´ (delay 0)
+		´disable_button_2´ (delay 0)
+		´interact_with_me´ (delay 0)
+´kill_timer_countdown_start´ ElementPlaySound 100232
+	append_prefix true
+	interrupt true
+	position 50, 200, 225
+	rotation 0, 0, 0, -1
+	sound_event kill_timer_countdown_start
+	use_instigator false
+´kill_room_cross_line´ ElementPlaySound 100233
+	append_prefix false
+	interrupt true
+	position -200, -200, 125
+	rotation 0, 0, 0, -1
+	sound_event kill_room_cross_line
+	use_instigator false
+´kill_room_cross_line_record´ ElementPlaySound 100234
+	append_prefix true
+	interrupt true
+	position -200, -200, 175
+	rotation 0, 0, 0, -1
+	sound_event kill_room_cross_line_record
+	use_instigator false
+´kill_door_open´ ElementPlaySound 100015
+	append_prefix true
+	interrupt true
+	position 50, 200, 125
+	rotation 0, 0, 0, -1
+	sound_event kill_room_door
+	use_instigator false
+´on_kill_room_empty´ ElementInstanceInput 100036
+	event on_kill_room_empty
+	on_executed
+		´enable_collision´ (delay 0)
+		´link´ (delay 0)
+´door´ ElementUnitSequence 100051
+	position 1000, 450, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/are_int_double_door/are_int_double_door/001 (25, 100, 0)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/are_int_double_door/are_int_double_door/001 (25, 100, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+	on_executed
+		´enable_collision´ (delay 0)
+´enable_collision´ ElementEnableUnit 100246
+	position 1000, 550, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/003 (125, 25, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/004 (0.000227034, 6.10352E-05, 0)
+´disable_collision´ ElementDisableUnit 100247
+	position 1050, 150, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/004 (0.000227034, 6.10352E-05, 0)
+´kill_zone_finished´ ElementInstanceOutput 100257
+	event kill_zone_finished
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100005
+	append_prefix false
+	interrupt true
+	position 300, -200, 400
+	rotation 0.5, 0.5, -0.5, -0.5
+	sound_event Play_killroom_highscore
+	use_instigator false
+´kill_room_cross_line_record001´ ElementPlaySound 100006
+	append_prefix true
+	interrupt true
+	position -100, -200, 375
+	rotation 0.5, 0.5, -0.5, -0.5
+	sound_event Play_killroom_highscore
+	use_instigator false
+´point_interaction_001´ ElementInteraction 100259
+	host_only false
+	override_timer -1
+	position 48, 364, 127
+	rotation 0, 0, 0, -1
+	tweak_data_id press_start_weapon_course
+	on_executed
+		´Game Start´ (delay 0) (alternative interacted)
+´disable_button_2´ ElementUnitSequence 100260
+	position 650, 350, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_info_button_gensec/are_prop_info_button_gensec/001 (29, 350, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´func_disable_unit_001´ ElementDisableUnit 100269
+	position 1000, 350, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/003 (125, 25, 0)
+	on_executed
+		´red_lights´ (delay 0)
+´close_double_doors´ ElementInstanceInput 100270
+	event close_double_doors
+	on_executed
+		´door´ (delay 0)
+´game_over´ ElementInstanceInput 100009
+	event game_over
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100010
+	on_executed
+		´off´ (delay 0)
+		´On 1_2´ (delay 0)
+´disable_open´ ElementUnitSequence 100011
+	position 900, 750, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/001 (25, 150, 225)
+			notify_unit_sequence red_light
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/002 (25, 200, 225)
+			notify_unit_sequence red_light
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/003 (25, 250, 225)
+			notify_unit_sequence red_light
+			time 0
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100012
+	position 950, 750, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/003 (125, 25, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/004 (0.000227034, 6.10352E-05, 0)
+	on_executed
+		´logic_operator_001´ (delay 0)
+´off´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´
+		2 ´trigger_area_001´
+		3 ´AUTO START´
+		4 ´disable_button_2´
+		5 ´disable_button´
+		6 ´On 1´
+		7 ´link´
+		8 ´on_kill_room_empty´
+		9 ´close_double_doors´
+		10 ´kill_zone_finished´
+		11 ´button_pushed´
+		12 ´Game Start´
+		13 ´disable_ALL´
+		14 ´enable - door´
+		15 ´Count Down - 3´
+		16 ´disable_collision´
+		17 ´002´
+		18 ´2´
+		19 ´1´
+		20 ´func_disable_unit_001´
+		21 ´enable_collision´
+		22 ´red_lights´
+		23 ´Start´
+		24 ´On´
+		25 ´door´
+	on_executed
+		´disable_open´ (delay 1)
+´interact_with_me´ ElementWaypoint 100016
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 40, 364, 141
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´interact_with_me´
+´logic_operator_001´ ElementOperator 100002
+	operation remove
+	elements
+		1 ´interact_with_me´
+	on_executed
+		´Door Open´ (delay 0)
+´On 1_2´ ElementToggle 100019
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´Door Open´

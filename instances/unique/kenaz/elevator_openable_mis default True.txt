@@ -1,0 +1,287 @@
+´startup_elevator´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+		´ele_rightdown_done_ON´ (delay 10)
+		´elevator_door_close´ (delay 0)
+´DELAY´ MissionScriptElement 100003
+	on_executed
+		´HIDE´ (delay 0)
+		´RANDOMIZE´ (delay 2)
+´HIDE´ MissionScriptElement 100004
+	on_executed
+		´seq_painting_HIDE´ (delay 0)
+´seq_painting_HIDE´ ElementUnitSequence 100005
+	position -425, -787, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+´RANDOMIZE´ MissionScriptElement 100006
+´enemy_001´ ElementSpawnEnemyDummy 100010
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -90, -225, 1
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_4m_var1
+	team default
+	voice 0
+	orientation_elements
+´input_combat_on´ ElementInstanceInput 100011
+	event combat_on
+	on_executed
+		´elevator_enemies´ (delay 0)
+´elevator_enemies´ ElementEnemyPreferedAdd 100012
+	spawn_groups
+		1 ´SWAT´
+´SWAT´ ElementSpawnEnemyGroup 100013
+	amount 0
+	ignore_disabled false
+	interval 0
+	spawn_type ordered
+	team default
+	preferred_spawn_groups
+		1 tac_shield_wall_charge
+		2 FBI_spoocs
+		3 tac_tazer_charge
+		4 tac_tazer_flanking
+		5 tac_shield_wall
+		6 tac_swat_rifle_flank
+		7 tac_shield_wall_ranged
+		8 tac_bull_rush
+	elements
+		1 ´enemy_001´
+´ele_rightdown_done_ON´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_trg_elevator_door_done_door_animation´ DISABLED
+´trg_enemy_spawn´ ElementEnemyDummyTrigger 100015
+	TRIGGER TIMES 1
+	event spawn
+	position -1125, -887, 400
+	rotation 0, 0, 0, -1
+	elements
+		1 ´enemy_001´
+	on_executed
+		´seq_elevator_switch_disable_interaction´ (delay 0)
+		´elevator_OFF´ (delay 0.2)
+		´seq_elevator_vent_release´ (delay 0)
+		´nl_fwd_2m´ (delay 0)
+		´elevator_door_open_link´ (delay 0)
+´seq_elevator_switch_disable_interaction´ ElementUnitSequence 100016
+	position -1125, -787, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_inside (-221.735, -110.82, 125)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_outside (-249.735, 34.1801, 125)
+			notify_unit_sequence disable_interaction
+			time 0
+´elevator_OFF´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ele_rightdown_done_ON´
+		2 ´elevator_door_close´
+		3 ´elevator_door_open´
+		4 ´elevator_door_toggle´
+		5 ´seq_trg_elevator_door_done_door_animation´ DISABLED
+		6 ´seq_trg_elevator_switch_interact´
+		7 ´seq_elevator_switch_enable_interaction´
+		8 ´elevator_door_open_link´
+		9 ´elevator_door_close_link´ DISABLED
+´seq_elevator_vent_release´ ElementUnitSequence 100019
+	TRIGGER TIMES 1
+	position -1125, -675, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling/001 (-100, -228, 284)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling/001 (-100, -228, 284)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´nl_fwd_2m´ ElementSpecialObjective 100022
+	SO_access 15864
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 1
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -90, -75, 1
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -72,177 262,758 28,5
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´elevator_door_close´ ElementUnitSequence 100038
+	position -5, -655, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_elevator_door/cas_elevator_door/elevator_door (-100, 10, 0)
+			notify_unit_sequence close_doors
+			time 0
+	on_executed
+		´nav_blocker_add´ (delay 1)
+		´logic_toggle_002´ (delay 0)
+´elevator_door_open´ ElementUnitSequence 100039
+	position -5, -730, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_elevator_door/cas_elevator_door/elevator_door (-100, 10, 0)
+			notify_unit_sequence open_doors
+			time 0
+	on_executed
+		´nav_blocker_remove´ (delay 1)
+		´logic_toggle_002´ (delay 0)
+´nav_blocker_add´ ElementNavObstacle 100002
+	operation add
+	position 95, -655, 400
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -25, -20.0287)
+´nav_blocker_remove´ ElementNavObstacle 100017
+	operation remove
+	position 95, -730, 400
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -25, -20.0287)
+´elevator_door_toggle´ ElementToggle 100029
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´elevator_door_open_link´
+		2 ´elevator_door_close_link´ DISABLED
+´seq_trg_elevator_door_done_door_animation´ ElementUnitSequenceTrigger 100036
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence done_door_animation
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_elevator_door/cas_elevator_door/elevator_door (-100, 10, 0)
+	on_executed
+		´elevator_door_toggle´ (delay 0)
+		´seq_elevator_switch_enable_interaction´ (delay 0)
+´seq_trg_elevator_switch_interact´ ElementUnitSequenceTrigger 100040
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_inside (-221.735, -110.82, 125)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_outside (-249.735, 34.1801, 125)
+	on_executed
+		´elevator_door_open_link´ (delay 0)
+		´elevator_door_close_link´ (delay 0) DISABLED
+´seq_elevator_switch_enable_interaction´ ElementUnitSequence 100041
+	position 150, -600, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_inside (-221.735, -110.82, 125)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_elevator_door_switch/cas_elevator_door_switch/elevator_switch_outside (-249.735, 34.1801, 125)
+			notify_unit_sequence enable_interaction
+			time 0
+´elevator_door_open_link´ MissionScriptElement 100042
+	on_executed
+		´elevator_door_open´ (delay 0)
+´elevator_door_close_link´ MissionScriptElement 100043
+	DISABLED
+	on_executed
+		´elevator_door_close´ (delay 0)
+´elevator_shaft_e3_version´ ElementInstanceInput 100044
+	event disable_spawn_elevator_e3
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_combat_on´
+		2 ´elevator_enemies´
+´police_called´ ElementGlobalEventTrigger 100027
+	TRIGGER TIMES 1
+	global_event police_called
+	position -1275, -787, 400
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_elevator_switch_disable_interaction´ (delay 0)
+		´open´ (delay 0) DISABLED
+		´logic_toggle_003´ (delay 0)
+´open´ ElementUnitSequence 100037
+	DISABLED
+	position -1275, -712, 400
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_elevator_door/cas_elevator_door/elevator_door (-100, 10, 0)
+			notify_unit_sequence open_doors
+			time 0
+	on_executed
+		´nav_blocker_remove´ (delay 0)
+´logic_toggle_002´ ElementToggle 100046
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´open´ DISABLED
+´logic_toggle_003´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_elevator_switch_enable_interaction´

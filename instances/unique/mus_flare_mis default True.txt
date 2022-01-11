@@ -1,0 +1,128 @@
+´play_flare_effect´ ElementPlayEffect 100002
+	base_time 0
+	effect effects/payday2/environment/bengal_flare
+	max_amount 0
+	position 0, 20, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´play_flare_sound´ ElementPlaySound 100003
+	append_prefix false
+	position 0, 13, 18
+	rotation 0, 0, 0, -1
+	sound_event flare_start_loop
+	use_instigator false
+´stop_flare_effect´ ElementStopEffect 100004
+	operation fade_kill
+	position -775, 50, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´play_flare_effect´
+´stop_flare_sound´ ElementPlaySound 100005
+	append_prefix false
+	position -775, -25, 25
+	rotation 0, 0, 0, -1
+	sound_event flare_end
+	use_instigator false
+´flare_disabled_on_startup´ ElementUnitSequence 100006
+	EXECUTE ON STARTUP
+	position -100, -125, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´hide_burnt_flare´ (delay 0)
+´when_interacted´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+	on_executed
+		´flare_is_lit´ (delay 0)
+´enable_flare´ ElementUnitSequence 100008
+	position -675, -125, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´show_flare´ ElementUnitSequence 100009
+	position -300, -25, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´show_burnt_flare´ (delay 0)
+´flare_is_lit´ MissionScriptElement 100010
+	on_executed
+		´play_flare_effect´ (delay 0)
+		´play_flare_sound´ (delay 0)
+		´show_flare´ (delay 0)
+		´flare_is_lit_2´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´flare_died´ MissionScriptElement 100012
+	on_executed
+		´stop_flare_sound´ (delay 0)
+		´stop_flare_effect´ (delay 0)
+´flare_is_lit_2´ ElementInstanceOutput 100013
+	event flare_is_lit
+´enable_flare_2´ ElementInstanceInput 100015
+	event enable_flare
+	on_executed
+		´enable_flare´ (delay 0)
+		´flare_wp´ (delay 0)
+´kill_flare´ ElementInstanceInput 100011
+	event kill_flare
+	on_executed
+		´flare_died´ (delay 0)
+´hide_burnt_flare´ ElementDisableUnit 100014
+	position -100, -225, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_roadflare/gen_prop_roadflare/002 (0, 0, 0)
+´show_burnt_flare´ ElementEnableUnit 100016
+	position -400, -25, 25
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_roadflare/gen_prop_roadflare/002 (0, 0, 0)
+´flare_wp´ ElementWaypoint 100017
+	icon pd2_generic_look
+	position -2, 17, 0
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100018
+	operation remove
+	elements
+		1 ´flare_wp´

@@ -1,0 +1,162 @@
+´terrace_laser001´ ElementLaserTrigger 100004
+	TRIGGER TIMES 1
+	color red
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random false
+	cycle_type flow
+	instigator player
+	interval 0.1
+	skip_dummies false
+	visual_only false
+	connections
+		1
+			from 1
+			to 4
+		2
+			from 5
+			to 2
+		3
+			from 3
+			to 6
+	points
+		1
+			pos -16.9211, 100, 175.972
+			rot 0, 0, 1, -1.19209E-07
+		2
+			pos -16.4084, 100, 98.8353
+			rot 0, 0, 1, -1.19209E-07
+		3
+			pos -16.2719, 100, 28.6031
+			rot 0, 0, 1, -1.19209E-07
+		4
+			pos -16.2766, -100, 176.72
+			rot 0, -0, -1.19209E-07, -1
+		5
+			pos -16.5007, -100, 99.001
+			rot 0, -0, -1.19209E-07, -1
+		6
+			pos -16.1864, -100, 29.3218
+			rot 0, -0, -1.19209E-07, -1
+	on_executed
+		´laser_triggered_output´ (delay 0) (alternative enter)
+´laser_triggered_output´ ElementInstanceOutput 100005
+	event laser_triggered
+´toggle_laser´ ElementToggle 100016
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´terrace_laser001´
+	on_executed
+		´point_debug_001´ (delay 0)
+´disable_laser´ ElementPlaySound 100017
+	append_prefix false
+	position -50, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event card_reader_first_card
+	use_instigator false
+´enable_laser´ ElementPlaySound 100018
+	append_prefix false
+	position -50, 0, 150
+	rotation 0, 0, 0, -1
+	sound_event card_reader_second_card
+	use_instigator false
+´door_opening_checker´ ElementShape 100011
+	depth 250
+	height 250
+	position 25, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 200
+´on_enter´ ElementAreaTrigger 100012
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	interval 0.1
+	position 0, -400, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´door_opening_checker´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´toggle_laser´ (delay 0)
+		´enable_on_empty´ (delay 0)
+		´disable_laser´ (delay 0)
+´on_empty001´ ElementAreaTrigger 100013
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	interval 0.1
+	position 200, -400, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_empty
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´door_opening_checker´
+		2 ´door_opening_checker001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_on_enter´ (delay 1)
+		´toggle_laser´ (delay 1)
+		´enable_laser´ (delay 0)
+´enable_on_empty´ ElementToggle 100014
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´on_empty001´ DISABLED
+´enable_on_enter´ ElementToggle 100015
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´on_enter´ DISABLED
+´point_debug_001´ ElementDebug 100019
+	as_subtitle false
+	debug_string laser toggled
+	show_instigator false
+´door_opening_checker001´ ElementShape 100020
+	depth 800
+	height 250
+	position 200, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 400
+´setup´ MissionScriptElement 100022
+	EXECUTE ON STARTUP
+	BASE DELAY 2
+	on_executed
+		´enable_on_enter´ (delay 0)
+´disable_laser_input´ ElementInstanceInput 100021
+	event disable_laser
+	on_executed
+		´disable_laser_2´ (delay 0)
+´disable_laser_2´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´on_enter´ DISABLED
+		2 ´on_empty001´ DISABLED
+		3 ´terrace_laser001´
+		4 ´toggle_laser´
+		5 ´enable_on_empty´
+		6 ´enable_on_enter´
+		7 ´setup´

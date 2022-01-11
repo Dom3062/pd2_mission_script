@@ -1,0 +1,813 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+		´func_whisper_state_001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 25, 450, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´enable_area_test´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position -2100, -2200, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+´input_start_car_drive_in´ ElementInstanceInput 100007
+	event start_car_drive_in
+	on_executed
+		´point_debug_007´ (delay 1)
+		´func_enable_unit_010´ (delay 0)
+´output_done_car_drive_in´ ElementInstanceOutput 100008
+	event done_car_drive_in
+´link_start_car_drive_in´ MissionScriptElement 100060
+	TRIGGER TIMES 1
+	on_executed
+		´seq_drive_in´ (delay 0)
+´area_test´ ElementAreaTrigger 100078
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -25, -900, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´input_start_car_drive_in´ (delay 0)
+		´ai_spawn_civilian_001´ (delay 5)
+´WP_attach_to_gate´ ElementWaypoint 100079
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -2000, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´done_car_drive_in´ MissionScriptElement 100086
+	on_executed
+		´output_done_car_drive_in´ (delay 0)
+		´show_gate_interaction´ (delay 1)
+´trigger_loot_bag_001´ ElementLootBagTrigger 100087
+	trigger_type load
+	on_executed
+		´relay´ (delay 0)
+		´remove_WP_take_tool´ (delay 0)
+´relay´ MissionScriptElement 100089
+	on_executed
+		´seq_show_marker´ (delay 0)
+		´enable_area_toolbag´ (delay 0)
+		´output_picked_up_toolbag´ (delay 0)
+´seq_show_marker´ ElementUnitSequence 100091
+	position -2600, -1800, 97.5
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+´interaction_attach_to_gate´ ElementInteraction 100098
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, -2000, 175
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_moon_attach_winch
+	on_executed
+		´interacted_with_gate´ (delay 0) (alternative interacted)
+		´teammate_comment_open_it_up´ (delay 1) (alternative start)
+´show_gate_interaction´ MissionScriptElement 100099
+	on_executed
+		´WP_attach_to_gate´ (delay 0)
+		´enable_interaction_attach_to_gate´ (delay 0)
+´enable_interaction_attach_to_gate´ ElementToggle 100100
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_attach_to_gate´ DISABLED
+´interacted_with_gate´ MissionScriptElement 100101
+	on_executed
+		´seq_show_cable´ (delay 1)
+		´remove_WP_attach_to_gate´ (delay 0)
+		´output_interacted_with_gate´ (delay 0)
+´seq_show_cable´ ElementUnitSequence 100102
+	position -2900, -1900, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence show_wire
+			time 0
+´remove_WP_take_tool´ ElementOperator 100104
+	operation remove
+´enable_area_toolbag´ ElementToggle 100105
+	set_trigger_times -1
+	toggle on
+´remove_WP_attach_to_gate´ ElementOperator 100106
+	operation remove
+	elements
+		1 ´WP_attach_to_gate´
+´interacted_with_car´ ElementUnitSequenceTrigger 100107
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence show_wire
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+	on_executed
+		´relay_3´ (delay 0)
+´relay_2´ MissionScriptElement 100108
+	on_executed
+		´output_interacted_with_car´ (delay 0)
+		´seq_anim_pull´ (delay 0)
+		´remove_WP_interaction_knock´ (delay 0)
+´seq_anim_pull´ ElementUnitSequence 100109
+	position -3000, -1800, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence anim_exit_bex
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_bank_teller_anim/bex_prop_bank_teller_anim/001 (0, 0, 0)
+			notify_unit_sequence hide_bars
+			time 0
+	on_executed
+		´done_pull´ (delay 4.8)
+		´Play_alm_bex_04´ (delay 0)
+		´disable_alternative_exit´ (delay 0)
+´seq_done_pull´ ElementUnitSequence 100110
+	position -3000, -1500, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_bank_teller_anim/bex_prop_bank_teller_anim/001 (0, 0, 0)
+			notify_unit_sequence break_teller
+			time 0
+´done_pull´ MissionScriptElement 100113
+	on_executed
+		´seq_done_pull´ (delay 0)
+		´output_done_gate_pull´ (delay 0)
+		´teammate_comment_we_are_through´ (delay 4)
+		´teammate_comment_cheer´ (delay 4)
+		´point_explosion_player_damage001´ (delay 0)
+		´func_nav_obstacle_002´ (delay 3)
+´output_picked_up_toolbag´ ElementInstanceOutput 100009
+	event picked_up_toolbag
+´output_interacted_with_gate´ ElementInstanceOutput 100011
+	event interacted_with_gate
+´output_done_gate_pull´ ElementInstanceOutput 100012
+	event done_gate_pull
+´output_interacted_with_car´ ElementInstanceOutput 100013
+	event interacted_with_car
+´enable_area_test´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_test´ DISABLED
+´teammate_comment_open_it_up´ ElementTeammateComment 100033
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v16
+	position 150, -1525, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_we_are_through´ ElementTeammateComment 100034
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v03
+	position 25, -1550, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_here_it_comes´ ElementTeammateComment 100035
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v19
+	position 200, 175, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´teammate_comment_swear´ (delay 2)
+´teammate_comment_cheer´ ElementTeammateComment 100037
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v46
+	position 0, -1950, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_debug_007´ ElementDebug 100015
+	as_subtitle true
+	debug_string Vlad: "Dont worry my friends, Vlad has arranged some help!"
+	show_instigator false
+	on_executed
+		´Play_loc_bex_51a´ (delay 0)
+		´Play_alm_bex_01´ (delay 14)
+´point_explosion_001´ ElementExplosion 100019
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 0
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 0
+	position 0, -375, 125
+	range 300
+	rotation 4.47035E-08, -0.5373, 0.843391, -2.38419E-07
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event no_sound
+	use_camera_shake false
+	use_rumble false
+	on_executed
+		´enable_area_AI_in_hitzone001´ (delay 0)
+		´logic_toggle_001´ (delay 6.5)
+´output_crashed´ ElementInstanceOutput 100135
+	event crashed
+´func_whisper_state_001´ ElementWhisperState 100137
+	disable_hud false
+	position -3800, -2400, 100
+	rotation 0, 0, 1, -1.19209E-07
+	state true
+´point_debug_010´ ElementDebug 100142
+	as_subtitle true
+	debug_string Vlad: "Donât worry, it will be fine. Here he comes!"
+	show_instigator false
+	on_executed
+		´Play_loc_bex_052´ (delay 0)
+		´link_start_car_drive_in´ (delay 6)
+´func_enable_unit_010´ ElementEnableUnit 100093
+	position -2400, -2400, 100
+	rotation 0, 0, 1, -1.19209E-07
+	unit_ids
+´seq_drive_in´ ElementUnitSequence 100028
+	TRIGGER TIMES 1
+	position -2300, -1800, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence anim_enter_bex
+			time 0
+	on_executed
+		´point_explosion_001´ (delay 7.1)
+		´teammate_comment_here_it_comes´ (delay 4)
+		´Play_alm_bex_02´ (delay 0.5)
+		´func_nav_obstacle_001´ (delay 0)
+		´seq_drive_in001´ (delay 1)
+´done_enter´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_enter
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+	on_executed
+		´output_crashed´ (delay 0)
+		´done_car_drive_in´ (delay 0)
+		´Play_loc_bex_53´ (delay 0)
+´done_exit´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_exit
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+	on_executed
+		´hide001´ (delay 18)
+´area_AI_in_hitzone001´ ElementAreaTrigger 100025
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 190,221
+	height 500
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 203, -565, 25
+	radius 250
+	rotation 9.05801E-08, 6.29252E-08, -0.309017, -0.951056
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 177,66
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_remove_001´ (delay 0)
+´area_AI_in_hitzone002´ ElementAreaTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 190
+	height 500
+	instigator civilians
+	instigator_name 
+	interval 0.1
+	position 203, -565, 75
+	radius 250
+	rotation 9.05801E-08, 6.29252E-08, -0.309017, -0.951056
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 178
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_remove_001´ (delay 0)
+´ai_remove_001´ ElementAIRemove 100029
+	force_ragdoll false
+	position -50, -575, 2.82117E-06
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	true_death true
+	use_instigator true
+´Play_loc_bex_53´ ElementDialogue 100014
+	can_not_be_muted false
+	dialogue Play_loc_bex_53
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_bex_51a´ ElementDialogue 100016
+	can_not_be_muted false
+	dialogue Play_loc_bex_51a
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_bex_052´ ElementDialogue 100018
+	can_not_be_muted false
+	dialogue Play_loc_bex_52
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_alm_bex_01´ ElementDialogue 100017
+	can_not_be_muted false
+	dialogue Play_alm_bex_01
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´point_debug_010´ (delay 7)
+´Play_alm_bex_02´ ElementDialogue 100030
+	can_not_be_muted false
+	dialogue Play_alm_bex_02
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´remove_WP_look´ (delay 4)
+		´WP_look´ (delay 0)
+´teammate_comment_swear´ ElementTeammateComment 100038
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g29
+	position 850, 175, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´Play_alm_bex_04´ ElementDialogue 100046
+	can_not_be_muted false
+	dialogue Play_alm_bex_04
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´interaction_knock´ ElementInteraction 100048
+	DISABLED
+	host_only false
+	override_timer -1
+	position 138, -800, 132
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	tweak_data_id press_knock_on_door
+	on_executed
+		´relay_2´ (delay 1) (alternative interacted)
+		´sound_knock003´ (delay 0) (alternative interacted)
+		´teammate_comment_hurry´ (delay 0.5) (alternative interacted)
+´sound_knock003´ ElementPlaySound 100053
+	append_prefix false
+	interrupt true
+	position 138, -800, 132
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	sound_event bar_car_tap
+	use_instigator false
+	on_executed
+		´sound_knock004´ (delay 0.8)
+´WP_interaction_knock´ ElementWaypoint 100054
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 138, -800, 132
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	text_id debug_none
+´relay_3´ MissionScriptElement 100055
+	on_executed
+		´WP_interaction_knock´ (delay 0)
+		´enable_interaction_knock´ (delay 0)
+´enable_interaction_knock´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_knock´ DISABLED
+´remove_WP_interaction_knock´ ElementOperator 100057
+	operation remove
+	elements
+		1 ´WP_interaction_knock´
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100044
+	enemy units/payday2/characters/civ_male_casual_1/civ_male_casual_1
+	force_pickup none
+	position 29, -736, 0
+	rotation 0, 0, 0.923879, -0.382684
+	state cm_sp_drunk_idle
+	team default
+	orientation_elements
+´input_execute_anim_exit_bex_2´ ElementInstanceInput 100058
+	event execute_anim_exit_bex_2
+	on_executed
+		´anim_exit_bex_2´ (delay 0)
+´anim_exit_bex_2´ ElementUnitSequence 100059
+	position -3300, -2200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence anim_exit_bex_2
+			time 0
+	on_executed
+		´disable_stuff´ (delay 0)
+		´Play_alm_bex_04´ (delay 0)
+		´func_nav_obstacle_002´ (delay 3)
+		´hide´ (delay 18)
+´disable_stuff´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interaction_knock´ DISABLED
+		2 ´enable_interaction_knock´
+		3 ´interaction_attach_to_gate´ DISABLED
+	on_executed
+		´remove_WP_interaction_knock´ (delay 0)
+		´remove_WP_attach_to_gate´ (delay 0)
+´disable_alternative_exit´ ElementToggle 100062
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_execute_anim_exit_bex_2´
+		2 ´anim_exit_bex_2´
+		3 ´disable_stuff´
+´enable_area_AI_in_hitzone001´ ElementToggle 100065
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_AI_in_hitzone001´ DISABLED
+		2 ´area_AI_in_hitzone002´ DISABLED
+	on_executed
+		´disable_area_AI_in_hitzone001´ (delay 0.2) DISABLED
+		´point_debug_002´ (delay 0)
+´disable_area_AI_in_hitzone001´ ElementToggle 100066
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_AI_in_hitzone001´ DISABLED
+		2 ´area_AI_in_hitzone002´ DISABLED
+´area_AI_in_hitzone003´ ElementAreaTrigger 100063
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator civilians
+	instigator_name 
+	interval 0.1
+	position 33.1783, -713.384, 75
+	radius 250
+	rotation 5.96046E-08, 9.27988E-08, 0.0784588, -0.996917
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 189
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_remove_001´ (delay 0)
+´area_AI_in_hitzone004´ ElementAreaTrigger 100064
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 33.1783, -713.384, 25
+	radius 250
+	rotation 5.96046E-08, 9.27988E-08, 0.0784588, -0.996917
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 189
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_remove_001´ (delay 0)
+´point_debug_001´ ElementDebug 100039
+	as_subtitle false
+	debug_string NOW!!!1
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100006
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_AI_in_hitzone004´ DISABLED
+		2 ´area_AI_in_hitzone003´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0.2)
+		´point_debug_001´ (delay 0)
+´logic_toggle_002´ ElementToggle 100026
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_AI_in_hitzone004´ DISABLED
+		2 ´area_AI_in_hitzone003´ DISABLED
+´point_debug_002´ ElementDebug 100040
+	as_subtitle false
+	debug_string now1
+	show_instigator false
+´WP_look´ ElementWaypoint 100067
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 3300, 200, 350
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_look´ ElementOperator 100068
+	operation remove
+	elements
+		1 ´WP_look´
+´sound_knock004´ ElementPlaySound 100071
+	append_prefix false
+	interrupt true
+	position 138, -800, 132
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	sound_event bar_car_tap_finished
+	use_instigator false
+´func_nav_obstacle_001´ ElementNavObstacle 100024
+	operation add
+	position -2400, -1800, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 4
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/001 (4800.3, 521.589, 0)
+		2
+			guis_id 5
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/002 (4446.75, 168.039, 0)
+		3
+			guis_id 6
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/003 (3954.59, 300.879, 0)
+		4
+			guis_id 7
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/004 (3454.59, 300.879, 0)
+		5
+			guis_id 8
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/005 (2954.59, 300.879, 0)
+		6
+			guis_id 9
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/007 (2454.59, 375.879, 0)
+		7
+			guis_id 10
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/009 (1854.59, 450.88, 0)
+		8
+			guis_id 11
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/010 (1354.59, 375.88, 0)
+		9
+			guis_id 12
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/011 (854.592, 350.88, 0)
+		10
+			guis_id 13
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/012 (354.592, 225.88, 0)
+		11
+			guis_id 14
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/013 (-45.408, -149.12, 0)
+		12
+			guis_id 15
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/014 (50, 300, 0)
+		13
+			guis_id 16
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/015 (25, -125, 0)
+		14
+			guis_id 17
+			obj_name 8163803164691588866
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/001 (18.6736, -782.936, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100036
+	TRIGGER TIMES 1
+	operation remove
+	position -3200, -1100, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/001 (4800.3, 521.589, 0)
+		2
+			guis_id 2
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/002 (4446.75, 168.039, 0)
+		3
+			guis_id 3
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/003 (3954.59, 300.879, 0)
+		4
+			guis_id 4
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/004 (3454.59, 300.879, 0)
+		5
+			guis_id 5
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/005 (2954.59, 300.879, 0)
+		6
+			guis_id 6
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/007 (2454.59, 375.879, 0)
+		7
+			guis_id 7
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/009 (1854.59, 450.88, 0)
+		8
+			guis_id 8
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/010 (1354.59, 375.88, 0)
+		9
+			guis_id 9
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/011 (854.592, 350.88, 0)
+		10
+			guis_id 10
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/012 (354.592, 225.88, 0)
+		11
+			guis_id 11
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/013 (-45.408, -149.12, 0)
+		12
+			guis_id 12
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/014 (50, 300, 0)
+		13
+			guis_id 13
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/015 (25, -125, 0)
+		14
+			guis_id 14
+			obj_name 8163803164691588866
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/001 (18.6736, -782.936, 0)
+´teammate_comment_hurry´ ElementTeammateComment 100041
+	TRIGGER TIMES 1
+	close_to_element false
+	comment g09
+	position 208, -714, 132
+	radius 0
+	rotation -9.03998E-08, 2.98023E-08, 1, -2.25099E-07
+	use_instigator true
+´point_explosion_player_damage001´ ElementExplosion 100042
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 0
+	effect mission_triggered
+	explosion_effect none
+	player_damage 30
+	position 25, -1775, 100
+	range 500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event no_sound
+	use_camera_shake false
+	use_rumble false
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100049
+	as_subtitle false
+	debug_string damage now
+	show_instigator false
+´hide´ ElementUnitSequence 100069
+	position -3400, -2100, 100
+	rotation 0, 0.0361415, 0, -0.999347
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´func_disable_unit_002´ (delay 1)
+´hide001´ ElementUnitSequence 100050
+	position -3300, -1200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´func_disable_unit_001´ (delay 1)
+´func_disable_unit_001´ ElementDisableUnit 100070
+	position -3300, -1100, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+´func_disable_unit_002´ ElementDisableUnit 100072
+	position -3400, -2000, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+´seq_drive_in001´ ElementUnitSequence 100073
+	TRIGGER TIMES 1
+	position -2400, -1700, 100
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/vehicles/anim_vehicle_suv_bex/anim_vehicle_suv_bex/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0

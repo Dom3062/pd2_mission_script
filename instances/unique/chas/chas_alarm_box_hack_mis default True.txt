@@ -1,0 +1,379 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´link_enable_interaction´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2400, 400, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence state_hide
+			time 0
+´interact_WP´ ElementWaypoint 100017
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hack_box_opened´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+	on_executed
+		´seq_disable_interact´ (delay 0)
+		´point_debug_003´ (delay 0)
+´seq_disable_interact´ ElementUnitSequence 100038
+	position 900, 200, 3
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence disable_outline
+			time 0
+	on_executed
+		´disable_area_triggers´ (delay 0)
+´output_hitting_done´ ElementInstanceOutput 100007
+	event alarm_box_disabled
+	on_executed
+		´point_debug_002´ (delay 0)
+´input_disable_interaction´ ElementInstanceInput 100008
+	event disable_interaction
+	on_executed
+		´link_disable_interaction´ (delay 0)
+		´disable_everything´ (delay 0.1)
+´area_enable_interaction´ ElementAreaTrigger 100015
+	DISABLED
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´area_disable_interaction´ ElementAreaTrigger 100016
+	DISABLED
+	amount all
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_disable_interaction´ (delay 0)
+´link_enable_interaction´ MissionScriptElement 100019
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+		´seq_enable_interaction001´ (delay 0) DISABLED
+´link_disable_interaction´ MissionScriptElement 100020
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100021
+	position 650, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence enable_outline
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+	on_executed
+		´enable_area_triggers´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100022
+	position 800, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence disable_outline
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence hide_outline
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+´disable_everything´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
+		3 ´interact_WP´
+		4 ´hit_WP´
+		5 ´link_enable_interaction´
+		6 ´hack_box_opened´
+		7 ´hack_box_assaulted´
+	on_executed
+		´remove_WP´ (delay 0)
+´enable_interact_WP´ MissionScriptElement 100024
+	on_executed
+		´interact_WP´ (delay 0)
+´remove_WP´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+	on_executed
+		´seq_disable_outline´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100026
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1725, 300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_disable_interaction´ (delay 0)
+		´disable_everything´ (delay 0.1)
+´enable_area_triggers´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
+´hit_WP´ ElementWaypoint 100031
+	icon pd2_melee
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 124
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_enable_link_WP´ MissionScriptElement 100032
+	on_executed
+		´hit_WP´ (delay 0)
+´remove_interact_WP´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´interact_WP´
+	on_executed
+		´disable_interactions_box´ (delay 0)
+´hack_box_assaulted´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+	on_executed
+		´disable_everything´ (delay 0)
+		´output_hitting_done´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+´point_debug_002´ ElementDebug 100046
+	as_subtitle false
+	debug_string OUch...
+	show_instigator false
+´point_debug_003´ ElementDebug 100009
+	as_subtitle false
+	debug_string Wrong box... SHAAAAME... Try another one.
+	show_instigator false
+´env_effect_play_001´ ElementPlayEffect 100010
+	base_time 0
+	effect effects/payday2/particles/electric/electric_sparks_small
+	max_amount 0
+	position 0, 0, 100
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100011
+	append_prefix false
+	interrupt true
+	position 0, 0, 76.4465
+	rotation 0, 0, 0, -1
+	sound_event electric_sparks
+	use_instigator false
+´seq_disable_outline´ ElementUnitSequence 100012
+	position 1200, 25, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence disable_outline
+			time 0
+´disable_interactions_box´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´link_enable_link_WP´ (delay 0.5)
+´enable_waypoint´ ElementInstanceInput 100027
+	event enable_waypoint
+	on_executed
+		´enable_interact_WP´ (delay 0)
+´logic_toggle_001´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+´disable_wp´ ElementInstanceInput 100028
+	event disable_wp
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´hack_box_open_001´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+	on_executed
+		´remove_interact_WP´ (delay 0)
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100040
+	as_subtitle false
+	debug_string hit me senpai!
+	show_instigator false
+´input_set_correct´ ElementInstanceInput 100014
+	event set_correct
+	on_executed
+		´func_sequence_001´ (delay 3)
+´seq_enable_interaction001´ ElementUnitSequence 100042
+	DISABLED
+	position 725, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence show_outline
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+	on_executed
+		´enable_area_triggers´ (delay 0)
+´enable_correct_box´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_enable_interaction001´ DISABLED
+	on_executed
+		´disable_wrong_box´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100044
+	position 1825, 225, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/props/pta_interactable_electric_box/pta_interactable_electric_box/001 (0, 25, 0)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence state_show
+			time 0
+	on_executed
+		´enable_correct_box´ (delay 0)
+´disable_wrong_box´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_enable_interaction´
+´disable_area_triggers´ ElementToggle 100006
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED

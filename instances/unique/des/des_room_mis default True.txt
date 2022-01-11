@@ -1,0 +1,494 @@
+´start_event´ MissionScriptElement 100062
+	on_executed
+		´point_debug_001´ (delay 0)
+		´enable_area´ (delay 8)
+		´ai_spawn_civilian_001´ (delay 2)
+		´open_shutters´ (delay 2)
+		´func_enable_unit_001´ (delay 8)
+		´enter´ (delay 2.1)
+´open_shutters´ ElementUnitSequence 100063
+	position -1278, 962, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/security_door/security_door_02/001 (-1815.5, 1000.64, 1)
+			notify_unit_sequence open_door_slow
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/security_door/security_door_02/002 (-1815.5, 1400.64, 1)
+			notify_unit_sequence open_door_slow
+			time 0.05
+	on_executed
+		´lights_flicker´ (delay 1)
+		´sound_shutters001´ (delay 0)
+		´sound_shutters002´ (delay 0.05)
+´point_spawn_player_001´ ElementPlayerSpawner 100064
+	DISABLED
+	EXECUTE ON STARTUP
+	position -1178, 1362, 13
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	on_executed
+		´start_event´ (delay 3)
+´enter´ ElementSpecialObjective 100066
+	SO_access 1048575
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -2450, 850, 0
+	rotation 0, 0, -2.68221E-07, -1
+	scan false
+	search_distance 0
+	search_position -25 150 0
+	so_action so_des_walk_enter
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´exit´ ElementSpecialObjective 100067
+	SO_access 1023
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -1903, 1187, 13
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -217,227 633,935 0
+	so_action so_des_walk_exit
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_001´
+´close_shutters´ ElementUnitSequence 100068
+	position -1378, 762, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/security_door/security_door_02/001 (-1815.5, 1000.64, 1)
+			notify_unit_sequence state_close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/security_door/security_door_02/002 (-1815.5, 1400.64, 1)
+			notify_unit_sequence state_close_door
+			time 0
+´startup´ MissionScriptElement 100069
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100070
+	on_executed
+		´close_shutters´ (delay 0)
+		´disable_stuff´ (delay 0)
+´point_debug_001´ ElementDebug 100072
+	as_subtitle false
+	debug_string from instance: start_event
+	show_instigator false
+´lookat_spooky_man´ ElementLookAtTrigger 100074
+	DISABLED
+	TRIGGER TIMES 1
+	distance 0
+	in_front false
+	interval 0.1
+	position -1825, 1261, 175
+	rotation 0, 0, 0.707107, -0.707107
+	sensitivity 0,838
+	on_executed
+		´looked_at´ (delay 0)
+´point_debug_002´ ElementDebug 100075
+	as_subtitle false
+	debug_string looked_at
+	show_instigator false
+´looked_at´ MissionScriptElement 100076
+	TRIGGER TIMES 1
+	on_executed
+		´point_debug_002´ (delay 0)
+		´start_video´ (delay 0)
+		´start_leave´ (delay 15-18)
+		´swear´ (delay 2)
+´start_video´ ElementUnitSequence 100077
+	position -1578, 1162, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_movie_screen/des_prop_movie_screen/001 (-2515, 1424, 300)
+			notify_unit_sequence state_video_start
+			time 0
+´enable_area´ ElementToggle 100079
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_infront_of_room´ DISABLED
+´logic_toggle_002´ ElementToggle 100081
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lookat_spooky_man´ DISABLED
+´area_player_infront_of_room´ ElementAreaTrigger 100082
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1000
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -1378, 1312, 13
+	radius 250
+	rotation 0, 0, -3.27826E-07, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´start_leave´ MissionScriptElement 100078
+	on_executed
+		´exit´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´turn_all_off´ (delay 0)
+´point_debug_003´ ElementDebug 100080
+	as_subtitle false
+	debug_string start_leave
+	show_instigator false
+´disable_stuff´ ElementDisableUnit 100083
+	position -1478, 762, 13
+	rotation 0, 0, 0.707107, -0.707107
+	unit_ids
+		1 core/units/light_spot/light_spot/001 (-1768.5, 1214.64, 55)
+´lights_flicker´ ElementUnitSequence 100084
+	position -1278, 1062, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/001 (-2149.5, 1160.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/002 (-2149.5, 1360.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0.1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/003 (-2149.5, 1560.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0.3
+	on_executed
+		´flicker_again´ (delay 1.5)
+		´sound_lights_flicker001´ (delay 0)
+		´sound_lights_flicker002´ (delay 0.1)
+		´sound_lights_flicker003´ (delay 0.3)
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100085
+	enemy units/pd2_dlc_des/characters/civ_male_des/civ_male_des
+	force_pickup none
+	position -2450, 850, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state none
+	team criminal1
+	orientation_elements
+´swear´ ElementTeammateComment 100065
+	close_to_element false
+	comment g29
+	position -1478, 1162, 13
+	radius 0
+	rotation 0, 0, 0.707107, -0.707107
+	use_instigator true
+´flicker_again´ ElementUnitSequence 100086
+	position -1278, 1162, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/001 (-2149.5, 1160.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/002 (-2149.5, 1360.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0.1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/003 (-2149.5, 1560.64, 326)
+			notify_unit_sequence anim_light_turn_on
+			time 0.3
+´func_enable_unit_001´ ElementEnableUnit 100087
+	position -1478, 962, 13
+	rotation 0, 0, 0.707107, -0.707107
+	unit_ids
+		1 core/units/light_spot/light_spot/001 (-1768.5, 1214.64, 55)
+´turn_all_off´ MissionScriptElement 100088
+	on_executed
+		´turn_off_video´ (delay 3)
+		´turn_off_lights´ (delay 10)
+´turn_off_video´ ElementUnitSequence 100089
+	position -1578, 1562, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_movie_screen/des_prop_movie_screen/001 (-2515, 1424, 300)
+			notify_unit_sequence state_video_stop
+			time 0
+´turn_off_lights´ ElementUnitSequence 100090
+	position -1578, 1662, 13
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/001 (-2149.5, 1160.64, 326)
+			notify_unit_sequence lamp_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/002 (-2149.5, 1360.64, 326)
+			notify_unit_sequence lamp_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_long_lamp/des_prop_long_lamp/003 (-2149.5, 1560.64, 326)
+			notify_unit_sequence lamp_off
+			time 0
+´input_start_event´ ElementInstanceInput 100091
+	event start_event
+	on_executed
+		´enable_area_player_in_snake_tunnel´ (delay 0)
+´enable_area_player_in_snake_tunnel´ ElementToggle 100092
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_in_snake_tunnel´ DISABLED
+´area_player_in_snake_tunnel´ ElementAreaTrigger 100093
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1400
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -1012, 1067, 13
+	radius 250
+	rotation 0, 0, 0.182235, -0.983255
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 3000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´start_event´ (delay 0)
+´sound_shutters001´ ElementPlaySound 100094
+	append_prefix false
+	interrupt true
+	position -1825, 1250, 100
+	rotation 0, 0, 0, -1
+	sound_event des_shutters
+	use_instigator false
+´sound_shutters002´ ElementPlaySound 100095
+	append_prefix false
+	interrupt true
+	position -1825, 1550, 100
+	rotation 0, 0, 0, -1
+	sound_event des_shutters
+	use_instigator false
+´sound_lights_flicker001´ ElementPlaySound 100096
+	append_prefix false
+	interrupt true
+	position -2086, 1163, 290
+	rotation 0, 0, 0, -1
+	sound_event des_lights_flicker
+	use_instigator false
+´sound_lights_flicker002´ ElementPlaySound 100097
+	append_prefix false
+	interrupt true
+	position -2086, 1363, 290
+	rotation 0, 0, 0, -1
+	sound_event des_lights_flicker
+	use_instigator false
+´sound_lights_flicker003´ ElementPlaySound 100098
+	append_prefix false
+	interrupt true
+	position -2086, 1563, 290
+	rotation 0, 0, 0, -1
+	sound_event des_lights_flicker
+	use_instigator false
+´assault_end´ ElementGlobalEventTrigger 100010
+	global_event end_assault
+	position -1500, 1900, 2.28882E-05
+	rotation 0, 0, 0, -1
+	on_executed
+		´teammate_comment_get_ready´ (delay 25-30)
+´teammate_comment_get_ready´ ElementTeammateComment 100099
+	close_to_element true
+	comment g50
+	position -1400, 1900, 2.28882E-05
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_004´ (delay 0)
+´teammate_comment_they_are_everywhere´ ElementTeammateComment 100100
+	close_to_element true
+	comment g68
+	position -1400, 2000, 2.28882E-05
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´teammate_comment_fight_back´ (delay 15-20)
+		´point_debug_005´ (delay 0)
+´assault_start´ ElementGlobalEventTrigger 100101
+	global_event start_assault
+	position -1500, 2000, 2.28882E-05
+	rotation 0, 0, 0, -1
+	on_executed
+		´teammate_comment_they_are_everywhere´ (delay 40-50)
+´teammate_comment_fight_back´ ElementTeammateComment 100102
+	close_to_element true
+	comment g16
+	position -1300, 2000, 2.28882E-05
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_006´ (delay 0)
+´area_player_spawned´ ElementAreaTrigger 100103
+	TRIGGER TIMES 1
+	amount 1
+	depth 500000
+	height 50000
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -1500, 2200, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´start_chatter´ (delay 3)
+´start_chatter´ MissionScriptElement 100104
+	on_executed
+		´teammate_comment_wait´ (delay 0)
+		´teammate_comment_lets_get_it_on´ (delay 6.5)
+´teammate_comment_wait´ ElementTeammateComment 100105
+	close_to_element true
+	comment g67
+	position -1300, 2200, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_007´ (delay 0)
+´teammate_comment_lets_get_it_on´ ElementTeammateComment 100106
+	close_to_element true
+	comment p47
+	position -1300, 2300, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_008´ (delay 0)
+´soundbank_robber´ ElementPlaySound 100107
+	append_prefix false
+	interrupt true
+	position -1800, 2300, 0
+	rotation 0, 0, 0, -1
+	sound_event f11m_sin
+	use_instigator false
+´soundbank_robber2´ ElementPlaySound 100108
+	append_prefix false
+	interrupt true
+	position -1800, 2400, 0
+	rotation 0, 0, 0, -1
+	sound_event p14
+	use_instigator false
+´point_debug_004´ ElementDebug 100109
+	as_subtitle false
+	debug_string teammate_comment_get_ready
+	show_instigator false
+´point_debug_005´ ElementDebug 100110
+	as_subtitle false
+	debug_string teammate_comment_they_are_everywhere
+	show_instigator false
+´point_debug_006´ ElementDebug 100111
+	as_subtitle false
+	debug_string teammate_comment_fight_back
+	show_instigator false
+´point_debug_007´ ElementDebug 100112
+	as_subtitle false
+	debug_string teammate_comment_wait
+	show_instigator false
+´point_debug_008´ ElementDebug 100113
+	as_subtitle false
+	debug_string teammate_comment_lets_get_it_on
+	show_instigator false

@@ -1,0 +1,19 @@
+´lock002´ MissionScriptElement 100008
+	on_executed
+		´point_debug_002´ (delay 0)
+		´diamond_door_opened´ (delay 0)
+´point_debug_002´ ElementDebug 100010
+	as_subtitle false
+	debug_string lock 002 opened
+	show_instigator false
+´diamond_door_opened´ ElementInstanceOutput 100004
+	event diamond_door_opened
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_indiana/props/mus_prop_diamond_door/mus_prop_diamond_portal/001 (0, 150, 0)
+	on_executed
+		´lock002´ (delay 0)

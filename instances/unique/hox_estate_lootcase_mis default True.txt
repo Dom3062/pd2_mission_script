@@ -1,0 +1,112 @@
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	BASE DELAY 1,45
+	on_executed
+		´hide_all´ (delay 0)
+´hide_all´ ElementUnitSequence 100004
+	position -200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´set_lootcase´ ElementInstanceInput 100005
+	BASE DELAY 2
+	event set_lootcase
+	on_executed
+		´enable_box´ (delay 0)
+´loot_random´ ElementRandom 100007
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´loot_type001´ (delay 0)
+´loot_type001´ ElementUnitSequence 100008
+	position -200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´int_enable001´ (delay 0)
+´int_enable001´ ElementToggle 100009
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_enable_int001´ DISABLED
+´opened_lootcase´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´seq_enable_int001´ (delay 0) DISABLED
+´seq_enable_int001´ ElementUnitSequence 100013
+	DISABLED
+	position -400, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´enable_case´ ElementUnitSequence 100006
+	position -200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´set_moneycase´ ElementInstanceInput 100010
+	BASE DELAY 2,5
+	event set_moneycase
+	on_executed
+		´enable_case´ (delay 0)
+		´loot_random´ (delay 0)
+´enable_box´ ElementUnitSequence 100002
+	position -200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence interact_enable
+			time 0
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	DISABLED
+	position 25, -425, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´set_lootcase_half_interaction´ (delay 3)
+´logic_link_001´ MissionScriptElement 100011
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+´set_lootcase_half_interaction´ ElementInstanceInput 100014
+	BASE DELAY 2
+	event set_lootcase_half_interaction
+	on_executed
+		´enable_box001´ (delay 0)
+´enable_box001´ ElementUnitSequence 100015
+	position -200, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence set_half_circle_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_box/mcm_prop_evidence_box/001 (0, 0, 0)
+			notify_unit_sequence interact_enable
+			time 0

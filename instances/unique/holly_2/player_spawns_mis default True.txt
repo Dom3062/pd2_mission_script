@@ -1,0 +1,86 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	EXECUTE ON STARTUP
+	position 50, -99.9998, 0
+	rotation 0, 0, -1.07288E-06, -1
+	state standard
+´point_spawn_player_002´ ElementPlayerSpawner 100001
+	EXECUTE ON STARTUP
+	position -50, -100, 0
+	rotation 0, 0, -1.07288E-06, -1
+	state standard
+´point_spawn_player_003´ ElementPlayerSpawner 100002
+	EXECUTE ON STARTUP
+	position 49.9998, 0.000213623, 0
+	rotation 0, 0, -1.07288E-06, -1
+	state standard
+´point_spawn_player_004´ ElementPlayerSpawner 100003
+	EXECUTE ON STARTUP
+	position -50.0002, 0, 0
+	rotation 0, 0, -1.04308E-06, -1
+	state standard
+´trigger_spawn_area´ ElementAreaTrigger 100004
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position 0, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link´ (delay 0)
+´players_spawned´ ElementInstanceOutput 100005
+	TRIGGER TIMES 1
+	event players_spawned
+´link´ MissionScriptElement 100007
+	on_executed
+		´players_spawned´ (delay 0)
+		´heli_fly_away´ (delay 0)
+		´give_saw´ (delay 0)
+		´func_disable_unit_001´ (delay 2)
+´heli_fly_away´ ElementUnitSequence 100008
+	position 100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (-233.655, 358.9, -50)
+			notify_unit_sequence takeoff_to_right
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (-233.655, 358.9, -50)
+			notify_unit_sequence diamondheist
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (-233.655, 358.9, -50)
+			notify_unit_sequence hidden
+			time 20
+´give_saw´ ElementEquipment 100009
+	amount 1
+	equipment saw
+	position 100, -100, 0
+	rotation 0, 0, 0, -1
+´func_disable_unit_001´ ElementDisableUnit 100016
+	position -100, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/006 (100, -300, 300)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/005 (200, -300, 300)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/002 (-200, -300, 0)
+		4 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/003 (200, -300, 0)
+		5 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/004 (-200, 100, 0)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_4x3m/001 (-200, -300, 0)

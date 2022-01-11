@@ -1,0 +1,279 @@
+´open_interaction001´ ElementInteraction 100002
+	DISABLED
+	override_timer 2
+	position 1, -9, 100
+	rotation 0, 0, 0, -1
+	tweak_data_id invisible_interaction_open
+	on_executed
+		´opened´ (delay 0) (alternative interacted)
+´open_box´ ElementUnitSequence 100000
+	TRIGGER TIMES 1
+	position 100, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence open_door
+			time 0
+´opened´ MissionScriptElement 100005
+	on_executed
+		´open_box´ (delay 0)
+		´interact_enabled´ (delay 0.5)
+´circuit_fixed´ ElementInstanceOutput 100006
+	event circuit_fixed
+´interacted´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+	on_executed
+		´circuit_fixed´ (delay 0)
+		´close_box´ (delay 0.5)
+´disable_circuit_box´ ElementInstanceInput 100004
+	event disable_circuit_box
+	on_executed
+		´disable_interact_2´ (delay 0)
+		´disable_interact´ (delay 0)
+´disable_interact´ ElementUnitSequence 100007
+	position 300, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence interact_disabled
+			time 0
+´disable_interact_2´ ElementToggle 100008
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´open_interaction001´ DISABLED
+´set_circuit_box´ ElementInstanceInput 100009
+	BASE DELAY 2
+	event set_circuit_box
+	on_executed
+		´enable_interact´ (delay 0)
+		´show_circuit_box´ (delay 0)
+´show_circuit_box´ ElementUnitSequence 100010
+	position 200, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence state_show
+			time 0
+´enable_interact´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´open_interaction001´ DISABLED
+´setup_hide´ MissionScriptElement 100012
+	EXECUTE ON STARTUP
+	BASE DELAY 0,75
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100013
+	position 400, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence state_hide
+			time 0
+´computer_electric_box´ ElementInstanceInput 100014
+	event computer_electric_box
+	on_executed
+		´enable_computer_inputs´ (delay 0)
+´enable_computer_inputs´ ElementToggle 100016
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_interrupt_link´ DISABLED
+		2 ´set_defend_link´ DISABLED
+´start_interrupt_link´ MissionScriptElement 100017
+	DISABLED
+	on_executed
+		´enable_and_action_so´ (delay 0)
+´start_interrupt´ ElementInstanceInput 100015
+	event start_interrupt
+	on_executed
+		´start_interrupt_link´ (delay 0) DISABLED
+´failed_interrupt´ ElementInstanceOutput 100018
+	event failed_interrupt
+´succesful_interrupt´ ElementInstanceOutput 100019
+	event sucessful_interrupt
+´interrupt_so´ ElementSpecialObjective 100020
+	TRIGGER TIMES 1
+	SO_access 8416
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interval 5
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -50.6211, -88.8374, 0
+	rotation 0, 0, 0.173648, -0.984808
+	scan true
+	search_distance 4500
+	search_position 0 -200 100
+	so_action e_so_interact_mid
+	trigger_on none
+	followup_elements
+´completed_interrupt´ ElementSpecialObjectiveTrigger 100021
+	TRIGGER TIMES 1
+	event complete
+	position 0, 300, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´succesful_interrupt´ (delay 0)
+		´enable_breaker_interaction_and_wp´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+´failed_interrupt_2´ ElementSpecialObjectiveTrigger 100022
+	TRIGGER TIMES 1
+	event fail
+	position 100, 300, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´failed_interrupt´ (delay 0)
+		´point_debug_002´ (delay 0)
+´open_door_if_not_open´ ElementSpecialObjectiveTrigger 100023
+	event anim_start
+	position 100, 0, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´open_box´ (delay 0)
+´power_resumed´ ElementInstanceOutput 100024
+	event power_resumed
+	on_executed
+		´remove_power_wp´ (delay 0)
+´power_resume_interaction001´ ElementInteraction 100025
+	DISABLED
+	override_timer 2
+	position 1, -9, 100
+	rotation 0, 0, 1, -1.32945E-07
+	tweak_data_id hold_circuit_breaker
+	on_executed
+		´power_resumed´ (delay 0) (alternative interacted)
+´enable_breaker_interaction_and_wp´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´power_resume_interaction001´ DISABLED
+	on_executed
+		´power_wp´ (delay 0)
+´remove_power_wp´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´power_wp´
+	on_executed
+		´defend_wp´ (delay 0)
+´power_wp´ ElementWaypoint 100028
+	icon pd2_power
+	only_in_civilian false
+	position 0, -29, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_and_action_so´ ElementToggle 100029
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_so´
+		2 ´failed_interrupt_2´
+		3 ´completed_interrupt´
+	on_executed
+		´interrupt_so´ (delay 0.05)
+		´point_debug_001´ (delay 0)
+´defend_wp´ ElementWaypoint 100030
+	icon pd2_defend
+	only_in_civilian false
+	position 0, -29, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´set_defend´ ElementInstanceInput 100031
+	event set_defend
+	on_executed
+		´set_defend_link´ (delay 0) DISABLED
+´remove_defend_wp´ ElementOperator 100032
+	operation remove
+	elements
+		1 ´defend_wp´
+´disable_interrupting´ ElementInstanceInput 100033
+	event disable_interrupting
+	on_executed
+		´remove_so_and_wp´ (delay 0)
+		´disable_interrupt´ (delay 0)
+´remove_so_and_wp´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´interrupt_so´
+		2 ´defend_wp´
+		3 ´power_wp´
+´disable_interrupt´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´completed_interrupt´
+		2 ´failed_interrupt_2´
+		3 ´start_interrupt_link´ DISABLED
+		4 ´enable_and_action_so´
+		5 ´interrupt_so´
+´set_defend_link´ MissionScriptElement 100036
+	DISABLED
+	on_executed
+		´defend_wp´ (delay 0)
+´point_debug_001´ ElementDebug 100037
+	as_subtitle false
+	debug_string started_interrupt_at_power_box
+	show_instigator false
+´point_debug_002´ ElementDebug 100038
+	as_subtitle false
+	debug_string failed_at_power_box
+	show_instigator false
+´interact_enabled´ ElementUnitSequence 100039
+	TRIGGER TIMES 1
+	position 100, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence interact_enabled
+			time 0
+´close_box´ ElementUnitSequence 100001
+	position -300, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_electric_box/mus_prop_electric_box/001 (0, 0, 11)
+			notify_unit_sequence close_door
+			time 0

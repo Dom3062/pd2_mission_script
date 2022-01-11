@@ -1,0 +1,1978 @@
+´police_called´ ElementGlobalEventTrigger 100017
+	TRIGGER TIMES 1
+	global_event police_called
+	position -800, 350, 0.00400543
+	rotation 0, 0, 0, -1
+	on_executed
+		´loud_hacking´ (delay 0)
+		´toggle´ (delay 0)
+		´opened_door_and_loud´ (delay 0)
+		´close_shutters´ (delay 0) DISABLED
+		´enable_VO´ (delay 0)
+		´enable_vis_blockers´ (delay 0)
+´open_shutters´ ElementUnitSequence 100018
+	TRIGGER TIMES 1
+	position -1000, 350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/001 (684, 299, 400)
+			notify_unit_sequence open_shutters
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/002 (684, -101, 400)
+			notify_unit_sequence open_shutters
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/003 (684, -501, 400)
+			notify_unit_sequence open_shutters
+			time 0
+	on_executed
+		´teammate_comment_inside´ (delay 1) DISABLED
+		´disable_VO´ (delay 0)
+´keycard_interact´ ElementUnitSequenceTrigger 100025
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_partition_door_lock/001 (0, -75, 0)
+	on_executed
+		´open_door´ (delay 0)
+´open_door´ ElementUnitSequence 100026
+	TRIGGER TIMES 1
+	position -900, 250, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_glass_partition_door/001 (0, 55, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+	on_executed
+		´enable_interaction´ (delay 1)
+		´door_opened´ (delay 0)
+		´WP_computer´ (delay 1)
+		´remove_WP_drill_keycard_interact´ (delay 0)
+		´opened_door_and_loud´ (delay 0)
+		´seq_disable_keycard_interaction´ (delay 0)
+´loud_hacking´ ElementUnitSequence 100035
+	position -1200, 350, 0
+	rotation 0, 0, 1, -8.9407E-08
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence set_hack_time_state_7
+			time 0
+´hacking_done_trigger´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+	on_executed
+		´hacking_done_output´ (delay 0)
+		´logic_operator_002´ (delay 0)
+		´disable_all´ (delay 0)
+		´disable_interaction´ (delay 2)
+		´link_generate_code´ (delay 2.01)
+		´teammate_comment_computer_done´ (delay 0.5) DISABLED
+´hacking_done_output´ ElementInstanceOutput 100037
+	event hacking_done
+´disable_interaction´ ElementUnitSequence 100038
+	EXECUTE ON STARTUP
+	position -1100, -700, 0
+	rotation 0, 0, 1, -8.9407E-08
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_reset
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´enable_interaction´ ElementUnitSequence 100039
+	position -1200, 250, 0.00400543
+	rotation 0, 0, 1, -8.9407E-08
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´door_opened´ ElementInstanceOutput 100041
+	event door_opened
+´WP_interact´ ElementWaypoint 100040
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -6, -80, 129
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_wp_interact´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´WP_interact´
+´enable_door_wp´ ElementInstanceInput 100045
+	event enable_door_wp
+	on_executed
+		´WP_interact´ (delay 0)
+´disable_door_wp´ ElementInstanceInput 100042
+	event disable_door_wp
+	on_executed
+		´remove_wp_interact´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100043
+	DISABLED
+	SO_access 132136928
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 490.08, -0.213196, 50
+	rotation 0, 0, 0.989016, 0.147809
+	scan false
+	search_distance 0
+	search_position 475 225 0
+	so_action e_so_interact_mid
+	trigger_on none
+	followup_elements
+´point_special_objective_002´ ElementSpecialObjective 100046
+	DISABLED
+	SO_access 132136928
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 490.08, -0.213196, 0
+	rotation 0, 0, 0.989016, 0.147809
+	scan true
+	search_distance 750
+	search_position 450,813 -4,68371 0,00400394
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´point_special_objective_001´ DISABLED
+´toggle_interrupt_on´ ElementToggle 100047
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_special_objective_002´ DISABLED
+	on_executed
+		´toggle_keyboarding_on´ (delay 0)
+´toggle_keyboarding_on´ ElementToggle 100048
+	set_trigger_times 2
+	toggle on
+	elements
+		1 ´point_special_objective_001´ DISABLED
+	on_executed
+		´point_special_objective_002´ (delay 0.5) DISABLED
+		´point_special_objective_001´ (delay 0.5) DISABLED
+´police_called_2´ ElementGlobalEventTrigger 100049
+	TRIGGER TIMES 1
+	global_event police_called
+	position -700, -400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´if_loud_and_hacking´ (delay 0)
+´interrupt_completed´ ElementSpecialObjectiveTrigger 100050
+	event complete
+	position -800, -500, 0.00400543
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´point_special_objective_001´ DISABLED
+	on_executed
+		´interrupt_hacking´ (delay 0)
+		´WP_fix´ (delay 0.5)
+		´remove_WP_computer´ (delay 0)
+´interrupt_failed´ ElementSpecialObjectiveTrigger 100051
+	event admin_fail
+	position -800, -600, 0.00402832
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´point_special_objective_001´ DISABLED
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´toggle_interrupt_on´ (delay 0)
+´logic_operator_001´ ElementOperator 100052
+	operation remove
+	elements
+		1 ´point_special_objective_002´ DISABLED
+		2 ´point_special_objective_001´ DISABLED
+	on_executed
+		´toggle_interrupt_on´ (delay 1)
+´interrupt_hacking´ ElementUnitSequence 100053
+	position -900, -500, 0.00400543
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´hacking_interrupted´ (delay 0)
+´computer_interacted´ ElementUnitSequenceTrigger 100054
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+	on_executed
+		´enable´ (delay 0)
+		´if_loud_and_hacking´ (delay 0)
+		´hacking_started´ (delay 0)
+´enable´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´computer_resumed´ DISABLED
+´computer_resumed´ ElementUnitSequenceTrigger 100056
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+	on_executed
+		´resume_hacking´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+		´hacking_resumed´ (delay 0)
+		´WP_computer´ (delay 0.5)
+´resume_hacking´ ElementUnitSequence 100057
+	position -1200, -300, 0.00400543
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´toggle_interrupt_on´ (delay 15)
+´point_spawn_player_001´ ElementPlayerSpawner 100058
+	DISABLED
+	EXECUTE ON STARTUP
+	position 300, -225, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+		´open_door´ (delay 2)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100059
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 175, 500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´logic_operator_002´ ElementOperator 100060
+	operation remove
+	elements
+		1 ´point_special_objective_002´ DISABLED
+		2 ´point_special_objective_001´ DISABLED
+		3 ´WP_computer´
+		4 ´WP_fix´
+´if_loud_and_hacking´ ElementCounter 100061
+	counter_target 2
+	on_executed
+		´toggle_interrupt_on´ (delay 10)
+´hacking_interrupted´ ElementInstanceOutput 100062
+	event hacking_interrupted
+´hacking_resumed´ ElementInstanceOutput 100063
+	event hacking_resumed
+´relay lol´ ElementInstanceInput 100065
+	DISABLED
+	TRIGGER TIMES 1
+	event enable_drill
+´timer_done´ ElementUnitSequenceTrigger 100067
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+	on_executed
+		´open_door´ (delay 0)
+		´hide_drill´ (delay 1)
+		´teammate_comment_drill_done´ (delay 0) DISABLED
+		´disable_SO_interrupt´ (delay 0)
+´WP_drill´ ElementWaypoint 100068
+	DISABLED
+	TRIGGER TIMES 1
+	icon pd2_drill
+	only_in_civilian false
+	only_on_instigator false
+	position -35, -81, 147.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´drill_placed´ ElementInstanceOutput 100070
+	event drill_placed
+´drill_placed_trigger´ ElementUnitSequenceTrigger 100071
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+	on_executed
+		´remove_wp_interact´ (delay 0)
+		´drill_placed´ (delay 0)
+		´teammate_comment_drill_mounted´ (delay 0.5) DISABLED
+		´enable_drill_resumed´ (delay 0)
+		´relay´ (delay 0)
+		´WP_drill´ (delay 0) DISABLED
+		´drill_placed_but_keycard_used´ (delay 0)
+´hide_drill´ ElementUnitSequence 100012
+	position -1200, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence deactivate
+			time 0
+´area_player_closeby´ ElementAreaTrigger 100013
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -150, 0, 100
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_player_closeby´ (delay 0)
+		´remove_WP_goto´ (delay 0)
+		´disable_WP_goto´ (delay 0)
+		´teammate_comment_found_it´ (delay 0) DISABLED
+		´teammate_comment_open_it_up´ (delay 10-12) DISABLED
+´link_player_closeby´ MissionScriptElement 100016
+	on_executed
+		´WP_interact´ (delay 0)
+		´relay lol´ (delay 0) DISABLED
+		´WP_drill´ (delay 0) DISABLED
+´enable_area_player_closeby´ ElementToggle 100073
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_closeby´ DISABLED
+´enable_area_player_closeby_2´ ElementInstanceInput 100074
+	event enable_area_player_closeby
+	on_executed
+		´enable_area_player_closeby´ (delay 0)
+´used_keycard´ ElementUnitSequenceTrigger 100075
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_partition_door_lock/001 (0, -75, 0)
+	on_executed
+		´remove_wp_interact´ (delay 0)
+		´hide_drill´ (delay 0)
+		´teammate_comment_keycard_used´ (delay 0) DISABLED
+		´open_shutters´ (delay 1)
+		´drill_placed_but_keycard_used´ (delay 0)
+´WP_goto´ ElementWaypoint 100076
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position -125, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_goto´ ElementOperator 100077
+	operation remove
+	elements
+		1 ´WP_goto´
+´input_event_enable_helper´ ElementInstanceInput 100078
+	event enable_helper
+	on_executed
+		´WP_goto´ (delay 0)
+´toggle´ ElementToggle 100079
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´relay lol´ DISABLED
+		2 ´WP_interact´
+´startup´ MissionScriptElement 100081
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100082
+	on_executed
+		´seq_hider´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´WP_computer´ ElementWaypoint 100084
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 471, -68, 120
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_computer´ ElementOperator 100085
+	operation remove
+	elements
+		1 ´WP_computer´
+´WP_fix´ ElementWaypoint 100087
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 471, -68, 120
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_fix´ ElementOperator 100090
+	operation remove
+	elements
+		1 ´WP_fix´
+´disable_all´ ElementToggle 100088
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_fix´
+		2 ´WP_computer´
+		3 ´toggle_interrupt_on´
+		4 ´point_special_objective_002´ DISABLED
+		5 ´point_special_objective_001´ DISABLED
+		6 ´interrupt_completed´
+		7 ´interrupt_failed´
+´seq_hider´ ElementUnitSequence 100001
+	position -1100, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_glass_partition_door/001 (0, 55, 0)
+			notify_unit_sequence close_doors
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence set_hack_time_state_11
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/001 (684, 299, 400)
+			notify_unit_sequence close_shutters
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/002 (684, -101, 400)
+			notify_unit_sequence close_shutters
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/003 (684, -501, 400)
+			notify_unit_sequence close_shutters
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id 200003
+			notify_unit_sequence disable_interaction
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id 200003
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´logic_random_005´ (delay 1)
+´link_generate_code´ MissionScriptElement 100003
+	on_executed
+		´logic_random_001´ (delay 0)
+		´logic_random_002´ (delay 0.2)
+		´logic_random_003´ (delay 0.4)
+		´logic_random_004´ (delay 0.6)
+´func_instance_output_001´ ElementInstanceOutput 100004
+	event red1
+	on_executed
+		´point_debug_001´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´logic_random_001´ ElementRandom 100005
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_instance_output_001´ (delay 0)
+		´func_instance_output_002´ (delay 0)
+		´func_instance_output_003´ (delay 0)
+		´func_instance_output_004´ (delay 0)
+		´func_instance_output_005´ (delay 0)
+		´func_instance_output_006´ (delay 0)
+		´func_instance_output_007´ (delay 0)
+		´func_instance_output_008´ (delay 0)
+		´func_instance_output_009´ (delay 0)
+		´func_instance_output_010´ (delay 0)
+´func_instance_output_002´ ElementInstanceOutput 100006
+	event red2
+	on_executed
+		´point_debug_002´ (delay 0)
+		´func_sequence_002´ (delay 0)
+´func_instance_output_003´ ElementInstanceOutput 100007
+	event red3
+	on_executed
+		´point_debug_003´ (delay 0)
+		´func_sequence_003´ (delay 0)
+´func_instance_output_004´ ElementInstanceOutput 100008
+	event red4
+	on_executed
+		´point_debug_004´ (delay 0)
+		´func_sequence_004´ (delay 0)
+´func_instance_output_005´ ElementInstanceOutput 100009
+	event red5
+	on_executed
+		´point_debug_005´ (delay 0)
+		´func_sequence_005´ (delay 0)
+´func_instance_output_006´ ElementInstanceOutput 100010
+	event red6
+	on_executed
+		´point_debug_006´ (delay 0)
+		´func_sequence_006´ (delay 0)
+´func_instance_output_007´ ElementInstanceOutput 100030
+	event red7
+	on_executed
+		´point_debug_007´ (delay 0)
+		´func_sequence_007´ (delay 0)
+´func_instance_output_008´ ElementInstanceOutput 100092
+	event red8
+	on_executed
+		´point_debug_008´ (delay 0)
+		´func_sequence_008´ (delay 0)
+´func_instance_output_009´ ElementInstanceOutput 100093
+	event red9
+	on_executed
+		´point_debug_009´ (delay 0)
+		´func_sequence_009´ (delay 0)
+´func_instance_output_010´ ElementInstanceOutput 100094
+	event red0
+	on_executed
+		´point_debug_010´ (delay 0)
+		´func_sequence_010´ (delay 0)
+´func_instance_output_011´ ElementInstanceOutput 100095
+	event green3
+	on_executed
+		´point_debug_013´ (delay 0)
+		´func_sequence_013´ (delay 0)
+´func_instance_output_012´ ElementInstanceOutput 100096
+	event green2
+	on_executed
+		´point_debug_012´ (delay 0)
+		´func_sequence_012´ (delay 0)
+´func_instance_output_013´ ElementInstanceOutput 100097
+	event green4
+	on_executed
+		´point_debug_014´ (delay 0)
+		´func_sequence_014´ (delay 0)
+´func_instance_output_014´ ElementInstanceOutput 100098
+	event green1
+	on_executed
+		´point_debug_011´ (delay 0)
+		´func_sequence_011´ (delay 0)
+´func_instance_output_015´ ElementInstanceOutput 100099
+	event green5
+	on_executed
+		´point_debug_015´ (delay 0)
+		´func_sequence_015´ (delay 0)
+´logic_random_002´ ElementRandom 100100
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_instance_output_014´ (delay 0)
+		´func_instance_output_012´ (delay 0)
+		´func_instance_output_011´ (delay 0)
+		´func_instance_output_013´ (delay 0)
+		´func_instance_output_015´ (delay 0)
+		´func_instance_output_016´ (delay 0)
+		´func_instance_output_017´ (delay 0)
+		´func_instance_output_018´ (delay 0)
+		´func_instance_output_019´ (delay 0)
+		´func_instance_output_020´ (delay 0)
+´func_instance_output_016´ ElementInstanceOutput 100101
+	event green6
+	on_executed
+		´point_debug_016´ (delay 0)
+		´func_sequence_016´ (delay 0)
+´func_instance_output_017´ ElementInstanceOutput 100102
+	event green7
+	on_executed
+		´point_debug_017´ (delay 0)
+		´func_sequence_017´ (delay 0)
+´func_instance_output_018´ ElementInstanceOutput 100103
+	event green8
+	on_executed
+		´point_debug_018´ (delay 0)
+		´func_sequence_018´ (delay 0)
+´func_instance_output_019´ ElementInstanceOutput 100104
+	event green9
+	on_executed
+		´point_debug_019´ (delay 0)
+		´func_sequence_019´ (delay 0)
+´func_instance_output_020´ ElementInstanceOutput 100105
+	event green0
+	on_executed
+		´point_debug_020´ (delay 0)
+		´func_sequence_020´ (delay 0)
+´func_instance_output_021´ ElementInstanceOutput 100106
+	event blue3
+	on_executed
+		´point_debug_023´ (delay 0)
+		´func_sequence_023´ (delay 0)
+´func_instance_output_022´ ElementInstanceOutput 100107
+	event blue2
+	on_executed
+		´point_debug_022´ (delay 0)
+		´func_sequence_022´ (delay 0)
+´func_instance_output_023´ ElementInstanceOutput 100108
+	event blue4
+	on_executed
+		´point_debug_024´ (delay 0)
+		´func_sequence_024´ (delay 0)
+´func_instance_output_024´ ElementInstanceOutput 100109
+	event blue1
+	on_executed
+		´point_debug_021´ (delay 0)
+		´func_sequence_021´ (delay 0)
+´func_instance_output_025´ ElementInstanceOutput 100110
+	event blue5
+	on_executed
+		´point_debug_025´ (delay 0)
+		´func_sequence_025´ (delay 0)
+´logic_random_003´ ElementRandom 100111
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_instance_output_024´ (delay 0)
+		´func_instance_output_022´ (delay 0)
+		´func_instance_output_021´ (delay 0)
+		´func_instance_output_023´ (delay 0)
+		´func_instance_output_025´ (delay 0)
+		´func_instance_output_026´ (delay 0)
+		´func_instance_output_027´ (delay 0)
+		´func_instance_output_028´ (delay 0)
+		´func_instance_output_029´ (delay 0)
+		´func_instance_output_030´ (delay 0)
+´func_instance_output_026´ ElementInstanceOutput 100112
+	event blue6
+	on_executed
+		´point_debug_026´ (delay 0)
+		´func_sequence_026´ (delay 0)
+´func_instance_output_027´ ElementInstanceOutput 100113
+	event blue7
+	on_executed
+		´point_debug_027´ (delay 0)
+		´func_sequence_027´ (delay 0)
+´func_instance_output_028´ ElementInstanceOutput 100114
+	event blue8
+	on_executed
+		´point_debug_028´ (delay 0)
+		´func_sequence_028´ (delay 0)
+´func_instance_output_029´ ElementInstanceOutput 100115
+	event blue9
+	on_executed
+		´point_debug_029´ (delay 0)
+		´func_sequence_029´ (delay 0)
+´func_instance_output_030´ ElementInstanceOutput 100116
+	event blue0
+	on_executed
+		´point_debug_030´ (delay 0)
+		´func_sequence_030´ (delay 0)
+´func_instance_output_031´ ElementInstanceOutput 100117
+	event yellow3
+	on_executed
+		´point_debug_033´ (delay 0)
+		´func_sequence_033´ (delay 0)
+´func_instance_output_032´ ElementInstanceOutput 100118
+	event yellow2
+	on_executed
+		´point_debug_032´ (delay 0)
+		´func_sequence_032´ (delay 0)
+´func_instance_output_033´ ElementInstanceOutput 100119
+	event yellow4
+	on_executed
+		´point_debug_034´ (delay 0)
+		´func_sequence_034´ (delay 0)
+´func_instance_output_034´ ElementInstanceOutput 100120
+	event yellow1
+	on_executed
+		´point_debug_031´ (delay 0)
+		´func_sequence_031´ (delay 0)
+´func_instance_output_035´ ElementInstanceOutput 100121
+	event yellow5
+	on_executed
+		´point_debug_035´ (delay 0)
+		´func_sequence_035´ (delay 0)
+´logic_random_004´ ElementRandom 100122
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_instance_output_034´ (delay 0)
+		´func_instance_output_032´ (delay 0)
+		´func_instance_output_031´ (delay 0)
+		´func_instance_output_033´ (delay 0)
+		´func_instance_output_035´ (delay 0)
+		´func_instance_output_036´ (delay 0)
+		´func_instance_output_037´ (delay 0)
+		´func_instance_output_038´ (delay 0)
+		´func_instance_output_039´ (delay 0)
+		´func_instance_output_040´ (delay 0)
+´func_instance_output_036´ ElementInstanceOutput 100123
+	event yellow6
+	on_executed
+		´point_debug_036´ (delay 0)
+		´func_sequence_036´ (delay 0)
+´func_instance_output_037´ ElementInstanceOutput 100124
+	event yellow7
+	on_executed
+		´point_debug_037´ (delay 0)
+		´func_sequence_037´ (delay 0)
+´func_instance_output_038´ ElementInstanceOutput 100125
+	event yellow8
+	on_executed
+		´point_debug_038´ (delay 0)
+		´func_sequence_038´ (delay 0)
+´func_instance_output_039´ ElementInstanceOutput 100126
+	event yellow9
+	on_executed
+		´point_debug_039´ (delay 0)
+		´func_sequence_039´ (delay 0)
+´func_instance_output_040´ ElementInstanceOutput 100127
+	event yellow0
+	on_executed
+		´point_debug_040´ (delay 0)
+		´func_sequence_040´ (delay 0)
+´point_debug_001´ ElementDebug 100128
+	as_subtitle false
+	debug_string first 1
+	show_instigator false
+´point_debug_002´ ElementDebug 100129
+	as_subtitle false
+	debug_string first 2
+	show_instigator false
+´point_debug_003´ ElementDebug 100130
+	as_subtitle false
+	debug_string first 3
+	show_instigator false
+´point_debug_004´ ElementDebug 100131
+	as_subtitle false
+	debug_string first 4
+	show_instigator false
+´point_debug_005´ ElementDebug 100132
+	as_subtitle false
+	debug_string first 5
+	show_instigator false
+´point_debug_006´ ElementDebug 100133
+	as_subtitle false
+	debug_string first 6
+	show_instigator false
+´point_debug_007´ ElementDebug 100134
+	as_subtitle false
+	debug_string first 7
+	show_instigator false
+´point_debug_008´ ElementDebug 100135
+	as_subtitle false
+	debug_string first 8
+	show_instigator false
+´point_debug_009´ ElementDebug 100136
+	as_subtitle false
+	debug_string first 9
+	show_instigator false
+´point_debug_010´ ElementDebug 100137
+	as_subtitle false
+	debug_string first 0
+	show_instigator false
+´point_debug_011´ ElementDebug 100138
+	as_subtitle false
+	debug_string second 1
+	show_instigator false
+´point_debug_012´ ElementDebug 100139
+	as_subtitle false
+	debug_string second 2
+	show_instigator false
+´point_debug_013´ ElementDebug 100140
+	as_subtitle false
+	debug_string second 3
+	show_instigator false
+´point_debug_014´ ElementDebug 100141
+	as_subtitle false
+	debug_string second 4
+	show_instigator false
+´point_debug_015´ ElementDebug 100142
+	as_subtitle false
+	debug_string second 5
+	show_instigator false
+´point_debug_016´ ElementDebug 100143
+	as_subtitle false
+	debug_string second 6
+	show_instigator false
+´point_debug_017´ ElementDebug 100144
+	as_subtitle false
+	debug_string second 7
+	show_instigator false
+´point_debug_018´ ElementDebug 100145
+	as_subtitle false
+	debug_string second 8
+	show_instigator false
+´point_debug_019´ ElementDebug 100146
+	as_subtitle false
+	debug_string second 9
+	show_instigator false
+´point_debug_020´ ElementDebug 100147
+	as_subtitle false
+	debug_string second 0
+	show_instigator false
+´point_debug_021´ ElementDebug 100148
+	as_subtitle false
+	debug_string third 1
+	show_instigator false
+´point_debug_022´ ElementDebug 100149
+	as_subtitle false
+	debug_string third 2
+	show_instigator false
+´point_debug_023´ ElementDebug 100150
+	as_subtitle false
+	debug_string third 3
+	show_instigator false
+´point_debug_024´ ElementDebug 100151
+	as_subtitle false
+	debug_string third 4
+	show_instigator false
+´point_debug_025´ ElementDebug 100152
+	as_subtitle false
+	debug_string third 5
+	show_instigator false
+´point_debug_026´ ElementDebug 100153
+	as_subtitle false
+	debug_string third 6
+	show_instigator false
+´point_debug_027´ ElementDebug 100154
+	as_subtitle false
+	debug_string third 7
+	show_instigator false
+´point_debug_028´ ElementDebug 100155
+	as_subtitle false
+	debug_string third 8
+	show_instigator false
+´point_debug_029´ ElementDebug 100156
+	as_subtitle false
+	debug_string third 9
+	show_instigator false
+´point_debug_030´ ElementDebug 100157
+	as_subtitle false
+	debug_string third 0
+	show_instigator false
+´point_debug_031´ ElementDebug 100158
+	as_subtitle false
+	debug_string fourth 1
+	show_instigator false
+´point_debug_032´ ElementDebug 100159
+	as_subtitle false
+	debug_string fourth 2
+	show_instigator false
+´point_debug_033´ ElementDebug 100160
+	as_subtitle false
+	debug_string fourth 3
+	show_instigator false
+´point_debug_034´ ElementDebug 100161
+	as_subtitle false
+	debug_string fourth 4
+	show_instigator false
+´point_debug_035´ ElementDebug 100162
+	as_subtitle false
+	debug_string fourth 5
+	show_instigator false
+´point_debug_036´ ElementDebug 100163
+	as_subtitle false
+	debug_string fourth 6
+	show_instigator false
+´point_debug_037´ ElementDebug 100164
+	as_subtitle false
+	debug_string fourth 7
+	show_instigator false
+´point_debug_038´ ElementDebug 100165
+	as_subtitle false
+	debug_string fourth 8
+	show_instigator false
+´point_debug_039´ ElementDebug 100166
+	as_subtitle false
+	debug_string fourth 9
+	show_instigator false
+´point_debug_040´ ElementDebug 100167
+	as_subtitle false
+	debug_string fourth 0
+	show_instigator false
+´func_sequence_001´ ElementUnitSequence 100169
+	position -1650, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_1
+			time 0
+´func_sequence_002´ ElementUnitSequence 100170
+	position -1750, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_2
+			time 0
+´func_sequence_003´ ElementUnitSequence 100171
+	position -1850, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_3
+			time 0
+´func_sequence_004´ ElementUnitSequence 100172
+	position -1950, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_4
+			time 0
+´func_sequence_005´ ElementUnitSequence 100173
+	position -2050, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_5
+			time 0
+´func_sequence_006´ ElementUnitSequence 100174
+	position -2150, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_6
+			time 0
+´func_sequence_007´ ElementUnitSequence 100175
+	position -2250, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_7
+			time 0
+´func_sequence_008´ ElementUnitSequence 100176
+	position -2350, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_8
+			time 0
+´func_sequence_009´ ElementUnitSequence 100177
+	position -2450, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_9
+			time 0
+´func_sequence_010´ ElementUnitSequence 100178
+	position -2550, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_1_0
+			time 0
+´func_sequence_011´ ElementUnitSequence 100179
+	position -1650, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_1
+			time 0
+´func_sequence_012´ ElementUnitSequence 100180
+	position -1750, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_2
+			time 0
+´func_sequence_013´ ElementUnitSequence 100181
+	position -1850, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_3
+			time 0
+´func_sequence_014´ ElementUnitSequence 100182
+	position -1950, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_4
+			time 0
+´func_sequence_015´ ElementUnitSequence 100183
+	position -2050, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_5
+			time 0
+´func_sequence_016´ ElementUnitSequence 100184
+	position -2150, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_6
+			time 0
+´func_sequence_017´ ElementUnitSequence 100185
+	position -2250, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_7
+			time 0
+´func_sequence_018´ ElementUnitSequence 100186
+	position -2350, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_8
+			time 0
+´func_sequence_019´ ElementUnitSequence 100187
+	position -2450, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_9
+			time 0
+´func_sequence_020´ ElementUnitSequence 100188
+	position -2550, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_2_0
+			time 0
+´func_sequence_021´ ElementUnitSequence 100189
+	position -1650, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_1
+			time 0
+´func_sequence_022´ ElementUnitSequence 100190
+	position -1750, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_2
+			time 0
+´func_sequence_023´ ElementUnitSequence 100191
+	position -1850, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_3
+			time 0
+´func_sequence_024´ ElementUnitSequence 100192
+	position -1950, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_4
+			time 0
+´func_sequence_025´ ElementUnitSequence 100193
+	position -2050, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_5
+			time 0
+´func_sequence_026´ ElementUnitSequence 100194
+	position -2150, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_6
+			time 0
+´func_sequence_027´ ElementUnitSequence 100195
+	position -2250, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_7
+			time 0
+´func_sequence_028´ ElementUnitSequence 100196
+	position -2350, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_8
+			time 0
+´func_sequence_029´ ElementUnitSequence 100197
+	position -2450, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_9
+			time 0
+´func_sequence_030´ ElementUnitSequence 100198
+	position -2550, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_3_0
+			time 0
+´func_sequence_031´ ElementUnitSequence 100199
+	position -1650, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_1
+			time 0
+´func_sequence_032´ ElementUnitSequence 100200
+	position -1750, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_2
+			time 0
+´func_sequence_033´ ElementUnitSequence 100201
+	position -1850, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_3
+			time 0
+´func_sequence_034´ ElementUnitSequence 100202
+	position -1950, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_4
+			time 0
+´func_sequence_035´ ElementUnitSequence 100203
+	position -2050, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_5
+			time 0
+´func_sequence_036´ ElementUnitSequence 100204
+	position -2150, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_6
+			time 0
+´func_sequence_037´ ElementUnitSequence 100205
+	position -2250, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_7
+			time 0
+´func_sequence_038´ ElementUnitSequence 100206
+	position -2350, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_8
+			time 0
+´func_sequence_039´ ElementUnitSequence 100207
+	position -2450, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_9
+			time 0
+´func_sequence_040´ ElementUnitSequence 100208
+	position -2550, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_interactable_hack_computer/sah_interactable_hack_computer/sah_interactable_hack_computer (465.258, -77.6964, 77)
+			notify_unit_sequence state_num_4_0
+			time 0
+´remove_WP_drill_keycard_interact´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´WP_drill´ DISABLED
+		2 ´WP_interact´
+´logic_random_005´ ElementRandom 100260
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´seq_random_moneybundles001´ (delay 0)
+		´seq_random_moneybundles002´ (delay 0)
+		´seq_random_moneybundles003´ (delay 0)
+´seq_random_moneybundles001´ ElementUnitSequence 100261
+	position -900, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_random_moneybundles002´ ElementUnitSequence 100262
+	position -900, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_random_moneybundles003´ ElementUnitSequence 100263
+	position -900, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´shot_lamp001´ ElementUnitSequenceTrigger 100284
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence make_dynamic
+			notify_unit_id units/payday2/props/bnk_prop_office_lamp_desk/bnk_prop_office_lamp_desk/001 (275, 539, 75)
+	on_executed
+		´disable_light001´ (delay 0)
+´disable_light001´ ElementDisableUnit 100285
+	position 300, 475, 125
+	rotation 0, 0, 0, -1
+	unit_ids
+´disable_light002´ ElementDisableUnit 100290
+	position 525, 350, 375
+	rotation 0, 0, 0, -1
+	unit_ids
+´shot_lamp002´ ElementUnitSequenceTrigger 100291
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break
+			notify_unit_id units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (10, -254, 0)
+	on_executed
+		´disable_light002´ (delay 0)
+		´logic_counter_001´ (delay 0)
+´shot_lamp003´ ElementUnitSequenceTrigger 100292
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break
+			notify_unit_id units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (10, -254, 200)
+	on_executed
+		´disable_light003´ (delay 0)
+		´logic_counter_001´ (delay 0)
+´disable_light003´ ElementDisableUnit 100293
+	position 200, -300, 375
+	rotation 0, 0, 0, -1
+	unit_ids
+´unit_disabler´ ElementDisableUnit 100295
+	position -1300, 1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (10, -571, 0)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (10, -371, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (10, -254, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (10, -254, 200)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (10, -371, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (10, -571, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (10, -129, 200)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (10, 44, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/009 (10, 244, 0)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/010 (10, 369, 0)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/011 (10, 369, 200)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/012 (10, 244, 200)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/013 (10, 44, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/014 (10, 583, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/015 (10, 583, 200)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/016 (210, 583, 0)
+		17 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/017 (210, 583, 200)
+		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/018 (410, 583, 0)
+		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/019 (410, 583, 200)
+		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/020 (435, 583, 0)
+		21 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/021 (435, 583, 200)
+´logic_counter_001´ ElementCounter 100296
+	counter_target 0
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100297
+	position 300, 0, 400
+	rotation 0, 0, 0, -1
+	unit_ids
+´opened_door_and_loud´ ElementCounter 100027
+	counter_target 2
+	on_executed
+		´open_shutters´ (delay 0)
+		´disable_close_shutters´ (delay 0)
+´disable_WP_goto´ ElementToggle 100028
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_goto´
+´func_nav_obstacle_001´ ElementNavObstacle 100083
+	operation add
+	position -1200, 1000, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-45, 201, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-45, -599, 0)
+´seq_disable_keycard_interaction´ ElementUnitSequence 100217
+	position -1000, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_partition_door_lock/001 (0, -75, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´instance_input_disable_keycard_interaction´ ElementInstanceInput 100218
+	event disable_keycard_interaction
+	on_executed
+		´seq_disable_keycard_interaction´ (delay 0)
+´close_shutters´ ElementUnitSequence 100220
+	DISABLED
+	position -900, 450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/001 (684, 299, 400)
+			notify_unit_sequence close_shutters
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/002 (684, -101, 400)
+			notify_unit_sequence close_shutters
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/props/sah_prop_branch_security_shutter/sah_prop_branch_security_shutter/003 (684, -501, 400)
+			notify_unit_sequence close_shutters
+			time 0
+´disable_close_shutters´ ElementToggle 100303
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´close_shutters´ DISABLED
+´func_disable_unit_001´ ElementDisableUnit 100307
+	EXECUTE ON STARTUP
+	position -700, 450, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´enable_vis_blockers´ ElementEnableUnit 100308
+	position -1000, 450, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (10, -571, 0)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (10, -371, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (10, -254, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (10, -254, 200)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (10, -371, 200)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (10, -571, 200)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (10, -129, 200)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (10, 44, 0)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/009 (10, 244, 0)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/010 (10, 369, 0)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/011 (10, 369, 200)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/012 (10, 244, 200)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/013 (10, 44, 200)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/014 (10, 583, 0)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/015 (10, 583, 200)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/016 (210, 583, 0)
+		17 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/017 (210, 583, 200)
+		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/018 (410, 583, 0)
+		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/019 (410, 583, 200)
+		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/020 (435, 583, 0)
+		21 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/021 (435, 583, 200)
+´activate_drill001´ ElementUnitSequence 100221
+	position -1000, 700, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence activate
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence set_hack_time_state_4
+			time 0
+´enable_drill001´ ElementInstanceInput 100245
+	TRIGGER TIMES 1
+	event enable_drill
+	on_executed
+		´activate_drill001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´teammate_comment_inside´ ElementTeammateComment 100231
+	DISABLED
+	close_to_element true
+	comment g08
+	position -250, 200, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_found_it´ ElementTeammateComment 100232
+	DISABLED
+	close_to_element false
+	comment v04
+	position -250, 100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´teammate_comment_open_it_up´ ElementTeammateComment 100233
+	DISABLED
+	close_to_element true
+	comment v16
+	position -300, 200, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_drill_mounted´ ElementTeammateComment 100235
+	DISABLED
+	close_to_element true
+	comment g21
+	position -50, -50, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_drill_done´ ElementTeammateComment 100236
+	DISABLED
+	close_to_element true
+	comment v23
+	position 0, 0, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_keycard_used´ ElementTeammateComment 100237
+	DISABLED
+	close_to_element true
+	comment v12
+	position -2, -93, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_computer_done´ ElementTeammateComment 100239
+	DISABLED
+	close_to_element true
+	comment v24
+	position 443, -129, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´enable_VO´ ElementToggle 100240
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´teammate_comment_computer_done´ DISABLED
+		2 ´teammate_comment_drill_done´ DISABLED
+		3 ´teammate_comment_drill_mounted´ DISABLED
+		4 ´teammate_comment_found_it´ DISABLED
+		5 ´teammate_comment_inside´ DISABLED
+		6 ´teammate_comment_keycard_used´ DISABLED
+		7 ´teammate_comment_open_it_up´ DISABLED
+		8 ´teammate_comment_this_is_it´ DISABLED
+´teammate_comment_this_is_it´ ElementTeammateComment 100241
+	DISABLED
+	close_to_element false
+	comment g14
+	position 450, -50, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´area_player_close_to_computer´ ElementAreaTrigger 100242
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 407, -140, 170
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_this_is_it´ (delay 0) DISABLED
+´disable_VO´ ElementToggle 100234
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´teammate_comment_open_it_up´ DISABLED
+´enable_keycard´ ElementUnitSequence 100227
+	position -700, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_int/sah_int_glass_partition/sah_int_partition_door_lock/001 (0, -75, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´point_debug_044´ (delay 0)
+´input_enable_keycard´ ElementInstanceInput 100229
+	event enable_keycard
+	on_executed
+		´enable_keycard´ (delay 0)
+´drilling_interrupted_output´ ElementInstanceOutput 100246
+	event drilling_interrupted
+´drill_interrupted´ ElementUnitSequenceTrigger 100247
+	sequence_list
+		1
+			guis_id 1
+			sequence jammed_trigger
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+	on_executed
+		´drilling_interrupted_output´ (delay 0)
+		´point_debug_041´ (delay 0)
+		´enable_drill_resumed_trigger´ (delay 0)
+		´enable_WP_drill_once´ (delay 0)
+´drilling_resumed_output´ ElementInstanceOutput 100248
+	event drilling_resumed
+´drill_resumed´ ElementUnitSequenceTrigger 100249
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+	on_executed
+		´drilling_resumed_output´ (delay 0)
+		´relay´ (delay 15)
+		´point_debug_045´ (delay 0)
+		´logic_operator_005´ (delay 0)
+		´WP_drill´ (delay 0.5) DISABLED
+´enable_drill_resumed´ ElementToggle 100250
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´drill_resumed´ DISABLED
+´hacking_started´ ElementInstanceOutput 100230
+	event hacking_started
+´SO_none´ ElementSpecialObjective 100223
+	TRIGGER TIMES 1
+	SO_access 128
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -211, -38, 0.500084
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 1000
+	search_position -275 -75 0,500084
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_kick´
+´link_start_interrupt_drill´ MissionScriptElement 100251
+	on_executed
+		´SO_none´ (delay 0)
+		´point_debug_042´ (delay 0)
+´SO_kick´ ElementSpecialObjective 100252
+	SO_access 128
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -211, -38, 50.5001
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -275 -75 0,500084
+	so_action e_so_container_kick
+	trigger_on none
+	followup_elements
+´relay´ MissionScriptElement 100253
+	on_executed
+		´link_start_interrupt_drill´ (delay 10-15)
+		´enable_SOs_once´ (delay 0)
+´fail_any´ ElementSpecialObjectiveTrigger 100254
+	event fail
+	position -700, -1800, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_none´
+		2 ´SO_kick´
+	on_executed
+		´link_start_interrupt_drill´ (delay 10-15)
+		´enable_SOs_once´ (delay 0)
+´enable_SOs_once´ ElementToggle 100255
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´SO_none´
+		2 ´SO_kick´
+´complete_kick´ ElementSpecialObjectiveTrigger 100256
+	event complete
+	position -700, -1900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_kick´
+	on_executed
+		´relay_2´ (delay 0)
+		´logic_operator_004´ (delay 0)
+´relay_2´ MissionScriptElement 100257
+	on_executed
+		´seq_set_jammed´ (delay 0)
+´seq_set_jammed´ ElementUnitSequence 100258
+	position -900, -1900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence set_jammed
+			time 0
+	on_executed
+		´WP_drill_fix´ (delay 0.5)
+´point_debug_041´ ElementDebug 100259
+	as_subtitle false
+	debug_string yea thats my jam
+	show_instigator false
+´point_debug_042´ ElementDebug 100271
+	as_subtitle false
+	debug_string link_start_interrupt_drill
+	show_instigator false
+´enable_drill_resumed_trigger´ ElementToggle 100277
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´drill_resumed´ DISABLED
+´disable_SO_interrupt´ ElementToggle 100279
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´relay´
+		2 ´link_start_interrupt_drill´
+		3 ´fail_any´
+		4 ´complete_kick´
+		5 ´SO_none´
+		6 ´SO_kick´
+		7 ´drill_resumed´ DISABLED
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_003´ ElementOperator 100298
+	operation remove
+	elements
+		1 ´SO_kick´
+		2 ´SO_none´
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100301
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 275, 500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100318
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 375, 500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_debug_045´ ElementDebug 100319
+	as_subtitle false
+	debug_string jam resumed
+	show_instigator false
+´WP_drill_fix´ ElementWaypoint 100320
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position -35, -81, 147.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_004´ ElementOperator 100321
+	operation remove
+	elements
+		1 ´WP_drill´ DISABLED
+´logic_operator_005´ ElementOperator 100322
+	operation remove
+	elements
+		1 ´WP_drill_fix´
+´logic_toggle_002´ ElementToggle 100023
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´WP_drill´ DISABLED
+´enable_WP_drill_once´ ElementToggle 100024
+	set_trigger_times 1
+	toggle on
+´point_debug_044´ ElementDebug 100069
+	as_subtitle false
+	debug_string ENABLED kEYPAD
+	show_instigator false
+´seq_power_off´ ElementUnitSequence 100031
+	position -1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (8, -79, 119)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´disable_SO_interrupt´ (delay 0)
+´drill_placed_but_keycard_used´ ElementCounter 100033
+	counter_target 2
+	on_executed
+		´seq_power_off´ (delay 0)

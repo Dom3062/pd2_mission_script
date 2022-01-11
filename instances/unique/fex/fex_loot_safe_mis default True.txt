@@ -1,0 +1,66 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_coke_small/fex_pku_coke_small/001 (0, 5, 62)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_sec_safe_05x05_no_jam/fex_interactable_sec_safe_05x05_no_jam/001 (25, -25, 55)
+			notify_unit_sequence activate_door
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´safe_opened´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		4
+			guis_id 4
+			sequence drill_completed
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_sec_safe_05x05_no_jam/fex_interactable_sec_safe_05x05_no_jam/001 (25, -25, 55)
+		5
+			guis_id 5
+			sequence done_exploded
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_sec_safe_05x05_no_jam/fex_interactable_sec_safe_05x05_no_jam/001 (25, -25, 55)
+		6
+			guis_id 6
+			sequence done_opened
+			notify_unit_id units/pd2_dlc_fex/equipment/fex_interactable_sec_safe_05x05_no_jam/fex_interactable_sec_safe_05x05_no_jam/001 (25, -25, 55)
+	on_executed
+		´enable_cocaine´ (delay 2)
+´enable_cocaine´ ElementUnitSequence 100017
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/pickups/fex_pku_coke_small/fex_pku_coke_small/001 (0, 5, 62)
+			notify_unit_sequence enable_interaction
+			time 0

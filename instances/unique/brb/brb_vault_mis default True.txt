@@ -1,0 +1,663 @@
+´AUTO_START´ MissionScriptElement 100012
+	EXECUTE ON STARTUP
+	on_executed
+		´disable´ (delay 0.5)
+´disable´ ElementDisableUnit 100014
+	TRIGGER TIMES 1
+	position -150, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+	on_executed
+		´nav´ (delay 0)
+´nav´ ElementNavObstacle 100015
+	operation add
+	position -100, 400, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, -100, 0)
+	on_executed
+		´disable_hide´ (delay 0)
+´pick_vault´ MissionScriptElement 100017
+	on_executed
+		´ON_3´ (delay 0)
+´remove_blockers´ ElementNavObstacle 100019
+	operation remove
+	position -150, 1550, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, -100, 0)
+	on_executed
+		´open_door´ (delay 0)
+		´point_debug_001´ (delay 0)
+´Door_Open´ MissionScriptElement 100020
+	DISABLED
+	on_executed
+		´remove_blockers´ (delay 0)
+´melt_brackets´ MissionScriptElement 100021
+	DISABLED
+	on_executed
+		´waypoint_melt_002´ (delay 0)
+		´enable´ (delay 0)
+´enable_drill_volume´ MissionScriptElement 100022
+	DISABLED
+	on_executed
+		´show_volume´ (delay 0)
+		´waypoint_drill´ (delay 0)
+´hook_door´ MissionScriptElement 100024
+	DISABLED
+	on_executed
+		´ON_2´ (delay 0)
+´waypoint_melt_002´ ElementWaypoint 100026
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 32, 0, 154
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_spawn_player_001´ ElementPlayerSpawner 100029
+	DISABLED
+	EXECUTE ON STARTUP
+	position 500, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	on_executed
+		´choose_vault´ (delay 1)
+		´Show_Melting´ (delay 4)
+´disable_hide´ ElementUnitSequence 100037
+	position -50, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_4x15/gen_prop_square_drop_marker_4x15/001 (75, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/001 (20, 59, 41)
+			notify_unit_sequence disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/002 (21, 59, 208)
+			notify_unit_sequence disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/003 (15, -68, 150)
+			notify_unit_sequence disable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/004 (15, -68, 72)
+			notify_unit_sequence disable
+			time 0
+	on_executed
+		´remove_3´ (delay 0)
+´link´ MissionScriptElement 100042
+	on_executed
+		´4_2´ (delay 0)
+		´link_3´ (delay 0)
+		´used_thermite´ (delay 0)
+´link_2´ MissionScriptElement 100044
+	on_executed
+		´4_2´ (delay 0)
+		´link_4´ (delay 0)
+		´used_thermite´ (delay 0)
+´operator´ ElementOperator 100046
+	operation remove
+	elements
+		1 ´waypoint_melt_002´
+	on_executed
+		´waypoint_defend_thermite´ (delay 0)
+´4´ ElementCounter 100051
+	counter_target 4
+	on_executed
+		´destroy locks´ (delay 0)
+´link_3´ MissionScriptElement 100052
+	on_executed
+		´point_debug_002´ (delay 0)
+		´4´ (delay 50-60)
+´point_debug_002´ ElementDebug 100053
+	as_subtitle false
+	debug_string Thermite_burning
+	show_instigator false
+´link_4´ MissionScriptElement 100055
+	on_executed
+		´point_debug_002´ (delay 0)
+		´4´ (delay 50-60)
+´show_volume´ ElementUnitSequence 100059
+	position -150, 750, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_4x15/gen_prop_square_drop_marker_4x15/001 (75, 0, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´ON´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100061
+	DISABLED
+	amount 1
+	depth 410
+	height 250
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 75, 0, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 157,707
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´carry´ (delay 0)
+		´point_teammate_comment_001´ (delay 0.5)
+´ON´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´carry´ ElementCarry 100057
+	operation remove
+	type_filter lance_bag
+	on_executed
+		´drill_in_volume´ (delay 0)
+		´bag_sound_drill´ (delay 0)
+´drill_in_volume´ MissionScriptElement 100063
+	on_executed
+		´activate´ (delay 0)
+		´drill_placed´ (delay 0)
+		´add´ (delay 0)
+´activate´ ElementUnitSequence 100064
+	position 50, 750, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+			notify_unit_sequence activate
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_4x15/gen_prop_square_drop_marker_4x15/001 (75, 0, 0)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´OFF´ (delay 0)
+´OFF´ ElementToggle 100066
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+	on_executed
+		´remove_2´ (delay 0)
+´Drill_Finished´ ElementUnitSequenceTrigger 100067
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+	on_executed
+		´Door_Open´ (delay 0) DISABLED
+		´hide drill´ (delay 0)
+		´point_teammate_comment_002´ (delay 0.5)
+´winch_hook_interaction´ ElementInteraction 100081
+	DISABLED
+	host_only false
+	override_timer -1
+	position 23, 0, 125
+	rotation 0, 0, 0, -1
+	tweak_data_id brb_connect_winch_hook
+	on_executed
+		´HOOked´ (delay 0) (alternative interacted)
+´ON_2´ ElementToggle 100082
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´winch_hook_interaction´ DISABLED
+	on_executed
+		´waypoint_winch´ (delay 0)
+´HOOked´ MissionScriptElement 100083
+	on_executed
+		´remove´ (delay 0)
+´Output_Hook_On´ ElementInstanceOutput 100084
+	event Hook_On
+´waypoint_winch´ ElementWaypoint 100085
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 23, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove´ ElementOperator 100086
+	operation remove
+	elements
+		1 ´waypoint_winch´
+	on_executed
+		´Output_Hook_On´ (delay 0)
+´choose_vault´ ElementInstanceInput 100089
+	event choose_vault
+	on_executed
+		´pick_vault´ (delay 0)
+´Show_Melting´ ElementInstanceInput 100090
+	event Show_Melting
+	on_executed
+		´melt_brackets´ (delay 0) DISABLED
+´waypoint_drill´ ElementWaypoint 100030
+	icon pd2_drill
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_2´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´waypoint_drill´
+´4_2´ ElementCounter 100033
+	counter_target 4
+	on_executed
+		´operator´ (delay 0)
+´Show_Drill´ ElementInstanceInput 100045
+	event Show_Drill
+	on_executed
+		´enable_drill_volume´ (delay 0) DISABLED
+´Show_hook´ ElementInstanceInput 100023
+	event Show_hook
+	on_executed
+		´hook_door´ (delay 0) DISABLED
+´ON_3´ ElementToggle 100047
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_drill_volume´ DISABLED
+		2 ´melt_brackets´ DISABLED
+		3 ´hook_door´ DISABLED
+		4 ´Door_Open´ DISABLED
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´thermite_melt_finished´ ElementInstanceOutput 100065
+	event thermite_melt_finished
+	on_executed
+		´remove_4´ (delay 0)
+		´point_teammate_comment_003´ (delay 0.5)
+´rip_off_door´ ElementInstanceInput 100025
+	event rip_off_door
+	on_executed
+		´link_6´ (delay 0)
+´hide drill´ ElementUnitSequence 100027
+	position 250, 750, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´drill_finished´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100000
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+´used_thermite´ ElementInstanceOutput 100001
+	event used_thermite
+´drill_finished´ ElementInstanceOutput 100002
+	event drill_finished
+	on_executed
+		´remove_5´ (delay 0)
+´drill_placed´ ElementInstanceOutput 100006
+	event drill_placed
+´Drill_used´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+	on_executed
+		´link_5´ (delay 0)
+´link_5´ MissionScriptElement 100008
+	TRIGGER TIMES 1
+	on_executed
+		´drill_used´ (delay 0)
+		´waypoint_defend_thermite´ (delay 0)
+´drill_used´ ElementInstanceOutput 100009
+	event drill_used
+´hinge 2 - bottom´ ElementUnitSequenceTrigger 100035
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/001 (20, 59, 41)
+	on_executed
+		´func_sequence_003´ (delay 0)
+´hinge 1 - top´ ElementUnitSequenceTrigger 100040
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/002 (21, 59, 208)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´enable´ ElementUnitSequence 100032
+	position -125, 1050, 3.59253
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/001 (20, 59, 41)
+			notify_unit_sequence enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/002 (21, 59, 208)
+			notify_unit_sequence enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/003 (15, -68, 150)
+			notify_unit_sequence enable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/004 (15, -68, 72)
+			notify_unit_sequence enable
+			time 0
+´lock - bottom´ ElementUnitSequenceTrigger 100038
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/004 (15, -68, 72)
+	on_executed
+		´func_sequence_004´ (delay 0)
+´lock - top´ ElementUnitSequenceTrigger 100043
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_brb/equipment/thermite_interactable_no_consume/thermite_interactable_no_consume/003 (15, -68, 150)
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100005
+	position 0, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_thermite_lock_01
+			time 0
+	on_executed
+		´link´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100036
+	position 0, 1025, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_thermite_hinge_01
+			time 0
+	on_executed
+		´link´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100041
+	position 0, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_thermite_hinge_02
+			time 0
+	on_executed
+		´link_2´ (delay 0)
+´func_sequence_004´ ElementUnitSequence 100048
+	position 0, 1175, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_thermite_lock_02
+			time 0
+	on_executed
+		´link_2´ (delay 0)
+´open_door´ ElementUnitSequence 100049
+	position -100, 1550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´door_opened´ (delay 0)
+´remove_blockers_2´ ElementNavObstacle 100050
+	operation remove
+	position -150, 1700, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, -100, 0)
+	on_executed
+		´rip_off_door_2´ (delay 0)
+		´point_debug_001´ (delay 0)
+´link_6´ MissionScriptElement 100054
+	on_executed
+		´remove_blockers_2´ (delay 0)
+´rip_off_door_2´ ElementUnitSequence 100056
+	position -100, 1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence anim_door_slide_out
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´destroy locks´ ElementUnitSequence 100068
+	position 250, 1050, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_hinge_01_destroy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_hinge_02_destroy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_lock_01_destroy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/architecture/brb_int/brb_vault_door/brb_vault_door_light/001 (-3.05176E-05, -200, 0)
+			notify_unit_sequence state_lock_02_destroy
+			time 0
+	on_executed
+		´thermite_melt_finished´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100069
+	operation add
+	position -50, 1700, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (210, -50, 0)
+	on_executed
+		´door_opened´ (delay 0)
+´remove_3´ ElementNavObstacle 100070
+	operation remove
+	position 0, 400, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (210, -50, 0)
+´waypoint_defend_thermite´ ElementWaypoint 100003
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 23, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_4´ ElementOperator 100071
+	operation remove
+	elements
+		1 ´waypoint_defend_thermite´
+´drill_broke´ ElementInstanceOutput 100013
+	event drill_broke
+	on_executed
+		´on´ (delay 0)
+´Drill_jammed´ ElementUnitSequenceTrigger 100072
+	sequence_list
+		1
+			guis_id 1
+			sequence jammed_trigger
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+	on_executed
+		´link001´ (delay 0)
+´link001´ MissionScriptElement 100073
+	on_executed
+		´drill_broke´ (delay 0)
+´on´ ElementToggle 100074
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´link_5´
+´reactivate´ ElementUnitSequenceTrigger 100075
+	sequence_list
+		1
+			guis_id 1
+			sequence reactivate
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1.00002, 0, 57)
+	on_executed
+		´link_5´ (delay 0)
+´remove_5´ ElementOperator 100076
+	operation remove
+	elements
+		1 ´waypoint_defend_thermite´
+	on_executed
+		´remove_6´ (delay 0)
+´door_opened´ ElementInstanceOutput 100077
+	event door_opened
+	on_executed
+		´point_teammate_comment_004´ (delay 0.5)
+´add´ ElementNavObstacle 100088
+	operation add
+	position 50, 825, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+´remove_6´ ElementNavObstacle 100091
+	operation remove
+	position 400, 750, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id 100016
+´point_debug_001´ ElementDebug 100078
+	as_subtitle false
+	debug_string from instance: remove blockers
+	show_instigator false
+´point_teammate_comment_001´ ElementTeammateComment 100079
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g21
+	position 75, 0, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_002´ ElementTeammateComment 100080
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v23
+	position 75, 25, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_003´ ElementTeammateComment 100087
+	close_to_element true
+	comment v25
+	position 100, 0, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_004´ ElementTeammateComment 100092
+	close_to_element true
+	comment g08
+	position 100, 25, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´bag_sound_drill´ ElementPlaySound 100016
+	append_prefix false
+	interrupt true
+	position 20, 0, 95
+	rotation 0, 0, 0, -1
+	sound_event bag_high_drop
+	use_instigator false

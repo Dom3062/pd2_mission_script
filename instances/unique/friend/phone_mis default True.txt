@@ -1,0 +1,274 @@
+´make_call´ ElementInteraction 100002
+	DISABLED
+	host_only false
+	override_timer 7,2
+	position 0, 7, 50
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_phone_call_office
+	on_executed
+		´call_interaction_done´ (delay 0) (alternative interacted)
+		´call_interrupted´ (delay 0) (alternative interupt)
+		´call_started´ (delay 0) (alternative start)
+´phone_wp´ ElementWaypoint 100003
+	icon pd2_phone
+	only_in_civilian false
+	position 0, 7, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´startup´ MissionScriptElement 100004
+´activate_phone´ ElementInstanceInput 100005
+	TRIGGER TIMES 1
+	event Activate phone
+	on_executed
+		´show_wp´ (delay 0)
+´turn_on_bug_interaction´ ElementToggle 100006
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´make_call´ DISABLED
+	on_executed
+		´turn_on_ecm_switch´ (delay 0)
+´show_wp´ MissionScriptElement 100007
+	on_executed
+		´phone_wp´ (delay 0)
+		´show_outline´ (delay 0)
+´bug_interaction_done´ MissionScriptElement 100008
+	on_executed
+		´turn_on_next_interaction´ (delay 0)
+´turn_on_next_interaction´ ElementToggle 100009
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´make_call´ DISABLED
+	on_executed
+		´planted_bug´ (delay 0)
+´call_interaction_done´ MissionScriptElement 100010
+	on_executed
+		´remove_wp´ (delay 0)
+		´call_finished´ (delay 0)
+´planted_bug´ ElementInstanceOutput 100011
+	event Planted bug
+´deactivate_interaction´ ElementInstanceInput 100012
+	TRIGGER TIMES 1
+	event deactivate_interaction
+	on_executed
+		´remove_wp´ (delay 0)
+		´point_debug_001´ (delay 0)
+´deactivate_interaction_2´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´activate_phone´
+		2 ´call_interaction_done´
+		3 100013
+		4 ´make_call´ DISABLED
+		5 ´bug_interaction_done´
+		6 ´ecm_placed´
+		7 ´ecm_finished´
+		8 ´switch_interactions´ DISABLED
+´remove_wp´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´phone_wp´
+	on_executed
+		´hide_outline´ (delay 0)
+´call_finished´ ElementInstanceOutput 100015
+	event Call_finished
+	on_executed
+		´hide_outline´ (delay 0)
+´call_interrupted´ MissionScriptElement 100016
+	on_executed
+		´ai_global_event_001´ (delay 0) DISABLED
+		´func_dialogue_002´ (delay 0)
+		´call_interrupted_output´ (delay 0)
+´ai_global_event_001´ ElementAiGlobalEvent 100017
+	DISABLED
+	AI_event gangsters_called
+	blame gangster_alarm
+	position 200, -200, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´call_interrupted_output´ (delay 0)
+´call_interrupted_output´ ElementInstanceOutput 100018
+	event Call interrupted output
+	on_executed
+		´deactivate_interaction´ (delay 0)
+		´func_dialogue_003´ (delay 1-2)
+´show_outline´ ElementUnitSequence 100019
+	position -100, -400, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_bedroom_telephone/sfm_prop_bedroom_telephone/001 (0, 0, 0)
+			notify_unit_sequence show_outline
+			time 0
+	on_executed
+		´ecm_down_false´ (delay 0)
+		´ecm_down_true´ (delay 0)
+´hide_outline´ ElementUnitSequence 100020
+	position 300, -400, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_friend/props/sfm_prop_bedroom_telephone/sfm_prop_bedroom_telephone/001 (0, 0, 0)
+			notify_unit_sequence hide_outline
+			time 0
+	on_executed
+		´deactivate_interaction_2´ (delay 0)
+´func_dialogue_001´ ElementDialogue 100021
+	can_not_be_muted false
+	dialogue Play_pln_fri_48
+	execute_on_executed_when_done false
+	force_quit_current true
+	use_instigator false
+	use_position false
+´call_started´ MissionScriptElement 100022
+	on_executed
+		´func_dialogue_001´ (delay 0)
+´func_dialogue_002´ ElementDialogue 100023
+	can_not_be_muted false
+	dialogue Stop_pln_fri_48
+	execute_on_executed_when_done false
+	force_quit_current true
+	use_instigator false
+	use_position false
+´func_dialogue_003´ ElementDialogue 100024
+	can_not_be_muted false
+	dialogue Play_pln_fri_48b
+	execute_on_executed_when_done false
+	force_quit_current true
+	use_instigator false
+	use_position false
+´point_debug_001´ ElementDebug 100001
+	as_subtitle true
+	debug_string SHOULD DEACTIVATE THIS MOTHER FLIPPIN PHONE
+	show_instigator false
+´ecm_placed´ ElementGlobalEventTrigger 100025
+	global_event ecm_jammer_on
+	position 500, -100, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´turn_on_off_check´ (delay 0) DISABLED
+		´point_debug_002´ (delay 0)
+		´switch_interactions´ (delay 0) DISABLED
+		´logic_toggle_003´ (delay 0)
+		´set_ecm_down_true´ (delay 0)
+´switch_interactions´ ElementToggle 100026
+	DISABLED
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´make_call´ DISABLED
+		2 ´make_call_ecm´ DISABLED
+´ecm_finished´ ElementGlobalEventTrigger 100027
+	global_event ecm_jammer_off
+	position 600, -100, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´switch_interactions´ (delay 5) DISABLED
+		´point_debug_003´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´set_ecm_down_false´ (delay 0)
+´make_call_ecm´ ElementInteraction 100028
+	DISABLED
+	host_only false
+	override_timer 0
+	position 0, 7, 50
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_phone_call_office
+	on_executed
+		´func_hint_001´ (delay 0) (alternative interacted)
+´point_spawn_player_001´ ElementPlayerSpawner 100029
+	DISABLED
+	EXECUTE ON STARTUP
+	position 100, -300, 100
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´activate_phone´ (delay 1)
+´turn_on_off_check´ ElementToggle 100030
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ecm_finished´
+	on_executed
+		´switch_interactions´ (delay 0) DISABLED
+´func_hint_001´ ElementHint 100031
+	hint_id phoneline_jammed
+	instigator_only false
+	position 400, 100, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_toggle_001´ (delay 3)
+´point_debug_002´ ElementDebug 100032
+	as_subtitle false
+	debug_string ECM PLACED
+	show_instigator false
+´point_debug_003´ ElementDebug 100033
+	as_subtitle false
+	debug_string ECM REMOVED
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´make_call_ecm´ DISABLED
+´logic_toggle_002´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_hint_001´
+		2 ´logic_toggle_001´
+´logic_toggle_003´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_hint_001´
+		2 ´logic_toggle_001´
+´set_ecm_down_true´ ElementCounterOperator 100037
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´ecm_counter´
+´set_ecm_down_false´ ElementCounterOperator 100038
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´ecm_counter´
+´ecm_counter´ ElementCounter 100039
+	counter_target 0
+´ecm_down_false´ ElementCounterFilter 100040
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´ecm_counter´
+	on_executed
+		´turn_on_bug_interaction´ (delay 0)
+´ecm_down_true´ ElementCounterFilter 100041
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´ecm_counter´
+	on_executed
+		´turn_on_bug_interaction001´ (delay 0)
+´turn_on_bug_interaction001´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´make_call_ecm´ DISABLED
+	on_executed
+		´turn_on_ecm_switch´ (delay 0)
+´turn_on_ecm_switch´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´switch_interactions´ DISABLED

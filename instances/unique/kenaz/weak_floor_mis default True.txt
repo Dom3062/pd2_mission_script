@@ -1,0 +1,755 @@
+´wp_C4_location_01´ ElementWaypoint 100010
+	icon pd2_c4
+	only_in_civilian false
+	position -14, -7, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´STARTUP´ MissionScriptElement 100012
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100013
+	on_executed
+		´seq_HIDE´ (delay 0)
+		´func_disable_unit_002´ (delay 5)
+´seq_HIDE´ ElementUnitSequence 100015
+	position -1000, 225, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/001 (-18, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/002 (-392, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/003 (-203, -7.00002, 1)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/004 (-203, -394, 1)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_concrete_hole/cas_prop_concrete_hole/concrete_floor (-500, 99.9999, 0)
+			notify_unit_sequence carpet
+			time 0
+´input_weak_floor´ ElementInstanceInput 100016
+	event weak_floor
+	on_executed
+		´weak_spot_TOGGLE´ (delay 0)
+´input_activate_C4´ ElementInstanceInput 100018
+	event activate_C4
+	on_executed
+		´seq_C4_locations_SHOW_INTERACTIVE´ (delay 0)
+´seq_C4_locations_SHOW_INTERACTIVE´ ElementUnitSequence 100019
+	position -900, -325, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+			notify_unit_sequence show_interactive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+			notify_unit_sequence show_interactive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+			notify_unit_sequence show_interactive
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+			notify_unit_sequence show_interactive
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/001 (-18, -200, 1)
+			notify_unit_sequence show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/002 (-392, -200, 1)
+			notify_unit_sequence show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/003 (-203, -7.00002, 1)
+			notify_unit_sequence show
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/004 (-203, -394, 1)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´wp_C4_location_01´ (delay 0)
+		´seq_trg_C4_locations_INTERACT_ON´ (delay 0)
+´output_weak_spot_found´ ElementInstanceOutput 100020
+	event weak_spot_found
+´weak_spot_found´ MissionScriptElement 100021
+	DISABLED
+	on_executed
+		´output_weak_spot_found´ (delay 0)
+		´seq_weak_spot_SHOW´ (delay 0)
+		´wp_C4_location_REMOVE´ (delay 0)
+´weak_spot_TOGGLE´ ElementToggle 100022
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´weak_spot_found´ DISABLED
+		2 ´weak_spot_not_found´
+´C4_planted_COUNTER´ ElementCounter 100023
+	counter_target 0
+´C4_planted_counter_4´ ElementCounterTrigger 100024
+	amount 4
+	trigger_type value
+	elements
+		1 ´C4_planted_COUNTER´
+	on_executed
+		´seq_C4_ACTIVATE_EXPLODE_SEQUENCE´ (delay 0)
+		´wp_C4_location_REMOVE´ (delay 0)
+´C4_planted_counter_INC´ ElementCounterOperator 100025
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´C4_planted_COUNTER´
+´seq_trg_C4_location_02_INTERACT´ ElementUnitSequenceTrigger 100026
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+	on_executed
+		´C4_planted_counter_INC´ (delay 0)
+´seq_trg_C4_location_01_INTERACT´ ElementUnitSequenceTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+	on_executed
+		´C4_planted_counter_INC´ (delay 0)
+´seq_trg_C4_location_03_INTERACT´ ElementUnitSequenceTrigger 100028
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+	on_executed
+		´C4_planted_counter_INC´ (delay 0)
+´seq_trg_C4_location_04_INTERACT´ ElementUnitSequenceTrigger 100029
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+	on_executed
+		´C4_planted_counter_INC´ (delay 0)
+´seq_C4_ACTIVATE_EXPLODE_SEQUENCE´ ElementUnitSequence 100030
+	position -1400, -325, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+	on_executed
+		´trg_remove_ON´ (delay 0)
+´seq_trg_C4_locations_DONE_EXPLODED´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+		3
+			guis_id 3
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+		4
+			guis_id 4
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+	on_executed
+		´floor_exploded´ (delay 0)
+		´trg_remove_OFF´ (delay 1)
+		´hide wires´ (delay 0)
+´floor_exploded´ MissionScriptElement 100032
+	on_executed
+		´weak_spot_found´ (delay 0) DISABLED
+		´weak_spot_not_found´ (delay 0)
+		´game_room_floor_DISABLE´ (delay 0)
+		´output_floor_exploded´ (delay 0)
+		´point_explosion_001´ (delay 0)
+´seq_trg_C4_locations_INTERACT_ON´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_trg_C4_location_01_INTERACT´ DISABLED
+		2 ´seq_trg_C4_location_02_INTERACT´ DISABLED
+		3 ´seq_trg_C4_location_03_INTERACT´ DISABLED
+		4 ´seq_trg_C4_location_04_INTERACT´ DISABLED
+´wp_C4_location_REMOVE´ ElementOperator 100037
+	operation remove
+	elements
+		1 ´wp_C4_location_01´
+		2 ´wp_C4_location_02´
+		3 ´wp_C4_location_04´
+		4 ´wp_C4_location_03´
+´weak_spot_not_found´ MissionScriptElement 100038
+	on_executed
+		´output_weak_spot_not_found´ (delay 0)
+		´seq_no_weak_spot_SHOW´ (delay 0)
+´output_weak_spot_not_found´ ElementInstanceOutput 100039
+	event weak_spot_not_found
+´game_room_floor_DISABLE´ ElementDisableUnit 100040
+	position -1600, -325, 652.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_disable_interaction´ ElementInstanceInput 100041
+	event disable_interaction
+	on_executed
+		´wp_C4_location_REMOVE´ (delay 0)
+		´seq_C4_locations_DISABLE´ (delay 0)
+		´seq_C4_locations_SHOW_INTERACTIVE_OFF´ (delay 0)
+´seq_C4_locations_DISABLE´ ElementUnitSequence 100042
+	position -900, -100, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/001 (-18, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/002 (-392, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/003 (-203, -7.00002, 1)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/004 (-203, -394, 1)
+			notify_unit_sequence hide
+			time 0
+´trg_remove_OFF´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+´seq_C4_locations_SHOW_INTERACTIVE_OFF´ ElementToggle 100046
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_C4_locations_SHOW_INTERACTIVE´
+´seq_no_weak_spot_SHOW´ ElementUnitSequence 100003
+	position -1200, -75, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_concrete_hole/cas_prop_concrete_hole/concrete_floor (-500, 99.9999, 0)
+			notify_unit_sequence flat
+			time 0
+´seq_weak_spot_SHOW´ ElementUnitSequence 100048
+	position -1200, 0, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_concrete_hole/cas_prop_concrete_hole/concrete_floor (-500, 99.9999, 0)
+			notify_unit_sequence big_hole
+			time 0
+´input_floor_drilled´ ElementInstanceInput 100017
+	event floor_drilled
+	on_executed
+		´seq_weak_floor_fall´ (delay 0)
+		´trg_get_into_vault´ (delay 0)
+´seq_weak_floor_fall´ ElementUnitSequence 100049
+	position -900, -550, 652.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_weak_floor/cas_weak_floor/001 (-200, -200, -51)
+			notify_unit_sequence floor_fall
+			time 0
+	on_executed
+		´wp_get_into_vault´ (delay 0)
+		´func_enable_unit_001´ (delay 2)
+´trg_remove_ON´ ElementToggle 100051
+	set_trigger_times -1
+	toggle on
+´change material´ ElementUnitSequence 100035
+	DISABLED
+	position -200, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/004 (-203, -394, 1)
+			notify_unit_sequence change_material
+			time 0
+´change material_2´ ElementUnitSequence 100036
+	DISABLED
+	position -200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/003 (-203, -7.00002, 1)
+			notify_unit_sequence change_material
+			time 0
+´change material_3´ ElementUnitSequence 100052
+	DISABLED
+	position 100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/001 (-18, -200, 1)
+			notify_unit_sequence change_material
+			time 0
+´change material_4´ ElementUnitSequence 100053
+	DISABLED
+	position -500, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/002 (-392, -200, 1)
+			notify_unit_sequence change_material
+			time 0
+´is c4 placed´ ElementUnitSequenceTrigger 100054
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+	on_executed
+		´toggle on´ (delay 0.1)
+		´change material_3´ (delay 0) DISABLED
+		´change material_2´ (delay 0) DISABLED
+		´toggle on_3´ (delay 0.1)
+´is c4 placed_2´ ElementUnitSequenceTrigger 100055
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+	on_executed
+		´change material_2´ (delay 0) DISABLED
+		´change material_4´ (delay 0) DISABLED
+		´toggle on_3´ (delay 0.1)
+		´toggle on_4´ (delay 0.1)
+´is c4 placed_3´ ElementUnitSequenceTrigger 100056
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+	on_executed
+		´toggle on_4´ (delay 0.1)
+		´change material_4´ (delay 0) DISABLED
+		´change material´ (delay 0) DISABLED
+		´toggle on_2´ (delay 0.1)
+´is c4 placed_4´ ElementUnitSequenceTrigger 100057
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+	on_executed
+		´toggle on_2´ (delay 0.1)
+		´toggle on´ (delay 0.1)
+		´change material´ (delay 0) DISABLED
+		´change material_3´ (delay 0) DISABLED
+´toggle on´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´change material_3´ DISABLED
+´toggle on_2´ ElementToggle 100059
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´change material´ DISABLED
+´toggle on_3´ ElementToggle 100060
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´change material_2´ DISABLED
+´toggle on_4´ ElementToggle 100061
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´change material_4´ DISABLED
+´hide wires´ ElementUnitSequence 100062
+	position -850, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/001 (-18, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/002 (-392, -200, 1)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/003 (-203, -7.00002, 1)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_c4_wire/cas_prop_c4_wire/004 (-203, -394, 1)
+			notify_unit_sequence hide
+			time 0
+´output_floor_exploded´ ElementInstanceOutput 100063
+	event floor_exploded
+´point_explosion_001´ ElementExplosion 100043
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 100
+	effect mission_triggered
+	explosion_effect effects/particles/equipment/c4_bank/c4_explosion
+	player_damage 100
+	position -191, -192, 0
+	range 600
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´env_effect_play_001´ (delay 0.4)
+´env_effect_play_001´ ElementPlayEffect 100000
+	base_time 0
+	effect effects/payday2/particles/explosions/c4_wall_explosion
+	max_amount 0
+	position -200, -192.143, 79.5523
+	random_time 0
+	rotation 0.207912, 0, 0, -0.978148
+	screen_space false
+´wp_get_into_vault´ ElementWaypoint 100002
+	icon pd2_goto
+	only_in_civilian false
+	position -191, -192, -200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trg_wp_get_into_vault_remove´ ElementAreaTrigger 100050
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1000
+	height 300
+	instigator player
+	interval 0.1
+	position -191, -192, -300
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´wp_get_into_vault_REMOVE´ (delay 0)
+´wp_get_into_vault_REMOVE´ ElementOperator 100064
+	operation remove
+	elements
+		1 ´wp_get_into_vault´
+´trg_get_into_vault´ ElementToggle 100065
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trg_wp_get_into_vault_remove´ DISABLED
+´func_enable_unit_001´ ElementEnableUnit 100014
+	position -943, -454, 650
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_int/cas_weak_floor_collision/cas_weak_floor_collision/001 (-200, -200, -51)
+´func_disable_unit_002´ ElementDisableUnit 100074
+	position -875, 191, 650
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_int/cas_weak_floor_collision/cas_weak_floor_collision/001 (-200, -200, -51)
+´wp_C4_location_02´ ElementWaypoint 100075
+	icon pd2_c4
+	only_in_civilian false
+	position -14, -392, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_C4_location_03´ ElementWaypoint 100076
+	icon pd2_c4
+	only_in_civilian false
+	position -391, -392, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_C4_location_04´ ElementWaypoint 100077
+	icon pd2_c4
+	only_in_civilian false
+	position -391, -7, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´seq_trg_C4_location_01_INTERACT_2´ ElementUnitSequenceTrigger 100078
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_01 (-14, -7, 1)
+	on_executed
+		´wp_C4_location_01_OFF´ (delay 0)
+		´wp_C4_location_01_REMOVE´ (delay 0)
+		´wp_C4_location_02_2´ (delay 0)
+		´check_wp_03´ (delay 0) DISABLED
+´seq_trg_C4_location_02_INTERACT_2´ ElementUnitSequenceTrigger 100079
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_02 (-14, -392, 1)
+	on_executed
+		´wp_C4_location_02_OFF´ (delay 0)
+		´wp_C4_location_02_REMOVE´ (delay 0)
+		´wp_C4_location_03_2´ (delay 0)
+		´check_wp_04´ (delay 0) DISABLED
+		´TOGGLE´ (delay 0)
+´seq_trg_C4_location_03_INTERACT_2´ ElementUnitSequenceTrigger 100080
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_03 (-391, -392, 1)
+	on_executed
+		´wp_C4_location_03_OFF´ (delay 0)
+		´wp_C4_location_03_REMOVE´ (delay 0)
+		´wp_C4_location_04_2´ (delay 0)
+		´TOGGLE_2´ (delay 0)
+´seq_trg_C4_location_04_INTERACT_2´ ElementUnitSequenceTrigger 100081
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/C4_location_04 (-391, -7, 1)
+	on_executed
+		´wp_C4_location_04_OFF´ (delay 0)
+		´wp_C4_location_04_REMOVE´ (delay 0)
+		´TOGGLE_3´ (delay 0)
+´wp_C4_location_01_OFF´ ElementToggle 100082
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_location_01´
+´wp_C4_location_03_OFF´ ElementToggle 100083
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_location_03´
+´wp_C4_location_02_OFF´ ElementToggle 100084
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_location_02´
+´wp_C4_location_04_OFF´ ElementToggle 100085
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_location_04´
+´wp_C4_location_01_REMOVE´ ElementOperator 100086
+	operation remove
+	elements
+		1 ´wp_C4_location_01´
+´wp_C4_location_02_REMOVE´ ElementOperator 100087
+	operation remove
+	elements
+		1 ´wp_C4_location_02´
+´wp_C4_location_03_REMOVE´ ElementOperator 100088
+	operation remove
+	elements
+		1 ´wp_C4_location_03´
+´wp_C4_location_04_REMOVE´ ElementOperator 100089
+	operation remove
+	elements
+		1 ´wp_C4_location_04´
+´wp_C4_location_02_2´ MissionScriptElement 100091
+	on_executed
+		´wp_C4_location_02´ (delay 0)
+´wp_C4_location_03_2´ MissionScriptElement 100092
+	on_executed
+		´wp_C4_location_03´ (delay 0)
+´wp_C4_location_04_2´ MissionScriptElement 100093
+	on_executed
+		´wp_C4_location_04´ (delay 0)
+´check_wp_03´ MissionScriptElement 100090
+	DISABLED
+	on_executed
+		´wp_C4_location_03_2´ (delay 0)
+		´check_wp_04´ (delay 0) DISABLED
+´check_wp_04´ MissionScriptElement 100094
+	DISABLED
+	on_executed
+		´wp_C4_location_04_2´ (delay 0)
+´TOGGLE´ ElementToggle 100095
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´check_wp_03´ DISABLED
+		2 ´wp_C4_location_02_2´
+´TOGGLE_2´ ElementToggle 100096
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´check_wp_04´ DISABLED
+		2 ´wp_C4_location_03_2´
+´TOGGLE_3´ ElementToggle 100097
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´wp_C4_location_04_2´

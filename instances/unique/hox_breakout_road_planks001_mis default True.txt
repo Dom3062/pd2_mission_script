@@ -1,0 +1,50 @@
+´point_waypoint_001´ ElementWaypoint 100001
+	icon pd2_generic_look
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show´ ElementInstanceInput 100002
+	event show
+	on_executed
+		´func_sequence_001´ (delay 0)
+´enable_interaction´ ElementInstanceInput 100003
+	event enable_interaction
+	on_executed
+		´func_sequence_002´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+´picked_up´ ElementInstanceOutput 100004
+	event picked_up
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100005
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc2/architecture/str_ext_road_c/str_construction_metal_sheet_interactable/001 (0, 0, 4)
+	on_executed
+		´picked_up´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100006
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´func_sequence_001´ ElementUnitSequence 100007
+	position 100, 0, 200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/str_ext_road_c/str_construction_metal_sheet_interactable/001 (0, 0, 4)
+			notify_unit_sequence state_show
+			time 0
+´func_sequence_002´ ElementUnitSequence 100008
+	position 200, 0, 200
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/str_ext_road_c/str_construction_metal_sheet_interactable/001 (0, 0, 4)
+			notify_unit_sequence interaction_enable
+			time 0

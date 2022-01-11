@@ -1,0 +1,420 @@
+´police_called´ ElementGlobalEventTrigger 100002
+	TRIGGER TIMES 1
+	global_event police_called
+	position -400, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´toggle_ON_initial_state´ (delay 0)
+´toggle_ON_initial_state´ ElementToggle 100003
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´toggle_ON_open_SO´ (delay 0)
+		´toggle_ON_initial_SO_2´ (delay 0)
+´so_open_door´ ElementSpecialObjective 100004
+	DISABLED
+	SO_access 23078399
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -15, -86, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -100 -200 100
+	so_action e_nl_open_door
+	trigger_on none
+	followup_elements
+´so_kick_out´ ElementSpecialObjective 100005
+	DISABLED
+	SO_access 23078392
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 150, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position -100 -200 100
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´open_door´ ElementUnitSequence 100006
+	position 400, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´remove´ (delay 0)
+		´toggle_OFF´ (delay 0)
+´initiate_kick_out´ ElementSpecialObjective 100008
+	DISABLED
+	SO_access 23078392
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 150, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1000
+	search_position -54,9395 493,961 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_kick_out´ DISABLED
+´initiate_open_door´ ElementSpecialObjective 100009
+	DISABLED
+	SO_access 23078399
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -15, -86, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position -89,0915 -453,325 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_open_door´ DISABLED
+´toggle_ON_open_SO´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_open_door´ DISABLED
+	on_executed
+		´toggle_ON_initial_SO´ (delay 0)
+´toggle_ON_initial_SO´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_open_door´ DISABLED
+	on_executed
+		´initiate_open_door´ (delay 0.2) DISABLED
+´fail´ ElementSpecialObjectiveTrigger 100012
+	event fail
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´initiate_open_door´ DISABLED
+		2 ´so_open_door´ DISABLED
+	on_executed
+		´toggle_OFF_SOs´ (delay 0)
+´toggle_OFF_SOs´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_open_door´ DISABLED
+		2 ´initiate_open_door´ DISABLED
+	on_executed
+		´toggle_ON_open_SO´ (delay 5-8)
+´success´ ElementSpecialObjectiveTrigger 100014
+	event anim_start
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_open_door´ DISABLED
+	on_executed
+		´open_door´ (delay 0.5)
+´toggle_OFF´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´success´
+		2 ´fail´
+		3 ´toggle_OFF_SOs´
+		4 ´toggle_ON_initial_SO´
+		5 ´toggle_ON_open_SO´
+		6 ´initiate_kick_out´ DISABLED
+		7 ´initiate_open_door´ DISABLED
+		8 ´so_kick_out´ DISABLED
+		9 ´so_open_door´ DISABLED
+		10 ´toggle_ON_kick_SO´
+		11 ´toggle_OFF_SOs_2´
+		12 ´toggle_ON_initial_SO_2´
+		13 ´fail_2´
+		14 ´success_2´
+		15 ´toggle_ON_initial_state´
+	on_executed
+		´remove_SOs´ (delay 0.5)
+´startup´ MissionScriptElement 100017
+	EXECUTE ON STARTUP
+	on_executed
+		´add´ (delay 0)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´add´ ElementNavObstacle 100018
+	operation add
+	position -300, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-45, -38, -100)
+	on_executed
+		´seq_setup´ (delay 0)
+´remove´ ElementNavObstacle 100019
+	operation remove
+	position 400, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-45, -38, -100)
+	on_executed
+		´toggle_OFF´ (delay 0)
+		´output_door_opened´ (delay 0)
+´input_open_doors´ ElementInstanceInput 100021
+	event open_doors
+	on_executed
+		´open_in´ (delay 0)
+´open_in´ ElementUnitSequence 100022
+	position 500, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´remove´ (delay 1)
+´door_opened´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		11
+			guis_id 11
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		12
+			guis_id 12
+			sequence open_door
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		13
+			guis_id 13
+			sequence sobj_swat_breach_in
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		14
+			guis_id 14
+			sequence sobj_swat_breach_out
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		15
+			guis_id 15
+			sequence anim_explosion_in
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		16
+			guis_id 16
+			sequence anim_explosion_out
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		17
+			guis_id 17
+			sequence done_exploded
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		18
+			guis_id 18
+			sequence done_opened
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		20
+			guis_id 20
+			sequence int_seq_saw_in
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+		21
+			guis_id 21
+			sequence int_seq_saw_out
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+	on_executed
+		´remove´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100025
+	DISABLED
+	EXECUTE ON STARTUP
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´remove_SOs´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´initiate_open_door´ DISABLED
+		2 ´so_open_door´ DISABLED
+		3 ´so_kick_out´ DISABLED
+		4 ´initiate_kick_out´ DISABLED
+´toggle_ON_kick_SO´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_kick_out´ DISABLED
+	on_executed
+		´toggle_ON_initial_SO´ (delay 0)
+´toggle_ON_initial_SO_2´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_kick_out´ DISABLED
+	on_executed
+		´initiate_kick_out´ (delay 0.1) DISABLED
+´toggle_OFF_SOs_2´ ElementToggle 100007
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_kick_out´ DISABLED
+		2 ´initiate_kick_out´ DISABLED
+	on_executed
+		´toggle_ON_kick_SO´ (delay 0)
+´fail_2´ ElementSpecialObjectiveTrigger 100028
+	event fail
+	position 200, 400, 0
+	rotation 0, 0, -2.91323E-13, -1
+	elements
+		1 ´so_kick_out´ DISABLED
+		2 ´initiate_kick_out´ DISABLED
+	on_executed
+		´toggle_OFF_SOs_2´ (delay 0)
+´success_2´ ElementSpecialObjectiveTrigger 100029
+	event anim_start
+	position 300, 400, 0
+	rotation 0, 0, -2.91323E-13, -1
+	elements
+		1 ´so_kick_out´ DISABLED
+	on_executed
+		´kick_out´ (delay 0.5)
+´kick_out´ ElementUnitSequence 100030
+	position 400, 400, 0
+	rotation 0, 0, -2.91323E-13, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´remove´ (delay 0)
+		´toggle_OFF´ (delay 0)
+´seq_setup´ ElementUnitSequence 100031
+	position -300, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+			notify_unit_sequence state_door_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-53, 4, 2.5)
+			notify_unit_sequence activate_door
+			time 0
+´output_door_opened´ ElementInstanceOutput 100000
+	event reinforced_door_opened
+´input_turn_off_so´ ElementInstanceInput 100001
+	event turn_off_ai_opening_door
+	on_executed
+		´turn_off´ (delay 0)
+´input_turn_on_so´ ElementInstanceInput 100035
+	event turn_on_ai_opening_door
+	on_executed
+		´turn_on´ (delay 0)
+´turn_off´ ElementToggle 100020
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´police_called´
+´turn_on´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´success´
+		2 ´toggle_OFF_SOs´
+		3 ´fail´
+		4 ´toggle_ON_open_SO´
+		5 ´toggle_ON_initial_SO´
+		6 ´toggle_OFF_SOs_2´
+		7 ´toggle_ON_kick_SO´
+		8 ´toggle_ON_initial_SO_2´
+		9 ´fail_2´
+		10 ´success_2´
+		11 ´toggle_ON_initial_state´
+		12 ´police_called´
+		13 ´initiate_kick_out´ DISABLED
+		14 ´so_kick_out´ DISABLED
+		15 ´initiate_open_door´ DISABLED
+		16 ´so_open_door´ DISABLED

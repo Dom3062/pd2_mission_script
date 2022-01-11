@@ -1,0 +1,811 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2400, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_enable_blowtorch_stuff´ (delay 0)
+		´input_disable_thermite_stuff´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence state_interaction_thermite
+			time 0
+	on_executed
+		´add_door_blocker´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 800, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/005 (-118, 7.00003, -24)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/004 (-18, 7.00001, -24)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´remove_door_blocker´ ElementNavObstacle 100021
+	operation remove
+	position 800, -400, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 44, 0)
+	on_executed
+		´toggle_OFF_stuff´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100025
+	operation add
+	position 600, 0, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 44, 0)
+	on_executed
+		´disable_nav_blocker´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100013
+	base_time 5
+	effect effects/payday2/environment/small_thermal_burner
+	max_amount 0
+	position 64, -12, 93
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´stop_thermite_vfx´ ElementStopEffect 100031
+	operation fade_kill
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´remove_sound´ (delay 1)
+		´seq_open_door_thermite´ (delay 1)
+´thermite_pasted´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´stop_thermite_vfx´ (delay 5)
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100036
+	append_prefix false
+	interrupt false
+	position 64, -12, 96
+	rotation 0, 0, 0, -1
+	sound_event thermite_paste_start
+	use_instigator false
+´remove_sound´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´point_play_sound_001´
+´output_door_opened´ ElementInstanceOutput 100043
+	event door_opened
+´point_interaction_001´ ElementInteraction 100018
+	DISABLED
+	host_only false
+	override_timer 3
+	position -68, -12, 35
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start001´ (delay 0) (alternative start)
+		´end001´ (delay 0) (alternative interacted)
+		´interrupt001´ (delay 0) (alternative interupt)
+´sound_blowtorch_end001´ ElementPlaySound 100019
+	append_prefix false
+	interrupt true
+	position -68, -12, 35
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator false
+´point_interaction_002´ ElementInteraction 100045
+	DISABLED
+	host_only false
+	override_timer 3
+	position -59, -12, 176
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start002´ (delay 0) (alternative start)
+		´end002´ (delay 0) (alternative interacted)
+		´interrupt002´ (delay 0) (alternative interupt)
+´point_interaction_003´ ElementInteraction 100046
+	DISABLED
+	host_only false
+	override_timer 3
+	position 75, -12, 176
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start003´ (delay 0) (alternative start)
+		´end003´ (delay 0) (alternative interacted)
+		´interrupt003´ (delay 0) (alternative interupt)
+´point_interaction_004´ ElementInteraction 100047
+	DISABLED
+	host_only false
+	override_timer 3
+	position 75, -10, 35
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_blow_torch
+	on_executed
+		´start004´ (delay 0) (alternative start)
+		´end004´ (delay 0) (alternative interacted)
+		´interrupt004´ (delay 0) (alternative interupt)
+´sound_blowtorch_end002´ ElementPlaySound 100048
+	append_prefix false
+	interrupt true
+	position -59, -12, 176
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator false
+´sound_blowtorch_end003´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position 75, -12, 176
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator false
+´sound_blowtorch_end004´ ElementPlaySound 100050
+	append_prefix false
+	interrupt true
+	position 83, -10, 35
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator false
+´input_disable_thermite_stuff´ ElementInstanceInput 100051
+	event disable_thermite_stuff
+	on_executed
+		´toggle_OFF_thermite_checks´ (delay 0)
+´toggle_OFF_thermite_checks´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´thermite_pasted´
+	on_executed
+		´disable_thermite´ (delay 0)
+´disable_thermite´ ElementUnitSequence 100053
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence disable
+			time 0
+´input_enable_blowtorch_stuff´ ElementInstanceInput 100054
+	event enable_blowtorch_stuff
+	on_executed
+		´toggle_ON_blowtorch_stuff´ (delay 0)
+´toggle_ON_blowtorch_stuff´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_004´ DISABLED
+		2 ´point_interaction_003´ DISABLED
+		3 ´point_interaction_002´ DISABLED
+		4 ´point_interaction_001´ DISABLED
+		5 ´enable_WPs´ DISABLED
+		6 ´disable_WPs´ DISABLED
+´fire_WP001´ ElementWaypoint 100056
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position -64, -12, 35
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fire_WP002´ ElementWaypoint 100057
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position -63, -12, 176
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fire_WP003´ ElementWaypoint 100058
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position 75, -12, 176
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fire_WP004´ ElementWaypoint 100059
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator true
+	position 83, -10, 35
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_WPs´ ElementAreaTrigger 100060
+	DISABLED
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -200, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´fire_WP004´ (delay 0)
+		´fire_WP001´ (delay 0)
+		´fire_WP002´ (delay 0)
+		´fire_WP003´ (delay 0)
+´stop_effect´ ElementStopEffect 100044
+	operation kill
+	position -291, -112, 37
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_005´
+	on_executed
+		´sound_blowtorch_end001´ (delay 0)
+´stop_effect_2´ ElementStopEffect 100061
+	operation kill
+	position -308, -112, 180
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_006´
+	on_executed
+		´sound_blowtorch_end002´ (delay 0)
+´stop_effect_3´ ElementStopEffect 100062
+	operation kill
+	position 317, -112, 180
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_007´
+	on_executed
+		´sound_blowtorch_end003´ (delay 0)
+´stop_effect_4´ ElementStopEffect 100063
+	operation kill
+	position 334, -112, 37
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_008´
+	on_executed
+		´sound_blowtorch_end004´ (delay 0)
+´env_effect_play_005´ ElementPlayEffect 100064
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -65, -10, 34
+	random_time 0
+	rotation -0.382683, 0, 0, -0.92388
+	screen_space false
+´interrupt003´ MissionScriptElement 100065
+	on_executed
+		´stop_effect_3´ (delay 0)
+´end003´ MissionScriptElement 100066
+	on_executed
+		´stop_effect_3´ (delay 0)
+		´add_1_blowtorch´ (delay 0)
+		´toggle_OFF_WP_3´ (delay 0)
+		´seq_burn_door_003´ (delay 0)
+´start003´ MissionScriptElement 100067
+	on_executed
+		´env_effect_play_007´ (delay 0)
+		´sound_blowtorch_end003´ (delay 0)
+´env_effect_play_006´ ElementPlayEffect 100068
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -61, -9, 170
+	random_time 0
+	rotation -0.382683, 0, 0, -0.92388
+	screen_space false
+´env_effect_play_007´ ElementPlayEffect 100069
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 75, -10, 174
+	random_time 0
+	rotation -0.382683, 0, 0, -0.92388
+	screen_space false
+´env_effect_play_008´ ElementPlayEffect 100070
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 75, -7, 34
+	random_time 0
+	rotation -0.382683, 0, 0, -0.92388
+	screen_space false
+´blowtorch_counter´ ElementCounter 100071
+	counter_target 0
+´add_1_blowtorch´ ElementCounterOperator 100072
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´blowtorch_counter´
+	on_executed
+		´all_blowtorch_interacted´ (delay 0)
+´all_blowtorch_interacted´ ElementCounterFilter 100073
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´blowtorch_counter´
+	on_executed
+		´seq_open_door_blowtorch´ (delay 0)
+´interrupt002´ MissionScriptElement 100074
+	on_executed
+		´stop_effect_2´ (delay 0)
+´end002´ MissionScriptElement 100075
+	on_executed
+		´add_1_blowtorch´ (delay 0)
+		´stop_effect_2´ (delay 0)
+		´toggle_OFF_WP_2´ (delay 0)
+		´seq_burn_door_002´ (delay 0)
+´start002´ MissionScriptElement 100076
+	on_executed
+		´env_effect_play_006´ (delay 0)
+		´sound_blowtorch_end002´ (delay 0)
+´interrupt001´ MissionScriptElement 100077
+	on_executed
+		´stop_effect´ (delay 0)
+´end001´ MissionScriptElement 100078
+	on_executed
+		´add_1_blowtorch´ (delay 0)
+		´stop_effect´ (delay 0)
+		´toggle_OFF_WP´ (delay 0)
+		´seq_burn_door_001´ (delay 0)
+´start001´ MissionScriptElement 100079
+	on_executed
+		´env_effect_play_005´ (delay 0)
+		´sound_blowtorch_end001´ (delay 0)
+´start004´ MissionScriptElement 100080
+	on_executed
+		´env_effect_play_008´ (delay 0)
+		´sound_blowtorch_end004´ (delay 0)
+´end004´ MissionScriptElement 100081
+	on_executed
+		´add_1_blowtorch´ (delay 0)
+		´stop_effect_4´ (delay 0)
+		´toggle_OFF_WP_4´ (delay 0)
+		´seq_burn_door_004´ (delay 0)
+´interrupt004´ MissionScriptElement 100082
+	on_executed
+		´stop_effect_4´ (delay 0)
+´remove_WP´ ElementOperator 100083
+	operation remove
+	elements
+		1 ´fire_WP003´
+´remove_WP_2´ ElementOperator 100084
+	operation remove
+	elements
+		1 ´fire_WP002´
+´remove_WP_3´ ElementOperator 100085
+	operation remove
+	elements
+		1 ´fire_WP004´
+´remove_WP_4´ ElementOperator 100086
+	operation remove
+	elements
+		1 ´fire_WP001´
+´toggle_OFF_stuff´ ElementToggle 100087
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_enable_blowtorch_stuff´
+		2 ´toggle_ON_blowtorch_stuff´
+		3 ´disable_WPs´ DISABLED
+		4 ´enable_WPs´ DISABLED
+		5 ´disable_button´ DISABLED
+		6 ´enable_button´
+	on_executed
+		´output_door_opened´ (delay 0)
+´input_enable_thermite_stuff´ ElementInstanceInput 100088
+	event enable_thermite_stuff
+	on_executed
+		´toggle_ON_thermite_checks´ (delay 0)
+´enable_thermite´ ElementUnitSequence 100089
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence state_interaction_thermite
+			time 0
+´toggle_ON_thermite_checks´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´thermite_pasted´
+	on_executed
+		´enable_thermite´ (delay 0)
+´remove_WPs´ ElementOperator 100091
+	operation remove
+	elements
+		1 ´fire_WP001´
+		2 ´fire_WP002´
+		3 ´fire_WP003´
+		4 ´fire_WP004´
+´disable_WPs´ ElementAreaTrigger 100092
+	DISABLED
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -200, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove_WPs´ (delay 0)
+´toggle_OFF_WP´ ElementToggle 100093
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fire_WP001´
+	on_executed
+		´remove_WP_4´ (delay 0)
+´toggle_OFF_WP_2´ ElementToggle 100094
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fire_WP002´
+	on_executed
+		´remove_WP_2´ (delay 0)
+´toggle_OFF_WP_3´ ElementToggle 100095
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fire_WP003´
+	on_executed
+		´remove_WP´ (delay 0)
+´toggle_OFF_WP_4´ ElementToggle 100096
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fire_WP004´
+	on_executed
+		´remove_WP_3´ (delay 0)
+´goto_gate_WP´ ElementWaypoint 100027
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -50, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_winecellar_gate_WP´ ElementInstanceInput 100090
+	event enable_winecellar_gate_WP
+	on_executed
+		´toggle_ON_trigger_ONCE´ (delay 0)
+´enable_WP´ MissionScriptElement 100097
+	DISABLED
+	on_executed
+		´goto_gate_WP´ (delay 0)
+´input_disable_winecellar_gate_WPs´ ElementInstanceInput 100098
+	event disable_winecellar_gate_WPs
+	on_executed
+		´remove_goto_WP´ (delay 0)
+´output_winecellar_gate_found´ ElementInstanceOutput 100100
+	event winecellar_gate_found
+´winecellar_gate_found´ ElementAreaTrigger 100101
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -200, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_winecellar_gate_found´ (delay 0)
+´toggle_ON_trigger_ONCE´ ElementToggle 100102
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´winecellar_gate_found´ DISABLED
+´remove_goto_WP´ ElementOperator 100104
+	operation remove
+	elements
+		1 ´goto_gate_WP´
+	on_executed
+		´toggle_OFF_trigger´ (delay 0)
+´toggle_OFF_trigger´ ElementToggle 100099
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´winecellar_gate_found´ DISABLED
+´input_disable_blowtorch_WPs´ ElementInstanceInput 100109
+	event disable_blowtorch_WPs
+	on_executed
+		´remove_WPs_2´ (delay 0)
+´remove_WPs_2´ ElementOperator 100110
+	operation remove
+	elements
+		1 ´fire_WP001´
+		2 ´fire_WP002´
+		3 ´fire_WP003´
+		4 ´fire_WP004´
+	on_executed
+		´toggle_OFF_WPs´ (delay 0)
+´toggle_OFF_WPs´ ElementToggle 100111
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fire_WP001´
+		2 ´fire_WP002´
+		3 ´fire_WP003´
+		4 ´fire_WP004´
+´disable_button´ ElementAreaTrigger 100112
+	DISABLED
+	amount 1
+	depth 300
+	height 350
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 8, 163, 140
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_empty
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´enable_button´ ElementAreaTrigger 100113
+	amount 1
+	depth 400
+	height 350
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 8, 163, 140
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 250
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´open_door´ MissionScriptElement 100119
+	on_executed
+		´toggle_OFF_interactions´ (delay 0)
+´toggle_OFF_interactions´ ElementToggle 100120
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´toggle_ON_blowtorch_stuff´
+		2 ´input_enable_blowtorch_stuff´
+		3 ´input_enable_thermite_stuff´
+		4 ´toggle_ON_thermite_checks´
+		5 ´point_interaction_001´ DISABLED
+		6 ´point_interaction_002´ DISABLED
+		7 ´point_interaction_003´ DISABLED
+		8 ´point_interaction_004´ DISABLED
+		9 ´fire_WP001´
+		10 ´fire_WP002´
+		11 ´fire_WP003´
+		12 ´fire_WP004´
+	on_executed
+		´disable_thermite_2´ (delay 0)
+´disable_thermite_2´ ElementUnitSequence 100123
+	position 700, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (67, -11, 91)
+			notify_unit_sequence disable
+			time 0
+	on_executed
+		´remove_WPs_3´ (delay 0)
+´remove_WPs_3´ ElementOperator 100124
+	operation remove
+	elements
+		1 ´fire_WP001´
+		2 ´fire_WP002´
+		3 ´fire_WP003´
+		4 ´fire_WP004´
+	on_executed
+		´open_door_2´ (delay 0)
+´seq_burn_door_002´ ElementUnitSequence 100009
+	position -350, -125, 175
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence state_cut_4
+			time 0
+´seq_burn_door_001´ ElementUnitSequence 100010
+	position -350, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence state_cut_3
+			time 0
+´seq_burn_door_003´ ElementUnitSequence 100127
+	position 350, -125, 175
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence state_cut_1
+			time 0
+´seq_burn_door_004´ ElementUnitSequence 100128
+	position 375, -125, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence state_cut_2
+			time 0
+´seq_open_door_blowtorch´ ElementUnitSequence 100129
+	position 1000, -275, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence anim_open_blowtorch
+			time 0
+	on_executed
+		´remove_door_blocker´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´point_play_sound_fall_door´ (delay 1.25)
+´seq_open_door_thermite´ ElementUnitSequence 100130
+	position 800, -225, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence anim_open_thermite
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+´point_play_sound_fall_door´ ElementPlaySound 100012
+	append_prefix false
+	interrupt true
+	position 0, 125, 0
+	rotation 0, 0, 0, -1
+	sound_event kick_metal_door
+	use_instigator false
+´open_door_2´ ElementUnitSequence 100014
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_wine_cellar_gate/fex_prop_wine_cellar_gate/001 (0, 0, 0)
+			notify_unit_sequence anim_open
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+		´enable_nav_blocker´ (delay 0)
+´disable_nav_blocker´ ElementNavObstacle 100015
+	operation remove
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 9872693663759567877
+			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (-78, 19, 0)
+´enable_nav_blocker´ ElementNavObstacle 100016
+	operation add
+	position 700, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 9872693663759567877
+			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (-78, 19, 0)
+	on_executed
+		´env_effect_stop_thermite´ (delay 0)
+´input_button_pressed´ ElementInstanceInput 100017
+	event button_pressed
+	on_executed
+		´open_door´ (delay 0)
+´env_effect_stop_thermite´ ElementStopEffect 100022
+	operation kill
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´remove_sopund_thermite´ (delay 0)
+´remove_sopund_thermite´ ElementOperator 100023
+	operation remove
+	elements
+		1 ´point_play_sound_001´
+	on_executed
+		´disable_open_door_thermite´ (delay 0)
+´disable_open_door_thermite´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_open_door_thermite´
+´data_instigator_rule_001´ ElementInstigatorRule 100028
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 blow_torch

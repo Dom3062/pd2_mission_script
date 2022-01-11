@@ -1,0 +1,170 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+		´ai_security_camera_disable´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´nav_obstacle_add´ ElementNavObstacle 100011
+	operation add
+	position 600, -225, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1970654565116943824
+			unit_id units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/002 (53, 100, 15)
+		2
+			guis_id 2
+			obj_name 1970654565116943824
+			unit_id units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/003 (-53, -100, 15)
+		3
+			guis_id 3
+			obj_name 18162117368847644231
+			unit_id units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_c/pallet_stack_layout1_003 (-56, 85, 15)
+		4
+			guis_id 4
+			obj_name 2971217767025954572
+			unit_id units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_a/pallet_stack_layout2_1 (56, -87, 15)
+´instance_input_spawn´ ElementInstanceInput 100007
+	BASE DELAY 1
+	event spawn_contents
+	on_executed
+		´link_spawn´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100008
+	DISABLED
+	position 925, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/002 (53, 100, 15)
+		2 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/003 (-53, -100, 15)
+		3 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_c/pallet_stack_layout1_003 (-56, 85, 15)
+		4 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_a/pallet_stack_layout2_1 (56, -87, 15)
+´func_disable_unit_001´ ElementDisableUnit 100012
+	position 775, -225, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/002 (53, 100, 15)
+		2 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_b/003 (-53, -100, 15)
+		3 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_c/pallet_stack_layout1_003 (-56, 85, 15)
+		4 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_pallet_stack_a/pallet_stack_layout2_1 (56, -87, 15)
+´link_spawn´ MissionScriptElement 100013
+´point_debug_001´ ElementDebug 100014
+	DISABLED
+	as_subtitle false
+	debug_string container_contents_blocked - spawned
+	show_instigator false
+´input_remove´ ElementInstanceInput 100018
+	TRIGGER TIMES 1
+	event remove
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100009
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´input_graph_blockers´ ElementInstanceInput 100010
+	event activate_graph_blockers
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_003´ MissionScriptElement 100015
+	on_executed
+		´nav_obstacle_add´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_graph_blockers´
+´point_debug_002´ ElementDebug 100017
+	DISABLED
+	as_subtitle false
+	debug_string container blocked - obst added
+	show_instigator false
+´input_activate_camera´ ElementInstanceInput 100019
+	event activate_ai_camera
+	on_executed
+		´logic_link_001´ (delay 0)
+´input_deactivate_camera´ ElementInstanceInput 100020
+	event deactivate_ai_camera
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_link_001´ MissionScriptElement 100021
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+		´ai_security_camera_001´ (delay 0)
+´logic_link_004´ MissionScriptElement 100022
+	TRIGGER TIMES 1
+	on_executed
+		´ai_security_camera_002´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100023
+	position 550, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/001 (-125, 250, 200)
+´func_enable_unit_002´ ElementEnableUnit 100024
+	position 1075, -225, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/001 (-125, 250, 200)
+´ai_security_camera_001´ ElementSecurityCamera 100025
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100029
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -45
+´ai_security_camera_disable´ ElementSecurityCamera 100026
+	apply_settings true
+	camera_u_id 100029
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -45
+´point_access_camera_001´ ElementAccessCamera 100028
+	camera_u_id 100029
+	pitch_limit 25
+	position -100, 250, 200
+	rotation 0, 0, 0.92388, -0.382683
+	text_id debug_none
+	yaw_limit 25
+´trigger_global_loud´ ElementGlobalEventTrigger 100030
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1325, -25, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_004´ (delay 0)
+´ai_security_camera_002´ ElementSecurityCamera 100031
+	apply_settings true
+	camera_u_id 100029
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -45
+´logic_link_005´ MissionScriptElement 100032
+	on_executed
+		´delay´ (delay 0)
+´input_remove_camera´ ElementInstanceInput 100033
+	event remove_camera
+	on_executed
+		´logic_link_005´ (delay 0)

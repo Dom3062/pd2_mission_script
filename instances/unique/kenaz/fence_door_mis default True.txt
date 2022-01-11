@@ -1,0 +1,390 @@
+´startup´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_hide_drill´ (delay 1)
+´seq_hide_drill´ ElementUnitSequence 100005
+	position -300, 150, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence deactivate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence deactivate
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+			notify_unit_sequence state_door_open
+			time 0
+´trg_seq_drill_01_placed´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+	on_executed
+		´seq_hide_drill_2´ (delay 0)
+		´toggle_on´ (delay 0)
+		´func_sequence_004´ (delay 0) DISABLED
+´trg_seq_drill_02_placed´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+	on_executed
+		´seq_hide_drill_3´ (delay 0)
+		´toggle_on´ (delay 0)
+		´func_sequence_004´ (delay 0) DISABLED
+´seq_hide_drill_2´ ElementUnitSequence 100009
+	position -300, 250, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence deactivate
+			time 0
+´seq_hide_drill_3´ ElementUnitSequence 100010
+	position -300, 350, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence deactivate
+			time 0
+´trg_seq_drill_done´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+	on_executed
+		´seq_door_open´ (delay 0)
+		´door_blocker_remove´ (delay 0)
+´seq_door_open´ ElementUnitSequence 100012
+	TRIGGER TIMES 1
+	position -300, 450, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+			notify_unit_sequence open_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence deactivate
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence deactivate
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0
+´trg_seq_door_open_saw´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door_with_saw
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+	on_executed
+		´seq_drill_hide´ (delay 0)
+		´door_blocker_remove´ (delay 0)
+		´seq_power_off_drill´ (delay 0) DISABLED
+´input_close_door´ ElementInstanceInput 100003
+	event input_close_door
+	on_executed
+		´seq_close_door´ (delay 0)
+		´door_blocker_add´ (delay 0)
+´seq_close_door´ ElementUnitSequence 100014
+	position -300, 550, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+			notify_unit_sequence activate_door
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence activate
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence activate
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence set_hack_time_state_3
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence set_hack_time_state_3
+			time 0
+	on_executed
+		´seq_enable_door´ (delay 5)
+´trg_seq_c4_placed´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence all_c4_placed
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+	on_executed
+		´seq_hide_drill_2´ (delay 0)
+		´seq_drill_hide´ (delay 0)
+		´door_blocker_remove´ (delay 0)
+		´seq_power_off_drill´ (delay 0) DISABLED
+´seq_drill_hide´ ElementUnitSequence 100016
+	position -300, 650, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence deactivate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence deactivate
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0
+´door_blocker_add´ ElementNavObstacle 100017
+	TRIGGER TIMES 1
+	operation add
+	position -50, 275, 75
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (50, -25, 0)
+´door_blocker_remove´ ElementNavObstacle 100018
+	TRIGGER TIMES 1
+	operation remove
+	position 75, 275, 75
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (50, -25, 0)
+´seq_power_off_drill´ ElementUnitSequence 100020
+	DISABLED
+	position -300, 750, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence power_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence power_off
+			time 0
+´toggle_on´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_power_off_drill´ DISABLED
+´seq_enable_door´ ElementUnitSequence 100022
+	position -375, 550, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+´seq_trg_door_interact´ ElementUnitSequenceTrigger 100023
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_int_fence_door/cas_int_fence_door/001 (0, 0, 0)
+	on_executed
+		´logic_chance_001´ (delay 0)
+´logic_chance_001´ ElementLogicChance 100024
+	chance 50
+	position -600, 75, 75
+	rotation 0, 0, 0, -1
+´logic_chance_trigger_001´ ElementLogicChanceTrigger 100025
+	outcome success
+	position -600, 175, 75
+	rotation 0, 0, 0, -1
+	elements
+		1 ´logic_chance_001´
+	on_executed
+		´seq_door_open´ (delay 0)
+		´seq_power_off_drill´ (delay 0) DISABLED
+´logic_chance_trigger_002´ ElementLogicChanceTrigger 100026
+	outcome fail
+	position -700, 75, 75
+	rotation 0, 0, 0, -1
+	elements
+		1 ´logic_chance_001´
+	on_executed
+		´seq_enable_door´ (delay 0)
+		´logic_chance_operator_001´ (delay 0)
+´logic_chance_operator_001´ ElementLogicChanceOperator 100027
+	chance 10
+	operation add_chance
+	position -800, 75, 75
+	rotation 0, 0, 0, -1
+	elements
+		1 ´logic_chance_001´
+´input_disable_attention´ ElementInstanceInput 100029
+	event disable_drill_attention
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_004´ DISABLED
+´func_sequence_004´ ElementUnitSequence 100006
+	DISABLED
+	position -375, 300, 75
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (-77, -6, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (-92, -1.00001, 84)
+			notify_unit_sequence state_attention_disabled
+			time 0

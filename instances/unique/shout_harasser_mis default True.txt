@@ -1,0 +1,144 @@
+´spawned´ ElementInstanceOutput 100003
+	event spawned
+´harasser´ MissionScriptElement 100009
+	on_executed
+		´if_norm001´ (delay 0)
+		´if_hards001´ (delay 0)
+		´if_over001´ (delay 0)
+´harasser_death´ ElementEnemyDummyTrigger 100011
+	event death
+	position 100, 500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´harasser_norm´
+		2 ´harasser_hards´
+		3 ´harasser_over´
+	on_executed
+		´random_delay´ (delay 60-120)
+´spawn_point_harasser´ MissionScriptElement 100015
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+´harasser_norm´ ElementSpawnEnemyDummy 100016
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 100, 900, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_harasser´
+	instance_var_names
+		enemy var_enemy_normal
+	on_executed
+		´spawned´ (delay 0)
+´harasser_hards´ ElementSpawnEnemyDummy 100017
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 100, 1000, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_harasser´
+	instance_var_names
+		enemy var_enemy_hard_very_hard
+	on_executed
+		´spawned´ (delay 0)
+´harasser_over´ ElementSpawnEnemyDummy 100018
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 100, 1100, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_harasser´
+	instance_var_names
+		enemy var_overkill_deathwish
+	on_executed
+		´spawned´ (delay 0)
+´if_norm001´ ElementFilter 100020
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, 900, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´harasser_norm´ (delay 0)
+´if_hards001´ ElementFilter 100021
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, 1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´harasser_hards´ (delay 0)
+´if_over001´ ElementFilter 100022
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, 1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´harasser_over´ (delay 0)
+´spawn´ ElementInstanceInput 100027
+	event spawn
+	on_executed
+		´harasser´ (delay 0)
+´random_delay´ MissionScriptElement 100034
+	on_executed
+		´harasser´ (delay 0)

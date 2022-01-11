@@ -1,0 +1,408 @@
+´hacking_started´ ElementInstanceInput 100001
+	event hacking_started
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´point_interaction_001´ ElementInteraction 100003
+	host_only false
+	override_timer -1
+	position 0, 11, 133
+	rotation 0, 0, 0, -1
+	tweak_data_id bex_restore_power
+	on_executed
+		´logic_link_002´ (delay 0) (alternative interacted)
+		´logic_operator_003´ (delay 0) (alternative interacted)
+´startup´ MissionScriptElement 100004
+	EXECUTE ON STARTUP
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100005
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´
+´interrupt_so´ ElementSpecialObjective 100006
+	SO_access 504
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 26, 57, -25
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 0 100 0
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´initiate_so´ ElementSpecialObjective 100007
+	SO_access 504
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 26, 157, -25
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1500
+	search_position 23,1041 230,54 2,5
+	so_action none
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interrupt_so´
+´logic_toggle_002´ ElementToggle 100008
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_so´
+		2 ´initiate_so´
+	on_executed
+		´defend_wp´ (delay 0)
+		´initiate_so´ (delay 0.1)
+		´set_power_on´ (delay 0)
+´fail´ ElementSpecialObjectiveTrigger 100009
+	event fail
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+		2 ´initiate_so´
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´success´ ElementSpecialObjectiveTrigger 100010
+	event anim_start
+	position -100, 200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´logic_toggle_006´ (delay 0)
+´logic_toggle_003´ ElementToggle 100011
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´initiate_so´
+		2 ´interrupt_so´
+	on_executed
+		´logic_toggle_004´ (delay 5-7)
+´logic_toggle_004´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´initiate_so´
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´logic_toggle_005´ ElementToggle 100013
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´initiate_so´ (delay 0.01)
+´logic_toggle_006´ ElementToggle 100014
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_interaction_001´
+	on_executed
+		´logic_operator_002´ (delay 0)
+´power_off´ ElementUnitSequence 100015
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch/001 (0, 0, 0)
+			notify_unit_sequence trigger_animation
+			time 0
+	on_executed
+		´power_off_output´ (delay 0)
+´power_on´ ElementUnitSequence 100016
+	position 0, 500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch/001 (0, 0, 0)
+			notify_unit_sequence trigger_off_animation
+			time 0
+	on_executed
+		´power_on_output´ (delay 0)
+		´logic_link_001´ (delay 0) DISABLED
+´power_on_output´ ElementInstanceOutput 100017
+	event power_on_output
+	on_executed
+		´set_power_on´ (delay 0)
+´power_off_output´ ElementInstanceOutput 100018
+	event power_off_output
+	on_executed
+		´set_power_off´ (delay 0)
+´stop_interrupts´ ElementInstanceInput 100002
+	event stop_interrupts
+	on_executed
+		´logic_toggle_007´ (delay 0)
+´logic_toggle_007´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´startup´
+		2 ´hacking_started´
+		3 ´logic_toggle_002´
+		4 ´logic_toggle_001´
+		5 ´interrupt_so´
+		6 ´initiate_so´
+		7 ´fail´
+		8 ´success´
+		9 ´logic_toggle_003´
+		10 ´logic_toggle_004´
+		11 ´logic_toggle_005´
+		12 ´logic_link_002´
+		13 ´logic_toggle_006´
+		14 ´logic_operator_002´
+		15 ´power_off´
+		16 ´power_off_output´
+		17 ´power_off001´ DISABLED
+	on_executed
+		´if_power_on´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´if_power_off´ (delay 0)
+´on_or_off´ ElementCounter 100020
+	counter_target 0
+´set_power_on´ ElementCounterOperator 100021
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´on_or_off´
+´set_power_off´ ElementCounterOperator 100022
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´on_or_off´
+´if_power_on´ ElementCounterFilter 100023
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´on_or_off´
+	on_executed
+		´logic_toggle_008´ (delay 0)
+		´logic_toggle_011´ (delay 0) DISABLED
+´logic_toggle_008´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´
+		2 ´power_on´
+		3 ´power_on_output´
+		4 ´logic_operator_003´
+	on_executed
+		´logic_operator_004´ (delay 0)
+´logic_operator_001´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´interrupt_so´
+		2 ´initiate_so´
+´defend_wp´ ElementWaypoint 100026
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 20, 164
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interact_wp´ ElementWaypoint 100027
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 29, 133
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_002´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´defend_wp´
+	on_executed
+		´power_off´ (delay 0)
+		´interact_wp´ (delay 0)
+		´power_off001´ (delay 0) DISABLED
+´if_power_off´ ElementCounterFilter 100029
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´on_or_off´
+	on_executed
+		´logic_toggle_009´ (delay 0)
+´logic_toggle_009´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´logic_link_001´ DISABLED
+´logic_link_001´ MissionScriptElement 100031
+	DISABLED
+´logic_operator_003´ ElementOperator 100032
+	operation remove
+	elements
+		1 ´interact_wp´
+	on_executed
+		´power_on´ (delay 0)
+		´power_on001´ (delay 0) DISABLED
+´logic_link_002´ MissionScriptElement 100033
+	on_executed
+		´defend_wp´ (delay 0)
+		´logic_toggle_003´ (delay 5-8)
+´logic_operator_004´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´interact_wp´
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100035
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, -100, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100036
+	position 200, 400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state mask_off
+´pause_interrupts_input´ ElementInstanceInput 100037
+	event pause_interrupts_input
+	on_executed
+		´logic_toggle_010´ (delay 0)
+´logic_toggle_010´ ElementToggle 100038
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_so´
+		2 ´initiate_so´
+	on_executed
+		´logic_operator_005´ (delay 0)
+´logic_operator_005´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´interact_wp´
+		2 ´defend_wp´
+´resume_interrupts_input´ ElementInstanceInput 100040
+	event resume_interrupts_input
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´power_off001´ ElementUnitSequence 100042
+	DISABLED
+	position -100, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch_02/001 (0, 0, 0)
+			notify_unit_sequence trigger_animation
+			time 0
+	on_executed
+		´power_off_output´ (delay 0)
+´power_on001´ ElementUnitSequence 100043
+	DISABLED
+	position 0, 600, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch_02/001 (0, 0, 0)
+			notify_unit_sequence trigger_off_animation
+			time 0
+	on_executed
+		´power_on_output´ (delay 0)
+		´logic_link_001´ (delay 0) DISABLED
+´logic_toggle_011´ ElementToggle 100044
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´
+		2 ´power_on_output´
+		3 ´logic_operator_003´
+		4 ´power_on001´ DISABLED
+	on_executed
+		´logic_operator_004´ (delay 0)
+´set_short´ ElementInstanceInput 100046
+	event set_short
+	on_executed
+		´logic_toggle_013´ (delay 0)
+´logic_toggle_013´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´power_on´
+		2 ´power_off´
+		3 ´logic_toggle_008´
+	on_executed
+		´logic_toggle_015´ (delay 0)
+´logic_toggle_015´ ElementToggle 100050
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´power_on001´ DISABLED
+		2 ´power_off001´ DISABLED
+		3 ´logic_toggle_011´ DISABLED
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100045
+	position 400, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch_02/001 (0, 0, 0)
+´func_disable_unit_002´ ElementDisableUnit 100047
+	position 200, 1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch/001 (0, 0, 0)
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100049
+	position 200, 1300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_berry/props/bry_prop_mechanical_switch/bry_prop_mechanical_switch_02/001 (0, 0, 0)

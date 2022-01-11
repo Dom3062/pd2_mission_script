@@ -1,0 +1,82 @@
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	BASE DELAY 0,65
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100002
+	position -100, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_disable_unit_001´ ElementDisableUnit 100004
+	position 0, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+´set_board´ ElementInstanceInput 100005
+	BASE DELAY 1
+	event set_board
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100006
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+			notify_unit_sequence interact_enable
+			time 0
+´func_enable_unit_001´ ElementEnableUnit 100007
+	position -100, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+	on_executed
+		´func_sequence_002´ (delay 0.5)
+´set_var_001´ ElementInstanceInput 100000
+	BASE DELAY 2
+	event var_001
+	on_executed
+		´show_var_001´ (delay 0)
+´set_var_002´ ElementInstanceInput 100009
+	BASE DELAY 2
+	event var_002
+	on_executed
+		´show_var_002´ (delay 0)
+´set_var_003´ ElementInstanceInput 100010
+	BASE DELAY 2
+	event var_003
+	on_executed
+		´show_var_003´ (delay 0)
+´show_var_001´ ElementUnitSequence 100011
+	position -100, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+			notify_unit_sequence show_evidence_01
+			time 0
+´show_var_002´ ElementUnitSequence 100012
+	position -100, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+			notify_unit_sequence show_evidence_02
+			time 0
+´show_var_003´ ElementUnitSequence 100013
+	position -100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_evidence_board/mcm_prop_evidence_board/001 (0, 0, 0)
+			notify_unit_sequence show_evidence_03
+			time 0

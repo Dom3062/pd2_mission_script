@@ -1,0 +1,1072 @@
+´STARTUP´ MissionScriptElement 100203
+	EXECUTE ON STARTUP
+	on_executed
+		´random_cash´ (delay 0)
+		´select_computer´ (delay 1)
+		´disable_computers´ (delay 0)
+		´seq_usb_hide_all´ (delay 1)
+		´func_whisper_state_001´ (delay 0) DISABLED
+		´diff_NOHA´ (delay 0)
+		´diff_VHOk´ (delay 0)
+		´door_opened´ (delay 4)
+		´main_entrance_closed´ (delay 4)
+		´diff_DEATHWISH´ (delay 1)
+		´show_security_cameras´ (delay 0)
+		´random_money_HIDE´ (delay 2)
+´select_computer´ ElementRandom 100206
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´computer_cashier_left_ENABLE´ (delay 0)
+		´computer_cashier_right_ENABLE´ (delay 0)
+		´computer_reception_left_ENABLE´ (delay 0)
+		´computer_reception_right_ENABLE´ (delay 0)
+´output_customer_list_found´ ElementInstanceOutput 100209
+	event customer_list_found
+	on_executed
+		´point_debug_002´ (delay 0)
+´random_cash´ ElementRandom 100255
+	amount 3
+	amount_random 0
+	ignore_disabled true
+´point_debug_001´ ElementDebug 100256
+	TRIGGER TIMES 2
+	as_subtitle false
+	debug_string comp reception searched
+	show_instigator false
+´point_debug_002´ ElementDebug 100257
+	as_subtitle false
+	debug_string hotel room found!
+	show_instigator false
+´func_instance_input_001´ ElementInstanceInput 100276
+	event activate_computer_search
+	on_executed
+		´delay´ (delay 5)
+´disable_computers´ ElementDisableUnit 100183
+	position -111, 300, 1251.35
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_left (-268, 989, 75.2318)
+		2 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_right (-266, -991, 77)
+		3 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_left (331.095, 345.751, 74.0022)
+		4 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_right (328.673, -350.711, 75.2573)
+´computer_cashier_left_ENABLE´ ElementEnableUnit 100085
+	position -186, 300, 1251.35
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_left (-268, 989, 75.2318)
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´computer_cashier_right_ENABLE´ ElementEnableUnit 100086
+	position -186, 250, 1251.35
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_right (-266, -991, 77)
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´computer_reception_left_ENABLE´ ElementEnableUnit 100195
+	position -186, 200, 1251.35
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_left (331.095, 345.751, 74.0022)
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´computer_reception_right_ENABLE´ ElementEnableUnit 100199
+	position -186, 150, 1251.35
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_right (328.673, -350.711, 75.2573)
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´computer_cashier_left_enable´ ElementUnitSequence 100200
+	position -386, 300, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_left (-268, 989, 75.2318)
+			notify_unit_sequence enable_interaction
+			time 0
+´computer_cashier_right_enable´ ElementUnitSequence 100201
+	position -386, 250, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_right (-266, -991, 77)
+			notify_unit_sequence enable_interaction
+			time 0
+´computer_reception_left_enable´ ElementUnitSequence 100204
+	position -386, 200, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_left (331.095, 345.751, 74.0022)
+			notify_unit_sequence enable_interaction
+			time 0
+´computer_reception_right_enable´ ElementUnitSequence 100205
+	position -386, 150, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_right (328.673, -350.711, 75.2573)
+			notify_unit_sequence enable_interaction
+			time 0
+´seq_trg_database_computer_cashier_left_interact´ ElementUnitSequenceTrigger 100207
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_left (-268, 989, 75.2318)
+	on_executed
+		´func_sequence_001´ (delay 0)
+´link_activate_001´ MissionScriptElement 100208
+	DISABLED
+	on_executed
+		´computer_cashier_left_enable´ (delay 0)
+´link_activate_002´ MissionScriptElement 100248
+	DISABLED
+	on_executed
+		´computer_cashier_right_enable´ (delay 0)
+´link_activate_003´ MissionScriptElement 100250
+	DISABLED
+	on_executed
+		´computer_reception_left_enable´ (delay 0)
+´link_activate_004´ MissionScriptElement 100266
+	DISABLED
+	on_executed
+		´computer_reception_right_enable´ (delay 0)
+´logic_toggle_001´ ElementToggle 100267
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_activate_001´ DISABLED
+´logic_toggle_002´ ElementToggle 100268
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_activate_002´ DISABLED
+´logic_toggle_003´ ElementToggle 100269
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_activate_003´ DISABLED
+´logic_toggle_004´ ElementToggle 100271
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_activate_004´ DISABLED
+´delay´ MissionScriptElement 100272
+	on_executed
+		´link_activate_004´ (delay 0) DISABLED
+		´link_activate_003´ (delay 0) DISABLED
+		´link_activate_002´ (delay 0) DISABLED
+		´link_activate_001´ (delay 0) DISABLED
+´seq_usb_hide_all´ ElementUnitSequence 100154
+	position -36, 107, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+			notify_unit_sequence disable_interaction
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+			notify_unit_sequence disable_interaction
+			time 0
+´seq_trg_database_computer_reception_left_interact´ ElementUnitSequenceTrigger 100155
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_left (331.095, 345.751, 74.0022)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´seq_trg_database_computer_reception_right_interact´ ElementUnitSequenceTrigger 100156
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_right (328.673, -350.711, 75.2573)
+	on_executed
+		´func_sequence_003´ (delay 0)
+´seq_trg_database_computer_cashier_right_interact´ ElementUnitSequenceTrigger 100157
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_right (-266, -991, 77)
+	on_executed
+		´func_sequence_004´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100158
+	position -175, -175, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´func_sequence_005´ (delay 15)
+		´vo_bain_downloading_guest_list´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100159
+	position -175, -225, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´func_sequence_006´ (delay 15)
+		´vo_bain_downloading_guest_list´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100160
+	position -175, -275, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´func_sequence_007´ (delay 15)
+		´vo_bain_downloading_guest_list´ (delay 0)
+´func_sequence_004´ ElementUnitSequence 100161
+	position -175, -325, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´func_sequence_008´ (delay 15)
+		´vo_bain_downloading_guest_list´ (delay 0)
+´func_sequence_005´ ElementUnitSequence 100162
+	position -250, -175, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_006´ ElementUnitSequence 100163
+	position -250, -225, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_007´ ElementUnitSequence 100164
+	position -250, -275, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_008´ ElementUnitSequence 100165
+	position -250, -325, 1255.84
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+			notify_unit_sequence enable_interaction
+			time 0
+´seq_trg_usb_load´ ElementUnitSequenceTrigger 100166
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_left (-262.657, 961.514, 75.2318)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_cashier_right (-272.774, -963.832, 77)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_left (303.095, 343.751, 74.0022)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_usb_key/cas_usb_key_data/usb_reception_right (300.673, -350.711, 75.2573)
+	on_executed
+		´output_customer_list_found´ (delay 0)
+´func_whisper_state_001´ ElementWhisperState 100141
+	DISABLED
+	disable_hud false
+	position -36, 275, 1251.35
+	rotation 0, 0, 0, -1
+	state false
+´civilian_001´ MissionScriptElement 100175
+´diff_VHOk´ ElementFilter 100177
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 39, -875, 1251.35
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_civ_2´ (delay 0)
+´diff_NOHA´ ElementFilter 100178
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 114, -875, 1251.35
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_civ_1´ (delay 0)
+´civilian_002´ MissionScriptElement 100179
+´civilian_003´ MissionScriptElement 100182
+´civilian_004´ MissionScriptElement 100184
+´spawn_civ_1´ ElementRandom 100185
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´civilian_002´ (delay 0)
+		´civilian_003´ (delay 0)
+		´civilian_004´ (delay 0)
+´spawn_civ_2´ ElementRandom 100186
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´civilian_002´ (delay 0)
+		´civilian_003´ (delay 0)
+		´civilian_004´ (delay 0)
+´spawn_civ_3´ ElementRandom 100187
+	amount 3
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´civilian_002´ (delay 0)
+		´civilian_003´ (delay 0)
+		´civilian_004´ (delay 0)
+´ai_so_group_001´ ElementSpecialObjectiveGroup 100188
+	base_chance 1
+	mode randomizer
+	position 75, -175, 312.5
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+´seq_trigger_open_doors_001´ ElementUnitSequenceTrigger 100210
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence door_opened
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/007 (-225, 511, -1)
+		2
+			guis_id 2
+			sequence done_open
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/007 (-225, 511, -1)
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´seq_trigger_open_doors_002´ ElementUnitSequenceTrigger 100213
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence door_opened
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/009 (-225, -511, -1)
+		2
+			guis_id 2
+			sequence done_open
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/009 (-225, -511, -1)
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+´seq_trigger_open_doors_003´ ElementUnitSequenceTrigger 100214
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence door_opened
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/008 (37.0006, -400, 0)
+		2
+			guis_id 2
+			sequence done_open
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/008 (37.0006, -400, 0)
+	on_executed
+		´func_nav_obstacle_003´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100215
+	TRIGGER TIMES 1
+	operation remove
+	position -411, -875, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-275, 475, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100216
+	TRIGGER TIMES 1
+	operation remove
+	position -411, -950, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-275, -575, 0)
+´func_nav_obstacle_003´ ElementNavObstacle 100217
+	TRIGGER TIMES 1
+	operation remove
+	position -411, -1025, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-25, -450, 0)
+´door_opened´ ElementRandom 100218
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´all_closed´ (delay 0)
+		´left_open´ (delay 0)
+		´right_open´ (delay 0)
+		´mid_opened´ (delay 0)
+´all_closed´ MissionScriptElement 100219
+	on_executed
+		´left_closed´ (delay 0)
+		´right_close´ (delay 0)
+		´mid_close´ (delay 0)
+´left_open´ MissionScriptElement 100220
+	on_executed
+		´right_close´ (delay 0)
+		´mid_close´ (delay 0)
+´right_open´ MissionScriptElement 100221
+	on_executed
+		´left_closed´ (delay 0)
+		´mid_close´ (delay 0)
+´mid_opened´ MissionScriptElement 100222
+	on_executed
+		´left_closed´ (delay 0)
+		´right_close´ (delay 0)
+´left_closed´ ElementUnitSequence 100223
+	position -186, 625, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/007 (-225, 511, -1)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/007 (-225, 511, -1)
+			notify_unit_sequence hard_no_skill_lock
+			time 0
+	on_executed
+		´func_nav_obstacle_004´ (delay 0)
+´right_close´ ElementUnitSequence 100224
+	position -186, 550, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/009 (-225, -511, -1)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/009 (-225, -511, -1)
+			notify_unit_sequence hard_no_skill_lock
+			time 0
+	on_executed
+		´func_nav_obstacle_005´ (delay 0)
+´mid_close´ ElementUnitSequence 100225
+	position -186, 475, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/008 (37.0006, -400, 0)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/008 (37.0006, -400, 0)
+			notify_unit_sequence hard_no_skill_lock
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/010 (37.0006, 400, 0)
+			notify_unit_sequence close_door
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/010 (37.0006, 400, 0)
+			notify_unit_sequence hard_no_skill_lock
+			time 0
+	on_executed
+		´func_nav_obstacle_006_mid´ (delay 0)
+´func_nav_obstacle_004´ ElementNavObstacle 100226
+	TRIGGER TIMES 1
+	operation add
+	position -261, 625, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-275, 475, 0)
+´func_nav_obstacle_005´ ElementNavObstacle 100227
+	TRIGGER TIMES 1
+	operation add
+	position -261, 550, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-275, -575, 0)
+´func_nav_obstacle_006_mid´ ElementNavObstacle 100228
+	TRIGGER TIMES 1
+	operation add
+	position -261, 475, 1251.35
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, 350, 0)
+		2
+			guis_id 2
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-25, -450, 0)
+´diff_DEATHWISH´ ElementFilter 100005
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -36, -875, 1251.35
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_civ_3´ (delay 0)
+		´seq_security_cameras_DEATHWISH´ (delay 0)
+		´main_entrance_closed_SET_100´ (delay 0)
+´main_entrance_closed´ ElementLogicChance 100198
+	chance 50
+	position -36, 850, 1251.35
+	rotation 0, 0, 0, -1
+´main_entrance_closed_SUCCESS´ ElementLogicChanceTrigger 100279
+	outcome success
+	position -186, 850, 1251.35
+	rotation 0, 0, 0, -1
+	elements
+		1 ´main_entrance_closed´
+	on_executed
+		´seq__door_main_entrance_close´ (delay 0)
+´seq__door_main_entrance_close´ ElementUnitSequence 100280
+	position -311, 850, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+			notify_unit_sequence close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+			notify_unit_sequence hard_no_skill_lock
+			time 0
+	on_executed
+		´output_reception_entrance_closed´ (delay 0)
+´seq_security_cameras_DEATHWISH´ ElementUnitSequence 100281
+	position -136, -875, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_002 (16, 0, 247)
+			notify_unit_sequence deathwish
+			time 0
+´input_disable_security_cameras´ ElementInstanceInput 100282
+	event disable_security_cameras
+	on_executed
+		´security_camera_01_DISABLED´ (delay 0)
+		´show_security_cameras_OFF´ (delay 0)
+´security_camera_01_FEED´ ElementAccessCamera 100283
+	camera_u_id 100076
+	pitch_limit 25
+	position -225, -475, 1250
+	rotation 0, 0, 0, -1
+	text_id debug_none
+	yaw_limit 25
+´security_camera_01_ENABLED´ ElementSecurityCamera 100284
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100076
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -20
+	suspicion_range 7
+	yaw 0
+´security_camera_01_DISABLED´ ElementSecurityCamera 100285
+	camera_u_id 100076
+´show_security_cameras_OFF´ ElementToggle 100286
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´show_security_cameras´
+´input_reception_e3´ ElementInstanceInput 100149
+	event input_reception_e3
+	on_executed
+		´func_sequence_009´ (delay 5)
+´func_sequence_009´ ElementUnitSequence 100151
+	position -611, 475, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+			notify_unit_sequence close_door
+			time 0
+	on_executed
+		´func_sequence_010´ (delay 1)
+		´output_reception_entrance_closed´ (delay 0)
+´func_sequence_010´ ElementUnitSequence 100152
+	position -561, 475, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+´show_security_cameras´ MissionScriptElement 100169
+	on_executed
+		´security_camera_01_ENABLED´ (delay 0)
+´main_entrance_closed_SET_100´ ElementLogicChanceOperator 100211
+	chance 100
+	operation set_chance
+	position 107, 850, 1251.35
+	rotation 0, 0, 0, -1
+	elements
+		1 ´main_entrance_closed´
+´random_money_HIDE´ ElementRandom 100291
+	amount 1
+	amount_random 8
+	ignore_disabled true
+	on_executed
+		´seq_money_01_HIDE´ (delay 0)
+		´seq_money_02_HIDE´ (delay 0)
+		´seq_money_03_HIDE´ (delay 0)
+		´seq_money_04_HIDE´ (delay 0)
+		´seq_money_05_HIDE´ (delay 0)
+		´seq_money_06_HIDE´ (delay 0)
+		´seq_money_07_HIDE´ (delay 0)
+		´seq_money_08_HIDE´ (delay 0)
+		´seq_money_09_HIDE´ (delay 0)
+´seq_money_01_HIDE´ ElementUnitSequence 100292
+	TRIGGER TIMES 1
+	position -446, -1150, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/015 (-128.059, 975.669, 75.002)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_02_HIDE´ ElementUnitSequence 100293
+	TRIGGER TIMES 1
+	position -446, -1200, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/016 (-105.57, 979.424, 75.002)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_03_HIDE´ ElementUnitSequence 100294
+	TRIGGER TIMES 1
+	position -446, -1250, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/017 (314.612, 257.306, 75.002)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_04_HIDE´ ElementUnitSequence 100295
+	TRIGGER TIMES 1
+	position -446, -1300, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/018 (321.834, -256.642, 76.002)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_05_HIDE´ ElementUnitSequence 100296
+	TRIGGER TIMES 1
+	position -446, -1350, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/019 (319.633, -273.967, 76.002)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_06_HIDE´ ElementUnitSequence 100297
+	TRIGGER TIMES 1
+	position -446, -1400, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/022 (-175, -986, 77)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_07_HIDE´ ElementUnitSequence 100298
+	TRIGGER TIMES 1
+	position -446, -1450, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/023 (-159.886, -980.5, 77)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_08_HIDE´ ElementUnitSequence 100299
+	TRIGGER TIMES 1
+	position -446, -1500, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/024 (-132.547, -977.671, 76.9998)
+			notify_unit_sequence hidden
+			time 0
+´seq_money_09_HIDE´ ElementUnitSequence 100300
+	TRIGGER TIMES 1
+	position -446, -1550, 1251.35
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/025 (-106.271, -974.949, 76.9998)
+			notify_unit_sequence hidden
+			time 0
+´vo_bain_downloading_guest_list´ ElementDialogue 100000
+	can_not_be_muted false
+	dialogue Play_pln_ca1_71
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´func_dialogue_001´ ElementDialogue 100008
+	can_not_be_muted false
+	dialogue Play_pln_ca1_138
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´trigger_area_001´ ElementAreaTrigger 100009
+	TRIGGER TIMES 1
+	amount 1
+	depth 590
+	height 375
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -250, 0, 173.634
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_dialogue_001´ (delay 0)
+´logic_toggle_005´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_dialogue_001´
+		2 ´trigger_area_001´
+		3 ´link_activate_004´ DISABLED
+		4 ´link_activate_003´ DISABLED
+		5 ´link_activate_002´ DISABLED
+		6 ´link_activate_001´ DISABLED
+		7 ´logic_toggle_001´
+		8 ´logic_toggle_002´
+		9 ´logic_toggle_003´
+		10 ´logic_toggle_004´
+´police_called´ ElementGlobalEventTrigger 100010
+	TRIGGER TIMES 1
+	global_event police_called
+	position -475, -75, 1250
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_toggle_005´ (delay 0)
+		´func_sequence_011´ (delay 8)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100061
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence door_opened
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/010 (37.0006, 400, 0)
+		2
+			guis_id 2
+			sequence done_open
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_door/010 (37.0006, 400, 0)
+	on_executed
+		´func_nav_obstacle_006´ (delay 0)
+´func_nav_obstacle_006´ ElementNavObstacle 100066
+	TRIGGER TIMES 1
+	operation remove
+	position -400, -1075, 1250
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1065341264402650536
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, 350, 0)
+´output_reception_entrance_closed´ ElementInstanceOutput 100069
+	event reception_entranced_closed
+	on_executed
+		´seq_trg_door_main_entrance_door_opened_ON´ (delay 0)
+´func_sequence_011´ ElementUnitSequence 100025
+	TRIGGER TIMES 1
+	position -600, -75, 1250
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_left (-268, 989, 75.2318)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_cashier_right (-266, -991, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_left (331.095, 345.751, 74.0022)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_security_computer/cas_prop_security_computer/computer_reception_right (328.673, -350.711, 75.2573)
+			notify_unit_sequence disable_interaction
+			time 0
+´func_instance_input_002´ ElementInstanceInput 100027
+	event input_disable_bain_vo_reception
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´output_reception_entrance_opened´ ElementInstanceOutput 100029
+	event reception_entranced_opened
+´seq_trg_door_main_entrance_door_opened´ ElementUnitSequenceTrigger 100031
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_open
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+	on_executed
+		´output_reception_entrance_opened´ (delay 0)
+		´point_debug_003´ (delay 0)
+´seq_trg_door_main_entrance_door_opened_ON´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_trg_door_main_entrance_door_opened´ DISABLED
+´point_debug_003´ ElementDebug 100033
+	as_subtitle true
+	debug_string done_opened
+	show_instigator false
+´input_holdout_door´ ElementInstanceInput 100042
+	event holdout_door_deactivated
+	on_executed
+		´deactivate_door´ (delay 0)
+´deactivate_door´ ElementUnitSequence 100047
+	position -300, 0, -1.36551
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_bedroom_door/cas_bedroom_double_door/door_main_entrance (-437, -1, 0)
+			notify_unit_sequence deactivate_door
+			time 0

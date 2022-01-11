@@ -1,0 +1,438 @@
+´alarm_triggered´ ElementInstanceInput 100005
+	event alarm_triggered
+	on_executed
+		´disable_keycard´ (delay 0)
+		´pause_timelock´ (delay 0)
+		´remove_wp´ (delay 0)
+		´disable_alarm_cutoff´ (delay 0)
+		´enable_loud_vo´ (delay 0)
+´disable_keycard´ ElementUnitSequence 100008
+	position 400, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (162, 30.9998, 117.546)
+			notify_unit_sequence state_1
+			time 0
+´barrier_opened´ ElementInstanceOutput 100009
+	event barrier_opened
+´open_barrier´ MissionScriptElement 100011
+	TRIGGER TIMES 1
+	on_executed
+		´open_barrier_2´ (delay 0)
+		´barrier_opened´ (delay 0)
+		´stop_interrupt´ (delay 0)
+		´disable_security_overrided´ (delay 0)
+		´remove_wp´ (delay 0)
+´keycard´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (162, 30.9998, 117.546)
+	on_executed
+		´timelock_started_stealth´ (delay 0)
+		´cancel_fix´ (delay 0)
+		´cancel_get_past´ (delay 0)
+		´alarm_cutoff´ (delay 1)
+		´remove_interact_fix_wp´ (delay 0)
+		´disable_interact´ (delay 0)
+´open_barrier_2´ ElementUnitSequence 100013
+	position 0, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/mus_prop_diamond_door/mus_prop_diamond_securitygate/001 (150, 0.000183105, 2.5)
+			notify_unit_sequence door_open
+			time 0
+´timelock´ ElementTimer 100018
+	timer 60
+	on_executed
+		´open_barrier´ (delay 0)
+		´obj_done´ (delay 0)
+		´hack_complete´ (delay 0) DISABLED
+		´cancel_wait´ (delay 0)
+		´cancel_fix´ (delay 0)
+´pause_timelock´ ElementTimerOperator 100019
+	operation pause
+	position 400, 200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timelock´
+´start_timelock´ ElementTimerOperator 100017
+	operation start
+	position 400, -200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timelock´
+	on_executed
+		´wait_obj´ (delay 0)
+´timelock_started_stealth´ ElementInstanceOutput 100022
+	event timelock_started
+´interrupt_timelock001´ ElementSpecialObjective 100021
+	TRIGGER TIMES 1
+	SO_access 8672
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interrupt_objective false
+	interval 5
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 162, 101, 2.5
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 4500
+	search_position 113,987 141,587 2,5
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´enable_and_action_interrupt´ ElementToggle 100014
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_timelock001´
+		2 ´interrupt_succesful´ DISABLED
+		3 ´failed´ DISABLED
+	on_executed
+		´interrupt_timelock001´ (delay 0.05)
+´security_overrided´ ElementInstanceInput 100003
+	event security_overrided
+	on_executed
+		´enable_interaction´ (delay 0)
+		´enable_interact001´ (delay 0)
+´manual_override_started´ MissionScriptElement 100025
+	on_executed
+		´start_timelock´ (delay 0)
+		´start_interrupt´ (delay 0)
+		´defend_wp´ (delay 0)
+		´enable_hack_complete´ (delay 0)
+´start_interrupt´ MissionScriptElement 100006
+	on_executed
+		´enable_and_action_interrupt´ (delay 0)
+´interrupt_succesful´ ElementSpecialObjectiveTrigger 100015
+	DISABLED
+	TRIGGER TIMES 1
+	event complete
+	position 200, 200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_timelock001´
+	on_executed
+		´pause_timelock´ (delay 0)
+		´stop_interrupt´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´fix_wp´ (delay 1)
+		´remove_defend_wp´ (delay 0)
+		´enable_interaction´ (delay 1)
+		´stopped_hack´ (delay 0)
+		´cancel_wait´ (delay 0)
+		´fix_obj´ (delay 1)
+		´loud_vo002´ (delay 0) DISABLED
+´stop_interrupt´ MissionScriptElement 100023
+	on_executed
+		´remove_interrupt´ (delay 0)
+		´disable_interrupt´ (delay 0)
+´remove_interrupt´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´interrupt_timelock001´
+´disable_interrupt´ ElementToggle 100026
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_timelock001´
+		2 ´interrupt_succesful´ DISABLED
+		3 ´failed´ DISABLED
+´disable_security_overrided´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´security_overrided´
+´failed´ ElementSpecialObjectiveTrigger 100027
+	DISABLED
+	TRIGGER TIMES 1
+	event fail
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_timelock001´
+	on_executed
+		´enable_and_action_interrupt´ (delay 0)
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100028
+	as_subtitle false
+	debug_string failed_interrupt
+	show_instigator false
+´point_debug_002´ ElementDebug 100029
+	as_subtitle false
+	debug_string completed_interrupt
+	show_instigator false
+´setup_timer´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	BASE DELAY 1,25
+	on_executed
+		´harder´ (delay 0)
+´logic_timer_operator_001´ ElementTimerOperator 100001
+	operation add_time
+	position 100, -300, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timelock´
+´harder´ ElementFilter 100002
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_timer_operator_001´ (delay 0)
+´fix_wp´ ElementWaypoint 100033
+	icon pd2_fix
+	only_in_civilian false
+	position 161, 36, 120
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´defend_wp´ ElementWaypoint 100034
+	icon pd2_defend
+	only_in_civilian false
+	position 161, 36, 120
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_interact_fix_wp´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´fix_wp´
+		2 ´interact_wp´
+´remove_wp´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´fix_wp´
+		2 ´defend_wp´
+		3 ´interact_wp´
+´objective_started´ ElementInstanceInput 100037
+	event objective_started
+	on_executed
+		´obj_started_link´ (delay 0)
+´interact_wp´ ElementWaypoint 100038
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 161, 36, 120
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´obj_started_link´ MissionScriptElement 100039
+	on_executed
+		´interact_wp´ (delay 0)
+´obj_done´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´obj_started_link´
+´remove_defend_wp´ ElementOperator 100041
+	operation remove
+	elements
+		1 ´defend_wp´
+´enable_interaction´ ElementUnitSequence 100007
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/001 (162, 30.9998, 117.546)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´started_hack´ ElementUnitSequenceTrigger 100016
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/001 (162, 30.9998, 117.546)
+	on_executed
+		´manual_override_started´ (delay 1)
+		´start_hacking´ (delay 0)
+		´cancel_fix´ (delay 0)
+		´cancel_get_past´ (delay 0)
+		´remove_interact_fix_wp´ (delay 0)
+		´disable_reminder´ (delay 0)
+		´loud_vo001´ (delay 0) DISABLED
+´start_hacking´ ElementUnitSequence 100043
+	position 300, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/001 (162, 30.9998, 117.546)
+			notify_unit_sequence state_1_hacking
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/002 (162, 30.9998, 117.546)
+			notify_unit_sequence state_vis_hide_keycard
+			time 0
+´stopped_hack´ ElementUnitSequence 100044
+	position 100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/001 (162, 30.9998, 117.546)
+			notify_unit_sequence state_2_stopped
+			time 0
+´enable_hack_complete´ ElementToggle 100045
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´hack_complete´ DISABLED
+´hack_complete´ MissionScriptElement 100046
+	DISABLED
+	on_executed
+		´hack_complete_seq´ (delay 0)
+´hack_complete_seq´ ElementUnitSequence 100047
+	position 300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/001 (162, 30.9998, 117.546)
+			notify_unit_sequence state_3_done
+			time 0
+´fix_obj´ ElementObjective 100048
+	amount 0
+	countdown false
+	objective ind_new_5_fix
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	state complete_and_activate
+	sub_objective none
+	instance_var_names
+´wait_obj´ ElementObjective 100050
+	amount 0
+	countdown false
+	objective ind_new_5_wait
+	position 500, -200, 0
+	rotation 0, 0, 0, -1
+	state complete_and_activate
+	sub_objective none
+	instance_var_names
+´cancel_wait´ ElementObjective 100051
+	amount 0
+	countdown false
+	objective ind_new_5_wait
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	state remove
+	sub_objective none
+	instance_var_names
+´cancel_fix´ ElementObjective 100052
+	amount 0
+	countdown false
+	objective ind_new_5_fix
+	position 500, -400, 0
+	rotation 0, 0, 0, -1
+	state remove
+	sub_objective none
+	instance_var_names
+´cancel_get_past´ ElementObjective 100053
+	amount 0
+	countdown false
+	objective ind_new_5
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	state remove
+	sub_objective none
+	instance_var_names
+´alarm_cutoff´ MissionScriptElement 100054
+	on_executed
+		´start_timelock´ (delay 0)
+´disable_alarm_cutoff´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´alarm_cutoff´
+´func_dialogue_040´ ElementDialogue 100031
+	TRIGGER TIMES 5
+	dialogue Play_pln_hd1_40
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+	on_executed
+		´func_dialogue_041´ (delay 30)
+´func_dialogue_041´ ElementDialogue 100032
+	TRIGGER TIMES 3
+	dialogue Play_pln_hd1_41
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´disable_reminder´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´func_dialogue_041´
+´func_dialogue_042´ ElementDialogue 100057
+	dialogue Play_pln_hd1_42
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´enable_loud_vo´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loud_vo002´ DISABLED
+		2 ´loud_vo001´ DISABLED
+´disable_interact´ ElementToggle 100059
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_wp´
+´enable_interact001´ ElementToggle 100060
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interact_wp´
+´loud_vo001´ MissionScriptElement 100061
+	DISABLED
+	on_executed
+		´func_dialogue_042´ (delay 0)
+´loud_vo002´ MissionScriptElement 100062
+	DISABLED
+	on_executed
+		´func_dialogue_040´ (delay 0)

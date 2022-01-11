@@ -1,0 +1,59 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+´point_interaction_respects´ ElementInteraction 100009
+	DISABLED
+	host_only false
+	override_timer -1
+	position 53, 148, 119
+	rotation 0, 0, 0, -1
+	tweak_data_id press_pay_respects
+	on_executed
+		´link_payed_respects´ (delay 0) (alternative interacted)
+´enable_interaction´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_respects´ DISABLED
+´link_payed_respects´ MissionScriptElement 100011
+	on_executed
+		´func_award_achievement_001´ (delay 0.5)
+		´point_debug_001´ (delay 0)
+´func_award_achievement_001´ ElementAwardAchievment 100012
+	achievment sah_10
+	award_instigator true
+	players_from_start false
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+´point_debug_001´ ElementDebug 100013
+	as_subtitle false
+	debug_string got mummy achievement!!!1
+	show_instigator false

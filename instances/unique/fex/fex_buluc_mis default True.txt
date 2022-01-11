@@ -1,0 +1,219 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´hide_shark´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´input_activate_buluc´ ElementInstanceInput 100007
+	event activate_buluc
+	on_executed
+		´leave_desk_anim´ (delay 0)
+´output_buluc_eaten_by_shark´ ElementInstanceOutput 100008
+	event buluc_eaten_by_shark
+	on_executed
+		´toggle_OFF_outputs_2´ (delay 0)
+		´remove_buluc_in_water_WP´ (delay 2)
+´leave_desk_anim´ ElementUnitSequence 100006
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+			notify_unit_sequence anim_leave_desk
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc_blocker/001 (0, 0, 0)
+			notify_unit_sequence show_collision_with_delay
+			time 0
+´falling_anim_started´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_fall_in_water
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+	on_executed
+		´output_buluc_falling´ (delay 0)
+		´start_drowning_timer´ (delay 0)
+		´disable_collision´ (delay 0)
+´output_buluc_falling´ ElementInstanceOutput 100014
+	event buluc_falling
+	on_executed
+		´add_buluc_in_water_WP´ (delay 7.1)
+´shark_death´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_shark_death
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+	on_executed
+		´output_buluc_eaten_by_shark´ (delay 0)
+		´toggle_OFF_drown_timer´ (delay 0)
+´drown_anim´ ElementUnitSequence 100005
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+			notify_unit_sequence anim_drown_death
+			time 0
+´shark_death_anim´ ElementUnitSequence 100009
+	position 1300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+			notify_unit_sequence anim_shark_death
+			time 0
+	on_executed
+		´add_buluc_in_water_WP_2´ (delay 0)
+´drown_timer´ ElementTimer 100010
+	timer 20
+	on_executed
+		´drown_anim´ (delay 0)
+´start_drowning_timer´ ElementTimerOperator 100011
+	operation start
+	position 1200, 0, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´drown_timer´
+´toggle_OFF_drown_timer´ ElementToggle 100012
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´start_drowning_timer´
+		2 ´drown_timer´
+		3 ´drown_anim´
+		4 ´shark_death_anim´
+		5 ´input_play_shark_death_anim´
+´input_play_shark_death_anim´ ElementInstanceInput 100016
+	event play_shark_death_anim
+	on_executed
+		´shark_death_anim´ (delay 0)
+´input_disable_drowning´ ElementInstanceInput 100017
+	event disable_drowning
+	on_executed
+		´toggle_OFF_drown_timer´ (delay 0)
+´shot_death´ ElementUnitSequenceTrigger 100018
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_shot_death
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+	on_executed
+		´toggle_OFF_drown_timer´ (delay 0)
+		´output_buluc_is_shot´ (delay 0)
+´drown_death´ ElementUnitSequenceTrigger 100019
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_drown_death
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc/001 (0, 0, 0)
+	on_executed
+		´toggle_OFF_drown_timer´ (delay 0)
+		´output_buluc_has_drowned´ (delay 0)
+´output_buluc_is_shot´ ElementInstanceOutput 100020
+	event buluc_is_shot
+	on_executed
+		´toggle_OFF_outputs´ (delay 0)
+		´remove_buluc_in_water_WP´ (delay 1)
+´output_buluc_has_drowned´ ElementInstanceOutput 100022
+	event buluc_has_drowned
+	on_executed
+		´toggle_OFF_outputs_3´ (delay 0)
+		´remove_buluc_in_water_WP´ (delay 2)
+´toggle_OFF_outputs´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´output_buluc_eaten_by_shark´
+		2 ´output_buluc_has_drowned´
+		3 ´shark_death´
+		4 ´drown_death´
+´toggle_OFF_outputs_2´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´output_buluc_has_drowned´
+		2 ´output_buluc_is_shot´
+		3 ´shot_death´
+		4 ´drown_death´
+´toggle_OFF_outputs_3´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´output_buluc_eaten_by_shark´
+		2 ´output_buluc_is_shot´
+		3 ´shark_death´
+		4 ´shot_death´
+´hide_shark´ ElementUnitSequence 100027
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´disable_collision´ ElementUnitSequence 100028
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_buloc/fex_prop_buloc_blocker/001 (0, 0, 0)
+			notify_unit_sequence hide_collision
+			time 0
+´buluc_in_water_WP´ ElementWaypoint 100030
+	TRIGGER TIMES 1
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 75, 1775, -1650
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´add_buluc_in_water_WP´ MissionScriptElement 100029
+	on_executed
+		´buluc_in_water_shoot_WP´ (delay 0)
+´remove_buluc_in_water_WP´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´buluc_in_water_WP´
+		2 ´buluc_in_water_shoot_WP´
+´buluc_in_water_shoot_WP´ ElementWaypoint 100032
+	TRIGGER TIMES 1
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 75, 1775, -1650
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´add_buluc_in_water_WP_2´ MissionScriptElement 100033
+	on_executed
+		´buluc_in_water_WP´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´add_buluc_in_water_WP´

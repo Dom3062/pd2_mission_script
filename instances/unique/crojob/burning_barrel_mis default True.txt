@@ -1,0 +1,34 @@
+´effect_fire_barrel´ ElementPlayEffect 100001
+	EXECUTE ON STARTUP
+	base_time 0
+	effect effects/payday2/environment/fire
+	max_amount 0
+	position -19, 2, -13
+	random_time 0
+	rotation 0, 0, -0.382683, -0.92388
+	screen_space false
+´trigger_area_001´ ElementAreaTrigger 100005
+	DISABLED
+	amount 1
+	depth 1000
+	height 100
+	instigator player
+	interval 0.1
+	position -22, 4, -18
+	radius 70
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on both
+	use_disabled_shapes false
+	width 1000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_kill_zone_001´ (delay 0) DISABLED
+´func_kill_zone_001´ ElementKillZone 100006
+	DISABLED
+	position 200, -100, -25
+	rotation 0, 0, 0, -1
+	type fire

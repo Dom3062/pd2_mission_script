@@ -1,0 +1,653 @@
+´func_whisper_state_001´ ElementWhisperState 100018
+	EXECUTE ON STARTUP
+	position -1550, -500, 2.5
+	rotation 0, 0, 0, -1
+	state true
+´Auto_Start´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´DeathWish´ (delay 0)
+´forward´ ElementUnitSequence 100001
+	position -2200, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_forward_6m
+			time 0
+´emc - ON´ ElementGlobalEventTrigger 100002
+	global_event ecm_jammer_on
+	position -1650, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´off_2´ (delay 0)
+´emc - OFF´ ElementGlobalEventTrigger 100003
+	global_event ecm_jammer_off
+	position -1750, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´On_10´ (delay 0)
+´emc - OFF_2´ ElementUnitSequence 100005
+	position -1750, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_ecm_off
+			time 0
+´emc - ON_2´ ElementUnitSequence 100004
+	position -1650, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_ecm_on
+			time 0
+´ai_security_camera_001´ ElementSecurityCamera 100006
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100028
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 180
+	pitch 0
+	suspicion_range 7
+	yaw 0
+	on_executed
+		´state_2´ (delay 0)
+´Done - Charging´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence done_camera_charged
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´2_2´ (delay 0)
+´ai_security_camera_002´ ElementSecurityCamera 100009
+	EXECUTE ON STARTUP
+	ai_enabled false
+	apply_settings false
+	camera_u_id 100028
+	on_executed
+		´off´ (delay 0)
+´Anim - Return to Dock´ ElementUnitSequenceTrigger 100010
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_land
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´3_2´ (delay 0)
+´Anim - Take Off´ ElementUnitSequenceTrigger 100011
+	BASE DELAY 15
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_take_off
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´1_2´ (delay 0)
+´charge´ ElementUnitSequence 100012
+	position -1050, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_camera_charging
+			time 0
+´cam_activate´ ElementUnitSequence 100013
+	position -1150, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_camera_active
+			time 0
+´Cam - Broken´ ElementUnitSequenceTrigger 100014
+	sequence_list
+		1
+			guis_id 1
+			sequence stop
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´4_2´ (delay 0)
+´cam_deactivate´ ElementUnitSequence 100016
+	position -1350, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_camera_deactivate
+			time 0
+´6m_fwd´ ElementInstanceInput 100017
+	event 6m_forward
+	on_executed
+		´On_2´ (delay 0)
+´Any Anim Finished Flying´ ElementUnitSequenceTrigger 100015
+	sequence_list
+		1
+			guis_id 1
+			sequence done_anim
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´45 sec´ (delay 0)
+		´45 sec delay´ (delay 0)
+´charge003´ ElementUnitSequence 100019
+	position -2075, 350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_land
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_camera_deactivate
+			time 0
+´45 sec´ MissionScriptElement 100020
+	BASE DELAY 45
+	on_executed
+		´charge003´ (delay 0)
+		´deb´ (delay 0)
+´deb´ ElementDebug 100022
+	as_subtitle true
+	debug_string fly back
+	show_instigator false
+´12m_fwd´ ElementInstanceInput 100023
+	event 12m_forward
+	on_executed
+		´On_6´ (delay 0)
+´forward_2´ ElementUnitSequence 100025
+	position -2650, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_forward_12m
+			time 0
+´Cycle_Finished´ ElementUnitSequenceTrigger 100026
+	sequence_list
+		1
+			guis_id 1
+			sequence done_landed
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+	on_executed
+		´5_2´ (delay 0)
+´drone_cycle_finished´ ElementInstanceOutput 100027
+	event drone_cycle_finished
+´play_random_anim´ ElementInstanceInput 100029
+	event play_random_anim
+	on_executed
+		´pick_random_animation´ (delay 0)
+´pick_random_animation´ ElementRandom 100030
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´Play´ (delay 0) DISABLED
+		´Play_2´ (delay 0) DISABLED
+		´Play_3´ (delay 0) DISABLED
+		´Play_4´ (delay 0) DISABLED
+		´Play_5´ (delay 0) DISABLED
+		´Play_6´ (delay 0) DISABLED
+		´Play_7´ (delay 0) DISABLED
+		´Play_8´ (delay 0) DISABLED
+´point_access_camera_001´ ElementAccessCamera 100031
+	camera_u_id 100028
+	pitch_limit 25
+	position -1450, -500, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+	yaw_limit 25
+´DeathWish´ ElementFilter 100008
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -950, -150, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´Set Deathwish´ (delay 0)
+´Set Deathwish´ ElementUnitSequence 100021
+	position -950, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_deathwish
+			time 0
+´link´ MissionScriptElement 100024
+	DISABLED
+	on_executed
+		´emc - ON_2´ (delay 0)
+´link_2´ MissionScriptElement 100032
+	DISABLED
+	BASE DELAY 1
+	on_executed
+		´emc - OFF_2´ (delay 0.25)
+		´5´ (delay 0)
+		´4´ (delay 0)
+		´3´ (delay 0)
+		´2´ (delay 0)
+		´1´ (delay 0)
+´On´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link´ DISABLED
+		2 ´link_2´ DISABLED
+	on_executed
+		´drone_started_takeoff´ (delay 0)
+´off´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´ DISABLED
+		2 ´link_2´ DISABLED
+´6m_bck´ ElementInstanceInput 100043
+	event 6m_back
+	on_executed
+		´On_3´ (delay 0)
+´6m_left´ ElementInstanceInput 100044
+	event 6m_left
+	on_executed
+		´On_4´ (delay 0)
+´6m_right´ ElementInstanceInput 100045
+	event 6m_right
+	on_executed
+		´On_5´ (delay 0)
+´On_2´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play´ DISABLED
+´On_3´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_2´ DISABLED
+´On_4´ ElementToggle 100039
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_3´ DISABLED
+´On_5´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_4´ DISABLED
+´Play´ MissionScriptElement 100041
+	DISABLED
+	on_executed
+		´forward´ (delay 0)
+´Play_2´ MissionScriptElement 100042
+	DISABLED
+	on_executed
+		´backwards´ (delay 0)
+´Play_3´ MissionScriptElement 100046
+	DISABLED
+	on_executed
+		´left´ (delay 0)
+´Play_4´ MissionScriptElement 100047
+	DISABLED
+	on_executed
+		´right´ (delay 0)
+´backwards´ ElementUnitSequence 100048
+	position -2300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_backward_6m
+			time 0
+´left´ ElementUnitSequence 100049
+	position -2400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_left_6m
+			time 0
+´right´ ElementUnitSequence 100050
+	position -2500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_right_6m
+			time 0
+´Play_5´ MissionScriptElement 100051
+	DISABLED
+	on_executed
+		´forward_2´ (delay 0)
+´Play_6´ MissionScriptElement 100052
+	DISABLED
+	on_executed
+		´backwards_2´ (delay 0)
+´Play_7´ MissionScriptElement 100053
+	DISABLED
+	on_executed
+		´left_2´ (delay 0)
+´Play_8´ MissionScriptElement 100054
+	DISABLED
+	on_executed
+		´right_2´ (delay 0)
+´On_6´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_5´ DISABLED
+´On_7´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_6´ DISABLED
+´On_8´ ElementToggle 100057
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_7´ DISABLED
+´On_9´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_8´ DISABLED
+´backwards_2´ ElementUnitSequence 100059
+	position -2750, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_backward_12m
+			time 0
+´left_2´ ElementUnitSequence 100060
+	position -2850, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_left_12m
+			time 0
+´right_2´ ElementUnitSequence 100061
+	position -2950, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence anim_fly_right_12m
+			time 0
+´12m_bck´ ElementInstanceInput 100062
+	event 12m_backwards
+	on_executed
+		´On_7´ (delay 0)
+´12m_left´ ElementInstanceInput 100063
+	event 12m_left
+	on_executed
+		´On_8´ (delay 0)
+´12m_right´ ElementInstanceInput 100064
+	event 12m_right
+	on_executed
+		´On_9´ (delay 0)
+´drone_started_takeoff´ ElementInstanceOutput 100065
+	event drone_started_takeoff
+	on_executed
+		´state´ (delay 0)
+´All Off´ ElementToggle 100036
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Anim - Take Off´
+		2 ´Done - Charging´
+		3 ´Anim - Return to Dock´
+		4 ´emc - ON´
+		5 ´emc - OFF´
+	on_executed
+		´state_3´ (delay 0)
+´off_2´ ElementToggle 100074
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´cam_activate´
+		2 ´charge´
+		3 ´cam_deactivate´
+	on_executed
+		´on´ (delay 0)
+´On_10´ ElementToggle 100075
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´cam_deactivate´
+		2 ´cam_activate´
+		3 ´charge´
+	on_executed
+		´Off´ (delay 0)
+´state´ ElementRandom 100069
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´charge´ (delay 0)
+		´emc - ON_3´ (delay 0) DISABLED
+´state_2´ ElementRandom 100070
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´cam_activate´ (delay 0)
+		´emc - ON_4´ (delay 0) DISABLED
+´state_3´ ElementRandom 100071
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´cam_deactivate´ (delay 0)
+		´emc - ON_5´ (delay 0) DISABLED
+´emc - ON_3´ ElementUnitSequence 100072
+	DISABLED
+	position -1050, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_ecm_on
+			time 0
+´emc - ON_4´ ElementUnitSequence 100073
+	DISABLED
+	position -1150, 250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_ecm_on
+			time 0
+´emc - ON_5´ ElementUnitSequence 100076
+	DISABLED
+	position -1350, 250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/equipment/gen_drone_camera/gen_drone_camera/001 (0, 0, 0)
+			notify_unit_sequence state_ecm_on
+			time 0
+´on´ ElementToggle 100077
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´emc - ON_5´ DISABLED
+		2 ´emc - ON_4´ DISABLED
+		3 ´emc - ON_3´ DISABLED
+	on_executed
+		´link´ (delay 0) DISABLED
+´Off´ ElementToggle 100078
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´emc - ON_5´ DISABLED
+		2 ´emc - ON_4´ DISABLED
+		3 ´emc - ON_3´ DISABLED
+	on_executed
+		´link_2´ (delay 0) DISABLED
+´state_4´ ElementCounter 100079
+	counter_target 0
+´1´ ElementCounterFilter 100080
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´state_4´
+	on_executed
+		´link_3´ (delay 0)
+´2´ ElementCounterFilter 100081
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´state_4´
+´3´ ElementCounterFilter 100082
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´state_4´
+´4´ ElementCounterFilter 100083
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´state_4´
+´5´ ElementCounterFilter 100084
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´state_4´
+´1_2´ ElementCounterOperator 100085
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´state_4´
+	on_executed
+		´link_3´ (delay 0)
+´link_3´ MissionScriptElement 100086
+	on_executed
+		´On´ (delay 0)
+´link_4´ MissionScriptElement 100087
+	on_executed
+		´ai_security_camera_001´ (delay 0)
+´link_5´ MissionScriptElement 100088
+	on_executed
+		´ai_security_camera_002´ (delay 0)
+´link_6´ MissionScriptElement 100089
+	on_executed
+		´All Off´ (delay 0)
+´link_7´ MissionScriptElement 100090
+	on_executed
+		´drone_cycle_finished´ (delay 0)
+´2_2´ ElementCounterOperator 100091
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´state_4´
+	on_executed
+		´link_4´ (delay 0)
+´3_2´ ElementCounterOperator 100092
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´state_4´
+	on_executed
+		´link_5´ (delay 0)
+´4_2´ ElementCounterOperator 100093
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´state_4´
+	on_executed
+		´link_6´ (delay 0)
+´5_2´ ElementCounterOperator 100094
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´state_4´
+	on_executed
+		´link_7´ (delay 0)
+´45 sec delay´ ElementDebug 100066
+	as_subtitle false
+	debug_string Start 45 delay
+	show_instigator false
+´disable_drone´ MissionScriptElement 100067
+	on_executed
+		´Off_2´ (delay 0)
+´ai_security_camera_003´ ElementSecurityCamera 100095
+	camera_u_id 100028
+´Off_2´ ElementToggle 100068
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_3´
+		2 ´link_4´
+		3 ´link_5´
+		4 ´link_6´
+		5 ´link_7´
+	on_executed
+		´ai_security_camera_003´ (delay 0)
+´disable_drone_2´ ElementInstanceInput 100034
+	event disable_drone
+	on_executed
+		´disable_drone´ (delay 0)

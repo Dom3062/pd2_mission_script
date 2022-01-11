@@ -1,0 +1,104 @@
+´security_camera_guard´ ElementSpawnEnemyDummy 100001
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_secret_service_1/ene_secret_service_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 315, -437, 10.004
+	rotation 0, 0, 0.996917, -0.0784586
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´startup´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´delay_andy_have_a_delaaaay´ (delay 1)
+´death´ ElementEnemyDummyTrigger 100003
+	event death
+	position 200, 200, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´security_camera_guard´
+	on_executed
+		´cameras_off´ (delay 0)
+´tied´ ElementEnemyDummyTrigger 100004
+	event tied
+	position 100, 200, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´security_camera_guard´
+	on_executed
+		´cameras_off´ (delay 0)
+´cameras_off´ ElementInstanceOutput 100006
+	TRIGGER TIMES 1
+	event cameras_off
+	on_executed
+		´enable_console´ (delay 0)
+´enable_console´ ElementUnitSequence 100005
+	position 200, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/002 (350, -488, 73)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´delay_andy_have_a_delaaaay´ MissionScriptElement 100018
+	on_executed
+		´security_camera_guard´ (delay 0)
+		´func_sequence_001´ (delay 0)
+		´func_nav_obstacle_002´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100029
+	position 300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_door_reinforced/rvd_interactable_door_reinforced/001 (95, -21, -1.996)
+			notify_unit_sequence activate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_door_reinforced/rvd_interactable_door_reinforced/001 (95, -21, -1.996)
+			notify_unit_sequence state_door_close
+			time 0
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_exploded
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_door_reinforced/rvd_interactable_door_reinforced/001 (95, -21, -1.996)
+		2
+			guis_id 2
+			sequence done_opened
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_door_reinforced/rvd_interactable_door_reinforced/001 (95, -21, -1.996)
+		3
+			guis_id 3
+			sequence open_door
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_door_reinforced/rvd_interactable_door_reinforced/001 (95, -21, -1.996)
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100032
+	operation remove
+	position 500, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (100, -50, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100033
+	operation add
+	position 400, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (100, -50, 0)

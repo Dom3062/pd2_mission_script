@@ -1,0 +1,330 @@
+´setup´ MissionScriptElement 100021
+	EXECUTE ON STARTUP
+	BASE DELAY 1,25
+	on_executed
+		´disable_specifics´ (delay 0)
+		´hide_specifics´ (delay 0)
+		´add_obstacle´ (delay 3.5)
+		´navlink_open´ (delay 5)
+		´activate_door´ (delay 0)
+´set_electrical´ ElementInstanceInput 100023
+	BASE DELAY 2
+	event set_electrical
+	on_executed
+		´show_electrical_sign´ (delay 0)
+		´role_set´ (delay 0)
+´disable_specifics´ ElementDisableUnit 100024
+	position -400, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/props/mus_prop_sign_security/mus_prop_sign_security/001 (32, -4.78602E-06, 150)
+		2 units/pd2_indiana/props/mus_prop_sign_highvoltage/mus_prop_sign_highvoltage/001 (-100, 25, 226.544)
+		3 units/pd2_indiana/props/mus_prop_sign_security/mus_prop_sign_security_door/001 (-100, 24.9999, 227.5)
+´show_electrical_sign´ ElementEnableUnit 100025
+	position -200, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/props/mus_prop_sign_highvoltage/mus_prop_sign_highvoltage/001 (-100, 25, 226.544)
+	on_executed
+		´hide_redundant´ (delay 0)
+´opened_closet´ ElementInstanceOutput 100034
+	event opened_closet
+´enable_graph´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door/easy_door (-175, 24.9999, 0)
+	on_executed
+		´opened_closet´ (delay 0)
+		´remove_obstacle´ (delay 0)
+		´disable_nl´ (delay 0)
+		´remove_nl´ (delay 0)
+		´disable_nl_stuff´ (delay 0)
+´role_set´ ElementInstanceOutput 100037
+	event role_set
+´set_security´ ElementInstanceInput 100038
+	BASE DELAY 2
+	event set_security
+	on_executed
+		´show_security_sign´ (delay 0)
+		´allow_override´ (delay 0)
+		´fix_door´ (delay 0)
+		´toggle_navlink´ (delay 0)
+´show_security_sign´ ElementEnableUnit 100040
+	position 300, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/props/mus_prop_sign_security/mus_prop_sign_security/001 (32, -4.78602E-06, 150)
+		2 units/pd2_indiana/props/mus_prop_sign_security/mus_prop_sign_security_door/001 (-100, 24.9999, 227.5)
+	on_executed
+		´hide_redundant´ (delay 0)
+´hide_specifics´ ElementUnitSequence 100043
+	position -400, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door_reinforced/hard_door (-175, 24.9999, 0)
+			notify_unit_sequence state_vis_door_hide
+			time 0
+´found_sec_room´ ElementAreaTrigger 100047
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 450
+	height 500
+	instigator player
+	interval 0.1
+	position 50, 275, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´security_found´ (delay 0)
+´security_found´ ElementInstanceOutput 100053
+	event security_found
+	on_executed
+		´remove_find_wp´ (delay 0)
+´allow_override´ ElementToggle 100064
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_sec_room´ DISABLED
+		2 ´set_find_link´ DISABLED
+		3 ´opened_sec_room´ DISABLED
+´set_find´ ElementInstanceInput 100065
+	event set_find
+	on_executed
+		´set_find_link´ (delay 0) DISABLED
+´sec_room_wp001´ ElementWaypoint 100066
+	icon pd2_door
+	only_in_civilian false
+	position -99, 30, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_find_wp´ ElementOperator 100067
+	operation remove
+	elements
+		1 ´sec_room_wp001´
+´set_find_link´ MissionScriptElement 100068
+	DISABLED
+	on_executed
+		´enable_sec_room_area´ (delay 0)
+´fix_door´ ElementUnitSequence 100069
+	position 200, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door_reinforced/hard_door (-175, 24.9999, 0)
+			notify_unit_sequence state_vis_door_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door/easy_door (-175, 24.9999, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door/easy_door (-175, 24.9999, 0)
+			notify_unit_sequence state_vis_door_hide
+			time 0
+	on_executed
+		´func_sequence_001´ (delay 0.5)
+´remove_obstacle´ ElementNavObstacle 100041
+	operation remove
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-100, 25, 0)
+´add_obstacle´ ElementNavObstacle 100044
+	operation add
+	position -300, -400, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-100, 25, 0)
+´navlink_open´ ElementSpecialObjective 100045
+	SO_access 13792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interval 8
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -111, -119, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -98,0086 196,882 0
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´open_reinforced´ MissionScriptElement 100046
+	DISABLED
+	on_executed
+		´open_door002´ (delay 0)
+´open_wooden´ MissionScriptElement 100048
+	on_executed
+		´open_door001´ (delay 0)
+´toggle_navlink´ ElementToggle 100049
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´open_reinforced´ DISABLED
+		2 ´open_wooden´
+´open_door001´ ElementUnitSequence 100050
+	position -100, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door/easy_door (-175, 24.9999, 0)
+			notify_unit_sequence open_door
+			time 0
+´open_door002´ ElementUnitSequence 100051
+	position 0, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door_reinforced/hard_door (-175, 24.9999, 0)
+			notify_unit_sequence open_door
+			time 0
+´completed´ ElementSpecialObjectiveTrigger 100052
+	TRIGGER TIMES 1
+	event anim_act_04
+	position -100, -600, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´navlink_open´
+	on_executed
+		´open_reinforced´ (delay 0) DISABLED
+		´open_wooden´ (delay 0)
+		´disable_nl´ (delay 0)
+		´remove_nl´ (delay 0)
+´completed001´ ElementSpecialObjectiveTrigger 100054
+	event complete
+	position -100, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´navlink_open´
+	on_executed
+		´completed´ (delay 0)
+´disable_nl´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´navlink_open´
+´remove_nl´ ElementOperator 100056
+	operation remove
+	elements
+		1 ´navlink_open´
+´opened_sec_room´ ElementUnitSequenceTrigger 100057
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door_reinforced/hard_door (-175, 24.9999, 0)
+	on_executed
+		´enable_graph´ (delay 0)
+		´sec_room_opened´ (delay 0)
+´sec_room_opened´ ElementInstanceOutput 100058
+	event sec_room_opened
+´func_sequence_001´ ElementUnitSequence 100059
+	position 100, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door_reinforced/hard_door (-175, 24.9999, 0)
+			notify_unit_sequence activate_door
+			time 0
+´disable_nl_stuff´ ElementToggle 100060
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´completed001´
+		2 ´completed´
+		3 ´open_wooden´
+		4 ´open_door001´
+		5 ´open_door002´
+		6 ´open_reinforced´ DISABLED
+´found_sec_room_2´ ElementAreaTrigger 100061
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 350
+	height 500
+	instigator player
+	interval 0.1
+	position -100, -150, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´sec_room_wp001´ (delay 0)
+´enable_sec_room_area´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_sec_room_2´ DISABLED
+´activate_door´ ElementUnitSequence 100018
+	position -400, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_indiana/equipment/mus_interactable_door_reinforced/mus_interactable_door/easy_door (-175, 24.9999, 0)
+			notify_unit_sequence activate_door
+			time 0
+´hide_redundant´ ElementDisableUnit 100007
+	position 200, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_indiana/props/mus_prop_sign_employees/mus_prop_sign_employees/001 (-100, 24, 226)

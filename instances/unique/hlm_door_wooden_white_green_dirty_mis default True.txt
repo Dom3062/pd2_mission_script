@@ -1,0 +1,335 @@
+´door_reinforced_setup´ MissionScriptElement 100002
+	on_executed
+		´closed_or_open´ (delay 0)
+		´disable_tripmine´ (delay 0)
+´door_block_add´ ElementNavObstacle 100004
+	TRIGGER TIMES 1
+	operation add
+	position -300, 0, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+´door_close´ ElementUnitSequence 100005
+	position -300, -100, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c_v2_dirty/001 (-4, 0, 0)
+			notify_unit_sequence state_door_close
+			time 0
+	on_executed
+		´door_block_add´ (delay 0)
+´door_opened´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c_v2_dirty/001 (-4, 0, 0)
+	on_executed
+		´door_opened_output´ (delay 0)
+		´remove_navlinks´ (delay 0)
+´door_unblock´ ElementNavObstacle 100007
+	TRIGGER TIMES 1
+	operation remove
+	position -600, 200, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+´door_opened_output´ ElementInstanceOutput 100008
+	event door_opened
+´breach_door001´ ElementSpecialObjective 100009
+	TRIGGER TIMES 1
+	SO_access 13792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -75, -143, 2.5
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position -43,9917 104,933 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´breach_door002´ ElementSpecialObjective 100001
+	TRIGGER TIMES 1
+	SO_access 13792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -75, 143, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 1000
+	search_position -49,2291 -107,969 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´door_navlinked_open´ ElementSpecialObjectiveTrigger 100010
+	TRIGGER TIMES 1
+	event anim_act_04
+	position 100, -100, 300
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+	on_executed
+		´temp´ (delay 0)
+		´open_door´ (delay 0)
+´remove_breach_navlinks´ ElementOperator 100011
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+´disable_breach_navlinks´ ElementToggle 100012
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+		3 ´door_navlinked_open´
+		4 ´open_door´
+´open_door´ ElementUnitSequence 100013
+	TRIGGER TIMES 1
+	position 200, -100, 300
+	rotation 0, 0, 8.9407E-08, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c_v2_dirty/001 (-4, 0, 0)
+			notify_unit_sequence open_door
+			time 0
+´remove_navlinks´ MissionScriptElement 100014
+	BASE DELAY 2
+	on_executed
+		´remove_breach_navlinks´ (delay 0)
+		´disable_breach_navlinks´ (delay 0)
+		´nav´ (delay 0.5)
+´closed_or_open´ ElementRandom 100016
+	amount 1
+	ignore_disabled true
+	on_executed
+		´close´ (delay 0)
+		´open´ (delay 0)
+´close´ MissionScriptElement 100017
+	on_executed
+		´door_close´ (delay 0)
+		´breach_door002´ (delay 0)
+		´breach_door001´ (delay 0)
+		´chance_laser´ (delay 0)
+´door_open´ ElementUnitSequence 100018
+	position -300, -250, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c_v2_dirty/001 (-4, 0, 0)
+			notify_unit_sequence state_door_open
+			time 0
+	on_executed
+		´door_block_remove´ (delay 0)
+´door_block_remove´ ElementNavObstacle 100019
+	TRIGGER TIMES 1
+	operation remove
+	position -300, -350, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+´open´ MissionScriptElement 100020
+	on_executed
+		´door_open´ (delay 0)
+		´remove_laser´ (delay 0)
+		´remove_navlinks´ (delay 0)
+´start_laser´ MissionScriptElement 100021
+	on_executed
+		´enable_laser´ (delay 0)
+		´enable_tripmine´ (delay 0)
+		´remove_breach_navlinks´ (delay 0)
+´laser_player´ ElementLaserTrigger 100022
+	DISABLED
+	TRIGGER TIMES 1
+	color red
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random false
+	cycle_type flow
+	instigator player
+	interval 0.1
+	skip_dummies false
+	visual_only false
+	connections
+		1
+			from 3
+			to 2
+	points
+		1
+			pos 9.50001, 9.69632, 50.1381
+			rot 0, 0, -0.707107, -0.707107
+		2
+			pos -133.5, 8.08805, 48.9128
+			rot 0, 0, 0.707107, -0.707107
+	on_executed
+		´func_instance_output_001´ (delay 0) (alternative enter)
+		´trigger_explosion´ (delay 0) (alternative enter)
+´enable_laser´ ElementToggle 100025
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´laser_player´ DISABLED
+´chance_laser´ ElementLogicChance 100026
+	chance 35
+	position -100, -100, 300
+	rotation 0, 0, 0, -1
+	on_executed
+		´start_laser´ (delay 0.5)
+´explosion_laser´ ElementExplosion 100027
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 60
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade
+	player_damage 60
+	position -50, -25, 75.925
+	range 350
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´trigger_explosion´ MissionScriptElement 100028
+	TRIGGER TIMES 1
+	on_executed
+		´explosion_laser´ (delay 0)
+		´disable_other_lasers´ (delay 0)
+		´temp´ (delay 0)
+		´make_way´ (delay 0)
+´disable_other_lasers´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´laser_player´ DISABLED
+	on_executed
+		´disable_tripmine´ (delay 0)
+´disable_tripmine´ ElementDisableUnit 100030
+	TRIGGER TIMES 1
+	position 0, 400, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-9, 12, 41)
+´enable_tripmine´ ElementEnableUnit 100032
+	position 0, -100, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-9, 12, 41)
+´remove_laser´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´laser_player´ DISABLED
+´no_laser´ ElementLogicChanceTrigger 100034
+	outcome fail
+	position -100, -300, 300
+	rotation 0, 0, 0, -1
+	elements
+		1 ´chance_laser´
+	on_executed
+		´remove_laser´ (delay 0)
+		´make_way´ (delay 0)
+´shot_tripmine´ ElementUnitSequenceTrigger 100024
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_explode
+			notify_unit_id units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-9, 12, 41)
+	on_executed
+		´remove_laser´ (delay 0)
+		´trigger_explosion´ (delay 0)
+		´temp´ (delay 0)
+´temp´ MissionScriptElement 100039
+	on_executed
+		´remove_navlinks´ (delay 0)
+´no_laser_2´ MissionScriptElement 100041
+	DISABLED
+	on_executed
+		´door_unblock´ (delay 0)
+´nav´ MissionScriptElement 100042
+	on_executed
+		´no_laser_2´ (delay 0) DISABLED
+´make_way´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´no_laser_2´ DISABLED
+´done_exploded´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_exploded
+			notify_unit_id units/pd2_dlc1/equipment/gen_interactable_door_wooden_c/gen_interactable_door_wooden_c_v2_dirty/001 (-4, 0, 0)
+	on_executed
+		´remove_navlinks´ (delay 0)
+		´make_way´ (delay 0)
+´start´ MissionScriptElement 100036
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´door_reinforced_setup´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100015
+	event player_went_through_tripmine

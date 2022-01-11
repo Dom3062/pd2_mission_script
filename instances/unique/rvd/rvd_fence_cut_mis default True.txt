@@ -1,0 +1,131 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0.25)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/air_prop_runway_fence/air_prop_runway_fence_cloth_v2/001 (-200, 0, 0)
+´cut_fence´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/fence (-200, 0, 0)
+	on_executed
+		´2´ (delay 0)
+´navlink001´ ElementSpecialObjective 100009
+	SO_access 262112
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 3
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste none
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -26.0017, -75, 0
+	repeatable true
+	rotation 0, 0, -0.104528, -0.994522
+	scan false
+	search_distance 0
+	search_position -80,8576 107,696 0
+	so_action e_nl_enter_wall_hole
+	trigger_on none
+	followup_elements
+´navlink002´ ElementSpecialObjective 100010
+	SO_access 262112
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 3
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste none
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 30, 76, 0
+	repeatable true
+	rotation 0, 0, 0.996917, 0.078459
+	scan false
+	search_distance 0
+	search_position 19,6216 -128,588 0
+	so_action e_nl_enter_wall_hole
+	trigger_on none
+	followup_elements
+´trigger_global_event_police_called´ ElementGlobalEventTrigger 100011
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´2´ (delay 0)
+´2´ ElementCounter 100012
+	counter_target 2
+	on_executed
+		´navlink001´ (delay 0)
+		´navlink002´ (delay 0)
+´input_enable_cloth´ ElementInstanceInput 100014
+	event enable_cloth
+	on_executed
+		´relay´ (delay 0)
+´relay´ MissionScriptElement 100015
+	on_executed
+		´seq_disable_fence´ (delay 0)
+		´unit_enabler´ (delay 0)
+´seq_disable_fence´ ElementUnitSequence 100016
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/fence (-200, 0, 0)
+			notify_unit_sequence state_disabled
+			time 0
+´unit_enabler´ ElementEnableUnit 100006
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/air_prop_runway_fence/air_prop_runway_fence_cloth_v2/001 (-200, 0, 0)

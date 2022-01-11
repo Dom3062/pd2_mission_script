@@ -1,0 +1,1561 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 3)
+		´point_spawn_player_001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´func_equipment_001´ (delay 0)
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_minimum_amount_bagged´ (delay 2)
+		´input_code_correct´ (delay 0)
+		´police_called´ (delay 0)
+		´enable_loud´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+			notify_unit_sequence hide_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+			notify_unit_sequence hide_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+			notify_unit_sequence hide_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+			notify_unit_sequence hide_dummy
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_vault/chca_prop_vault/001 (-7.15256E-05, 100, 0)
+			notify_unit_sequence hide_extras
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence disable_outline
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_ink_bomb/chca_interactable_ink_bomb/001 (0, 143, 8)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_ink_bomb/chca_interactable_ink_bomb/001 (0, 143, 8)
+			notify_unit_sequence state_vis_hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_code_correct´ ElementInstanceInput 100007
+	event code_correct
+	on_executed
+		´enable_handprint_reader´ (delay 0)
+´output_door_open´ ElementInstanceOutput 100008
+	TRIGGER TIMES 1
+	event vault_door_open
+	on_executed
+		´point_debug_002´ (delay 0)
+´func_equipment_001´ ElementEquipment 100021
+	amount 1
+	equipment hand
+	position 200, -300, 0
+	rotation 0, 0, 0, -1
+´enable_handprint_reader´ ElementToggle 100023
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´handreader_used´ DISABLED
+	on_executed
+		´seq_enable_handprint_reader´ (delay 0)
+´handreader_used´ MissionScriptElement 100024
+	DISABLED
+	on_executed
+		´enable_money´ (delay 0)
+		´seq_open_door´ (delay 0)
+		´sound_handprint´ (delay 0)
+´seq_open_door´ ElementUnitSequence 100025
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_vault/chca_prop_vault/001 (-7.15256E-05, 100, 0)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´output_door_open´ (delay 0)
+´point_debug_002´ ElementDebug 100026
+	as_subtitle false
+	debug_string vault_door_open
+	show_instigator false
+´seq_enable_handprint_reader´ ElementUnitSequence 100022
+	position 700, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence enable_outline
+			time 0
+´police_called´ ElementGlobalEventTrigger 100027
+	TRIGGER TIMES 1
+	global_event police_called
+	position 3100, 300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´disable_stealth_2´ (delay 0)
+´disable_stealth´ ElementToggle 100031
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´seq_hide_money´ (delay 0)
+		´seq_enable_saws´ (delay 0)
+´enable_money´ MissionScriptElement 100032
+	on_executed
+		´seq_enable_money´ (delay 0)
+´seq_enable_money´ ElementUnitSequence 100050
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence enable_interaction_half_circle
+			time 0
+´trigger_seq_money_pickedup´ ElementUnitSequenceTrigger 100051
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+		5
+			guis_id 5
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+		7
+			guis_id 7
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+		8
+			guis_id 8
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+		9
+			guis_id 9
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+		10
+			guis_id 10
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+		11
+			guis_id 11
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+		12
+			guis_id 12
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+		13
+			guis_id 13
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+		14
+			guis_id 14
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+		15
+			guis_id 15
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+		16
+			guis_id 16
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+	on_executed
+		´output_money_bagged´ (delay 0)
+		´count_bags_16´ (delay 0)
+´input_minimum_amount_bagged´ ElementInstanceInput 100052
+	event minimum_amount_bagged
+	on_executed
+		´stealth´ (delay 0)
+		´loud´ (delay 0) DISABLED
+´output_money_bagged´ ElementInstanceOutput 100053
+	event money_bagged
+	on_executed
+		´point_debug_001´ (delay 0)
+´disable_stealth_2´ ElementToggle 100054
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´stealth´
+	on_executed
+		´enable_loud´ (delay 0)
+´enable_loud´ ElementToggle 100055
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´loud´ DISABLED
+´stealth´ MissionScriptElement 100056
+	on_executed
+		´link_ink_money´ (delay 0)
+´loud´ MissionScriptElement 100057
+	DISABLED
+	on_executed
+		´link_burn_money´ (delay 0)
+´link_burn_money´ MissionScriptElement 100058
+	on_executed
+		´enable_burn_money´ (delay 0)
+		´wp_burn´ (delay 0)
+´burn_interaction´ ElementInteraction 100059
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, 163, 25
+	rotation -1.47514E-07, 2.98023E-07, 1, -4.42542E-07
+	tweak_data_id chca_hold_burn_money
+	on_executed
+		´env_effect_fire_001´ (delay 0) (alternative interacted)
+		´seq_disable_money_and_burn´ (delay 0) (alternative interacted)
+		´logic_toggle_001´ (delay 0) (alternative interacted)
+´env_effect_fire_001´ ElementPlayEffect 100060
+	base_time 0
+	effect effects/payday2/environment/bigger_big_fire
+	max_amount 0
+	position 2.98023E-06, 100, 0
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100061
+	append_prefix false
+	interrupt true
+	position 0, 75, 100
+	rotation 0, 0, 0, -1
+	sound_event large_fire
+	use_instigator false
+´enable_burn_money´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´burn_interaction´ DISABLED
+´seq_disable_money_and_burn´ ElementUnitSequence 100063
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence burn
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence burn
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence burn
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence burn
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence burn
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence burn
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence burn
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence burn
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence burn
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence burn
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence burn
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence burn
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence burn
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence burn
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence burn
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence burn
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´remove_fire_WP´ (delay 0)
+		´point_blurzone_001´ (delay 0)
+´wp_burn´ ElementWaypoint 100064
+	TRIGGER TIMES 1
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 150, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_fire_WP´ ElementOperator 100065
+	operation remove
+	elements
+		1 ´wp_burn´
+		2 ´wp_ink´
+	on_executed
+		´output_burned_cash´ (delay 0)
+´remove_fire_sound´ ElementOperator 100066
+	operation remove
+	elements
+		1 ´point_play_sound_001´
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+´env_effect_stop_001´ ElementStopEffect 100067
+	operation fade_kill
+	position 1400, -300, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_fire_001´
+´seq_hide_money´ ElementUnitSequence 100068
+	position 1700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence hide
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence hide
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence hide
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence hide
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence hide
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence hide
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence hide
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence hide
+			time 0
+´point_debug_001´ ElementDebug 100069
+	as_subtitle false
+	debug_string money_bagged
+	show_instigator false
+´output_burned_cash´ ElementInstanceOutput 100070
+	TRIGGER TIMES 1
+	event burned_cash
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100071
+	as_subtitle false
+	debug_string cash_burned
+	show_instigator false
+´count_bags_16´ ElementCounter 100072
+	counter_target 16
+	on_executed
+		´disable_fire_and_ink´ (delay 0)
+´output_all_money_bagged´ ElementInstanceOutput 100073
+	event all_money_bagged
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_004´ ElementDebug 100074
+	as_subtitle false
+	debug_string all money bagged
+	show_instigator false
+´disable_fire_and_ink´ ElementToggle 100075
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´burn_interaction´ DISABLED
+		2 ´wp_burn´
+		3 ´point_play_sound_001´
+		4 ´env_effect_fire_001´
+		5 ´ink_interaction´ DISABLED
+		6 ´wp_ink´
+		7 ´enable_ink_money´
+		8 ´enable_burn_money´
+		9 ´link_ink_money´
+		10 ´link_burn_money´
+		11 ´func_sequence_001´
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100076
+	operation remove
+	elements
+		1 ´wp_burn´
+		2 ´wp_ink´
+	on_executed
+		´output_all_money_bagged´ (delay 0)
+´input_enable_ripping_vault´ ElementInstanceInput 100077
+	event enable_ripping_vault
+	on_executed
+		´disable_stealth´ (delay 0)
+´seq_enable_saws´ ElementUnitSequence 100078
+	position 1700, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+			notify_unit_sequence spawn_dummy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+			notify_unit_sequence spawn_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+			notify_unit_sequence spawn_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+			notify_unit_sequence spawn_dummy
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_vault/chca_prop_vault/001 (-7.15256E-05, 100, 0)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_vault/chca_prop_vault/001 (-7.15256E-05, 100, 0)
+			notify_unit_sequence hide_extras
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_supply_long_shelf/chca_prop_supply_long_shelf/001 (100, 175, -1.99379)
+			notify_unit_sequence hide
+			time 0
+´saw_done_001´ ElementUnitSequenceTrigger 100082
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+	on_executed
+		´all_saws_done´ (delay 0)
+´saw_done_002´ ElementUnitSequenceTrigger 100083
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+	on_executed
+		´all_saws_done´ (delay 0)
+´saw_done_003´ ElementUnitSequenceTrigger 100084
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+	on_executed
+		´all_saws_done´ (delay 0)
+´saw_done_004´ ElementUnitSequenceTrigger 100085
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+	on_executed
+		´all_saws_done´ (delay 0)
+´all_saws_done´ ElementCounter 100086
+	counter_target 4
+	on_executed
+		´seq_break_beam´ (delay 0)
+´seq_break_beam´ ElementUnitSequence 100087
+	TRIGGER TIMES 1
+	position 1900, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/001 (-75, 100, 300)
+			notify_unit_sequence broken
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+			notify_unit_sequence hide_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+			notify_unit_sequence hide_dummy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+			notify_unit_sequence hide_dummy
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+			notify_unit_sequence hide_dummy
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/002 (75, 100, 300)
+			notify_unit_sequence broken
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/003 (50, 100, -5)
+			notify_unit_sequence broken
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/004 (-50, 100, -5)
+			notify_unit_sequence broken
+			time 0
+	on_executed
+		´disable_beams´ (delay 0)
+		´saws_done´ (delay 0)
+´saws_done´ ElementInstanceOutput 100088
+	event saws_done
+	on_executed
+		´point_debug_005´ (delay 0)
+´point_debug_005´ ElementDebug 100089
+	as_subtitle false
+	debug_string saws_done
+	show_instigator false
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100114
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -700, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100115
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -200, -700, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100116
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -100, -700, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´seq_handprint_used´ ElementUnitSequenceTrigger 100090
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+	on_executed
+		´handreader_used´ (delay 0) DISABLED
+´link_ink_money´ MissionScriptElement 100012
+	on_executed
+		´enable_ink_money´ (delay 0)
+´enable_ink_money´ ElementToggle 100013
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´func_sequence_001´ (delay 0)
+´seq_disable_money_and_ink´ ElementUnitSequence 100014
+	position 1300, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence ink_bomb
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence ink_bomb
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence ink_bomb
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence ink_bomb
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence ink_bomb
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence ink_bomb
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence ink_bomb
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence ink_bomb
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence ink_bomb
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence ink_bomb
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence ink_bomb
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence ink_bomb
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence ink_bomb
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence ink_bomb
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence ink_bomb
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence ink_bomb
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/001 (-75, 200, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/002 (-75, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/003 (-25, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/004 (25, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/005 (-25, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		22
+			id 22
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/006 (-75, 200, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		23
+			id 23
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/007 (25, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		24
+			id 24
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/008 (-25, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		25
+			id 25
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/009 (-74.9302, 200.998, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		26
+			id 26
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/010 (-25, 200, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		27
+			id 27
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/011 (24.7528, 204.276, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		28
+			id 28
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/012 (74.9302, 200.998, 198)
+			notify_unit_sequence disable_interaction
+			time 0
+		29
+			id 29
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/013 (75, 200, 146)
+			notify_unit_sequence disable_interaction
+			time 0
+		30
+			id 30
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/014 (75.0349, 200.999, 86)
+			notify_unit_sequence disable_interaction
+			time 0
+		31
+			id 31
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/015 (75, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		32
+			id 32
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/pickups/chca_pku_money/chca_pku_money/016 (25, 200, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´remove_fire_WP´ (delay 0)
+´wp_ink´ ElementWaypoint 100015
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 150, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´ink_interaction´ ElementInteraction 100016
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, 150, 0
+	rotation 0, 0, -0.707107, -0.707107
+	tweak_data_id chca_hold_ink_money
+	on_executed
+		´seq_disable_money_and_ink´ (delay 0) (alternative interacted)
+		´env_effect_play_001´ (delay 0) (alternative interacted)
+´env_effect_play_001´ ElementPlayEffect 100033
+	TRIGGER TIMES 1
+	base_time 0
+	effect effects/payday2/particles/explosions/ink_bomb
+	max_amount 0
+	position 0, 162, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_002´ (delay 0)
+´point_play_sound_002´ ElementPlaySound 100042
+	append_prefix false
+	interrupt true
+	position 0, 75, 100
+	rotation 0, 0, 0, -1
+	sound_event ink_bomb_explode
+	use_instigator false
+´seq_saw_started_001´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence first_interact
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+	on_executed
+		´saw_started_001´ (delay 0)
+		´saw_started_002´ (delay 0) DISABLED
+		´saw_started_003´ (delay 0) DISABLED
+		´saw_started_004´ (delay 0) DISABLED
+		´enable_seq_saw_done_001´ (delay 0)
+´seq_saw_started_002´ ElementUnitSequenceTrigger 100044
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence first_interact
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+	on_executed
+		´saw_started_001´ (delay 0)
+		´saw_started_002´ (delay 0) DISABLED
+		´saw_started_003´ (delay 0) DISABLED
+		´saw_started_004´ (delay 0) DISABLED
+		´enable_seq_saw_done_002´ (delay 0)
+´seq_saw_started_003´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence first_interact
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+	on_executed
+		´saw_started_001´ (delay 0)
+		´saw_started_002´ (delay 0) DISABLED
+		´saw_started_003´ (delay 0) DISABLED
+		´saw_started_004´ (delay 0) DISABLED
+		´enable_seq_saw_done_003´ (delay 0)
+´seq_saw_started_004´ ElementUnitSequenceTrigger 100046
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence first_interact
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+	on_executed
+		´saw_started_001´ (delay 0)
+		´saw_started_002´ (delay 0) DISABLED
+		´saw_started_003´ (delay 0) DISABLED
+		´saw_started_004´ (delay 0) DISABLED
+		´enable_seq_saw_done_004´ (delay 0)
+´saw_started_001´ MissionScriptElement 100047
+	TRIGGER TIMES 1
+	on_executed
+		´enable_saw_done_001´ (delay 0)
+´seq_saw_done_001´ ElementUnitSequenceTrigger 100048
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/001 (-155, 101, 3)
+	on_executed
+		´saw_done_001_2´ (delay 0) DISABLED
+		´saw_done_002_2´ (delay 0) DISABLED
+		´saw_done_003_2´ (delay 0) DISABLED
+		´saw_done_004_2´ (delay 0) DISABLED
+		´enable_start_saw_001´ (delay 0)
+´seq_saw_done_002´ ElementUnitSequenceTrigger 100092
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/002 (158, 100, 4)
+	on_executed
+		´saw_done_004_2´ (delay 0) DISABLED
+		´saw_done_003_2´ (delay 0) DISABLED
+		´saw_done_002_2´ (delay 0) DISABLED
+		´saw_done_001_2´ (delay 0) DISABLED
+		´enable_start_saw_002´ (delay 0)
+´seq_saw_done_003´ ElementUnitSequenceTrigger 100093
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/003 (192, 100, 296)
+	on_executed
+		´saw_done_003_2´ (delay 0) DISABLED
+		´saw_done_004_2´ (delay 0) DISABLED
+		´saw_done_002_2´ (delay 0) DISABLED
+		´saw_done_001_2´ (delay 0) DISABLED
+		´enable_start_saw_003´ (delay 0)
+´seq_saw_done_004´ ElementUnitSequenceTrigger 100094
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/equipment/apartment_saw/apartment_saw/004 (-193, 100, 297)
+	on_executed
+		´saw_done_004_2´ (delay 0) DISABLED
+		´saw_done_003_2´ (delay 0) DISABLED
+		´saw_done_002_2´ (delay 0) DISABLED
+		´saw_done_001_2´ (delay 0) DISABLED
+		´enable_start_saw_004´ (delay 0)
+´saw_started_002´ MissionScriptElement 100049
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´enable_saw_done_002´ (delay 0)
+´saw_started_003´ MissionScriptElement 100095
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´enable_saw_done_003´ (delay 0)
+´saw_started_004´ MissionScriptElement 100096
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´enable_saw_done_004´ (delay 0)
+´enable_seq_saw_done_001´ ElementToggle 100097
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_done_001´ DISABLED
+´enable_seq_saw_done_002´ ElementToggle 100098
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_done_002´ DISABLED
+´enable_seq_saw_done_003´ ElementToggle 100099
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_done_003´ DISABLED
+´enable_seq_saw_done_004´ ElementToggle 100100
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_done_004´ DISABLED
+´saw_done_001_2´ MissionScriptElement 100101
+	DISABLED
+	on_executed
+		´enable_saw_started_002´ (delay 0)
+´saw_done_002_2´ MissionScriptElement 100102
+	DISABLED
+	on_executed
+		´enable_saw_started_003´ (delay 0)
+´saw_done_003_2´ MissionScriptElement 100103
+	DISABLED
+	on_executed
+		´enable_saw_started_004´ (delay 0)
+´saw_done_004_2´ MissionScriptElement 100104
+	DISABLED
+	on_executed
+		´func_instance_output_001´ (delay 0)
+´enable_start_saw_001´ ElementToggle 100105
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_started_001´
+´enable_start_saw_002´ ElementToggle 100106
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_started_002´
+´enable_start_saw_003´ ElementToggle 100107
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_started_003´
+´enable_start_saw_004´ ElementToggle 100108
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_saw_started_004´
+´enable_saw_done_001´ ElementToggle 100109
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_done_001_2´ DISABLED
+´enable_saw_started_002´ ElementToggle 100110
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_started_002´ DISABLED
+´enable_saw_started_003´ ElementToggle 100111
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_started_003´ DISABLED
+´enable_saw_started_004´ ElementToggle 100112
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_started_004´ DISABLED
+´func_instance_output_001´ ElementInstanceOutput 100113
+	event saws_done_in_order_1_by_1
+	on_executed
+		´point_debug_006´ (delay 0)
+´point_debug_006´ ElementDebug 100117
+	as_subtitle false
+	debug_string congratulations_masochist_saws_done_1_by_1
+	show_instigator false
+´enable_saw_done_002´ ElementToggle 100118
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_done_002_2´ DISABLED
+´enable_saw_done_003´ ElementToggle 100119
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_done_003_2´ DISABLED
+´enable_saw_done_004´ ElementToggle 100121
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_done_004_2´ DISABLED
+´disable_beams´ ElementDisableUnit 100126
+	position 1975, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/003 (50, 100, -5)
+		2 units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/004 (-50, 100, -5)
+		3 units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/001 (-75, 100, 300)
+		4 units/pd2_dlc_flat/props/flt_prop_panic_room/flt_prop_panicroom_beam/002 (75, 100, 300)
+´sound_handprint´ ElementPlaySound 100120
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position 75, -100, 133.165
+	rotation 0, 0, 0, -1
+	sound_event scanner_handprint_success
+	use_instigator false
+´input_disable_handprint_reader´ ElementInstanceInput 100127
+	TRIGGER TIMES 1
+	event Disable_handprint_scanner
+	on_executed
+		´seq_disable_handprint_reader´ (delay 0)
+´seq_disable_handprint_reader´ ElementUnitSequence 100128
+	position 1600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_handprint_scanner/chca_interactable_handprint_scanner/001 (80, -51, 135)
+			notify_unit_sequence disable_outline
+			time 0
+´bomb_interacted´ ElementUnitSequenceTrigger 100131
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_ink_bomb/chca_interactable_ink_bomb/001 (0, 143, 8)
+	on_executed
+		´seq_disable_money_and_ink´ (delay 3)
+´func_sequence_001´ ElementUnitSequence 100132
+	position 1300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_ink_bomb/chca_interactable_ink_bomb/001 (0, 143, 8)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´point_shape_001´ ElementShape 100133
+	depth 200
+	height 500
+	position 0, 75, 9.00621
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 200
+´fire damage´ ElementAreaTrigger 100134
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 2450, 300, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on both
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_kill_zone_001´ (delay 0)
+´func_kill_zone_001´ ElementKillZone 100135
+	position 2450, 175, 2.5
+	rotation 0, 0, 0, -1
+	type fire
+´logic_toggle_001´ ElementToggle 100136
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´fire damage´ DISABLED
+´point_blurzone_001´ ElementBlurZone 100137
+	TRIGGER TIMES 1
+	height 300
+	mode 1
+	position 0, 100, 9.00621
+	radius 150
+	rotation 0, 0, 0, -1

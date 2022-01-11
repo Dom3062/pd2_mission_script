@@ -1,0 +1,81 @@
+´seq´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´startup_disable_interaction´ (delay 0)
+´enable_interaction´ ElementInstanceInput 100002
+	event enable_interaction
+	on_executed
+		´enable_interaction_2´ (delay 0)
+´disable_interaction´ ElementInstanceInput 100003
+	event disable_interaction
+	on_executed
+		´disable_interaction_2´ (delay 0)
+´startup_disable_interaction´ ElementUnitSequence 100004
+	position 100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/002 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´disable_interaction_2´ ElementUnitSequence 100005
+	position 300, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/002 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´enable_interaction_2´ ElementUnitSequence 100006
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/002 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´logic_link_001´ (delay 120)
+´tape_taken´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/002 (0, 0, 0)
+	on_executed
+		´tape_taken_2´ (delay 0)
+´tape_taken_2´ ElementInstanceOutput 100008
+	event tape_taken
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100009
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position -3, 0, 34
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_link_001´ MissionScriptElement 100010
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100011
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_link_001´
+		2 ´point_waypoint_001´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100012
+	operation remove
+	elements
+		1 ´point_waypoint_001´

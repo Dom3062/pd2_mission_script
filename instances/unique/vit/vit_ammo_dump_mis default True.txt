@@ -1,0 +1,130 @@
+´enable_thermite_input´ ElementInstanceInput 100010
+	event enable_thermite
+	on_executed
+		´enable_thermite´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´thermite_taken_output´ ElementInstanceOutput 100012
+	event thermite_taken
+´enable_thermite´ ElementUnitSequence 100013
+	position 275, 50, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_thermite_backpack/gen_interactable_thermite_backpack/001 (385, 149, 0.0626683)
+			notify_unit_sequence state_interact_enabled_3s
+			time 0
+	on_executed
+		´disable_outline_thermite´ (delay 0)
+´thermite_taken´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/payday2/equipment/gen_interactable_thermite_backpack/gen_interactable_thermite_backpack/001 (385, 149, 0.0626683)
+	on_executed
+		´thermite_taken_output´ (delay 0)
+´trigger_area_report_001´ ElementAreaReportTrigger 100027
+	DISABLED
+	amount 1
+	depth 400
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 250, 200, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_outline_thermite´ (delay 0) (alternative enter)
+		´disable_outline_thermite´ (delay 0) (alternative empty)
+´enable_outline_thermite´ ElementUnitSequence 100026
+	position 350, 150, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_thermite_backpack/gen_interactable_thermite_backpack/001 (385, 149, 0.0626683)
+			notify_unit_sequence enable_outline
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´disable_outline_thermite´ ElementUnitSequence 100028
+	position 350, 50, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_thermite_backpack/gen_interactable_thermite_backpack/001 (385, 149, 0.0626683)
+			notify_unit_sequence disable_outline
+			time 0
+´logic_toggle_001´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_report_001´ DISABLED
+´interact_wp´ ElementWaypoint 100032
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 382, 152, 61
+	rotation 0, 0, 0.300706, -0.953717
+	text_id debug_none
+´show_wp_input´ ElementInstanceInput 100037
+	event show_wp
+	on_executed
+		´interact_wp´ (delay 0)
+´remove_wp_input´ ElementInstanceInput 100034
+	event remove_wp
+	on_executed
+		´remove_wp´ (delay 0)
+´remove_wp´ ElementOperator 100038
+	operation remove
+	elements
+		1 ´interact_wp´
+´area_player_close_to_thermite´ ElementAreaTrigger 100043
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 200
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 400, 100, 175
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_teammate_comment_found_it´ (delay 0)
+´logic_toggle_002´ ElementToggle 100044
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_thermite´ DISABLED
+´point_teammate_comment_found_it´ ElementTeammateComment 100045
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v04
+	position 350, 100, 175
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

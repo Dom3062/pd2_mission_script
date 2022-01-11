@@ -1,0 +1,581 @@
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´hide´ (delay 1)
+´hide´ ElementUnitSequence 100003
+	position -200, -700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_drive/vehicles/veh_blackhawk_magnet/veh_blackhawk_magnet/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/001 (0, 0, 2)
+			notify_unit_sequence hide
+			time 0
+´enable escape´ ElementInstanceInput 100005
+	event enable escape
+´end mission´ ElementMissionEnd 100008
+	position -300, -550, 2.5
+	rotation 0, 0, 0, -1
+	state success
+	on_executed
+		´done´ (delay 0)
+´magnet lowered´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_magnet_lowered
+			notify_unit_id units/pd2_dlc_drive/vehicles/veh_blackhawk_magnet/veh_blackhawk_magnet/001 (0, 0, 0)
+	on_executed
+		´output_heli_in_position´ (delay 0)
+´show escape marker´ ElementUnitSequence 100010
+	position -100, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/001 (0, 0, 2)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´wp_escape´ (delay 0)
+		´enable_truck´ (delay 0)
+´done´ ElementDebug 100011
+	as_subtitle true
+	debug_string SUCCESS
+	show_instigator false
+´wp_goto´ ElementWaypoint 100012
+	icon pd2_goto
+	only_in_civilian false
+	position 3.8147E-06, 0, 150
+	rotation 0, 0, -0.866025, -0.5
+	text_id debug_none
+´output_heli_in_position´ ElementInstanceOutput 100013
+	event heli_in_position
+´lift the car´ ElementUnitSequence 100014
+	TRIGGER TIMES 1
+	position -200, -550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_drive/vehicles/veh_blackhawk_magnet/veh_blackhawk_magnet/001 (0, 0, 0)
+			notify_unit_sequence car_lift
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_drive/vehicles/veh_blackhawk_magnet/veh_blackhawk_magnet/001 (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 400)
+			notify_unit_sequence hidden_with_sound
+			time 0
+	on_executed
+		´end mission´ (delay 9)
+		´point_debug_001´ (delay 0)
+		´fade_to_black_001´ (delay 6)
+		´hide´ (delay 0)
+		´wp_escape_REMOVE´ (delay 0)
+		´pln_as1_15´ (delay 0)
+´point_debug_001´ ElementDebug 100015
+	as_subtitle false
+	debug_string lifting the car
+	show_instigator false
+´fade_to_black_001´ ElementFadeToBlack 100017
+	position -200, -850, 2.5
+	rotation 5.6577E-13, -2.12719E-13, -6.64746E-15, -1
+	state false
+´output_escape_success´ ElementInstanceOutput 100021
+	TRIGGER TIMES 1
+	event escape_success
+´wp_escape_REMOVE´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´wp_escape´
+´point_play_sound_001´ ElementPlaySound 100025
+	append_prefix false
+	position 0, 0, 250
+	rotation 0, 0, 0, -1
+	sound_event container_drop
+	use_instigator false
+	on_executed
+		´point_feedback_001´ (delay 5)
+´point_feedback_001´ ElementFeedback 100027
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 0,75
+	camera_shake_attack 0,5
+	camera_shake_decay 1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position -3, 84, 250
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble false
+	on_executed
+		´point_play_sound_002´ (delay 0)
+		´point_feedback_002´ (delay 0)
+´point_play_sound_002´ ElementPlaySound 100028
+	append_prefix false
+	position 0, 200, 250
+	rotation 0, 0, 0, -1
+	sound_event inside_container
+	use_instigator false
+´wp_clear´ ElementWaypoint 100026
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 0, 150
+	rotation 0, 0, -0.866025, -0.5
+	text_id debug_none
+´wp_escape´ ElementWaypoint 100029
+	icon pd2_escape
+	only_in_civilian false
+	position 0, 0, 150
+	rotation 0, 0, -0.866025, -0.5
+	text_id debug_none
+´wp_clear_REMOVE´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´wp_clear´
+	on_executed
+		´show escape marker´ (delay 0)
+´TEMP_AUTOSTART´ MissionScriptElement 100033
+	DISABLED
+	BASE DELAY 5
+	on_executed
+		´start´ (delay 0)
+´link´ MissionScriptElement 100035
+	on_executed
+		´show_flare´ (delay 0)
+		´waypoint_flare´ (delay 0)
+´enable_flare´ ElementInstanceInput 100037
+	event show_flare
+	on_executed
+		´link´ (delay 0)
+´show_flare´ ElementUnitSequence 100036
+	position 125, 1325, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (500, 0, 10)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (500, 0, 10)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´waypoint_flare´ ElementWaypoint 100038
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 500, -3.8147E-06, 60
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´waypoint_flare´
+	on_executed
+		´point_play_sound_flare´ (delay 0)
+		´start_wait_time´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´flare_used´ ElementUnitSequenceTrigger 100040
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_roadflare/gen_interactable_roadflare_unlimited_highlight/001 (500, 0, 10)
+	on_executed
+		´remove_waypoint´ (delay 0)
+		´env_effect_play_flare_001´ (delay 0)
+´env_effect_play_flare_001´ ElementPlayEffect 100042
+	base_time 0
+	effect effects/payday2/environment/bengal_flare
+	max_amount 0
+	position 513.364, -15.364, 11
+	random_time 0
+	rotation 0, 0, -0.382683, -0.92388
+	screen_space false
+´env_effect_stop_001´ ElementStopEffect 100043
+	operation fade_kill
+	position 50, 950, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_flare_001´
+	on_executed
+		´point_stop_sound_flare´ (delay 0)
+´point_play_sound_flare´ ElementPlaySound 100044
+	append_prefix false
+	position 500, -3.8147E-06, 10
+	rotation 0, 0, 0, -1
+	sound_event flare_start_loop
+	use_instigator false
+´point_stop_sound_flare´ ElementPlaySound 100045
+	append_prefix false
+	position 0, 950, 0
+	rotation 0, 0, 0, -1
+	sound_event flare_end
+	use_instigator false
+	on_executed
+		´wp_clear_REMOVE´ (delay 0)
+´start_wait_time´ MissionScriptElement 100046
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100047
+	on_executed
+		´2 step authentication´ (delay 1)
+´bring_in_heli´ MissionScriptElement 100051
+	on_executed
+		´fly_in_heli´ (delay 0)
+		´point_debug_005´ (delay 0)
+´fly_in_heli´ ElementUnitSequence 100053
+	position 150, 950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 400)
+			notify_unit_sequence diamondheist
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/vehicles/veh_helicopter_water/veh_helicopter_water/001 (0, 0, 400)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´finished´ (delay 20)
+´finished´ MissionScriptElement 100054
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´env_effect_heli_smoke´ (delay 0)
+		´pln_as1_014´ (delay 0)
+´auto_setup´ MissionScriptElement 100055
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_2´ (delay 0)
+´hide_2´ ElementDisableUnit 100056
+	position 200, 1400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_roadflare/gen_prop_roadflare/001 (500, 0, 10)
+´func_enable_unit_001´ ElementEnableUnit 100057
+	position 50, 1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_roadflare/gen_prop_roadflare/001 (500, 0, 10)
+	on_executed
+		´flare_used_2´ (delay 0)
+´point_debug_005´ ElementDebug 100058
+	as_subtitle true
+	debug_string ILL BE THERE IN 20 Seconds
+	show_instigator false
+´flare_used_2´ ElementInstanceOutput 100059
+	event flare_used
+´deactivate_part_1´ ElementVehicleOperator 100060
+	damage 0
+	operation block
+	position 275, 2300, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´hide zone´ (delay 0)
+´trigger_deactivate_part_1´ ElementAreaTrigger 100062
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 425,52
+	height 500
+	instigator vehicle_with_players
+	interval 0.5
+	position 0, 50, 200
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on while_inside
+	use_disabled_shapes false
+	width 209,04
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´deactivate_part_1´ (delay 0)
+´hide zone´ ElementUnitSequence 100063
+	position 225, 2300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/001 (0, 0, 2)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´part 1 finished´ (delay 0)
+´show zone´ ElementUnitSequence 100064
+	position 175, 2400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/001 (0, 0, 2)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´volume on´ (delay 0)
+´start´ ElementInstanceInput 100065
+	event start
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100066
+	on_executed
+		´show zone´ (delay 0)
+		´wp_goto´ (delay 0)
+´volume on´ ElementToggle 100067
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_deactivate_part_1´ DISABLED
+´part 1 finished´ MissionScriptElement 100068
+	on_executed
+		´link´ (delay 0)
+		´remove waypoint´ (delay 0)
+		´vld_as1_015´ (delay 0)
+´disable repairs´ ElementInstanceOutput 100069
+	event disable_repairs
+´remove waypoint´ ElementOperator 100061
+	operation remove
+	elements
+		1 ´wp_goto´
+	on_executed
+		´disable repairs´ (delay 0)
+´point_shape_001´ ElementShape 100018
+	depth 426
+	height 500
+	position 0, 0, 200
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	width 209
+´env_effect_heli_smoke´ ElementPlayEffect 100023
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 50
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´point_feedback_002´ ElementFeedback 100030
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 0,25
+	camera_shake_attack 1
+	camera_shake_decay 1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 10
+	effect mission_triggered
+	position -103, 84, 250
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 3
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 4
+	use_camera_shake true
+	use_rumble false
+´vld_as1_015´ ElementDialogue 100019
+	dialogue Play_vld_as1_15
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´pln_as1_013´ (delay 0.25)
+´vld_as1_016´ ElementDialogue 100032
+	dialogue Play_vld_as1_16
+	execute_on_executed_when_done false
+	use_position false
+´pln_as1_15´ ElementDialogue 100071
+	dialogue Play_pln_as1_15
+	execute_on_executed_when_done true
+	use_position false
+´pln_as1_014´ ElementDialogue 100070
+	dialogue Play_pln_as1_14
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´vld_as1_016´ (delay 0.25)
+´bank´ ElementPlaySound 100072
+	append_prefix false
+	position -150, 2375, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_pln_as1_04
+	use_instigator false
+´pln_as1_013´ ElementDialogue 100073
+	dialogue Play_pln_as1_13
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´2 step authentication´ (delay 1)
+´plt_as1_01´ ElementDialogue 100075
+	dialogue Play_plt_as1_01
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´plt_as1_02´ (delay 60)
+´plt_as1_02´ ElementDialogue 100076
+	dialogue Play_plt_as1_02
+	execute_on_executed_when_done true
+	use_position false
+	on_executed
+		´plt_as1_04´ (delay 60)
+´plt_as1_03´ ElementDialogue 100077
+	dialogue Play_plt_as1_03
+	execute_on_executed_when_done false
+	use_position false
+´plt_as1_04´ ElementDialogue 100078
+	dialogue Play_plt_as1_04
+	execute_on_executed_when_done false
+	use_position false
+	on_executed
+		´bring_in_heli´ (delay 60)
+´On´ ElementToggle 100006
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Link´ DISABLED
+	on_executed
+		´Link´ (delay 0.1) DISABLED
+´point_debug_002´ ElementDebug 100020
+	as_subtitle true
+	debug_string All players in vehicle
+	show_instigator false
+´TEMP TEMP TEMP´ MissionScriptElement 100022
+	on_executed
+		´bring_in_heli´ (delay 3)
+´all inside´ ElementVehicleTrigger 100048
+	event on_all_inside
+	position 200, -650, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´set true´ (delay 0)
+´Link´ MissionScriptElement 100050
+	DISABLED
+	on_executed
+		´equal 1´ (delay 0)
+´true or false´ ElementCounter 100079
+	counter_target 0
+´set true´ ElementCounterOperator 100080
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´true or false´
+´set false´ ElementCounterOperator 100081
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´true or false´
+´on exit´ ElementVehicleTrigger 100082
+	event on_exit
+	position 200, -750, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´set false´ (delay 0)
+´equal 1´ ElementCounterFilter 100083
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´true or false´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´output_escape_success´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+		´lift the car´ (delay 6)
+		´On_2´ (delay 0)
+´All in Car´ ElementVehicleTrigger 100084
+	event on_enter
+	position 200, -550, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Link´ (delay 0.1) DISABLED
+´enable_truck´ ElementInstanceOutput 100007
+	event enable_truck
+	on_executed
+		´On´ (delay 0)
+´func_modify_player_god_mode_on´ ElementModifyPlayer 100004
+	damage_fall_disabled false
+	invulnerable true
+	position -400, -450, 2.5
+	rotation 0, 0, 0, -1
+´point_shape_god_mode´ ElementShape 100016
+	depth 2180
+	height 900
+	position 0, 0, 300
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	width 1993,56
+´trigger_area_report_god_mode´ ElementAreaReportTrigger 100049
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position -300, -450, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_god_mode´
+	use_shape_element_ids
+	unit_ids
+		1 100016
+	on_executed
+		´func_modify_player_god_mode_on´ (delay 0) (alternative enter)
+´On_2´ ElementToggle 100074
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_report_god_mode´ DISABLED
+´func_instance_input_001´ ElementInstanceInput 100085
+	event dev_qa_dmg_test
+	on_executed
+		´TEMP TEMP TEMP´ (delay 0)
+´2 step authentication´ ElementCounter 100086
+	counter_target 2
+	on_executed
+		´plt_as1_01´ (delay 0)

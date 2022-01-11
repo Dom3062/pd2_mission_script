@@ -1,0 +1,140 @@
+´STARTUP´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´DELAY´ MissionScriptElement 100002
+	on_executed
+		´seq_INIT´ (delay 0)
+		´add_sec_door_obstacle´ (delay 0)
+´seq_INIT´ ElementUnitSequence 100003
+	position -400, 100, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence state_door_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´output_security_room_door_closed´ (delay 0)
+´door_opened´ MissionScriptElement 100007
+	TRIGGER TIMES 1
+	on_executed
+		´seq_done´ (delay 0)
+		´wp_security_room_REMOVE´ (delay 0)
+		´output_security_room_door_opened´ (delay 0)
+		´renove_sec_door_obstacle´ (delay 0)
+		´interaction_open_door_OFF´ (delay 0)
+´seq_done´ ElementUnitSequence 100009
+	position -200, 50, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´wp_security_room´ ElementWaypoint 100012
+	icon pd2_goto
+	only_in_civilian false
+	position 0, 75, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_security_room_door_show_WP´ ElementInstanceInput 100013
+	event security_room_door_show_WP
+	on_executed
+		´wp_security_room´ (delay 0)
+´wp_security_room_REMOVE´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´wp_security_room´
+´output_security_room_door_opened´ ElementInstanceOutput 100015
+	event security_room_door_opened
+´seq_trg_seucirtyroom_door_DONE_OPENED´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+	on_executed
+		´door_opened´ (delay 0)
+´input_hide_door´ ElementInstanceInput 100004
+	event hide_door
+	on_executed
+		´seq_door_hide´ (delay 0)
+´seq_door_hide´ ElementUnitSequence 100018
+	position 200, 0, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+´output_security_room_door_closed´ ElementInstanceOutput 100019
+	event security_room_door_closed
+´interaction_open_door´ ElementInteraction 100020
+	override_timer -1
+	position 9.53674E-07, 15, 106
+	rotation 0, 0, -0.707107, -0.707107
+	tweak_data_id cas_open_securityroom_door
+	on_executed
+		´door_opened´ (delay 0) (alternative interacted)
+		´seq_open´ (delay 0) (alternative interacted)
+´add_sec_door_obstacle´ ElementNavObstacle 100022
+	operation add
+	position 25, -50, 802.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (227, -44, 6.10877)
+´renove_sec_door_obstacle´ ElementNavObstacle 100023
+	operation remove
+	position -25, -50, 802.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (227, -44, 6.10877)
+´seq_open´ ElementUnitSequence 100000
+	position -125, 50, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+´input_remove_attention´ ElementInstanceInput 100008
+	event remove_attention
+	on_executed
+		´seq_door_remove_attention´ (delay 0)
+´seq_door_remove_attention´ ElementUnitSequence 100010
+	position 350, 100, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_securityroom_door/cas_securityroom_door/securityroom_door (0, 0, 0)
+			notify_unit_sequence remove_attention
+			time 0
+´interaction_open_door_OFF´ ElementToggle 100011
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interaction_open_door´

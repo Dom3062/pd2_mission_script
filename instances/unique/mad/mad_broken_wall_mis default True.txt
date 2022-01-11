@@ -1,0 +1,140 @@
+´start_explosion´ MissionScriptElement 100003
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´point_feedback_001´ (delay 0)
+		´env_effect_play_002´ (delay 0)
+		´point_explosion_damage_001´ (delay 0)
+´input_blow_up´ ElementInstanceInput 100004
+	event Blow up wall
+	on_executed
+		´start_explosion´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100008
+	operation remove
+	position 200, -2800, 681.813
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (800, -0.000107288, -1.23954)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (400, 3.57628E-05, -1.23954)
+´start´ MissionScriptElement 100009
+	EXECUTE ON STARTUP
+	BASE DELAY 3
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100010
+	operation add
+	position 0, -2700, 681.813
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (800, -0.000107288, -1.23954)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (400, 3.57628E-05, -1.23954)
+´func_sequence_001´ ElementUnitSequence 100000
+	position 200, -2700, 681.813
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/architecture/mad_sawmill/mad_compound_wall_destruction/001 (400, 50, 0)
+			notify_unit_sequence anim_expload_wall
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´env_effect_play_002´ ElementPlayEffect 100001
+	base_time 0
+	effect effects/payday2/particles/explosions/brick_wall_explosion
+	max_amount 0
+	position 400, 0, 157.546
+	random_time 0
+	rotation 0, 0, 0.707107, -0.707107
+	screen_space false
+	on_executed
+		´enable´ (delay 0)
+´area_player_near_exploded_wall´ ElementAreaTrigger 100002
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1000
+	height 500
+	instigator player
+	interval 0.1
+	position 400, 0, 150
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1200
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_right_there´ (delay 0)
+´enable´ ElementToggle 100005
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_near_exploded_wall´ DISABLED
+´teammate_comment_come_on´ ElementTeammateComment 100013
+	close_to_element false
+	comment g13
+	position 400, -300, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_002´ (delay 0)
+´teammate_comment_right_there´ ElementTeammateComment 100014
+	close_to_element false
+	comment g15
+	position 400, -200, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´teammate_comment_come_on´ (delay 5)
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100012
+	as_subtitle false
+	debug_string teammate_comment_right_there
+	show_instigator false
+´point_debug_002´ ElementDebug 100015
+	as_subtitle false
+	debug_string teammate_comment_come_on
+	show_instigator false
+´point_feedback_001´ ElementFeedback 100016
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 0,7
+	effect mission_triggered
+	position 400, -100, 200
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble false
+´point_explosion_damage_001´ ElementExplosionDamage 100017
+	damage 100
+	position 400, 0, 119.546
+	range 500
+	rotation 0, 0, 0.707107, -0.707107

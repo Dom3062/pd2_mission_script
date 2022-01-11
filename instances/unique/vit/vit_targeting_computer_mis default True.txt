@@ -1,0 +1,322 @@
+´interact_wp´ ElementWaypoint 100001
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 160
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´defend_wp´ ElementWaypoint 100002
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 160
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fix_wp´ ElementWaypoint 100003
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 160
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_interaction_input´ ElementInstanceInput 100004
+	event enable_interaction
+	on_executed
+		´interact_wp´ (delay 0)
+		´enable_interaction´ (delay 0)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´enable_interaction´ ElementUnitSequence 100005
+	position -300, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+			notify_unit_sequence state_interact_enable
+			time 0
+´started_hacking´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+	on_executed
+		´remove_interact_wp´ (delay 0)
+´remove_interact_wp´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´interact_wp´
+	on_executed
+		´defend_wp´ (delay 0)
+		´toggle_interrupts_on´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´interrupt_so´ ElementSpecialObjective 100008
+	SO_access 6291960
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -75, 0.00400543
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 1000
+	search_position 0 -100 0,00400543
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´action_so_2´
+´action_so´ ElementSpecialObjective 100009
+	SO_access 0
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 200, -100, -99.996
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 0 -100 0,00400543
+	so_action none
+	trigger_on none
+	followup_elements
+´action_so_2´ ElementSpecialObjective 100010
+	SO_access 6291960
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -75, 0.00400543
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 0 -100 0,00400543
+	so_action e_so_interact_mid
+	trigger_on none
+	use_instigator true
+	followup_elements
+´toggle_interrupts_on´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+		3 100011
+	on_executed
+		´interrupt_so´ (delay 1)
+´point_spawn_player_001´ ElementPlayerSpawner 100012
+	DISABLED
+	position -400, -100, 0.0039978
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0) DISABLED
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100013
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -100, 0.0039978
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´anim_complete´ ElementSpecialObjectiveTrigger 100014
+	event complete
+	position 0, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´action_so_2´
+	on_executed
+		´device_jammed´ (delay 0)
+´device_jammed´ ElementUnitSequence 100015
+	position 0, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´resumed_hacking´ ElementUnitSequenceTrigger 100016
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+	on_executed
+		´device_resumed´ (delay 0)
+´logic_toggle_001´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´resumed_hacking´ DISABLED
+´device_resumed´ ElementUnitSequence 100018
+	position 100, -400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_002´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_toggle_003´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+	on_executed
+		´interrupt_so´ (delay 0.1)
+		´logic_operator_002´ (delay 0)
+´logic_operator_001´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+		3 ´defend_wp´
+	on_executed
+		´fix_wp´ (delay 0)
+´logic_operator_002´ ElementOperator 100022
+	operation remove
+	elements
+		1 ´fix_wp´
+	on_executed
+		´defend_wp´ (delay 0)
+´anim_failed´ ElementSpecialObjectiveTrigger 100023
+	event fail
+	position -100, -400, 0.0039978
+	rotation 0, 0, 0, -1
+	elements
+		1 ´action_so_2´
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´logic_toggle_004´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_003´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+	on_executed
+		´toggle_interrupts_on´ (delay 10)
+´timer_done´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+	on_executed
+		´logic_toggle_005´ (delay 0)
+		´hide_desktop´ (delay 0)
+´timer_done_output´ ElementInstanceOutput 100027
+	event timer_done
+´logic_toggle_005´ ElementToggle 100028
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´action_so_2´
+		2 ´interrupt_so´
+	on_executed
+		´logic_operator_004´ (delay 0)
+´logic_operator_004´ ElementOperator 100029
+	operation remove
+	elements
+		1 ´fix_wp´
+		2 ´defend_wp´
+		3 ´interact_wp´
+		4 ´action_so_2´
+		5 ´interrupt_so´
+	on_executed
+		´timer_done_output´ (delay 0)
+´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100030
+	DISABLED
+	event death
+	position 500, -100, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001´ DISABLED
+	on_executed
+		´ai_spawn_enemy_001´ (delay 1) DISABLED
+´hide_desktop´ ElementUnitSequence 100031
+	position 300, -300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mad/props/mad_prop_military_laptop/mad_prop_military_laptop/001 (0, 0, 81)
+			notify_unit_sequence hide_screens
+			time 0

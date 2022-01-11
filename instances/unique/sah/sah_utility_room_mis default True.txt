@@ -1,0 +1,320 @@
+´show_blowtorch_001´ ElementUnitSequence 100013
+	DISABLED
+	position 200, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/004 (52.0442, 67.0643, 136)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/004 (52.0442, 67.0643, 136)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_blowtorch_on_001´ (delay 0)
+´show_blowtorch_002´ ElementUnitSequence 100014
+	DISABLED
+	position 100, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/003 (-42.7366, 22.4295, 136)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/003 (-42.7366, 22.4295, 136)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_blowtorch_on_002´ (delay 0)
+´show_blowtorch_003´ ElementUnitSequence 100015
+	position 0, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_blowtorch_on_003´ (delay 0)
+´show_blowtorch_004´ ElementUnitSequence 100016
+	DISABLED
+	position -100, 300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/005 (-51.9558, 67.0643, 21)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/005 (-51.9558, 67.0643, 21)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_blowtorch_on_004´ (delay 0)
+´randomize_blowtorch´ ElementRandom 100017
+	EXECUTE ON STARTUP
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´show_blowtorch_001´ (delay 0) DISABLED
+		´show_blowtorch_002´ (delay 0) DISABLED
+		´show_blowtorch_003´ (delay 0)
+		´show_blowtorch_004´ (delay 0) DISABLED
+´toggle_blowtorch_on_001´ ElementToggle 100018
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_blowtorch_001´ DISABLED
+´toggle_blowtorch_on_002´ ElementToggle 100019
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_blowtorch_002´ DISABLED
+´toggle_blowtorch_on_003´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_blowtorch_003´ DISABLED
+		2 ´link_show_WP_interact(helper)003´ DISABLED
+´toggle_blowtorch_on_004´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_blowtorch_004´ DISABLED
+´hide_blowtorches´ ElementUnitSequence 100022
+	EXECUTE ON STARTUP
+	position 100, 200, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/003 (-42.7366, 22.4295, 136)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/004 (52.0442, 67.0643, 136)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/005 (-51.9558, 67.0643, 21)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+			notify_unit_sequence hide
+			time 0
+´enable_blowtorch_001´ ElementUnitSequence 100023
+	DISABLED
+	TRIGGER TIMES 1
+	position 200, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/004 (52.0442, 67.0643, 136)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_blowtorch_002´ ElementUnitSequence 100024
+	DISABLED
+	TRIGGER TIMES 1
+	position 100, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/003 (-42.7366, 22.4295, 136)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_blowtorch_003´ ElementUnitSequence 100025
+	DISABLED
+	TRIGGER TIMES 1
+	position 0, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+			notify_unit_sequence set_full_circle_interaction
+			time 0
+	on_executed
+		´point_debug_004´ (delay 0)
+´enable_blowtorch_004´ ElementUnitSequence 100026
+	DISABLED
+	TRIGGER TIMES 1
+	position -100, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/005 (-51.9558, 67.0643, 21)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_blowtorch_input´ ElementInstanceInput 100029
+	event enable_blowtorch
+	on_executed
+		´enable_blowtorch_001´ (delay 0) DISABLED
+		´enable_blowtorch_002´ (delay 0) DISABLED
+		´enable_blowtorch_003´ (delay 0) DISABLED
+		´enable_blowtorch_004´ (delay 0) DISABLED
+		´point_debug_001´ (delay 0)
+		´enable_area´ (delay 0)
+´blowtorch_collected_output´ ElementInstanceOutput 100007
+	event blowtorch_collected
+´load´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/003 (-42.7366, 22.4295, 136)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/004 (52.0442, 67.0643, 136)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/pd2_dlc_berry/pickups/bry_pku_blowtorch/bry_pku_blowtorch/005 (-51.9558, 67.0643, 21)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (-17, 57, 78)
+	on_executed
+		´blowtorch_collected_output´ (delay 0)
+		´disable´ (delay 0)
+		´remove_WP_interact´ (delay 0)
+´WP_interact´ ElementWaypoint 100028
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -59, 56, 95
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_show_WP_interact(helper)003´ MissionScriptElement 100030
+	DISABLED
+	on_executed
+		´point_debug_003´ (delay 0)
+		´enable_blowtorch_003´ (delay 0) DISABLED
+		´WP_interact´ (delay 0)
+´link_if_blowtorch_not_found_yet´ MissionScriptElement 100031
+	on_executed
+		´link_show_WP_interact(helper)003´ (delay 0) DISABLED
+		´point_debug_002´ (delay 0)
+´disable´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_if_blowtorch_not_found_yet´
+		2 ´WP_interact´
+´remove_WP_interact´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´WP_interact´
+´point_debug_001´ ElementDebug 100034
+	as_subtitle false
+	debug_string from instance: enable_blowtorch_input
+	show_instigator false
+´point_debug_002´ ElementDebug 100035
+	as_subtitle false
+	debug_string from instance: link_if_blowtorch_not_found_yet
+	show_instigator false
+´point_debug_003´ ElementDebug 100036
+	as_subtitle false
+	debug_string from instance: link_show_WP_interact(helper)003
+	show_instigator false
+´input_activate_wp´ ElementInstanceInput 100037
+	event activate_wp
+	on_executed
+		´link_if_blowtorch_not_found_yet´ (delay 0)
+´area_player_close_to_tool´ ElementAreaTrigger 100038
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 215
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 175, 50
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´WP_interact´ (delay 0)
+´enable_area´ ElementToggle 100039
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_tool´ DISABLED
+´area_player_close_to_tool_default_interaction´ ElementAreaTrigger 100040
+	TRIGGER TIMES 1
+	amount 1
+	depth 215
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 175, 100
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_blowtorch_003´ (delay 0) DISABLED
+´point_debug_004´ ElementDebug 100002
+	as_subtitle false
+	debug_string yessss
+	show_instigator false

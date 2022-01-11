@@ -1,0 +1,438 @@
+´camera_guard´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_security_1/ene_security_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 449, -269, 0
+	rotation 0, 0, 0.649448, -0.760406
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´SO_idle´ (delay 0)
+´dead´ ElementEnemyDummyTrigger 100031
+	event death
+	position 300, -250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)
+		´disable_sound_buzz´ (delay 0)
+		´output_guard_disturbed´ (delay 0)
+´kill_cameras´ MissionScriptElement 100032
+	TRIGGER TIMES 1
+	on_executed
+		´output_disable_cameras´ (delay 0)
+´output_disable_cameras´ ElementInstanceOutput 100033
+	event disable_cameras
+´setup_show´ MissionScriptElement 100034
+	on_executed
+		´show_me´ (delay 0)
+		´enabler´ (delay 0)
+		´camera_guard´ (delay 0)
+		´hider001´ (delay 0)
+´show_me´ ElementUnitSequence 100036
+	position 200, 100, 0
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (531, -249, 73)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+			notify_unit_sequence activate_door
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+			notify_unit_sequence state_door_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (531, -249, 73)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (526, -180, 74)
+			notify_unit_sequence show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (526, -180, 74)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (531, -249, 73)
+			notify_unit_sequence state_vis_show
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_sign_rooms/tag_prop_sign_rooms/001 (300, -25, 150)
+			notify_unit_sequence sign_security
+			time 0
+´add_obstacle´ ElementNavObstacle 100038
+	operation add
+	position 200, 300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (86, -100, 0)
+´done_opened´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence door_opened
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+		3
+			guis_id 3
+			sequence done_opened
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+	on_executed
+		´remove_obstacle´ (delay 0)
+		´remove_SO_crouch´ (delay 0)
+´remove_obstacle´ ElementNavObstacle 100040
+	operation remove
+	position 200, -250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (86, -100, 0)
+´setup_hide´ MissionScriptElement 100041
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´hide´ (delay 0)
+		´add_obstacle´ (delay 0)
+		´hider´ (delay 0)
+´hide´ ElementUnitSequence 100042
+	position 300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_c/001 (195, -52, 0)
+			notify_unit_sequence state_door_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (531, -249, 73)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (526, -180, 74)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/001 (531, -249, 73)
+			notify_unit_sequence state_vis_hidden
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_security/stn_interactable_computer_security/001 (587, -248, 73)
+			notify_unit_sequence state_interact_disable
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_sign_rooms/tag_prop_sign_rooms/001 (300, -25, 150)
+			notify_unit_sequence hide_all
+			time 0
+´input_show_camera_room´ ElementInstanceInput 100043
+	event show_camera_room
+	on_executed
+		´setup_show´ (delay 0)
+´SO_crouch´ ElementSpecialObjective 100044
+	SO_access 24
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose crouch
+	position 173, -300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 400 -50 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+´alert´ ElementEnemyDummyTrigger 100045
+	event alerted
+	position 300, -175, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´SO_crouch´ (delay 2)
+		´output_guard_disturbed´ (delay 0)
+´remove_SO_crouch´ ElementOperator 100046
+	operation remove
+	elements
+		1 ´SO_crouch´
+´hider´ ElementDisableUnit 100050
+	position 100, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/bnk_prop_lobby_plant_dracaenafragrans/bnk_prop_lobby_plant_dracaenafragrans_c/001 (543, -371, 139)
+		2 units/world/props/office/coathanger/coathanger/001 (34, -389, 0)
+		3 units/payday2/props/com_prop_jewelry_signs/com_prop_jewelry_calendar/001 (275, -50, 175)
+		4 units/world/props/office/computer/computer_02/001 (559, -223, 0)
+		5 units/world/props/office/computer/computer_02/003 (379, -86, 0)
+		6 units/world/props/office/computer/computer_case/003 (351, -86, 0)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (500, -58, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/002 (500, -83, 0)
+		9 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/005 (500, -38, 0)
+		10 units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (86, -100, 0)
+		11 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x1x3m/002 (150, -450, 0)
+		12 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (217, -38, 0)
+		13 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/002 (227.168, -60.8386, 0)
+		14 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/003 (425, -75, 0)
+		15 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/004 (425, -100, 0)
+		16 units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (526, -180, 74)
+		17 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four_wall/001 (600, -251, 42)
+		18 units/payday2/props/gen_prop_security_servers/gen_prop_security_server_hightech/003 (518, -84, 0)
+		19 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/001 (512, -251, 150)
+		20 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/002 (235, -222, 250)
+		21 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_1m_b_black/002 (499, -300.001, 325)
+		22 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_1m_b_black/003 (49, -450, 325)
+		23 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_2m_b_black/002 (99, -300, 325)
+		24 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_2m_b_black/003 (299, -300, 325)
+		25 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_corner_black/001 (49, -350, 325)
+		26 units/payday2/props/off_prop_officehigh_chair/off_prop_officehigh_chair_standard/001 (503.991, -282.364, 0)
+		27 units/world/props/box/prop_filebox_01/001 (25, -251, 199.445)
+		28 units/world/props/office/roof_lamp/roof_lamp/001 (235, -222, 375)
+		29 units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_security/stn_interactable_computer_security/001 (587, -248, 73)
+		30 units/world/props/gym/stn_prop_locker/stn_prop_locker/001 (8, -306, 0)
+		31 units/payday2/props/stn_prop_office_chair_visitor/stn_prop_office_chair_visitor/001 (252, -373, 0)
+		32 units/payday2/props/stn_prop_office_deskset_straight_a/stn_prop_office_deskset_straight_a/001 (511, -163, 0)
+		33 units/payday2/props/stn_prop_office_filecabinet_b_02/stn_prop_office_filecabinet_b_02/001 (532, -338, 0)
+		34 units/payday2/props/stn_prop_office_filecabinet_b_02/stn_prop_office_filecabinet_b_02/002 (532, -378, 0)
+		35 units/world/props/gym/stn_prop_socketwire/stn_prop_socket_wire/001 (269, -50, 8.4043)
+		36 units/world/props/bank/paintings/suburbia_painting_21/001 (125, -429, 200)
+		37 units/pd2_dlc_tag/architecture/tag_main_mesh/tag_int_room_inst_06_security/tag_room_inst_06_001 (0, -25, 0)
+		38 units/world/props/trashcan/trash_dustbin_01/001 (579, -140, 0)
+		39 units/pd2_dlc2/csgo_models/props_vents/vent_large_grill001/001 (445, -190, 375)
+		40 units/pd2_dlc_tag/architecture/tag_int/tag_int_windows_doors/tag_int_door_frame_01/001 (205, -28, 0)
+´enabler´ ElementEnableUnit 100051
+	position 100, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/props/bnk_prop_lobby_plant_dracaenafragrans/bnk_prop_lobby_plant_dracaenafragrans_c/001 (543, -371, 139)
+		2 units/world/props/office/coathanger/coathanger/001 (34, -389, 0)
+		3 units/payday2/props/com_prop_jewelry_signs/com_prop_jewelry_calendar/001 (275, -50, 175)
+		4 units/world/props/office/computer/computer_02/001 (559, -223, 0)
+		5 units/world/props/office/computer/computer_02/003 (379, -86, 0)
+		6 units/world/props/office/computer/computer_case/003 (351, -86, 0)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (500, -58, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/002 (500, -83, 0)
+		9 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/005 (500, -38, 0)
+		10 units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (86, -100, 0)
+		11 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x1x3m/002 (150, -450, 0)
+		12 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (217, -38, 0)
+		13 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/002 (227.168, -60.8386, 0)
+		14 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/003 (425, -75, 0)
+		15 units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/004 (425, -100, 0)
+		16 units/payday2/equipment/gen_interactable_pickup_harddrive/gen_interactable_pickup_harddrive/001 (526, -180, 74)
+		17 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four_wall/001 (600, -251, 42)
+		18 units/payday2/props/gen_prop_security_servers/gen_prop_security_server_hightech/003 (518, -84, 0)
+		19 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/001 (512, -251, 150)
+		20 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/002 (235, -222, 250)
+		21 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_1m_b_black/002 (499, -300.001, 325)
+		22 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_1m_b_black/003 (49, -450, 325)
+		23 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_2m_b_black/002 (99, -300, 325)
+		24 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_2m_b_black/003 (299, -300, 325)
+		25 units/payday2/props/off_prop_ceiling/off_prop_ceiling_pipe_1_corner_black/001 (49, -350, 325)
+		26 units/payday2/props/off_prop_officehigh_chair/off_prop_officehigh_chair_standard/001 (503.991, -282.364, 0)
+		27 units/world/props/box/prop_filebox_01/001 (25, -251, 199.445)
+		28 units/world/props/office/roof_lamp/roof_lamp/001 (235, -222, 375)
+		29 units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_security/stn_interactable_computer_security/001 (587, -248, 73)
+		30 units/world/props/gym/stn_prop_locker/stn_prop_locker/001 (8, -306, 0)
+		31 units/payday2/props/stn_prop_office_chair_visitor/stn_prop_office_chair_visitor/001 (252, -373, 0)
+		32 units/payday2/props/stn_prop_office_deskset_straight_a/stn_prop_office_deskset_straight_a/001 (511, -163, 0)
+		33 units/payday2/props/stn_prop_office_filecabinet_b_02/stn_prop_office_filecabinet_b_02/001 (532, -338, 0)
+		34 units/payday2/props/stn_prop_office_filecabinet_b_02/stn_prop_office_filecabinet_b_02/002 (532, -378, 0)
+		35 units/world/props/gym/stn_prop_socketwire/stn_prop_socket_wire/001 (269, -50, 8.4043)
+		36 units/world/props/bank/paintings/suburbia_painting_21/001 (125, -429, 200)
+		37 units/pd2_dlc_tag/architecture/tag_main_mesh/tag_int_room_inst_06_security/tag_room_inst_06_001 (0, -25, 0)
+		38 units/world/props/trashcan/trash_dustbin_01/001 (579, -140, 0)
+		39 units/pd2_dlc2/csgo_models/props_vents/vent_large_grill001/001 (445, -190, 375)
+		40 units/pd2_dlc_tag/architecture/tag_int/tag_int_windows_doors/tag_int_door_frame_01/001 (205, -28, 0)
+´panic´ ElementEnemyDummyTrigger 100026
+	event panic
+	position 350, -250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)
+		´output_guard_disturbed´ (delay 0)
+´tied´ ElementEnemyDummyTrigger 100027
+	event tied
+	position 400, -250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´camera_guard´
+	on_executed
+		´kill_cameras´ (delay 0)
+		´output_guard_disturbed´ (delay 0)
+´hider001´ ElementDisableUnit 100019
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_spawn_player_001´ ElementPlayerSpawner 100023
+	position 700, 300, 0
+	rotation 0, 0, 0.92388, 0.382683
+	state standard
+´test(disabled_by_default)´ MissionScriptElement 100035
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´func_whisper_state_001´ (delay 0)
+		´input_show_camera_room´ (delay 3)
+´SO_idle´ ElementSpecialObjective 100070
+	SO_access 24
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 449, -269, 0
+	rotation 0, 0, 0.649448, -0.760406
+	scan false
+	search_distance 0
+	search_position 449,888 -217,157 0,935135
+	so_action e_so_ntl_idle_stand
+	trigger_on none
+	use_instigator true
+	followup_elements
+´func_whisper_state_001´ ElementWhisperState 100071
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	state true
+´point_play_sound_001´ ElementPlaySound 100072
+	append_prefix false
+	interrupt true
+	position 500, -200, 150
+	rotation 0, 0, 0.649448, -0.760406
+	sound_event dsp_radio_buzz
+	use_instigator false
+	elements
+		1 ´camera_guard´
+´chance_buzz´ ElementLogicChance 100073
+	chance 40
+	position 500, -100, 150
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´area_player_entered_security_room´ ElementAreaTrigger 100074
+	TRIGGER TIMES 1
+	amount 1
+	depth 200
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 125, -100, 150
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 100
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´chance_buzz´ (delay 0)
+´disable_sound_buzz´ ElementToggle 100075
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_play_sound_001´
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence animate
+			notify_unit_id units/world/props/office/roof_lamp/roof_lamp/001 (235, -222, 375)
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100003
+	position 200, -200, 225
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/002 (235, -222, 250)
+´output_guard_disturbed´ ElementInstanceOutput 100004
+	event guard_disturbed

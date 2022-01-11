@@ -1,0 +1,120 @@
+´enable_interaction´ ElementInstanceInput 100005
+	event enable_interaction
+	on_executed
+		´enable_interaction_2´ (delay 0)
+´interacted´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/dev_tools/invisible_interaction_forensic/invisible_interaction_forensic/001 (50, 0, 50)
+	on_executed
+		´setup_analyze´ (delay 0)
+´setup_analyze´ ElementUnitSequence 100008
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_device_start
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_interact_disable
+			time 0
+´timer_done´ ElementUnitSequenceTrigger 100011
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+	on_executed
+		´analyzed_evidence´ (delay 0)
+´analyzed_evidence´ ElementInstanceOutput 100012
+	event analyzed_evidence
+´reset_enable_int_and_show_image´ ElementUnitSequence 100013
+	position -100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_forensic/invisible_interaction_forensic/001 (50, 0, 50)
+			notify_unit_sequence interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_device_reset
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_forensics_no_match
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_interact_disable
+			time 0
+´no_match´ ElementInstanceInput 100015
+	event no_match
+	on_executed
+		´reset_enable_int_and_show_image´ (delay 0)
+		´no_match_found´ (delay 0)
+´found_match´ ElementInstanceInput 100006
+	event found_match
+	on_executed
+		´show_match´ (delay 0)
+		´match_found´ (delay 0)
+´show_match´ ElementUnitSequence 100016
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_forensics_match
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_old_hoxton/equipment/stn_interactable_computer_forensics/stn_interactable_computer_forensics/001 (14, -99, 1)
+			notify_unit_sequence state_interact_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_forensic/invisible_interaction_forensic/001 (50, 0, 50)
+			notify_unit_sequence interaction_disable
+			time 0
+´enable_interaction_2´ ElementUnitSequence 100010
+	position 100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/invisible_interaction_forensic/invisible_interaction_forensic/001 (50, 0, 50)
+			notify_unit_sequence interaction_enable
+			time 0
+´no_match_found´ ElementPlaySound 100002
+	append_prefix false
+	position 31, -96, 50
+	rotation 0, 0, 0, -1
+	sound_event Play_sys_hb2_10
+	use_instigator false
+´match_found´ ElementPlaySound 100009
+	append_prefix false
+	position 31, -96, 50
+	rotation 0, 0, 0, -1
+	sound_event Play_sys_hb2_11
+	use_instigator false

@@ -1,0 +1,566 @@
+´delay´ MissionScriptElement 100002
+	on_executed
+		´radnomize_screen´ (delay 0)
+		´toggle_on´ (delay 0) DISABLED
+´disable_interaction´ ElementUnitSequence 100003
+	position 400, 550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´radnomize_screen´ ElementRandom 100004
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´screen001´ (delay 0)
+		´screen002´ (delay 0)
+		´screen003´ (delay 0)
+		´screen004´ (delay 0)
+´screen001´ ElementUnitSequence 100006
+	position 300, 350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´screen002´ ElementUnitSequence 100007
+	position 300, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´screen003´ ElementUnitSequence 100008
+	position 300, 550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´screen004´ ElementUnitSequence 100005
+	position 300, 650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´on_interact_trigger´ ElementUnitSequenceTrigger 100009
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+	on_executed
+		´toggle_interupt_on´ (delay 5)
+		´hacking_started´ (delay 0)
+		´defend_wp´ (delay 0)
+		´remove_fix_wp´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´start_timer´ (delay 0)
+		´resume_timer´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100010
+	position 0, 350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence set_hack_time_state_4
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´enable_interaction_input´ ElementInstanceInput 100011
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´interract_wp´ (delay 0)
+´disable_interaction_input´ ElementInstanceInput 100012
+	event disable_interaction
+	on_executed
+		´disable_interaction_2´ (delay 0)
+´disable_interaction_final_input´ ElementInstanceInput 100013
+	event disable_interaction_final
+	on_executed
+		´toggle_off´ (delay 0)
+		´disable_interaction_2´ (delay 0)
+´toggle_off´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´on_interact_trigger´
+		2 ´enable_interaction´
+´hacking_started´ ElementInstanceOutput 100015
+	event hacking_started
+	on_executed
+		´remove_interact_wp´ (delay 0)
+´disable_interaction_2´ ElementUnitSequence 100016
+	position 100, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´interupt_action_none´ ElementSpecialObjective 100017
+	DISABLED
+	SO_access 65012728
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -36, 100, 2.5
+	rotation 0, 0, 1, -0
+	scan true
+	search_distance 1500
+	search_position 0 100 2,5
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´interupt_action´ DISABLED
+´toggle_interupt_on´ ElementToggle 100018
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interupt_action_none´ DISABLED
+		2 ´interupt_action´ DISABLED
+		3 ´enable_hacking´ DISABLED
+	on_executed
+		´interupt_action_none´ (delay 1) DISABLED
+		´off´ (delay 0)
+´on_interupt´ ElementSpecialObjectiveTrigger 100019
+	event complete
+	position -100, 350, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interupt_action´ DISABLED
+	on_executed
+		´jammed´ (delay 0)
+´jammed´ ElementUnitSequence 100020
+	position -100, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´toggle_interupt_off´ (delay 0)
+		´fix_wp´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+		´hacking_jammed´ (delay 0)
+		´pause_timer´ (delay 0)
+´on_resume´ ElementUnitSequenceTrigger 100021
+	DISABLED
+	sequence_list
+		2
+			guis_id 2
+			sequence state_device_resumed
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+	on_executed
+		´toggle_interupt_on´ (delay 3)
+		´defend_wp´ (delay 0)
+		´remove_fix_wp´ (delay 0)
+´toggle_interupt_off´ ElementToggle 100022
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interupt_action_none´ DISABLED
+		2 ´interupt_action´ DISABLED
+		3 ´enable_hacking´ DISABLED
+	on_executed
+		´on´ (delay 0)
+		´remove_interrupt_SO´ (delay 0)
+´on_complete´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+	on_executed
+		´hacking_complete´ (delay 0)
+´hacking_complete´ ElementInstanceOutput 100024
+	event hacking_complete
+	on_executed
+		´toggle_all_interaction_off´ (delay 0.5)
+		´remove_defend_wp´ (delay 0)
+		´remove_interrupt_SO´ (delay 0)
+´interupt_action´ ElementSpecialObjective 100031
+	DISABLED
+	SO_access 65012728
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -36, 100, 102.5
+	rotation 0, 0, 1, -0
+	scan true
+	search_distance 0
+	search_position 0 100 2,5
+	so_action e_so_interact_mid
+	trigger_on none
+	use_instigator true
+	followup_elements
+´jam_hacking_input´ ElementInstanceInput 100032
+	event jam_hacking
+	on_executed
+		´kill_power´ (delay 0) DISABLED
+		´kill_power_interupt´ (delay 0) DISABLED
+		´kill_power_before_hack´ (delay 0)
+´unjam_hacking_input´ ElementInstanceInput 100033
+	event unjam_hacking
+	on_executed
+		´restore_power_resume´ (delay 0)
+´kill_power´ MissionScriptElement 100034
+	DISABLED
+	on_executed
+		´kill_power_interupt´ (delay 0) DISABLED
+		´toggle_interupt_off´ (delay 0)
+´restore_power´ MissionScriptElement 100035
+	DISABLED
+	on_executed
+		´restore_power_resume´ (delay 0)
+		´resume_hacking´ (delay 0) DISABLED
+´resume´ ElementUnitSequence 100036
+	position -100, 750, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´toggle_interupt_on´ (delay 0)
+		´hacking_resumed´ (delay 0)
+´kill_power_interupt´ ElementUnitSequence 100037
+	DISABLED
+	position -400, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence power_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´remove_defend_wp001´ (delay 0)
+´restore_power_resume´ ElementUnitSequence 100038
+	position -500, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence power_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´show_defend_wp´ (delay 0) DISABLED
+´enable_hacking´ ElementUnitSequence 100039
+	DISABLED
+	position -700, 550, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´toggle_all_interaction_off´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_hacking´ DISABLED
+		2 ´resume_hacking´ DISABLED
+		3 ´interupt_action_none´ DISABLED
+		4 ´interupt_action´ DISABLED
+		5 ´enable_interaction´
+		6 ´disable_interaction_2´
+		7 ´screen001´
+		8 ´screen002´
+		9 ´screen003´
+		10 ´screen004´
+		11 ´jammed´
+		12 ´resume´
+		13 ´toggle_interupt_off´
+		14 ´toggle_interupt_on´
+		15 ´on_interupt´
+		16 ´restore_power_resume´
+		17 ´kill_power_interupt´ DISABLED
+		18 ´kill_power´ DISABLED
+		19 ´restore_power´ DISABLED
+		20 ´logic_toggle_001´
+		21 ´logic_toggle_003´
+		22 ´logic_toggle_002´
+		23 ´kill_power_before_hack´
+		24 ´remove_defend_wp001´
+		25 ´trigger_special_objective_001´
+	on_executed
+		´disable_interaction´ (delay 0)
+´resume_hacking´ ElementUnitSequence 100041
+	DISABLED
+	position -500, 650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´on´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´resume_hacking´ DISABLED
+´off´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´resume_hacking´ DISABLED
+´defend_wp´ ElementWaypoint 100025
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position -36, 32, 117.967
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fix_wp´ ElementWaypoint 100026
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position -36, 32, 117.967
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_wp´ ElementOperator 100027
+	operation remove
+	elements
+		1 ´defend_wp´
+´remove_fix_wp´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´fix_wp´
+´power_on´ ElementInstanceInput 100001
+	event power_on
+	on_executed
+		´delay´ (delay 0)
+´startup´ MissionScriptElement 100029
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_interaction´ (delay 1)
+´toggle_on´ ElementToggle 100030
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction´
+´remove_defend_wp001´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´defend_wp´
+´logic_toggle_001´ ElementToggle 100045
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´restore_power´ DISABLED
+		2 ´kill_power´ DISABLED
+		3 ´kill_power_interupt´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´kill_power_before_hack´ ElementUnitSequence 100046
+	position -400, 650, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/equipment/des_interactable_office_desk_communication/des_interactable_office_desk_communication_c/001 (75, 50, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´logic_toggle_002´ ElementToggle 100047
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´kill_power_before_hack´
+´logic_toggle_003´ ElementToggle 100048
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_hacking´ DISABLED
+		2 ´show_defend_wp´ DISABLED
+´hacking_jammed´ ElementInstanceOutput 100049
+	event hacking_jammed
+´hacking_resumed´ ElementInstanceOutput 100050
+	event hacking_resumed
+´interract_wp´ ElementWaypoint 100051
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -36, 32, 117.967
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_interact_wp´ ElementOperator 100052
+	operation remove
+	elements
+		1 ´interract_wp´
+´remove_interrupt_SO´ ElementOperator 100053
+	operation remove
+	elements
+		1 ´interupt_action_none´ DISABLED
+		2 ´interupt_action´ DISABLED
+´point_debug_001´ ElementDebug 100054
+	as_subtitle false
+	debug_string fail interrupt computer
+	show_instigator false
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100055
+	event fail
+	position -150, 125, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interupt_action_none´ DISABLED
+		2 ´interupt_action´ DISABLED
+	on_executed
+		´point_debug_001´ (delay 0)
+		´toggle_interupt_on´ (delay 5)
+´point_spawn_player_001´ ElementPlayerSpawner 100056
+	DISABLED
+	EXECUTE ON STARTUP
+	position 175, 100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	on_executed
+		´ai_spawn_enemy_001´ (delay 3)
+		´ai_spawn_enemy_002´ (delay 3)
+		´ai_spawn_enemy_003´ (delay 3)
+		´enable_interaction_input´ (delay 1)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100057
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100058
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100059
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´hack_timer´ ElementTimer 100060
+	timer 30
+´start_timer´ ElementTimerOperator 100061
+	TRIGGER TIMES 1
+	operation start
+	position -800, 300, 0
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´hack_timer´
+´pause_timer´ ElementTimerOperator 100062
+	operation pause
+	position -1000, 300, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´hack_timer´
+´resume_timer´ ElementTimerOperator 100063
+	operation start
+	position -900, 400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´hack_timer´
+´5_sec_to_done´ ElementTimerTrigger 100064
+	position -900, 500, 0
+	rotation 0, 0, 0, -1
+	time 5
+	elements
+		1 ´hack_timer´
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´show_defend_wp´ MissionScriptElement 100065
+	DISABLED
+	on_executed
+		´defend_wp´ (delay 0)
+´logic_operator_001´ ElementOperator 100066
+	operation remove
+	elements
+		1 ´interupt_action_none´ DISABLED
+		2 ´interupt_action´ DISABLED
+´logic_toggle_004´ ElementToggle 100067
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´jammed´
+	on_executed
+		´logic_operator_001´ (delay 0)

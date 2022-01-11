@@ -1,0 +1,385 @@
+´setup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´setup_units´ (delay 0)
+´setup_units´ ElementUnitSequence 100004
+	position 400, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -100, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_gate_thermal/red_prop_gate_thermal/001 (0, 0, 0)
+			notify_unit_sequence close_door
+			time 0
+	on_executed
+		´add_door_blocker´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100008
+	operation add
+	position 400, -400, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, 0, 0)
+´gates_opened´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_red/props/red_prop_gate_thermal/red_prop_gate_thermal/001 (0, 0, 0)
+	on_executed
+		´remove_door_blockers´ (delay 0)
+		´output_gates_opened´ (delay 0)
+		´disable_bag_blocker´ (delay 0)
+´remove_door_blockers´ ElementNavObstacle 100010
+	operation remove
+	position 100, -500, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, 0, 0)
+´drill_done´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+	on_executed
+		´remove_WP_drill´ (delay 0)
+		´output_drill_done´ (delay 0)
+		´hide_drill´ (delay 0)
+´remove_WP_drill´ ElementOperator 100012
+	operation remove
+	elements
+		1 ´WP_drill´
+´WP_drill´ ElementWaypoint 100014
+	icon pd2_drill
+	only_in_civilian false
+	position 33, -100, 136
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_marker´ ElementInstanceInput 100015
+	event show_marker
+	on_executed
+		´show_marker´ (delay 0)
+´show_marker´ MissionScriptElement 100016
+	on_executed
+		´WP_drill´ (delay 0)
+		´seq_show_marker´ (delay 0)
+		´enable_area_drill´ (delay 0)
+´seq_show_marker´ ElementUnitSequence 100017
+	position -600, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -100, 0)
+			notify_unit_sequence show
+			time 0
+´drill_placed´ ElementUnitSequenceTrigger 100018
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+	on_executed
+		´output_drill_placed´ (delay 0)
+		´teammate_comment_drill_running´ (delay 0)
+		´start_timer´ (delay 0)
+´output_drill_placed´ ElementInstanceOutput 100020
+	event drill_placed
+´output_gates_opened´ ElementInstanceOutput 100021
+	event gates_opened
+	on_executed
+		´sound_gates_opening´ (delay 0)
+´output_drill_done´ ElementInstanceOutput 100022
+	event drill_done
+´area_drill´ ElementAreaTrigger 100000
+	DISABLED
+	BASE DELAY 0,5
+	TRIGGER TIMES 1
+	amount 1
+	depth 309
+	height 300
+	instigator loot
+	interval 0.1
+	position -4, -90, 0
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 210
+	rules_element_ids
+		1 ´thermal_only´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´hide_marker´ (delay 0)
+		´sound_bag´ (delay 0)
+		´remove_bag´ (delay 0)
+		´activate_drill´ (delay 0)
+´enable_area_drill´ ElementToggle 100001
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_drill´ DISABLED
+´thermal_only´ ElementInstigatorRule 100023
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 lance_bag
+´hide_marker´ MissionScriptElement 100024
+	on_executed
+		´seq_hide_marker´ (delay 0)
+´seq_hide_marker´ ElementUnitSequence 100025
+	position -500, -300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_2x3/gen_prop_square_drop_marker_2x3/001 (0, -100, 0)
+			notify_unit_sequence hide
+			time 0
+´sound_bag´ ElementPlaySound 100026
+	append_prefix false
+	position -4, -90, 50
+	rotation 0, 0, -0.707107, -0.707107
+	sound_event bag_medium_drop
+	use_instigator false
+´sound_gates_opening´ ElementPlaySound 100027
+	append_prefix false
+	position -4, -90, 150
+	rotation 0, 0, -0.707107, -0.707107
+	sound_event security_door_close
+	use_instigator false
+´open_gates´ ElementUnitSequence 100029
+	position 0, -400, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_red/props/red_prop_gate_thermal/red_prop_gate_thermal/001 (0, 0, 0)
+			notify_unit_sequence open_door
+			time 0
+´teammate_comment_drill_running´ ElementTeammateComment 100030
+	close_to_element true
+	comment g21
+	position -4, -90, 100
+	radius 0
+	rotation 0, 0, -0.707107, -0.707107
+	use_instigator false
+´hide_gate´ ElementDisableUnit 100032
+	position 400, -500, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_red/props/red_prop_gate_thermal/red_prop_gate_thermal/001 (0, 0, 0)
+´input_hide_gate´ ElementInstanceInput 100034
+	event hide_gate
+	on_executed
+		´hide_gate´ (delay 0)
+´remove_bag´ ElementCarry 100035
+	operation remove
+	type_filter lance_bag
+´hide_drill´ ElementUnitSequence 100036
+	position -100, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+			notify_unit_sequence state_hide
+			time 0
+´activate_drill´ ElementUnitSequence 100039
+	position -100, -100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+			notify_unit_sequence activate
+			time 0
+´input_open_gates´ ElementInstanceInput 100037
+	event open_gates
+	on_executed
+		´open_gates´ (delay 0)
+´output_drill_jammed´ ElementInstanceOutput 100028
+	event drill_jammed
+´drill_jammed´ ElementUnitSequenceTrigger 100038
+	sequence_list
+		1
+			guis_id 1
+			sequence jammed_trigger
+			notify_unit_id units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large/001 (1, -4, 64)
+	on_executed
+		´output_drill_jammed´ (delay 0)
+		´timer_pause´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100042
+	position -50, -675, 0.0039978
+	rotation 0, 0, 0, -1
+	state standard
+´disable_bag_blocker´ ElementDisableUnit 100043
+	position 100, -600, 100
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/001 (200, 0, 0.00400394)
+´point_loot_bag_001´ ElementLootBag 100044
+	carry_id lance_bag
+	from_respawn false
+	position 0, -600, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´setup_units´ (delay 0)
+		´WP_drill´ (delay 0)
+		´show_marker´ (delay 0)
+´test´ MissionScriptElement 100045
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´point_loot_bag_001´ (delay 1)
+´timer_drill´ ElementTimer 100002
+	timer 360
+´start_timer´ ElementTimerOperator 100019
+	operation start
+	position 300, 0, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_drill´
+´timer_pause´ ElementTimerOperator 100031
+	operation pause
+	position 400, -100, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_drill´
+´timer_halfway´ ElementTimerTrigger 100040
+	DISABLED
+	position 500, 100, 100
+	rotation 0, 0, 0, -1
+	time 180
+	elements
+		1 ´timer_drill´
+	on_executed
+		´teammate_comment_drill_halfway´ (delay 0)
+		´point_debug_001´ (delay 0)
+´teammate_comment_drill_halfway´ ElementTeammateComment 100041
+	close_to_element true
+	comment t02x_sin
+	position 0, -100, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´timer_120s´ ElementTimerTrigger 100046
+	DISABLED
+	position 500, 0, 100
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´timer_drill´
+	on_executed
+		´teammate_comment_drill_2min´ (delay 0)
+		´point_debug_001´ (delay 0)
+´teammate_comment_drill_2min´ ElementTeammateComment 100047
+	close_to_element true
+	comment g65
+	position 0, -100, 225
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_drill_1min´ ElementTeammateComment 100048
+	close_to_element true
+	comment g63
+	position 0, -100, 250
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´timer_60s´ ElementTimerTrigger 100049
+	DISABLED
+	position 500, -100, 100
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´timer_drill´
+	on_executed
+		´teammate_comment_drill_1min´ (delay 0)
+		´point_debug_001´ (delay 0)
+´teammate_comment_drill_30s´ ElementTeammateComment 100050
+	close_to_element true
+	comment g62
+	position 0, -100, 275
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´timer_30s´ ElementTimerTrigger 100051
+	DISABLED
+	position 500, -200, 100
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´timer_drill´
+	on_executed
+		´teammate_comment_drill_30s´ (delay 0)
+		´point_debug_001´ (delay 0)
+´timer_10s´ ElementTimerTrigger 100052
+	DISABLED
+	position 600, -100, 100
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer_drill´
+	on_executed
+		´teammate_comment_drill_30s001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´teammate_comment_drill_30s001´ ElementTeammateComment 100053
+	close_to_element true
+	comment p17
+	position 0, -100, 300
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_debug_001´ ElementDebug 100054
+	as_subtitle false
+	debug_string team VO counter
+	show_instigator false
+´soundbank_robbers001´ ElementPlaySound 100055
+	append_prefix false
+	position 350, 50, 300
+	rotation 0, 0, 0, -1
+	sound_event f13r_sin
+	use_instigator false
+´soundbank_robbers002´ ElementPlaySound 100056
+	append_prefix false
+	position 450, 50, 300
+	rotation 0, 0, 0, -1
+	sound_event v53
+	use_instigator false

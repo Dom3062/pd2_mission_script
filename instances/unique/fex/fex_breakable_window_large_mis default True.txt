@@ -1,0 +1,218 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 1400, 425, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´input_´ ElementInstanceInput 100007
+	event none
+´output_´ ElementInstanceOutput 100008
+	event none
+´navlink_break_window_001´ ElementSpecialObjective 100010
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 12224
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -14, -175, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 19,9054 86,9657 0
+	so_action e_nl_jump_over_0_5m
+	trigger_on none
+	followup_elements
+´navlink_break_window_002´ ElementSpecialObjective 100011
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 12224
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 16, 175, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 19,1404 -96,9498 0
+	so_action e_nl_jump_over_0_5m
+	trigger_on none
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100012
+	event anim_act_04
+	position 600, -250, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´navlink_break_window_001´ DISABLED
+		2 ´navlink_break_window_002´ DISABLED
+	on_executed
+		´seq_break_window´ (delay 1)
+´seq_break_window´ ElementUnitSequence 100013
+	position 725, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_02/001 (0, 0, 170)
+			notify_unit_sequence break_window_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_02/001 (0, 0, 170)
+			notify_unit_sequence break_window_02
+			time 0
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´police_called´ ElementGlobalEventTrigger 100014
+	TRIGGER TIMES 1
+	global_event police_called
+	position 800, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´enable_navlinks´ (delay 0) DISABLED
+´enable_navlinks´ ElementToggle 100015
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´navlink_break_window_001´ DISABLED
+		2 ´navlink_break_window_002´ DISABLED
+	on_executed
+		´activate_navlinks´ (delay 0) DISABLED
+´activate_navlinks´ MissionScriptElement 100016
+	DISABLED
+	on_executed
+		´navlink_break_window_001´ (delay 0) DISABLED
+		´navlink_break_window_002´ (delay 0) DISABLED
+		´disable_activation´ (delay 0)
+´remove_navlink´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´navlink_break_window_002´ DISABLED
+		2 ´navlink_break_window_001´ DISABLED
+	on_executed
+		´disable_navlink_and_breaking_anim´ (delay 0)
+´disable_navlink_and_breaking_anim´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´navlink_break_window_001´ DISABLED
+		2 ´navlink_break_window_002´ DISABLED
+		3 ´trigger_special_objective_001´
+´func_nav_obstacle_001´ ElementNavObstacle 100020
+	operation add
+	position 600, -75, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100022
+	operation remove
+	position 825, -250, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	on_executed
+		´remove_navlink´ (delay 2)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100023
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_window_01
+			notify_unit_id units/pd2_dlc_fex/architecture/ext/fex_facade/fex_window_02/001 (0, 0, 170)
+	on_executed
+		´func_nav_obstacle_003´ (delay 0)
+´disable_activation´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´activate_navlinks´ DISABLED
+´remove_navlink001´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´navlink_break_window_002´ DISABLED
+		2 ´navlink_break_window_001´ DISABLED
+´disable_navlink001´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´navlink_break_window_001´ DISABLED
+		2 ´navlink_break_window_002´ DISABLED
+	on_executed
+		´remove_navlink001´ (delay 0)
+´func_nav_obstacle_003´ ElementNavObstacle 100026
+	operation remove
+	position 700, -450, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	on_executed
+		´disable_navlink001´ (delay 0)

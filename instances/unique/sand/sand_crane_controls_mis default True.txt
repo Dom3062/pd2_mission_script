@@ -1,0 +1,184 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/slaughterhouse_controlpanel/slaughterhouse_controlpanel/001 (0, 0, 0)
+			notify_unit_sequence interactive_off
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´output_triggered´ ElementInstanceOutput 100008
+	event controls_triggered
+´waypoint_crane_control´ ElementWaypoint 100010
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_interaction´ ElementInstanceInput 100011
+	event enable_interaction
+	on_executed
+		´toggle_on_trigger_area´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100012
+	position 800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/slaughterhouse_controlpanel/slaughterhouse_controlpanel/001 (0, 0, 0)
+			notify_unit_sequence interactive_on
+			time 0
+´trigger_interaction´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence trigger_used
+			notify_unit_id units/world/props/slaughterhouse_controlpanel/slaughterhouse_controlpanel/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/world/props/slaughterhouse_controlpanel/slaughterhouse_controlpanel/001 (0, 0, 0)
+	on_executed
+		´link_interaction_completed´ (delay 0)
+´input_show_wp´ ElementInstanceInput 100013
+	event show_waypoint
+	on_executed
+		´link_exe_wp´ (delay 0)
+´input_hide_wp´ ElementInstanceInput 100014
+	event hide_waypoint
+	on_executed
+		´link_hide_wp´ (delay 0)
+´link_exe_wp´ MissionScriptElement 100016
+	on_executed
+		´waypoint_crane_control´ (delay 0)
+		´seq_enable_interaction´ (delay 0)
+		´toggle_off_2´ (delay 0)
+´link_hide_wp´ MissionScriptElement 100017
+	on_executed
+		´toggle_OFF_WP´ (delay 0)
+´link_interaction_completed´ MissionScriptElement 100018
+	on_executed
+		´output_triggered´ (delay 0)
+		´link_hide_wp´ (delay 0)
+		´point_debug_001´ (delay 0) DISABLED
+		´counter_2´ (delay 0)
+´point_debug_001´ ElementDebug 100015
+	DISABLED
+	as_subtitle false
+	debug_string Crane control interaction completed
+	show_instigator false
+´op_remove_wp´ ElementOperator 100020
+	operation remove
+	elements
+		1 ´waypoint_crane_control´
+´toggle_OFF_WP´ ElementToggle 100004
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_show_wp´
+		2 ´link_exe_wp´
+		3 ´waypoint_crane_control´
+		4 ´trigger_global_loud´
+	on_executed
+		´op_remove_wp´ (delay 0)
+´trigger_area_activate´ ElementAreaTrigger 100019
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 0
+	radius 600
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_trigger_area´ (delay 0)
+´link_enable´ MissionScriptElement 100021
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´link_trigger_area´ MissionScriptElement 100022
+	on_executed
+		´link_enable´ (delay 0)
+		´toggle_off´ (delay 0)
+´toggle_off´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_enable_interaction´
+´toggle_on_trigger_area´ ElementToggle 100003
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_activate´ DISABLED
+´toggle_off_2´ ElementToggle 100024
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_activate´ DISABLED
+		2 ´link_enable´
+		3 ´link_trigger_area´
+		4 ´input_enable_interaction´
+		5 ´toggle_on_trigger_area´
+´teammate_comment_any_second´ ElementTeammateComment 100025
+	close_to_element true
+	comment g67
+	position -75, 0, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_here_it_comes´ ElementTeammateComment 100026
+	close_to_element true
+	comment v19
+	position 100, 0, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´counter_2´ ElementCounter 100027
+	counter_target 2
+	on_executed
+		´logic_random_001´ (delay 0)
+´trigger_global_loud´ ElementGlobalEventTrigger 100028
+	TRIGGER TIMES 1
+	global_event police_called
+	position 700, -225, 50
+	rotation 0, 0, 0, -1
+	on_executed
+		´counter_2´ (delay 0)
+´logic_random_001´ ElementRandom 100029
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´teammate_comment_any_second´ (delay 0)
+		´teammate_comment_here_it_comes´ (delay 0)
+		´link_blank´ (delay 0)
+´link_blank´ MissionScriptElement 100030

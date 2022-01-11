@@ -1,0 +1,121 @@
+´startup_bottle´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_at_start´ (delay 1)
+´input_activate_bottle´ ElementInstanceInput 100006
+	event activate_bottle
+	on_executed
+		´seq_activate_bottles´ (delay 0)
+´output_bottle_pickuped´ ElementInstanceOutput 100007
+	event bottle_pickuped
+´seq_activate_bottles´ ElementUnitSequence 100008
+	position -175, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100009
+	as_subtitle false
+	debug_string blue bottles activated
+	show_instigator false
+´trg_seq_bottle_pickuped´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+	on_executed
+		´point_debug_002´ (delay 0)
+		´disable_rest_of_bottles´ (delay 0)
+		´output_bottle_pickuped´ (delay 0)
+´disable_rest_of_bottles´ ElementUnitSequence 100011
+	position -225, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´point_debug_002´ ElementDebug 100012
+	as_subtitle false
+	debug_string blue bottle pickuped
+	show_instigator false
+´disable_at_start´ ElementUnitSequence 100013
+	position -100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´input_blue_bottle´ ElementInstanceInput 100014
+	event blue_bottle
+	on_executed
+		´func_sequence_001´ (delay 0)
+´input_green_bottle´ ElementInstanceInput 100015
+	event green_bottle
+	on_executed
+		´func_sequence_002´ (delay 0)
+´input_red_bottle´ ElementInstanceInput 100016
+	event red_bottle
+	on_executed
+		´func_sequence_003´ (delay 0)
+´input_pink_bottle´ ElementInstanceInput 100017
+	event pink_bottle
+	on_executed
+		´func_sequence_004´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100018
+	position 100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence blue_bottle
+			time 0
+´func_sequence_002´ ElementUnitSequence 100019
+	position 100, 25, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence green_bottle
+			time 0
+´func_sequence_003´ ElementUnitSequence 100020
+	position 100, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence red_bottle
+			time 0
+´func_sequence_004´ ElementUnitSequence 100021
+	position 100, -125, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_rgbp_bottles/cas_prop_rgbp_bottles/001 (0, 0, 0)
+			notify_unit_sequence pink_bottle
+			time 0
+´input_bottles_disable_interaction´ ElementInstanceInput 100026
+	event bottles_disable_interaction
+	on_executed
+		´disable_rest_of_bottles´ (delay 0)

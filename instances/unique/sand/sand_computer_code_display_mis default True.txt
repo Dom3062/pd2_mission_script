@@ -1,0 +1,964 @@
+´instance_start_30s_hack´ ElementInstanceInput 100000
+	event enable_30s_hack
+	on_executed
+		´seq_30s_hack´ (delay 0)
+´instance_hack_interrupted´ ElementInstanceOutput 100003
+	event hack_interrupted
+´intance_hack_started´ ElementInstanceOutput 100004
+	event hack_started
+	on_executed
+		´toggle_OFF_trigger_areas´ (delay 0)
+´seq_enable_interact´ ElementUnitSequence 100005
+	position 2000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence enable_contour
+			time 0
+´seq_30s_hack´ ElementUnitSequence 100007
+	position 2100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence set_hack_time_30
+			time 0
+´seq_60s_hack´ ElementUnitSequence 100008
+	position 2100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_125s_hack´ ElementUnitSequence 100009
+	position 2100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_200s_hack´ ElementUnitSequence 100010
+	position 2100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_300s_hack´ ElementUnitSequence 100011
+	position 2100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´event_ecm_jammer_on´ ElementGlobalEventTrigger 100012
+	global_event ecm_jammer_on
+	position 1700, 100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´operator_ecm_on´ (delay 0)
+		´point_debug_001´ (delay 0) DISABLED
+´event_ecm_jammer_off´ ElementGlobalEventTrigger 100013
+	global_event ecm_jammer_off
+	position 1700, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´operator_ecm_off´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+´b_comp_hack_on´ ElementCounter 100014
+	counter_target 0
+´operator_hack_on´ ElementCounterOperator 100015
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´b_comp_hack_on´
+´operator_hack_off´ ElementCounterOperator 100016
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´b_comp_hack_on´
+´filter_is_hacking´ ElementCounterFilter 100017
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´b_comp_hack_on´
+	on_executed
+		´seq_pause_hack´ (delay 0)
+´seq_pause_hack´ ElementUnitSequence 100019
+	position 1100, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence power_off
+			time 0
+´b_ecm_on´ ElementCounter 100020
+	counter_target 0
+´operator_ecm_on´ ElementCounterOperator 100021
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´filter_is_hacking´ (delay 0)
+´operator_ecm_off´ ElementCounterOperator 100022
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´filter_is_not_hacking´ (delay 0)
+´instance_start_60s_hack´ ElementInstanceInput 100001
+	DISABLED
+	event enable_60s_hack
+	on_executed
+		´seq_60s_hack´ (delay 0)
+´instance_start_125s_hack´ ElementInstanceInput 100023
+	DISABLED
+	event enable_125s_hack
+	on_executed
+		´seq_125s_hack´ (delay 0)
+´instance_start_200s_hack´ ElementInstanceInput 100024
+	DISABLED
+	event enable_200s_hack
+	on_executed
+		´seq_200s_hack´ (delay 0)
+´instance_start_300s_hack´ ElementInstanceInput 100025
+	DISABLED
+	event enable_300s_hack
+	on_executed
+		´seq_300s_hack´ (delay 0)
+´seq_hack_done´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´operator_hack_off´ (delay 0)
+		´instance_hack_done´ (delay 0)
+		´point_debug_006´ (delay 0) DISABLED
+		´remove_waypoint´ (delay 0)
+		´toggle_OFF_triggers´ (delay 0)
+´seq_restarted_hack´ ElementUnitSequenceTrigger 100027
+	sequence_list
+		2
+			guis_id 2
+			sequence state_device_resumed
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´operator_hack_on´ (delay 0)
+		´intance_hack_restarted´ (delay 0)
+		´filter_ecm_on´ (delay 1)
+		´point_debug_004´ (delay 0) DISABLED
+´seq_hack_paused´ ElementUnitSequenceTrigger 100006
+	sequence_list
+		2
+			guis_id 2
+			sequence power_off
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´operator_hack_off´ (delay 0)
+		´instance_hack_interrupted´ (delay 0)
+		´point_debug_005´ (delay 0) DISABLED
+´intance_hack_restarted´ ElementInstanceOutput 100018
+	event hack_restarted
+´seq_started_hack´ ElementUnitSequenceTrigger 100028
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´intance_hack_started´ (delay 0)
+		´operator_hack_on´ (delay 0)
+		´filter_ecm_on´ (delay 1)
+		´point_debug_003´ (delay 0) DISABLED
+´instance_hack_done´ ElementInstanceOutput 100029
+	event hack_done
+´filter_ecm_on´ ElementCounterFilter 100030
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´seq_pause_hack´ (delay 0)
+´point_debug_001´ ElementDebug 100031
+	DISABLED
+	as_subtitle false
+	debug_string ecm_jammer_on
+	show_instigator false
+´point_debug_002´ ElementDebug 100032
+	DISABLED
+	as_subtitle false
+	debug_string ecm_jammer_off
+	show_instigator false
+´filter_is_not_hacking´ ElementCounterFilter 100035
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´b_comp_hack_on´
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´point_debug_003´ ElementDebug 100036
+	DISABLED
+	as_subtitle false
+	debug_string hack_started
+	show_instigator false
+´point_debug_004´ ElementDebug 100037
+	DISABLED
+	as_subtitle false
+	debug_string hack_restarted
+	show_instigator false
+´point_debug_005´ ElementDebug 100038
+	DISABLED
+	as_subtitle false
+	debug_string hack_paused
+	show_instigator false
+´point_debug_006´ ElementDebug 100039
+	DISABLED
+	as_subtitle false
+	debug_string hack_done
+	show_instigator false
+´instance_activate_waypoint´ ElementInstanceInput 100033
+	event enable_waypoint
+	on_executed
+		´computer_WP´ (delay 0)
+´computer_WP´ ElementWaypoint 100034
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 7.62939E-06, -19, 125
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´instance_remove_waypoint´ ElementInstanceInput 100040
+	event remove_waypoint
+	on_executed
+		´link_remove_waypoint´ (delay 0)
+´remove_waypoint´ ElementOperator 100041
+	operation remove
+	elements
+		1 ´computer_WP´
+´link_start_up´ MissionScriptElement 100045
+	EXECUTE ON STARTUP
+	on_executed
+		´link_delay´ (delay 1)
+´link_delay´ MissionScriptElement 100046
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100047
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence disable_contour
+			time 0
+´input_enable_interaction´ ElementInstanceInput 100049
+	event enable_interaction
+	on_executed
+		´toggle_ON_trigger_areas´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100051
+	position 900, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence enable_contour
+			time 0
+´link_remove_waypoint´ MissionScriptElement 100066
+	on_executed
+		´remove_waypoint´ (delay 0)
+		´toggle_OFF_WP´ (delay 0)
+´logic_timer´ ElementTimer 100078
+	timer 0
+´timer_start´ ElementTimerOperator 100079
+	operation start
+	position 2900, 0, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´logic_timer´
+´link_time_loop_start´ MissionScriptElement 100067
+	on_executed
+		´point_debug_010´ (delay 0) DISABLED
+		´timer_set_time´ (delay 0)
+		´link_60_sec_timer´ (delay 0)
+´link_loop´ MissionScriptElement 100068
+	on_executed
+		´link_time_loop_start´ (delay 0)
+		´point_debug_011´ (delay 0) DISABLED
+		´add1´ (delay 0)
+´point_debug_010´ ElementDebug 100069
+	DISABLED
+	as_subtitle false
+	debug_string time_loop_started
+	show_instigator false
+´point_debug_011´ ElementDebug 100081
+	DISABLED
+	as_subtitle false
+	debug_string timer_triggered
+	show_instigator false
+´timer_set_time´ ElementTimerOperator 100082
+	operation set_time
+	position 2900, 100, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´logic_timer´
+	on_executed
+		´timer_start´ (delay 0)
+´code_counter´ ElementCounter 100083
+	counter_target 0
+´code0´ ElementCounterTrigger 100085
+	amount 0
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_001´ (delay 0)
+´add0´ ElementCounterOperator 100087
+	amount 0
+	operation add
+	instance_var_names
+	elements
+		1 ´code_counter´
+´point_debug_012´ ElementDebug 100088
+	DISABLED
+	as_subtitle false
+	debug_string counter = 0
+	show_instigator false
+´code1´ ElementCounterTrigger 100089
+	amount 1
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_002´ (delay 0)
+´point_debug_013´ ElementDebug 100090
+	DISABLED
+	as_subtitle false
+	debug_string counter = 1
+	show_instigator false
+´code2´ ElementCounterTrigger 100091
+	amount 2
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_003´ (delay 0)
+´point_debug_014´ ElementDebug 100092
+	DISABLED
+	as_subtitle false
+	debug_string counter = 2
+	show_instigator false
+´link_set_0´ MissionScriptElement 100093
+	on_executed
+		´reset_counter_to_0´ (delay 60)
+		´toggle_OFF_add´ (delay 0)
+´link_60_sec_timer´ MissionScriptElement 100094
+	BASE DELAY 60
+	on_executed
+		´link_loop´ (delay 0)
+´reset_counter_to_0´ ElementCounterOperator 100080
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´code_counter´
+´code3´ ElementCounterTrigger 100086
+	amount 3
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_004´ (delay 0)
+´point_debug_015´ ElementDebug 100095
+	DISABLED
+	as_subtitle false
+	debug_string counter = 3
+	show_instigator false
+´code4´ ElementCounterTrigger 100096
+	amount 4
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_005´ (delay 0)
+´point_debug_016´ ElementDebug 100097
+	DISABLED
+	as_subtitle false
+	debug_string counter = 4
+	show_instigator false
+´code5´ ElementCounterTrigger 100098
+	amount 5
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_006´ (delay 0)
+´point_debug_017´ ElementDebug 100099
+	DISABLED
+	as_subtitle false
+	debug_string counter = 5
+	show_instigator false
+´code6´ ElementCounterTrigger 100100
+	amount 6
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_007´ (delay 0)
+´point_debug_018´ ElementDebug 100101
+	DISABLED
+	as_subtitle false
+	debug_string counter = 6
+	show_instigator false
+´code7´ ElementCounterTrigger 100102
+	amount 7
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_008´ (delay 0)
+´point_debug_019´ ElementDebug 100103
+	DISABLED
+	as_subtitle false
+	debug_string counter = 7
+	show_instigator false
+´point_debug_020´ ElementDebug 100104
+	DISABLED
+	as_subtitle false
+	debug_string counter = 8
+	show_instigator false
+´code8´ ElementCounterTrigger 100105
+	amount 8
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_counter_009´ (delay 0)
+´point_debug_021´ ElementDebug 100106
+	DISABLED
+	as_subtitle false
+	debug_string counter = 9
+	show_instigator false
+´code9´ ElementCounterTrigger 100107
+	amount 9
+	trigger_type value
+	elements
+		1 ´code_counter´
+	on_executed
+		´link_set_0´ (delay 0)
+		´link_counter_010´ (delay 0)
+´link_counter_001´ MissionScriptElement 100127
+	on_executed
+		´point_debug_012´ (delay 0) DISABLED
+		´output code_000´ (delay 0)
+		´toggle_ON_add´ (delay 5)
+		´func_sequence_000´ (delay 0) DISABLED
+´link_counter_002´ MissionScriptElement 100128
+	on_executed
+		´point_debug_013´ (delay 0) DISABLED
+		´output code_001´ (delay 0)
+		´func_sequence_001´ (delay 0) DISABLED
+´link_counter_003´ MissionScriptElement 100129
+	on_executed
+		´point_debug_014´ (delay 0) DISABLED
+		´output code_002´ (delay 0)
+		´func_sequence_002´ (delay 0) DISABLED
+´link_counter_004´ MissionScriptElement 100130
+	on_executed
+		´point_debug_015´ (delay 0) DISABLED
+		´output code_003´ (delay 0)
+		´func_sequence_003´ (delay 0) DISABLED
+´link_counter_005´ MissionScriptElement 100131
+	on_executed
+		´point_debug_016´ (delay 0) DISABLED
+		´output code_004´ (delay 0)
+		´func_sequence_004´ (delay 0) DISABLED
+´link_counter_006´ MissionScriptElement 100132
+	on_executed
+		´point_debug_017´ (delay 0) DISABLED
+		´output code_005´ (delay 0)
+		´func_sequence_005´ (delay 0) DISABLED
+´link_counter_007´ MissionScriptElement 100133
+	on_executed
+		´point_debug_018´ (delay 0) DISABLED
+		´output code_006´ (delay 0)
+		´func_sequence_006´ (delay 0) DISABLED
+´link_counter_008´ MissionScriptElement 100134
+	on_executed
+		´point_debug_019´ (delay 0) DISABLED
+		´output code_007´ (delay 0)
+		´func_sequence_007´ (delay 0) DISABLED
+´link_counter_009´ MissionScriptElement 100135
+	on_executed
+		´point_debug_020´ (delay 0) DISABLED
+		´output code_008´ (delay 0)
+		´func_sequence_008´ (delay 0) DISABLED
+´link_counter_010´ MissionScriptElement 100136
+	on_executed
+		´point_debug_021´ (delay 0) DISABLED
+		´output code_009´ (delay 0)
+		´func_sequence_009´ (delay 0) DISABLED
+´output code_000´ ElementInstanceOutput 100050
+	event code_0
+´output code_001´ ElementInstanceOutput 100052
+	event code_1
+´output code_002´ ElementInstanceOutput 100053
+	event code_2
+´output code_003´ ElementInstanceOutput 100054
+	event code_3
+´output code_004´ ElementInstanceOutput 100055
+	event code_4
+´output code_005´ ElementInstanceOutput 100056
+	event code_5
+´output code_006´ ElementInstanceOutput 100057
+	event code_6
+´output code_007´ ElementInstanceOutput 100058
+	event code_7
+´output code_008´ ElementInstanceOutput 100059
+	event code_8
+´output code_009´ ElementInstanceOutput 100060
+	event code_9
+´trigger_hack_completed´ ElementUnitSequenceTrigger 100061
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´toggle_ON_sequences´ (delay 0)
+		´point_debug_007´ (delay 0) DISABLED
+´link_first_trigger´ MissionScriptElement 100062
+	on_executed
+		´link_time_loop_start´ (delay 0)
+		´add0´ (delay 0)
+´trigger_hack_completed_2´ ElementUnitSequenceTrigger 100063
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+	on_executed
+		´link_hack_completed´ (delay 0)
+´link_hack_completed´ MissionScriptElement 100064
+	on_executed
+		´reset_computer´ (delay 0)
+´reset_computer´ ElementUnitSequence 100065
+	position 2500, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence disable_contour
+			time 0
+´add1´ ElementCounterOperator 100137
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´code_counter´
+´toggle_OFF_add´ ElementToggle 100138
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´add1´
+´toggle_ON_add´ ElementToggle 100139
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´add1´
+´toggle_ON_sequences´ ElementToggle 100140
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_001´ DISABLED
+		2 ´func_sequence_002´ DISABLED
+		3 ´func_sequence_003´ DISABLED
+		4 ´func_sequence_004´ DISABLED
+		5 ´func_sequence_005´ DISABLED
+		6 ´func_sequence_000´ DISABLED
+		7 ´func_sequence_006´ DISABLED
+		8 ´func_sequence_007´ DISABLED
+		9 ´func_sequence_008´ DISABLED
+		10 ´func_sequence_009´ DISABLED
+	on_executed
+		´display_current_code´ (delay 0)
+´logic_counter_filter_000´ ElementCounterFilter 100156
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_000´ (delay 0) DISABLED
+´logic_counter_filter_001´ ElementCounterFilter 100157
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_001´ (delay 0) DISABLED
+´logic_counter_filter_002´ ElementCounterFilter 100158
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_002´ (delay 0) DISABLED
+´logic_counter_filter_003´ ElementCounterFilter 100159
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_003´ (delay 0) DISABLED
+´logic_counter_filter_004´ ElementCounterFilter 100160
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_004´ (delay 0) DISABLED
+´logic_counter_filter_007´ ElementCounterFilter 100161
+	check_type equal
+	needed_to_execute all
+	value 7
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_007´ (delay 0) DISABLED
+´logic_counter_filter_006´ ElementCounterFilter 100162
+	check_type equal
+	needed_to_execute all
+	value 6
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_006´ (delay 0) DISABLED
+´display_current_code´ MissionScriptElement 100141
+	BASE DELAY 0,25
+	on_executed
+		´logic_counter_filter_000´ (delay 0)
+		´logic_counter_filter_001´ (delay 0)
+		´logic_counter_filter_002´ (delay 0)
+		´logic_counter_filter_003´ (delay 0)
+		´logic_counter_filter_004´ (delay 0)
+		´logic_counter_filter_006´ (delay 0)
+		´logic_counter_filter_007´ (delay 0)
+		´logic_counter_filter_005´ (delay 0)
+		´logic_counter_filter_008´ (delay 0)
+		´logic_counter_filter_009´ (delay 0)
+		´func_sequence_010´ (delay 0)
+´seq_disable_interaction_2´ ElementUnitSequence 100142
+	position 1000, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence disable_contour
+			time 0
+´enter_area´ ElementAreaTrigger 100143
+	DISABLED
+	amount 1
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´exit_area´ ElementAreaTrigger 100144
+	DISABLED
+	amount all
+	depth 200
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´seq_disable_interaction_2´ (delay 0)
+´toggle_OFF_triggers´ ElementToggle 100146
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED
+´input_start_code_loop´ ElementInstanceInput 100145
+	event start_code_loop
+	on_executed
+		´link_first_trigger´ (delay 0)
+´logic_counter_filter_005´ ElementCounterFilter 100147
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_005´ (delay 0) DISABLED
+´logic_counter_filter_009´ ElementCounterFilter 100148
+	check_type equal
+	needed_to_execute all
+	value 9
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_009´ (delay 0) DISABLED
+´logic_counter_filter_008´ ElementCounterFilter 100149
+	check_type equal
+	needed_to_execute all
+	value 8
+	elements
+		1 ´code_counter´
+	on_executed
+		´func_sequence_008´ (delay 0) DISABLED
+´point_debug_007´ ElementDebug 100151
+	DISABLED
+	as_subtitle false
+	debug_string hack_done
+	show_instigator false
+´func_sequence_001´ ElementUnitSequence 100002
+	DISABLED
+	position 4300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_1112
+			time 0
+´func_sequence_002´ ElementUnitSequence 100152
+	DISABLED
+	position 4400, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_2222
+			time 0
+´func_sequence_003´ ElementUnitSequence 100153
+	DISABLED
+	position 4500, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_1337
+			time 0
+´func_sequence_004´ ElementUnitSequence 100154
+	DISABLED
+	position 4600, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_0420
+			time 0
+´func_sequence_005´ ElementUnitSequence 100155
+	DISABLED
+	position 4700, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_5050
+			time 0
+´point_spawn_player_001´ ElementPlayerSpawner 100084
+	DISABLED
+	position 0, -275, 0
+	rotation 0, 0, 0, -1
+	state standard
+´func_sequence_010´ ElementUnitSequence 100108
+	position 3700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_timer
+			time 0
+´toggle_OFF_trigger_areas´ ElementToggle 100070
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED
+´func_sequence_000´ ElementUnitSequence 100042
+	DISABLED
+	position 4200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_0007
+			time 0
+´func_sequence_006´ ElementUnitSequence 100043
+	DISABLED
+	position 4800, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_6988
+			time 0
+´func_sequence_007´ ElementUnitSequence 100044
+	DISABLED
+	position 4900, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_7777
+			time 0
+´func_sequence_008´ ElementUnitSequence 100048
+	DISABLED
+	position 5000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_8008
+			time 0
+´func_sequence_009´ ElementUnitSequence 100071
+	DISABLED
+	position 5100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_show_number_9111
+			time 0
+´input_disable_interaction´ ElementInstanceInput 100072
+	event disable_interaction
+	on_executed
+		´disable_interaction´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100073
+	position 1000, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence disable_contour
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_rotating_code_computer/sand_interactable_rotating_code_computer/001 (4.54747E-13, 11.9999, 75)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´toggle_OFF_trigger_areas´ (delay 0)
+´toggle_OFF_WP´ ElementToggle 100074
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´instance_activate_waypoint´
+		2 ´computer_WP´
+´toggle_ON_trigger_areas´ ElementToggle 100075
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED

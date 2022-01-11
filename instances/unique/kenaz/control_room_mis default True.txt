@@ -1,0 +1,2495 @@
+´wp_C4_bag_01´ ElementWaypoint 100211
+	icon pd2_loot
+	only_in_civilian false
+	position -450, -1550, -372.697
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_C4_bag_02´ ElementWaypoint 100212
+	icon pd2_loot
+	only_in_civilian false
+	position -875, -1025, -372.697
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_C4_01_WP´ ElementInstanceInput 100213
+	event show_C4_01_WP
+	on_executed
+		´wp_C4_bag_01´ (delay 0)
+´input_remove_C4_wp´ ElementInstanceInput 100214
+	event remove_C4_WP
+	on_executed
+		´wp_C4_bag_01_REMOVE´ (delay 0)
+		´wp_C4_bag_02_REMOVE´ (delay 0)
+		´wp_C4_bag_OFF´ (delay 0)
+´wp_C4_bag_01_REMOVE´ ElementOperator 100215
+	operation remove
+	elements
+		1 ´wp_C4_bag_01´
+´wp_C4_bag_02_REMOVE´ ElementOperator 100216
+	operation remove
+	elements
+		1 ´wp_C4_bag_02´
+´seq_trg_C4_bag_01_LOAD´ ElementUnitSequenceTrigger 100295
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_pku_c4_no_attention/cas_pku_c4_no_attention/C4_bag_01 (-450, -1550, -400)
+	on_executed
+		´wp_C4_bag_01_REMOVE´ (delay 0)
+		´output_C4_taken´ (delay 0)
+		´wp_C4_bag_01_OFF´ (delay 0)
+´seq_trg_C4_bag_02_LOAD´ ElementUnitSequenceTrigger 100299
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_casino/props/cas_pku_c4_no_attention/cas_pku_c4_no_attention/C4_bag_02 (-875, -1025, -400)
+	on_executed
+		´wp_C4_bag_02_REMOVE´ (delay 0)
+		´output_C4_taken´ (delay 0)
+		´wp_C4_bag_02_OFF´ (delay 0)
+´output_C4_taken´ ElementInstanceOutput 100350
+	event C4_taken
+´wp_armory_02´ ElementWaypoint 100351
+	icon pd2_goto
+	only_in_civilian false
+	position -250, -1225, -200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_armory_WP´ ElementInstanceInput 100168
+	event show_armory_WP
+	on_executed
+		´wp_armory_01´ (delay 0)
+´wp_armory_02_REMOVE´ ElementOperator 100170
+	operation remove
+	elements
+		1 ´wp_armory_02´
+´trg_search_for_numbers´ ElementAreaTrigger 100352
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 600
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -1275, -275
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 760
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_search_for_numbers´ (delay 0)
+		´wp_armory_02_REMOVE´ (delay 0)
+´output_search_for_numbers´ ElementInstanceOutput 100353
+	event search_for_numbers
+´STARTUP´ MissionScriptElement 100358
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_select_number_green´ (delay 1)
+		´number_box_random_startup´ (delay 0)
+		´startup_delay´ (delay 1)
+		´func_whisper_state_001´ (delay 0) DISABLED
+´input_activate_armory´ ElementInstanceInput 100370
+	event activate_armory
+	on_executed
+		´armory_triggers_TOGGLE´ (delay 0)
+´armory_triggers_TOGGLE´ ElementToggle 100371
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trg_search_for_numbers´ DISABLED
+		2 ´trg_search_for_numbers001´ DISABLED
+´seq_trg_green_number_found´ ElementUnitSequenceTrigger 100373
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+		5
+			guis_id 5
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+	on_executed
+		´output_green_number_found´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´point_debug_001´ (delay 0)
+´output_green_number_found´ ElementInstanceOutput 100374
+	event green_number_found
+´green_number_waypoint´ ElementWaypoint 100375
+	icon pd2_generic_look
+	only_in_civilian false
+	position -265, -2324, -283
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_waypoint´ ElementInstanceInput 100376
+	event show_waypoint
+	on_executed
+		´green_number_waypoint´ (delay 0)
+´remove_waypoint´ ElementOperator 100377
+	operation remove
+	elements
+		1 ´green_number_waypoint´
+´seq_select_number_green´ ElementUnitSequence 100184
+	position -450, -1350, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_color_green
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_color_green
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_color_green
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_color_green
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_color_green
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_color_green
+			time 0
+´input_number_000´ ElementInstanceInput 100185
+	event green_number_00
+	on_executed
+		´func_sequence_001´ (delay 0)
+´input_number_001´ ElementInstanceInput 100127
+	event green_number_01
+	on_executed
+		´func_sequence_002´ (delay 0)
+´input_number_002´ ElementInstanceInput 100186
+	event green_number_02
+	on_executed
+		´func_sequence_003´ (delay 0)
+´input_number_003´ ElementInstanceInput 100187
+	event green_number_03
+	on_executed
+		´func_sequence_004´ (delay 0)
+´input_number_004´ ElementInstanceInput 100188
+	event green_number_04
+	on_executed
+		´func_sequence_005´ (delay 0)
+´input_number_005´ ElementInstanceInput 100189
+	event green_number_05
+	on_executed
+		´func_sequence_006´ (delay 0)
+´input_number_006´ ElementInstanceInput 100190
+	event green_number_06
+	on_executed
+		´func_sequence_010´ (delay 0)
+´input_number_007´ ElementInstanceInput 100191
+	event green_number_07
+	on_executed
+		´func_sequence_009´ (delay 0)
+´input_number_008´ ElementInstanceInput 100192
+	event green_number_08
+	on_executed
+		´func_sequence_008´ (delay 0)
+´input_number_009´ ElementInstanceInput 100193
+	event green_number_09
+	on_executed
+		´func_sequence_007´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100194
+	position -275, -1550, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_00
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_00
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_00
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_00
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_00
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_00
+			time 0
+´func_sequence_002´ ElementUnitSequence 100195
+	position -275, -1625, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_01
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_01
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_01
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_01
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_01
+			time 0
+´func_sequence_003´ ElementUnitSequence 100196
+	position -275, -1700, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_02
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_02
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_02
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_02
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_02
+			time 0
+´func_sequence_004´ ElementUnitSequence 100197
+	position -275, -1775, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_03
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_03
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_03
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_03
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_03
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_03
+			time 0
+´func_sequence_005´ ElementUnitSequence 100198
+	position -275, -1850, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_04
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_04
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_04
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_04
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_04
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_04
+			time 0
+´func_sequence_006´ ElementUnitSequence 100200
+	position -275, -1925, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_05
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_05
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_05
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_05
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_05
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_05
+			time 0
+´func_sequence_007´ ElementUnitSequence 100201
+	position -425, -1850, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_09
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_09
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_09
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_09
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_09
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_09
+			time 0
+´func_sequence_008´ ElementUnitSequence 100202
+	position -425, -1775, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_08
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_08
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_08
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_08
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_08
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_08
+			time 0
+´func_sequence_009´ ElementUnitSequence 100203
+	position -425, -1700, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_07
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_07
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_07
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_07
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_07
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_07
+			time 0
+´func_sequence_010´ ElementUnitSequence 100204
+	position -425, -1625, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence set_number_06
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence set_number_06
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence set_number_06
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence set_number_06
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence set_number_06
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence set_number_06
+			time 0
+´point_debug_001´ ElementDebug 100205
+	as_subtitle false
+	debug_string GREEN NUMBER FOUND!
+	show_instigator false
+´input_code_entered´ ElementInstanceInput 100208
+	event code_entered
+	on_executed
+		´anim door open´ (delay 0)
+´input_enter_code´ ElementInstanceInput 100217
+	event enter_code
+	on_executed
+		´trg_enter_code_ON´ (delay 0)
+´input_remove_waypoint´ ElementInstanceInput 100207
+	event remove_waypoint
+	on_executed
+		´remove_waypoint´ (delay 0)
+´number_box_random_startup´ MissionScriptElement 100109
+	on_executed
+		´random_locker_box´ (delay 1)
+		´hide_boxes´ (delay 0)
+		´disable_boxes´ (delay 0.5)
+´random_locker_box´ ElementRandom 100226
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´locker_004´ (delay 0)
+		´locker_003´ (delay 0)
+		´locker_002´ (delay 0)
+		´locker_001´ (delay 0)
+		´locker_005´ (delay 0)
+		´locker_006´ (delay 0)
+´locker_001´ MissionScriptElement 100227
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+		´toggle_link_001´ (delay 0)
+´locker_002´ MissionScriptElement 100228
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+		´toggle_link_002´ (delay 0)
+´locker_003´ MissionScriptElement 100229
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+		´toggle_link_003´ (delay 0)
+´locker_004´ MissionScriptElement 100230
+	on_executed
+		´func_enable_unit_004´ (delay 0)
+		´toggle_link_004´ (delay 0)
+´hide_boxes´ ElementDisableUnit 100231
+	position 150, -2525, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+		2 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+		3 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+		4 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+		5 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+		6 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+´func_enable_unit_001´ ElementEnableUnit 100255
+	position -100, -2200, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+´func_enable_unit_002´ ElementEnableUnit 100256
+	position -100, -2275, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+´func_enable_unit_003´ ElementEnableUnit 100257
+	position -100, -2350, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+´func_enable_unit_004´ ElementEnableUnit 100258
+	position -100, -2425, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+´disable_boxes´ ElementUnitSequence 100259
+	position 100, -2425, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence disable_interaction
+			time 0
+´locker_opened_001´ ElementUnitSequenceTrigger 100269
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/002 (-229, -1841, -400)
+	on_executed
+		´activate_box_link_001´ (delay 0) DISABLED
+´locker_opened_002´ ElementUnitSequenceTrigger 100278
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/012 (-384, -2075, -400)
+	on_executed
+		´activate_box_link_002´ (delay 0) DISABLED
+´locker_opened_003´ ElementUnitSequenceTrigger 100279
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/017 (-384, -2525, -400)
+	on_executed
+		´activate_box_link_003´ (delay 0) DISABLED
+´locker_opened_004´ ElementUnitSequenceTrigger 100288
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/019 (-196, -2780, -400)
+	on_executed
+		´activate_box_link_004´ (delay 0) DISABLED
+´enable_box_001´ ElementUnitSequence 100289
+	position -325, -2200, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/001 (-229, -1840, -302)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_box_002´ ElementUnitSequence 100292
+	position -325, -2275, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/002 (-384, -2077, -302)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_box_003´ ElementUnitSequence 100298
+	position -325, -2350, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/003 (-384, -2525, -343)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_box_004´ ElementUnitSequence 100308
+	position -325, -2425, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/004 (-197, -2780, -302)
+			notify_unit_sequence enable_interaction
+			time 0
+´activate_box_link_001´ MissionScriptElement 100232
+	DISABLED
+	on_executed
+		´enable_box_001´ (delay 0)
+´activate_box_link_002´ MissionScriptElement 100233
+	DISABLED
+	on_executed
+		´enable_box_002´ (delay 0)
+´activate_box_link_003´ MissionScriptElement 100234
+	DISABLED
+	on_executed
+		´enable_box_003´ (delay 0)
+´activate_box_link_004´ MissionScriptElement 100309
+	DISABLED
+	on_executed
+		´enable_box_004´ (delay 0)
+´toggle_link_001´ ElementToggle 100319
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_001´ DISABLED
+´toggle_link_002´ ElementToggle 100328
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_002´ DISABLED
+´toggle_link_003´ ElementToggle 100329
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_003´ DISABLED
+´toggle_link_004´ ElementToggle 100355
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_004´ DISABLED
+´guards_locker_startup´ MissionScriptElement 100357
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100359
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -200, -2250, -400
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´ai_so_group_001´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100360
+	SO_access 24
+	action_duration_max 13
+	action_duration_min 8
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -225, -1525, -400
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -350 -1225 -400
+	so_action e_so_ntl_idle_look
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´ai_so_group_001´
+´point_special_objective_002´ ElementSpecialObjective 100361
+	SO_access 24
+	action_duration_max 13
+	action_duration_min 8
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, -1725, -400
+	rotation 0, 0, 1, -0
+	scan true
+	search_distance 0
+	search_position -350 -1225 -400
+	so_action e_so_ntl_idle_look
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´ai_so_group_001´
+´point_special_objective_003´ ElementSpecialObjective 100362
+	SO_access 24
+	action_duration_max 13
+	action_duration_min 8
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 275, -975, -400
+	rotation 0, 0, 0.866025, -0.5
+	scan true
+	search_distance 0
+	search_position -350 -1225 -400
+	so_action e_so_ntl_idle_look
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´ai_so_group_001´
+´ai_so_group_001´ ElementSpecialObjectiveGroup 100531
+	base_chance 1
+	mode randomizer
+	position 100, -1400, -235.397
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+		1 ´point_special_objective_001´
+		2 ´point_special_objective_002´
+		3 ´point_special_objective_003´
+´startup_delay´ MissionScriptElement 100554
+	on_executed
+		´guards_locker_startup´ (delay 0)
+		´seq_set_drill_timer´ (delay 0)
+		´security_cameras_DISABLE´ (delay 0)
+		´show_security_cameras´ (delay 1)
+		´diff_DEATHWISH´ (delay 0)
+		´armory_door_ADD´ (delay 0)
+		´locker_loot´ (delay 0)
+´point_special_objective_004´ ElementSpecialObjective 100372
+	SO_access 24
+	action_duration_max 13
+	action_duration_min 8
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 200, -1300, -400
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -350 -1225 -400
+	so_action e_so_ntl_idle_look
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´ai_so_group_001´
+´seq_trg_fence_door_01_drill_DONE´ ElementUnitSequenceTrigger 100574
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_01_drill (-606, -1613, -298)
+		2
+			guis_id 2
+			sequence sawed
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon_1m_collision/sawblade_icon_1m_collision/fence_door_01_saw (-622, -1608, -301)
+	on_executed
+		´fence_door_01_OPEN´ (delay 0)
+´seq_trg_fence_door_02_drill_DONE´ ElementUnitSequenceTrigger 100575
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_02_drill (-914, -1298, -298)
+		2
+			guis_id 2
+			sequence sawed
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon_1m_collision/sawblade_icon_1m_collision/fence_door_02_saw (-911, -1282, -301)
+	on_executed
+		´fence_door_02_OPEN´ (delay 0)
+´fence_door_01_OPEN´ MissionScriptElement 100576
+	on_executed
+		´seq_fence_door_01_OPEN´ (delay 0)
+		´fence_door_01_saw_DISABLE´ (delay 0)
+´fence_door_02_OPEN´ MissionScriptElement 100577
+	on_executed
+		´fence_door_02_OPEN_2´ (delay 0)
+		´fence_door_02_saw_DISABLE´ (delay 0)
+´seq_fence_door_01_OPEN´ ElementUnitSequence 100578
+	position -375, -2625, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door/fence_door_01 (-616, -1625, -400)
+			notify_unit_sequence anim_door_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_01_drill (-606, -1613, -298)
+			notify_unit_sequence state_hide
+			time 0
+´fence_door_02_OPEN_2´ ElementUnitSequence 100579
+	position -375, -2875, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door/fence_door_02 (-925, -1285, -400)
+			notify_unit_sequence anim_door_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_02_drill (-914, -1298, -298)
+			notify_unit_sequence state_hide
+			time 0
+´fence_door_01_saw_DISABLE´ ElementDisableUnit 100582
+	position -475, -2625, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/sawblade_icon_1m_collision/sawblade_icon_1m_collision/fence_door_01_saw (-622, -1608, -301)
+´fence_door_02_saw_DISABLE´ ElementDisableUnit 100583
+	position -475, -2875, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/sawblade_icon_1m_collision/sawblade_icon_1m_collision/fence_door_02_saw (-911, -1282, -301)
+´seq_set_drill_timer´ ElementUnitSequence 100584
+	position -350, -1350, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_01_drill (-606, -1613, -298)
+			notify_unit_sequence set_hack_time_state_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/fence_door_02_drill (-914, -1298, -298)
+			notify_unit_sequence set_hack_time_state_3
+			time 0
+´armory_door_ADD´ ElementNavObstacle 100586
+	TRIGGER TIMES 1
+	operation add
+	position -300, -1225, 695.962
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-475, -1300, -436.535)
+´spawn_enemy_001´ ElementSpawnEnemyDummy 100598
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 150, -2065, -399
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´spawn_enemy_002´ ElementSpawnEnemyDummy 100599
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -150, -2065, -399
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´spawn_enemy_003´ ElementSpawnEnemyDummy 100600
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -150, -2340, -399
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´spawn_enemy_004´ ElementSpawnEnemyDummy 100601
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 150, -2340, -399
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´spawn_enemy_005´ ElementSpawnEnemyDummy 100602
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -150, -2640, -399
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_clk_3_5m_dwn_vent_var2
+	team default
+	voice 0
+	orientation_elements
+´guard_room_enemies´ ElementEnemyPreferedAdd 100604
+	spawn_groups
+		1 ´enemies´
+´enemies´ ElementSpawnEnemyGroup 100605
+	amount 0
+	ignore_disabled true
+	interval 0
+	spawn_type random
+	team default
+	preferred_spawn_groups
+		1 tac_shield_wall_charge
+		2 FBI_spoocs
+		3 tac_tazer_charge
+		4 tac_tazer_flanking
+		5 tac_shield_wall
+		6 tac_swat_rifle_flank
+		7 tac_shield_wall_ranged
+		8 tac_bull_rush
+	elements
+		1 ´spawn_enemy_001´
+		2 ´spawn_enemy_002´
+		3 ´spawn_enemy_003´
+		4 ´spawn_enemy_004´
+		5 ´spawn_enemy_005´
+´wp_C4_bag_01_OFF´ ElementToggle 100633
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_bag_01´
+´wp_C4_bag_02_OFF´ ElementToggle 100634
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_bag_02´
+´trg_armory_entered_in_stealth´ ElementAreaTrigger 100124
+	TRIGGER TIMES 1
+	amount 1
+	depth 600
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -1275, -275
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 760
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_armory_entered_in_stealth´ (delay 0)
+		´vo_bain_near_armory_in_stealth´ (delay 0)
+´output_armory_entered_in_stealth´ ElementInstanceOutput 100635
+	event armory_entered_in_stealth
+´anim door open´ ElementUnitSequence 100363
+	position 250, -1825, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_controlroom_door/cas_controlroom_door/armory_door (-430, -1200, -400)
+			notify_unit_sequence anim_open
+			time 0
+	on_executed
+		´seq_light_off´ (delay 8)
+´wp_armory_01´ ElementWaypoint 100587
+	icon pd2_goto
+	only_in_civilian false
+	position 100, -75, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trg_search_for_numbers001´ ElementAreaTrigger 100636
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1800
+	height 600
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -914, -116
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 800
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´wp_armory_01_REMOVE´ (delay 0)
+		´wp_armory_02´ (delay 0)
+´wp_armory_01_REMOVE´ ElementOperator 100637
+	operation remove
+	elements
+		1 ´wp_armory_01´
+´seq_light_off´ ElementUnitSequence 100639
+	position 175, -1825, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+´output_armory_door_opened´ ElementInstanceOutput 100423
+	event armory_door_opened
+	on_executed
+		´armory_door_REMOVE´ (delay 0)
+´input_show_C4_02_WP´ ElementInstanceInput 100499
+	event show_C4_02_WP
+	on_executed
+		´wp_C4_bag_02´ (delay 0)
+´wp_C4_bag_OFF´ ElementToggle 100501
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_C4_bag_01´
+		2 ´wp_C4_bag_02´
+´trg_enemy_006_spawn´ ElementEnemyDummyTrigger 100508
+	event spawn
+	position 150, -2640, -399
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_vent_ceiling_006_release´ (delay 0)
+´trg_enemy_004_spawn´ ElementEnemyDummyTrigger 100510
+	event spawn
+	position 150, -2340, -399
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 ´spawn_enemy_004´
+	on_executed
+		´seq_vent_ceiling_004_release´ (delay 0)
+´trg_enemy_001_spawn´ ElementEnemyDummyTrigger 100511
+	event spawn
+	position 150, -2065, -399
+	rotation 0, 0, 1, -5.96047E-08
+	elements
+		1 ´spawn_enemy_001´
+	on_executed
+		´seq_vent_ceiling_001_release´ (delay 0)
+´trg_enemy_002_spawn´ ElementEnemyDummyTrigger 100512
+	event spawn
+	position -150, -2065, -399
+	rotation 0, 0, 1, -1.19209E-07
+	elements
+		1 ´spawn_enemy_002´
+	on_executed
+		´seq_vent_ceiling_002_release´ (delay 0)
+´trg_enemy_003_spawn´ ElementEnemyDummyTrigger 100514
+	event spawn
+	position -150, -2340, -399
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´spawn_enemy_003´
+	on_executed
+		´seq_vent_ceiling_003_release´ (delay 0)
+´trg_enemy_005_spawn´ ElementEnemyDummyTrigger 100515
+	event spawn
+	position -150, -2640, -399
+	rotation 0, 0, 0, -1
+	elements
+		1 ´spawn_enemy_005´
+	on_executed
+		´seq_vent_ceiling_005_release´ (delay 0)
+´seq_vent_ceiling_006_release´ ElementUnitSequence 100518
+	TRIGGER TIMES 1
+	position 150, -2540, -399
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_006 (150, -2650, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_006 (150, -2650, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´seq_vent_ceiling_005_release´ ElementUnitSequence 100520
+	TRIGGER TIMES 1
+	position -150, -2540, -399
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_005 (-150, -2650, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_005 (-150, -2650, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´seq_vent_ceiling_004_release´ ElementUnitSequence 100640
+	TRIGGER TIMES 1
+	position 100, -2340, -399
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_004 (150, -2350, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_004 (150, -2350, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´seq_vent_ceiling_003_release´ ElementUnitSequence 100641
+	TRIGGER TIMES 1
+	position -100, -2340, -399
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_003 (-150, -2350, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_003 (-150, -2350, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´seq_vent_ceiling_001_release´ ElementUnitSequence 100642
+	TRIGGER TIMES 1
+	position 150, -2140, -399
+	rotation 0, 0, 1, -8.9407E-08
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_001 (150, -2050, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_001 (150, -2050, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´seq_vent_ceiling_002_release´ ElementUnitSequence 100643
+	TRIGGER TIMES 1
+	position -150, -2140, -399
+	rotation 0, 0, 1, -1.19209E-07
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_002 (-150, -2050, -100)
+			notify_unit_sequence release_vent
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling_b/vent_ceiling_002 (-150, -2050, -100)
+			notify_unit_sequence state_bagblock_on
+			time 0
+´security_cameras_DISABLE´ ElementDisableUnit 100657
+	position 5, -3125, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (75, -1446, -184)
+		2 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (177, -1800, -165)
+		3 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (-425.001, -1047, -153)
+´show_security_cameras´ MissionScriptElement 100658
+	on_executed
+		´diff_ALL´ (delay 0)
+		´diff_HARD_VERYHARD´ (delay 0)
+		´diff_OVERKILL_DEATHWISH´ (delay 0)
+´diff_HARD_VERYHARD´ ElementFilter 100659
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 25, -3575, 700
+	rotation 0, 0, 0, -1
+	on_executed
+		´show_security_camera_02´ (delay 0)
+´diff_ALL´ ElementFilter 100660
+	difficulty_easy true
+	difficulty_easy_wish true
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 25, -3450, 700
+	rotation 0, 0, 0, -1
+	on_executed
+		´show_security_camera_01´ (delay 0)
+´diff_OVERKILL_DEATHWISH´ ElementFilter 100661
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 25, -3700, 700
+	rotation 0, 0, 0, -1
+	on_executed
+		´show_security_camera_03´ (delay 0)
+´show_security_camera_01´ MissionScriptElement 100662
+	on_executed
+		´security_camera_01_ENABLE´ (delay 0)
+		´security_camera_01_ON´ (delay 0)
+´show_security_camera_02´ MissionScriptElement 100663
+	on_executed
+		´security_camera_02_ENABLE´ (delay 0)
+		´security_camera_02_ON´ (delay 0)
+´show_security_camera_03´ MissionScriptElement 100664
+	on_executed
+		´security_camera_03_ENABLE´ (delay 0)
+		´security_camera_03_ON´ (delay 0)
+´security_camera_01_ENABLE´ ElementEnableUnit 100665
+	position -150, -3450, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (75, -1446, -184)
+	on_executed
+		´security_camera_01_ENABLED´ (delay 0.5) DISABLED
+´security_camera_02_ENABLE´ ElementEnableUnit 100666
+	position -150, -3575, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (177, -1800, -165)
+	on_executed
+		´security_camera_02_ENABLED´ (delay 0.5) DISABLED
+´security_camera_03_ENABLE´ ElementEnableUnit 100667
+	position -150, -3700, 700
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (-425.001, -1047, -153)
+	on_executed
+		´security_camera_03_ENABLED´ (delay 0.5) DISABLED
+´security_camera_01_ENABLED´ ElementSecurityCamera 100668
+	DISABLED
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100394
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -15
+	suspicion_range 7
+	yaw -30
+´security_camera_02_ENABLED´ ElementSecurityCamera 100669
+	DISABLED
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100594
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_03_ENABLED´ ElementSecurityCamera 100670
+	DISABLED
+	ai_enabled true
+	apply_settings true
+	camera_u_id 100656
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 45
+´security_camera_01_DISABLED´ ElementSecurityCamera 100671
+	DISABLED
+	camera_u_id 100394
+´security_camera_02_DISABLED´ ElementSecurityCamera 100672
+	DISABLED
+	camera_u_id 100594
+´security_camera_03_DISABLED´ ElementSecurityCamera 100673
+	DISABLED
+	camera_u_id 100656
+´security_camera_01_FEED´ ElementAccessCamera 100674
+	DISABLED
+	camera_u_id 100394
+	pitch_limit 25
+	position -375, -3450, 700
+	rotation 0, 0, -0.382683, -0.92388
+	text_id debug_none
+	yaw_limit 25
+´security_camera_02_FEED´ ElementAccessCamera 100675
+	DISABLED
+	camera_u_id 100594
+	pitch_limit 25
+	position -375, -3575, 700
+	rotation 0, 0, -0.382683, -0.92388
+	text_id debug_none
+	yaw_limit 25
+´security_camera_03_FEED´ ElementAccessCamera 100676
+	DISABLED
+	camera_u_id 100656
+	pitch_limit 25
+	position -375, -3700, 700
+	rotation 0, 0, 0.92388, 0.382683
+	text_id debug_none
+	yaw_limit 25
+´security_camera_01_ON´ ElementToggle 100677
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´security_camera_01_FEED´ DISABLED
+		2 ´security_camera_01_DISABLED´ DISABLED
+		3 ´security_camera_01_ENABLED´ DISABLED
+´security_camera_02_ON´ ElementToggle 100678
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´security_camera_02_FEED´ DISABLED
+		2 ´security_camera_02_DISABLED´ DISABLED
+		3 ´security_camera_02_ENABLED´ DISABLED
+´security_camera_03_ON´ ElementToggle 100679
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´security_camera_03_FEED´ DISABLED
+		2 ´security_camera_03_DISABLED´ DISABLED
+		3 ´security_camera_03_ENABLED´ DISABLED
+´input_disable_security_cameras´ ElementInstanceInput 100680
+	event disable_security_cameras
+	on_executed
+		´security_camera_03_DISABLED´ (delay 0) DISABLED
+		´security_camera_02_DISABLED´ (delay 0) DISABLED
+		´security_camera_01_DISABLED´ (delay 0) DISABLED
+		´show_security_cameras_OFF´ (delay 0)
+´diff_DEATHWISH´ ElementFilter 100681
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 25, -3925, 700
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_security_cameras_DEATHWISH´ (delay 0)
+´seq_security_cameras_DEATHWISH´ ElementUnitSequence 100682
+	position -50, -3925, 700
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (75, -1446, -184)
+			notify_unit_sequence deathwish
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (177, -1800, -165)
+			notify_unit_sequence deathwish
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (-425.001, -1047, -153)
+			notify_unit_sequence deathwish
+			time 0
+´armory_door_REMOVE´ ElementNavObstacle 100320
+	TRIGGER TIMES 1
+	operation remove
+	position -300, -1125, 695.962
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-475, -1300, -436.535)
+´func_whisper_state_001´ ElementWhisperState 100322
+	DISABLED
+	position -475, -1200, 695.962
+	rotation 0, 0, 0, -1
+	state true
+´locker_005´ MissionScriptElement 100291
+	on_executed
+		´func_enable_unit_005´ (delay 0)
+		´toggle_link_005´ (delay 0)
+´func_enable_unit_005´ ElementEnableUnit 100293
+	position -100, -2475, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+´locker_opened_005´ ElementUnitSequenceTrigger 100294
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/005 (400, -1841, -400)
+	on_executed
+		´activate_box_link_005´ (delay 0) DISABLED
+´toggle_link_005´ ElementToggle 100296
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_005´ DISABLED
+´activate_box_link_005´ MissionScriptElement 100297
+	DISABLED
+	on_executed
+		´enable_box_005´ (delay 0)
+´enable_box_005´ ElementUnitSequence 100300
+	position -325, -2475, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/005 (400, -1841, -343)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_006´ MissionScriptElement 100301
+	on_executed
+		´func_enable_unit_006´ (delay 0)
+		´toggle_link_006´ (delay 0)
+´func_enable_unit_006´ ElementEnableUnit 100302
+	position -100, -2550, 695.962
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+´locker_opened_006´ ElementUnitSequenceTrigger 100303
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/009 (600, -1841, -400)
+	on_executed
+		´activate_box_link_006´ (delay 0) DISABLED
+´toggle_link_006´ ElementToggle 100304
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_box_link_006´ DISABLED
+´activate_box_link_006´ MissionScriptElement 100305
+	DISABLED
+	on_executed
+		´enable_box_006´ (delay 0)
+´enable_box_006´ ElementUnitSequence 100306
+	position -325, -2550, 695.962
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_number_box/cas_prop_number_box/006 (600, -1841, -302)
+			notify_unit_sequence enable_interaction
+			time 0
+´show_security_cameras_OFF´ ElementToggle 100307
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´show_security_cameras´
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100169
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_open
+			notify_unit_id units/pd2_dlc_casino/environment/cas_int/cas_controlroom_door/cas_controlroom_door/armory_door (-430, -1200, -400)
+	on_executed
+		´armory_door_REMOVE´ (delay 0)
+´vo_bain_near_armory_in_stealth´ ElementDialogue 100006
+	dialogue Play_pln_ca1_32
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´trg_armory_entered_in_stealth_OFF´ ElementToggle 100008
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trg_armory_entered_in_stealth´
+		2 ´vo_bain_near_armory_in_stealth´
+´trg_police_called´ ElementGlobalEventTrigger 100009
+	TRIGGER TIMES 1
+	global_event police_called
+	position -450, -3275, 700
+	rotation 0, 0, 0, -1
+	on_executed
+		´trg_armory_entered_in_stealth_OFF´ (delay 0)
+´locker_loot´ MissionScriptElement 100038
+	on_executed
+		´loot_normal´ (delay 0)
+		´loot_hard_vhard´ (delay 0)
+		´loot_ovekill_dw´ (delay 0)
+		´hide_all_loot´ (delay 0)
+		´shoer_money_rand´ (delay 0)
+´loot_normal´ ElementFilter 100040
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1155, -3450, 696
+	rotation 0, 0, 0, -1
+	on_executed
+		´normal_num_rand´ (delay 0)
+´loot_hard_vhard´ ElementFilter 100041
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1155, -3575, 696
+	rotation 0, 0, 0, -1
+	on_executed
+		´hard_num_rand´ (delay 0)
+´loot_ovekill_dw´ ElementFilter 100043
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1155, -3700, 696
+	rotation 0, 0, 0, -1
+	on_executed
+		´over_num_rand´ (delay 0)
+´locker_01_open´ ElementUnitSequenceTrigger 100044
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/001 (-179, -1841, -400)
+	on_executed
+		´locker_01_money´ (delay 0)
+´locker_01_money´ ElementUnitSequence 100045
+	position 450, -3159, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-179, -1845, -302)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-179, -1845, -302)
+			notify_unit_sequence interact_enable
+			time 0
+´locker_02_open´ ElementUnitSequenceTrigger 100058
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/002 (-229, -1841, -400)
+	on_executed
+		´locker_02_chips´ (delay 0)
+´locker_06_open´ ElementUnitSequenceTrigger 100059
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/006 (450, -1841, -400)
+	on_executed
+		´locker_06_chips´ (delay 0)
+´hide_all_loot´ ElementUnitSequence 100080
+	position 1255, -3575, 696
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/001 (-179, -1845, -302)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (782, -2223, -220)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-386, -2134, -302)
+			notify_unit_sequence hidden
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-386, -2118, -302)
+			notify_unit_sequence hidden
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-386, -2429, -302)
+			notify_unit_sequence hidden
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-383, -2475, -384)
+			notify_unit_sequence hidden
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/001 (-229, -1840, -261)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/002 (452, -1841, -343)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/003 (547, -1841, -261)
+			notify_unit_sequence hide
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/004 (-387, -2175, -302)
+			notify_unit_sequence hide
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/005 (-387, -2077, -262)
+			notify_unit_sequence hide
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/006 (-250, -2784, -385)
+			notify_unit_sequence hide
+			time 0
+		13
+			id 13
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/007 (652, -1841, -385)
+			notify_unit_sequence hide
+			time 0
+		14
+			id 14
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/007 (652, -1841, -385)
+			notify_unit_sequence hide
+			time 0
+		15
+			id 15
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/001 (-229, -1840, -261)
+			notify_unit_sequence disable_interaction
+			time 0
+		16
+			id 16
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/002 (452, -1841, -343)
+			notify_unit_sequence disable_interaction
+			time 0
+		17
+			id 17
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/003 (547, -1841, -261)
+			notify_unit_sequence disable_interaction
+			time 0
+		18
+			id 18
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/004 (-387, -2175, -302)
+			notify_unit_sequence disable_interaction
+			time 0
+		19
+			id 19
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/005 (-387, -2077, -262)
+			notify_unit_sequence disable_interaction
+			time 0
+		20
+			id 20
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/006 (-250, -2784, -385)
+			notify_unit_sequence disable_interaction
+			time 0
+		21
+			id 21
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/007 (652, -1841, -385)
+			notify_unit_sequence disable_interaction
+			time 0
+´logic_toggle_001´ ElementToggle 100081
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_01_open´ DISABLED
+´logic_toggle_002´ ElementToggle 100083
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_02_open´ DISABLED
+´logic_toggle_003´ ElementToggle 100084
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_06_open´ DISABLED
+´normal_num_rand´ ElementRandom 100085
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+		´logic_toggle_008´ (delay 0)
+		´logic_toggle_009´ (delay 0)
+		´logic_toggle_010´ (delay 0)
+		´logic_toggle_011´ (delay 0)
+´hard_num_rand´ ElementRandom 100086
+	amount 6
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+		´logic_toggle_008´ (delay 0)
+		´logic_toggle_009´ (delay 0)
+		´logic_toggle_010´ (delay 0)
+		´logic_toggle_011´ (delay 0)
+´over_num_rand´ ElementRandom 100087
+	amount 8
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+		´logic_toggle_008´ (delay 0)
+		´logic_toggle_009´ (delay 0)
+		´logic_toggle_010´ (delay 0)
+		´logic_toggle_011´ (delay 0)
+´locker_08_open´ ElementUnitSequenceTrigger 100070
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/008 (550, -1841, -400)
+	on_executed
+		´locker_08_chips´ (delay 0)
+´logic_toggle_004´ ElementToggle 100071
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_08_open´ DISABLED
+´logic_toggle_005´ ElementToggle 100072
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_10_open´ DISABLED
+´logic_toggle_006´ ElementToggle 100073
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_12_open´ DISABLED
+´locker_10_open´ ElementUnitSequenceTrigger 100075
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/010 (650, -1841, -400)
+	on_executed
+		´locker_10_chips´ (delay 0)
+´locker_12_open´ ElementUnitSequenceTrigger 100076
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/012 (-384, -2075, -400)
+	on_executed
+		´locker_12_chips´ (delay 0)
+´locker_13_open´ ElementUnitSequenceTrigger 100077
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/013 (-384, -2125, -400)
+	on_executed
+		´locker_13_money´ (delay 0)
+´locker_14_open´ ElementUnitSequenceTrigger 100079
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/014 (-384, -2175, -400)
+	on_executed
+		´locker_14_chips´ (delay 0)
+´locker_15_open´ ElementUnitSequenceTrigger 100088
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/015 (-384, -2425, -400)
+	on_executed
+		´locker_15_money´ (delay 0)
+´locker_16_open´ ElementUnitSequenceTrigger 100090
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/016 (-384, -2475, -400)
+	on_executed
+		´locker_16_money´ (delay 0)
+´locker_20_open´ ElementUnitSequenceTrigger 100091
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_locker/cas_prop_locker/020 (-246, -2780, -400)
+	on_executed
+		´locker_20_chips´ (delay 0)
+´logic_toggle_007´ ElementToggle 100093
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_13_open´ DISABLED
+´logic_toggle_008´ ElementToggle 100094
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_14_open´ DISABLED
+´logic_toggle_009´ ElementToggle 100095
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_15_open´ DISABLED
+´logic_toggle_010´ ElementToggle 100099
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_16_open´ DISABLED
+´logic_toggle_011´ ElementToggle 100100
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´locker_20_open´ DISABLED
+´locker_02_chips´ ElementUnitSequence 100048
+	position 450, -3272, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/001 (-229, -1840, -261)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/001 (-229, -1840, -261)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_06_chips´ ElementUnitSequence 100053
+	position 450, -3390, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/002 (452, -1841, -343)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/002 (452, -1841, -343)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_08_chips´ ElementUnitSequence 100054
+	position 450, -3508, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/003 (547, -1841, -261)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/003 (547, -1841, -261)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_10_chips´ ElementUnitSequence 100062
+	position 450, -3629, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/007 (652, -1841, -385)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/007 (652, -1841, -385)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_12_chips´ ElementUnitSequence 100063
+	position 450, -3735, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/005 (-387, -2077, -262)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/005 (-387, -2077, -262)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_13_money´ ElementUnitSequence 100101
+	position 450, -3837, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-386, -2134, -302)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/006 (-386, -2134, -302)
+			notify_unit_sequence interact_enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-386, -2118, -302)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/007 (-386, -2118, -302)
+			notify_unit_sequence interact_enable
+			time 0
+´locker_14_chips´ ElementUnitSequence 100102
+	position 450, -3939, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/004 (-387, -2175, -302)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/004 (-387, -2175, -302)
+			notify_unit_sequence enable_interaction
+			time 0
+´locker_15_money´ ElementUnitSequence 100103
+	position 450, -4034, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-386, -2429, -302)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/008 (-386, -2429, -302)
+			notify_unit_sequence interact_enable
+			time 0
+´locker_16_money´ ElementUnitSequence 100104
+	position 450, -4147, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-383, -2475, -384)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/009 (-383, -2475, -384)
+			notify_unit_sequence interact_enable
+			time 0
+´locker_20_chips´ ElementUnitSequence 100105
+	position 450, -4272, 693
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/006 (-250, -2784, -385)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/006 (-250, -2784, -385)
+			notify_unit_sequence enable_interaction
+			time 0
+´shower_money´ ElementUnitSequence 100106
+	position 1255, -3859, 696
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (782, -2223, -220)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/bank/money_wrap/money_wrap_single_bundle/002 (782, -2223, -220)
+			notify_unit_sequence interact_enable
+			time 0
+´no_shower_money´ MissionScriptElement 100107
+´shoer_money_rand´ ElementRandom 100108
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´shower_money´ (delay 0)
+		´no_shower_money´ (delay 0)
+´trg_enter_code´ ElementAreaTrigger 100049
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -300, -1275, -257.637
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_code_VO´ (delay 0)
+´trg_enter_code_ON´ ElementToggle 100051
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trg_enter_code´ DISABLED
+´output_code_VO´ ElementInstanceOutput 100066
+	event code_VO
+´input_combat_on´ ElementInstanceInput 100110
+	event combat_on
+	on_executed
+		´guard_room_enemies´ (delay 0)

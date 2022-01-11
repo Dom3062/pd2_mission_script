@@ -1,0 +1,412 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence red_on_black
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence disable_contour
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_defibrillator_paddles/sand_pku_defibrillator_paddles/001 (0, -28, 87)
+			notify_unit_sequence disable_contour
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_defibrillator_paddles/sand_pku_defibrillator_paddles/001 (0, -28, 87)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_paddles
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_charging_unavailable_text
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_cable_interaction´ ElementInstanceInput 100007
+	event enable_cable_interaction
+	on_executed
+		´enable_cable_interaction´ (delay 0)
+´interact_WP´ ElementWaypoint 100014
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 117
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´charge_timer´ ElementTimer 100019
+	timer 10
+	on_executed
+		´interact_WP´ (delay 0)
+		´remove_charge_WP´ (delay 0)
+		´enable_paddle_interaction´ (delay 0)
+		´logic_random_001´ (delay 0)
+		´output_paddles_ready´ (delay 0)
+		´point_play_sound_charging_end´ (delay 0)
+´start_timer´ ElementTimerOperator 100020
+	DISABLED
+	operation start
+	position 600, -900, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´charge_timer´
+´pause_timer´ ElementTimerOperator 100021
+	DISABLED
+	operation pause
+	position 700, -900, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´charge_timer´
+´set_timer´ ElementTimerOperator 100022
+	DISABLED
+	operation set_time
+	position 800, -900, 0
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´charge_timer´
+´start_timer_2´ MissionScriptElement 100023
+	on_executed
+		´start_timer´ (delay 0) DISABLED
+		´show_charging_text´ (delay 0)
+		´defend_charge_WP´ (delay 0)
+		´point_play_sound_charging_start´ (delay 0)
+´pause_timer_2´ MissionScriptElement 100024
+	on_executed
+		´pause_timer´ (delay 0) DISABLED
+´set_timer_2´ MissionScriptElement 100025
+	on_executed
+		´set_timer´ (delay 0) DISABLED
+´toggle_ON_cable_interaction´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_timer´ DISABLED
+		2 ´pause_timer´ DISABLED
+		3 ´set_timer´ DISABLED
+´input_test_paddle_chance´ ElementInstanceInput 100044
+	event test_paddle_chance
+	on_executed
+		´revive_test´ (delay 0)
+´enable_cable_interaction´ MissionScriptElement 100045
+	on_executed
+		´toggle_ON_cable_interaction´ (delay 0)
+		´start_WP´ (delay 0)
+		´initiate_power_off_state´ (delay 0)
+´enable_place_interaction´ MissionScriptElement 100046
+	on_executed
+		´interact_WP´ (delay 0)
+		´add_paddle_chance´ (delay 0)
+´revive_test´ MissionScriptElement 100048
+	on_executed
+		´revive_success_chance´ (delay 0)
+´remove_interact_WP´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´interact_WP´
+´defend_charge_WP´ ElementWaypoint 100051
+	icon pd2_power
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 117
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_charge_WP´ ElementOperator 100052
+	operation remove
+	elements
+		1 ´defend_charge_WP´
+´start_WP´ ElementWaypoint 100053
+	icon pd2_power
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 117
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_start_WP´ ElementOperator 100054
+	operation remove
+	elements
+		1 ´start_WP´
+´output_paddles_taken´ ElementInstanceOutput 100055
+	event paddles_taken
+´revive_success_chance´ ElementLogicChance 100056
+	chance 34
+	position 2100, 100, 0
+	rotation 0, 0, 0, -1
+´add_paddle_chance´ ElementLogicChanceOperator 100057
+	chance 33
+	operation add_chance
+	position 2000, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´revive_success_chance´
+	on_executed
+		´set_timer_2´ (delay 0)
+		´enable_place_paddles´ (delay 0)
+´paddle_fail´ ElementLogicChanceTrigger 100058
+	outcome fail
+	position 2000, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´revive_success_chance´
+	on_executed
+		´enable_place_interaction´ (delay 0)
+		´point_debug_001´ (delay 0)
+´paddle_success´ ElementLogicChanceTrigger 100059
+	outcome success
+	position 2200, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´revive_success_chance´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´output_paddle_success´ ElementInstanceOutput 100042
+	event paddle_success
+´point_debug_001´ ElementDebug 100008
+	as_subtitle false
+	debug_string revive_failure - adding_extra_chance
+	show_instigator false
+´point_debug_002´ ElementDebug 100039
+	as_subtitle false
+	debug_string revive_successful
+	show_instigator false
+´enable_paddle_interaction´ ElementUnitSequence 100026
+	position 700, -1100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_defibrillator_paddles/sand_pku_defibrillator_paddles/001 (0, -28, 87)
+			notify_unit_sequence enable_contour
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_defibrillator_paddles/sand_pku_defibrillator_paddles/001 (0, -28, 87)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_ready_text
+			time 0
+´initiate_power_off_state´ ElementUnitSequence 100040
+	position 800, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence state_turn_off
+			time 0
+´defib_power_off´ ElementUnitSequenceTrigger 100063
+	sequence_list
+		1
+			guis_id 1
+			sequence state_turn_off
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+	on_executed
+		´enable_power_interaction´ (delay 0)
+´enable_power_interaction´ ElementUnitSequence 100064
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence enable_contour
+			time 0
+´power_turned_on´ ElementUnitSequenceTrigger 100041
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+	on_executed
+		´start_timer_2´ (delay 0)
+		´remove_start_WP´ (delay 0)
+´paddles_taken´ ElementUnitSequenceTrigger 100012
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_defibrillator_paddles/sand_pku_defibrillator_paddles/001 (0, -28, 87)
+	on_executed
+		´remove_interact_WP´ (delay 0)
+		´remove_charge_WP´ (delay 0)
+		´remove_start_WP´ (delay 0)
+		´output_paddles_taken´ (delay 0)
+		´hide_paddles´ (delay 0)
+´enable_place_paddles´ ElementUnitSequence 100010
+	position 2000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_return_text
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence place_paddles
+			time 0
+	on_executed
+		´toggle_ON_trigger´ (delay 0)
+´hide_paddles´ ElementUnitSequence 100062
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence hide_paddles
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence hide_ready_text
+			time 0
+´show_charging_text´ ElementUnitSequence 100027
+	position 600, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_charging_text
+			time 0
+´paddles_placed´ ElementUnitSequenceTrigger 100069
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+	on_executed
+		´toggle_OFF_trigger´ (delay 0)
+		´remove_interact_WP´ (delay 0)
+		´remove_start_WP´ (delay 0)
+		´start_timer_2´ (delay 0)
+´toggle_OFF_trigger´ ElementToggle 100070
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´paddles_placed´ DISABLED
+´toggle_ON_trigger´ ElementToggle 100071
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´paddles_placed´ DISABLED
+	on_executed
+		´output_paddles_failed´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100004
+	position 2200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_defibrillator/sand_interactable_defibrillator/001 (0, -28, 87)
+			notify_unit_sequence show_success_text
+			time 0
+	on_executed
+		´output_paddle_success´ (delay 0)
+´teammate_comment_its_done´ ElementTeammateComment 100011
+	close_to_element true
+	comment v07
+	position 0, -50, 75
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´no_comment´ MissionScriptElement 100013
+´logic_random_001´ ElementRandom 100015
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´teammate_comment_its_done´ (delay 0)
+		´no_comment´ (delay 0)
+´output_paddles_failed´ ElementInstanceOutput 100016
+	event paddles_failed
+´output_paddles_ready´ ElementInstanceOutput 100017
+	event paddles_ready
+´point_play_sound_charging_end´ ElementPlaySound 100018
+	append_prefix false
+	interrupt true
+	position 0, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event defib_charge_loop_end
+	use_instigator false
+´point_play_sound_charging_start´ ElementPlaySound 100028
+	append_prefix false
+	interrupt true
+	position 0, -25, 117
+	rotation 0, 0, 0, -1
+	sound_event defib_charge_loop_start
+	use_instigator false

@@ -1,0 +1,146 @@
+´Auto_Start´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´disable´ (delay 0)
+´disable´ ElementDisableUnit 100001
+	position -150, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+´enable´ ElementInstanceInput 100003
+	event enable
+	on_executed
+		´link´ (delay 0)
+´link´ MissionScriptElement 100004
+	on_executed
+		´On´ (delay 0)
+´enable_2´ ElementUnitSequence 100005
+	position 200, -50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´enable_3´ ElementEnableUnit 100008
+	position 200, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+´valve_used´ ElementInstanceOutput 100009
+	event valve_used
+	on_executed
+		´point_debug_001´ (delay 0)
+´link_2´ MissionScriptElement 100010
+	on_executed
+		´OFF´ (delay 0)
+´trigger´ ElementUnitSequenceTrigger 100011
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+	on_executed
+		´link_2´ (delay 0)
+´point_debug_001´ ElementDebug 100012
+	as_subtitle true
+	debug_string valve_used
+	show_instigator false
+´point_shape_001´ ElementShape 100006
+	depth 198,72
+	height 187,2
+	position 0, 0, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 165,22
+´enter´ ElementAreaReportTrigger 100007
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -50, 175, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+		1 100006
+	on_executed
+		´link_3´ (delay 0) DISABLED (alternative enter)
+´exit´ ElementAreaReportTrigger 100013
+	amount all
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 75, 175, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+		1 100006
+	on_executed
+		´link_4´ (delay 0) DISABLED (alternative empty)
+´link_3´ MissionScriptElement 100014
+	DISABLED
+	on_executed
+		´enable_4´ (delay 0)
+´link_4´ MissionScriptElement 100015
+	DISABLED
+	on_executed
+		´exit_2´ (delay 0)
+´On´ ElementToggle 100016
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_4´ DISABLED
+		2 ´link_3´ DISABLED
+	on_executed
+		´enable_3´ (delay 0)
+´OFF´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_4´ DISABLED
+		2 ´link_3´ DISABLED
+		3 ´enter´
+		4 ´exit´
+	on_executed
+		´valve_used´ (delay 0)
+´enable_4´ ElementUnitSequence 100018
+	position -50, 75, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´exit_2´ ElementUnitSequence 100019
+	position 75, 75, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/props/lxy_pipes_valve/lxy_pipes_valve/001 (1.90735E-05, -3.8147E-06, 4.57764E-05)
+			notify_unit_sequence state_interaction_disable
+			time 0

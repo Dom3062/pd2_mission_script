@@ -1,0 +1,263 @@
+´interact´ ElementUnitSequenceTrigger 100002
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+	on_executed
+		´output_started_hacking´ (delay 0)
+		´start_hacking´ (delay 0)
+		´sound_hacking´ (delay 0) DISABLED
+´start_hacking´ ElementUnitSequence 100004
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_interactable_hack_computer/gen_interactable_hack_computer_finish/left (0, 50, 0)
+			notify_unit_sequence state_upload
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 2_we_get_signal
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_off
+			time 0
+	on_executed
+		´finish_hacking´ (delay 5)
+´setup_keyboard´ ElementUnitSequence 100007
+	position -200, 200, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´input_enable_keyboard´ ElementInstanceInput 100008
+	event enable_keyboard
+	on_executed
+		´setup_keyboard´ (delay 0)
+´finish_hacking´ ElementUnitSequence 100009
+	position 0, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_interactable_hack_computer/gen_interactable_hack_computer_finish/left (0, 50, 0)
+			notify_unit_sequence state_finish
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 3_upload_complete
+			time 0
+	on_executed
+		´output_finished_hacking´ (delay 0)
+		´sound_hacking_end´ (delay 0) DISABLED
+´output_finished_hacking´ ElementInstanceOutput 100011
+	event finished_hacking
+´pick_monitor_setup´ ElementRandom 100010
+	BASE DELAY 1
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´monitor_on002´ (delay 0)
+		´monitor_on003´ (delay 0)
+		´monitor_on001´ (delay 0)
+		´monitor_on004´ (delay 0)
+´monitor_on002´ ElementUnitSequence 100013
+	position 100, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_on_v2
+			time 0
+´monitor_on003´ ElementUnitSequence 100014
+	position 200, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_on_v3
+			time 0
+´monitor_on001´ ElementUnitSequence 100015
+	position 0, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_on_v4
+			time 0
+´monitor_on004´ ElementUnitSequence 100016
+	position 300, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_on_v5
+			time 0
+´sound_WRONG´ ElementPlaySound 100017
+	append_prefix false
+	position 25, 50, 100
+	rotation 0, 0, 0, -1
+	sound_event keypad_wrong_code
+	use_instigator false
+´sound_si´ ElementPlaySound 100018
+	append_prefix false
+	position 25, 50, 125
+	rotation 0, 0, 0, -1
+	sound_event keypad_correct_code
+	use_instigator false
+´set_computers_incorrect´ ElementUnitSequence 100022
+	position 400, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_interactable_hack_computer/gen_interactable_hack_computer_finish/left (0, 50, 0)
+			notify_unit_sequence screen_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+			notify_unit_sequence 1_main_screen_off
+			time 0
+´disable_interactions´ ElementUnitSequence 100003
+	position -100, -700, -0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´enable_interaction_again´ ElementUnitSequence 100021
+	position 0, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´toggle_on_again´ ElementToggle 100023
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interact´
+	on_executed
+		´enable_interaction_again´ (delay 0)
+´input_re-enable´ ElementInstanceInput 100024
+	event re-enable
+	on_executed
+		´toggle_on_again´ (delay 0)
+´output_started_hacking´ ElementInstanceOutput 100005
+	event started_hacking
+´no´ MissionScriptElement 100029
+	on_executed
+		´set_computers_incorrect´ (delay 0)
+		´sound_WRONG´ (delay 0)
+´si´ MissionScriptElement 100030
+	on_executed
+		´sound_si´ (delay 0)
+´input_disable_interaction´ ElementInstanceInput 100035
+	BASE DELAY 0,01
+	event disable_interaction
+	on_executed
+		´disable_interactions´ (delay 0)
+´input_incorrect´ ElementInstanceInput 100038
+	event set_computers_incorrect
+	on_executed
+		´no´ (delay 0)
+´input_correct´ ElementInstanceInput 100033
+	event set_computers_correct
+	on_executed
+		´si´ (delay 0)
+´input_setup_computer´ ElementInstanceInput 100026
+	event setup_computer
+	on_executed
+		´shower´ (delay 0)
+		´pick_monitor_setup´ (delay 0.1)
+´shower´ ElementUnitSequence 100027
+	position 100, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´enabler´ (delay 0)
+´auto_setup´ MissionScriptElement 100028
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´hider´ (delay 0)
+´hider´ ElementUnitSequence 100036
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction/001 (16, 3, 0)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´disabler´ (delay 0)
+´enabler´ ElementEnableUnit 100037
+	position 200, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/gen_interactable_hack_computer/gen_interactable_hack_computer_finish/left (0, 50, 0)
+		2 units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+		3 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/001 (57, -7, 0)
+´disabler´ ElementDisableUnit 100039
+	position -200, 500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/gen_interactable_hack_computer/gen_interactable_hack_computer_finish/left (0, 50, 0)
+		2 units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/right (59, 42, 0)
+		3 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/001 (57, -7, 0)
+´sound_hacking´ ElementPlaySound 100000
+	DISABLED
+	append_prefix false
+	position 25, 50, 50
+	rotation 0, 0, 0, -1
+	sound_event hacking_device
+	use_instigator false
+´sound_hacking_end´ ElementPlaySound 100006
+	DISABLED
+	append_prefix false
+	position 25, 15, 50
+	rotation 0, 0, 0, -1
+	sound_event hacking_device_end
+	use_instigator false

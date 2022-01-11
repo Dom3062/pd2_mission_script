@@ -1,0 +1,70 @@
+´open_door_input´ ElementInstanceInput 100000
+	TRIGGER TIMES 1
+	event Open door
+	on_executed
+		´open_door´ (delay 2)
+´open_door´ ElementUnitSequence 100004
+	position 400, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -50, 0)
+			notify_unit_sequence open_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -50, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+´add_door_blocker´ ElementNavObstacle 100005
+	operation add
+	position 400, -500, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-90, -46, 0)
+	on_executed
+		´activate_door´ (delay 0)
+´door_opened´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -50, 0)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´remove_door_blocker´ ElementNavObstacle 100008
+	operation remove
+	position 400, -900, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-90, -46, 0)
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100010
+	as_subtitle false
+	debug_string door opened
+	show_instigator false
+´start´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´add_door_blocker´ (delay 1)
+´activate_door´ ElementUnitSequence 100002
+	position 300, -500, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -50, 0)
+			notify_unit_sequence activate_door
+			time 0

@@ -1,0 +1,342 @@
+´activate_tanker´ ElementInstanceInput 100000
+	event Activate_tanker
+	on_executed
+		´turn_on_interaction´ (delay 0) DISABLED
+		´func_sequence_002´ (delay 0)
+´connect_hose_interaction´ ElementInteraction 100001
+	DISABLED
+	host_only false
+	override_timer 5
+	position 0, 7, 240.568
+	rotation 0, 0, 0, -1
+	tweak_data_id connect_hose
+	on_executed
+		´interacted´ (delay 0) (alternative interacted)
+		´fixed´ (delay 0) DISABLED (alternative interacted)
+´turn_on_interaction´ ElementToggle 100002
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´connect_hose_interaction´ DISABLED
+	on_executed
+		´activate_wp´ (delay 0)
+´hose_wp´ ElementWaypoint 100003
+	icon pd2_water_tap
+	only_in_civilian false
+	position 0, 7, 290.568
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´activate_wp´ MissionScriptElement 100004
+	on_executed
+		´hose_wp´ (delay 0)
+		´show_hose´ (delay 0)
+´interacted´ MissionScriptElement 100005
+	TRIGGER TIMES 1
+	on_executed
+		´interacted_output´ (delay 0)
+´interacted_output´ ElementInstanceOutput 100006
+	event Attached hose
+	on_executed
+		´remove_wp´ (delay 0)
+´remove_wp´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´hose_wp´
+	on_executed
+		´show_hose001´ (delay 0)
+´show_hose´ ElementUnitSequence 100009
+	position 900, 700, 0.00400543
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+´point_spawn_player_001´ ElementPlayerSpawner 100010
+	DISABLED
+	EXECUTE ON STARTUP
+	position 400, 400, 0.0039978
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+	on_executed
+		´activate_tanker´ (delay 0)
+		´point_waypoint_001´ (delay 0)
+´show_hose001´ ElementUnitSequence 100011
+	position 1100, 700, 0.00400543
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+	on_executed
+		´turn_on_fixed_check´ (delay 1)
+´start´ MissionScriptElement 100012
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100013
+	position 700, 900, 0.00400543
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_fueltank/wwh_props_fueltank/001 (0, 0, 0.00400394)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 2)
+´interrupt_so´ ElementSpecialObjective 100016
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 9696
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 200, -30, 0.00400543
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 2000
+	search_position 200 0 0,00400543
+	so_action e_so_tube_interact
+	trigger_on none
+	use_instigator false
+	followup_elements
+´start_interrupt´ MissionScriptElement 100017
+	on_executed
+		´turn_on_interrupt_entities´ (delay 0)
+´turn_on_interrupt_entities´ ElementToggle 100018
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´anim_fail´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_done´ DISABLED
+	on_executed
+		´loop´ (delay 0.5)
+´loop´ MissionScriptElement 100019
+	on_executed
+		´turn_on_execute_so´ (delay 0) DISABLED
+´turn_on_execute_so´ ElementToggle 100020
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_so´ DISABLED
+	on_executed
+		´interrupt_so´ (delay 1) DISABLED
+´anim_done´ ElementSpecialObjectiveTrigger 100021
+	DISABLED
+	event complete
+	position 1400, 0, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´ DISABLED
+	on_executed
+		´remove_so´ (delay 0)
+		´interrupted´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100022
+	DISABLED
+	event fail
+	position 1600, 0, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´ DISABLED
+	on_executed
+		´loop´ (delay 5)
+´remove_so´ ElementOperator 100023
+	operation remove
+	elements
+		1 ´interrupt_so´ DISABLED
+	on_executed
+		´turn_off_enteties´ (delay 0)
+´turn_off_enteties´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_done´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´remove_defend_wp´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100025
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, -400, 0.0039978
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´trigger_area_001´ ElementAreaTrigger 100026
+	DISABLED
+	amount 1
+	depth 205
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 400, -300, 0.00400543
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 175
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100027
+	icon pd2_goto
+	only_in_civilian false
+	position 400, -300, 100.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interrupted´ MissionScriptElement 100028
+	on_executed
+		´turn_on_interaction_2´ (delay 0)
+´turn_on_interaction_2´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´connect_hose_interaction´ DISABLED
+	on_executed
+		´activate_wp_2´ (delay 0)
+´activate_wp_2´ MissionScriptElement 100030
+	on_executed
+		´point_debug_001´ (delay 0)
+		´hose_wp´ (delay 0)
+		´tanker_interrupted_output´ (delay 0)
+´point_debug_001´ ElementDebug 100031
+	as_subtitle true
+	debug_string Bain: The swats pulled the hose of the tanker. Connect it again!
+	show_instigator false
+´fixed´ MissionScriptElement 100032
+	DISABLED
+	on_executed
+		´remove_fix_wp´ (delay 0)
+´tanker_interrupted_output´ ElementInstanceOutput 100033
+	event Interrupted
+	on_executed
+		´interrupt_sound´ (delay 0)
+´tanker_fixed_output´ ElementInstanceOutput 100035
+	event Fixed
+	on_executed
+		´start_interrupt´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´defend_wp´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´external_interrupt_happened´ ElementInstanceInput 100036
+	event Pause
+	on_executed
+		´remove_so´ (delay 0)
+´defend_wp´ ElementWaypoint 100038
+	icon pd2_defend
+	only_in_civilian false
+	position 0, 7, 290.568
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_wp´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´defend_wp´
+´remove_fix_wp´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´hose_wp´
+	on_executed
+		´tanker_fixed_output´ (delay 0)
+´external_was_fixed´ ElementInstanceInput 100037
+	event Resume
+	on_executed
+		´start_interrupt´ (delay 0)
+		´defend_wp´ (delay 0)
+´input_timer_done´ ElementInstanceInput 100040
+	event Timer done
+	on_executed
+		´remove_so´ (delay 0)
+		´turn_off_everything´ (delay 0)
+´turn_off_everything´ MissionScriptElement 100041
+´turn_on_fixed_check´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´fixed´ DISABLED
+´point_debug_002´ ElementDebug 100043
+	as_subtitle true
+	debug_string Bain: Ok hose it attached again. keep protecting it.
+	show_instigator false
+´func_nav_obstacle_001´ ElementNavObstacle 100046
+	operation add
+	position 700, 800, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -281, 0.00400394)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-100, -281, 0.00400394)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, 232, 0.00400394)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, 122, 0.00400394)
+´func_sequence_002´ ElementUnitSequence 100015
+	position 1000, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_fueltank/wwh_props_fueltank/001 (0, 0, 0.00400394)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´activate_wp´ (delay 0)
+´interacted_with_tanker´ ElementUnitSequenceTrigger 100048
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_wwh/props/wwh_prop_fueltank/wwh_props_fueltank/001 (0, 0, 0.00400394)
+	on_executed
+		´interacted´ (delay 0)
+´interrupt_sound´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position 0, 7, 236.233
+	rotation 0, 0, 0, -1
+	sound_event hose_interrupt_fuel_tank
+	use_instigator false
+´point_play_sound_001´ ElementPlaySound 100050
+	append_prefix false
+	interrupt true
+	position 1600, 800, 0.00400543
+	rotation 0, 0, 0, -1
+	sound_event unmute
+	use_instigator false

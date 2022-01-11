@@ -1,0 +1,873 @@
+´instance_start_30s_hack´ ElementInstanceInput 100000
+	DISABLED
+	event enable_30s_hack
+	on_executed
+		´seq_30s_hack´ (delay 0) DISABLED
+´instance_hack_interrupted´ ElementInstanceOutput 100003
+	event hack_interrupted
+´instance_hack_started´ ElementInstanceOutput 100004
+	event hack_started
+´seq_enable_interact´ ElementUnitSequence 100005
+	position -1700, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´seq_30s_hack´ ElementUnitSequence 100007
+	DISABLED
+	position -2000, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´seq_60s_hack´ ElementUnitSequence 100008
+	DISABLED
+	position -2000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´seq_125s_hack´ ElementUnitSequence 100009
+	DISABLED
+	position -2000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´seq_200s_hack´ ElementUnitSequence 100010
+	DISABLED
+	position -2000, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´seq_300s_hack´ ElementUnitSequence 100011
+	DISABLED
+	position -2000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´event_ecm_jammer_on´ ElementGlobalEventTrigger 100012
+	global_event ecm_jammer_on
+	position -900, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´operator_ecm_on´ (delay 0)
+		´point_debug_001´ (delay 0) DISABLED
+´event_ecm_jammer_off´ ElementGlobalEventTrigger 100013
+	global_event ecm_jammer_off
+	position -900, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´operator_ecm_off´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+´b_comp_hack_on´ ElementCounter 100014
+	counter_target 0
+´operator_hack_on´ ElementCounterOperator 100015
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´b_comp_hack_on´
+´operator_hack_off´ ElementCounterOperator 100016
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´b_comp_hack_on´
+´filter_is_hacking´ ElementCounterFilter 100017
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´b_comp_hack_on´
+	on_executed
+		´seq_pause_hack´ (delay 0)
+´seq_pause_hack´ ElementUnitSequence 100019
+	position -1600, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence power_off
+			time 0
+´b_ecm_on´ ElementCounter 100020
+	counter_target 0
+´operator_ecm_on´ ElementCounterOperator 100021
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´filter_is_hacking´ (delay 0)
+´operator_ecm_off´ ElementCounterOperator 100022
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´filter_is_not_hacking´ (delay 0)
+´instance_start_60s_hack´ ElementInstanceInput 100001
+	DISABLED
+	event enable_60s_hack
+	on_executed
+		´seq_60s_hack´ (delay 0) DISABLED
+´instance_start_125s_hack´ ElementInstanceInput 100023
+	DISABLED
+	event enable_125s_hack
+	on_executed
+		´seq_125s_hack´ (delay 0) DISABLED
+´instance_start_200s_hack´ ElementInstanceInput 100024
+	DISABLED
+	event enable_200s_hack
+	on_executed
+		´seq_200s_hack´ (delay 0) DISABLED
+´instance_start_300s_hack´ ElementInstanceInput 100025
+	DISABLED
+	event enable_300s_hack
+	on_executed
+		´seq_300s_hack´ (delay 0) DISABLED
+´seq_hack_done´ ElementUnitSequenceTrigger 100026
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´operator_hack_off´ (delay 0)
+		´instance_hack_done´ (delay 0)
+		´point_debug_006´ (delay 0) DISABLED
+		´remove_waypoint´ (delay 0)
+´seq_restarted_hack´ ElementUnitSequenceTrigger 100027
+	sequence_list
+		2
+			guis_id 2
+			sequence state_device_resumed
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´operator_hack_on´ (delay 0)
+		´instance_hack_restarted´ (delay 0)
+		´filter_ecm_on´ (delay 1)
+		´point_debug_004´ (delay 0) DISABLED
+´seq_hack_paused´ ElementUnitSequenceTrigger 100006
+	sequence_list
+		2
+			guis_id 2
+			sequence power_off
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´operator_hack_off´ (delay 0)
+		´instance_hack_interrupted´ (delay 0)
+		´point_debug_005´ (delay 0) DISABLED
+´instance_hack_restarted´ ElementInstanceOutput 100018
+	event hack_restarted
+´seq_started_hack´ ElementUnitSequenceTrigger 100028
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´instance_hack_started´ (delay 0)
+		´operator_hack_on´ (delay 0)
+		´filter_ecm_on´ (delay 1)
+		´point_debug_003´ (delay 0) DISABLED
+´instance_hack_done´ ElementInstanceOutput 100029
+	event hack_done
+´filter_ecm_on´ ElementCounterFilter 100030
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´b_ecm_on´
+	on_executed
+		´seq_pause_hack´ (delay 0)
+´point_debug_001´ ElementDebug 100031
+	DISABLED
+	as_subtitle false
+	debug_string ecm_jammer_on
+	show_instigator false
+´point_debug_002´ ElementDebug 100032
+	DISABLED
+	as_subtitle false
+	debug_string ecm_jammer_off
+	show_instigator false
+´filter_is_not_hacking´ ElementCounterFilter 100035
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´b_comp_hack_on´
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´point_debug_003´ ElementDebug 100036
+	DISABLED
+	as_subtitle false
+	debug_string hack started
+	show_instigator false
+´point_debug_004´ ElementDebug 100037
+	DISABLED
+	as_subtitle false
+	debug_string hack restarted
+	show_instigator false
+´point_debug_005´ ElementDebug 100038
+	DISABLED
+	as_subtitle false
+	debug_string hack paused
+	show_instigator false
+´point_debug_006´ ElementDebug 100039
+	DISABLED
+	as_subtitle false
+	debug_string hack done
+	show_instigator false
+´instance_activate_waypoint´ ElementInstanceInput 100033
+	event enable_waypoint
+	on_executed
+		´computer_WP´ (delay 0)
+´computer_WP´ ElementWaypoint 100034
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 6, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´instance_remove_waypoint´ ElementInstanceInput 100040
+	event remove_waypoint
+	on_executed
+		´link_remove_waypoint´ (delay 0)
+´remove_waypoint´ ElementOperator 100041
+	operation remove
+	elements
+		1 ´computer_WP´
+´link_start_up´ MissionScriptElement 100045
+	EXECUTE ON STARTUP
+	on_executed
+		´link_delay´ (delay 1)
+´link_delay´ MissionScriptElement 100046
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+		´func_disable_text´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100047
+	position -300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´func_disable_text´ ElementDisableUnit 100048
+	position -500, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´output_hack_complete_XwarehouseA´ ElementInstanceOutput 100050
+	event hack_complete_Xwarehouse_A
+	on_executed
+		´output_correct_warehouseA_found_on_computer´ (delay 0) DISABLED
+´input_enable_interaction´ ElementInstanceInput 100049
+	TRIGGER TIMES 4
+	event enable_interaction
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100051
+	position -300, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_reset
+			time 0
+´output_hack_complete_XwarehouseB´ ElementInstanceOutput 100052
+	event hack_complete_Xwarehouse_B
+	on_executed
+		´output_correct_warehouseB_found_on_computer´ (delay 0) DISABLED
+´output_hack_complete_XwarehouseC´ ElementInstanceOutput 100053
+	event hack_complete_Xwarehouse_C
+	on_executed
+		´output_correct_warehouseC_found_on_computer´ (delay 0) DISABLED
+´trigger_hack_completed´ ElementUnitSequenceTrigger 100054
+	TRIGGER TIMES 3
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´link_hack_complete´ (delay 0)
+´link_hack_complete´ MissionScriptElement 100055
+	on_executed
+		´turn_on_screen´ (delay 0)
+´link_Xwarehouse_A´ MissionScriptElement 100056
+	DISABLED
+	on_executed
+		´point_debug_007´ (delay 0) DISABLED
+		´logic_toggle_001´ (delay 0)
+		´show_companyX_warehouseA´ (delay 0)
+´logic_random_warehouse´ ElementRandom 100057
+	amount 3
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´link_Xwarehouse_A´ (delay 0) DISABLED
+		´link_Xwarehouse_B´ (delay 0) DISABLED
+		´link_Xwarehouse_C´ (delay 0) DISABLED
+		´link_Ywarehouse_A´ (delay 0) DISABLED
+		´link_Ywarehouse_B´ (delay 0) DISABLED
+		´link_Ywarehouse_C´ (delay 0) DISABLED
+		´link_Zwarehouse_A´ (delay 0) DISABLED
+		´link_Zwarehouse_B´ (delay 0) DISABLED
+		´link_Zwarehouse_C´ (delay 0) DISABLED
+´link_Xwarehouse_B´ MissionScriptElement 100058
+	DISABLED
+	on_executed
+		´point_debug_008´ (delay 0) DISABLED
+		´logic_toggle_002´ (delay 0)
+		´show_companyX_warehouseB´ (delay 0)
+´link_Xwarehouse_C´ MissionScriptElement 100059
+	DISABLED
+	on_executed
+		´point_debug_009´ (delay 0) DISABLED
+		´logic_toggle_003´ (delay 0)
+		´show_companyX_warehouseC´ (delay 0)
+´point_debug_007´ ElementDebug 100063
+	DISABLED
+	as_subtitle false
+	debug_string hack = X warehouse A
+	show_instigator false
+´point_debug_008´ ElementDebug 100064
+	DISABLED
+	as_subtitle false
+	debug_string hack = X warehouse B
+	show_instigator false
+´point_debug_009´ ElementDebug 100065
+	DISABLED
+	as_subtitle false
+	debug_string hack = X warehouse C
+	show_instigator false
+´link_remove_waypoint´ MissionScriptElement 100066
+	on_executed
+		´remove_waypoint´ (delay 0)
+´logic_toggle_001´ ElementToggle 100079
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Xwarehouse_A´ DISABLED
+	on_executed
+		´output_hack_complete_XwarehouseA´ (delay 0)
+´logic_toggle_002´ ElementToggle 100080
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Xwarehouse_B´ DISABLED
+	on_executed
+		´output_hack_complete_XwarehouseB´ (delay 0)
+´logic_toggle_003´ ElementToggle 100081
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Xwarehouse_C´ DISABLED
+	on_executed
+		´output_hack_complete_XwarehouseC´ (delay 0)
+´output_hack_complete_YwarehouseB´ ElementInstanceOutput 100082
+	event hack_complete_Ywarehouse_B
+	on_executed
+		´output_correct_warehouseB_found_on_computer´ (delay 0) DISABLED
+´point_debug_010´ ElementDebug 100083
+	DISABLED
+	as_subtitle false
+	debug_string hack = Y warehouse B
+	show_instigator false
+´output_hack_complete_YwarehouseA´ ElementInstanceOutput 100084
+	event hack_complete_Ywarehouse_A
+	on_executed
+		´output_correct_warehouseA_found_on_computer´ (delay 0) DISABLED
+´output_hack_complete_YwarehouseC´ ElementInstanceOutput 100085
+	event hack_complete_Ywarehouse_C
+	on_executed
+		´output_correct_warehouseC_found_on_computer´ (delay 0) DISABLED
+´point_debug_011´ ElementDebug 100086
+	DISABLED
+	as_subtitle false
+	debug_string hack = Y warehouse C
+	show_instigator false
+´logic_toggle_004´ ElementToggle 100087
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Ywarehouse_B´ DISABLED
+	on_executed
+		´output_hack_complete_YwarehouseB´ (delay 0)
+´logic_toggle_005´ ElementToggle 100088
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Ywarehouse_A´ DISABLED
+	on_executed
+		´output_hack_complete_YwarehouseA´ (delay 0)
+´logic_toggle_006´ ElementToggle 100089
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Ywarehouse_C´ DISABLED
+	on_executed
+		´output_hack_complete_YwarehouseC´ (delay 0)
+´point_debug_012´ ElementDebug 100092
+	DISABLED
+	as_subtitle false
+	debug_string hack = Y warehouse A
+	show_instigator false
+´link_Ywarehouse_B´ MissionScriptElement 100093
+	DISABLED
+	on_executed
+		´point_debug_010´ (delay 0) DISABLED
+		´logic_toggle_004´ (delay 0)
+		´show_companyY_warehouseB´ (delay 0)
+´link_Ywarehouse_A´ MissionScriptElement 100095
+	DISABLED
+	on_executed
+		´point_debug_012´ (delay 0) DISABLED
+		´logic_toggle_005´ (delay 0)
+		´show_companyY_warehouseA´ (delay 0)
+´link_Ywarehouse_C´ MissionScriptElement 100096
+	DISABLED
+	on_executed
+		´point_debug_011´ (delay 0) DISABLED
+		´logic_toggle_006´ (delay 0)
+		´show_companyY_warehouseC´ (delay 0)
+´output_hack_complete_ZwarehouseB´ ElementInstanceOutput 100097
+	event hack_complete_Zwarehouse_B
+	on_executed
+		´output_correct_warehouseB_found_on_computer´ (delay 0) DISABLED
+´point_debug_013´ ElementDebug 100098
+	DISABLED
+	as_subtitle false
+	debug_string hack = Z warehouse B
+	show_instigator false
+´output_hack_complete_ZwarehouseA´ ElementInstanceOutput 100099
+	event hack_complete_Zwarehouse_A 
+	on_executed
+		´output_correct_warehouseA_found_on_computer´ (delay 0) DISABLED
+´output_hack_complete_ZwarehouseC´ ElementInstanceOutput 100100
+	event hack_complete_Zwarehouse_C
+	on_executed
+		´output_correct_warehouseC_found_on_computer´ (delay 0) DISABLED
+´point_debug_014´ ElementDebug 100101
+	DISABLED
+	as_subtitle false
+	debug_string hack = Z warehouse C
+	show_instigator false
+´logic_toggle_007´ ElementToggle 100102
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Zwarehouse_B´ DISABLED
+	on_executed
+		´output_hack_complete_ZwarehouseB´ (delay 0)
+´logic_toggle_008´ ElementToggle 100103
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Zwarehouse_A´ DISABLED
+	on_executed
+		´output_hack_complete_ZwarehouseA´ (delay 0)
+´logic_toggle_009´ ElementToggle 100104
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_Zwarehouse_C´ DISABLED
+	on_executed
+		´output_hack_complete_ZwarehouseC´ (delay 0)
+´point_debug_015´ ElementDebug 100107
+	DISABLED
+	as_subtitle false
+	debug_string hack = Z warehouse A
+	show_instigator false
+´link_Zwarehouse_B´ MissionScriptElement 100108
+	DISABLED
+	on_executed
+		´point_debug_013´ (delay 0) DISABLED
+		´logic_toggle_007´ (delay 0)
+		´show_companyZ_warehouseB´ (delay 0)
+´link_Zwarehouse_A´ MissionScriptElement 100110
+	DISABLED
+	on_executed
+		´point_debug_015´ (delay 0) DISABLED
+		´logic_toggle_008´ (delay 0)
+		´show_companyZ_warehouseA´ (delay 0)
+´link_Zwarehouse_C´ MissionScriptElement 100111
+	DISABLED
+	on_executed
+		´point_debug_014´ (delay 0) DISABLED
+		´logic_toggle_009´ (delay 0)
+		´show_companyZ_warehouseC´ (delay 0)
+´toggle_ON_ABC´ ElementToggle 100090
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Xwarehouse_A´ DISABLED
+		2 ´link_Ywarehouse_B´ DISABLED
+		3 ´link_Zwarehouse_C´ DISABLED
+	on_executed
+		´point_debug_016´ (delay 0) DISABLED
+´toggle_ON_ACB´ ElementToggle 100091
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Xwarehouse_A´ DISABLED
+		2 ´link_Ywarehouse_C´ DISABLED
+		3 ´link_Zwarehouse_B´ DISABLED
+	on_executed
+		´point_debug_017´ (delay 0) DISABLED
+´toggle_ON_BAC´ ElementToggle 100094
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Xwarehouse_B´ DISABLED
+		2 ´link_Ywarehouse_A´ DISABLED
+		3 ´link_Zwarehouse_C´ DISABLED
+	on_executed
+		´point_debug_018´ (delay 0) DISABLED
+´toggle_ON_BCA´ ElementToggle 100105
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Zwarehouse_B´ DISABLED
+		2 ´link_Xwarehouse_C´ DISABLED
+		3 ´link_Ywarehouse_A´ DISABLED
+	on_executed
+		´point_debug_020´ (delay 0) DISABLED
+´toggle_ON_CAB´ ElementToggle 100106
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Xwarehouse_B´ DISABLED
+		2 ´link_Ywarehouse_C´ DISABLED
+		3 ´link_Zwarehouse_A´ DISABLED
+	on_executed
+		´point_debug_019´ (delay 0) DISABLED
+´toggle_ON_CBA´ ElementToggle 100109
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_Xwarehouse_C´ DISABLED
+		2 ´link_Ywarehouse_B´ DISABLED
+		3 ´link_Zwarehouse_A´ DISABLED
+	on_executed
+		´point_debug_021´ (delay 0) DISABLED
+´input_enable_CAB´ ElementInstanceInput 100112
+	event enable_CAB
+	on_executed
+		´toggle_ON_CAB´ (delay 0)
+´input_enable_BCA´ ElementInstanceInput 100113
+	event enable_BCA
+	on_executed
+		´toggle_ON_BCA´ (delay 0)
+´input_enable_CBA´ ElementInstanceInput 100114
+	event enable_CBA
+	on_executed
+		´toggle_ON_CBA´ (delay 0)
+´input_enable_ACB´ ElementInstanceInput 100115
+	event enable_ACB
+	on_executed
+		´toggle_ON_ACB´ (delay 0)
+´input_enable_ABC´ ElementInstanceInput 100116
+	event enable_ABC
+	on_executed
+		´toggle_ON_ABC´ (delay 0)
+´input_enable_BAC´ ElementInstanceInput 100117
+	event enable_BAC
+	on_executed
+		´toggle_ON_BAC´ (delay 0)
+´trigger_hack_started´ ElementUnitSequenceTrigger 100118
+	TRIGGER TIMES 3
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+	on_executed
+		´disable_all_texts´ (delay 0)
+´disable_all_texts´ ElementDisableUnit 100119
+	position -800, 1100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´output_correct_warehouseA_found_on_computer´ ElementInstanceOutput 100120
+	DISABLED
+	TRIGGER TIMES 1
+	event correct_warehouseA_found_on_computer
+	on_executed
+		´toggle_OFF_computer_interaction´ (delay 0)
+´input_Warehouse_A_correct´ ElementInstanceInput 100129
+	event Warehouse_A_correct
+	on_executed
+		´logic_toggle_012´ (delay 0)
+´input_Warehouse_B_correct´ ElementInstanceInput 100130
+	event Warehouse_B_correct
+	on_executed
+		´logic_toggle_011´ (delay 0)
+´input_Warehouse_C_correct´ ElementInstanceInput 100131
+	event Warehouse_C_correct
+	on_executed
+		´logic_toggle_010´ (delay 0)
+´output_correct_warehouseB_found_on_computer´ ElementInstanceOutput 100121
+	DISABLED
+	TRIGGER TIMES 1
+	event correct_warehouseB_found_on_computer
+	on_executed
+		´toggle_OFF_computer_interaction´ (delay 0)
+´output_correct_warehouseC_found_on_computer´ ElementInstanceOutput 100122
+	DISABLED
+	TRIGGER TIMES 1
+	event correct_warehouseC_found_on_computer
+	on_executed
+		´toggle_OFF_computer_interaction´ (delay 0)
+´logic_toggle_010´ ElementToggle 100123
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´output_correct_warehouseC_found_on_computer´ DISABLED
+´logic_toggle_011´ ElementToggle 100124
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´output_correct_warehouseB_found_on_computer´ DISABLED
+´logic_toggle_012´ ElementToggle 100125
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´output_correct_warehouseA_found_on_computer´ DISABLED
+´toggle_OFF_computer_interaction´ ElementToggle 100126
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_enable_interaction´
+		2 ´seq_enable_interaction´
+	on_executed
+		´disable_interaction´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100127
+	position -1400, 2000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´point_debug_016´ ElementDebug 100128
+	DISABLED
+	as_subtitle false
+	debug_string ABC_ENABLED
+	show_instigator false
+´point_debug_017´ ElementDebug 100132
+	DISABLED
+	as_subtitle false
+	debug_string ACB_ENABLED
+	show_instigator false
+´point_debug_018´ ElementDebug 100133
+	DISABLED
+	as_subtitle false
+	debug_string BAC_ENABLED
+	show_instigator false
+´point_debug_019´ ElementDebug 100134
+	DISABLED
+	as_subtitle false
+	debug_string CAB_ENABLED
+	show_instigator false
+´point_debug_020´ ElementDebug 100135
+	DISABLED
+	as_subtitle false
+	debug_string BCA_ENABLED
+	show_instigator false
+´point_debug_021´ ElementDebug 100136
+	DISABLED
+	as_subtitle false
+	debug_string CBA_ENABLED
+	show_instigator false
+´turn_on_screen´ ElementUnitSequence 100137
+	position -700, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´logic_random_warehouse´ (delay 0)
+´instance_start_15s_hack´ ElementInstanceInput 100138
+	event enable_15s_hack
+	on_executed
+		´seq_15s_hack´ (delay 0)
+´seq_15s_hack´ ElementUnitSequence 100139
+	position -2000, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence set_hack_time_15
+			time 0
+	on_executed
+		´seq_enable_interact´ (delay 0)
+´show_companyZ_warehouseA´ ElementUnitSequence 100002
+	position -1800, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_c_row_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_a_row_1
+			time 0
+´show_companyZ_warehouseB´ ElementUnitSequence 100141
+	position -2000, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_c_row_2
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_b_row_2
+			time 0
+´show_companyZ_warehouseC´ ElementUnitSequence 100142
+	position -2200, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_c_row_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_c_row_3
+			time 0
+´show_companyY_warehouseA´ ElementUnitSequence 100143
+	position -1100, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_b_row_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_a_row_1
+			time 0
+´show_companyY_warehouseB´ ElementUnitSequence 100144
+	position -1300, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_b_row_2
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_b_row_2
+			time 0
+´show_companyY_warehouseC´ ElementUnitSequence 100145
+	position -1500, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_b_row_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_c_row_3
+			time 0
+´show_companyX_warehouseC´ ElementUnitSequence 100146
+	position -800, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_a_row_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_c_row_3
+			time 0
+´show_companyX_warehouseB´ ElementUnitSequence 100147
+	position -600, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_a_row_2
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_b_row_2
+			time 0
+´show_companyX_warehouseA´ ElementUnitSequence 100148
+	position -400, 1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_company_a_row_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/equipment/sand_interactable_hack_computer/sand_interactable_hack_computer/001 (0, 0, 80)
+			notify_unit_sequence state_show_warehouse_a_row_1
+			time 0

@@ -1,0 +1,283 @@
+´used_tape_recorder´ ElementUnitSequenceTrigger 100002
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+	on_executed
+		´play_recording_006´ (delay 0)
+		´play_recording_005´ (delay 0)
+		´play_recording_004´ (delay 0)
+		´play_recording_003´ (delay 0)
+		´play_recording_002´ (delay 0)
+		´play_recording_001´ (delay 0)
+		´func_instance_output_002´ (delay 0)
+´set_recording_001´ ElementInstanceInput 100003
+	BASE DELAY 1
+	event set_recording_001
+	on_executed
+		´set_recording_counter_001´ (delay 0)
+		´set_audio_log´ (delay 0)
+´recording_counter´ ElementCounter 100004
+	counter_target 0
+´set_recording_counter_001´ ElementCounterOperator 100005
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´set_recording_002´ ElementInstanceInput 100006
+	BASE DELAY 1
+	event set_recording_002
+	on_executed
+		´set_recording_counter_002´ (delay 0)
+		´set_audio_log´ (delay 0)
+´set_recording_counter_002´ ElementCounterOperator 100007
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´set_recording_003´ ElementInstanceInput 100008
+	BASE DELAY 1
+	event set_recording_003
+	on_executed
+		´set_recording_counter_003´ (delay 0)
+		´set_audio_log´ (delay 0)
+´set_recording_counter_003´ ElementCounterOperator 100009
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´set_recording_004´ ElementInstanceInput 100010
+	BASE DELAY 1
+	event set_recording_004
+	on_executed
+		´set_recording_counter_004´ (delay 0)
+		´set_audio_log´ (delay 0)
+´set_recording_counter_004´ ElementCounterOperator 100011
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´set_recording_005´ ElementInstanceInput 100012
+	BASE DELAY 1
+	event set_recording_005
+	on_executed
+		´set_recording_counter_005´ (delay 0)
+		´set_audio_log´ (delay 0)
+´set_recording_counter_005´ ElementCounterOperator 100013
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´set_recording_006´ ElementInstanceInput 100014
+	BASE DELAY 1
+	event set_recording_006
+	on_executed
+		´set_recording_counter_006´ (delay 0)
+		´set_audio_log´ (delay 0)
+´set_recording_counter_006´ ElementCounterOperator 100015
+	amount 6
+	operation set
+	instance_var_names
+	elements
+		1 ´recording_counter´
+´play_recording_001´ ElementCounterFilter 100016
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´snippet_001´ (delay 0)
+´play_recording_002´ ElementCounterFilter 100017
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´snippet_002´ (delay 0)
+´play_recording_003´ ElementCounterFilter 100018
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´snippet_003´ (delay 0)
+´play_recording_004´ ElementCounterFilter 100019
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_004´ (delay 0)
+		´snippet_004´ (delay 0)
+´play_recording_005´ ElementCounterFilter 100020
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_005´ (delay 0)
+		´snippet_005´ (delay 0)
+´play_recording_006´ ElementCounterFilter 100021
+	check_type equal
+	needed_to_execute all
+	value 6
+	elements
+		1 ´recording_counter´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´snippet_006´ (delay 0)
+´stop_recording´ ElementUnitSequence 100022
+	position 0, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence tape_stop
+			time 0
+	on_executed
+		´enable_interaction´ (delay 0.5)
+´enable_interaction´ ElementUnitSequence 100023
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+´set_audio_log´ MissionScriptElement 100024
+	on_executed
+		´show_enable´ (delay 0)
+´show_enable´ ElementUnitSequence 100025
+	position 400, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+´recording_stopped_playing´ MissionScriptElement 100026
+	on_executed
+		´stop_recording´ (delay 0)
+		´func_instance_output_001´ (delay 0)
+´setup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100028
+	position 300, -500, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_mcmansion/props/mcm_fbi_taperecorder/mcm_fbi_taperecorder/001 (0, 0, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+´point_debug_001´ ElementDebug 100029
+	as_subtitle false
+	debug_string Recording no 001
+	show_instigator false
+´point_debug_002´ ElementDebug 100030
+	as_subtitle false
+	debug_string Recording no 002
+	show_instigator false
+´point_debug_003´ ElementDebug 100031
+	as_subtitle false
+	debug_string Recording no 003
+	show_instigator false
+´point_debug_004´ ElementDebug 100032
+	as_subtitle false
+	debug_string Recording no 004
+	show_instigator false
+´point_debug_005´ ElementDebug 100033
+	as_subtitle false
+	debug_string Recording no 005
+	show_instigator false
+´point_debug_006´ ElementDebug 100034
+	as_subtitle false
+	debug_string Recording no 006
+	show_instigator false
+´snippet_001´ ElementPlaySound 100035
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_01
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 28)
+´snippet_002´ ElementPlaySound 100036
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_02
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 41.5)
+´snippet_003´ ElementPlaySound 100037
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_03
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 28.5)
+´snippet_004´ ElementPlaySound 100038
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_04
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 30)
+´snippet_005´ ElementPlaySound 100039
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_05
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 23)
+´snippet_006´ ElementPlaySound 100040
+	append_prefix false
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_snippet_hb3_06
+	use_instigator false
+	on_executed
+		´recording_stopped_playing´ (delay 45.5)
+´func_instance_output_001´ ElementInstanceOutput 100027
+	event recording done
+´func_instance_output_002´ ElementInstanceOutput 100041
+	event recording interacted

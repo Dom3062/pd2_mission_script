@@ -1,0 +1,135 @@
+´guard_list_WP´ ElementWaypoint 100000
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP´ ElementOperator 100002
+	operation remove
+	elements
+		1 ´guard_list_WP´
+	on_executed
+		´toggle_OFF_stuff´ (delay 0)
+´toggle_OFF_stuff´ ElementToggle 100003
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_WP´
+		2 ´guard_list_WP´
+		3 ´input_enable_guard_list_wp´
+		4 ´guard_list_found´ DISABLED
+´enable_WP´ MissionScriptElement 100004
+	on_executed
+		´guard_list_WP´ (delay 0)
+´miguel_keycard´ ElementInstanceInput 100005
+	event diego_keycard
+	on_executed
+		´show_miguel´ (delay 0)
+´mike_keycard´ ElementInstanceInput 100006
+	event raoul_keycard
+	on_executed
+		´show_mike´ (delay 0)
+´input_enable_guard_list_wp´ ElementInstanceInput 100008
+	event enable_guard_list_wp
+	on_executed
+		´toggle_ON_trigger´ (delay 0)
+´output_guard_list_found´ ElementInstanceOutput 100010
+	event guard_list_found
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_units´ (delay 0)
+´disable_units´ ElementDisableUnit 100012
+	position 400, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´raul_keycard´ ElementInstanceInput 100013
+	event pedro_keycard
+	on_executed
+		´show_raul´ (delay 0)
+´sanchez_keycard´ ElementInstanceInput 100014
+	event roberto_keycard
+	on_executed
+		´show_sanchez´ (delay 0)
+´show_miguel´ ElementUnitSequence 100022
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_guard_list/fex_prop_guard_list/001 (-10, 0, 125)
+			notify_unit_sequence show_name_miguel
+			time 0
+´show_raul´ ElementUnitSequence 100024
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_guard_list/fex_prop_guard_list/001 (-10, 0, 125)
+			notify_unit_sequence show_name_raul
+			time 0
+´show_sanchez´ ElementUnitSequence 100025
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_guard_list/fex_prop_guard_list/001 (-10, 0, 125)
+			notify_unit_sequence show_name_sanchez
+			time 0
+´guard_list_found´ ElementAreaTrigger 100001
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -150, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_guard_list_found´ (delay 0)
+		´remove_WP´ (delay 0)
+´toggle_ON_trigger´ ElementToggle 100007
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´guard_list_found´ DISABLED
+	on_executed
+		´enable_WP´ (delay 70-80)
+´input_disable_WP´ ElementInstanceInput 100009
+	event disable_guard_list_WP
+	on_executed
+		´remove_WP´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100015
+	TRIGGER TIMES 1
+	global_event police_called
+	position 400, 100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´remove_WP´ (delay 0)
+´show_mike´ ElementUnitSequence 100016
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fex/props/fex_prop_guard_list/fex_prop_guard_list/001 (-10, 0, 125)
+			notify_unit_sequence show_name_mucho_mike
+			time 0

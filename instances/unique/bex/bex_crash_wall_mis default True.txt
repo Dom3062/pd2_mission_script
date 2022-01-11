@@ -1,0 +1,68 @@
+´destroy_wall_input´ ElementInstanceInput 100002
+	event destroy_wall
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´enable´ (delay 3)
+´func_sequence_001´ ElementUnitSequence 100003
+	position -300, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/architecture/ext/bex_ext_bank/bex_bldg_bank_carcrash_door/001 (0, 0, -400)
+			notify_unit_sequence damaged
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/architecture/int/bext_int_destroyed_wall/bex_int_destroyed_wall_brick/001 (-25, 0, 0)
+			notify_unit_sequence destroyed
+			time 0
+	on_executed
+		´teammate_comment_002´ (delay 1-2)
+´teammate_comment_001´ ElementTeammateComment 100004
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g60
+	position -25, -200, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_002´ ElementTeammateComment 100005
+	close_to_element true
+	comment v54
+	position -50, -200, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_lookat_trigger_001´ ElementLookAtTrigger 100006
+	DISABLED
+	TRIGGER TIMES 1
+	distance 400
+	in_front false
+	interval 0.1
+	position -25, -200, 100
+	rotation 0, 0, 0, -1
+	sensitivity 0,95
+	on_executed
+		´teammate_comment_001´ (delay 0)
+´enable´ ElementToggle 100007
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_lookat_trigger_001´ DISABLED
+´point_explosion_damage_001´ ElementExplosionDamage 100008
+	damage 40
+	position -21, -200, 100
+	range 300
+	rotation 0, 0, 0, -1
+´destroyed_trigger´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_destroy
+			notify_unit_id units/pd2_dlc_bex/architecture/int/bext_int_destroyed_wall/bex_int_destroyed_wall_brick/001 (-25, 0, 0)
+	on_executed
+		´point_explosion_damage_001´ (delay 0)

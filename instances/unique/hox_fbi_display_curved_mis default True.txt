@@ -1,0 +1,227 @@
+´start_display´ ElementInstanceInput 100001
+	event start_display
+	on_executed
+		´select_screen´ (delay 0.05)
+		´setup_random_change_time´ (delay 0)
+		´enable_cutoff´ (delay 0)
+´select_screen´ ElementRandom 100002
+	amount 1
+	ignore_disabled true
+	on_executed
+		´display_001´ (delay 0)
+		´display_002´ (delay 0)
+		´display_003´ (delay 0)
+		´display_004´ (delay 0)
+´display_001´ ElementUnitSequence 100003
+	TRIGGER TIMES 1
+	position -300, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_a
+			time 0
+	on_executed
+		´3_times´ (delay 0)
+´display_002´ ElementUnitSequence 100006
+	TRIGGER TIMES 1
+	position -200, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_b
+			time 0
+	on_executed
+		´3_times´ (delay 0)
+´display_003´ ElementUnitSequence 100007
+	TRIGGER TIMES 1
+	position -100, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_c
+			time 0
+	on_executed
+		´3_times´ (delay 0)
+´display_004´ ElementUnitSequence 100008
+	TRIGGER TIMES 1
+	position 0, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_d
+			time 0
+	on_executed
+		´3_times´ (delay 0)
+´setup_random_change_time´ ElementRandom 100009
+	amount 1
+	ignore_disabled true
+	on_executed
+		´time001´ (delay 0)
+		´time002´ (delay 0)
+		´time003´ (delay 0)
+		´time004´ (delay 0)
+´set_next_screen´ MissionScriptElement 100010
+	on_executed
+		´cutoff´ (delay 0)
+		´setup_random_change_time´ (delay 0)
+´time001´ MissionScriptElement 100011
+	on_executed
+		´set_next_screen´ (delay 13.37)
+´time002´ MissionScriptElement 100012
+	on_executed
+		´set_next_screen´ (delay 4.21)
+´time003´ MissionScriptElement 100013
+	on_executed
+		´set_next_screen´ (delay 7.72)
+´time004´ MissionScriptElement 100014
+	on_executed
+		´set_next_screen´ (delay 9.06)
+´display_006´ ElementUnitSequence 100015
+	position 100, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_f
+			time 0
+	on_executed
+		´stop_screening´ (delay 0)
+´power_lost´ ElementInstanceInput 100016
+	event power_lost
+	on_executed
+		´disable_cutoff´ (delay 0)
+		´select_dead_state_timer´ (delay 0)
+´enable_cutoff´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´cutoff´
+´disable_cutoff´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´cutoff´
+´select_dead_state_timer´ ElementRandom 100023
+	amount 1
+	ignore_disabled true
+	on_executed
+		´dead001´ (delay 0)
+		´dead002´ (delay 0)
+		´dead003´ (delay 0)
+´display_005´ ElementUnitSequence 100024
+	position 200, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+			notify_unit_sequence use_screen_e
+			time 0
+´power_resumed´ ElementInstanceInput 100025
+	event power_resumed
+	on_executed
+		´enable_cutoff´ (delay 5)
+		´set_timer_after_reboot´ (delay 0)
+´short001´ MissionScriptElement 100026
+	on_executed
+		´rebooted´ (delay 1.55)
+´set_timer_after_reboot´ ElementRandom 100027
+	amount 1
+	ignore_disabled true
+	on_executed
+		´short001´ (delay 0)
+		´short002´ (delay 0)
+		´short003´ (delay 0)
+		´short004´ (delay 0)
+´short002´ MissionScriptElement 100028
+	on_executed
+		´rebooted´ (delay 3.25)
+´short003´ MissionScriptElement 100029
+	on_executed
+		´rebooted´ (delay 1.38)
+´short004´ MissionScriptElement 100030
+	on_executed
+		´rebooted´ (delay 2.37)
+´3_times´ ElementCounter 100022
+	counter_target 3
+	on_executed
+		´enable_all_motives´ (delay 0)
+		´reset´ (delay 0.05)
+´enable_all_motives´ ElementToggle 100032
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´display_001´
+		2 ´display_002´
+		3 ´display_003´
+		4 ´display_004´
+´reset´ ElementCounterOperator 100033
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´3_times´
+´cutoff´ MissionScriptElement 100034
+	on_executed
+		´select_screen´ (delay 0)
+´dead001´ MissionScriptElement 100036
+	on_executed
+		´display_005´ (delay 0.95)
+´dead002´ MissionScriptElement 100037
+	on_executed
+		´display_005´ (delay 0.25)
+´dead003´ MissionScriptElement 100038
+	on_executed
+		´display_005´ (delay 0.35)
+´stop_screening´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´select_screen´
+		2 ´set_next_screen´
+´rebooted´ ElementLogicChance 100035
+	chance 90
+	position -50, 800, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´select_screen´ (delay 0)
+´crashed´ ElementLogicChanceTrigger 100047
+	outcome fail
+	position 100, 750, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´rebooted´
+	on_executed
+		´display_006´ (delay 0)
+		´crash_again´ (delay 0)
+´crash_again´ ElementLogicChanceOperator 100021
+	chance 0
+	operation set_chance
+	position 50, 750, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´rebooted´
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence kill_monitor
+			notify_unit_id units/payday2/props/stn_prop_screen/stn_prop_screen_b/001 (0, 0, 0)
+	on_executed
+		´stop_screening´ (delay 0)

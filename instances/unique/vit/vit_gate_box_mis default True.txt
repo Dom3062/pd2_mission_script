@@ -1,0 +1,125 @@
+´set_red_light_input´ ElementInstanceInput 100001
+	event set_red_light
+	on_executed
+		´set_red_light´ (delay 0)
+´set_green_light_input´ ElementInstanceInput 100002
+	event set_green_light
+	on_executed
+		´set_red_light_2´ (delay 0)
+´set_blue_light_input´ ElementInstanceInput 100003
+	event set_blue_light
+	on_executed
+		´set_blue_light´ (delay 0)
+´set_yellow_light_input´ ElementInstanceInput 100004
+	event set_yellow_light
+	on_executed
+		´set_yellow_light´ (delay 0)
+´set_red_light´ ElementUnitSequence 100005
+	position -300, 200, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence show_red_light
+			time 0
+´set_red_light_2´ ElementUnitSequence 100006
+	position -300, 100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence show_green_light
+			time 0
+´set_blue_light´ ElementUnitSequence 100007
+	position -300, 0, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence show_blue_light
+			time 0
+´set_yellow_light´ ElementUnitSequence 100008
+	position -300, -100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence show_yellow_light
+			time 0
+´enable_interaction_input´ ElementInstanceInput 100009
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100010
+	position -300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence enable_interaction
+			time 0
+´disable_interaction_input´ ElementInstanceInput 100011
+	event disable_interaction
+	on_executed
+		´disable_interaction´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100012
+	position -300, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence disable_interaction
+			time 0
+´interacted_with_box´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id 100000
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+	on_executed
+		´output_opened_box´ (delay 0)
+´output_opened_box´ ElementInstanceOutput 100014
+	event opened_box
+´point_spawn_player_001´ ElementPlayerSpawner 100015
+	DISABLED
+	EXECUTE ON STARTUP
+	position -100, -250, 0
+	rotation 0, 0, 0, -1
+	state standard
+´door_open_input´ ElementInstanceInput 100016
+	event door_open
+	on_executed
+		´door_open_text´ (delay 0)
+´door_open_text´ ElementUnitSequence 100017
+	position -300, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence set_text_open
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_light_box/bex_prop_light_box/001 (0, 0, 100.004)
+			notify_unit_sequence disable_leds
+			time 0

@@ -1,0 +1,332 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0.1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´add_door_blocker´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 1)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´equipment_thermite_paste´ (delay 0)
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´police_called´ (delay 1)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-16, -24, 107)
+			notify_unit_sequence disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_prop_oval_office_wall_door/vit_prop_oval_office_wall_door/001 (50, 0, 0)
+			notify_unit_sequence door_close
+			time 0
+´input_make_thermite_interactable´ ElementInstanceInput 100007
+	TRIGGER TIMES 1
+	event make_thermite_interactable
+	on_executed
+		´enable_thermite_interaction´ (delay 0)
+		´disable_2´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100010
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-64, -50, 0)
+´remove_door_blocker´ ElementNavObstacle 100011
+	operation remove
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-64, -50, 0)
+´door_opened_regular_way´ MissionScriptElement 100012
+	on_executed
+		´remove_door_blocker´ (delay 0)
+		´seq_open_door´ (delay 0)
+		´output_door_lockpicked´ (delay 0)
+		´disable´ (delay 0)
+´enable_thermite_interaction´ ElementUnitSequence 100015
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-16, -24, 107)
+			notify_unit_sequence enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-16, -24, 107)
+			notify_unit_sequence state_interaction_thermite
+			time 0
+	on_executed
+		´WP_use_thermite´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100016
+	TRIGGER TIMES 1
+	global_event police_called
+	position 800, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´disable_lockpick_interaction´ (delay 0)
+		´enable´ (delay 0)
+´disable_lockpick_interaction´ ElementUnitSequence 100017
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/001 (-62, -19, 89)
+			notify_unit_sequence disable
+			time 0
+´door_opened´ ElementUnitSequenceTrigger 100018
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/001 (-62, -19, 89)
+	on_executed
+		´door_opened_regular_way´ (delay 0)
+´seq_open_door´ ElementUnitSequence 100019
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_prop_oval_office_wall_door/vit_prop_oval_office_wall_door/001 (50, 0, 0)
+			notify_unit_sequence door_open
+			time 0
+´link_thermite_done´ MissionScriptElement 100020
+	DISABLED
+	on_executed
+		´seq_burn_door_open´ (delay 1) DISABLED
+		´env_effect_stop_001´ (delay 0) DISABLED
+		´sound_thermite_done´ (delay 0)
+		´point_blurzone_002´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+		´remove_stuff´ (delay 0)
+		´output_thermite_done´ (delay 0)
+		´disable´ (delay 0)
+´seq_burn_door_open´ ElementUnitSequence 100021
+	DISABLED
+	position 1400, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_prop_oval_office_wall_door/vit_prop_oval_office_wall_door/001 (50, 0, 0)
+			notify_unit_sequence door_open
+			time 0
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´equipment_thermite_paste´ ElementEquipment 100023
+	amount 1
+	equipment thermite
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+´area_player_carries_thermite_paste´ ElementAreaTrigger 100024
+	TRIGGER TIMES 1
+	amount 1
+	depth 500000
+	height 5000
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 900, 300, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500000
+	rules_element_ids
+		1 ´rule_thermite_paste´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´input_make_thermite_interactable´ (delay 1)
+´rule_thermite_paste´ ElementInstigatorRule 100025
+	instigator player
+	invert false
+	rules
+		player
+			mission_equipment
+				1 thermite
+´link_thermite_placed´ MissionScriptElement 100026
+	on_executed
+		´remove_WP_use_thermite´ (delay 0)
+		´point_blurzone_001´ (delay 0)
+		´output_thermite_placed´ (delay 0)
+		´delay_thermite´ (delay 0)
+		´show_scorch_marks´ (delay 0)
+´placed_thermite´ ElementUnitSequenceTrigger 100027
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-16, -24, 107)
+	on_executed
+		´link_thermite_placed´ (delay 0)
+´effect_thermite_burning´ ElementPlayEffect 100028
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_long_30sec_burn
+	max_amount 0
+	position -13, -14, 100
+	random_time 0
+	rotation -0.469472, 0, 0, -0.882948
+	screen_space false
+´WP_use_thermite´ ElementWaypoint 100029
+	icon pd2_fire
+	only_in_civilian false
+	only_on_instigator false
+	position -15, -14, 100
+	rotation -0.707107, 0, 0, -0.707107
+	text_id debug_none
+´remove_WP_use_thermite´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´WP_use_thermite´
+´delay_thermite´ MissionScriptElement 100031
+	on_executed
+		´link_thermite_done´ (delay 55-60) DISABLED
+		´remove_stuff´ (delay 60)
+´env_effect_stop_001´ ElementStopEffect 100032
+	DISABLED
+	operation fade_kill
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´effect_thermite_burning´
+´sound_thermite_start´ ElementPlaySound 100033
+	append_prefix false
+	interrupt true
+	position -15, -14, 100
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event thermite_paste_start
+	use_instigator false
+´sound_thermite_done´ ElementPlaySound 100034
+	append_prefix false
+	interrupt true
+	position -15, -14, 100
+	rotation -0.707107, 0, 0, -0.707107
+	sound_event thermite_paste_finish
+	use_instigator false
+´point_blurzone_001´ ElementBlurZone 100035
+	height 200
+	mode 1
+	position -9, -14, 100
+	radius 250
+	rotation -0.707107, 0, 0, -0.707107
+´point_blurzone_002´ ElementBlurZone 100036
+	height 200
+	mode 0
+	position -9, -14, 129
+	radius 150
+	rotation -0.707107, 0, 0, -0.707107
+´point_debug_002´ ElementDebug 100037
+	DISABLED
+	as_subtitle false
+	debug_string link_thermite_done
+	show_instigator false
+´remove_stuff´ ElementOperator 100038
+	operation remove
+	elements
+		1 ´point_blurzone_001´
+		2 ´sound_thermite_start´
+	on_executed
+		´output_thermite_done´ (delay 0)
+		´enable_lockpick´ (delay 5)
+´output_thermite_done´ ElementInstanceOutput 100039
+	event thermite_done
+´output_door_lockpicked´ ElementInstanceOutput 100040
+	event door_lockpicked
+´output_thermite_placed´ ElementInstanceOutput 100041
+	event thermite_placed
+´area_player_close_to_door´ ElementAreaTrigger 100042
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -150, 0
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_seen_door´ (delay 0)
+´output_seen_door´ ElementInstanceOutput 100043
+	event seen_door
+´disable´ ElementToggle 100044
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_make_thermite_interactable´
+´enable´ ElementToggle 100045
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_door´ DISABLED
+´disable_2´ ElementToggle 100046
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_player_close_to_door´ DISABLED
+´enable_lockpick´ ElementUnitSequence 100008
+	position 1500, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/001 (-62, -19, 89)
+			notify_unit_sequence enable
+			time 0
+´show_scorch_marks´ ElementUnitSequence 100047
+	position 1300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/props/vit_prop_oval_office_wall_door/vit_prop_oval_office_wall_door/001 (50, 0, 0)
+			notify_unit_sequence show_scorch_marks
+			time 0

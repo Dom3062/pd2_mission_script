@@ -1,0 +1,790 @@
+´Game Start´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+	on_executed
+		´Game Start_2´ (delay 0)
+´shape_whole_ring´ ElementShape 100013
+	depth 959,2
+	height 214,812
+	position 0, -400, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 560
+´shape_middle_ring´ ElementShape 100014
+	depth 506,764
+	height 210,516
+	position 0, -200, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 560
+´AUTO START´ MissionScriptElement 100016
+	EXECUTE ON STARTUP
+	on_executed
+		´Disable_All´ (delay 0)
+		´logic_custom_safehouse_filter_001´ (delay 0)
+´Game Start_2´ MissionScriptElement 100019
+	on_executed
+		´Actual Timer - 60 seconds´ (delay 0)
+		´Start_Audio´ (delay 0)
+		´start_timer´ (delay 0)
+		´enter´ (delay 0)
+		´enter_2´ (delay 15)
+		´enter_3´ (delay 30)
+´Goalie´ ElementUnitSequence 100044
+	position 1150, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence anim_goalie
+			time 0
+´2nd player´ MissionScriptElement 100029
+	on_executed
+		´player 1´ (delay 0)
+´3rd player´ MissionScriptElement 100045
+	on_executed
+		´player 2´ (delay 0)
+´player 1´ ElementUnitSequence 100046
+	position 1250, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence anim_player
+			time 0
+´player 2´ ElementUnitSequence 100047
+	position 1350, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence show_player
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence anim_player
+			time 0
+´shape_goal´ ElementShape 100048
+	depth 116,639
+	height 174,354
+	position 0, 55, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 177,408
+´Scored_Goal´ ElementAreaReportTrigger 100036
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 950, 350, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_goal´
+		2 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+		1 100048
+		2 100117
+	on_executed
+		´scored´ (delay 0) (alternative enter)
+´remove´ ElementCarry 100037
+	operation remove
+	type_filter chl_puck
+	on_executed
+		´add 1´ (delay 0)
+´Reset_Puck´ ElementUnitSequenceTrigger 100032
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+	on_executed
+		´Puck Logic´ (delay 0)
+´reset´ ElementUnitSequence 100038
+	position 850, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´Puck Logic´ MissionScriptElement 100041
+	on_executed
+		´On´ (delay 1)
+		´Off´ (delay 1.5)
+		´reset´ (delay 1.5)
+		´point_feedback_001´ (delay 0)
+		´shot´ (delay 0)
+´missed_goal´ ElementAreaReportTrigger 100049
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 850, -200, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´shape_middle_ring´
+	use_shape_element_ids
+	unit_ids
+		1 100014
+	on_executed
+		´link´ (delay 0) (alternative enter)
+		´goal_missed_output´ (delay 0) (alternative enter)
+´remove_extras´ ElementCarry 100051
+	operation remove
+	type_filter chl_puck
+´link´ MissionScriptElement 100052
+	on_executed
+		´remove_extras´ (delay 0)
+´On´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´missed_goal´ DISABLED
+´Off´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´missed_goal´ DISABLED
+´END GAME - Score Check´ MissionScriptElement 100067
+	on_executed
+		´Puck - Off´ (delay 0)
+		´less´ (delay 0)
+´reset timer´ ElementTimerOperator 100066
+	operation set_time
+	position 1550, -700, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´60 sec timer´
+	on_executed
+		´On_2´ (delay 0)
+´skaters - EXIT´ ElementUnitSequence 100068
+	position 1550, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence anim_goalie_exit
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence anim_player_exit
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence anim_player_exit
+			time 0
+	on_executed
+		´puck_disable´ (delay 0)
+´On_2´ ElementToggle 100069
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Puck Logic´
+		2 ´reset´
+		3 ´Game Start_2´
+		4 ´Scored_Goal´
+		5 ´2nd player´
+		6 ´3rd player´
+		7 ´1st player´
+		8 ´anim_done002´
+		9 ´anim_done001´
+		10 ´anim_done´
+		11 ´Goalie´
+		12 ´player 1´
+		13 ´player 2´
+	on_executed
+		´On - set 1´ (delay 0)
+´point_debug_001´ ElementDebug 100084
+	as_subtitle true
+	debug_string YOU FUCkING DID IT!!!! YOU MONSTER
+	show_instigator false
+´point_debug_002´ ElementDebug 100085
+	as_subtitle true
+	debug_string SOkOL IS DISSAPOINT
+	show_instigator false
+´Reset Game´ MissionScriptElement 100086
+	on_executed
+		´hockey_crowd_loop_Stop´ (delay 0)
+		´reset_score´ (delay 1)
+´Puck - Off´ ElementToggle 100103
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reset´
+		2 ´Puck Logic´
+		3 ´Game Start´
+		4 ´Game Start_2´
+		5 ´Scored_Goal´
+		6 ´2nd player´
+		7 ´3rd player´
+		8 ´1st player´
+		9 ´anim_done002´
+		10 ´anim_done001´
+		11 ´anim_done´
+		12 ´player 2´
+		13 ´player 1´
+		14 ´Goalie´
+	on_executed
+		´skaters - EXIT´ (delay 5)
+´puck_disable´ ElementUnitSequence 100104
+	position 1550, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´Actual Timer - 60 seconds´ MissionScriptElement 100105
+	BASE DELAY 60
+	on_executed
+		´END GAME - Score Check´ (delay 0)
+´On - set 1´ ElementToggle 100106
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´Game Start´
+		2 ´Start_Audio´
+		3 ´win - sound´
+	on_executed
+		´puck_enable´ (delay 0)
+´puck_enable´ ElementUnitSequence 100107
+	position 1550, -850, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´anim_done´ ElementUnitSequenceTrigger 100026
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+	on_executed
+		´1st player´ (delay 0)
+		´point_debug_003´ (delay 0)
+´anim_done001´ ElementUnitSequenceTrigger 100027
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+	on_executed
+		´2nd player´ (delay 0)
+		´point_debug_004´ (delay 0)
+´anim_done002´ ElementUnitSequenceTrigger 100028
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+	on_executed
+		´3rd player´ (delay 0)
+		´point_debug_005´ (delay 0)
+´point_debug_003´ ElementDebug 100030
+	as_subtitle false
+	debug_string 1
+	show_instigator false
+´point_debug_004´ ElementDebug 100033
+	as_subtitle false
+	debug_string 2
+	show_instigator false
+´point_debug_005´ ElementDebug 100034
+	as_subtitle false
+	debug_string 3
+	show_instigator false
+´1st player´ MissionScriptElement 100035
+	on_executed
+		´Goalie´ (delay 0)
+´Disable_All´ ElementDisableUnit 100039
+	position 700, 300, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_gym_sokol_hockey_goal_large/chl_prop_gym_sokol_hockey_goal_large/001 (-4.54747E-12, 40, -3.8147E-06)
+		2 units/pd2_dlc_chill/props/chl_prop_hockey_stick_outline/chl_prop_hockey_stick_outline/001 (-52.5797, -543, 89.8223)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/003 (11, -24, 21)
+		4 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/002 (11, -24, 0)
+		5 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/001 (86, -24, 0)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/004 (86, -24, 21)
+	on_executed
+		´Disable_ALL´ (delay 0)
+´Disable_ALL´ ElementUnitSequence 100040
+	position 700, 250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/001 (-55, 98, 243)
+			notify_unit_sequence state_vis_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/002 (56, 98, 243)
+			notify_unit_sequence state_vis_hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_timer_small/chl_prop_timer_small/001 (-28, 96, 281)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´set highscore clock´ (delay 0)
+´Level_3´ ElementInstanceInput 100043
+	event Level_3
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100050
+	BASE DELAY 0,25
+	on_executed
+		´Enable´ (delay 0)
+´Enable´ ElementEnableUnit 100053
+	position 600, 250, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_gym_sokol_hockey_goal_large/chl_prop_gym_sokol_hockey_goal_large/001 (-4.54747E-12, 40, -3.8147E-06)
+		2 units/pd2_dlc_chill/props/chl_prop_timer_small/chl_prop_timer_small/001 (-28, 96, 281)
+		3 units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/002 (56, 98, 243)
+		4 units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/001 (-55, 98, 243)
+		5 units/pd2_dlc_chill/props/chl_prop_hockey_stick_outline/chl_prop_hockey_stick_outline/001 (-52.5797, -543, 89.8223)
+		6 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/003 (11, -24, 21)
+		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/002 (11, -24, 0)
+		8 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/001 (86, -24, 0)
+		9 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/004 (86, -24, 21)
+	on_executed
+		´Enable_ALL´ (delay 0)
+´Enable_ALL´ ElementUnitSequence 100008
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_equipment_puck/chl_equipment_puck_spawner/001 (-1.52588E-05, -525, 7.00008)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_timer_small/chl_prop_timer_small/001 (-28, 96, 281)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/001 (-55, 98, 243)
+			notify_unit_sequence state_vis_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_scorer/chl_prop_scorer/002 (56, 98, 243)
+			notify_unit_sequence state_vis_show
+			time 0
+´point_feedback_001´ ElementFeedback 100061
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 0,3
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,2
+	camera_shake_sustain 0
+	effect mission_triggered
+	position 850, 250, 2.5
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 0
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´score´ ElementPlaySound 100108
+	append_prefix true
+	interrupt true
+	position 0, 25, 125
+	rotation -3.09086E-08, 0.707107, -0.707107, 3.09086E-08
+	sound_event hockey_score
+	use_instigator false
+´shot´ ElementPlaySound 100109
+	append_prefix false
+	interrupt true
+	position 0, -500, 50
+	rotation 0, 0, 0, -1
+	sound_event hockey_shot
+	use_instigator false
+´hockey_crowd_loop_L´ ElementPlaySound 100065
+	append_prefix true
+	interrupt true
+	position -250, 1.0848E-05, 350
+	rotation 0.707107, 4.32005E-07, 8.324E-07, -0.707107
+	sound_event hockey_crowd_loop_L
+	use_instigator false
+´hockey_crowd_loop_R´ ElementPlaySound 100076
+	append_prefix true
+	interrupt true
+	position 250, 2.03965E-06, 350
+	rotation 0.707107, -7.21125E-09, 7.21125E-09, -0.707107
+	sound_event hockey_crowd_loop_R
+	use_instigator false
+´Start_Audio´ MissionScriptElement 100110
+	TRIGGER TIMES 1
+	on_executed
+		´hockey_crowd_loop_R´ (delay 0)
+		´hockey_crowd_loop_L´ (delay 0)
+´hockey_crowd_loop_Stop´ ElementPlaySound 100112
+	append_prefix true
+	interrupt true
+	position 0, 92, 232
+	rotation 0, 0, 0, -1
+	sound_event hockey_crowd_stop
+	use_instigator false
+´hockey_highscore_L´ ElementPlaySound 100113
+	append_prefix true
+	interrupt true
+	position -250, 7.62939E-06, 350
+	rotation 0.707107, 0, 0, -0.707107
+	sound_event hockey_highscore_L
+	use_instigator false
+´hockey_highscore_R´ ElementPlaySound 100114
+	append_prefix true
+	interrupt true
+	position 250, 2.03965E-06, 350
+	rotation 0.707107, -7.21125E-09, 7.21125E-09, -0.707107
+	sound_event hockey_highscore_R
+	use_instigator false
+´win - sound´ MissionScriptElement 100115
+	TRIGGER TIMES 1
+	on_executed
+		´hockey_highscore_L´ (delay 0)
+		´hockey_highscore_R´ (delay 0)
+´lose´ MissionScriptElement 100116
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_shape_001´ ElementShape 100117
+	depth 500
+	height 500
+	position -400, -500, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 500
+´HIGHSCORE´ ElementStopwatch 100000
+	position 1250, -600, 0
+	rotation 0, 0, 0, -1
+	timer
+		1 0
+		2 0
+´save_highscore´ ElementStopwatchOperator 100003
+	condition greater_than
+	operation save_time
+	position 1500, 100, 0
+	rotation 0, 0, 0, -1
+	save_key chill_hockey_game_highscore
+	time 0
+	elements
+		1 ´HIGHSCORE´
+	on_executed
+		´override_highscore´ (delay 0)
+´greater´ ElementStopwatchFilter 100004
+	check_type greater_than
+	needed_to_execute all
+	value 21
+	stopwatch_value_ids
+		1 ´Sokols Score - 15´
+	elements
+		1 ´HIGHSCORE´
+	on_executed
+		´save_highscore´ (delay 0)
+		´win - sound´ (delay 0)
+´less´ ElementStopwatchFilter 100005
+	check_type less_than
+	needed_to_execute all
+	value 20
+	stopwatch_value_ids
+		1 ´Sokols Score - 15´
+	elements
+		1 ´HIGHSCORE´
+	on_executed
+		´lose´ (delay 0)
+´add 1´ ElementStopwatchOperator 100006
+	condition always
+	operation add_time
+	position 950, 150, 2.5
+	rotation 0, 0, 0, -1
+	save_key 
+	time 1
+	elements
+		1 ´HIGHSCORE´
+´set highscore clock´ ElementStopwatchOperator 100011
+	condition always
+	operation set_time
+	position 700, 200, 2.5
+	rotation 0, 0, 0, -1
+	save_key 
+	time 15
+	elements
+		1 ´Sokols Score - 15´
+	on_executed
+		´Sokols Score - 15´ (delay 0.1)
+´Sokols Score - 15´ ElementStopwatch 100012
+	position 700, 150, 2.5
+	rotation 0, 0, 0, -1
+	timer
+		1 0
+		2 0
+	on_executed
+		´load_better_highscore´ (delay 0.1)
+´load_better_highscore´ ElementStopwatchOperator 100015
+	condition always
+	operation load_time
+	position 700, 100, 2.5
+	rotation 0, 0, 0, -1
+	save_key chill_hockey_game_highscore
+	time 0
+	elements
+		1 ´Sokols Score - 15´
+´override_highscore´ ElementStopwatchOperator 100002
+	condition always
+	operation load_time
+	position 1500, 50, 0
+	rotation 0, 0, 0, -1
+	save_key chill_hockey_game_highscore
+	time 0
+	elements
+		1 ´Sokols Score - 15´
+´60 sec timer´ ElementTimer 100017
+	timer 60
+´start_timer´ ElementTimerOperator 100018
+	operation start
+	position 1550, 400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´60 sec timer´
+´scored´ MissionScriptElement 100020
+	on_executed
+		´remove´ (delay 0)
+		´score´ (delay 0)
+		´greater´ (delay 0)
+		´scored_output´ (delay 0)
+´reset_score´ ElementStopwatchOperator 100021
+	condition always
+	operation set_time
+	position 1550, -650, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 0
+	elements
+		1 ´HIGHSCORE´
+	on_executed
+		´reset timer´ (delay 0)
+´enter´ ElementUnitSequence 100057
+	position 1150, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence anim_goalie_enter
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence show_goalie
+			time 0
+´enter_2´ ElementUnitSequence 100058
+	position 1250, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence anim_player_enter
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence show_player
+			time 0
+´enter_3´ ElementUnitSequence 100059
+	position 1350, 150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence anim_player_enter
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence show_player
+			time 0
+´enter_done´ ElementUnitSequenceTrigger 100063
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_enter_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+	on_executed
+		´1st player´ (delay 0)
+´enter_done_2´ ElementUnitSequenceTrigger 100064
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_enter_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+	on_executed
+		´2nd player´ (delay 0)
+´enter_done_3´ ElementUnitSequenceTrigger 100070
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_enter_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+	on_executed
+		´3rd player´ (delay 0)
+´exit_done´ ElementUnitSequenceTrigger 100060
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_exit_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+		2
+			guis_id 2
+			sequence anim_exit_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+		3
+			guis_id 3
+			sequence anim_exit_done
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+	on_executed
+		´3´ (delay 0)
+´3´ ElementCounter 100071
+	counter_target 3
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100072
+	position 1550, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/001 (0, -10, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/002 (0, -175, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_hockey_players/chl_prop_hockey_players/003 (0, -350, -1.99998)
+			notify_unit_sequence hide_all
+			time 0
+	on_executed
+		´logic_counter_operator_001´ (delay 0)
+´logic_counter_operator_001´ ElementCounterOperator 100073
+	amount 3
+	operation set
+	instance_var_names
+	elements
+		1 ´3´
+	on_executed
+		´Reset Game´ (delay 0)
+´logic_custom_safehouse_filter_001´ ElementCustomSafehouseFilter 100074
+	check_type equal
+	position 650, 350, 0
+	room_id sokol
+	room_tier 3
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´Level_3´ (delay 0)
+´goal_missed_output´ ElementInstanceOutput 100075
+	event goal_missed
+´scored_output´ ElementInstanceOutput 100077
+	event score

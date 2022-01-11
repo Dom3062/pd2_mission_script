@@ -1,0 +1,231 @@
+´start´ MissionScriptElement 100008
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´set_up_gate´ (delay 0)
+		´set_up_c4´ (delay 0)
+´set_up_gate´ MissionScriptElement 100009
+	on_executed
+		´activate´ (delay 0)
+		´add_obstacle´ (delay 1)
+´activate´ ElementUnitSequence 100010
+	position -200, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/001 (-111, 0, 0)
+			notify_unit_sequence activate_door
+			time 0
+´add_obstacle´ ElementNavObstacle 100011
+	operation add
+	position -100, -100, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-60, 7, 0)
+´remove_obstacle´ ElementNavObstacle 100012
+	TRIGGER TIMES 1
+	operation remove
+	position 0, -100, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-60, 7, 0)
+	on_executed
+		´disable_swear´ (delay 0)
+´done_opened´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/001 (-111, 0, 0)
+	on_executed
+		´remove_obstacle´ (delay 0)
+		´disable_SO´ (delay 0)
+		´teammate_comment_hurry´ (delay 0)
+´SO_gate´ ElementSpecialObjective 100014
+	SO_access 15864
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 25
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -84, -97, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 3000
+	search_position -25 -100 0
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´set_up_c4´ MissionScriptElement 100016
+	on_executed
+		´hide_c4´ (delay 0)
+´activate_SO_gate´ MissionScriptElement 100017
+	on_executed
+		´SO_gate´ (delay 0)
+´hide_c4´ ElementUnitSequence 100019
+	position -300, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (-81, -10, 174)
+			notify_unit_sequence hide
+			time 0
+´complete_SO_gate´ ElementSpecialObjectiveTrigger 100020
+	event complete
+	position 300, -200, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_gate´
+	on_executed
+		´start_opening´ (delay 0)
+´start_opening´ MissionScriptElement 100023
+	on_executed
+		´start_explode´ (delay 0)
+		´remove_obstacle´ (delay 5)
+		´disable_SO´ (delay 0)
+´start_explode´ ElementUnitSequence 100024
+	position 200, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (-81, -10, 174)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (-81, -10, 174)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/equipment/c4_charge/c4_plantable/001 (-81, -10, 174)
+			notify_unit_sequence hide
+			time 5
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/001 (-111, 0, 0)
+			notify_unit_sequence sobj_swat_c4_breach
+			time 0
+	on_executed
+		´sound_gate_explode´ (delay 5)
+		´effect_explosion´ (delay 5)
+´disable_SO´ ElementToggle 100025
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_gate´
+´remove_SO´ ElementOperator 100026
+	operation remove
+	elements
+		1 ´SO_gate´
+´area_player´ ElementAreaTrigger 100027
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 300
+	instigator player
+	interval 0.1
+	position -25, -250, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´start_swear´ (delay 0)
+´start_swear´ MissionScriptElement 100028
+	on_executed
+		´teammate_comment_swear´ (delay 0)
+´teammate_comment_swear´ ElementTeammateComment 100029
+	close_to_element true
+	comment g29
+	position 75, -350, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´teammate_comment_hurry´ (delay 8)
+´disable_swear´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_player´
+´sound_gate_explode´ ElementPlaySound 100031
+	append_prefix false
+	position -82, -42, 187
+	rotation 0, 0, 0, -1
+	sound_event c4_explode_metal
+	use_instigator false
+´effect_explosion´ ElementPlayEffect 100032
+	base_time 0
+	effect effects/payday2/particles/explosions/shapecharger_explosion
+	max_amount 0
+	position -81, -42, 147
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´door_already_in_use´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence drill_placed
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/001 (-111, 0, 0)
+	on_executed
+		´disable_SO´ (delay 0)
+		´remove_SO´ (delay 0)
+´interacted_with_c4´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence sobj_swat_c4_breach
+			notify_unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_door_grey/001 (-111, 0, 0)
+	on_executed
+		´remove_obstacle´ (delay 5)
+´instance_activate_SO_gate´ ElementInstanceInput 100018
+	event activate_SO_gate
+	on_executed
+		´activate_SO_gate´ (delay 0)
+´teammate_comment_hurry´ ElementTeammateComment 100021
+	close_to_element true
+	comment g09
+	position 75, -450, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

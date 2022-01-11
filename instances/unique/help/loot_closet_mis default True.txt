@@ -1,0 +1,517 @@
+´env_effect_play_001´ ElementPlayEffect 100002
+	base_time 0
+	effect effects/payday2/particles/smoke_trail/door_smoke
+	max_amount 0
+	position 125, 2.84124E-05, 120
+	random_time 0
+	rotation 0, 0, -1.06581E-14, -1
+	screen_space false
+´stop_fx´ ElementStopEffect 100003
+	operation fade_kill
+	position -200, 450, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´close_2´ (delay 0)
+´coke_001´ ElementLootBag 100006
+	carry_id cloaker_gold
+	from_respawn false
+	position 75, 0, 100
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,918256 -0,119037 0,377674
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´Auto_Start´ MissionScriptElement 100007
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_unit´ (delay 0)
+´spawn_1_bag´ MissionScriptElement 100008
+	on_executed
+		´5_2´ (delay 0)
+´disable_unit´ ElementDisableUnit 100009
+	position -150, 850, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/props/hlp_prop_white_glow/hlp_white_glow/001 (5, -3.21865E-06, 0)
+´spawn_1_bag_2´ ElementInstanceInput 100020
+	event spawn_loot_1
+	on_executed
+		´link´ (delay 0)
+´open_door´ ElementInstanceInput 100026
+	event door_open
+	on_executed
+		´open´ (delay 0)
+´open´ MissionScriptElement 100027
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´ON´ (delay 0)
+		´ghost_start´ (delay 0)
+´close´ MissionScriptElement 100028
+	DISABLED
+	on_executed
+		´OFF´ (delay 0)
+		´ghost_stop´ (delay 0)
+´close_door´ ElementInstanceInput 100029
+	event door_close
+	on_executed
+		´close´ (delay 0) DISABLED
+´show - 1´ ElementEnableUnit 100030
+	position -250, 550, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/props/hlp_prop_white_glow/hlp_white_glow/001 (5, -3.21865E-06, 0)
+	on_executed
+		´show001´ (delay 0.15)
+´hide´ ElementDisableUnit 100031
+	position -300, 450, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/props/hlp_prop_white_glow/hlp_white_glow/001 (5, -3.21865E-06, 0)
+	on_executed
+		´door_closed´ (delay 0)
+´open_2´ ElementUnitSequence 100032
+	position -200, 550, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence 2_disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+	on_executed
+		´show - 1´ (delay 0)
+´close_2´ ElementUnitSequence 100033
+	position -250, 450, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence 2_disable_interaction
+			time 0
+	on_executed
+		´hide´ (delay 0.5)
+´ON´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´close´ DISABLED
+		2 ´link_3´ DISABLED
+		3 ´spawn_loot_1´
+		4 ´spawn_1_bag´
+		5 ´5_2´
+		6 ´add 1´
+		7 ´spawn_1_loot_bag´
+		8 ´pick_bag´
+		9 ´close_3´ DISABLED
+	on_executed
+		´open_2´ (delay 0)
+´OFF´ ElementToggle 100035
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´close´ DISABLED
+		2 ´link_3´ DISABLED
+		3 ´link_4´ DISABLED
+		4 ´spawn_1_bag´
+		5 ´5_2´
+		6 ´spawn_loot_1´
+		7 ´spawn_1_loot_bag´
+		8 ´add 1´
+		9 ´pick_bag´
+		10 ´close_3´ DISABLED
+	on_executed
+		´stop_fx´ (delay 0)
+´show001´ ElementEnableUnit 100037
+	position -300, 550, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´door_opened´ (delay 0)
+´door_opened´ ElementInstanceOutput 100039
+	event door_opened
+	on_executed
+		´Start_Loot´ (delay 0)
+		´show_waypoint´ (delay 0)
+´door_closed´ ElementInstanceOutput 100040
+	event door_closed
+	on_executed
+		´ON_2´ (delay 0)
+´coke_002´ ElementLootBag 100038
+	carry_id cloaker_gold
+	from_respawn false
+	position 75, 0, 125
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,869726 -0,14851 0,470662
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_003´ ElementLootBag 100041
+	carry_id cloaker_gold
+	from_respawn false
+	position 75, 0, 150
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,882896 -0,0133452 -0,469379
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_004´ ElementLootBag 100042
+	carry_id cloaker_gold
+	from_respawn false
+	position 75, 0, 175
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,886033 -0,385277 -0,25789
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_005´ ElementLootBag 100043
+	carry_id cloaker_gold
+	from_respawn false
+	position 75, 0, 75
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,968772 -0,247258 0,0185546
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_006´ ElementLootBag 100044
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 0, 75
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,993127 0,117035 0,00133062
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_007´ ElementLootBag 100045
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 0, 100
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,936384 0,0677989 0,344368
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_008´ ElementLootBag 100046
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 0, 125
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,838273 -0,0540729 -0,542564
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_009´ ElementLootBag 100047
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 0, 150
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,939953 0,245413 -0,237194
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´coke_010´ ElementLootBag 100048
+	carry_id cloaker_gold
+	from_respawn false
+	position 100, 0, 175
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir -0,941787 0,0239435 -0,335358
+	on_executed
+		´something_spawns_from_door´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position -25, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event bell_ring
+	use_instigator false
+´spawn_loot_1´ ElementCounterFilter 100000
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´how_man_bags_alive´
+	on_executed
+		´spawn_1_bag´ (delay 0)
+´how_man_bags_alive´ ElementCounter 100082
+	counter_target 0
+´link´ MissionScriptElement 100084
+	on_executed
+		´5´ (delay 0)
+´5´ ElementCounterOperator 100088
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´how_man_bags_alive´
+´Start_Loot´ MissionScriptElement 100092
+	BASE DELAY 1
+	on_executed
+		´spawn_loot_1´ (delay 0)
+´open_3´ MissionScriptElement 100091
+	on_executed
+		´OFF_2´ (delay 0)
+´open_door_for_spawns´ ElementInstanceInput 100093
+	event open_door_for_spawns
+	on_executed
+		´open_3´ (delay 0)
+´OFF_2´ ElementToggle 100094
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Start_Loot´
+		2 ´env_effect_play_001´
+		3 ´ghost_start´
+		4 ´ghost_stop´
+		5 ´show_waypoint´
+	on_executed
+		´ON_3´ (delay 0)
+´ON_2´ ElementToggle 100095
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Start_Loot´
+		2 ´env_effect_play_001´
+		3 ´ghost_start´
+		4 ´ghost_stop´
+		5 ´show_waypoint´
+	on_executed
+		´set 0´ (delay 0)
+´something_spawns_from_door´ MissionScriptElement 100050
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´delete_bag001´ ElementShape 100072
+	depth 105,823
+	height 39,3772
+	position 100, 0, 7
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 169,725
+´bag_removal´ ElementAreaReportTrigger 100073
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 50, 350, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´delete_bag001´
+	use_shape_element_ids
+	unit_ids
+		1 100072
+	on_executed
+		´func_carry_001´ (delay 0) (alternative enter)
+´func_carry_001´ ElementCarry 100074
+	operation poof
+	type_filter none
+	on_executed
+		´link_4´ (delay 0) DISABLED
+		´link_3´ (delay 0) DISABLED
+´kill_all´ ElementInstanceInput 100023
+	event kill_all
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100076
+	on_executed
+		´OFF_3´ (delay 0)
+´OFF_3´ ElementToggle 100077
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´door_closed´
+		2 ´door_opened´
+		3 ´open_door´
+		4 ´close_door´
+		5 ´open_door_for_spawns´
+		6 ´open_3´
+		7 ´open´
+		8 ´close´ DISABLED
+		9 ´OFF´
+		10 ´ON´
+		11 ´OFF_2´
+		12 ´spawn_1_bag_2´
+		13 ´spawn_1_bag´
+		14 ´Start_Loot´
+		15 ´something_spawns_from_door´
+		16 ´open_2´
+		17 ´show - 1´
+		18 ´show001´
+		19 ´close_2´
+		20 ´hide´
+		21 ´stop_fx´
+		22 ´ON_2´
+		23 ´coke_001´
+		24 ´coke_002´
+		25 ´coke_003´
+		26 ´coke_004´
+		27 ´coke_005´
+		28 ´coke_006´
+		29 ´coke_007´
+		30 ´coke_008´
+		31 ´coke_009´
+		32 ´coke_010´
+		33 ´set 0´
+		34 ´ghost_start´
+	on_executed
+		´close_3´ (delay 0) DISABLED
+		´stop_fx001´ (delay 0)
+´close_3´ ElementUnitSequence 100096
+	DISABLED
+	position -200, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/architecture/lcm/lcm_ext_door_metal_01/001 (-25, 68, 0)
+			notify_unit_sequence 2_disable_interaction
+			time 0
+´stop_fx001´ ElementStopEffect 100097
+	operation fade_kill
+	position -200, 750, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+	on_executed
+		´glow´ (delay 1.15)
+´glow´ ElementDisableUnit 100098
+	position -250, 750, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/props/hlp_prop_white_glow/hlp_white_glow/001 (5, -3.21865E-06, 0)
+	on_executed
+		´ghost_stop´ (delay 0)
+		´remove_3´ (delay 0)
+´add 1´ ElementCounterOperator 100100
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´bags_in_level´
+	on_executed
+		´spawn_1_loot_bag´ (delay 0)
+´bags_in_level´ ElementCounter 100103
+	counter_target 0
+´subtract 1´ ElementCounterOperator 100104
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´bags_in_level´
+	on_executed
+		´Start_Loot´ (delay 0.25)
+´loot_secured´ ElementInstanceInput 100105
+	event loot_secured
+	on_executed
+		´link_3´ (delay 0) DISABLED
+´5_2´ ElementCounterFilter 100107
+	check_type less_than
+	needed_to_execute all
+	value 5
+	elements
+		1 ´bags_in_level´
+	on_executed
+		´add 1´ (delay 0)
+´spawn_1_loot_bag´ MissionScriptElement 100099
+	on_executed
+		´pick_bag´ (delay 0)
+		´Start_Loot´ (delay 0)
+´pick_bag´ ElementRandom 100101
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´coke_004´ (delay 0)
+		´coke_010´ (delay 0)
+		´coke_003´ (delay 0)
+		´coke_009´ (delay 0)
+		´coke_002´ (delay 0)
+		´coke_008´ (delay 0)
+		´coke_001´ (delay 0)
+		´coke_007´ (delay 0)
+		´coke_005´ (delay 0)
+		´coke_006´ (delay 0)
+´set 0´ ElementCounterOperator 100012
+	amount 0
+	operation set
+	instance_var_names
+	elements
+		1 ´bags_in_level´
+	on_executed
+		´remove_2´ (delay 0)
+´link_3´ MissionScriptElement 100051
+	DISABLED
+	on_executed
+		´subtract 1´ (delay 0)
+´link_4´ MissionScriptElement 100052
+	DISABLED
+	on_executed
+		´bag_accidentally_removed´ (delay 0)
+´ON_3´ ElementToggle 100053
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_4´ DISABLED
+´bag_accidentally_removed´ ElementInstanceOutput 100054
+	event bag_accidentally_removed
+´ghost_start´ ElementPlaySound 100055
+	append_prefix false
+	interrupt true
+	position -25, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event hlp_bag_door_loop_start
+	use_instigator false
+´ghost_stop´ ElementPlaySound 100056
+	append_prefix false
+	interrupt true
+	position -25, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event hlp_bag_door_loop_stop
+	use_instigator false
+´remove´ ElementWaypoint 100004
+	icon pd2_goto
+	only_in_civilian false
+	position -25, 0, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_2´ ElementOperator 100005
+	operation remove
+	elements
+		1 ´remove´
+´remove_3´ ElementOperator 100015
+	operation remove
+	elements
+		1 ´remove´
+´show_waypoint´ MissionScriptElement 100016
+	on_executed
+		´remove´ (delay 0)

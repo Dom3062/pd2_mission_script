@@ -1,0 +1,318 @@
+´switch_pulled´ MissionScriptElement 100005
+	on_executed
+		´disable´ (delay 0)
+		´disable_2´ (delay 1.75)
+		´disable_w_lid´ (delay 0) DISABLED
+´pull_switch´ ElementInteraction 100016
+	DISABLED
+	host_only false
+	override_timer 5
+	position 39, -33, 48
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_pull_switch
+	on_executed
+		´switch_pulled´ (delay 0) (alternative interacted)
+		´started´ (delay 0) (alternative start)
+		´teammate_comment_time_to_go´ (delay 0) (alternative interacted)
+´Finished´ MissionScriptElement 100033
+	on_executed
+		´Time_Finished´ (delay 0)
+´Time_Finished´ ElementInstanceOutput 100092
+	event Time_Finished
+´disable´ ElementUnitSequence 100001
+	position 350, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_pull_lever
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence black_on_light_red
+			time 0
+	on_executed
+		´Finished´ (delay 0)
+´interact´ ElementWaypoint 100008
+	icon pd2_escape
+	only_in_civilian false
+	position 40, -31, 60
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_waypoint´ MissionScriptElement 100010
+	on_executed
+		´interact´ (delay 0)
+		´open´ (delay 0)
+		´open - lid_2´ (delay 0) DISABLED
+´disable_2´ MissionScriptElement 100011
+	on_executed
+		´disable_4´ (delay 0)
+´show_waypoint_2´ ElementInstanceInput 100012
+	event show_waypoint
+	on_executed
+		´show_waypoint´ (delay 0)
+´remove_waypoint´ ElementInstanceInput 100013
+	event remove_waypoint
+	on_executed
+		´disable_2´ (delay 0)
+		´disable_w_lid´ (delay 0) DISABLED
+´remove´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´interact´
+	on_executed
+		´OFF´ (delay 0)
+´open´ ElementUnitSequence 100003
+	position -550, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence enable_interaction
+			time 0
+´disable_3´ ElementUnitSequence 100018
+	DISABLED
+	position -100, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_close_lever_lid
+			time 1.75
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_close_lid
+			time 2
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence state_hide_keycard_02
+			time 1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´remove´ (delay 0)
+´AUTO´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´auto_disable´ (delay 0)
+´auto_disable´ ElementUnitSequence 100002
+	position -700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence disable_interaction
+			time 0
+´OFF´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´pull_switch´ DISABLED
+´started´ MissionScriptElement 100004
+	on_executed
+		´started_use´ (delay 0)
+´started_use´ ElementInstanceOutput 100007
+	event started_use
+´teammate_comment_time_to_go´ ElementTeammateComment 100006
+	close_to_element false
+	comment g17
+	position 100, -150, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_001´ (delay 0)
+		´teammate_comment_lets_go´ (delay 3-5)
+´point_debug_001´ ElementDebug 100009
+	as_subtitle false
+	debug_string teammate_comment_time_to_go
+	show_instigator false
+´teammate_comment_lets_go´ ElementTeammateComment 100020
+	close_to_element true
+	comment g13
+	position 0, -150, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_002´ (delay 0)
+		´teammate_comment_get_out´ (delay 20-30)
+´point_debug_002´ ElementDebug 100021
+	as_subtitle false
+	debug_string teammate_comment_lets_go
+	show_instigator false
+´teammate_comment_get_out´ ElementTeammateComment 100022
+	close_to_element true
+	comment g13
+	position -100, -150, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100023
+	as_subtitle false
+	debug_string teammate_comment_get_out
+	show_instigator false
+´key_used´ ElementUnitSequenceTrigger 100025
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+	on_executed
+		´link´ (delay 0)
+´link´ MissionScriptElement 100026
+	on_executed
+		´open - lid´ (delay 0)
+´open - lid´ ElementUnitSequence 100027
+	position -300, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lever_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lid_keycard_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence state_show_outline_lever
+			time 0.25
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´OFF_2´ (delay 0)
+´OFF_2´ ElementToggle 100028
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_2´
+		2 ´disable_4´
+		3 ´open´
+	on_executed
+		´ON´ (delay 0)
+´ON´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pull_switch´ DISABLED
+		2 ´disable_3´ DISABLED
+		3 ´disable_w_lid´ DISABLED
+		4 ´open - lid_2´ DISABLED
+	on_executed
+		´Exit_Level´ (delay 0)
+´disable_w_lid´ MissionScriptElement 100030
+	DISABLED
+	on_executed
+		´disable_3´ (delay 0) DISABLED
+´disable_4´ ElementUnitSequence 100031
+	position -200, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_close_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´remove´ (delay 0)
+´open - lid_2´ ElementUnitSequence 100032
+	DISABLED
+	position -450, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lever_lid
+			time 1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence anim_open_lid_keycard_02
+			time 1
+	on_executed
+		´ON_2´ (delay 0)
+´ON_2´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pull_switch´ DISABLED
+´Exit_Level´ ElementInstanceOutput 100034
+	event Exit_Level
+´kill_all´ ElementInstanceInput 100017
+	event kill_all
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100024
+	on_executed
+		´hide´ (delay 0)
+´remove_2´ ElementOperator 100037
+	operation remove
+	elements
+		1 ´interact´
+´hide´ ElementUnitSequence 100036
+	position -625, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_interactable_controlswitch/hlp_interactable_controlswitch/001 (0, 18, 40)
+			notify_unit_sequence state_hide
+			time 0
+	on_executed
+		´remove_2´ (delay 0)

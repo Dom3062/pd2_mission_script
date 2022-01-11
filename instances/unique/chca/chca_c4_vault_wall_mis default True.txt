@@ -1,0 +1,645 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´give_c4´ (delay 0)
+		´input_enable_c4_interaction´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/architecture/int/chca_int_breakable_wall/chca_int_breakable_wall/001 (0, 0, 0)
+			notify_unit_sequence state_wall_whole
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´add_blocker´ (delay 0)
+´input_enable_c4_interaction´ ElementInstanceInput 100007
+	event enable_c4_interaction
+	on_executed
+		´show_interaction´ (delay 0)
+´output_c4_placed´ ElementInstanceOutput 100008
+	event all_c4_placed
+´show_interaction´ ElementUnitSequence 100012
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+			notify_unit_sequence show_interactive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+			notify_unit_sequence show_interactive
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+			notify_unit_sequence show_interactive
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+			notify_unit_sequence show_interactive
+			time 0
+	on_executed
+		´point_waypoint_001´ (delay 0) DISABLED
+		´point_waypoint_002´ (delay 0) DISABLED
+		´point_waypoint_003´ (delay 0) DISABLED
+		´point_waypoint_004´ (delay 0) DISABLED
+´debug_c4´ ElementUnitSequenceTrigger 100013
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+	on_executed
+		´4´ (delay 0)
+´boom´ ElementUnitSequence 100014
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+		´delay_2´ (delay 0)
+´point_debug_001´ ElementDebug 100015
+	as_subtitle false
+	debug_string explosion_triggered
+	show_instigator false
+	on_executed
+		´output_c4_placed´ (delay 0)
+´4´ ElementCounter 100016
+	counter_target 4
+	on_executed
+		´boom´ (delay 0)
+´remove_blocker´ ElementNavObstacle 100019
+	operation remove
+	position 1100, -900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (350, -25, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (50, -25, 0)
+	on_executed
+		´delay_3´ (delay 0)
+		´output_explosion_done´ (delay 0)
+´add_blocker´ ElementNavObstacle 100020
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (350, -25, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (50, -25, 0)
+´point_feedback_001´ ElementFeedback 100021
+	above_camera_effect effects/payday2/particles/explosions/sparks/sparks
+	above_camera_effect_distance 0,75
+	camera_shake_amplitude 3
+	camera_shake_attack 0
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 0, 0, 100
+	range 2000
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´delay_2´ MissionScriptElement 100022
+	on_executed
+		´seq_break_wall´ (delay 5)
+		´output_break_glass´ (delay 4)
+´enable_decal´ ElementEnableUnit 100023
+	position 1100, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´sound´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100017
+	DISABLED
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 150, -8, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_002´ ElementWaypoint 100028
+	DISABLED
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position -150, -4, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100029
+	operation remove
+	elements
+		1 ´point_waypoint_002´ DISABLED
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_operator_002´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´point_waypoint_001´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´c4_placed_´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+	on_executed
+		´all_C4_placed´ (delay 0)
+´c4_placed_2´ ElementUnitSequenceTrigger 100032
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+	on_executed
+		´all_C4_placed´ (delay 0)
+´explosion´ ElementPlaySound 100033
+	append_prefix false
+	interrupt true
+	position 0, -26, 150
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion
+	use_instigator false
+´explosion_2´ ElementPlayEffect 100034
+	base_time 0
+	effect effects/payday2/particles/explosions/vehicle_explosion
+	max_amount 0
+	position 0, 0, 25
+	random_time 0
+	rotation -0.382684, 0, 0, -0.923879
+	screen_space false
+´debrie´ ElementPlayEffect 100035
+	base_time 0
+	effect effects/payday2/environment/environment_smoke_debri
+	max_amount 0
+	position 0, 50, 125
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_stop_001´ ElementStopEffect 100036
+	operation fade_kill
+	position 1200, -1000, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´debrie´
+		2 ´wooble´
+		3 ´explosion_2´
+		4 ´explosion001´
+´delay_3´ MissionScriptElement 100037
+	on_executed
+		´env_effect_stop_001´ (delay 15)
+´output_explosion_done´ ElementInstanceOutput 100038
+	event c4_exploded
+´point_blurzone_001´ ElementBlurZone 100040
+	height 200
+	mode 1
+	position 0, 0, 200
+	radius 800
+	rotation 0, 0, 0, -1
+´shake´ MissionScriptElement 100041
+	on_executed
+		´vfx_explo´ (delay 0)
+		´point_feedback_001´ (delay 0)
+´vfx_explo´ MissionScriptElement 100042
+	on_executed
+		´explosion_2´ (delay 0)
+		´wooble´ (delay 0)
+		´explosion001´ (delay 0)
+		´enable_decal´ (delay 0)
+´sound´ MissionScriptElement 100043
+	on_executed
+		´debris´ (delay 0)
+		´explosion´ (delay 0)
+		´explosion002´ (delay 0)
+		´explosion001_2´ (delay 0)
+´debris´ MissionScriptElement 100044
+	on_executed
+		´blur´ (delay 0)
+		´debrie´ (delay 0)
+´blur´ MissionScriptElement 100045
+	on_executed
+		´point_blurzone_001´ (delay 0)
+		´turns_off´ (delay 2)
+		´player_damage´ (delay 0)
+´turns_off´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_blurzone_001´
+	on_executed
+		´remove´ (delay 0)
+´remove´ ElementOperator 100048
+	operation remove
+	elements
+		1 ´point_blurzone_001´
+´point_explosion_damage_001´ ElementExplosionDamage 100049
+	damage 40
+	position 0, 0, 175
+	range 500
+	rotation 0, 0, 0, -1
+´player_damage´ MissionScriptElement 100050
+	on_executed
+		´remove_blocker´ (delay 0.5)
+		´point_explosion_damage_001´ (delay 0)
+´point_waypoint_003´ ElementWaypoint 100057
+	DISABLED
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position 50, -8, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_004´ ElementWaypoint 100058
+	DISABLED
+	icon pd2_c4
+	only_in_civilian false
+	only_on_instigator false
+	position -50, -8, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´c4_placed_002´ ElementUnitSequenceTrigger 100059
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+	on_executed
+		´all_C4_placed´ (delay 0)
+´logic_operator_003´ ElementOperator 100060
+	operation remove
+	elements
+		1 ´point_waypoint_003´ DISABLED
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´c4_placed_003´ ElementUnitSequenceTrigger 100061
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+	on_executed
+		´all_C4_placed´ (delay 0)
+´logic_operator_004´ ElementOperator 100062
+	operation remove
+	elements
+		1 ´point_waypoint_004´ DISABLED
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´wooble´ ElementPlayEffect 100063
+	base_time 0
+	effect effects/payday2/particles/explosions/smoke_puff_alt
+	max_amount 0
+	position 0, 0, 75
+	random_time 0
+	rotation -0.707108, 0, 0, -0.707106
+	screen_space false
+´explosion001´ ElementPlayEffect 100064
+	base_time 0
+	effect effects/particles/equipment/c4_bank/c4_explosion
+	max_amount 0
+	position 0, 0, 125
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707106
+	screen_space false
+´give_c4´ ElementEquipment 100065
+	amount 4
+	equipment c4
+	position 700, 100, 2.5
+	rotation 0, 0, 0, -1
+´output_1st_c4_placed´ ElementInstanceOutput 100046
+	TRIGGER TIMES 1
+	event 1st_c4_placed
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100055
+	as_subtitle false
+	debug_string vault_wall_all_c4_placed
+	show_instigator false
+´input_disable_interactions´ ElementInstanceInput 100056
+	event disable_interactions
+	on_executed
+		´disable_everything´ (delay 0)
+´disable_everything´ ElementToggle 100071
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_enable_c4_interaction´
+		2 ´debug_c4´
+		3 ´c4_placed_´
+		4 ´c4_placed_2´
+		5 ´c4_placed_002´
+		6 ´c4_placed_003´
+		7 ´output_1st_c4_placed´
+		8 ´output_c4_placed´
+		9 ´output_explosion_done´
+		10 ´show_interaction´
+		11 ´point_waypoint_002´ DISABLED
+		12 ´point_waypoint_004´ DISABLED
+		13 ´point_waypoint_003´ DISABLED
+		14 ´point_waypoint_001´ DISABLED
+		15 ´seq_break_wall´
+		16 ´all_C4_placed´
+	on_executed
+		´remove_everything´ (delay 0)
+´remove_everything´ ElementOperator 100072
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´point_waypoint_002´ DISABLED
+		2 ´point_waypoint_004´ DISABLED
+		3 ´point_waypoint_003´ DISABLED
+		4 ´point_waypoint_001´ DISABLED
+	on_executed
+		´seq_disable_everything´ (delay 0)
+´seq_disable_everything´ ElementUnitSequence 100073
+	TRIGGER TIMES 1
+	position 1600, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (152.225, 3.57628E-07, 151.593)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/002 (-149.513, 3.52859E-05, 123.955)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/003 (52.2252, 3.57628E-07, 126.593)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/004 (-49.7748, 5.16757E-06, 151.593)
+			notify_unit_sequence hide
+			time 0
+´logic_toggle_001´ ElementToggle 100074
+	TRIGGER TIMES 1
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_waypoint_004´ DISABLED
+		2 ´point_waypoint_003´ DISABLED
+		3 ´point_waypoint_001´ DISABLED
+	on_executed
+		´show_WP_001´ (delay 0.5)
+´logic_toggle_002´ ElementToggle 100075
+	TRIGGER TIMES 1
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_waypoint_003´ DISABLED
+		2 ´point_waypoint_004´ DISABLED
+		3 ´point_waypoint_002´ DISABLED
+	on_executed
+		´show_WP_002´ (delay 0.5)
+´logic_toggle_003´ ElementToggle 100076
+	TRIGGER TIMES 1
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_waypoint_001´ DISABLED
+		2 ´point_waypoint_004´ DISABLED
+		3 ´point_waypoint_002´ DISABLED
+	on_executed
+		´show_WP_003´ (delay 0.5)
+´logic_toggle_004´ ElementToggle 100077
+	TRIGGER TIMES 1
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_waypoint_001´ DISABLED
+		2 ´point_waypoint_003´ DISABLED
+		3 ´point_waypoint_002´ DISABLED
+	on_executed
+		´show_WP_004´ (delay 0.5)
+´show_WP_001´ MissionScriptElement 100078
+	on_executed
+		´point_waypoint_004´ (delay 0) DISABLED
+		´point_waypoint_003´ (delay 0) DISABLED
+		´point_waypoint_001´ (delay 0) DISABLED
+		´disable_WP_001´ (delay 0)
+´show_WP_002´ MissionScriptElement 100079
+	on_executed
+		´point_waypoint_003´ (delay 0) DISABLED
+		´point_waypoint_004´ (delay 0) DISABLED
+		´point_waypoint_002´ (delay 0) DISABLED
+		´disable_WP_002´ (delay 0)
+´show_WP_003´ MissionScriptElement 100080
+	on_executed
+		´point_waypoint_001´ (delay 0) DISABLED
+		´point_waypoint_004´ (delay 0) DISABLED
+		´point_waypoint_002´ (delay 0) DISABLED
+		´disable_WP_003´ (delay 0)
+´show_WP_004´ MissionScriptElement 100081
+	on_executed
+		´point_waypoint_001´ (delay 0) DISABLED
+		´point_waypoint_003´ (delay 0) DISABLED
+		´point_waypoint_002´ (delay 0) DISABLED
+		´disable_WP_004´ (delay 0)
+´disable_WP_001´ ElementToggle 100082
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_002´
+		2 ´logic_toggle_003´
+		3 ´logic_toggle_004´
+		4 ´show_WP_002´
+		5 ´show_WP_003´
+		6 ´show_WP_004´
+		7 ´disable_WP_002´
+		8 ´disable_WP_003´
+		9 ´disable_WP_004´
+´disable_WP_002´ ElementToggle 100083
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_001´
+		2 ´show_WP_001´
+		3 ´disable_WP_001´
+		4 ´logic_toggle_003´
+		5 ´show_WP_003´
+		6 ´disable_WP_003´
+		7 ´logic_toggle_004´
+		8 ´show_WP_004´
+		9 ´disable_WP_004´
+´disable_WP_003´ ElementToggle 100084
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_001´
+		2 ´show_WP_001´
+		3 ´disable_WP_001´
+		4 ´disable_WP_002´
+		5 ´show_WP_002´
+		6 ´logic_toggle_002´
+		7 ´logic_toggle_004´
+		8 ´show_WP_004´
+		9 ´disable_WP_004´
+´disable_WP_004´ ElementToggle 100085
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_toggle_003´
+		2 ´show_WP_003´
+		3 ´disable_WP_003´
+		4 ´disable_WP_002´
+		5 ´show_WP_002´
+		6 ´logic_toggle_002´
+		7 ´logic_toggle_001´
+		8 ´show_WP_001´
+		9 ´disable_WP_001´
+´seq_break_wall´ ElementUnitSequence 100087
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/architecture/int/chca_int_breakable_wall/chca_int_breakable_wall/001 (0, 0, 0)
+			notify_unit_sequence state_wall_broken
+			time 0
+	on_executed
+		´shake´ (delay 0)
+´output_break_glass´ ElementInstanceOutput 100009
+	TRIGGER TIMES 1
+	event break_glass
+´explosion001_2´ ElementPlaySound 100024
+	append_prefix false
+	interrupt true
+	position -350, -26, 100
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion_debris_01
+	use_instigator false
+´explosion002´ ElementPlaySound 100025
+	append_prefix false
+	interrupt true
+	position 300, -26, 100
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion_debris_02
+	use_instigator false
+´all_C4_placed´ ElementCounter 100026
+	counter_target 4
+	on_executed
+		´output_1st_c4_placed´ (delay 0)

@@ -1,0 +1,52 @@
+´link´ MissionScriptElement 100005
+	on_executed
+		´remove´ (delay 0)
+´Auto_Start´ MissionScriptElement 100006
+	EXECUTE ON STARTUP
+	on_executed
+		´1 sec delay´ (delay 0)
+´add´ ElementNavObstacle 100007
+	operation add
+	position 150, -150, 0.232422
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0.820129)
+´remove´ ElementNavObstacle 100008
+	TRIGGER TIMES 1
+	operation remove
+	position 0, -50, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0.820129)
+	on_executed
+		´point_debug_001´ (delay 0)
+´1 sec delay´ MissionScriptElement 100009
+	BASE DELAY 1
+	on_executed
+		´add´ (delay 0)
+´Doors_open´ ElementUnitSequenceTrigger 100001
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_fish/lxy_prop_slidedoor/lxy_prop_slidedoor/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence int_seq_bullet_hit_out
+			notify_unit_id units/pd2_dlc_fish/lxy_prop_slidedoor/lxy_prop_slidedoor/001 (0, 0, 0)
+		3
+			guis_id 3
+			sequence anim_open
+			notify_unit_id units/pd2_dlc_fish/lxy_prop_slidedoor/lxy_prop_slidedoor/001 (0, 0, 0)
+	on_executed
+		´link´ (delay 0)
+´point_debug_001´ ElementDebug 100002
+	as_subtitle false
+	debug_string remove_blocker
+	show_instigator false

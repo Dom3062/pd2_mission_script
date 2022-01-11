@@ -1,0 +1,656 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 3)
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+			notify_unit_sequence enable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_if_alarm_touched´ ElementInstanceInput 100007
+	event Turn_off_broken_window_for_alarm 
+	on_executed
+		´toggle_OFF_output´ (delay 0)
+´output_window_broken´ ElementInstanceOutput 100008
+	event window_broken
+´SO_navlink´ ElementSpecialObjective 100010
+	SO_access 4320740
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 5, -110, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -3,95393 172,022 0
+	so_action e_nl_up_0_9m_dwn_1m_window_out
+	trigger_on none
+	followup_elements
+´police_called´ ElementGlobalEventTrigger 100003
+	TRIGGER TIMES 1
+	global_event police_called
+	position 800, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´activate_loud_navlinks´ (delay 0)
+´activate_loud_navlinks´ MissionScriptElement 100011
+	on_executed
+		´SO_navlink_2´ (delay 0)
+		´SO_navlink´ (delay 0)
+		´SO_navlink_inside_long´ (delay 0) DISABLED
+		´SO_navlink_outside_long´ (delay 0) DISABLED
+		´SO_navlink_outside_side_building´ (delay 0)
+		´SO_4m_swing´ (delay 0) DISABLED
+		´SO_5m_swing´ (delay 0) DISABLED
+		´toggle_OFF_alarm_debug´ (delay 0)
+		´SO_navlink_inside_long_2´ (delay 0) DISABLED
+		´SO_navlink_outside_long_2´ (delay 0) DISABLED
+´break_window´ ElementUnitSequence 100012
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+			notify_unit_sequence break_window_01
+			time 0
+´window_broken´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_window_01
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+		2
+			guis_id 2
+			sequence crack_window_01
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+	on_executed
+		´toggle_OFF_window_sequence´ (delay 0)
+		´delay_2´ (delay 0)
+´toggle_OFF_window_sequence´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´break_window´
+´window_break_success´ ElementSpecialObjectiveTrigger 100015
+	event anim_act_04
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_navlink´
+		2 ´SO_navlink_2´
+		3 ´SO_navlink_inside_long´ DISABLED
+		4 ´SO_navlink_outside_long´ DISABLED
+		5 ´SO_navlink_outside_side_building´
+		6 ´SO_4m_swing´ DISABLED
+		7 ´SO_5m_swing´ DISABLED
+		8 ´SO_navlink_inside_long_2´ DISABLED
+		9 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´break_window´ (delay 0)
+´SO_navlink_2´ ElementSpecialObjective 100016
+	SO_access 4320740
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -3, 130, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 5,3854 -142,401 0
+	so_action e_nl_up_0_9m_dwn_1m_window_out
+	trigger_on none
+	followup_elements
+´toggle_OFF_output´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´delay_2´
+´delay_2´ MissionScriptElement 100019
+	BASE DELAY 1
+	on_executed
+		´output_window_broken´ (delay 0)
+´SO_navlink_inside_long´ ElementSpecialObjective 100021
+	DISABLED
+	SO_access 4320740
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 5, -110, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -3,1395 172,826 0
+	so_action e_nl_up_1m_down_2m
+	trigger_on none
+	followup_elements
+´SO_navlink_outside_long´ ElementSpecialObjective 100022
+	DISABLED
+	SO_access 4451812
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 135, -100
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position -3,95393 172,022 0
+	so_action e_nl_up_1_5m_dwn_1m
+	trigger_on none
+	followup_elements
+´enable_front_window_long´ ElementInstanceInput 100023
+	event Enable_front_window_long
+	on_executed
+		´toggle_ON_SO´ (delay 0)
+´toggle_ON_SO´ ElementToggle 100024
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_navlink_inside_long´ DISABLED
+		2 ´SO_navlink_outside_long´ DISABLED
+		3 ´SO_navlink_inside_long_2´ DISABLED
+		4 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´toggle_OFF_SO´ (delay 0)
+´toggle_OFF_SO´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+´enable_long_window_side_ground´ ElementInstanceInput 100026
+	event enable_long_window_side_ground
+	on_executed
+		´toggle_ON_SO_2´ (delay 0)
+´toggle_ON_SO_2´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_navlink_outside_side_building´
+	on_executed
+		´toggle_OFF_SO_2´ (delay 0)
+´toggle_OFF_SO_2´ ElementToggle 100028
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+´SO_navlink_outside_side_building´ ElementSpecialObjective 100029
+	SO_access 4451812
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, 130, -200
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 5,3854 -142,401 0
+	so_action e_nl_up_2m_down_1m
+	trigger_on none
+	followup_elements
+´enable_window_4m_swing´ ElementInstanceInput 100009
+	event enable_window_4m_swing
+	on_executed
+		´toggle_ON_SO_3´ (delay 0)
+´enable_window_5m_swing´ ElementInstanceInput 100017
+	event enable_window_5m_swing
+	on_executed
+		´toggle_ON_SO_4´ (delay 0)
+´toggle_OFF_SO_3´ ElementToggle 100031
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+		3 ´SO_navlink_outside_side_building´
+		4 ´SO_navlink_inside_long´ DISABLED
+		5 ´SO_5m_swing´ DISABLED
+		6 ´SO_navlink_outside_long_2´ DISABLED
+		7 ´SO_navlink_inside_long_2´ DISABLED
+´toggle_OFF_SO_4´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+		3 ´SO_navlink_outside_long´ DISABLED
+		4 ´SO_navlink_outside_side_building´
+		5 ´SO_navlink_inside_long´ DISABLED
+		6 ´SO_4m_swing´ DISABLED
+		7 ´SO_navlink_inside_long_2´ DISABLED
+		8 ´SO_navlink_outside_long_2´ DISABLED
+´SO_4m_swing´ ElementSpecialObjective 100033
+	DISABLED
+	SO_access 4204000
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -100, 450
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position -0,109196 -301,242 0
+	so_action e_nl_up_0_5_down_4m_swing
+	trigger_on none
+	followup_elements
+´toggle_ON_SO_3´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_4m_swing´ DISABLED
+	on_executed
+		´removes_so´ (delay 0)
+´toggle_ON_SO_4´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_5m_swing´ DISABLED
+	on_executed
+		´removes_SO´ (delay 0)
+´SO_5m_swing´ ElementSpecialObjective 100036
+	DISABLED
+	SO_access 4204000
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -100, 449.892
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position 0,610948 -300,103 0
+	so_action e_nl_up_0_5_down_5m_swing
+	trigger_on none
+	followup_elements
+´toggle_OFF_alarm_debug´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´delay_2´
+´disable_window_lockpicking´ ElementInstanceInput 100020
+	event disable_window_lockpicking
+	on_executed
+		´disable_lockpicking´ (delay 0)
+´disable_lockpicking´ ElementUnitSequence 100038
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+			notify_unit_sequence disable_interaction
+			time 0
+´Window_is_lockpicked´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+	on_executed
+		´window_is_lockpicked´ (delay 0)
+´window_is_lockpicked´ ElementInstanceOutput 100041
+	event window_is _lockpicked
+´open_window´ ElementInstanceInput 100042
+	event open_window_front_long
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100043
+	position 1300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+			notify_unit_sequence state_open
+			time 0
+	on_executed
+		´toggle_ON_SO001´ (delay 0)
+´disable_all_so´ ElementInstanceInput 100044
+	event disable_all_so
+	on_executed
+		´toggle_OFF_EVERYTHING´ (delay 0)
+´toggle_OFF_EVERYTHING´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´police_called´
+		2 ´SO_4m_swing´ DISABLED
+		3 ´SO_5m_swing´ DISABLED
+		4 ´SO_navlink_2´
+		5 ´SO_navlink´
+		6 ´SO_navlink_inside_long´ DISABLED
+		7 ´SO_navlink_outside_long´ DISABLED
+		8 ´SO_navlink_outside_side_building´
+		9 ´SO_navlink_inside_long_2´ DISABLED
+		10 ´SO_navlink_outside_long_2´ DISABLED
+´toggle_ON_SO001´ ElementToggle 100046
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_navlink_inside_long´ DISABLED
+		2 ´SO_navlink_outside_long´ DISABLED
+	on_executed
+		´toggle_OFF_SO001´ (delay 0)
+´toggle_OFF_SO001´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+	on_executed
+		´toggle off break window´ (delay 0)
+´toggle off break window´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´window_break_success´
+	on_executed
+		´activate_loud_navlinks´ (delay 0)
+´removes_SO´ ElementOperator 100049
+	operation remove
+	elements
+		1 ´SO_navlink´
+		2 ´SO_navlink_outside_side_building´
+		3 ´SO_navlink_outside_long´ DISABLED
+		4 ´SO_navlink_inside_long´ DISABLED
+		5 ´SO_navlink_2´
+		6 ´SO_4m_swing´ DISABLED
+		7 ´SO_navlink_inside_long_2´ DISABLED
+		8 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´toggle_OFF_SO_4´ (delay 0)
+´removes_so´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´SO_navlink_2´
+		2 ´SO_navlink´
+		3 ´SO_navlink_inside_long´ DISABLED
+		4 ´SO_navlink_outside_long´ DISABLED
+		5 ´SO_navlink_outside_side_building´
+		6 ´SO_5m_swing´ DISABLED
+		7 ´SO_navlink_inside_long_2´ DISABLED
+		8 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´toggle_OFF_SO_3´ (delay 0)
+´window_broken001´ ElementUnitSequenceTrigger 100037
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_window_01
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+	on_executed
+		´output_window_broken_only´ (delay 0)
+´output_window_broken_only´ ElementInstanceOutput 100051
+	event window_broken_only
+´normal_window_jump´ ElementInstanceInput 100052
+	event normal_window_jump
+	on_executed
+		´toggle_off´ (delay 0)
+´toggle_off´ ElementToggle 100053
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_5m_swing´ DISABLED
+		2 ´SO_4m_swing´ DISABLED
+		3 ´SO_navlink_inside_long´ DISABLED
+		4 ´SO_navlink_outside_side_building´
+		5 ´SO_navlink_outside_long´ DISABLED
+		6 ´SO_navlink_inside_long_2´ DISABLED
+		7 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´removes_so_2´ (delay 0)
+´removes_so_2´ ElementOperator 100054
+	operation remove
+	elements
+		1 ´SO_5m_swing´ DISABLED
+		2 ´SO_4m_swing´ DISABLED
+		3 ´SO_navlink_inside_long´ DISABLED
+		4 ´SO_navlink_outside_side_building´
+		5 ´SO_navlink_outside_long´ DISABLED
+		6 ´SO_navlink_inside_long_2´ DISABLED
+		7 ´SO_navlink_outside_long_2´ DISABLED
+´window_opened´ ElementUnitSequenceTrigger 100055
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pex/architecture/ext/pex_ext_police_station_facade/pex_ext_police_station_window_01/pex_ext_police_station_window (0, 13, 175)
+	on_executed
+		´toggle_OFF_window_breaking´ (delay 0)
+´toggle_OFF_window_breaking´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´break_window´
+		2 ´window_break_success´
+´ensble_front_window_long_2´ ElementInstanceInput 100057
+	event Enable_front_window_long_2
+	on_executed
+		´toggle_ON_SO_5´ (delay 0)
+´toggle_ON_SO_5´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_navlink_inside_long_2´ DISABLED
+		2 ´SO_navlink_outside_long_2´ DISABLED
+	on_executed
+		´toggle_OFF_SO_5´ (delay 0)
+´toggle_OFF_SO_5´ ElementToggle 100059
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_5m_swing´ DISABLED
+		2 ´SO_navlink_2´
+		3 ´SO_navlink_outside_side_building´
+		4 ´SO_navlink_outside_long´ DISABLED
+		5 ´SO_navlink_inside_long´ DISABLED
+		6 ´SO_navlink´
+´SO_navlink_outside_long_2´ ElementSpecialObjective 100060
+	DISABLED
+	SO_access 4451812
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -115, -100
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position 0,968194 -159,472 0
+	so_action e_nl_up_1_5m_dwn_1m
+	trigger_on none
+	followup_elements
+´SO_navlink_inside_long_2´ ElementSpecialObjective 100061
+	DISABLED
+	SO_access 4320740
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -3, 130, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position -1,9501 -171,378 0
+	so_action e_nl_up_1m_down_2m
+	trigger_on none
+	followup_elements
+´ensble_front_window_long_002´ ElementInstanceInput 100062
+	event none
+	on_executed
+		´toggle_ON_SO_5´ (delay 0)

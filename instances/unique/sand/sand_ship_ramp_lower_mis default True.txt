@@ -1,0 +1,173 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+			notify_unit_sequence disable_outline
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start001 (225, 1050, 225)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start001 (225, 1050, 225)
+´input_enable_button´ ElementInstanceInput 100007
+	event enable_button
+	on_executed
+		´link_button_enable´ (delay 0)
+´output_completed´ ElementInstanceOutput 100008
+	event ramp_anim_completed
+´trigger_ramp_interacted_with´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+	on_executed
+		´link´ (delay 0)
+		´disable_collision´ (delay 3)
+´seq_button_enabled´ ElementUnitSequence 100021
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+			notify_unit_sequence enable_outline
+			time 0
+´point_waypoint´ ElementWaypoint 100022
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 1025, 275
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_wp_button´ ElementInstanceInput 100023
+	event show_waypoint_button
+	on_executed
+		´link_show_waypoint´ (delay 0)
+´link_show_waypoint´ MissionScriptElement 100024
+	on_executed
+		´point_waypoint´ (delay 0)
+´link_hide_waypoint´ MissionScriptElement 100025
+	on_executed
+		´toggle_off´ (delay 0)
+		´operator_remove_wp´ (delay 0)
+´input_hide_wp_button´ ElementInstanceInput 100026
+	event hide_waypoint_button
+	on_executed
+		´link_hide_waypoint´ (delay 0)
+´toggle_off´ ElementToggle 100027
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint´
+´operator_remove_wp´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´point_waypoint´
+´point_debug_004´ ElementDebug 100031
+	DISABLED
+	as_subtitle false
+	debug_string ramp_interaction_enabled
+	show_instigator false
+´link_button_enable´ MissionScriptElement 100032
+	on_executed
+		´seq_button_enabled´ (delay 0)
+		´point_debug_004´ (delay 0) DISABLED
+´link´ MissionScriptElement 100017
+	on_executed
+		´output_ramp_anim_started´ (delay 0)
+´output_ramp_anim_started´ ElementInstanceOutput 100040
+	event ramp_anim_started
+´trigger_ramp_anim_done´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_anim
+			notify_unit_id units/pd2_dlc_shoutout_raid/props/gen_prop_ramp_flat/gen_prop_ramp_flat/start (225, 1050, 225)
+	on_executed
+		´link_anim_done´ (delay 0)
+´disable_collision´ ElementDisableUnit 100010
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x32m/003 (200, 197, 225)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x32m/002 (-225, 197, 225)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x32m/005 (200, 597, 225)
+´teammate_comment_go_time´ ElementTeammateComment 100018
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p47
+	position 25, 900, 325
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´link_anim_done´ MissionScriptElement 100019
+	on_executed
+		´output_completed´ (delay 0)
+		´counter_2´ (delay 0)
+		´toggle_off_2´ (delay 1)
+´counter_2´ ElementCounter 100011
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´logic_chance_75´ (delay 0)
+´toggle_off_2´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_global_loud´
+´trigger_global_loud´ ElementGlobalEventTrigger 100020
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´counter_2´ (delay 0)
+´logic_chance_75´ ElementLogicChance 100029
+	TRIGGER TIMES 1
+	chance 75
+	position 1200, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´teammate_comment_go_time´ (delay 0)

@@ -1,0 +1,752 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	position 0, 1925, 677.5
+	rotation 0, 0, 1, -8.9407E-08
+	state standard
+´hook_002´ ElementInteraction 100002
+	DISABLED
+	host_only false
+	override_timer 5
+	position 100, -1, 118
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_place_strap
+	on_executed
+		´hook_connected_002´ (delay 0) (alternative interacted)
+´hook_003´ ElementInteraction 100003
+	DISABLED
+	host_only false
+	override_timer 5
+	position -100, -1, 118
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_place_strap
+	on_executed
+		´hook_connected_003´ (delay 0) (alternative interacted)
+´hook_001´ ElementInteraction 100004
+	DISABLED
+	host_only false
+	override_timer 5
+	position 6.99993, 99, 114
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id hold_place_strap
+	on_executed
+		´hook_connected_001´ (delay 0) (alternative interacted)
+´hook_004´ ElementInteraction 100005
+	DISABLED
+	host_only false
+	override_timer 5
+	position 7, -101, 114
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id hold_place_strap
+	on_executed
+		´hook_connected_004´ (delay 0) (alternative interacted)
+´startup´ MissionScriptElement 100014
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´hide_stuff´ (delay 0)
+´hide_stuff´ ElementUnitSequence 100015
+	position -400, 1225, 677.5
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence Hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence hidden
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_3x3/gen_prop_square_drop_marker_3x3/001 (-2, -50, 1.5)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´hide_mull´ (delay 0)
+´selected_money_drop´ ElementInstanceInput 100017
+	BASE DELAY 1
+	event selected_money_drop
+	on_executed
+		´show_money´ (delay 0)
+		´enable_discovery_toggles´ (delay 0)
+		´enable´ (delay 0)
+		´add_blockers´ (delay 0)
+		´point_area_min_police_force_001´ (delay 0)
+´selected_scattered_money_drop´ ElementInstanceInput 100018
+	BASE DELAY 1,5
+	event selected_scattered_money_drop
+	on_executed
+		´show_untouched_money_hide_normal´ (delay 0)
+		´enable_discovery_toggles´ (delay 0)
+		´enable_scattered_output´ (delay 0)
+		´enable001´ (delay 0)
+		´add_blockers´ (delay 0)
+		´point_area_min_police_force_001´ (delay 0)
+´show_money´ ElementUnitSequence 100020
+	position 1300, 1125, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence state_all_bags
+			time 0
+´show_untouched_money_hide_normal´ ElementUnitSequence 100059
+	position 1300, 1225, 677.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence state_no_bags
+			time 0
+´hook_wp_003´ ElementWaypoint 100025
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position -100, -1, 118
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hook_wp_002´ ElementWaypoint 100026
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 100, -1, 118
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hook_wp_001´ ElementWaypoint 100060
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 6.99993, 99, 114
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+´hook_wp_004´ ElementWaypoint 100061
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position 7, -101, 114
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+´return_money_wp´ ElementWaypoint 100062
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 1, 3, 168
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´disable_discovery´ ElementInstanceInput 100063
+	DISABLED
+	event discovery_disable
+	on_executed
+		´disable_discovery_area´ (delay 0)
+´discovery_area´ ElementAreaTrigger 100064
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 1335,85
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 665
+	radius 515,85
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´discovered_money_pallet´ (delay 0)
+		´discovered_broken´ (delay 0) DISABLED
+		´discovered_whole´ (delay 0) DISABLED
+´enable_discovery´ ElementInstanceInput 100065
+	DISABLED
+	event discovery_enable
+	on_executed
+		´enable_discovery_area´ (delay 0)
+´return_money_area´ ElementAreaTrigger 100066
+	DISABLED
+	amount 1
+	depth 299,761
+	height 207
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, 0, 91
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 307,386
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove_money´ (delay 0)
+´remove_money´ ElementCarry 100067
+	operation remove
+	type_filter money
+	on_executed
+		´recovered_money´ (delay 0)
+		´add_one_recovered´ (delay 0)
+´recovered_money´ ElementInstanceOutput 100013
+	event recovered_money
+´recovered_001´ ElementCounterTrigger 100068
+	amount 1
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´number_of_recovered´ ElementCounter 100069
+	counter_target 0
+´add_one_recovered´ ElementCounterOperator 100070
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´number_of_recovered´
+´recovered_002´ ElementCounterTrigger 100071
+	amount 2
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_003´ ElementCounterTrigger 100072
+	amount 3
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_004´ ElementCounterTrigger 100073
+	amount 4
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_005´ ElementCounterTrigger 100074
+	amount 5
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_006´ ElementCounterTrigger 100075
+	amount 6
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_007´ ElementCounterTrigger 100076
+	amount 7
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´add_bag_crate´ (delay 0)
+´recovered_008´ ElementCounterTrigger 100077
+	amount 8
+	trigger_type value
+	elements
+		1 ´number_of_recovered´
+	on_executed
+		´completed_recovery´ (delay 0)
+		´add_bag_crate´ (delay 0)
+´enable_discovery_area´ ElementToggle 100086
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´discovery_area´ DISABLED
+		2 ´discovery_link´
+		3 ´discovery_area_team_comment´ DISABLED
+	on_executed
+		´discovery_enabled_debug´ (delay 0)
+´disable_discovery_area´ ElementToggle 100087
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´discovery_area´ DISABLED
+		2 ´discovery_link´
+		3 ´discovery_area_team_comment´ DISABLED
+	on_executed
+		´discovery_disabled_debug´ (delay 0)
+´discovered_money_pallet´ MissionScriptElement 100088
+	on_executed
+		´discovery_link´ (delay 0)
+´disable_further_discovery_toggling´ ElementToggle 100090
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_discovery_area´
+		2 ´disable_discovery_area´
+´set_connect_phase´ ElementInstanceInput 100091
+	DISABLED
+	TRIGGER TIMES 1
+	event set_connect_phase
+	on_executed
+		´enable_interactions´ (delay 0)
+´enable_interactions´ ElementToggle 100092
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´hook_002´ DISABLED
+		2 ´hook_003´ DISABLED
+		3 ´hook_001´ DISABLED
+		4 ´hook_004´ DISABLED
+	on_executed
+		´show_waypoints´ (delay 0)
+´show_waypoints´ MissionScriptElement 100093
+	on_executed
+		´hook_wp_003´ (delay 0)
+		´hook_wp_002´ (delay 0)
+		´hook_wp_001´ (delay 0)
+		´hook_wp_004´ (delay 0)
+´hook_connected_001´ MissionScriptElement 100094
+	on_executed
+		´4_hooks_required´ (delay 0)
+		´show_strap_001´ (delay 0)
+´hook_connected_002´ MissionScriptElement 100095
+	on_executed
+		´4_hooks_required´ (delay 0)
+		´show_strap_002´ (delay 0)
+´hook_connected_003´ MissionScriptElement 100096
+	on_executed
+		´4_hooks_required´ (delay 0)
+		´show_strap_003´ (delay 0)
+´hook_connected_004´ MissionScriptElement 100097
+	on_executed
+		´4_hooks_required´ (delay 0)
+		´show_strap_004´ (delay 0)
+´4_hooks_required´ ElementCounter 100102
+	counter_target 4
+	on_executed
+		´completed_connect´ (delay 0)
+´completed_discovery´ ElementInstanceOutput 100089
+	event completed_discovery
+	on_executed
+		´enable_inputs´ (delay 0)
+´remove_hook_wp_001´ ElementOperator 100104
+	operation remove
+	elements
+		1 ´hook_wp_001´
+´remove_hook_wp_002´ ElementOperator 100105
+	operation remove
+	elements
+		1 ´hook_wp_002´
+´remove_hook_wp_003´ ElementOperator 100106
+	operation remove
+	elements
+		1 ´hook_wp_003´
+´remove_hook_wp_004´ ElementOperator 100107
+	operation remove
+	elements
+		1 ´hook_wp_004´
+´set_recovery_phase´ ElementInstanceInput 100114
+	DISABLED
+	TRIGGER TIMES 1
+	event set_recovery_phase
+	on_executed
+		´wp´ (delay 0)
+		´enable_return_money_area´ (delay 0)
+		´keep_them_away´ (delay 5)
+´wp´ MissionScriptElement 100115
+	on_executed
+		´return_money_wp´ (delay 0)
+´enable_discovery_toggles´ ElementToggle 100117
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_discovery´ DISABLED
+		2 ´disable_discovery´ DISABLED
+´remove_gather_wp´ ElementOperator 100118
+	operation remove
+	elements
+		1 ´return_money_wp´
+	on_executed
+		´hide_marker´ (delay 0)
+´discovered_pallet_is_scattered´ ElementInstanceOutput 100119
+	DISABLED
+	event scattered_pallet
+	on_executed
+		´enable_recovery´ (delay 0)
+´enable_scattered_output´ ElementToggle 100128
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´discovered_pallet_is_scattered´ DISABLED
+´discovery_link´ MissionScriptElement 100137
+	on_executed
+		´discovered_pallet_is_scattered´ (delay 0) DISABLED
+		´completed_discovery´ (delay 0)
+		´disable_further_discovery_toggling´ (delay 0)
+´completed_recovery´ MissionScriptElement 100116
+	on_executed
+		´remove_gather_wp´ (delay 0)
+		´thats_all´ (delay 0)
+´completed_connect´ ElementInstanceOutput 100103
+	event completed_connect
+´enable_return_money_area´ ElementToggle 100139
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´return_money_area´ DISABLED
+	on_executed
+		´show_marker´ (delay 0)
+´enable_recovery´ ElementToggle 100140
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´set_recovery_phase´ DISABLED
+´enable_inputs´ ElementToggle 100141
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´set_connect_phase´ DISABLED
+		2 ´send_heli´ DISABLED
+		3 ´flyout´ DISABLED
+´send_heli´ ElementInstanceInput 100142
+	DISABLED
+	TRIGGER TIMES 1
+	event send_heli
+	on_executed
+		´flyinfwd_show´ (delay 0)
+´flyinfwd_show´ ElementUnitSequence 100143
+	position 1300, 2825, 677.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence redi_jry_hover
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence state_vis_hide_container
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence state_hook_up
+			time 0
+	on_executed
+		´helicopter_flying_in´ (delay 0)
+		´lower_cable´ (delay 25)
+´flyout´ ElementInstanceInput 100145
+	DISABLED
+	TRIGGER TIMES 1
+	event flyout
+	on_executed
+		´hide_crate_raise_hook´ (delay 0)
+		´remove_min_force´ (delay 0)
+´flyoutback´ ElementUnitSequence 100146
+	position 1200, 3225, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´hide´ (delay 27)
+´hide´ ElementUnitSequence 100147
+	position 1100, 3225, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence hidden
+			time 0
+´hide_crate_raise_hook´ ElementUnitSequence 100148
+	position 1300, 3225, 677.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence Hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence state_vis_show_container
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence anim_lift_container
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence hide_strap_1
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence hide_strap_2
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence hide_strap_3
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence hide_strap_4
+			time 0
+	on_executed
+		´flyoutback´ (delay 6)
+		´hide_mull´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´add_blockers´ ElementNavObstacle 100130
+	operation add
+	position 1300, 1175, 680
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -100, -22.5)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, 0, -22.5)
+	on_executed
+		´show_mull´ (delay 0)
+´show_marker´ ElementUnitSequence 100133
+	position 1100, 1925, 677.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_3x3/gen_prop_square_drop_marker_3x3/001 (-2, -50, 1.5)
+			notify_unit_sequence show
+			time 0
+´hide_marker´ ElementUnitSequence 100134
+	position 1000, 2125, 677.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_drop_marker_3x3/gen_prop_square_drop_marker_3x3/001 (-2, -50, 1.5)
+			notify_unit_sequence hide
+			time 0
+´helicopter_flying_in´ ElementInstanceOutput 100019
+	event helicopter_flying_in
+´discovered_whole´ ElementInstanceOutput 100135
+	DISABLED
+	event discovered_whole
+´discovered_broken´ ElementInstanceOutput 100136
+	DISABLED
+	event discovered_broken
+´enable´ ElementToggle 100138
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´discovered_whole´ DISABLED
+´enable001´ ElementToggle 100144
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´discovered_broken´ DISABLED
+´discovery_area_team_comment´ ElementAreaTrigger 100150
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 2498,57
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 1230
+	radius 1386,6
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´there´ (delay 0)
+´there´ ElementTeammateComment 100151
+	close_to_element true
+	comment g15
+	position 0, 0, 250
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´keep_them_away´ ElementTeammateComment 100152
+	close_to_element true
+	comment g16
+	position 0, 0, 300
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´thats_all´ ElementTeammateComment 100153
+	close_to_element true
+	comment v22
+	position 0, 0, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´show_strap_outline_001´ ElementUnitSequence 100156
+	position 225, 1125, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+´show_strap_outline_002´ ElementUnitSequence 100157
+	position 300, 1125, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+´show_strap_outline_003´ ElementUnitSequence 100158
+	position 375, 1125, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+´show_strap_outline_004´ ElementUnitSequence 100159
+	position 450, 1125, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+´show_strap_001´ ElementUnitSequence 100160
+	position 850, 2425, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence show_strap_3
+			time 0
+	on_executed
+		´remove_hook_wp_001´ (delay 0)
+´show_strap_002´ ElementUnitSequence 100161
+	position 750, 2425, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence show_strap_4
+			time 0
+	on_executed
+		´remove_hook_wp_002´ (delay 0)
+´show_strap_003´ ElementUnitSequence 100162
+	position 650, 2425, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence show_strap_2
+			time 0
+	on_executed
+		´remove_hook_wp_003´ (delay 0)
+´show_strap_004´ ElementUnitSequence 100163
+	position 550, 2425, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence show_strap_1
+			time 0
+	on_executed
+		´remove_hook_wp_004´ (delay 0)
+´add_bag_crate´ ElementUnitSequence 100009
+	position 200, 2025, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+			notify_unit_sequence action_add_lootbag
+			time 0
+´lower_cable´ ElementUnitSequence 100006
+	position 1200, 2725, 680
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/vehicles/jry_vehicle_blackhawk_money_pile/jry_vehicle_blackhawk_money_pile/001 (-143, 0.999937, -106.5)
+			notify_unit_sequence anim_lower_hook
+			time 0
+´hide_mull´ ElementDisableUnit 100010
+	position -400, 1300, 677.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_d_int/gov_d_int_decal_mull_3x3m/001 (5, 0, 0.00400394)
+´show_mull´ ElementEnableUnit 100011
+	position 1225, 1175, 677.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_d_int/gov_d_int_decal_mull_3x3m/001 (5, 0, 0.00400394)
+´func_disable_unit_001´ ElementDisableUnit 100012
+	position 1200, 3150, 677.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_jerry/equipment/jry_int_money_crate/jry_int_money_crate/001 (0, 0, 2.5)
+´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100016
+	amount 1
+	position 0, 0, 200.004
+	rotation 0, 0, 0, -1
+´remove_min_force´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´point_area_min_police_force_001´
+´discovery_enabled_debug´ ElementDebug 100007
+	as_subtitle false
+	debug_string discovery enabled discovery enabled discovery enabled discovery enabled discovery enabled
+	show_instigator false
+´discovery_disabled_debug´ ElementDebug 100022
+	as_subtitle false
+	debug_string discovery disabled discovery disabled discovery disabled discovery disabled discovery disabled
+	show_instigator false

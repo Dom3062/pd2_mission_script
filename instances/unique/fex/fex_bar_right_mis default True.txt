@@ -1,0 +1,135 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´func_nav_obstacle_004´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 1375, 400, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a003 (-25, 275, 0)
+			notify_unit_sequence state_door_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a004 (-875, 25, 0)
+			notify_unit_sequence state_door_close
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´func_sequence_trigger_door_opened/exploded004´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a003 (-25, 275, 0)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a003 (-25, 275, 0)
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+´func_sequence_trigger_door_opened/exploded003´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a004 (-875, 25, 0)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a/gen_interactable_door_wooden_a004 (-875, 25, 0)
+	on_executed
+		´func_nav_obstacle_003´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100008
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-59.0001, 277, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-868, 72, 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100009
+	operation remove
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-59.0001, 277, 0)
+´func_nav_obstacle_003´ ElementNavObstacle 100011
+	operation remove
+	position 1300, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-868, 72, 0)
+´func_nav_obstacle_004´ ElementNavObstacle 100068
+	operation add
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/009 (-1108, 300, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-1108, 400, 0)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/008 (-803, 519, 0)
+		4
+			guis_id 4
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (-300, 0, 0)
+		5
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (-518.099, 368.217, 0)
+		6
+			guis_id 6
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/006 (-588.81, 438.927, 0)
+		7
+			guis_id 7
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/007 (-499.714, 491.253, 0)
+		8
+			guis_id 8
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-46, 514, 0)
+		9
+			guis_id 9
+			obj_name 16579889878869053372
+			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_2x3m/001 (-750, 250, 0)

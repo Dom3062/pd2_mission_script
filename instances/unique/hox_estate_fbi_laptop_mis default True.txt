@@ -1,0 +1,251 @@
+´opened_laptop´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+	on_executed
+		´point_debug_001´ (delay 0)
+		´started_hack´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´computer_hacked´ ElementInstanceOutput 100004
+	event computer_hacked
+´enable_computer´ ElementInstanceInput 100006
+	event enable_computer
+	on_executed
+		´enabled_interact´ (delay 0)
+		´filter_001´ (delay 0)
+		´filter_002´ (delay 0)
+		´filter_003´ (delay 0)
+´hide_computers´ ElementUnitSequence 100010
+	position -300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+´hide_computer´ ElementInstanceInput 100011
+	event hide
+	on_executed
+		´hide_computers´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100013
+	position -300, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100016
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+	on_executed
+		´computer_hacked´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´func_sequence_003´ (delay 0.01)
+´enabled_interact´ ElementUnitSequence 100005
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+´filter_001´ ElementFilter 100007
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -100, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´set_time_state001´ (delay 0)
+´filter_002´ ElementFilter 100009
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´set_time_state002´ (delay 0)
+´filter_003´ ElementFilter 100012
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -100, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´set_time_state003´ (delay 0)
+´set_time_state001´ ElementUnitSequence 100014
+	position -200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence set_hack_time_20
+			time 0
+´set_time_state002´ ElementUnitSequence 100018
+	position -200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence set_hack_time_30
+			time 0
+´set_time_state003´ ElementUnitSequence 100019
+	position -200, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence set_hack_time_40
+			time 0
+´point_debug_001´ ElementDebug 100000
+	as_subtitle false
+	debug_string started hack
+	show_instigator false
+	on_executed
+		´enable_got_code´ (delay 0)
+´enable_got_code´ ElementToggle 100001
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_001´ DISABLED
+´point_debug_002´ ElementDebug 100002
+	as_subtitle false
+	debug_string got code
+	show_instigator false
+´point_waypoint_001´ ElementWaypoint 100008
+	icon pd2_computer
+	only_in_civilian false
+	position -7, 0, 11
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hack_done´ ElementUnitSequenceTrigger 100020
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+		´func_sequence_002´ (delay 0)
+´logic_operator_001´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´disable´ ElementInstanceInput 100022
+	event disable
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100023
+	position 300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence state_contour_off
+			time 0
+´started_hack´ ElementInstanceOutput 100017
+	event started_hack
+´func_disable_unit_002´ ElementDisableUnit 100024
+	position -300, -100, -47.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x1x2m/002 (73.3442, 53, -129.021)
+´logic_link_001´ MissionScriptElement 100026
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100027
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x1x2m/002 (73.3442, 53, -129.021)
+´func_sequence_002´ ElementUnitSequence 100028
+	position 200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence done_hacking
+			time 0
+´func_sequence_003´ ElementUnitSequence 100029
+	position 300, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_objective_laptop/mcm_laptop/001 (-6.10352E-05, 0, 0)
+			notify_unit_sequence remove_attention
+			time 0

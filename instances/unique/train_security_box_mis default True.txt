@@ -1,0 +1,134 @@
+´enable_interaction´ ElementUnitSequence 100007
+	position -300, 100, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´first_interaction´ ElementUnitSequenceTrigger 100008
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+	on_executed
+		´enable_2nd_interaction´ (delay 0)
+´fuse_popped´ MissionScriptElement 100009
+	on_executed
+		´enable_interaction´ (delay 0)
+		´in_use_toggle´ (delay 1)
+´point_waypoint_001´ ElementWaypoint 100010
+	icon pd2_wirecutter
+	position -56, 54, 169
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100011
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+´enable_2nd_interaction´ ElementUnitSequence 100006
+	position -500, -25, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_001´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´first_interaction´ DISABLED
+´logic_toggle_002´ ElementToggle 100015
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´wire_interaction´ DISABLED
+´wire_interaction´ ElementUnitSequenceTrigger 100016
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence hack
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+	on_executed
+		´close_box´ (delay 0)
+´logic_toggle_003´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´first_interaction´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´close_box´ ElementUnitSequence 100018
+	position -775, -150, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+			notify_unit_sequence anim_door_close
+			time 0
+	on_executed
+		´disable_box´ (delay 0)
+		´output_finished_hack´ (delay 0)
+´Input_Turn_On´ ElementInstanceInput 100019
+	event Turn_On
+	on_executed
+		´fuse_popped´ (delay 0)
+		´in_use´ (delay 0) DISABLED
+´in_use´ MissionScriptElement 100020
+	DISABLED
+	on_executed
+		´was_busy´ (delay 0)
+´in_use_toggle´ ElementToggle 100021
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´fuse_popped´
+		2 ´in_use´ DISABLED
+´debug_in_use´ ElementDebug 100022
+	as_subtitle true
+	debug_string This Box is currently being USED try another
+	show_instigator false
+´was_busy´ ElementInstanceOutput 100023
+	event currently_being_used
+	on_executed
+		´debug_in_use´ (delay 0)
+´output_finished_hack´ ElementInstanceOutput 100000
+	event finished_hack
+´input_alarm´ ElementInstanceInput 100001
+	event alarm
+	on_executed
+		´alarm_disable´ (delay 0)
+		´disable_box´ (delay 0)
+´alarm_disable´ ElementToggle 100002
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´first_interaction´ DISABLED
+		2 ´wire_interaction´ DISABLED
+´disable_box´ ElementUnitSequence 100005
+	position -850, -225, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_security_fusebox/bnk_prop_security_fusebox/001 (-30, 54.001, 144.95)
+			notify_unit_sequence state_interaction_disable
+			time 0
+	on_executed
+		´logic_operator_001´ (delay 0)

@@ -1,0 +1,668 @@
+´startup_3´ MissionScriptElement 103810
+	EXECUTE ON STARTUP
+	on_executed
+		´func_sequence_063´ (delay 0)
+		´func_disable_unit_014´ (delay 0)
+		´func_enable_unit_044´ (delay 0)
+		´point_spawn_player_005´ (delay 0)
+		´point_spawn_player_007´ (delay 0)
+		´point_spawn_player_006´ (delay 0)
+		´point_spawn_player_008´ (delay 0)
+´func_sequence_063´ ElementUnitSequence 103811
+	position 550, 3275, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/lcm_prop_securitydoor/lcm_prop_securitydoor_01/001 (372, 1076, 326.316)
+			notify_unit_sequence close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/lcm_prop_securitydoor/lcm_prop_securitydoor_01/002 (-375, 1083, 326.316)
+			notify_unit_sequence close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/goal_apartment_001 (1484, 3463, 25)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_7x4/gen_prop_square_goal_marker_7x4/goal_bridge_004 (1486, 5715, 25)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/helicopter_cops_001 (375, 3575, 250)
+			notify_unit_sequence hidden
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/swatLight1 (4869, 2462, 368)
+			notify_unit_sequence light_off
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/swatLight2 (-3117, 6385, 265)
+			notify_unit_sequence light_off
+			time 0
+´func_disable_unit_014´ ElementDisableUnit 103814
+	position 350, 3175, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/hcm/hcm_bdrop_far_09_32x64/007 (-8825, -9425, -469.999)
+		2 units/dev_tools/level_tools/dev_collision_4m_bag/018 (1150, -1196, 296.945)
+		3 units/payday2/props/com_prop_jewelry_jewels/com_prop_jewelry_tiara_box/002 (-409.03, -883.04, 131.903)
+		4 units/dev_tools/level_tools/dev_collision_1m_2_bag/020 (-1722, 3344, 318)
+		5 units/dev_tools/level_tools/dev_collision_1m_2_bag/019 (-1622, 3344, 318)
+		6 units/dev_tools/level_tools/dev_collision_1m_2_bag/022 (-1722, 3344, 618)
+		7 units/dev_tools/level_tools/dev_collision_1m_2_bag/021 (-1522, 3344, 318)
+		8 units/dev_tools/level_tools/dev_collision_1m_2_bag/017 (-1472, 3389, 318)
+		9 units/world/props/street/parking_meter/sidewalk_pole/002 (87, 2776, 25)
+		10 units/world/props/street/parking_meter/sidewalk_pole/001 (-137, 2776, 25)
+´func_enable_unit_044´ ElementEnableUnit 103815
+	position 350, 3300, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_spawn_player_005´ ElementPlayerSpawner 103816
+	position 1475, 5225, 30.9999
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´point_spawn_player_006´ ElementPlayerSpawner 103817
+	position 1575, 5225, 30.9999
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´point_spawn_player_007´ ElementPlayerSpawner 103818
+	position 1500, 5400, 30.9999
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´point_spawn_player_008´ ElementPlayerSpawner 103819
+	position 1350, 5400, 30.9999
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´playersSpawned_3´ ElementAreaTrigger 103820
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 1002,67
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1475, 5325, 350.925
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_debug_039´ (delay 0)
+		´ai_spawn_enemy_060´ (delay 0)
+		´ai_spawn_enemy_059´ (delay 0)
+		´playersSpawned_4´ (delay 0)
+´point_debug_039´ ElementDebug 103821
+	as_subtitle false
+	debug_string spawned
+	show_instigator false
+´ai_spawn_enemy_059´ ElementSpawnEnemyDummy 103825
+	accessibility any
+	amount 0
+	enemy units/characters/enemies/gangster1/gangster1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1327, 3919, 25
+	rotation 0, 0, 0.382683, -0.92388
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_094´ (delay 0)
+´ai_spawn_enemy_060´ ElementSpawnEnemyDummy 103826
+	accessibility any
+	amount 0
+	enemy units/characters/enemies/gangster4/gangster4
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1575, 3975, 25
+	rotation 0, 0, -0.382683, -0.92388
+	spawn_action so_apartment_point
+	team default
+	voice 0
+	orientation_elements
+´point_special_objective_094´ ElementSpecialObjective 103827
+	SO_access 132
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	is_navigation_link false
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1327, 3919, 25
+	repeatable false
+	rotation 0, 0, 0.382683, -0.92388
+	scan true
+	search_distance 0
+	search_position 1550 3925 25
+	so_action so_thug_idle_standing
+	trigger_on none
+	use_instigator true
+	followup_elements
+´trigger_area_004´ ElementAreaTrigger 103829
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1428, 4396, 25
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_sequence_064´ (delay 0)
+´func_sequence_064´ ElementUnitSequence 103833
+	position 1325, 4250, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+´playersNearCar´ ElementAreaTrigger 103834
+	TRIGGER TIMES 1
+	amount 1
+	depth 1463,9
+	height 893,134
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 3925, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1193,18
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´logic_counter_007´ (delay 0)
+´logic_counter_007´ ElementCounter 103835
+	counter_target 2
+	on_executed
+		´point_debug_040´ (delay 0)
+		´spawnFromCar´ (delay 0)
+		´playerLootCarDelay´ (delay 1)
+´func_sequence_trigger_052´ ElementUnitSequenceTrigger 103836
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car4_follow
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/031 (2175, 5475, 1625)
+	on_executed
+		´logic_counter_007´ (delay 2)
+´point_debug_040´ ElementDebug 103837
+	as_subtitle false
+	debug_string we are here
+	show_instigator false
+´ai_spawn_enemy_061´ ElementSpawnEnemyDummy 103838
+	accessibility any
+	amount 0
+	enemy units/characters/enemies/gangster4/gangster4
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -659, 3664, 25
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action cop_car_exit_to_rifle_combat_front_r
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´func_sequence_065´ (delay 0)
+		´point_special_objective_098´ (delay 0)
+´spawnFromCar´ MissionScriptElement 103839
+	on_executed
+		´ai_spawn_enemy_061´ (delay 0)
+		´ai_spawn_enemy_062´ (delay 0.25)
+´func_sequence_065´ ElementUnitSequence 103840
+	position -250, 3825, 218.438
+	rotation 0, 0, 0, -1
+	trigger_list
+´ai_attention_007´ ElementAIAttention 103843
+	operation override
+	override pl_enemy_cur_peaceful
+	position 1452, 5225, 543
+	preset pl_enemy_cbt
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_041´ (delay 0)
+		´ai_attention_008´ (delay 0)
+´trigger_area_014´ ElementAreaTrigger 103844
+	TRIGGER TIMES 1
+	amount 1
+	depth 175
+	height 775,173
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1352, 5420, 368
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 130
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_attention_007´ (delay 0)
+´trigger_area_018´ ElementAreaTrigger 103845
+	TRIGGER TIMES 1
+	amount 1
+	depth 175
+	height 775,173
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1517, 5452, 368
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 130
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_attention_007´ (delay 0)
+´trigger_area_019´ ElementAreaTrigger 103846
+	TRIGGER TIMES 1
+	amount 1
+	depth 175
+	height 775,173
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1582, 5236, 368
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 130
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_attention_007´ (delay 0)
+´trigger_area_020´ ElementAreaTrigger 103847
+	TRIGGER TIMES 1
+	amount 1
+	depth 175
+	height 775,173
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1452, 5225, 368
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 130
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_attention_007´ (delay 0)
+´point_debug_041´ ElementDebug 103848
+	as_subtitle false
+	debug_string triggered attention
+	show_instigator false
+´ai_attention_008´ ElementAIAttention 103849
+	operation override
+	override pl_enemy_cur_peaceful
+	position 1450, 5125, 550
+	preset pl_enemy_sneak
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_042´ (delay 0)
+´point_debug_042´ ElementDebug 103850
+	as_subtitle false
+	debug_string attenction2
+	show_instigator false
+´ai_spawn_enemy_062´ ElementSpawnEnemyDummy 103831
+	accessibility any
+	amount 0
+	enemy units/characters/enemies/gangster4/gangster4
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -575, 4075, 25
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action cop_car_exit_to_rifle_combat_front_l
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´func_sequence_066´ (delay 0)
+		´point_special_objective_099´ (delay 0)
+´func_sequence_066´ ElementUnitSequence 103832
+	position -250, 3925, 225
+	rotation 0, 0, 0, -1
+	trigger_list
+´PlayerLootCarEnters´ ElementUnitSequence 103851
+	position 300, 3650, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+´doneContinue1´ ElementUnitSequenceTrigger 103852
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car1_continue
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/032 (774.999, 4850, 1222)
+	on_executed
+		´follow4´ (delay 0)
+´follow4´ ElementUnitSequence 103853
+	position 300, 3500, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+´doneFollow4´ ElementUnitSequenceTrigger 103855
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car4_follow
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/032 (774.999, 4850, 1222)
+	on_executed
+		´spawnPlayerBuddy´ (delay 0)
+´playerLootCarDelay´ MissionScriptElement 103856
+	on_executed
+		´PlayerLootCarEnters´ (delay 0)
+´spawnPlayerBuddy´ MissionScriptElement 103857
+´func_sequence_067´ ElementUnitSequence 103858
+	position -125, 3425, 300
+	rotation 0, 0, 0, -1
+	trigger_list
+´ai_graph_004´ ElementAIGraph 102709
+	filter_group none
+	operation forbid_access
+	position 250, 4050, 125
+	rotation 0, 0, 0, -1
+	graph_ids
+		1 97
+		2 98
+´playersSpawned_4´ MissionScriptElement 102710
+	on_executed
+		´ai_graph_004´ (delay 0)
+		´func_sequence_071´ (delay 0)
+´point_special_objective_095´ ElementSpecialObjective 102711
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	is_navigation_link false
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 225, 3000, 25
+	repeatable false
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 225 2975 25
+	so_action so_walk_talking_phone_loop
+	trigger_on none
+	use_instigator true
+	followup_elements
+´openDoor´ ElementSpecialObjectiveTrigger 103860
+	event anim_start
+	position 175, 3275, 125
+	rotation 0, 0, 0, -1
+	on_executed
+		´openDoor_2´ (delay 0)
+´openDoor_2´ ElementUnitSequence 103861
+	position 150, 3175, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´spawnGold´ (delay 0)
+´spawnGold´ ElementUnitSequence 103865
+	position 75, 3175, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+´openBackDoorForLoot´ ElementUnitSequence 103870
+	position -750, 3775, 225
+	rotation 0, 0, 0, -1
+	trigger_list
+´pickedUpLoot´ ElementUnitSequenceTrigger 103871
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence none
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/035 (774.999, 5650, 1622)
+		2
+			guis_id 2
+			sequence none
+			notify_unit_id units/payday2/props/com_prop_barista_counters/com_prop_barista_table_window_300/002 (1250, 700, 25)
+		3
+			guis_id 3
+			sequence none
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/034 (-225.001, 5650, 1622)
+	on_executed
+		´openBackDoorForLoot´ (delay 0)
+		´point_special_objective_096´ (delay 0)
+´func_sequence_trigger_053´ ElementUnitSequenceTrigger 103872
+	TRIGGER TIMES 3
+	sequence_list
+		1
+			guis_id 1
+			sequence unload
+			notify_unit_id units/dev_tools/level_tools/shadow_caster_10x10/036 (-1425, 5450, 1625)
+	on_executed
+		´1_2´ (delay 0)
+		´2_3´ (delay 0)
+		´3_2´ (delay 0)
+´1_2´ ElementCounter 103873
+	counter_target 1
+	on_executed
+		´func_sequence_068´ (delay 0)
+´2_3´ ElementCounter 103874
+	counter_target 2
+	on_executed
+		´func_sequence_069´ (delay 0)
+´3_2´ ElementCounter 103875
+	counter_target 3
+	on_executed
+		´func_sequence_070´ (delay 0)
+´func_sequence_068´ ElementUnitSequence 103876
+	position -825, 3900, 225
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_sequence_069´ ElementUnitSequence 103877
+	position -875, 3900, 225
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_sequence_070´ ElementUnitSequence 103878
+	position -925, 3900, 225
+	rotation 0, 0, 0, -1
+	trigger_list
+´point_special_objective_096´ ElementSpecialObjective 103879
+	SO_access 132
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	is_navigation_link false
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -775, 3700, 25
+	repeatable false
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -775 3700 25
+	so_action so_knock_on_door
+	trigger_on none
+	use_instigator false
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_enemy_061´
+´func_sequence_071´ ElementUnitSequence 103880
+	position 175, 4125, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+´point_special_objective_098´ ElementSpecialObjective 102070
+	SO_access 4
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	is_navigation_link false
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -366, 3767, 25.0001
+	repeatable false
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -375 3750 25,0001
+	so_action so_stand_thug_idle
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_099´ ElementSpecialObjective 103921
+	SO_access 132
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	is_navigation_link false
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -300, 4025, 25.0004
+	repeatable false
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -350 4025 25,0001
+	so_action so_thug_idle_lean_bwd
+	trigger_on none
+	use_instigator true
+	followup_elements

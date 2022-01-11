@@ -1,0 +1,508 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´ seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 11577.3, -2044.3, 0.33174
+	rotation 0.000185899, -0.000727313, 0.361624, -0.932324
+	state standard
+	on_executed
+		´input_enable_drilling´ (delay 0)
+		´input_show_wp_drill´ (delay 0)
+´ seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence set_hack_time_90s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence deactivate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (12133.2, -1707.51, 0.0360527)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (12133.2, -1707.51, 0.0360527)
+			notify_unit_sequence mull_plane_enable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence mull_plane_enable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_drilling´ ElementInstanceInput 100007
+	event enable_drilling
+	on_executed
+		´enable_drilling´ (delay 0)
+´output_swat_van_doors_opened´ ElementInstanceOutput 100008
+	event swat_van_doors_opened
+´enable_drilling´ MissionScriptElement 100011
+	on_executed
+		´enable_drilling_2´ (delay 0)
+´enable_drilling_2´ ElementUnitSequence 100012
+	position 975, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence activate
+			time 0
+	on_executed
+		´point_debug_005´ (delay 0)
+´input_enable_swat_van´ ElementInstanceInput 100013
+	event enable_swat_van
+	on_executed
+		´enable_swat_van´ (delay 0)
+´enable_swat_van´ MissionScriptElement 100014
+	on_executed
+		´enable_swat_van_2´ (delay 0)
+´enable_swat_van_2´ ElementUnitSequence 100015
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_van_sand_arrive_01
+			time 0
+´drill_completed´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+	on_executed
+		´link_drill_complete´ (delay 0)
+´link_drill_complete´ MissionScriptElement 100017
+	on_executed
+		´doors_opened_spawn_gas´ (delay 0) DISABLED
+		´link_hide_wp´ (delay 0)
+		´operator_remove_so_points´ (delay 0)
+		´toggle_off_drill_disable´ (delay 0)
+		´doors_opened_spawn_gas001´ (delay 0)
+		´output_swat_van_doors_opened´ (delay 0)
+		´teammate_comment_drill_done´ (delay 0)
+´doors_opened_spawn_gas´ ElementUnitSequence 100018
+	DISABLED
+	position 1050, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence destroy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence deactivate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_doors_rear_open
+			time 0
+´add_door_blockers´ ElementNavObstacle 100021
+	TRIGGER TIMES 1
+	operation add
+	position 1300, -275, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (12032, -1818.32, 0.161464)
+		2
+			guis_id 2
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/002 (11939.7, -1734.04, 0.343432)
+	on_executed
+		´output_swat_van_arrived´ (delay 0)
+´point_waypoint_drill´ ElementWaypoint 100023
+	icon pd2_drill
+	only_in_civilian false
+	only_on_instigator false
+	position 11944.5, -1939.2, 199.804
+	rotation 0.000185899, -0.000727313, 0.361624, -0.932324
+	text_id debug_none
+´input_show_wp_drill´ ElementInstanceInput 100024
+	event show_waypoint_drill
+	on_executed
+		´link_show_wp´ (delay 0)
+´input_hide_wp_drill´ ElementInstanceInput 100025
+	event hide_waypoint_drill
+	on_executed
+		´link_hide_wp´ (delay 0)
+´link_show_wp´ MissionScriptElement 100026
+	on_executed
+		´point_waypoint_drill´ (delay 0)
+´link_hide_wp´ MissionScriptElement 100027
+	on_executed
+		´toggle_off_wp´ (delay 0)
+´operator_remove_wp´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´point_waypoint_drill´
+´toggle_off_wp´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_drill´
+	on_executed
+		´operator_remove_wp´ (delay 0)
+´input_show_wp_pickup´ ElementInstanceInput 100029
+	event show_waypoint_pickup
+	on_executed
+		´link_show_wp_2´ (delay 0)
+´input_hide_wp_pickup´ ElementInstanceInput 100030
+	event hide_waypoint_pickup
+	on_executed
+		´link_hide_wp_2´ (delay 0)
+´point_waypoint_pickup´ ElementWaypoint 100031
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 12011.9, -1865.34, 149.716
+	rotation 0.000185899, -0.000727313, 0.361624, -0.932324
+	text_id debug_none
+´link_show_wp_2´ MissionScriptElement 100032
+	on_executed
+		´point_waypoint_pickup´ (delay 0)
+´link_hide_wp_2´ MissionScriptElement 100033
+	on_executed
+		´toggle_off_wp_2´ (delay 0)
+´toggle_off_wp_2´ ElementToggle 100034
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_pickup´
+	on_executed
+		´operator_remove_wp_2´ (delay 0)
+´operator_remove_wp_2´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´point_waypoint_pickup´
+´point_special_objective_anim´ ElementSpecialObjective 100036
+	TRIGGER TIMES 1
+	SO_access 508
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 11860.1, -2031.48, 99.9127
+	rotation 0.000185899, -0.000727313, 0.361624, -0.932324
+	scan true
+	search_distance 0
+	search_position 11816,7 -2106,65 0
+	so_action e_so_pull_lever
+	trigger_on none
+	followup_elements
+´point_special_objective_nav´ ElementSpecialObjective 100037
+	TRIGGER TIMES 1
+	SO_access 8700
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 11859.9, -2031.47, -0.0871646
+	rotation 0.000185899, -0.000727313, 0.361624, -0.932324
+	scan true
+	search_distance 2000
+	search_position 11828,4 -2089,59 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´point_special_objective_anim´
+´trigger_special_success´ ElementSpecialObjectiveTrigger 100038
+	event complete
+	position -200, -700, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_anim´
+	on_executed
+		´link_drill_jammed´ (delay 0)
+´trigger_special_fail´ ElementSpecialObjectiveTrigger 100039
+	event fail
+	position 200, -700, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_nav´
+		2 ´point_special_objective_anim´
+	on_executed
+		´link_not_jammed´ (delay 0)
+´seq_drill_jammed´ ElementUnitSequence 100040
+	position -100, -900, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence set_jammed
+			time 0
+´link_drill_jammed´ MissionScriptElement 100041
+	on_executed
+		´seq_drill_jammed´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´toggle_disable_interupt´ (delay 0)
+		´point_waypoint_drill´ (delay 0)
+´toggle_on´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_special_objective_nav´
+		2 ´point_special_objective_anim´
+		3 ´trigger_special_fail´
+		4 ´trigger_special_success´
+	on_executed
+		´link_reset´ (delay 0)
+´operator_remove_so_points´ ElementOperator 100043
+	operation remove
+	elements
+		1 ´point_special_objective_nav´
+		2 ´point_special_objective_anim´
+´point_debug_001´ ElementDebug 100044
+	as_subtitle false
+	debug_string Drill disable success
+	show_instigator false
+´point_debug_002´ ElementDebug 100045
+	as_subtitle false
+	debug_string Drill disable fail
+	show_instigator false
+´toggle_disable_interupt´ ElementToggle 100046
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_special_objective_anim´
+		2 ´point_special_objective_nav´
+		3 ´trigger_special_success´
+		4 ´trigger_special_fail´
+´trigger_drill_active´ ElementUnitSequenceTrigger 100047
+	TRIGGER TIMES 3
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+	on_executed
+		´link_drill_active´ (delay 0)
+		´output_swat_van_drilling_started´ (delay 0)
+´link_drill_active´ MissionScriptElement 100048
+	on_executed
+		´point_special_objective_nav´ (delay 0)
+		´point_debug_003´ (delay 0) DISABLED
+		´teammate_comment_drill_placed´ (delay 0)
+´link_not_jammed´ MissionScriptElement 100049
+	on_executed
+		´point_debug_002´ (delay 0)
+		´toggle_on´ (delay 0)
+´link_reset´ MissionScriptElement 100051
+	on_executed
+		´link_drill_active´ (delay 0)
+´point_debug_003´ ElementDebug 100053
+	DISABLED
+	as_subtitle false
+	debug_string Drill disable SO points active
+	show_instigator false
+´toggle_off_drill_disable´ ElementToggle 100050
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_special_success´
+		2 ´trigger_special_fail´
+		3 ´toggle_disable_interupt´
+		4 ´link_drill_jammed´
+		5 ´link_not_jammed´
+		6 ´toggle_on´
+		7 ´seq_drill_jammed´
+		8 ´point_debug_001´
+		9 ´point_debug_002´
+		10 ´link_reset´
+		11 ´point_special_objective_nav´
+		12 ´point_special_objective_anim´
+´spawn_turret´ ElementUnitSequence 100052
+	position 1400, -275, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence turret_spawn
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence turret_activate
+			time 0
+´OVK_above´ ElementFilter 100054
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1400, -175, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_turret´ (delay 0)
+´doors_opened_spawn_gas001´ ElementUnitSequence 100056
+	position 1250, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence destroy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (11963.4, -1916.54, 125.432)
+			notify_unit_sequence deactivate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+			notify_unit_sequence anim_doors_rear_open
+			time 0
+´swat_van_arrived´ ElementUnitSequenceTrigger 100058
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/002 (0, 0, 0)
+	on_executed
+		´OVK_above´ (delay 0)
+		´add_door_blockers´ (delay 0)
+´output_swat_van_arrived´ ElementInstanceOutput 100059
+	event swat_van_arrived
+´point_debug_005´ ElementDebug 100057
+	as_subtitle false
+	debug_string drilling_enabled
+	show_instigator false
+´teammate_comment_drill_placed´ ElementTeammateComment 100055
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g21
+	position 11975, -1900, 150
+	radius 100
+	rotation 0, 0, 0, -1
+	use_instigator false
+´teammate_comment_drill_done´ ElementTeammateComment 100060
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v23
+	position 11850, -2025, 200
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´output_swat_van_drilling_started´ ElementInstanceOutput 100061
+	TRIGGER TIMES 1
+	event swat_van_drilling_started

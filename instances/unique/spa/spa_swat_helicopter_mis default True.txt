@@ -1,0 +1,635 @@
+´spawn_left2_helicopter001_normal´ ElementSpawnEnemyDummy 100013
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -275, -25, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter002´
+	on_executed
+		´link_spawn_swat004´ (delay 0)
+´spawn_left1_helicopter001_normal´ ElementSpawnEnemyDummy 100014
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -130, -25, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter001´
+	on_executed
+		´link_spawn_swat003´ (delay 0)
+´spawn_right1_helicopter001_normal´ ElementSpawnEnemyDummy 100015
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 222, -0.000213623, 0
+	rotation 0, 0, 0.95882, 0.284015
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter001´
+	on_executed
+		´link_spawn_swat002´ (delay 0)
+´spawn_right2_helicopter001_normal´ ElementSpawnEnemyDummy 100016
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 325, 0, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter002´
+	on_executed
+		´link_spawn_swat001´ (delay 0)
+´spawn_point_left_helicopter001´ MissionScriptElement 100017
+	position -130, -25, 0
+	rotation 0, 0, 0, -1
+´spawn_point_right_helicopter001´ MissionScriptElement 100018
+	position 222, 0, 0
+	rotation 0, 0, 0.95882, 0.284015
+´arrive_helicopter_swat001´ MissionScriptElement 100019
+	on_executed
+		´show_helicopter001´ (delay 0)
+´show_helicopter001´ ElementUnitSequence 100020
+	position -700, 1075, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence flyin_left_hover
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence anim_spa_flyin
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence swat
+			time 0
+	on_executed
+		´open_doors_helicopter001´ (delay 23)
+		´show_helicopter_debug´ (delay 0) DISABLED
+		´activate_light´ (delay 4)
+´open_doors_helicopter001´ ElementUnitSequence 100021
+	position -700, 950, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence open_door_right
+			time 0
+	on_executed
+		´if_normal´ (delay 2)
+		´if_hard_vhard´ (delay 2)
+		´if_ovk_dw´ (delay 2)
+		´env_effect_play_001´ (delay 0)
+´close_doors_helicopter001_random_6_to_10´ ElementUnitSequence 100022
+	position -700, 575, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence close_door_right
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence close_door_left
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence close_door_right
+			time 0
+	on_executed
+		´flyout_helicopter001´ (delay 6-16)
+´spawn_enemies_helicopter_normal´ MissionScriptElement 100023
+	on_executed
+		´done_spawned_helicopter001´ (delay 14)
+		´spawn_left2_helicopter001_normal´ (delay 8)
+		´spawn_left1_helicopter001_normal´ (delay 2)
+		´spawn_right1_helicopter001_normal´ (delay 0)
+		´spawn_right2_helicopter001_normal´ (delay 6)
+´done_spawned_helicopter001´ MissionScriptElement 100024
+	on_executed
+		´close_doors_helicopter001_random_6_to_10´ (delay 0)
+		´make_hunt´ (delay 0) DISABLED
+´flyout_helicopter001´ ElementUnitSequence 100025
+	position -700, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hover_flyout_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence anim_spa_flyout
+			time 0
+	on_executed
+		´hide_helicopter001´ (delay 23)
+		´env_effect_stop_001´ (delay 0)
+		´activate_light_off´ (delay 0)
+´hide_helicopter001´ ElementUnitSequence 100026
+	position -700, 325, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence heli_framing3_circulate_3
+			time 0
+	on_executed
+		´helicopter_swat_logic_finished´ (delay 0)
+´start_helicopter_swat_logic´ ElementInstanceInput 100000
+	event start_helicopter_swat_logic
+	on_executed
+		´arrive_helicopter_swat001´ (delay 0)
+		´start_helicopter_swat_logic_2´ (delay 0) DISABLED
+´helicopter_swat_logic_finished´ ElementInstanceOutput 100001
+	event helicopter_swat_logic_finished
+´auto_hide_helicopter´ ElementUnitSequence 100002
+	EXECUTE ON STARTUP
+	position -800, 1325, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_vehicle_blackhawk/lxy_vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence hidden
+			time 0
+´disable_helicopter´ ElementToggle 100003
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´arrive_helicopter_swat001´
+	on_executed
+		´disable_helicopter_2´ (delay 0) DISABLED
+´enable_helicopter´ ElementToggle 100004
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´arrive_helicopter_swat001´
+	on_executed
+		´enable_helicopter_2´ (delay 0) DISABLED
+´swat_dies´ ElementEnemyDummyTrigger 100005
+	event death
+	position -400, 1075, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´spawn_left2_helicopter001_normal´
+		2 ´spawn_left1_helicopter001_normal´
+		3 ´spawn_right1_helicopter001_normal´
+		4 ´spawn_right2_helicopter001_normal´
+		5 ´spawn_left2_helicopter001_hard_vh´
+		6 ´spawn_left1_helicopter001_hard_vh´
+		7 ´spawn_right1_helicopter001_hard_vh´
+		8 ´spawn_right2_helicopter001_hard_vh´
+		9 ´spawn_left2_helicopter001_ovk_dw´
+		10 ´spawn_left1_helicopter001_ovk_dw´
+		11 ´spawn_right1_helicopter001_ovk_dw´
+		12 ´spawn_right2_helicopter001_ovk_dw´
+	on_executed
+		´if_4_swats_dies´ (delay 0)
+		´swat_dies_2´ (delay 0) DISABLED
+		´swat_died_output´ (delay 0)
+´if_4_swats_dies´ ElementCounter 100006
+	counter_target 4
+	on_executed
+		´enable_helicopter´ (delay 0)
+		´if_3_swats_dies´ (delay 0) DISABLED
+		´reset_counter´ (delay 0)
+´if_normal´ ElementFilter 100007
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -625, 875, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_enemies_helicopter_normal´ (delay 0)
+´if_hard_vhard´ ElementFilter 100008
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -700, 875, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_enemies_helicopter_hard_vh´ (delay 0)
+´if_ovk_dw´ ElementFilter 100010
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -775, 875, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_enemies_helicopter_ovk_dw´ (delay 0)
+´spawn_left2_helicopter001_hard_vh´ ElementSpawnEnemyDummy 100011
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -275, -25, 400
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter002´
+	on_executed
+		´link_spawn_swat004´ (delay 0)
+´spawn_left1_helicopter001_hard_vh´ ElementSpawnEnemyDummy 100012
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -175, -25, 400
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter001´
+	on_executed
+		´link_spawn_swat003´ (delay 0)
+´spawn_right1_helicopter001_hard_vh´ ElementSpawnEnemyDummy 100027
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 225, 0, 400
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter001´
+	on_executed
+		´link_spawn_swat002´ (delay 0)
+´spawn_right2_helicopter001_hard_vh´ ElementSpawnEnemyDummy 100028
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 325, 0, 400
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter002´
+	on_executed
+		´link_spawn_swat001´ (delay 0)
+´spawn_left2_helicopter001_ovk_dw´ ElementSpawnEnemyDummy 100029
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -275, -25, 800
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter002´
+	on_executed
+		´link_spawn_swat004´ (delay 0)
+´spawn_left1_helicopter001_ovk_dw´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -175, -25, 800
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_left
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_left_helicopter001´
+	on_executed
+		´link_spawn_swat003´ (delay 0)
+´spawn_right1_helicopter001_ovk_dw´ ElementSpawnEnemyDummy 100031
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 225, 0, 800
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter001´
+	on_executed
+		´link_spawn_swat002´ (delay 0)
+´spawn_right2_helicopter001_ovk_dw´ ElementSpawnEnemyDummy 100032
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 325, 0, 800
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_16m_right
+	team default
+	voice 0
+	orientation_elements
+		1 ´spawn_point_right_helicopter002´
+	on_executed
+		´link_spawn_swat001´ (delay 0)
+´spawn_enemies_helicopter_hard_vh´ MissionScriptElement 100033
+	on_executed
+		´done_spawned_helicopter001´ (delay 14)
+		´spawn_left1_helicopter001_hard_vh´ (delay 2)
+		´spawn_right1_helicopter001_hard_vh´ (delay 0)
+		´spawn_right2_helicopter001_hard_vh´ (delay 6)
+		´spawn_left2_helicopter001_hard_vh´ (delay 8)
+´spawn_enemies_helicopter_ovk_dw´ MissionScriptElement 100034
+	on_executed
+		´done_spawned_helicopter001´ (delay 14)
+		´spawn_left2_helicopter001_ovk_dw´ (delay 8)
+		´spawn_left1_helicopter001_ovk_dw´ (delay 2)
+		´spawn_right1_helicopter001_ovk_dw´ (delay 0)
+		´spawn_right2_helicopter001_ovk_dw´ (delay 6)
+´spawn_point_left_helicopter002´ MissionScriptElement 100035
+	position -160, -25, 0
+	rotation 0, 0, 0, -1
+´spawn_point_right_helicopter002´ MissionScriptElement 100036
+	position 254, 0, 0
+	rotation 0, 0, 0.95882, 0.284015
+´show_helicopter_debug´ ElementDebug 100037
+	DISABLED
+	as_subtitle false
+	debug_string show_helicopter
+	show_instigator false
+´start_helicopter_swat_logic_2´ ElementDebug 100038
+	DISABLED
+	as_subtitle false
+	debug_string start_helicopter_swat_logic
+	show_instigator false
+´disable_helicopter_2´ ElementDebug 100039
+	DISABLED
+	as_subtitle false
+	debug_string disable_helicopter
+	show_instigator false
+´enable_helicopter_2´ ElementDebug 100040
+	DISABLED
+	as_subtitle false
+	debug_string enable_helicopter
+	show_instigator false
+´if_3_swats_dies´ ElementDebug 100041
+	DISABLED
+	as_subtitle false
+	debug_string if_3_swats_dies
+	show_instigator false
+´swat_dies_2´ ElementDebug 100042
+	DISABLED
+	as_subtitle false
+	debug_string swat_dies
+	show_instigator false
+´reset_counter´ ElementCounterOperator 100043
+	amount 0
+	operation reset
+	instance_var_names
+	elements
+		1 ´if_4_swats_dies´
+	on_executed
+		´reset_counter_2´ (delay 0) DISABLED
+´reset_counter_2´ ElementDebug 100044
+	DISABLED
+	as_subtitle false
+	debug_string reset_counter
+	show_instigator false
+´AI_hunt´ ElementSpecialObjective 100045
+	SO_access 15840
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -1125, 1075, 2.5
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -1125 1075 2,5
+	so_action AI_hunt
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´spawn_left2_helicopter001_normal´
+		2 ´spawn_left1_helicopter001_normal´
+		3 ´spawn_right1_helicopter001_normal´
+		4 ´spawn_right2_helicopter001_normal´
+		5 ´spawn_left2_helicopter001_hard_vh´
+		6 ´spawn_left1_helicopter001_hard_vh´
+		7 ´spawn_right1_helicopter001_hard_vh´
+		8 ´spawn_right2_helicopter001_hard_vh´
+		9 ´spawn_right1_helicopter001_ovk_dw´
+		10 ´spawn_right2_helicopter001_ovk_dw´
+		11 ´spawn_left2_helicopter001_ovk_dw´
+		12 ´spawn_left1_helicopter001_ovk_dw´
+´make_hunt´ MissionScriptElement 100046
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´1_sec_delay´ (delay 1)
+´1_sec_delay´ MissionScriptElement 100047
+	on_executed
+		´AI_hunt´ (delay 0)
+		´30_sec_loop´ (delay 30)
+´30_sec_loop´ MissionScriptElement 100048
+	on_executed
+		´1_sec_delay´ (delay 0)
+´swat_1_spawned´ ElementInstanceOutput 100049
+	event swat_1_spawned
+´swat_2_spawned´ ElementInstanceOutput 100050
+	event swat_2_spawned
+´swat_3_spawned´ ElementInstanceOutput 100051
+	event swat_3_spawned
+´swat_4_spawned´ ElementInstanceOutput 100052
+	event swat_4_spawned
+´link_spawn_swat001´ MissionScriptElement 100053
+	on_executed
+		´swat_1_spawned´ (delay 12)
+´link_spawn_swat002´ MissionScriptElement 100054
+	on_executed
+		´swat_2_spawned´ (delay 12)
+´link_spawn_swat003´ MissionScriptElement 100055
+	on_executed
+		´swat_3_spawned´ (delay 12)
+´link_spawn_swat004´ MissionScriptElement 100056
+	on_executed
+		´swat_4_spawned´ (delay 12)
+´activate_light´ ElementUnitSequence 100057
+	position -900, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence nypd_night
+			time 0
+´env_effect_play_001´ ElementPlayEffect 100058
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_stop_001´ ElementStopEffect 100059
+	operation fade_kill
+	position -550, 450, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_001´
+´activate_light_off´ ElementUnitSequence 100060
+	position -900, 450, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (50, 75, -250)
+			notify_unit_sequence nypd
+			time 0
+´swat_died_output´ ElementInstanceOutput 100061
+	event swat_died_output

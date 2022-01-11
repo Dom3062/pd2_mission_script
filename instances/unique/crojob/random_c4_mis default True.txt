@@ -1,0 +1,120 @@
+´disable_shit´ ElementUnitSequence 100002
+	position 175, -250, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_vis_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´crate_open´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+	on_executed
+		´2´ (delay 0)
+´input_show_crate_crowbar´ ElementInstanceInput 100004
+	event show_crate
+	on_executed
+		´show_crate´ (delay 0)
+´input_show_c4´ ElementInstanceInput 100007
+	event show_c4
+	on_executed
+		´2´ (delay 0)
+´2´ ElementCounter 100009
+	counter_target 2
+	on_executed
+		´show_c4´ (delay 0)
+´show_c4´ ElementUnitSequence 100010
+	position 175, 50, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_vis_show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´output_c4_equipped´ ElementInstanceOutput 100008
+	event c4_equipped
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_shit´ (delay 1)
+´show_crate´ ElementUnitSequence 100013
+	EXECUTE ON STARTUP
+	position 175, -150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/equipment/ind_interactable_shipping_crate/ind_interactable_shipping_crate/c4_crate (0, 0, 0)
+			notify_unit_sequence state_requires_crowbar
+			time 0
+´c4_equipped´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+	on_executed
+		´disable_bag´ (delay 0)
+		´output_c4_equipped´ (delay 0)
+´disable_bag´ ElementUnitSequence 100005
+	position 175, 350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/gen_pku_c4_explosives_x1/gen_pku_c4_explosives_x1/001 (-1, -2, 73.0475)
+			notify_unit_sequence state_interaction_disable
+			time 0

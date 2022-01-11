@@ -1,0 +1,142 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_turn_off´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_enable_interaction´ (delay 1)
+		´input_enable_interaction001´ (delay 0)
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable_interaction
+	on_executed
+		´enable_area_player_closeby´ (delay 0)
+´link_enable_interaction´ MissionScriptElement 100011
+	on_executed
+		´seq_setup_hack´ (delay 0)
+		´WP_interact´ (delay 0)
+´seq_setup_hack´ ElementUnitSequence 100012
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction_big_bank/001 (0, -25, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´WP_interact´ ElementWaypoint 100013
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 1, -27, 24
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_interact´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´WP_interact´
+´link_interacted_with_keyboard´ MissionScriptElement 100015
+	on_executed
+		´remove_WP_interact´ (delay 0)
+		´seq_sending_mail´ (delay 0)
+		´output_sent_mail´ (delay 15)
+		´output_started_sending´ (delay 0)
+´interacted_with_keyboard´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/architecture/secret_stash/props/secret_stash_hack_keyboard_interaction_big_bank/001 (0, -25, 0)
+	on_executed
+		´link_interacted_with_keyboard´ (delay 0)
+´seq_sending_mail´ ElementUnitSequence 100017
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (0, 1, 0)
+			notify_unit_sequence 4_hack_complete
+			time 0
+´output_sent_mail´ ElementInstanceOutput 100019
+	event sent_mail
+´area_player_closeby´ ElementAreaTrigger 100020
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 200
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 25, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´enable_area_player_closeby´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_closeby´ DISABLED
+´output_started_sending´ ElementInstanceOutput 100022
+	event started_sending
+´input_enable_interaction001´ ElementInstanceInput 100006
+	event chosen_one
+	on_executed
+		´seq_turn_on´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´seq_turn_on´ ElementUnitSequence 100008
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (0, 1, 0)
+			notify_unit_sequence 1_main_screen_on
+			time 0
+´seq_turn_off´ ElementUnitSequence 100025
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_a/001 (0, 1, 0)
+			notify_unit_sequence 1_main_screen_off
+			time 0
+´func_disable_unit_001´ ElementDisableUnit 100026
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/001 (0, -50, 50)
+´func_enable_unit_001´ ElementEnableUnit 100027
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_omni_shadow_projection_01/light_omni_shadow_projection_01/001 (0, -50, 50)

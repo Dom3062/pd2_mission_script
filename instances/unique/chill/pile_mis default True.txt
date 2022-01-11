@@ -1,0 +1,70 @@
+´point_loot_pile_001´ ElementLootPile 100000
+	DISABLED
+	carry_id money
+	max_loot -1
+	position -188, 0, 33.4596
+	reissue_delay 3
+	retry_delay 2
+	rotation 0, 0, 0, -1
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0.1)
+´activate´ ElementInstanceInput 100003
+	event Activate
+	on_executed
+		´enable_money_pile´ (delay 0.2)
+´turn_on_loot_pile´ ElementToggle 100005
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_loot_pile_001´ DISABLED
+´func_nav_obstacle_001´ ElementNavObstacle 100011
+	operation add
+	position -200, -500, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (100, 0, -22.3269)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (-3.8147E-05, 3.8743E-05, -22.3269)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (0, 100, -22.3269)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (100, 100, -22.3269)
+	on_executed
+		´logic_link_001´ (delay 20)
+´disable_money_pile´ ElementDisableUnit 100002
+	position -200, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_money_pile/chl_prop_money_pile/001 (0, 0, 0)
+´enable_money_pile´ ElementEnableUnit 100004
+	position -100, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chill/props/chl_prop_money_pile/chl_prop_money_pile/001 (0, 0, 0)
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´WP_defend´ ElementWaypoint 100006
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´delay´ MissionScriptElement 100013
+	on_executed
+		´disable_money_pile´ (delay 0)
+´logic_link_001´ MissionScriptElement 100014
+	on_executed
+		´WP_defend´ (delay 0)
+		´turn_on_loot_pile´ (delay 0)

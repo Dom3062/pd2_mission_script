@@ -1,0 +1,432 @@
+´enter´ ElementInstanceInput 100000
+	event enter
+	on_executed
+		´Start´ (delay 0)
+´exit´ ElementInstanceInput 100001
+	event exit
+	on_executed
+		´if_entered´ (delay 0) DISABLED
+´if_entered´ MissionScriptElement 100002
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´enable_enter - ON´ (delay 5)
+		´enable_enter - OFF´ (delay 0.1)
+		´ON´ (delay 0)
+´if_entered_2´ MissionScriptElement 100003
+	TRIGGER TIMES 1
+	on_executed
+		´enable_exit - ON´ (delay 0)
+		´VH_Below_3´ (delay 0)
+		´Ovk_Above_3´ (delay 0)
+´enable_exit - ON´ ElementToggle 100004
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´if_entered´ DISABLED
+´Anim_Enter´ ElementUnitSequence 100006
+	position 4125, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+			notify_unit_sequence anim_enter
+			time 0
+´anim_enter_finished´ ElementUnitSequenceTrigger 100015
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_enter_finished
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+		2
+			guis_id 2
+			sequence int_seq_enter_finished
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+	on_executed
+		´link_2´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´enable_enter - ON´ ElementToggle 100028
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´if_entered_2´
+´enable_enter - OFF´ ElementToggle 100026
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´if_entered´ DISABLED
+´Spawn_double´ ElementUnitSequence 100013
+	position 4125, -125, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+			notify_unit_sequence anim_snipers_enter
+			time 0
+	on_executed
+		´set 2´ (delay 0)
+´spawn_snipers´ ElementUnitSequenceTrigger 100014
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_spawn_snipers
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+		2
+			guis_id 2
+			sequence int_seq_spawn_snipers
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+	on_executed
+		´spawn_2´ (delay 0)
+		´spawn_1´ (delay 0)
+´spawn_2´ MissionScriptElement 100005
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100016
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -458.274, -5.33148, 38
+	rotation 0, 0, 0.92388, -0.382683
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100017
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance cbt
+	path_style warp
+	patrol_path none
+	pose crouch
+	position -458.274, -5.33154, 38
+	repeatable true
+	rotation 0, 0, 0.92388, -0.382683
+	scan true
+	search_distance 0
+	search_position -1625 525 -125
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100018
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 335, -25, 67
+	rotation 0, 0, 0.923879, 0.382684
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_002´ (delay 0)
+´point_special_objective_002´ ElementSpecialObjective 100019
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance cbt
+	path_style warp
+	patrol_path none
+	pose crouch
+	position 335, -25, 67
+	repeatable true
+	rotation 0, 0, 0.923879, 0.382684
+	scan true
+	search_distance 0
+	search_position 969,072 -65,7045 0
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´Death´ ElementEnemyDummyTrigger 100020
+	event death
+	position 4075, -325, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_002´
+		2 ´ai_spawn_enemy_001´
+	on_executed
+		´link´ (delay 0)
+´exit_2´ ElementUnitSequence 100021
+	position 4125, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+			notify_unit_sequence anim_snipers_exit
+			time 0
+	on_executed
+		´loop´ (delay 0)
+´link´ MissionScriptElement 100022
+	on_executed
+		´1 or 2´ (delay 5)
+´1 or 2´ ElementCounter 100023
+	counter_target 0
+	on_executed
+		´link_3´ (delay 0)
+´set 2´ ElementCounterOperator 100024
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´1 or 2´
+´loop´ MissionScriptElement 100008
+	on_executed
+		´HIDE´ (delay 5)
+´OFF´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´loop´
+´hand_shape´ ElementShape 100025
+	depth 665
+	height 875
+	position 0, 0, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 1392
+´kill_any_ai_still_alive´ ElementAreaReportTrigger 100027
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 4500, -150, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´hand_shape´
+	use_shape_element_ids
+	unit_ids
+		1 100025
+	on_executed
+		´ai_remove_001´ (delay 0) (alternative enter)
+´ai_remove_001´ ElementAIRemove 100029
+	force_ragdoll true
+	position 4500, -225, 2.5
+	rotation 0, 0, 0, -1
+	true_death true
+	use_instigator true
+´ON´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´kill_any_ai_still_alive´ DISABLED
+	on_executed
+		´OFF - Delay´ (delay 3)
+´OFF - Delay´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´kill_any_ai_still_alive´ DISABLED
+´link_2´ MissionScriptElement 100032
+	on_executed
+		´VH_Below´ (delay 0)
+		´Ovk_Above´ (delay 0)
+´link_3´ MissionScriptElement 100037
+	on_executed
+		´VH_Below_2´ (delay 0)
+		´Ovk_Above_2´ (delay 0)
+´set 1´ ElementCounterOperator 100038
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´1 or 2´
+´Spawn_single´ ElementUnitSequence 100039
+	position 4025, -125, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+			notify_unit_sequence anim_snipers_enter_single
+			time 0
+	on_executed
+		´set 1´ (delay 0)
+´VH_below´ ElementFilter 100041
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 3925, 350, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´OFF_2´ (delay 0)
+´ovk_above´ ElementFilter 100042
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 3975, 350, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´OFF_3´ (delay 0)
+´AUTO_START´ MissionScriptElement 100043
+	EXECUTE ON STARTUP
+	on_executed
+		´VH_below´ (delay 0)
+		´ovk_above´ (delay 0)
+´OFF_2´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Ovk_Above´
+		2 ´spawn_2´
+		3 ´Ovk_Above_2´
+		4 ´Ovk_Above_3´
+´Ovk_Above´ MissionScriptElement 100046
+	on_executed
+		´Spawn_double´ (delay 0)
+´VH_Below´ MissionScriptElement 100047
+	on_executed
+		´Spawn_single´ (delay 0)
+´spawn_1´ MissionScriptElement 100033
+	on_executed
+		´ai_spawn_enemy_002´ (delay 0)
+´VH_Below_2´ MissionScriptElement 100034
+	on_executed
+		´set 1´ (delay 0)
+		´exit001´ (delay 0)
+´Ovk_Above_2´ MissionScriptElement 100048
+	on_executed
+		´set 2´ (delay 0)
+		´exit_2´ (delay 0)
+´exit001´ ElementUnitSequence 100035
+	position 4025, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+			notify_unit_sequence anim_snipers_exit_single
+			time 0
+	on_executed
+		´loop´ (delay 0)
+´VH_Below_3´ MissionScriptElement 100036
+	on_executed
+		´Anim_Enter_2´ (delay 0)
+´Ovk_Above_3´ MissionScriptElement 100049
+	on_executed
+		´Anim_Enter´ (delay 0)
+´Anim_Enter_2´ ElementUnitSequence 100050
+	position 4025, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+			notify_unit_sequence anim_enter
+			time 0
+´Start´ MissionScriptElement 100051
+	on_executed
+		´if_entered_2´ (delay 0)
+´OFF_3´ ElementToggle 100044
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´VH_Below´
+		2 ´spawn_1´
+		3 ´VH_Below_2´
+		4 ´VH_Below_3´
+´point_play_sound_001´ ElementPlaySound 100010
+	append_prefix false
+	interrupt true
+	position -50, 4000, 2002.5
+	rotation 1, 0, 0, -0
+	sound_event Play_big_clk_help_04
+	use_instigator false
+´HIDE´ ElementUnitSequence 100007
+	position 4075, -725, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (3.39057, 1903.01, -3452.66)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/002 (-130.177, -40.5898, -4010.91)
+			notify_unit_sequence state_vis_hide
+			time 0

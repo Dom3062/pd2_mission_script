@@ -1,0 +1,329 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100001
+	DISABLED
+	EXECUTE ON STARTUP
+	position -25, -325, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_goat´ (delay 0)
+´enable_goat´ ElementInstanceInput 100012
+	event enable_goat
+	on_executed
+		´enable´ (delay 0)
+		´random_5s_loop´ (delay 0)
+		´show_goat_anim´ (delay 0)
+´goat_picked_up´ ElementInstanceOutput 100013
+	event goat_picked_up
+´power_cut´ ElementInstanceInput 100022
+	event power_cut
+	on_executed
+		´remove_waypoint_goat´ (delay 0)
+		´disable_electro´ (delay 0)
+		´disable_effect_loop´ (delay 0)
+		´disable_close_again_trigger´ (delay 0)
+		´switch_to_ragdoll´ (delay 0)
+		´hide_goat´ (delay 0)
+		´waypoint_goat001´ (delay 0)
+´player_close´ ElementAreaTrigger 100023
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 1792
+	instigator player
+	interval 0.1
+	position 0, 0, -597.5
+	radius 1600
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_2´ (delay 0)
+´player_close_again´ ElementAreaTrigger 100024
+	DISABLED
+	amount 1
+	depth 500
+	height 1792
+	instigator player
+	interval 0.1
+	position 0, 0, -572.5
+	radius 1600
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_again_2´ (delay 0)
+´player_close_2´ MissionScriptElement 100025
+	TRIGGER TIMES 1
+	on_executed
+		´waypoint_goat´ (delay 0)
+		´enable_player_close_again´ (delay 0)
+		´player_close_3´ (delay 0)
+´player_close_again_2´ MissionScriptElement 100026
+	TRIGGER TIMES 1
+	on_executed
+		´player_close_again_3´ (delay 0)
+		´5s_reenable´ (delay 0)
+´enable´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close´ DISABLED
+		2 ´vehicle_close´ DISABLED
+		3 ´temp_pickupgoat001´ DISABLED
+		4 ´trigger_team_vo´ DISABLED
+´enable_player_close_again´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close_again´ DISABLED
+		2 ´vehicle_close_again´ DISABLED
+´waypoint_goat´ ElementWaypoint 100029
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 0, 227.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint_goat´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´waypoint_goat´
+´player_close_3´ ElementInstanceOutput 100031
+	event player_close
+´player_close_again_3´ ElementInstanceOutput 100032
+	event player_close_again
+´vehicle_close_again´ ElementAreaTrigger 100033
+	DISABLED
+	amount 1
+	depth 500
+	height 1600
+	instigator vehicle_with_players
+	interval 0.1
+	position 0, 0, -522.5
+	radius 1600
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_again_2´ (delay 0.1)
+´vehicle_close´ ElementAreaTrigger 100034
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 1744
+	instigator vehicle_with_players
+	interval 0.1
+	position 0, 0, -547.5
+	radius 1600
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´player_close_2´ (delay 0.1)
+´5s_reenable´ ElementToggle 100035
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´player_close_again_2´
+	on_executed
+		´player_close_again_2´ (delay 5)
+´electrocute´ ElementPlayerState 100036
+	position 300, -125, 2.5
+	rotation 0, 0, 0, -1
+	state electrocution
+	use_instigator true
+´spark_effect´ ElementPlayEffect 100038
+	base_time 0
+	effect effects/particles/environment/wide_sparks_col
+	max_amount 0
+	position 0, 0, 252.5
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´random_5s_loop´ MissionScriptElement 100040
+	on_executed
+		´play_effects´ (delay 0-5)
+´play_effects´ MissionScriptElement 100041
+	on_executed
+		´random_5s_loop´ (delay 0)
+		´spark_effect´ (delay 0)
+´disable_electro´ ElementToggle 100039
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´temp_pickupgoat001´ DISABLED
+		2 ´trigger_team_vo´ DISABLED
+		3 ´reenable_temp_interaction´
+´stop_effects´ ElementStopEffect 100042
+	operation fade_kill
+	position -1275, -575, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´spark_effect´
+´disable_effect_loop´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´random_5s_loop´
+		2 ´play_effects´
+	on_executed
+		´stop_effects´ (delay 0)
+´disable_pv_close_again´ ElementInstanceInput 100044
+	event disable_pv_close_again
+	on_executed
+		´disable_close_again_trigger´ (delay 0)
+´disable_close_again_trigger´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´vehicle_close_again´ DISABLED
+		2 ´player_close_again´ DISABLED
+		3 ´enable_player_close_again´
+		4 ´5s_reenable´
+		5 ´player_close_again_2´
+´electrocuted´ ElementInstanceOutput 100046
+	event electrocuted
+´temp_pickupgoat001´ ElementInteraction 100047
+	DISABLED
+	override_timer -1
+	position 0, 0, 196.5
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_grab_goat
+	on_executed
+		´electrocute´ (delay 0) (alternative interacted)
+		´electrocuted´ (delay 0) (alternative interacted)
+		´reenable_temp_interaction´ (delay 1) (alternative interacted)
+´hide_goat´ ElementUnitSequence 100002
+	position -1350, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+			notify_unit_sequence state_vis_hide
+			time 0
+´show_goat_anim´ ElementUnitSequence 100006
+	position -1350, -75, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+			notify_unit_sequence anim_hang_fan
+			time 0
+´switch_to_ragdoll´ ElementUnitSequence 100007
+	position -1350, -350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+			notify_unit_sequence switch_to_ragdoll
+			time 0
+	on_executed
+		´enable_interaction_stop_fan´ (delay 1)
+´waypoint_goat001´ ElementWaypoint 100000
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 0, 77.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint_goat001´ ElementOperator 100008
+	operation remove
+	elements
+		1 ´waypoint_goat001´
+´goat_picked´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+	on_executed
+		´remove_waypoint_goat001´ (delay 0)
+		´goat_picked_up´ (delay 0)
+´trigger_team_vo´ ElementAreaTrigger 100010
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 690
+	instigator player
+	interval 0.1
+	position 0, 0, 100
+	radius 349,65
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´stand_back´ (delay 0)
+´stand_back´ ElementTeammateComment 100015
+	close_to_element true
+	comment v13
+	position 0, -75, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´enable_interaction_stop_fan´ ElementUnitSequence 100003
+	position -1275, -350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (-25, 20, 100)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/gym/stn_prop_fan_ceiling/stn_prop_fan_ceiling/001 (0, 0, 300)
+			notify_unit_sequence state_stop_animation
+			time 0
+´reenable_temp_interaction´ ElementToggle 100005
+	set_trigger_times 0
+	toggle on
+	elements
+		1 ´temp_pickupgoat001´ DISABLED

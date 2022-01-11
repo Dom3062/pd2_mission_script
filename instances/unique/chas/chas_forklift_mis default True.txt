@@ -1,0 +1,260 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2250, 400, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_raise_forklift´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_entry_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_loot_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_repair_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´operator_block_forklift´ ElementVehicleOperator 100016
+	damage 0
+	operation lock
+	position 725, 225, -25
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 100024
+	on_executed
+		´point_debug_002´ (delay 0)
+		´enable_breach_door´ (delay 0)
+´point_debug_002´ ElementDebug 100017
+	as_subtitle false
+	debug_string you_blocked. Get out!
+	show_instigator false
+´enable_breach_door´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Vehicle_trigger´ DISABLED
+	on_executed
+		´func_vehicle_boarding_001´ (delay 1)
+´Vehicle_trigger´ ElementVehicleTrigger 100021
+	DISABLED
+	TRIGGER TIMES 1
+	event on_exit
+	position 725, -50, -25
+	rotation 0, 0, -0.707107, -0.707107
+	on_executed
+		´block_forklift´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100026
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1150, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´forklift_enabled_and_loud´ (delay 0)
+		´enable_unlock_forklift_interaction´ (delay 0)
+´point_debug_003´ ElementDebug 100028
+	as_subtitle false
+	debug_string you_can_drive_now_PEW_PEW
+	show_instigator false
+´WP_drive_forklift´ ElementWaypoint 100029
+	TRIGGER TIMES 1
+	icon pd2_generic_look
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 75, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´Vehicle_trigger001´ ElementVehicleTrigger 100030
+	TRIGGER TIMES 1
+	event on_enter
+	position 900, 300, -23.9346
+	rotation 0, 0, -0.707107, -0.707107
+	on_executed
+		´enable_WP_door_drive´ (delay 0)
+´enable_WP_door_drive´ MissionScriptElement 100031
+	on_executed
+		´remove_WP001´ (delay 0)
+´input_enable_WP´ ElementInstanceInput 100032
+	event enable_WP_forklift
+	on_executed
+		´enable_WP_forklift´ (delay 0)
+´enable_WP_forklift´ MissionScriptElement 100033
+	on_executed
+		´WP_drive_forklift´ (delay 0)
+´remove_WP001´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´WP_drive_forklift´
+	on_executed
+		´disable_WP_forklift´ (delay 0)
+´enable_forklift´ ElementUnitSequence 100055
+	position 1400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_entry_enabled
+			time 0
+	on_executed
+		´point_debug_003´ (delay 0)
+´input_disable_forklift´ ElementInstanceInput 100009
+	event disable_forklift
+	on_executed
+		´operator_block_forklift´ (delay 0)
+´disable_WP_forklift´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_drive_forklift´
+´block_forklift´ ElementUnitSequence 100007
+	position 725, -125, -25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_entry_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_loot_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_vis_icon_repair_disabled
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence anim_fork_ready
+			time 0
+´input_enable_forklift´ ElementInstanceInput 100008
+	event enable_forklift
+	on_executed
+		´forklift_enabled_and_loud´ (delay 0)
+´forklift_enabled_and_loud´ ElementCounter 100010
+	counter_target 2
+´point_interaction_001´ ElementInteraction 100012
+	DISABLED
+	host_only false
+	override_timer -1
+	position 0, -100, 125
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_unlock_forklift
+	on_executed
+		´link_forklift_unlocked´ (delay 0) (alternative interacted)
+´enable_unlock_forklift_interaction´ ElementToggle 100013
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_001´ DISABLED
+´link_forklift_unlocked´ MissionScriptElement 100014
+	on_executed
+		´enable_forklift´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100018
+	operation add
+	position 1550, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 14269766135928687537
+			unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+´input_enable_forklift_blocker´ ElementInstanceInput 100022
+	event enable_forklift_nav_blocker
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´input_raise_forklift´ ElementInstanceInput 100015
+	event raise_forks
+	on_executed
+		´seq_raise_forks´ (delay 0)
+´seq_raise_forks´ ElementUnitSequence 100019
+	position 1700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence anim_fork_lift
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence state_broken
+			time 0
+	on_executed
+		´seq_lower_forks´ (delay 3)
+´seq_lower_forks´ ElementUnitSequence 100023
+	position 1700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+			notify_unit_sequence anim_fork_down
+			time 0
+´func_vehicle_boarding_001´ ElementVehicleBoarding 100011
+	operation disembark
+	vehicle 100024
+	seats_order
+		1 driver
+		2 passenger_front

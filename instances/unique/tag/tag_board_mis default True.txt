@@ -1,0 +1,224 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_show_whiteboard´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dah/props/dah_prop_whiteboard/dah_prop_whiteboard_b/001 (0, 0, 100)
+		2 core/units/light_omni/light_omni/001 (1.00606, -67, 180.685)
+´input_show_whiteboard´ ElementInstanceInput 100007
+	event show_whiteboard
+	on_executed
+		´link_show_whiteboard´ (delay 0)
+´link_show_whiteboard´ MissionScriptElement 100019
+	on_executed
+		´ernable_whiteboard´ (delay 0)
+		´decide_random_laptop_location´ (delay 0.5)
+		´seq_show´ (delay 0)
+´ernable_whiteboard´ ElementEnableUnit 100020
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dah/props/dah_prop_whiteboard/dah_prop_whiteboard_b/001 (0, 0, 100)
+		2 core/units/light_omni/light_omni/001 (1.00606, -67, 180.685)
+´decide_random_laptop_location´ ElementRandom 100021
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´HR´ (delay 0)
+		´server´ (delay 0)
+		´storage´ (delay 0)
+		´operations´ (delay 0)
+		´training´ (delay 0) DISABLED
+		´kitchen´ (delay 0)
+´HR´ MissionScriptElement 100022
+	on_executed
+		´output_HR´ (delay 0)
+		´seq_set_HR´ (delay 0)
+´server´ MissionScriptElement 100023
+	on_executed
+		´output_server´ (delay 0)
+		´seq_set_server´ (delay 0)
+´storage´ MissionScriptElement 100024
+	on_executed
+		´output_storage´ (delay 0)
+		´seq_set_storage´ (delay 0)
+´operations´ MissionScriptElement 100025
+	on_executed
+		´output_operations´ (delay 0)
+		´seq_set_operations´ (delay 0)
+´training´ MissionScriptElement 100026
+	DISABLED
+	on_executed
+		´output_training´ (delay 0)
+		´seq_set_training´ (delay 0)
+´kitchen´ MissionScriptElement 100027
+	on_executed
+		´output_kitchen´ (delay 0)
+		´seq_set_kitchen´ (delay 0)
+´output_HR´ ElementInstanceOutput 100034
+	event HR
+´output_server´ ElementInstanceOutput 100035
+	event server
+´output_storage´ ElementInstanceOutput 100036
+	event storage
+´output_operations´ ElementInstanceOutput 100037
+	event operations
+´output_training´ ElementInstanceOutput 100038
+	event training
+´output_kitchen´ ElementInstanceOutput 100039
+	event kitchen
+´I'll_allow_it´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´training´ DISABLED
+´input_allow_training´ ElementInstanceInput 100044
+	event allow_training
+	on_executed
+		´I'll_allow_it´ (delay 0)
+´seq_set_HR´ ElementUnitSequence 100009
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence hr_room
+			time 0
+´seq_set_server´ ElementUnitSequence 100010
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence server_room
+			time 0
+´seq_set_storage´ ElementUnitSequence 100011
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence storage_room
+			time 0
+´seq_set_operations´ ElementUnitSequence 100013
+	position 1000, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence operations_room
+			time 0
+´seq_set_training´ ElementUnitSequence 100028
+	position 1100, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence training_room
+			time 0
+´seq_set_kitchen´ ElementUnitSequence 100029
+	position 1200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence kitchen
+			time 0
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence hide
+			time 0
+´seq_show´ ElementUnitSequence 100012
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_tag/props/tag_prop_whiteboard_signs/tag_prop_whiteboard_sign_01/001 (-83, 7, 133)
+			notify_unit_sequence show
+			time 0
+´input_disable_HR´ ElementInstanceInput 100014
+	event disable_HR
+	on_executed
+		´disable001´ (delay 0)
+´input_disable_server´ ElementInstanceInput 100015
+	event disable_server
+	on_executed
+		´disable002´ (delay 0)
+´input_disable_storage´ ElementInstanceInput 100016
+	event disable_storage
+	on_executed
+		´disable003´ (delay 0)
+´input_disable_operations´ ElementInstanceInput 100017
+	event disable_operations
+	on_executed
+		´disable004´ (delay 0)
+´input_disable_kitchen´ ElementInstanceInput 100030
+	event disable_kitchen
+	on_executed
+		´disable006´ (delay 0)
+´disable001´ ElementToggle 100031
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´HR´
+´disable002´ ElementToggle 100032
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´server´
+´disable003´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´storage´
+´disable004´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´operations´
+´disable006´ ElementToggle 100058
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´kitchen´

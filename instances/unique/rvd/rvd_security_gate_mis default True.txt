@@ -1,0 +1,463 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´ai_spawn_enemy_001´ (delay 5)
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´start_placing_device´ (delay 0)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+		´add_door_blocker´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´seq_setup´ ElementUnitSequence 100006
+	position 600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-155, -2, 125)
+			notify_unit_sequence disable_interact
+			time 0
+´WP_interact_device´ ElementWaypoint 100008
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -156, -18, 144
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´start_placing_device´ MissionScriptElement 100012
+	on_executed
+		´WP_interact_device´ (delay 0)
+		´enable´ (delay 0)
+´seq_state_hacking´ ElementUnitSequence 100015
+	position 800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+			notify_unit_sequence state_1_hacking
+			time 0
+´remove_WP_interact_device´ ElementOperator 100016
+	operation remove
+	elements
+		1 ´WP_interact_device´
+´placed_device´ MissionScriptElement 100017
+	on_executed
+		´seq_state_hacking´ (delay 0)
+		´remove_WP_interact_device´ (delay 0)
+		´start_interrupt´ (delay 0)
+		´WP_defend´ (delay 1)
+		´start001´ (delay 0)
+´seq_stuff´ ElementUnitSequence 100018
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-155, -2, 125)
+			notify_unit_sequence state_1
+			time 0
+´police_called´ ElementGlobalEventTrigger 100019
+	TRIGGER TIMES 1
+	global_event police_called
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_stuff´ (delay 0)
+´interaction_place_device´ ElementInteraction 100020
+	DISABLED
+	host_only false
+	override_timer -1
+	position -156, -18, 144
+	rotation 0, 0, 0, -1
+	tweak_data_id use_server_device
+	on_executed
+		´placed_device´ (delay 0) (alternative interacted)
+´enable´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_place_device´ DISABLED
+´SO_interrupt_none´ ElementSpecialObjective 100009
+	SO_access 12792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -150, -80, 0
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 3000
+	search_position -100 -100 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_interrupt´
+´SO_interrupt´ ElementSpecialObjective 100013
+	SO_access 12792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	no_arrest true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -150, -80, 75
+	repeatable false
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -100 -100 0
+	so_action e_so_push_button
+	trigger_on none
+	use_instigator true
+	followup_elements
+´start_interrupt´ MissionScriptElement 100014
+	on_executed
+		´SO_interrupt_none´ (delay 0)
+		´point_debug_001´ (delay 0)
+´fail´ ElementSpecialObjectiveTrigger 100022
+	event fail
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_interrupt_none´
+		2 ´SO_interrupt´
+	on_executed
+		´start_interrupt´ (delay 10)
+		´point_debug_004´ (delay 0)
+´point_debug_001´ ElementDebug 100023
+	as_subtitle false
+	debug_string from instance: start_interrupt
+	show_instigator false
+´complete´ ElementSpecialObjectiveTrigger 100024
+	event complete
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_interrupt´
+	on_executed
+		´interrupted´ (delay 0)
+´interrupted´ MissionScriptElement 100025
+	on_executed
+		´seq_set_interrupt´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´WP_fix´ (delay 1)
+		´enable_2´ (delay 0)
+		´pause´ (delay 0)
+		´remove_WP_defend´ (delay 0)
+´seq_set_interrupt´ ElementUnitSequence 100026
+	position 1000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+			notify_unit_sequence state_2_stopped
+			time 0
+´point_debug_002´ ElementDebug 100027
+	as_subtitle false
+	debug_string from instance: interrupted
+	show_instigator false
+´WP_fix´ ElementWaypoint 100028
+	icon pd2_fix
+	only_in_civilian false
+	only_on_instigator false
+	position -156, -18, 144
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interaction_fix´ ElementInteraction 100029
+	DISABLED
+	host_only false
+	override_timer -1
+	position -156, -18, 144
+	rotation 0, 0, 0, -1
+	tweak_data_id hlm_connect_equip
+	on_executed
+		´fixed´ (delay 0) (alternative interacted)
+´fixed´ MissionScriptElement 100030
+	on_executed
+		´seq_set_hack´ (delay 0)
+		´start´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+		´start_interrupt´ (delay 10)
+		´WP_defend´ (delay 1)
+´enable_2´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_fix´ DISABLED
+´seq_set_hack´ ElementUnitSequence 100032
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+			notify_unit_sequence state_1_hacking
+			time 0
+´timer´ ElementTimer 100033
+	timer 60
+´start´ ElementTimerOperator 100034
+	operation start
+	position 1100, -400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+´pause´ ElementTimerOperator 100035
+	operation pause
+	position 1000, -400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+´seq_set_done´ ElementUnitSequence 100036
+	position 1200, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+			notify_unit_sequence state_3_done
+			time 0
+´timer_done´ ElementTimerTrigger 100037
+	position 1200, -400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´seq_set_done´ (delay 0)
+´hacking_device_done´ ElementUnitSequenceTrigger 100038
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_3_done
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_panel_keycard_hack/hacking_device (-155, -2, 125)
+	on_executed
+		´point_debug_003´ (delay 0)
+		´relay´ (delay 0)
+´seq_open_door´ ElementUnitSequence 100039
+	position 1300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_security_door/gate (200, 0, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+´add_door_blocker´ ElementNavObstacle 100041
+	operation add
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 75, 0)
+´remove_door_blocker´ ElementNavObstacle 100042
+	operation remove
+	position 1300, -400, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 75, 0)
+´disable´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_interrupt_none´
+		2 ´SO_interrupt´
+		3 ´start_interrupt´
+		4 ´interrupted´
+´point_debug_003´ ElementDebug 100044
+	as_subtitle false
+	debug_string from instance: done
+	show_instigator false
+´remove_WP_fix´ ElementOperator 100045
+	operation remove
+	elements
+		1 ´WP_fix´
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100046
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -300, -200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100047
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -300, -100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100048
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -300, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_debug_004´ ElementDebug 100051
+	as_subtitle false
+	debug_string fail
+	show_instigator false
+´instance_output_gate_opened´ ElementInstanceOutput 100052
+	event gate_opened
+´instance_input_start_placing_device´ ElementInstanceInput 100053
+	event start_placing_device
+	on_executed
+		´start_placing_device´ (delay 0)
+´instance_input_open_gate_interaction´ ElementInstanceInput 100049
+	event open_gate_interaction
+	on_executed
+		´start_open_gate_manually´ (delay 0)
+´start_open_gate_manually´ MissionScriptElement 100050
+	on_executed
+		´WP_interact_device´ (delay 0)
+		´enable_interaction_open_gate_manually´ (delay 0)
+´enable_interaction_open_gate_manually´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_open_gate_interaction´ DISABLED
+´interaction_open_gate_interaction´ ElementInteraction 100055
+	DISABLED
+	host_only false
+	override_timer -1
+	position -156, -18, 144
+	rotation 0, 0, 1, -1.19209E-07
+	tweak_data_id hold_open
+	on_executed
+		´opened_gate_manually´ (delay 0) (alternative interacted)
+´opened_gate_manually´ MissionScriptElement 100056
+	on_executed
+		´remove_WP_interact_device´ (delay 0)
+		´relay´ (delay 0)
+		´teammate_comment_inside´ (delay 0.5)
+´relay´ MissionScriptElement 100057
+	on_executed
+		´seq_open_door´ (delay 0)
+		´remove_door_blocker´ (delay 0)
+		´disable´ (delay 0)
+		´instance_output_gate_opened´ (delay 0)
+		´remove_WP_defend´ (delay 0)
+		´remove_WPs´ (delay 0)
+´WP_defend´ ElementWaypoint 100061
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position -156, -18, 144
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_defend´ ElementOperator 100062
+	operation remove
+	elements
+		1 ´WP_defend´
+´remove_WPs´ ElementOperator 100063
+	operation remove
+	elements
+		1 ´WP_defend´
+		2 ´WP_fix´
+		3 ´WP_interact_device´
+´start001´ ElementTimerOperator 100064
+	TRIGGER TIMES 1
+	operation start
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+´teammate_comment_inside´ ElementTeammateComment 100065
+	close_to_element true
+	comment g08
+	position -4, 0, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

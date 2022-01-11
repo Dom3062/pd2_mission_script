@@ -1,0 +1,1145 @@
+´players_spawned´ MissionScriptElement 101865
+´pd_players_spawned´ ElementDebug 101872
+	as_subtitle false
+	debug_string players spawned
+	show_instigator false
+´func_sequence_001´ ElementUnitSequence 102608
+	position 2500, -2575, 3075
+	rotation 0, 0, 0, -1
+	trigger_list
+´startup´ MissionScriptElement 103161
+	EXECUTE ON STARTUP
+´STARTUP_outside´ MissionScriptElement 100482
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY_outside´ (delay 1)
+		´disable_loud_dead_guards´ (delay 0)
+´DELAY_outside´ MissionScriptElement 100576
+	on_executed
+		´balcony_stairs_random_link´ (delay 1)
+		´security_cameras_DISABLE´ (delay 0)
+		´show_security_cameras´ (delay 1)
+		´gate_closed_DISABLE´ (delay 0)
+		´randomize_gates´ (delay 5)
+		´disable_limo_trough_gate´ (delay 0)
+		´logic_counter_operator_002´ (delay 0)
+´balcony_stairs_random_link´ MissionScriptElement 101708
+	on_executed
+		´random_balcony_stairs´ (delay 1)
+		´disable_balconies_fence_startup´ (delay 0)
+´random_balcony_stairs´ ElementRandom 102138
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´left_balcony_stairs_link´ (delay 0)
+		´right_balcony_stairs_link´ (delay 0)
+		´disable_both_balconies´ (delay 0)
+		´disable_pool_balcony´ (delay 0)
+´left_balcony_stairs_link´ MissionScriptElement 102139
+	on_executed
+		´disable_left_stairs´ (delay 0)
+		´enable_left_fence´ (delay 0)
+		´func_nav_obstacle_001´ (delay 15)
+´right_balcony_stairs_link´ MissionScriptElement 102140
+	on_executed
+		´disable_right_stairs´ (delay 0)
+		´enable_right_fence´ (delay 0)
+		´func_nav_obstacle_002´ (delay 14)
+´disable_both_balconies´ MissionScriptElement 102606
+	on_executed
+		´disable_left_stairs´ (delay 0)
+		´enable_left_fence´ (delay 0)
+		´disable_right_stairs´ (delay 0)
+		´enable_right_fence´ (delay 0)
+´input_loud_entry´ ElementInstanceInput 103802
+	event loud_entry
+	on_executed
+		´seq_loud_entry´ (delay 0)
+		´func_enable_unit_003´ (delay 1)
+´seq_loud_entry´ ElementUnitSequence 103803
+	position 25, -3300, 3775
+	rotation 0, 0, 0, -1
+	trigger_list
+´security_cameras_DISABLE´ ElementDisableUnit 101678
+	position 0, -3450, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (-1800, -1425, 2850)
+		2 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (1849, -1225, 2850)
+		3 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (1849, -3970, 2850)
+		4 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_04 (1849, -2170, 2275)
+		5 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_05 (2825, -3376, 2275)
+		6 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_06 (1625, -6176, 2275)
+		7 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_07 (-1625, -6176, 2275)
+		8 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_08 (-1800, -4376, 2275)
+		9 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_09 (-1800, -2226, 2275)
+		10 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_10 (-2063, -1799, 2275)
+		11 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_11 (-274.999, -7412, 2350)
+		12 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_12 (275.001, -7412, 2350)
+´show_security_cameras´ MissionScriptElement 103909
+	on_executed
+		´diff_NORMAL´ (delay 0)
+		´diff_HARD´ (delay 0)
+		´diff_VERYHARD´ (delay 0)
+		´diff_OVERKILL´ (delay 0)
+		´diff_DEATHWISH´ (delay 0)
+		´random_cameras´ (delay 1)
+´diff_VERYHARD´ ElementFilter 103910
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -25, -2875, 3775
+	rotation 0, 0, 0, -1
+	on_executed
+		´SET_8´ (delay 0)
+´diff_HARD´ ElementFilter 103911
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -25, -2925, 3775
+	rotation 0, 0, 0, -1
+	on_executed
+		´SET_6´ (delay 0)
+´diff_NORMAL´ ElementFilter 103912
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -25, -2975, 3775
+	rotation 0, 0, 0, -1
+	on_executed
+		´SET_4´ (delay 0)
+´diff_OVERKILL´ ElementFilter 103913
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -25, -2825, 3775
+	rotation 0, 0, 0, -1
+	on_executed
+		´SET_10´ (delay 0)
+´diff_DEATHWISH´ ElementFilter 103914
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -25, -2775, 3775
+	rotation 0, 0, 0, -1
+	on_executed
+		´SET_12´ (delay 0)
+		´seq_cameras_DEATHWISH´ (delay 0)
+´security_cameras_COUNTER´ ElementCounter 103915
+	counter_target 0
+´SET_4´ ElementCounterOperator 103916
+	amount 4
+	operation set
+	instance_var_names
+	elements
+		1 ´security_cameras_COUNTER´
+´SET_6´ ElementCounterOperator 103917
+	amount 6
+	operation set
+	instance_var_names
+	elements
+		1 ´security_cameras_COUNTER´
+´SET_8´ ElementCounterOperator 103918
+	amount 8
+	operation set
+	instance_var_names
+	elements
+		1 ´security_cameras_COUNTER´
+´SET_10´ ElementCounterOperator 103919
+	amount 10
+	operation set
+	instance_var_names
+	elements
+		1 ´security_cameras_COUNTER´
+´SET_12´ ElementCounterOperator 103920
+	amount 12
+	operation set
+	instance_var_names
+	elements
+		1 ´security_cameras_COUNTER´
+´random_cameras´ ElementRandom 103921
+	amount 1
+	amount_random 0
+	counter_id 103915
+	ignore_disabled true
+	on_executed
+		´show_security_camera_01´ (delay 0)
+		´show_security_camera_02´ (delay 0)
+		´show_security_camera_03´ (delay 0)
+		´show_security_camera_04´ (delay 0)
+		´show_security_camera_05´ (delay 0)
+		´show_security_camera_06´ (delay 0)
+		´show_security_camera_07´ (delay 0)
+		´show_security_camera_08´ (delay 0)
+		´show_security_camera_09´ (delay 0)
+		´show_security_camera_10´ (delay 0)
+		´show_security_camera_11´ (delay 0)
+		´show_security_camera_12´ (delay 0)
+´seq_cameras_DEATHWISH´ ElementUnitSequence 103922
+	position -25, -2650, 3775
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (-1800, -1425, 2850)
+			notify_unit_sequence deathwish
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (1849, -1225, 2850)
+			notify_unit_sequence deathwish
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (1849, -3970, 2850)
+			notify_unit_sequence deathwish
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_04 (1849, -2170, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_05 (2825, -3376, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_06 (1625, -6176, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_07 (-1625, -6176, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_08 (-1800, -4376, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_09 (-1800, -2226, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_10 (-2063, -1799, 2275)
+			notify_unit_sequence deathwish
+			time 0
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_11 (-274.999, -7412, 2350)
+			notify_unit_sequence deathwish
+			time 0
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_12 (275.001, -7412, 2350)
+			notify_unit_sequence deathwish
+			time 0
+´show_security_camera_06´ MissionScriptElement 103923
+	on_executed
+		´security_camera_06_ENABLE´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+´show_security_camera_07´ MissionScriptElement 103924
+	on_executed
+		´security_camera_07_ENABLE´ (delay 0)
+		´logic_toggle_008´ (delay 0)
+´show_security_camera_08´ MissionScriptElement 103925
+	on_executed
+		´security_camera_08_ENABLE´ (delay 0)
+		´logic_toggle_009´ (delay 0)
+´show_security_camera_09´ MissionScriptElement 103926
+	on_executed
+		´security_camera_09_ENABLE´ (delay 0)
+		´logic_toggle_010´ (delay 0)
+´show_security_camera_10´ MissionScriptElement 103927
+	on_executed
+		´security_camera_10_ENABLE´ (delay 0)
+		´logic_toggle_011´ (delay 0)
+´show_security_camera_11´ MissionScriptElement 103928
+	on_executed
+		´security_camera_11_ENABLE´ (delay 0)
+		´logic_toggle_012´ (delay 0)
+´show_security_camera_12´ MissionScriptElement 103929
+	on_executed
+		´security_camera_12_ENABLE´ (delay 0)
+		´logic_toggle_013´ (delay 0)
+´show_security_camera_05´ MissionScriptElement 103930
+	on_executed
+		´security_camera_05_ENABLE´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+´show_security_camera_04´ MissionScriptElement 103931
+	on_executed
+		´security_camera_04_ENABLE´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´show_security_camera_03´ MissionScriptElement 103932
+	on_executed
+		´security_camera_03_ENABLE´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´show_security_camera_02´ MissionScriptElement 103933
+	on_executed
+		´security_camera_02_ENABLE´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´show_security_camera_01´ MissionScriptElement 103934
+	on_executed
+		´security_camera_01_ENABLE´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´security_camera_01_ENABLE´ ElementEnableUnit 103935
+	position 375, -3175, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_01 (-1800, -1425, 2850)
+	on_executed
+		´security_camera_01_ENABLED´ (delay 0.5)
+´security_camera_02_ENABLE´ ElementEnableUnit 103936
+	position 375, -3125, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_02 (1849, -1225, 2850)
+	on_executed
+		´security_camera_02_ENABLED´ (delay 0.5)
+´security_camera_03_ENABLE´ ElementEnableUnit 103937
+	position 375, -3075, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_03 (1849, -3970, 2850)
+	on_executed
+		´security_camera_03_ENABLED´ (delay 0.5)
+´security_camera_04_ENABLE´ ElementEnableUnit 103938
+	position 375, -3025, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_04 (1849, -2170, 2275)
+	on_executed
+		´security_camera_04_ENABLED´ (delay 0.5)
+´security_camera_05_ENABLE´ ElementEnableUnit 103939
+	position 375, -2975, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_05 (2825, -3376, 2275)
+	on_executed
+		´security_camera_05_ENABLED´ (delay 0.5)
+´security_camera_06_ENABLE´ ElementEnableUnit 103940
+	position 375, -2925, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_06 (1625, -6176, 2275)
+	on_executed
+		´security_camera_06_ENABLED´ (delay 0.5)
+´security_camera_07_ENABLE´ ElementEnableUnit 103941
+	position 375, -2825, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_07 (-1625, -6176, 2275)
+	on_executed
+		´security_camera_07_ENABLED´ (delay 0.5)
+´security_camera_08_ENABLE´ ElementEnableUnit 103942
+	position 375, -2775, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_08 (-1800, -4376, 2275)
+	on_executed
+		´security_camera_08_ENABLED´ (delay 0.5)
+´security_camera_09_ENABLE´ ElementEnableUnit 103943
+	position 375, -2725, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_09 (-1800, -2226, 2275)
+	on_executed
+		´security_camera_09_ENABLED´ (delay 0.5)
+´security_camera_10_ENABLE´ ElementEnableUnit 103944
+	position 375, -2675, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_10 (-2063, -1799, 2275)
+	on_executed
+		´security_camera_10_ENABLED´ (delay 0.5)
+´security_camera_11_ENABLE´ ElementEnableUnit 103945
+	position 375, -2625, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_11 (-274.999, -7412, 2350)
+	on_executed
+		´security_camera_11_ENABLED´ (delay 0.5)
+´security_camera_12_ENABLE´ ElementEnableUnit 103946
+	position 375, -2575, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_security_camera/gen_equipment_security_camera/security_camera_12 (275.001, -7412, 2350)
+	on_executed
+		´security_camera_12_ENABLED´ (delay 0.5)
+´security_camera_01_ENABLED´ ElementSecurityCamera 103947
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103897
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_02_ENABLED´ ElementSecurityCamera 103948
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103898
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_03_ENABLED´ ElementSecurityCamera 103949
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103899
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_04_ENABLED´ ElementSecurityCamera 103950
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103900
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_05_ENABLED´ ElementSecurityCamera 103951
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103901
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_06_ENABLED´ ElementSecurityCamera 103952
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103902
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_07_ENABLED´ ElementSecurityCamera 103953
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103903
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_08_ENABLED´ ElementSecurityCamera 103954
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103904
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_09_ENABLED´ ElementSecurityCamera 103955
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103905
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_10_ENABLED´ ElementSecurityCamera 103956
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103906
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_11_ENABLED´ ElementSecurityCamera 103957
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103907
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw 30
+´security_camera_12_ENABLED´ ElementSecurityCamera 103958
+	ai_enabled true
+	apply_settings true
+	camera_u_id 103908
+	detection_delay_max 3
+	detection_delay_min 2
+	detection_range 15
+	fov 60
+	pitch -30
+	suspicion_range 7
+	yaw -30
+´security_camera_01_DISABLED´ ElementSecurityCamera 103959
+	camera_u_id 103897
+´security_camera_02_DISABLED´ ElementSecurityCamera 103960
+	camera_u_id 103898
+´security_camera_03_DISABLED´ ElementSecurityCamera 103961
+	camera_u_id 103899
+´security_camera_04_DISABLED´ ElementSecurityCamera 103962
+	camera_u_id 103900
+´security_camera_05_DISABLED´ ElementSecurityCamera 103963
+	camera_u_id 103901
+´security_camera_06_DISABLED´ ElementSecurityCamera 103964
+	camera_u_id 103902
+´security_camera_07_DISABLED´ ElementSecurityCamera 103965
+	camera_u_id 103903
+´security_camera_08_DISABLED´ ElementSecurityCamera 103966
+	camera_u_id 103904
+´security_camera_09_DISABLED´ ElementSecurityCamera 103967
+	camera_u_id 103905
+´security_camera_10_DISABLED´ ElementSecurityCamera 103968
+	camera_u_id 103906
+´security_camera_11_DISABLED´ ElementSecurityCamera 103969
+	camera_u_id 103907
+´security_camera_12_DISABLED´ ElementSecurityCamera 103970
+	camera_u_id 103908
+´security_camera_01_FEED´ ElementAccessCamera 103971
+	DISABLED
+	camera_u_id 103897
+	pitch_limit 25
+	position -1855.08, -1436.93, 2864
+	rotation -0.100797, -0.181844, 0.855507, 0.474215
+	text_id debug_none
+	yaw_limit 25
+´security_camera_02_FEED´ ElementAccessCamera 103972
+	camera_u_id 103898
+	pitch_limit 25
+	position 62, -3955, 3775
+	rotation 0, 0, 0.923879, -0.382684
+	text_id debug_none
+	yaw_limit 25
+´security_camera_03_FEED´ ElementAccessCamera 103973
+	DISABLED
+	camera_u_id 103899
+	pitch_limit 25
+	position 1901.54, -3959.3, 2861.46
+	rotation 0.114161, -0.0632803, 0.480662, -0.867137
+	text_id debug_none
+	yaw_limit 25
+´security_camera_04_FEED´ ElementAccessCamera 103974
+	DISABLED
+	camera_u_id 103900
+	pitch_limit 25
+	position 1903.92, -2159.46, 2287
+	rotation 0.14291, -0.0636278, 0.463692, -0.872077
+	text_id debug_none
+	yaw_limit 25
+´security_camera_05_FEED´ ElementAccessCamera 103975
+	DISABLED
+	camera_u_id 103901
+	pitch_limit 25
+	position 2814.38, -3322.85, 2287
+	rotation 0.150745, 0.0418052, -0.263948, -0.951767
+	text_id debug_none
+	yaw_limit 25
+´security_camera_06_FEED´ ElementAccessCamera 103976
+	DISABLED
+	camera_u_id 103902
+	pitch_limit 25
+	position 1677.64, -6164.97, 2287.21
+	rotation 0.142935, -0.0825237, 0.493142, -0.854149
+	text_id debug_none
+	yaw_limit 25
+´security_camera_07_FEED´ ElementAccessCamera 103977
+	DISABLED
+	camera_u_id 103903
+	pitch_limit 25
+	position -1678.09, -6186.53, 2287.31
+	rotation 0.0828977, 0.132664, -0.837607, -0.523396
+	text_id debug_none
+	yaw_limit 25
+´security_camera_08_FEED´ ElementAccessCamera 103978
+	DISABLED
+	camera_u_id 103904
+	pitch_limit 25
+	position -1854.51, -4386.05, 2287
+	rotation -0.0695865, -0.120527, 0.857598, 0.495134
+	text_id debug_none
+	yaw_limit 25
+´security_camera_09_FEED´ ElementAccessCamera 103979
+	DISABLED
+	camera_u_id 103905
+	pitch_limit 25
+	position -1854.51, -2236.05, 2287
+	rotation -0.0695865, -0.120527, 0.857598, 0.495134
+	text_id debug_none
+	yaw_limit 25
+´security_camera_10_FEED´ ElementAccessCamera 103980
+	DISABLED
+	camera_u_id 103906
+	pitch_limit 25
+	position -2053.62, -1850.25, 2287
+	rotation 0, 0, 0.991445, -0.130527
+	text_id debug_none
+	yaw_limit 25
+´security_camera_11_FEED´ ElementAccessCamera 103981
+	DISABLED
+	camera_u_id 103907
+	pitch_limit 25
+	position -266.17, -7463.68, 2363.06
+	rotation 0.0427176, -0.159424, 0.952679, -0.25527
+	text_id debug_none
+	yaw_limit 25
+´security_camera_12_FEED´ ElementAccessCamera 103982
+	DISABLED
+	camera_u_id 103908
+	pitch_limit 25
+	position 284.345, -7463.2, 2365.73
+	rotation 0.0427176, -0.159424, 0.952679, -0.25527
+	text_id debug_none
+	yaw_limit 25
+´input_disable_security_cameras´ ElementInstanceInput 103995
+	event disable_security_cameras
+	on_executed
+		´security_camera_01_DISABLED´ (delay 0)
+		´security_camera_02_DISABLED´ (delay 0)
+		´security_camera_03_DISABLED´ (delay 0)
+		´security_camera_04_DISABLED´ (delay 0)
+		´security_camera_05_DISABLED´ (delay 0)
+		´security_camera_06_DISABLED´ (delay 0)
+		´security_camera_07_DISABLED´ (delay 0)
+		´security_camera_08_DISABLED´ (delay 0)
+		´security_camera_09_DISABLED´ (delay 0)
+		´security_camera_10_DISABLED´ (delay 0)
+		´security_camera_11_DISABLED´ (delay 0)
+		´security_camera_12_DISABLED´ (delay 0)
+		´toggle_off_cameras_foreva´ (delay 0)
+´disable_balconies_fence_startup´ ElementDisableUnit 101849
+	position 0, -3775, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/035 (3212.99, -3975.01, 2600)
+		2 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/034 (3212.99, -1522.01, 2600)
+		3 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/061 (-2588.01, -1788.01, 2600)
+´disable_left_stairs´ ElementDisableUnit 101850
+	position 250, -4050, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_terrace_stairs/cas_ext_terrace_stairs_left/001 (3245, -3870, 2001)
+	on_executed
+		´func_instance_output_002´ (delay 0)
+´disable_pool_balcony´ MissionScriptElement 101851
+	on_executed
+		´disable_pool_stairs´ (delay 0)
+		´enable_pool_fence´ (delay 0)
+		´func_nav_obstacle_003´ (delay 16)
+´enable_left_fence´ ElementEnableUnit 101852
+	position 250, -3950, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/035 (3212.99, -3975.01, 2600)
+´disable_right_stairs´ ElementDisableUnit 101853
+	position 250, -3825, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_terrace_stairs/cas_ext_terrace_stairs_left/002 (3246, -1423, 2001)
+	on_executed
+		´func_instance_output_003´ (delay 0)
+´enable_right_fence´ ElementEnableUnit 101854
+	position 250, -3725, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/034 (3212.99, -1522.01, 2600)
+´disable_pool_stairs´ ElementDisableUnit 101855
+	position 250, -3475, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_terrace_stairs/cas_ext_terrace_stairs_right/001 (-2695, -1797, 2001)
+	on_executed
+		´func_instance_output_004´ (delay 0)
+´enable_pool_fence´ ElementEnableUnit 101856
+	position 250, -3375, 3750
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/architecture/cas_ext_terrace_railling/cas_ext_terrace_railling/061 (-2588.01, -1788.01, 2600)
+´gate_closed_DISABLE´ ElementDisableUnit 102932
+	position -250, -3450, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_closed_01 (1626, -7824, 2017)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_closed_02 (1626, -7824, 2017)
+		3 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_closed_02 (-1629, -7824, 2017)
+		4 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_closed_01 (-1629, -7824, 2017)
+´randomize_gates´ MissionScriptElement 102933
+	on_executed
+		´random_gates´ (delay 0)
+´random_gates´ ElementRandom 102934
+	amount 1
+	amount_random 0
+	counter_id 100380
+	ignore_disabled true
+	on_executed
+		´gate_left_closed´ (delay 0)
+		´gate_right_closed´ (delay 0)
+		´both_gates_opened_01´ (delay 0)
+		´both_gates_opened_02´ (delay 0)
+´both_gates_opened_01´ MissionScriptElement 102935
+´both_gates_opened_02´ MissionScriptElement 102936
+´gate_right_closed´ MissionScriptElement 102937
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+		´func_enable_unit_002´ (delay 0)
+		´func_nav_obstacle_005´ (delay 9)
+´gate_left_closed´ MissionScriptElement 102938
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_nav_obstacle_004´ (delay 6)
+´func_disable_unit_001´ ElementDisableUnit 102939
+	position 150, -2325, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_opened_01 (-1232, -8227, 2017)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_opened_02 (-1232, -7427, 2017)
+´func_disable_unit_002´ ElementDisableUnit 102940
+	position 150, -2250, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_opened_02 (1232, -7423, 2017)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_opened_01 (1232, -8223, 2017)
+´func_enable_unit_001´ ElementEnableUnit 102941
+	position 225, -2325, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_closed_01 (-1629, -7824, 2017)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_left_closed_02 (-1629, -7824, 2017)
+´func_enable_unit_002´ ElementEnableUnit 102942
+	position 225, -2250, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_closed_02 (1626, -7824, 2017)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/gate_right_closed_01 (1626, -7824, 2017)
+´func_nav_obstacle_001´ ElementNavObstacle 100234
+	operation add
+	position 250, -4150, 3750
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/005 (3175, -3975, 2587.97)
+		2
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/006 (3425, -3875, 1977.5)
+´func_nav_obstacle_002´ ElementNavObstacle 100235
+	operation add
+	position 250, -3625, 3750
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (3425, -1443, 1977.5)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (3175, -1544, 2587.97)
+´func_nav_obstacle_003´ ElementNavObstacle 100236
+	operation add
+	position 250, -3275, 3750
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-2585, -1875, 2588.85)
+		2
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-2688, -1803, 1988.85)
+´func_nav_obstacle_004´ ElementNavObstacle 100238
+	operation add
+	position 275, -2325, 3775
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-1725, -7825, 2002.5)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-1725, -8225, 2002.5)
+´func_nav_obstacle_005´ ElementNavObstacle 100239
+	operation add
+	position 275, -2250, 3775
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/003 (1625, -8225, 2002.5)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/004 (1625, -7825, 2002.5)
+´toggle_off_cameras_foreva´ ElementToggle 100266
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´security_camera_01_ENABLED´
+		2 ´security_camera_02_ENABLED´
+		3 ´security_camera_03_ENABLED´
+		4 ´security_camera_04_ENABLED´
+		5 ´security_camera_05_ENABLED´
+		6 ´security_camera_06_ENABLED´
+		7 ´security_camera_07_ENABLED´
+		8 ´security_camera_08_ENABLED´
+		9 ´security_camera_09_ENABLED´
+		10 ´security_camera_10_ENABLED´
+		11 ´security_camera_11_ENABLED´
+		12 ´security_camera_12_ENABLED´
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100271
+	enemy units/pd2_dlc_casino/characters/civ_male_casino_1/civ_male_casino_1
+	force_pickup none
+	position 1242, -10374, 1600
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100292
+	enemy units/pd2_dlc_casino/characters/civ_female_casino_2/civ_female_casino_2
+	force_pickup none
+	position -1844, -11634, 1600
+	rotation 0, 0, 0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´disable_limo_trough_gate´ ElementDisableUnit 100300
+	position -200, -3600, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_003´ ElementEnableUnit 100302
+	position -375, -3300, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_secret_service_1_casino_poses/cas_secret_service_1_casino_dead_lie_2/001 (-1600, -10225, 1600)
+		2 units/pd2_dlc_casino/props/cas_secret_service_1_casino_poses/cas_secret_service_1_casino_dead_lie_3/001 (-338.397, -10106.7, 1600)
+		3 units/payday2/props/gen_prop_blood/gen_prop_blood_1/001 (-1667, -10252, 1600)
+		4 units/payday2/props/gen_prop_blood/gen_prop_blood_1/002 (-275.838, -10042.8, 1600)
+		5 units/payday2/props/gen_prop_blood/gen_prop_blood_1/003 (-1642, -10252, 1600)
+		6 units/pd2_dlc1/props/str_prop_decal_ground_skidmark/str_prop_decal_ground_skidmark_curve_right/001 (-1452.61, -10406.9, 1600)
+		7 units/pd2_dlc1/props/str_prop_decal_ground_skidmark/str_prop_decal_ground_skidmark_straight/001 (-1600, -11975, 1600)
+	on_executed
+		´logic_link_001´ (delay 0) DISABLED
+		´func_disable_unit_003´ (delay 0)
+´logic_link_001´ MissionScriptElement 100304
+	DISABLED
+	on_executed
+		´ai_remove_001´ (delay 0.25) DISABLED
+		´ai_spawn_civilian_001´ (delay 0)
+		´ai_spawn_civilian_002´ (delay 0)
+´ai_remove_001´ ElementAIRemove 100305
+	DISABLED
+	force_ragdoll false
+	position -525, -3300, 3775
+	rotation 0, 0, 0, -1
+	true_death true
+	use_instigator false
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+´func_disable_unit_003´ ElementDisableUnit 100306
+	position -375, -3350, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/019 (-1151, -12757.3, 1600)
+		2 units/pd2_dlc_casino/environment/cas_ext_gates/cas_ext_gates/020 (-1996.32, -12742.1, 1600)
+´ai_spawn_civilian_003´ ElementSpawnCivilian 100307
+	enemy units/pd2_dlc_casino/characters/civ_male_casino_1/civ_male_casino_1
+	force_pickup none
+	position 1594, -10956, 1600
+	rotation 0, 0, -0.247667, -0.968845
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100301
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, -7575, 2002.7
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -50 -8100 2002,7
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+´input_civ_run´ ElementInstanceInput 100310
+	event input_civ_run
+	on_executed
+		´ai_spawn_civilian_003´ (delay 0)
+´input_vis_blockers_disable´ ElementInstanceInput 100898
+	event vis_blockers_disable
+	on_executed
+		´vis_blockers_disable´ (delay 0)
+´vis_blockers_disable´ ElementDisableUnit 100899
+	position -250, -3150, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (-2175, -7100, 2044.93)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (-2275, -7000, 2044.93)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (-3318, -5000, 2044.93)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (-3418, -4900, 2044.93)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (-3418, -4150, 2022.93)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (-3318, -4250, 2022.93)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (-3810, -3559, 2021.93)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (-3710, -3659, 2021.93)
+		9 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/009 (-3606, -1742, 2033.93)
+		10 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/010 (-3506, -1842, 2033.93)
+		11 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/011 (-4424, -1742, 2033.93)
+		12 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/012 (-4324, -1842, 2033.93)
+		13 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/013 (-951.999, -8080, 2021.93)
+		14 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/014 (-851.999, -8180, 2021.93)
+		15 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/015 (2856, -5202, 2021.93)
+		16 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/016 (2956, -5302, 2021.93)
+		17 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/017 (-5175, -3058, 2000)
+		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/018 (-5164, -5417, 2000)
+		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/019 (-2167, -8125, 2001)
+		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/020 (-2269, -8024, 2001)
+		21 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/021 (2850, -7900, 2000)
+´func_instance_output_001´ ElementInstanceOutput 100483
+	event none
+´func_instance_output_002´ ElementInstanceOutput 100484
+	event stairs_smoking_left_disabled
+´func_instance_output_003´ ElementInstanceOutput 100485
+	event stairs_smoking_right_disabled
+´func_instance_output_004´ ElementInstanceOutput 100486
+	event stairs_pool_disabled
+´disable_loud_dead_guards´ ElementDisableUnit 100084
+	position -225, -3725, 3775
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_casino/props/cas_secret_service_1_casino_poses/cas_secret_service_1_casino_dead_lie_2/001 (-1600, -10225, 1600)
+		2 units/pd2_dlc_casino/props/cas_secret_service_1_casino_poses/cas_secret_service_1_casino_dead_lie_3/001 (-338.397, -10106.7, 1600)
+		3 units/payday2/props/gen_prop_blood/gen_prop_blood_1/001 (-1667, -10252, 1600)
+		4 units/payday2/props/gen_prop_blood/gen_prop_blood_1/002 (-275.838, -10042.8, 1600)
+		5 units/payday2/props/gen_prop_blood/gen_prop_blood_1/003 (-1642, -10252, 1600)
+		6 units/pd2_dlc1/props/str_prop_decal_ground_skidmark/str_prop_decal_ground_skidmark_curve_right/001 (-1452.61, -10406.9, 1600)
+		7 units/pd2_dlc1/props/str_prop_decal_ground_skidmark/str_prop_decal_ground_skidmark_straight/001 (-1600, -11975, 1600)
+´input_outside_gates_close_both´ ElementInstanceInput 100327
+	event outside_gates_close_both
+	on_executed
+		´logic_toggle_001´ (delay 0.5)
+		´logic_counter_operator_001´ (delay 3)
+´logic_toggle_001´ ElementToggle 100328
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´both_gates_opened_01´
+		2 ´both_gates_opened_02´
+´logic_counter_001´ ElementCounter 100380
+	counter_target 0
+´logic_counter_operator_001´ ElementCounterOperator 100382
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´logic_counter_001´
+´logic_counter_operator_002´ ElementCounterOperator 100445
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´logic_counter_001´
+´security_camera_02_FEED_2´ ElementAccessCamera 100187
+	DISABLED
+	camera_u_id 103898
+	pitch_limit 25
+	position 1910.9, -1214.33, 2863.75
+	rotation 0.142935, -0.0825237, 0.493142, -0.854149
+	text_id debug_none
+	yaw_limit 25
+´logic_toggle_002´ ElementToggle 100335
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_01_FEED´ DISABLED
+´logic_toggle_003´ ElementToggle 100389
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_02_FEED_2´ DISABLED
+´logic_toggle_004´ ElementToggle 100391
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_04_FEED´ DISABLED
+´logic_toggle_005´ ElementToggle 100696
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_03_FEED´ DISABLED
+´logic_toggle_006´ ElementToggle 100697
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_06_FEED´ DISABLED
+´logic_toggle_007´ ElementToggle 100698
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_05_FEED´ DISABLED
+´logic_toggle_008´ ElementToggle 100699
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_07_FEED´ DISABLED
+´logic_toggle_009´ ElementToggle 100700
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_08_FEED´ DISABLED
+´logic_toggle_010´ ElementToggle 100726
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_09_FEED´ DISABLED
+´logic_toggle_011´ ElementToggle 100731
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_10_FEED´ DISABLED
+´logic_toggle_012´ ElementToggle 100733
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_11_FEED´ DISABLED
+´logic_toggle_013´ ElementToggle 100773
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´security_camera_12_FEED´ DISABLED

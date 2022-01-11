@@ -1,0 +1,6232 @@
+´point_shape_001´ ElementShape 100016
+	depth 500
+	height 500
+	position 0, 0, 200
+	radius 355
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 500
+´report´ ElementAreaReportTrigger 100017
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 150, -6300, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_002´
+	use_shape_element_ids
+	unit_ids
+		1 100134
+	on_executed
+		´Stop - Lose´ (delay 0) (alternative leave)
+´inside´ MissionScriptElement 100018
+	TRIGGER TIMES 1
+	on_executed
+		´Bain - intro Vo´ (delay 0)
+		´Off_5´ (delay 0)
+´Stop - Lose´ MissionScriptElement 100019
+	TRIGGER TIMES 1
+	on_executed
+		´stop - lose - sfx´ (delay 0)
+		´Link_2´ (delay 0)
+		´Off´ (delay 0)
+		´SFX - Cloaker - taunt´ (delay 3)
+´blank atm´ ElementUnitSequence 100020
+	position -250, -6000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´start´ (delay 0)
+´hide and remove´ ElementUnitSequence 100021
+	position -150, -6300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/001 (0, 0, -5)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (-47, 1.00002, 148)
+			notify_unit_sequence black_on_light_red
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/002 (47, 1.00002, 148)
+			notify_unit_sequence black_on_light_red
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/003 (3.8147E-06, 48, 148)
+			notify_unit_sequence black_on_light_red
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/004 (0, -56, 148)
+			notify_unit_sequence black_on_light_red
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence anim_exit
+			time 0
+	on_executed
+		´pause´ (delay 0)
+´bank´ ElementPlaySound 100022
+	append_prefix false
+	interrupt true
+	position 1250, -7250, 0
+	rotation 0, 0, 0, -1
+	sound_event f13r_sin
+	use_instigator false
+´Timer´ ElementTimer 100024
+	timer 120
+´final´ MissionScriptElement 100025
+	on_executed
+		´Off_3´ (delay 0)
+´timer Finished´ ElementTimerTrigger 100026
+	position 100, -7200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´Timer´
+	on_executed
+		´2 step authentication´ (delay 0)
+		´Off_2´ (delay 0)
+		´start loop´ (delay 0)
+´1´ ElementUnitSequence 100027
+	position -2300, -7000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/001 (50, -49, -1)
+			notify_unit_sequence anim_explosion_out
+			time 0
+	on_executed
+		´open vo´ (delay 0)
+		´Finished_3´ (delay 0)
+´1_2´ MissionScriptElement 100029
+	on_executed
+		´1´ (delay 0)
+´2´ MissionScriptElement 100030
+	on_executed
+		´45´ (delay 0)
+´3´ MissionScriptElement 100031
+	on_executed
+		´15´ (delay 0)
+´2_2´ ElementUnitSequence 100034
+	position -2300, -7100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/001 (50, -49, -1)
+			notify_unit_sequence anim_explosion_out
+			time 0
+	on_executed
+		´open vo´ (delay 0)
+		´Finished´ (delay 0)
+´3_2´ ElementUnitSequence 100035
+	position -2300, -7200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_sec_safe_2x1_titan/gen_interactable_sec_safe_2x1_titan/001 (50, -49, -1)
+			notify_unit_sequence anim_explosion_out
+			time 0
+	on_executed
+		´open vo´ (delay 0)
+		´Finished_2´ (delay 0)
+´15´ ElementLogicChance 100040
+	chance 15
+	position -2150, -7200, 2.5
+	rotation 0, 0, 0, -1
+´45´ ElementLogicChance 100041
+	chance 45
+	position -2150, -7100, 2.5
+	rotation 0, 0, 0, -1
+´success´ ElementLogicChanceTrigger 100046
+	outcome success
+	position -2250, -7200, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´15´
+	on_executed
+		´3_2´ (delay 0)
+´fail´ ElementLogicChanceTrigger 100047
+	outcome fail
+	position -2200, -7200, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´15´
+	on_executed
+		´2´ (delay 0)
+´fail_2´ ElementLogicChanceTrigger 100048
+	outcome fail
+	position -2200, -7100, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´45´
+	on_executed
+		´1_2´ (delay 0)
+´success_2´ ElementLogicChanceTrigger 100049
+	outcome success
+	position -2250, -7100, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´45´
+	on_executed
+		´2_2´ (delay 0)
+´start´ ElementTimerOperator 100050
+	operation start
+	position -350, -6000, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´Timer´
+	on_executed
+		´remove waypoint´ (delay 0)
+´pause´ ElementTimerOperator 100051
+	operation pause
+	position -250, -6300, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´Timer´
+	on_executed
+		´Stop VFX´ (delay 0)
+´Off´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´final´
+		2 ´1_2´
+		3 ´2´
+		4 ´3´
+		5 ´inside´
+		6 ´report´ DISABLED
+		7 ´blank atm´
+		8 ´start´
+		9 ´Win´
+		10 ´Hide - Green timer´
+		11 ´pause_2´
+		12 ´timer Finished´
+		13 ´Start´ DISABLED
+		14 ´level shake´
+		15 ´play cloaker anim´
+		16 ´show zone´
+		17 ´On´
+		18 ´point_debug_008´
+		19 ´window_closed´
+		20 ´hide´
+		21 ´remove_waypoint´
+		22 ´Off_4´
+		23 ´env_effect_stop_001´
+		24 ´logic_link_002´
+		25 ´remove_prefereds´ DISABLED
+		26 ´env_effect_stop_002´
+		27 ´remove min´
+		28 ´remove - hunt - escape so´
+		29 ´Open the safe´
+		30 ´2 step authentication´
+		31 ´win sfx´
+		32 ´reset_timer´
+		33 ´window_of_availabilty´
+		34 ´start_2´
+		35 ´On_2´
+		36 ´Link´
+		37 ´End Assault´
+	on_executed
+		´Off_2´ (delay 0)
+		´Team Vo - fuck what to do ´ (delay 0)
+		´Stop Sounds´ (delay 0)
+		´hide and remove´ (delay 0)
+´Hide´ ElementUnitSequence 100055
+	position -2000, -7200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/001 (0, 0, -5)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (-47, 1.00002, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/002 (47, 1.00002, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/003 (3.8147E-06, 48, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/004 (0, -56, 148)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´3´ (delay 0)
+´spawn start´ MissionScriptElement 100028
+	on_executed
+		´0 - 30´ (delay 0)
+		´AI_HUNT´ (delay 0)
+´Off_2´ ElementToggle 100069
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´spawn start´
+		2 ´0 - 30´
+		3 ´30 - 60´
+		4 ´60 - 90´
+		5 ´90 - 120´
+		6 ´wave 1´
+		7 ´wave 2´
+		8 ´wave 3´
+		9 ´wave 4´
+		10 ´wave 6´
+		11 ´wave 5´
+		12 ´wave 7´
+		13 ´Link_loop´
+		14 ´Link_loop_2´
+		15 ´Link 1´
+		16 ´Link 1_2´
+		17 ´Link 1_3´
+		18 ´Link 1_4´
+		19 ´Link 1_5´
+		20 ´check difficulty´
+		21 ´spawn civ´
+		22 ´random civ´
+		23 ´trigger_special_objective_001´
+		24 ´ai_remove_002´
+		25 ´ai_enemy_trigger_001´
+´wave 1´ MissionScriptElement 100070
+	on_executed
+		´Link_loop´ (delay 0)
+		´Link 1_5´ (delay 0)
+´0 - 30´ MissionScriptElement 100071
+	on_executed
+		´30 - 60´ (delay 30)
+		´point_debug_006´ (delay 0)
+		´wave 1´ (delay 0-2)
+		´wave 2´ (delay 15)
+´30 - 60´ MissionScriptElement 100072
+	on_executed
+		´60 - 90´ (delay 30)
+		´point_debug_005´ (delay 0)
+		´wave 3´ (delay 0)
+		´wave 4´ (delay 15)
+´60 - 90´ MissionScriptElement 100073
+	on_executed
+		´point_debug_004´ (delay 0)
+		´wave 5´ (delay 0)
+		´wave 6´ (delay 15)
+		´90 - 120´ (delay 30)
+´90 - 120´ MissionScriptElement 100074
+	on_executed
+		´point_debug_003´ (delay 0)
+		´wave 7´ (delay 0)
+		´wave 8´ (delay 15)
+´point_debug_003´ ElementDebug 100079
+	as_subtitle false
+	debug_string 90 - 120
+	show_instigator false
+´point_debug_004´ ElementDebug 100080
+	as_subtitle false
+	debug_string 60 - 90
+	show_instigator false
+´point_debug_005´ ElementDebug 100081
+	as_subtitle false
+	debug_string 30 - 60
+	show_instigator false
+´point_debug_006´ ElementDebug 100082
+	as_subtitle false
+	debug_string 0 - 30
+	show_instigator false
+´Off_3´ ElementToggle 100085
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer Finished´
+		2 ´Stop - Lose´
+		3 ´hide and remove´
+		4 ´pause´
+		5 ´Off´
+	on_executed
+		´Hide´ (delay 0)
+´Win´ MissionScriptElement 100086
+	on_executed
+		´pause_2´ (delay 0)
+´Hide - Green timer´ ElementUnitSequence 100087
+	position -400, -7200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/001 (0, 0, -5)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/001 (-47, 1.00002, 148)
+			notify_unit_sequence black_on_light_green
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/002 (47, 1.00002, 148)
+			notify_unit_sequence black_on_light_green
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/003 (3.8147E-06, 48, 148)
+			notify_unit_sequence black_on_light_green
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_indiana/props/gen_prop_security_timer/gen_prop_security_timer/004 (0, -56, 148)
+			notify_unit_sequence black_on_light_green
+			time 0
+	on_executed
+		´env_effect_stop_002´ (delay 0)
+´Open the safe´ MissionScriptElement 100088
+	on_executed
+		´axe kick´ (delay 2)
+		´event_beaten´ (delay 0)
+´pause_2´ ElementTimerOperator 100089
+	operation pause
+	position -200, -7200, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´Timer´
+	on_executed
+		´win sfx´ (delay 0)
+´off´ ElementToggle 100090
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Stop - Lose´
+		2 ´hide and remove´
+		3 ´pause´
+		4 ´Off´
+		5 ´timer Finished´
+		6 ´Win´
+		7 ´Hide - Green timer´
+		8 ´Start´ DISABLED
+		9 ´logic_link_002´
+		10 ´Stop VFX´
+		11 ´remove_min_police´
+		12 ´start clean up ai loop´
+		13 ´report´ DISABLED
+		14 ´remove - hunt - escape so_2´
+	on_executed
+		´remove min´ (delay 0)
+´Team Vo - Awesome´ ElementTeammateComment 100023
+	close_to_element false
+	comment v46
+	position 1150, -7100, 2.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´team vo - fuck what to do´ ElementTeammateComment 100091
+	close_to_element false
+	comment v36
+	position 1150, -6950, 2.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´dozer´ ElementSpawnEnemyDummy 100097
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 761.237, -1035.36, -176.471
+	rotation 0, 0, -0.130528, -0.991445
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´tazer´ ElementSpawnEnemyDummy 100098
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2250, -1050, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´dozer_2´ ElementSpawnEnemyDummy 100101
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2050, -750, 185.61
+	rotation -6.67148E-08, 5.59805E-08, -0.707107, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´cloaker´ ElementSpawnEnemyDummy 100102
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_spook_1/ene_spook_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position 1525, -1275, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´wave 2´ MissionScriptElement 100093
+	on_executed
+		´Link 1_3´ (delay 0)
+		´Link 1_4´ (delay 0)
+´wave 3´ MissionScriptElement 100105
+	on_executed
+		´Link 1´ (delay 0)
+		´Link 1_2´ (delay 0)
+		´Link 1_5´ (delay 0)
+´Finished´ MissionScriptElement 100108
+	on_executed
+		´resume assault´ (delay 0)
+		´Spawn - Halloween Dozer´ (delay 0)
+		´Loot spew - mid´ (delay 0)
+´Finished_2´ MissionScriptElement 100109
+	on_executed
+		´resume assault´ (delay 0)
+		´Spawn - Halloween Dozer´ (delay 0)
+		´Loot spew - low´ (delay 0)
+´Finished_3´ MissionScriptElement 100111
+	on_executed
+		´resume assault´ (delay 0)
+		´Spawn - Halloween Dozer´ (delay 0)
+		´Loot spew - high´ (delay 0)
+´wave 4´ MissionScriptElement 100113
+	on_executed
+		´Link 1_4´ (delay 0)
+		´Link 1_2´ (delay 0)
+		´laugh´ (delay 0)
+´wave 5´ MissionScriptElement 100083
+	on_executed
+		´Link 1´ (delay 0)
+		´Link 1_3´ (delay 0)
+		´Link 1_5´ (delay 0)
+		´bain - 1 min´ (delay 0)
+´wave 6´ MissionScriptElement 100084
+	on_executed
+		´Link 1_3´ (delay 0)
+		´Link 1_4´ (delay 0)
+		´laugh´ (delay 0)
+´event_started´ ElementInstanceOutput 100129
+	event EVENT_STARTED
+	on_executed
+		´spawn start´ (delay 0.5)
+´Start´ MissionScriptElement 100133
+	DISABLED
+	BASE DELAY 10
+	on_executed
+		´intro_fog´ (delay 0)
+		´Alarm sound´ (delay 0) DISABLED
+		´SFX - Cloaker - spawn´ (delay 0)
+		´check difficulty´ (delay 0)
+		´level shake´ (delay 0)
+		´SFX - Cloaker - idle´ (delay 0)
+		´SFX - Cloaker - taunt´ (delay 2)
+		´SFX - Cloaker - Dash001´ (delay 0)
+´play cloaker anim´ ElementUnitSequence 100135
+	position 1200, -5750, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence anim_enter
+			time 0
+	on_executed
+		´show zone´ (delay 2)
+		´Team Vo - there he is´ (delay 0)
+´On´ ElementToggle 100136
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ALl players inside´ DISABLED
+	on_executed
+		´start_2´ (delay 0)
+´go to here´ ElementWaypoint 100137
+	icon pd2_goto
+	only_in_civilian false
+	position 0, 0, 250
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove waypoint´ ElementOperator 100138
+	operation remove
+	elements
+		1 ´go to here´
+	on_executed
+		´start fx´ (delay 0)
+´start fx´ MissionScriptElement 100159
+	on_executed
+		´env_effect_play_005´ (delay 0)
+		´stop_cloaker_intro_fx´ (delay 0)
+		´timer sfx 1´ (delay 0)
+		´start fog´ (delay 0)
+		´Spawn Cover´ (delay 0)
+		´env_effect_play_spook_explosion´ (delay 0)
+		´env_effect_play_ground_fog´ (delay 0)
+		´env_effect_play_ground_fog001´ (delay 0)
+		´env_effect_ghosts´ (delay 0)
+		´env_effect_heat´ (delay 0)
+		´env_effect_heat002´ (delay 0)
+		´env_effect_heat001´ (delay 0)
+		´env_effect_heat003´ (delay 0)
+		´start_assault´ (delay 0)
+´env_effect_play_005´ ElementPlayEffect 100160
+	base_time 0
+	effect effects/payday2/environment/nail_green_smoke
+	max_amount 0
+	position 0, 6.10352E-05, -100
+	random_time 0
+	rotation 0, 0, 8.9407E-08, -1
+	screen_space false
+´intro_fog´ ElementPlayEffect 100161
+	base_time 0
+	effect effects/payday2/environment/nail_green_intro_fog
+	max_amount 0
+	position 0, 0, 100
+	random_time 0
+	rotation 0, 0, 8.9407E-08, -1
+	screen_space false
+´stop_cloaker_intro_fx´ ElementStopEffect 100165
+	operation fade_kill
+	position -650, -6000, 0
+	rotation 0, 0, 8.9407E-08, -1
+	elements
+		1 ´intro_fog´
+	on_executed
+		´enable_min_police´ (delay 0)
+´Alarm sound´ ElementPlaySound 100167
+	DISABLED
+	append_prefix false
+	interrupt true
+	position 0, 0, 350
+	rotation 0, 0, 0, -1
+	sound_event alarm_kosugi_on_slow_fade
+	use_instigator false
+´bank001´ ElementPlaySound 100170
+	append_prefix false
+	interrupt true
+	position 1250, -7300, 2.5
+	rotation 0, 0, 0, -1
+	sound_event v53
+	use_instigator false
+´there he is´ ElementTeammateComment 100171
+	close_to_element false
+	comment v30
+	position 1150, -6800, 2.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´Alarm sound stop´ ElementPlaySound 100172
+	append_prefix false
+	interrupt true
+	position 1150, -9350, 2.5
+	rotation 0, 0, 0, -1
+	sound_event alarm_kosugi_off
+	use_instigator false
+´show zone´ ElementUnitSequence 100173
+	position 1100, -5750, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/001 (0, 0, -5)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´On´ (delay 0)
+		´go to here´ (delay 0)
+´level shake´ ElementFeedback 100174
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 2
+	effect mission_triggered
+	position 1300, -5750, 2.5
+	range -1
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´play cloaker anim´ (delay 0)
+´timer sfx 1´ ElementPlaySound 100175
+	append_prefix false
+	interrupt true
+	position 0, 0, 200
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´timer sfx001´ ElementPlaySound 100176
+	append_prefix false
+	interrupt true
+	position 1150, -9450, 2.5
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´Stop VFX´ ElementStopEffect 100177
+	operation fade_kill
+	position -350, -6300, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_005´
+		2 ´intro_fog´
+		3 ´env_effect_play_ground_fog´
+		4 ´env_effect_play_ground_fog001´
+		5 ´env_effect_ghosts´
+		6 ´env_effect_heat002´
+		7 ´env_effect_heat´
+		8 ´env_effect_heat001´
+		9 ´env_effect_heat003´
+	on_executed
+		´remove_min_police´ (delay 0)
+		´control´ (delay 0)
+´bell rings´ ElementPlaySound 100179
+	append_prefix false
+	interrupt true
+	position 0, -175, 100
+	rotation 0, 0, 0, -1
+	sound_event bell_ring
+	use_instigator false
+´stop - lose - sfx´ ElementPlaySound 100067
+	append_prefix false
+	interrupt true
+	position -50, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event plasma_drill_powerdown
+	use_instigator false
+´open vo´ MissionScriptElement 100068
+	on_executed
+		´Team Vo - awesome´ (delay 0)
+´win_boop_1´ ElementPlaySound 100180
+	append_prefix false
+	interrupt true
+	position -150, 50, 50
+	rotation 0, 0, 0, -1
+	sound_event slot_machine_loose
+	use_instigator false
+	on_executed
+		´win_boop_1_2´ (delay 0.25)
+´win sfx´ MissionScriptElement 100181
+	on_executed
+		´Hide - Green timer´ (delay 0)
+		´stop - lose - sfx´ (delay 0)
+		´win_boop_1´ (delay 0.5)
+		´Stop Sounds´ (delay 0)
+		´control´ (delay 0)
+´start fog´ ElementPlaySound 100182
+	append_prefix false
+	interrupt true
+	position 0, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event plasma_drill_overheat
+	use_instigator false
+´win_boop_1_2´ ElementPlaySound 100057
+	append_prefix false
+	interrupt true
+	position -150, 0, 50
+	rotation 0, 0, 0, -1
+	sound_event slot_machine_loose
+	use_instigator false
+	on_executed
+		´win_boop_1_3´ (delay 0.25)
+´win_boop_1_3´ ElementPlaySound 100059
+	append_prefix false
+	interrupt true
+	position -150, -50, 50
+	rotation 0, 0, 0, -1
+	sound_event slot_machine_loose
+	use_instigator false
+´bain - 30´ ElementDialogue 100060
+	dialogue play_pln_gen_bfr_02
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´bank002´ ElementPlaySound 100065
+	append_prefix false
+	interrupt true
+	position 1250, -7350, 2.5
+	rotation 0, 0, 0, -1
+	sound_event play_pln_gen_bfr_03
+	use_instigator false
+´bain - 1 min´ ElementDialogue 100155
+	dialogue play_pln_gen_bfr_03
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´bain - clocks ticken´ ElementDialogue 100157
+	dialogue play_pln_gen_bfr_10
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Link_5´ (delay 0)
+´Bain - intro Vo´ MissionScriptElement 100158
+	BASE DELAY 2
+	on_executed
+		´random´ (delay 0)
+´bain - lets finish strong´ ElementDialogue 100183
+	dialogue play_pln_gen_bfr_11
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´bain - get busy´ ElementDialogue 100184
+	dialogue play_pln_gen_pol_01
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Link_5´ (delay 0)
+´random´ ElementRandom 100185
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´bain - clocks ticken´ (delay 0)
+		´bain - get busy´ (delay 0)
+		´bain - get busy001´ (delay 0)
+		´bain - get busy002´ (delay 0)
+		´bain - get busy003´ (delay 0)
+´bain - get busy001´ ElementDialogue 100186
+	dialogue play_pln_gen_pol_02
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Link_5´ (delay 0)
+´bain - get busy002´ ElementDialogue 100187
+	dialogue play_pln_gen_pol_03
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Link_5´ (delay 0)
+´bain - get busy003´ ElementDialogue 100188
+	dialogue play_pln_gen_wsd_01
+	execute_on_executed_when_done true
+	use_instigator false
+	use_position false
+	on_executed
+		´Link_5´ (delay 0)
+´Team Vo - there he is´ MissionScriptElement 100190
+	BASE DELAY 0,5
+	on_executed
+		´there he is´ (delay 0)
+´Team Vo - fuck what to do ´ MissionScriptElement 100191
+	on_executed
+		´team vo - fuck what to do´ (delay 1)
+´Team Vo - awesome´ MissionScriptElement 100192
+	on_executed
+		´Team Vo - Awesome´ (delay 0.5)
+´Stop Sounds´ MissionScriptElement 100193
+	on_executed
+		´Alarm sound stop´ (delay 0)
+		´timer sfx001´ (delay 0)
+		´SFX - Cloaker - spawn002´ (delay 0)
+		´SFX - Cloaker - idle stop´ (delay 0)
+´SFX - Cloaker - spawn´ ElementPlaySound 100194
+	append_prefix false
+	interrupt true
+	position 25, 325, 225
+	rotation 0, 0, 0, -1
+	sound_event nail_cloaker_spawn
+	use_instigator false
+´SFX - Cloaker - Dash´ ElementPlaySound 100196
+	append_prefix false
+	interrupt true
+	position 0, 0, -200
+	rotation 0, 0, 0, -1
+	sound_event cloaker_detect_mono
+	use_instigator false
+´wave 7´ MissionScriptElement 100199
+	on_executed
+		´Link 1_4´ (delay 0)
+		´Link 1_2´ (delay 0)
+		´bain - 30´ (delay 0)
+´SFX - Dozer - 01´ ElementPlaySound 100200
+	append_prefix false
+	interrupt true
+	position 950, -8875, 2.5
+	rotation 0, 0, 0, -1
+	sound_event bdz_entrance
+	use_instigator true
+´SFX - Dozer -001´ ElementPlaySound 100201
+	append_prefix false
+	interrupt true
+	position 950, -8925, 2.5
+	rotation 0, 0, 0, -1
+	sound_event bdz_g90
+	use_instigator true
+´Dozer - Intro´ MissionScriptElement 100202
+	on_executed
+		´random_2´ (delay 0)
+´random_2´ ElementRandom 100203
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´SFX - Dozer - 01´ (delay 0)
+		´SFX - Dozer -001´ (delay 0)
+´SFX - Shield´ ElementPlaySound 100204
+	append_prefix false
+	interrupt true
+	position 775, -8900, 2.5
+	rotation 0, 0, 0, -1
+	sound_event shd_mov
+	use_instigator true
+´Shield - Intro´ MissionScriptElement 100205
+	on_executed
+		´SFX - Shield´ (delay 0)
+´2 step authentication´ ElementCounter 100001
+	counter_target 2
+	on_executed
+		´Win´ (delay 0)
+´window_closed´ MissionScriptElement 100005
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100006
+	position 900, -6350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_circle_goal_marker_7x7/gen_prop_circle_goal_marker_7x7/001 (0, 0, -5)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence anim_exit
+			time 0
+	on_executed
+		´remove_waypoint´ (delay 0)
+´remove_waypoint´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´go to here´
+	on_executed
+		´Off_4´ (delay 0)
+´Off_4´ ElementToggle 100008
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ALl players inside´ DISABLED
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+´Off_5´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´window_closed´
+		2 ´hide´
+		3 ´remove_waypoint´
+		4 ´Off_4´
+		5 ´window_of_availabilty´
+		6 ´start_2´
+		7 ´env_effect_stop_001´
+		8 ´ALl players inside´ DISABLED
+		9 ´reset_timer´
+		10 ´point_debug_008´
+		11 ´remove_prefereds´ DISABLED
+		12 ´On´
+		13 ´show zone´
+		14 ´play cloaker anim´
+		15 ´level shake´
+		16 ´Start´ DISABLED
+		17 ´On_2´
+		18 ´Link´
+		19 ´End Assault´
+	on_executed
+		´On_5´ (delay 0)
+´point_debug_008´ ElementDebug 100010
+	as_subtitle false
+	debug_string 30 second window
+	show_instigator false
+´Add_prefereds´ ElementInstanceOutput 100011
+	event resume_assault
+´env_effect_stop_001´ ElementStopEffect 100015
+	operation fade_kill
+	position 600, -6350, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´intro_fog´
+	on_executed
+		´Link_2´ (delay 0)
+		´reset_timer´ (delay 0)
+´env_effect_stop_002´ ElementStopEffect 100208
+	operation fade_kill
+	position -500, -7200, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_005´
+		2 ´env_effect_play_ground_fog´
+		3 ´env_effect_play_ground_fog001´
+		4 ´env_effect_ghosts´
+		5 ´env_effect_heat´
+		6 ´env_effect_heat001´
+		7 ´env_effect_heat002´
+		8 ´env_effect_heat003´
+	on_executed
+		´off´ (delay 0)
+´point_spawn_player_002´ ElementPlayerSpawner 100210
+	DISABLED
+	position -5.34058E-05, -350, 0
+	rotation 0, 0, 5.06639E-07, -1
+	state standard
+´End Assault´ ElementGlobalEventTrigger 100211
+	global_event end_assault
+	position 1600, -5750, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´Link´ (delay 0)
+´params´ ElementInstanceParams 100212
+	position 1725, -5925, 0
+	rotation 0, 0, 0, -1
+	params
+		1
+			default_value 0
+			type number
+			var_name var_assault_start_delay
+		2
+			default_value 0
+			type number
+			var_name var_window_of_availability
+´On_2´ ElementToggle 100214
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Start´ DISABLED
+		2 ´remove_prefereds´ DISABLED
+´Link´ MissionScriptElement 100216
+	on_executed
+		´Start´ (delay 0.25) DISABLED
+		´remove_prefereds´ (delay 0.25) DISABLED
+´remove_prefereds´ ElementInstanceOutput 100213
+	DISABLED
+	event pause_assault
+	on_executed
+		´point_debug_008´ (delay 0)
+´Link_2´ MissionScriptElement 100218
+	on_executed
+		´Add_prefereds´ (delay 0)
+´resume assault´ MissionScriptElement 100128
+	on_executed
+		´start_timer´ (delay 0)
+´assault_start_delay´ ElementTimer 100219
+	timer 0
+	on_executed
+		´Link_2´ (delay 0)
+´start_timer´ ElementTimerOperator 100221
+	operation start
+	position -1900, -8000, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´assault_start_delay´
+´window_of_availabilty´ ElementTimer 100004
+	timer 30
+	on_executed
+		´window_closed´ (delay 0)
+´start_2´ ElementTimerOperator 100168
+	operation start
+	position 1200, -6350, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´window_of_availabilty´
+´swat002´ ElementSpawnEnemyDummy 100220
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2500, -2136.6, 593.249
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat003´ ElementSpawnEnemyDummy 100222
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -1825, -157.755
+	rotation 0, 0, -0.793354, -0.608761
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat004´ ElementSpawnEnemyDummy 100223
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -850, -950, -176.471
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´TEMP AUTO START´ MissionScriptElement 100224
+	DISABLED
+	on_executed
+		´Start´ (delay 0.25) DISABLED
+		´temp on´ (delay 0)
+´swat005´ ElementSpawnEnemyDummy 100228
+	BASE DELAY 4
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -800, -1200, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat007´ ElementSpawnEnemyDummy 100230
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1150, -225, -178.789
+	rotation 0, 0, 0.608761, -0.793354
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat008´ ElementSpawnEnemyDummy 100231
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1200, -1200, -176.471
+	rotation 0, 0, 0.382683, -0.92388
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat009´ ElementSpawnEnemyDummy 100062
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1400, -2200, 436.338
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat010´ ElementSpawnEnemyDummy 100063
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1600, -1950, 427.474
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat011´ ElementSpawnEnemyDummy 100064
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1650, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat012´ ElementSpawnEnemyDummy 100232
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1900, -1400, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat013´ ElementSpawnEnemyDummy 100233
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -2050, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat014´ ElementSpawnEnemyDummy 100234
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1200, -176.471
+	rotation 0, 0, 0.258818, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat015´ ElementSpawnEnemyDummy 100235
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 150, -1050, -176.471
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat016´ ElementSpawnEnemyDummy 100236
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1200, -1350, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat017´ ElementSpawnEnemyDummy 100237
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2050, -1950, -157.755
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat018´ ElementSpawnEnemyDummy 100238
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2300, -25, 160.469
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat019´ ElementSpawnEnemyDummy 100239
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1531.7, -768.301, 160.469
+	rotation -7.89304E-08, 3.6806E-08, -0.500001, -0.866025
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat020´ ElementSpawnEnemyDummy 100240
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1775, 400, -178.789
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat021´ ElementSpawnEnemyDummy 100241
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 900, -800, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat022´ ElementSpawnEnemyDummy 100139
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1300, -600, -176.471
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat026´ ElementSpawnEnemyDummy 100143
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 225, 399.999, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat030´ ElementSpawnEnemyDummy 100147
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 850, -2050, 592.64
+	rotation 0, 0, -1.13249E-06, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat033´ ElementSpawnEnemyDummy 100150
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 799.148, -1868.53, 592.5
+	rotation 0, 0, -0.130527, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat_spawn´ ElementRandom 100152
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat033´ (delay 0)
+		´swat030´ (delay 0)
+		´swat026´ (delay 0)
+		´swat022´ (delay 0)
+		´swat021´ (delay 0)
+		´swat020´ (delay 0)
+		´swat019´ (delay 0)
+		´swat018´ (delay 0)
+		´swat017´ (delay 0)
+		´swat016´ (delay 0)
+		´swat015´ (delay 0)
+		´swat014´ (delay 0)
+		´swat013´ (delay 0)
+		´swat012´ (delay 0)
+		´swat011´ (delay 0)
+		´swat010´ (delay 0)
+		´swat009´ (delay 0)
+		´swat008´ (delay 0)
+		´swat007´ (delay 0)
+		´swat005´ (delay 0)
+		´swat004´ (delay 0)
+		´swat003´ (delay 0)
+		´swat002´ (delay 0)
+		´swat035´ (delay 0)
+´swat_spawn_2´ ElementRandom 100153
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat033´ (delay 0)
+		´swat030´ (delay 0)
+		´swat026´ (delay 0)
+		´swat022´ (delay 0)
+		´swat021´ (delay 0)
+		´swat020´ (delay 0)
+		´swat019´ (delay 0)
+		´swat018´ (delay 0)
+		´swat017´ (delay 0)
+		´swat016´ (delay 0)
+		´swat015´ (delay 0)
+		´swat014´ (delay 0)
+		´swat013´ (delay 0)
+		´swat012´ (delay 0)
+		´swat011´ (delay 0)
+		´swat010´ (delay 0)
+		´swat009´ (delay 0)
+		´swat008´ (delay 0)
+		´swat007´ (delay 0)
+		´swat005´ (delay 0)
+		´swat004´ (delay 0)
+		´swat003´ (delay 0)
+		´swat002´ (delay 0)
+		´swat035´ (delay 0)
+´Link_loop´ MissionScriptElement 100154
+	on_executed
+		´Link_loop_2´ (delay 10)
+		´swat_spawn´ (delay 0)
+		´swat ovk´ (delay 0) DISABLED
+		´swat dw´ (delay 0) DISABLED
+´Link_loop_2´ MissionScriptElement 100242
+	on_executed
+		´swat_spawn_2´ (delay 0)
+		´Link_loop´ (delay 0-5)
+		´swat ovk_2´ (delay 0) DISABLED
+		´swat dw_2´ (delay 0) DISABLED
+´shield002´ ElementSpawnEnemyDummy 100244
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -875, -224.999, -178.789
+	rotation 0, 0, 0.707106, -0.707108
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield003´ ElementSpawnEnemyDummy 100245
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1925, 350, -178.789
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield004´ ElementSpawnEnemyDummy 100246
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2100, -1175, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield010´ ElementSpawnEnemyDummy 100252
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -675, -1150, -176.471
+	rotation 0, 0, 0.382682, -0.92388
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield011´ ElementSpawnEnemyDummy 100253
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -725, -1500, -157.755
+	rotation 0, 0, -1.78814E-06, -1
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield012´ ElementSpawnEnemyDummy 100254
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1125, -1725, -157.755
+	rotation 0, 0, -1.78814E-06, -1
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield013´ ElementSpawnEnemyDummy 100255
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1750, -1625, -157.755
+	rotation 0, 0, -0.258821, -0.965925
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Shield - Intro´ (delay 0)
+´shield_spawn´ ElementRandom 100256
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´shield010´ (delay 0)
+		´shield011´ (delay 0)
+		´shield012´ (delay 0)
+		´shield013´ (delay 0)
+		´shield003´ (delay 0)
+		´shield004´ (delay 0)
+		´shield002´ (delay 0)
+´Link 1´ MissionScriptElement 100257
+	on_executed
+		´shield_spawn´ (delay 0)
+´dozer001´ ElementSpawnEnemyDummy 100115
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -312.059, -1501.7, -82.755
+	rotation 0, 0, 0.130525, -0.991445
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer002´ ElementSpawnEnemyDummy 100258
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1882.32, 238.388, -178.789
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer003´ ElementSpawnEnemyDummy 100259
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1850, -1050, -176.471
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer006´ ElementSpawnEnemyDummy 100262
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -800, -1100, -176.471
+	rotation 0, 0, 0.92388, 0.382682
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer007´ ElementSpawnEnemyDummy 100263
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2400, -950, -176.471
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer008´ ElementSpawnEnemyDummy 100264
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1550, -1200, -176.471
+	rotation 0, 0, 0.499999, -0.866026
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´tazer001´ ElementSpawnEnemyDummy 100095
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1500, -2100, 432.332
+	rotation 0, 0, -1.13249E-06, -1
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer004´ ElementSpawnEnemyDummy 100266
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1750, -1050, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer005´ ElementSpawnEnemyDummy 100267
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1350, -900, -176.471
+	rotation 0, 0, 0.793353, -0.608762
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer006´ ElementSpawnEnemyDummy 100268
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 981.699, 281.699, -178.789
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer007´ ElementSpawnEnemyDummy 100269
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -574.998, -2250, -159.471
+	rotation 0, 0, -1.16229E-06, -1
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer008´ ElementSpawnEnemyDummy 100270
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 900, -1050, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer009´ ElementSpawnEnemyDummy 100271
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_tazer_1/ene_tazer_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1850, -1800, -157.755
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´swat035´ ElementSpawnEnemyDummy 100272
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -175, 400.001, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´cloaker001´ ElementSpawnEnemyDummy 100094
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_spook_1/ene_spook_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -1305.96, -1104.71, -176.471
+	rotation 0, 0, 0.60876, -0.793354
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+´tazer_spawn´ ElementRandom 100096
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´tazer005´ (delay 0)
+		´tazer006´ (delay 0)
+		´tazer007´ (delay 0)
+		´tazer008´ (delay 0)
+		´tazer009´ (delay 0)
+		´tazer´ (delay 0)
+		´tazer001´ (delay 0)
+		´tazer004´ (delay 0)
+´Link 1_2´ MissionScriptElement 100100
+	on_executed
+		´tazer_spawn´ (delay 0)
+´dozer_spawn´ ElementRandom 100260
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´dozer008´ (delay 0)
+		´dozer003´ (delay 0)
+		´dozer002´ (delay 0)
+		´dozer001´ (delay 0)
+		´dozer_2´ (delay 0)
+´Link 1_3´ MissionScriptElement 100261
+	on_executed
+		´dozer_spawn´ (delay 0)
+		´dozer dw´ (delay 0) DISABLED
+		´dozer ovk´ (delay 0) DISABLED
+´cloaker_spawn´ ElementRandom 100273
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´cloaker´ (delay 0)
+		´cloaker001´ (delay 0)
+´Link 1_4´ MissionScriptElement 100274
+	on_executed
+		´cloaker_spawn´ (delay 0)
+´swat038´ ElementSpawnEnemyDummy 100106
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1150, -225, -178.789
+	rotation 0, 0, 0.608761, -0.793354
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat040´ ElementSpawnEnemyDummy 100112
+	BASE DELAY 4
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -800, -1200, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat041´ ElementSpawnEnemyDummy 100114
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -850, -950, -176.471
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat042´ ElementSpawnEnemyDummy 100209
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -1825, -157.755
+	rotation 0, 0, -0.793354, -0.608761
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat043´ ElementSpawnEnemyDummy 100275
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2500, -2136.6, 593.249
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat047´ ElementSpawnEnemyDummy 100279
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 799.148, -1868.53, 592.5
+	rotation 0, 0, -0.130527, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat050´ ElementSpawnEnemyDummy 100282
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 850, -2050, 592.64
+	rotation 0, 0, -1.13249E-06, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat054´ ElementSpawnEnemyDummy 100286
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 225, 399.999, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat058´ ElementSpawnEnemyDummy 100290
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1300, -600, -176.471
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat059´ ElementSpawnEnemyDummy 100291
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 900, -800, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat060´ ElementSpawnEnemyDummy 100292
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1775, 400, -178.789
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat061´ ElementSpawnEnemyDummy 100293
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1531.7, -768.301, 160.469
+	rotation -7.89304E-08, 3.6806E-08, -0.500001, -0.866025
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat062´ ElementSpawnEnemyDummy 100294
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2300, -25, 160.469
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat063´ ElementSpawnEnemyDummy 100295
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2050, -1950, -157.755
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat064´ ElementSpawnEnemyDummy 100296
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1200, -1350, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat065´ ElementSpawnEnemyDummy 100297
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 150, -1050, -176.471
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat066´ ElementSpawnEnemyDummy 100298
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1200, -176.471
+	rotation 0, 0, 0.258818, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat067´ ElementSpawnEnemyDummy 100299
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -2050, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat068´ ElementSpawnEnemyDummy 100300
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1900, -1400, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat069´ ElementSpawnEnemyDummy 100301
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1650, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat070´ ElementSpawnEnemyDummy 100302
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1600, -1950, 427.474
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat071´ ElementSpawnEnemyDummy 100303
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1400, -2200, 436.338
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat072´ ElementSpawnEnemyDummy 100304
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1200, -1200, -176.471
+	rotation 0, 0, 0.382683, -0.92388
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat073´ ElementSpawnEnemyDummy 100305
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -175, 400.001, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat074´ ElementSpawnEnemyDummy 100306
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1150, -225, -178.789
+	rotation 0, 0, 0.608761, -0.793354
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat076´ ElementSpawnEnemyDummy 100308
+	BASE DELAY 4
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -800, -1200, -176.471
+	rotation 0, 0, -0.707108, -0.707106
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat077´ ElementSpawnEnemyDummy 100309
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -850, -950, -176.471
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat078´ ElementSpawnEnemyDummy 100310
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -1825, -157.755
+	rotation 0, 0, -0.793354, -0.608761
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+´swat079´ ElementSpawnEnemyDummy 100311
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2500, -2136.6, 593.249
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat083´ ElementSpawnEnemyDummy 100315
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 799.148, -1868.53, 592.5
+	rotation 0, 0, -0.130527, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat086´ ElementSpawnEnemyDummy 100318
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 850, -2050, 592.64
+	rotation 0, 0, -1.13249E-06, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat090´ ElementSpawnEnemyDummy 100322
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 225, 399.999, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat094´ ElementSpawnEnemyDummy 100326
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1300, -600, -176.471
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat095´ ElementSpawnEnemyDummy 100327
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 900, -800, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat096´ ElementSpawnEnemyDummy 100328
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1775, 400, -178.789
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat097´ ElementSpawnEnemyDummy 100329
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1531.7, -768.301, 160.469
+	rotation -7.89304E-08, 3.6806E-08, -0.500001, -0.866025
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat098´ ElementSpawnEnemyDummy 100330
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2300, -25, 160.469
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat099´ ElementSpawnEnemyDummy 100331
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2050, -1950, -157.755
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat100´ ElementSpawnEnemyDummy 100332
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1200, -1350, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat101´ ElementSpawnEnemyDummy 100333
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 150, -1050, -176.471
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat102´ ElementSpawnEnemyDummy 100334
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1200, -176.471
+	rotation 0, 0, 0.258818, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat103´ ElementSpawnEnemyDummy 100335
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -550, -2050, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat104´ ElementSpawnEnemyDummy 100336
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1900, -1400, -176.471
+	rotation 0, 0, -0.25882, -0.965926
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat105´ ElementSpawnEnemyDummy 100337
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -600, -1650, -157.755
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat106´ ElementSpawnEnemyDummy 100338
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1600, -1950, 427.474
+	rotation 0, 0, -7.45058E-07, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat107´ ElementSpawnEnemyDummy 100339
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1400, -2200, 436.338
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat108´ ElementSpawnEnemyDummy 100340
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1200, -1200, -176.471
+	rotation 0, 0, 0.382683, -0.92388
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat109´ ElementSpawnEnemyDummy 100341
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -175, 400.001, -25
+	rotation 0, 0, 1, -1.01328E-06
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+´swat ovk´ ElementRandom 100103
+	DISABLED
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat071´ (delay 0)
+		´swat070´ (delay 0)
+		´swat069´ (delay 0)
+		´swat068´ (delay 0)
+		´swat067´ (delay 0)
+		´swat066´ (delay 0)
+		´swat065´ (delay 0)
+		´swat064´ (delay 0)
+		´swat063´ (delay 0)
+		´swat062´ (delay 0)
+		´swat061´ (delay 0)
+		´swat060´ (delay 0)
+		´swat059´ (delay 0)
+		´swat058´ (delay 0)
+		´swat054´ (delay 0)
+		´swat050´ (delay 0)
+		´swat047´ (delay 0)
+		´swat073´ (delay 0)
+		´swat043´ (delay 0)
+		´swat042´ (delay 0)
+		´swat041´ (delay 0)
+		´swat040´ (delay 0)
+		´swat038´ (delay 0)
+		´swat072´ (delay 0)
+´swat ovk_2´ ElementRandom 100104
+	DISABLED
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat071´ (delay 0)
+		´swat070´ (delay 0)
+		´swat069´ (delay 0)
+		´swat068´ (delay 0)
+		´swat067´ (delay 0)
+		´swat066´ (delay 0)
+		´swat065´ (delay 0)
+		´swat064´ (delay 0)
+		´swat063´ (delay 0)
+		´swat062´ (delay 0)
+		´swat061´ (delay 0)
+		´swat060´ (delay 0)
+		´swat059´ (delay 0)
+		´swat058´ (delay 0)
+		´swat054´ (delay 0)
+		´swat050´ (delay 0)
+		´swat047´ (delay 0)
+		´swat073´ (delay 0)
+		´swat043´ (delay 0)
+		´swat042´ (delay 0)
+		´swat041´ (delay 0)
+		´swat040´ (delay 0)
+		´swat038´ (delay 0)
+		´swat072´ (delay 0)
+´swat dw´ ElementRandom 100342
+	DISABLED
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat083´ (delay 0)
+		´swat086´ (delay 0)
+		´swat090´ (delay 0)
+		´swat094´ (delay 0)
+		´swat095´ (delay 0)
+		´swat096´ (delay 0)
+		´swat097´ (delay 0)
+		´swat098´ (delay 0)
+		´swat099´ (delay 0)
+		´swat100´ (delay 0)
+		´swat101´ (delay 0)
+		´swat102´ (delay 0)
+		´swat103´ (delay 0)
+		´swat105´ (delay 0)
+		´swat104´ (delay 0)
+		´swat107´ (delay 0)
+		´swat106´ (delay 0)
+		´swat108´ (delay 0)
+		´swat074´ (delay 0)
+		´swat076´ (delay 0)
+		´swat077´ (delay 0)
+		´swat078´ (delay 0)
+		´swat079´ (delay 0)
+		´swat109´ (delay 0)
+´swat dw_2´ ElementRandom 100343
+	DISABLED
+	amount 4
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´swat083´ (delay 0)
+		´swat086´ (delay 0)
+		´swat090´ (delay 0)
+		´swat094´ (delay 0)
+		´swat095´ (delay 0)
+		´swat096´ (delay 0)
+		´swat097´ (delay 0)
+		´swat098´ (delay 0)
+		´swat099´ (delay 0)
+		´swat100´ (delay 0)
+		´swat101´ (delay 0)
+		´swat102´ (delay 0)
+		´swat103´ (delay 0)
+		´swat105´ (delay 0)
+		´swat104´ (delay 0)
+		´swat107´ (delay 0)
+		´swat106´ (delay 0)
+		´swat108´ (delay 0)
+		´swat074´ (delay 0)
+		´swat076´ (delay 0)
+		´swat077´ (delay 0)
+		´swat078´ (delay 0)
+		´swat079´ (delay 0)
+		´swat109´ (delay 0)
+´any_enemies_alive_shape´ ElementShape 100344
+	depth 30000
+	height 16000
+	position 0, 0, 425
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 30000
+´ovk´ ElementFilter 100000
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2475, -5775, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´On_3´ (delay 0)
+´On_3´ ElementToggle 100002
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´swat ovk´ DISABLED
+		2 ´swat ovk_2´ DISABLED
+		3 ´dozer ovk´ DISABLED
+	on_executed
+		´Off_6´ (delay 0)
+´On_4´ ElementToggle 100003
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´swat dw´ DISABLED
+		2 ´swat dw_2´ DISABLED
+		3 ´dozer dw´ DISABLED
+	on_executed
+		´Off_6´ (delay 0)
+´dw´ ElementFilter 100117
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2525, -5775, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´On_4´ (delay 0)
+´check difficulty´ MissionScriptElement 100118
+	on_executed
+		´ovk´ (delay 0)
+		´dw´ (delay 0)
+		´norm - hard´ (delay 0)
+´Off_6´ ElementToggle 100119
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´swat_spawn´
+		2 ´swat_spawn_2´
+		3 ´dozer_spawn´
+´dozer009´ ElementSpawnEnemyDummy 100120
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -800, -1100, -176.471
+	rotation 0, 0, 0.92388, 0.382682
+	spawn_action e_sp_dwn_21m
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer010´ ElementSpawnEnemyDummy 100121
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2400, -950, -176.471
+	rotation 0, 0, 0.866026, 0.499999
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer011´ ElementSpawnEnemyDummy 100125
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -1550, -1200, -176.471
+	rotation 0, 0, 0.499999, -0.866026
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer004´ ElementSpawnEnemyDummy 100126
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 761.237, -1035.36, -176.471
+	rotation 0, 0, -0.130528, -0.991445
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer005´ ElementSpawnEnemyDummy 100348
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1850, -1050, -176.471
+	rotation 0, 0, -0.707107, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer012´ ElementSpawnEnemyDummy 100349
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 1882.32, 238.388, -178.789
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer013´ ElementSpawnEnemyDummy 100350
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -312.059, -1501.7, -82.755
+	rotation 0, 0, 0.130525, -0.991445
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer014´ ElementSpawnEnemyDummy 100351
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2050, -750, 185.61
+	rotation -6.67148E-08, 5.59805E-08, -0.707107, -0.707106
+	spawn_action e_sp_up_ledge
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´Halloween Dozer´ ElementSpawnEnemyDummy 100352
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -0.0101318, -275, 0
+	rotation 0, 0, -1.13249E-06, -1
+	spawn_action e_sp_stumble_var2
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´Dozer - Intro´ (delay 0)
+´dozer dw´ ElementRandom 100353
+	DISABLED
+	amount 2
+	amount_random 2
+	ignore_disabled true
+	on_executed
+		´dozer009´ (delay 0)
+		´dozer010´ (delay 0)
+		´dozer011´ (delay 0)
+		´dozer004´ (delay 0)
+		´dozer005´ (delay 0)
+		´dozer012´ (delay 0)
+		´dozer013´ (delay 0)
+		´dozer014´ (delay 0)
+´kick - to exit´ ElementUnitSequence 100356
+	TRIGGER TIMES 1
+	position -50, -8300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence anim_kick
+			time 0
+	on_executed
+		´Link_4´ (delay 4.5)
+		´SFX - Cloaker - Dash´ (delay 0)
+		´SFX - Cloaker - Bitch´ (delay 0)
+		´SFX - Cloaker - Dash001´ (delay 0)
+´laugh´ MissionScriptElement 100358
+	on_executed
+		´laugh - taunt´ (delay 0)
+´axe kick´ MissionScriptElement 100359
+	on_executed
+		´cloaker_kick_shake´ (delay 0)
+´Link 1_5´ MissionScriptElement 100360
+	on_executed
+		´sniper_spawn´ (delay 0)
+´point_smoke_grenade_001´ ElementSmokeGrenade 100130
+	duration 15
+	effect_type smoke
+	ignore_control false
+	immediate false
+	position 450, -375, 258.798
+	rotation 0, 0, 0, -1
+´spawn_cover´ ElementEnableUnit 100368
+	position 950, -10100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/006 (765.689, 260.908, -180)
+		2 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/007 (478.236, -373.315, -25.8969)
+		3 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/018 (-393.552, -152.122, 48.0886)
+		4 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/017 (-367.678, -267.678, -20)
+		5 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/019 (-330.849, 258.93, -17.0491)
+		6 units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/007 (-1847.33, -1557.85, -157.755)
+	on_executed
+		´func_nav_add´ (delay 0)
+´de-spawn_cover´ ElementDisableUnit 100369
+	position 950, -10450, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/006 (765.689, 260.908, -180)
+		2 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/007 (478.236, -373.315, -25.8969)
+		3 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/018 (-393.552, -152.122, 48.0886)
+		4 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/017 (-367.678, -267.678, -20)
+		5 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/019 (-330.849, 258.93, -17.0491)
+		6 units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/007 (-1847.33, -1557.85, -157.755)
+	on_executed
+		´func_nav_remove´ (delay 0)
+´auto_disable_props´ ElementDisableUnit 100370
+	EXECUTE ON STARTUP
+	position 1725, -6025, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/006 (765.689, 260.908, -180)
+		2 units/pd2_dlc_nails/props/nls_prop_methlab_ephedrinejar/nls_prop_methlab_ephedrinejar_closed/007 (478.236, -373.315, -25.8969)
+		3 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/017 (-367.678, -267.678, -20)
+		4 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/018 (-393.552, -152.122, 48.0886)
+		5 units/pd2_dlc_nails/props/nls_prop_methlab_lithiumbattery/nls_prop_methlab_lithiumbattery/019 (-330.849, 258.93, -17.0491)
+		6 units/pd2_dlc_nails/props/nls_prop_methlab_spider_med/nls_prop_methlab_spider_med/007 (-1847.33, -1557.85, -157.755)
+´func_nav_remove´ ElementNavObstacle 100389
+	operation remove
+	position 850, -10450, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/010 (-430, -232, -26.4608)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/011 (-430, -332, -26.4608)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/012 (-330, -332, -26.4608)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/009 (-380, 193, -26.4608)
+		5
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (667, 263, -179)
+		6
+			guis_id 6
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (667, 163, -179)
+		7
+			guis_id 7
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (767, 163, -179)
+		8
+			guis_id 8
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/006 (475, -375, -50)
+		9
+			guis_id 9
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (375, -375, -50)
+		10
+			guis_id 10
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/008 (375, -475, -50)
+		11
+			guis_id 11
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (767, 263, -179)
+		12
+			guis_id 12
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/007 (475, -475, -50)
+´func_nav_add´ ElementNavObstacle 100390
+	operation add
+	position 850, -10100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/010 (-430, -232, -26.4608)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/011 (-430, -332, -26.4608)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/012 (-330, -332, -26.4608)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/009 (-380, 193, -26.4608)
+		5
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (375, -375, -50)
+		6
+			guis_id 6
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/008 (375, -475, -50)
+		7
+			guis_id 7
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/007 (475, -475, -50)
+		8
+			guis_id 8
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/006 (475, -375, -50)
+		9
+			guis_id 9
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (667, 163, -179)
+		10
+			guis_id 10
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (667, 263, -179)
+		11
+			guis_id 11
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (767, 163, -179)
+		12
+			guis_id 12
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (767, 263, -179)
+´point_special_objective_001´ ElementSpecialObjective 100371
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 150, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_002´ ElementSpecialObjective 100372
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 75, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_003´ ElementSpecialObjective 100373
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_004´ ElementSpecialObjective 100374
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -75, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_005´ ElementSpecialObjective 100375
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -150, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_006´ ElementSpecialObjective 100376
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -225, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_007´ ElementSpecialObjective 100377
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -300, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_008´ ElementSpecialObjective 100378
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -375, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_009´ ElementSpecialObjective 100379
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -450, -525, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_010´ ElementSpecialObjective 100380
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, -200, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_011´ ElementSpecialObjective 100381
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, -125, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_012´ ElementSpecialObjective 100382
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, -50, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_013´ ElementSpecialObjective 100383
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 25, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_014´ ElementSpecialObjective 100384
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 100, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_015´ ElementSpecialObjective 100385
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 175, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_016´ ElementSpecialObjective 100386
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 250, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_017´ ElementSpecialObjective 100387
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 325, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_018´ ElementSpecialObjective 100388
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 625, 400, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_019´ ElementSpecialObjective 100403
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 0, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_020´ ElementSpecialObjective 100404
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 75, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_021´ ElementSpecialObjective 100405
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 150, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_022´ ElementSpecialObjective 100406
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 225, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_023´ ElementSpecialObjective 100407
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 300, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´point_special_objective_024´ ElementSpecialObjective 100408
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -625, 375, -176.471
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -31,265 -249,847 6,45278
+	so_action e_nl_up_1_75m
+	trigger_on none
+	followup_elements
+´cloaker_king_min_police´ ElementAreaMinPoliceForce 100409
+	amount 3
+	position 150, 0, 31.7032
+	rotation 0, 0, 0, -1
+´enable_min_police´ MissionScriptElement 100410
+	on_executed
+		´cloaker_king_min_police´ (delay 0)
+		´event_started´ (delay 0)
+´remove_min_police´ ElementOperator 100411
+	operation remove
+	elements
+		1 ´cloaker_king_min_police´
+	on_executed
+		´start clean up ai loop´ (delay 0)
+´AI_HUNT´ ElementSpecialObjective 100412
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 2
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -200, -1100, -176.471
+	repeatable true
+	rotation 0, 0, 0, -1
+	scan false
+	search_distance 0
+	search_position -200 -1050 -176,471
+	so_action AI_hunt
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´swat011´
+		2 ´swat069´
+		3 ´swat105´
+		4 ´swat067´
+		5 ´swat013´
+		6 ´swat103´
+		7 ´swat014´
+		8 ´swat102´
+		9 ´swat066´
+		10 ´swat005´
+		11 ´swat076´
+		12 ´swat040´
+		13 ´swat008´
+		14 ´swat108´
+		15 ´swat072´
+		16 ´swat077´
+		17 ´swat041´
+		18 ´swat004´
+		19 ´swat078´
+		20 ´swat003´
+		21 ´swat042´
+		22 ´swat007´
+		23 ´swat038´
+		24 ´swat074´
+		25 ´swat015´
+		26 ´swat065´
+		27 ´swat101´
+		28 ´swat100´
+		29 ´swat016´
+		30 ´swat064´
+		31 ´swat098´
+		32 ´swat018´
+		33 ´swat062´
+		34 ´swat061´
+		35 ´swat097´
+		36 ´swat019´
+		37 ´swat068´
+		38 ´swat012´
+		39 ´swat104´
+		40 ´swat017´
+		41 ´swat099´
+		42 ´swat063´
+		43 ´swat096´
+		44 ´swat020´
+		45 ´swat060´
+		46 ´swat058´
+		47 ´swat022´
+		48 ´swat094´
+		49 ´swat059´
+		50 ´swat021´
+		51 ´swat095´
+		52 ´cloaker´
+		53 ´cloaker001´
+		54 ´tazer004´
+		55 ´tazer´
+		56 ´tazer009´
+		57 ´shield004´
+		58 ´shield013´
+		59 ´shield012´
+		60 ´tazer008´
+		61 ´tazer006´
+		62 ´shield011´
+		63 ´tazer007´
+		64 ´tazer005´
+		65 ´shield002´
+		66 ´shield003´
+		67 ´dozer´
+		68 ´dozer004´
+		69 ´dozer001´
+		70 ´dozer013´
+		71 ´dozer003´
+		72 ´dozer005´
+		73 ´dozer010´
+		74 ´dozer007´
+		75 ´dozer011´
+		76 ´dozer008´
+		77 ´dozer012´
+		78 ´dozer002´
+		79 ´shield010´
+		80 ´swat083´
+		81 ´swat047´
+		82 ´swat033´
+		83 ´swat086´
+		84 ´swat030´
+		85 ´swat050´
+		86 ´swat070´
+		87 ´swat010´
+		88 ´swat106´
+		89 ´swat009´
+		90 ´swat107´
+		91 ´swat071´
+		92 ´tazer001´
+		93 ´swat043´
+		94 ´swat002´
+		95 ´swat079´
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100413
+	on_executed
+		´AI_HUNT´ (delay 5)
+´sniper´ ElementSpawnEnemyDummy 100116
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2925, -1750, 1336.86
+	rotation 0, 0, -0.382684, -0.923879
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn´ (delay 0)
+		´point_special_objective_sniper004´ (delay 0)
+´sniper001´ ElementSpawnEnemyDummy 100243
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2007.32, -1407.32, 1451
+	rotation 0, 0, -0.130527, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn002´ (delay 0)
+		´point_special_objective_sniper002´ (delay 0)
+´sniper002´ ElementSpawnEnemyDummy 100247
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -196.651, -1194.2, 1451
+	rotation 0, 0, -1.10269E-06, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn004´ (delay 0)
+		´point_special_objective_sniper´ (delay 0)
+´sniper003´ ElementSpawnEnemyDummy 100248
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -37.911, -1683.17, 590.527
+	rotation 0, 0, 0.130525, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn003´ (delay 0)
+		´point_special_objective_sniper005´ (delay 0)
+´sniper_spawn´ ElementRandom 100099
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´sniper002´ (delay 0)
+		´sniper´ (delay 0)
+		´sniper001´ (delay 0)
+		´sniper003´ (delay 0)
+		´sniper004´ (delay 0)
+		´sniper005´ (delay 0)
+´remove min´ ElementOperator 100140
+	operation remove
+	elements
+		1 ´cloaker_king_min_police´
+	on_executed
+		´remove - hunt - escape so´ (delay 0)
+´Off_7´ ElementToggle 100146
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´start loop´
+		2 ´remove ai on level015´
+		3 ´trigger_special_objective_017´
+		4 ´ai_remove_001´
+		5 ´point_feedback_001´
+		6 ´2 sec delay´
+´start clean up ai loop´ MissionScriptElement 100289
+	on_executed
+		´start loop´ (delay 0)
+		´remove - hunt - escape so_2´ (delay 0)
+´remove - hunt - escape so´ ElementOperator 100307
+	operation remove
+	elements
+		1 ´AI_HUNT´
+	on_executed
+		´Open the safe´ (delay 0)
+´point_special_objective_034´ ElementSpecialObjective 100312
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -150, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_035´ ElementSpecialObjective 100313
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -250, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_036´ ElementSpecialObjective 100314
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -350, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_037´ ElementSpecialObjective 100316
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -450, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_038´ ElementSpecialObjective 100317
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -550, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_039´ ElementSpecialObjective 100319
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1500, -650, 160.469
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1275,24 -127,895 -178,789
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´remove ai on level015´ ElementSpecialObjective 100142
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 0.1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 100, -8950, 2.5
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position -200 -1050 -176,471
+	so_action e_nl_cs_dwn_sewer
+	trigger_on none
+	followup_elements
+	spawn_instigator_ids
+		1 ´swat011´
+		2 ´swat069´
+		3 ´swat105´
+		4 ´swat067´
+		5 ´swat013´
+		6 ´swat103´
+		7 ´swat014´
+		8 ´swat102´
+		9 ´swat066´
+		10 ´swat005´
+		11 ´swat076´
+		12 ´swat040´
+		13 ´swat008´
+		14 ´swat108´
+		15 ´swat072´
+		16 ´swat077´
+		17 ´swat041´
+		18 ´swat004´
+		19 ´swat078´
+		20 ´swat003´
+		21 ´swat042´
+		22 ´swat007´
+		23 ´swat038´
+		24 ´swat074´
+		25 ´swat015´
+		26 ´swat065´
+		27 ´swat101´
+		28 ´swat100´
+		29 ´swat016´
+		30 ´swat064´
+		31 ´swat098´
+		32 ´swat018´
+		33 ´swat062´
+		34 ´swat061´
+		35 ´swat097´
+		36 ´swat019´
+		37 ´swat068´
+		38 ´swat012´
+		39 ´swat104´
+		40 ´swat017´
+		41 ´swat099´
+		42 ´swat063´
+		43 ´swat096´
+		44 ´swat020´
+		45 ´swat060´
+		46 ´swat058´
+		47 ´swat022´
+		48 ´swat094´
+		49 ´swat059´
+		50 ´swat021´
+		51 ´swat095´
+		52 ´cloaker´
+		53 ´cloaker001´
+		54 ´tazer004´
+		55 ´tazer´
+		56 ´tazer009´
+		57 ´shield004´
+		58 ´shield013´
+		59 ´shield012´
+		60 ´tazer008´
+		61 ´tazer006´
+		62 ´shield011´
+		63 ´tazer007´
+		64 ´tazer005´
+		65 ´shield002´
+		66 ´shield003´
+		67 ´dozer´
+		68 ´dozer004´
+		69 ´dozer001´
+		70 ´dozer013´
+		71 ´dozer003´
+		72 ´dozer005´
+		73 ´dozer010´
+		74 ´dozer007´
+		75 ´dozer011´
+		76 ´dozer008´
+		77 ´dozer012´
+		78 ´dozer002´
+		79 ´shield010´
+		80 ´swat054´
+		81 ´swat026´
+		82 ´swat090´
+		83 ´dozer014´
+		84 ´dozer_2´
+		85 ´swat086´
+		86 ´swat030´
+		87 ´swat050´
+		88 ´swat033´
+		89 ´swat083´
+		90 ´swat047´
+		91 ´tazer001´
+		92 ´swat109´
+		93 ´swat073´
+		94 ´swat035´
+		95 ´swat002´
+		96 ´swat043´
+		97 ´swat079´
+		98 ´dozer006´
+		99 ´dozer009´
+		100 ´swat070´
+		101 ´swat010´
+		102 ´swat106´
+		103 ´swat107´
+		104 ´swat009´
+		105 ´swat071´
+		106 ´sniper´
+		107 ´sniper001´
+		108 ´sniper003´
+		109 ´sniper002´
+		110 ´sniper005´
+		111 ´sniper004´
+		112 ´ai_spawn_civilian_001´
+		113 ´ai_spawn_civilian_002´
+		114 ´ai_spawn_civilian_003´
+		115 ´ai_spawn_civilian_004´
+		116 ´ai_spawn_civilian_005´
+	on_executed
+		´start loop´ (delay 0)
+´trigger_special_objective_017´ ElementSpecialObjectiveTrigger 100251
+	event administered
+	position 0, -8950, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´remove ai on level015´
+	on_executed
+		´ai_remove_001´ (delay 0)
+´ai_remove_001´ ElementAIRemove 100323
+	force_ragdoll false
+	position -100, -8950, 2.5
+	rotation 0, 0, 0, -1
+	true_death false
+	use_instigator true
+´start loop´ MissionScriptElement 100361
+	on_executed
+		´remove ai on level015´ (delay 0.25)
+		´Link_3´ (delay 0)
+´point_feedback_001´ ElementFeedback 100061
+	TRIGGER TIMES 1
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 100, -9075, 2.5
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´2 sec delay´ (delay 0)
+´Spawn Cover´ MissionScriptElement 100141
+	on_executed
+		´func_overlay_flash bang´ (delay 0)
+		´slight delay´ (delay 0)
+		´point_flash_grenade´ (delay 0)
+´Despawn Cover´ MissionScriptElement 100144
+	on_executed
+		´func_overlay_flash_bang´ (delay 0)
+		´logic_link_001´ (delay 0)
+		´point_flash_grenade´ (delay 0)
+´Link_3´ MissionScriptElement 100107
+	TRIGGER TIMES 1
+	on_executed
+		´Despawn Cover´ (delay 0)
+		´point_feedback_001´ (delay 0)
+´remove - hunt - escape so_2´ ElementOperator 100092
+	operation remove
+	elements
+		1 ´AI_HUNT´
+´ALl players inside´ ElementAreaTrigger 100145
+	DISABLED
+	amount all
+	depth 500
+	height 1750
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 150, -6000, 2.5
+	radius 355
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´point_shape_001´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´inside´ (delay 0)
+´Activate SOs´ MissionScriptElement 100148
+	EXECUTE ON STARTUP
+	BASE DELAY 3
+	on_executed
+		´point_special_objective_009´ (delay 0)
+		´point_special_objective_008´ (delay 0)
+		´point_special_objective_007´ (delay 0)
+		´point_special_objective_006´ (delay 0)
+		´point_special_objective_005´ (delay 0)
+		´point_special_objective_004´ (delay 0)
+		´point_special_objective_003´ (delay 0)
+		´point_special_objective_002´ (delay 0)
+		´point_special_objective_001´ (delay 0)
+		´point_special_objective_010´ (delay 0)
+		´point_special_objective_011´ (delay 0)
+		´point_special_objective_012´ (delay 0)
+		´point_special_objective_013´ (delay 0)
+		´point_special_objective_014´ (delay 0)
+		´point_special_objective_015´ (delay 0)
+		´point_special_objective_016´ (delay 0)
+		´point_special_objective_017´ (delay 0)
+		´point_special_objective_018´ (delay 0)
+		´point_special_objective_024´ (delay 0)
+		´point_special_objective_023´ (delay 0)
+		´point_special_objective_022´ (delay 0)
+		´point_special_objective_021´ (delay 0)
+		´point_special_objective_020´ (delay 0)
+		´point_special_objective_019´ (delay 0)
+		´point_special_objective_039´ (delay 0)
+		´point_special_objective_038´ (delay 0)
+		´point_special_objective_037´ (delay 0)
+		´point_special_objective_036´ (delay 0)
+		´point_special_objective_035´ (delay 0)
+		´point_special_objective_034´ (delay 0)
+		´point_special_objective_040´ (delay 0)
+		´point_special_objective_041´ (delay 0)
+		´point_special_objective_042´ (delay 0)
+		´point_special_objective_043´ (delay 0)
+		´point_special_objective_044´ (delay 0)
+		´point_special_objective_045´ (delay 0)
+		´point_special_objective_046´ (delay 0)
+		´point_special_objective_047´ (delay 0)
+		´point_special_objective_048´ (delay 0)
+		´point_special_objective_049´ (delay 0)
+		´point_special_objective_050´ (delay 0)
+		´point_special_objective_051´ (delay 0)
+´point_special_objective_040´ ElementSpecialObjective 100442
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	no_arrest false
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1550, -1775, 352.374
+	repeatable true
+	rotation 0, 0, 2.98023E-08, -1
+	scan true
+	search_distance 0
+	search_position 1663,54 -1611,52 -157,755
+	so_action e_nl_dwn_jump_5_25m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_041´ ElementSpecialObjective 100443
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1450, -1775, 352.374
+	repeatable true
+	rotation 0, 0, 2.98023E-08, -1
+	scan true
+	search_distance 0
+	search_position 1408,82 -1582,88 -157,755
+	so_action e_nl_dwn_jump_5_25m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_042´ ElementSpecialObjective 100444
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1250, -1775, 352.374
+	repeatable true
+	rotation 0, 0, 2.98023E-08, -1
+	scan true
+	search_distance 0
+	search_position 1346,97 -1560,32 -157,755
+	so_action e_nl_dwn_jump_5_25m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_043´ ElementSpecialObjective 100445
+	SO_access 16380
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 1150, -1775, 352.374
+	repeatable true
+	rotation 0, 0, 2.98023E-08, -1
+	scan true
+	search_distance 0
+	search_position 1346,97 -1560,32 -157,755
+	so_action e_nl_dwn_jump_5_25m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´SFX - Cloaker - spawn002´ ElementPlaySound 100453
+	append_prefix false
+	interrupt true
+	position 1100, -9350, 2.5
+	rotation 0, 0, 0, -1
+	sound_event cloaker_presence_stop
+	use_instigator false
+´On_5´ ElementToggle 100166
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´report´ DISABLED
+	on_executed
+		´blank atm´ (delay 0)
+´point_special_objective_044´ ElementSpecialObjective 100195
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 666.421, -1670.71, 595.483
+	repeatable true
+	rotation 0, 0, 0.382683, -0.92388
+	scan true
+	search_distance 0
+	search_position 821,685 -1404,45 -94,2556
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_045´ ElementSpecialObjective 100249
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 595.711, -1625, 595.483
+	repeatable true
+	rotation 0, 0, 0.258819, -0.965926
+	scan true
+	search_distance 0
+	search_position 705,062 -1345,65 -94,2555
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_046´ ElementSpecialObjective 100454
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 722.643, -1736.21, 595.483
+	repeatable true
+	rotation 0, 0, 0.5, -0.866026
+	scan true
+	search_distance 0
+	search_position 847,476 -1415,14 -94,2555
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_047´ ElementSpecialObjective 100455
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -20.6775, -1615.36, 595.483
+	repeatable true
+	rotation 0, 0, -0.284015, -0.95882
+	scan true
+	search_distance 0
+	search_position -60,4391 -1382,07 -94,2555
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_048´ ElementSpecialObjective 100456
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 47.4182, -1578.2, 595.483
+	repeatable true
+	rotation 0, 0, -0.233445, -0.97237
+	scan true
+	search_distance 0
+	search_position -65,0204 -1372,2 -94,2555
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_049´ ElementSpecialObjective 100457
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 2361.65, -1623.7, 591.483
+	repeatable true
+	rotation 0, 0, -0.5, -0.866025
+	scan true
+	search_distance 0
+	search_position 2156,7 -1490,4 -94,141
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_050´ ElementSpecialObjective 100458
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 2354.95, -1735.3, 591.483
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 2156,53 -1579,75 -94,141
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´point_special_objective_051´ ElementSpecialObjective 100459
+	SO_access 15868
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 2354.95, -1810.3, 591.483
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 2170,04 -1594,24 -94,1409
+	so_action e_nl_down_7m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´sniper004´ ElementSpawnEnemyDummy 100460
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position -346.65, -1219.2, 1451
+	rotation 0, 0, -1.10269E-06, -1
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn005´ (delay 0)
+		´point_special_objective_sniper001´ (delay 0)
+´sniper005´ ElementSpawnEnemyDummy 100461
+	TRIGGER TIMES 1
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_sniper_1/ene_sniper_1
+	force_pickup none
+	interval 20
+	participate_to_group_ai false
+	position 2150.54, -1445.68, 1451
+	rotation 0, 0, -0.130527, -0.991445
+	spawn_action e_sp_clk_up_manhole
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn001´ (delay 0)
+		´point_special_objective_sniper003´ (delay 0)
+´env_effect_play_spook_explosion´ ElementPlayEffect 100462
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position 0, 0, 122
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn´ ElementPlayEffect 100463
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position 2925, -1750, 1336.86
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn001´ ElementPlayEffect 100464
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position 2150, -1450, 1451
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn002´ ElementPlayEffect 100465
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position 2000, -1400, 1451
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn003´ ElementPlayEffect 100466
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position -25, -1675, 590.754
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn004´ ElementPlayEffect 100467
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position -200, -1200, 1451
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn005´ ElementPlayEffect 100468
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position -350, -1225, 1451
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_ground_fog´ ElementPlayEffect 100469
+	base_time 0
+	effect effects/payday2/environment/nail_green_intro_fog
+	max_amount 0
+	position 1400, -1250, -3.78906
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_ground_fog001´ ElementPlayEffect 100470
+	base_time 0
+	effect effects/payday2/environment/nail_green_intro_fog
+	max_amount 0
+	position -1125, -1050, -3.78906
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´laugh - taunt´ ElementUnitSequence 100472
+	position 50, -7950, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence anim_laughter
+			time 0
+	on_executed
+		´SFX - Cloaker - taunt´ (delay 0)
+´End´ MissionScriptElement 100476
+	TRIGGER TIMES 1
+	on_executed
+		´final´ (delay 0)
+		´func_sequence_001´ (delay 5)
+´point_explosion_cloaker_kick´ ElementExplosionDamage 100357
+	damage 100
+	position 0, 0, 4.08853
+	range 400
+	rotation 0, 0, 0, -1
+´Link_4´ MissionScriptElement 100473
+	on_executed
+		´point_explosion_cloaker_kick´ (delay 0)
+		´money_explosion´ (delay 0)
+		´env_effect_stop_003´ (delay 10)
+		´kick_explosion´ (delay 0)
+		´End´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+		´env_effect_green_explosion´ (delay 0)
+´money_explosion´ ElementPlayEffect 100474
+	base_time 0
+	effect effects/payday2/environment/money_explosion
+	max_amount 0
+	position 0, 0, 6.58853
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_stop_003´ ElementStopEffect 100475
+	operation fade_kill
+	position -150, -8400, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´money_explosion´
+´kick_explosion´ ElementPlayEffect 100477
+	base_time 0
+	effect effects/payday2/particles/explosions/vehicle_explosion
+	max_amount 0
+	position 0, 0, 6.58853
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´cloaker_kick_shake´ ElementFeedback 100478
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 5
+	camera_shake_decay 1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 50, -8300, 2.5
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 5
+	rumble_peak 1
+	rumble_release 1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´kick - to exit´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100479
+	append_prefix false
+	interrupt true
+	position -50, -8400, 2.5
+	rotation 0, 0, 0, -1
+	sound_event flashbang_explode_sfx_player
+	use_instigator false
+´reset_timer´ ElementTimerOperator 100225
+	operation reset
+	position 1100, -6450, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´window_of_availabilty´
+´point_special_objective_sniper´ ElementSpecialObjective 100480
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position -200, -1200, 1451
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_sniper001´ ElementSpecialObjective 100481
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position -350, -1225, 1451
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_sniper002´ ElementSpecialObjective 100482
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position 2000, -1400, 1451
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_sniper003´ ElementSpecialObjective 100483
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position 2150, -1450, 1451
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_sniper004´ ElementSpecialObjective 100484
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position 2907.32, -1742.68, 1336.86
+	rotation 0, 0, -0.382683, -0.92388
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_special_objective_sniper005´ ElementSpecialObjective 100485
+	SO_access 512
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose stand
+	position -25, -1675, 591.216
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -150 -1175 1451
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´norm - hard´ ElementFilter 100486
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -2425, -5775, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´Off_8´ (delay 0)
+´Off_8´ ElementToggle 100487
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´dozer_spawn´
+		2 ´cloaker_spawn´
+´dozer ovk´ ElementRandom 100488
+	DISABLED
+	amount 4
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´dozer006´ (delay 0)
+		´dozer007´ (delay 0)
+		´dozer008´ (delay 0)
+		´dozer´ (delay 0)
+		´dozer003´ (delay 0)
+		´dozer002´ (delay 0)
+		´dozer001´ (delay 0)
+		´dozer_2´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100490
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 825, -100, -178.789
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´temp on´ ElementToggle 100149
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Start´ DISABLED
+		2 ´remove_prefereds´ DISABLED
+´point_shape_002´ ElementShape 100134
+	depth 500
+	height 515
+	position 0, 0, 200
+	radius 398,842
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	width 500
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100151
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 800, -1100, -176.471
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´point_special_objective_025´ (delay 0)
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100169
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 1275, -1200, -176.471
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´point_special_objective_025´ (delay 0)
+´ai_spawn_civilian_003´ ElementSpawnCivilian 100217
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 1950, -1050, -176.471
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´point_special_objective_025´ (delay 0)
+´ai_spawn_civilian_004´ ElementSpawnCivilian 100229
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position -625, -2450, -157.755
+	rotation 0, 0, 0, -1
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn007´ (delay 0)
+		´point_special_objective_025´ (delay 0)
+´ai_spawn_civilian_005´ ElementSpawnCivilian 100250
+	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
+	force_pickup none
+	position 1150, -300, -178.789
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+	on_executed
+		´env_effect_play_sniper_spawn008´ (delay 0)
+		´point_special_objective_025´ (delay 0)
+´point_special_objective_025´ ElementSpecialObjective 100265
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position -1475, -1100, -176.471
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 450 -1200 -176,471
+	so_action cm_arms_up_1
+	trigger_on none
+	use_instigator true
+	followup_elements
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100276
+	event anim_start
+	position -1525, -1100, -151.471
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_025´
+	on_executed
+		´ai_remove_002´ (delay 0)
+		´env_effect_play_sniper_spawn006´ (delay 0)
+´ai_remove_002´ ElementAIRemove 100277
+	force_ragdoll false
+	position -1575, -1100, -151.471
+	rotation 0, 0, 0, -1
+	true_death false
+	use_instigator true
+	on_executed
+		´spawn civ´ (delay 0)
+´env_effect_play_sniper_spawn006´ ElementPlayEffect 100278
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position -1475, -1100, -176.471
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´spawn civ´ MissionScriptElement 100280
+	on_executed
+		´random civ´ (delay 10-15)
+´random civ´ ElementRandom 100281
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´ai_spawn_civilian_001´ (delay 0)
+		´ai_spawn_civilian_002´ (delay 0)
+		´ai_spawn_civilian_003´ (delay 0)
+		´ai_spawn_civilian_004´ (delay 0)
+		´ai_spawn_civilian_005´ (delay 0)
+´env_effect_play_sniper_spawn007´ ElementPlayEffect 100283
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position -625, -2450, -157.755
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_play_sniper_spawn008´ ElementPlayEffect 100284
+	base_time 0
+	effect effects/payday2/particles/explosions/spook_appear
+	max_amount 0
+	position 1150, -300, -178.789
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100285
+	event death
+	position -1575, -1050, -176.471
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_004´
+		2 ´ai_spawn_civilian_005´
+		3 ´ai_spawn_civilian_003´
+		4 ´ai_spawn_civilian_002´
+		5 ´ai_spawn_civilian_001´
+	on_executed
+		´spawn civ´ (delay 0)
+´environment_operator_003´ ElementEnvironmentOperator 100320
+	blend_time 0
+	environment environments/env_nail/env_nail
+	operation set
+	position 1050, -10450, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´de-spawn_cover´ (delay 0)
+´environment_operator_004´ ElementEnvironmentOperator 100321
+	blend_time 0
+	environment environments/pd2_nail_event_01/pd2_nail_event_01
+	operation set
+	position 1050, -10100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´spawn_cover´ (delay 0)
+´func_overlay_flash bang´ ElementOverlayEffect 100324
+	effect damage
+	position 1200, -10050, 2.5
+	rotation 0, 0, 0, -1
+	sustain 1
+´point_flash_grenade´ ElementSmokeGrenade 100325
+	duration 15
+	effect_type flash
+	ignore_control true
+	immediate true
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+´slight delay´ MissionScriptElement 100288
+	on_executed
+		´func_overlay_flash bang´ (delay 0.1)
+		´environment_operator_004´ (delay 0)
+´func_overlay_flash_bang´ ElementOverlayEffect 100367
+	effect damage
+	position 1200, -10400, 2.5
+	rotation 0, 0, 0, -1
+	sustain 1
+´logic_link_001´ MissionScriptElement 100287
+	on_executed
+		´func_overlay_flash_bang´ (delay 0.1)
+		´environment_operator_003´ (delay 0)
+´dev_cloaker_king_spawn´ MissionScriptElement 100156
+	on_executed
+		´temp on´ (delay 0)
+		´Start´ (delay 0.25) DISABLED
+´env_effect_ghosts´ ElementPlayEffect 100414
+	base_time 0
+	effect effects/payday2/environment/nls_ghosts
+	max_amount 0
+	position 0, 0, 50
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_heat´ ElementPlayEffect 100415
+	base_time 0
+	effect effects/payday2/environment/environment_heat
+	max_amount 0
+	position 400, 50, 150
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_heat001´ ElementPlayEffect 100416
+	base_time 0
+	effect effects/payday2/environment/environment_heat
+	max_amount 0
+	position 0, -300, 150
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_heat002´ ElementPlayEffect 100417
+	base_time 0
+	effect effects/payday2/environment/environment_heat
+	max_amount 0
+	position -400, 50, 150
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_heat003´ ElementPlayEffect 100418
+	base_time 0
+	effect effects/payday2/environment/environment_heat
+	max_amount 0
+	position 0, 250, 600
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´2 sec delay´ MissionScriptElement 100075
+	BASE DELAY 1,5
+	TRIGGER TIMES 1
+	on_executed
+		´Off_7´ (delay 0)
+		´2 step authentication´ (delay 0)
+´Spawn - Halloween Dozer´ MissionScriptElement 100077
+	on_executed
+		´Halloween Dozer´ (delay 0)
+´env_effect_green_explosion´ ElementPlayEffect 100354
+	base_time 0
+	effect effects/payday2/environment/nail_green_smoke_explosion
+	max_amount 0
+	position 0, -50, 100
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space false
+´Enable_Cloaker_Spawn´ ElementInstanceInput 100013
+	event enable_cloaker_spawn
+	on_executed
+		´On_2´ (delay 0)
+´func_music_001´ ElementMusic 100215
+	music_event music_heist_assault
+	position 600, -8900, 0
+	rotation 0, 0, 0, -1
+´control´ MissionScriptElement 100345
+	on_executed
+		´func_music_002´ (delay 0)
+´start_assault´ MissionScriptElement 100346
+	on_executed
+		´func_music_001´ (delay 0)
+´func_music_002´ ElementMusic 100347
+	music_event music_heist_control
+	position 600, -9000, 0
+	rotation 0, 0, 0, -1
+´low_chance_money001´ ElementLootBag 100355
+	carry_id money
+	from_respawn false
+	position -24, -55, 147
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money002´ ElementLootBag 100131
+	carry_id money
+	from_respawn false
+	position 1, -55, 132
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money003´ ElementLootBag 100419
+	carry_id money
+	from_respawn false
+	position 5, -55, 165
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money004´ ElementLootBag 100420
+	carry_id money
+	from_respawn false
+	position -11, -55, 153
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money005´ ElementLootBag 100421
+	carry_id money
+	from_respawn false
+	position 12, -55, 116
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money006´ ElementLootBag 100422
+	carry_id money
+	from_respawn false
+	position -24, -55, 165
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money007´ ElementLootBag 100423
+	carry_id money
+	from_respawn false
+	position 26, -55, 165
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money008´ ElementLootBag 100424
+	carry_id money
+	from_respawn false
+	position 26, -55, 165
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money009´ ElementLootBag 100425
+	carry_id money
+	from_respawn false
+	position -6, -55, 108
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money010´ ElementLootBag 100426
+	carry_id money
+	from_respawn false
+	position 26, -55, 165
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money011´ ElementLootBag 100427
+	carry_id money
+	from_respawn false
+	position 12, -55, 146
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money012´ ElementLootBag 100428
+	carry_id money
+	from_respawn false
+	position -24, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money013´ ElementLootBag 100429
+	carry_id money
+	from_respawn false
+	position 7, -55, 109
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money014´ ElementLootBag 100430
+	carry_id money
+	from_respawn false
+	position 6, -55, 124
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money015´ ElementLootBag 100431
+	carry_id money
+	from_respawn false
+	position -6, -55, 102
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money016´ ElementLootBag 100432
+	carry_id money
+	from_respawn false
+	position 26, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money017´ ElementLootBag 100433
+	carry_id money
+	from_respawn false
+	position -6, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money018´ ElementLootBag 100434
+	carry_id money
+	from_respawn false
+	position 26, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money019´ ElementLootBag 100435
+	carry_id money
+	from_respawn false
+	position 26, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money020´ ElementLootBag 100436
+	carry_id money
+	from_respawn false
+	position -9, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money021´ ElementLootBag 100437
+	carry_id money
+	from_respawn false
+	position 14, -55, 84
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money022´ ElementLootBag 100438
+	carry_id money
+	from_respawn false
+	position -7, -55, 75
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money023´ ElementLootBag 100439
+	carry_id money
+	from_respawn false
+	position 2, -55, 65
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money024´ ElementLootBag 100440
+	carry_id money
+	from_respawn false
+	position 23, -55, 95
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money025´ ElementLootBag 100441
+	carry_id money
+	from_respawn false
+	position -23, -55, 89
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money026´ ElementLootBag 100446
+	carry_id money
+	from_respawn false
+	position 10, -55, 90
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money027´ ElementLootBag 100447
+	carry_id money
+	from_respawn false
+	position -9, -55, 87
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money028´ ElementLootBag 100448
+	carry_id money
+	from_respawn false
+	position 25, -55, 85
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´low_chance_money029´ ElementLootBag 100449
+	carry_id money
+	from_respawn false
+	position 26, -55, 65
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´Loot spew - high´ MissionScriptElement 100032
+	on_executed
+		´high_chance_sandwich´ (delay 0)
+		´high_chance_weapons001´ (delay 0.25)
+		´high_chance_weapons002´ (delay 0.5)
+		´high_chance_weapons003´ (delay 0.75)
+		´high_chance_diamonds_001´ (delay 1)
+		´high_chance_diamonds_002´ (delay 1.25)
+		´high_chance_diamonds_003´ (delay 1.5)
+		´high_chance_diamonds_004´ (delay 1.75)
+		´high_chance_diamonds_005´ (delay 2)
+		´high_chance_diamonds_006´ (delay 2.25)
+		´func_experience_high´ (delay 0)
+´Loot spew - mid´ MissionScriptElement 100033
+	on_executed
+		´mid_chance_paintings001´ (delay 0)
+		´mid_chance_paintings002´ (delay 0.25)
+		´mid_chance_paintings003´ (delay 0.5)
+		´mid_chance_paintings004´ (delay 0.75)
+		´mid_chance_paintings005´ (delay 1)
+		´mid_chance_paintings006´ (delay 1.25)
+		´mid_chance_paintings007´ (delay 1.5)
+		´mid_chance_paintings008´ (delay 1.75)
+		´mid_chance_paintings009´ (delay 2)
+		´mid_chance_paintings010´ (delay 2.25)
+		´mid_chance_coke_bags001´ (delay 2.5)
+		´mid_chance_coke_bags002´ (delay 2.75)
+		´mid_chance_coke_bags003´ (delay 3)
+		´mid_chance_coke_bags004´ (delay 3.25)
+		´mid_chance_coke_bags005´ (delay 3.5)
+		´func_experience_mid´ (delay 0)
+´Loot spew - low´ MissionScriptElement 100036
+	on_executed
+		´low_chance_money001´ (delay 0)
+		´low_chance_money002´ (delay 0.25)
+		´low_chance_money003´ (delay 0.5)
+		´low_chance_money005´ (delay 0.75)
+		´low_chance_money006´ (delay 1)
+		´low_chance_money007´ (delay 1.25)
+		´low_chance_money008´ (delay 1.5)
+		´low_chance_money009´ (delay 1.75)
+		´low_chance_money010´ (delay 2)
+		´low_chance_money011´ (delay 2.25)
+		´low_chance_money012´ (delay 2.5)
+		´low_chance_money013´ (delay 2.75)
+		´low_chance_money014´ (delay 3)
+		´low_chance_money015´ (delay 3.25)
+		´low_chance_money016´ (delay 3.5)
+		´low_chance_money017´ (delay 3.75)
+		´low_chance_money018´ (delay 4)
+		´low_chance_money019´ (delay 4.25)
+		´low_chance_money020´ (delay 4.5)
+		´low_chance_money021´ (delay 4.75)
+		´low_chance_money022´ (delay 5)
+		´low_chance_money023´ (delay 5.25)
+		´low_chance_money024´ (delay 5.5)
+		´low_chance_money025´ (delay 5.75)
+		´low_chance_money026´ (delay 6)
+		´low_chance_money027´ (delay 6.25)
+		´low_chance_money028´ (delay 6.5)
+		´low_chance_money029´ (delay 6.75)
+		´low_chance_diamond´ (delay 7)
+		´func_experience_low´ (delay 0)
+´low_chance_diamond´ ElementLootBag 100037
+	carry_id diamonds
+	from_respawn false
+	position -24, -55, 65
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings001´ ElementLootBag 100039
+	carry_id painting
+	from_respawn false
+	position 12, -55, 120
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings002´ ElementLootBag 100038
+	carry_id painting
+	from_respawn false
+	position 8, -55, 115
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings003´ ElementLootBag 100042
+	carry_id painting
+	from_respawn false
+	position 1, -55, 88
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings004´ ElementLootBag 100043
+	carry_id painting
+	from_respawn false
+	position 1, -55, 153
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings005´ ElementLootBag 100044
+	carry_id painting
+	from_respawn false
+	position 0, -55, 153
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings006´ ElementLootBag 100045
+	carry_id painting
+	from_respawn false
+	position 0, -55, 136
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings007´ ElementLootBag 100058
+	carry_id painting
+	from_respawn false
+	position 0, -55, 120
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings008´ ElementLootBag 100110
+	carry_id painting
+	from_respawn false
+	position -1, -55, 120
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings009´ ElementLootBag 100450
+	carry_id painting
+	from_respawn false
+	position 1, -55, 139
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_paintings010´ ElementLootBag 100451
+	carry_id painting
+	from_respawn false
+	position 0, -55, 75
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_coke_bags001´ ElementLootBag 100491
+	carry_id coke
+	from_respawn false
+	position 1, -55, 77
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_coke_bags002´ ElementLootBag 100489
+	carry_id coke
+	from_respawn false
+	position 17, -55, 65
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_coke_bags003´ ElementLootBag 100492
+	carry_id coke
+	from_respawn false
+	position -6, -55, 122
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_coke_bags004´ ElementLootBag 100493
+	carry_id coke
+	from_respawn false
+	position 21, -55, 125
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´mid_chance_coke_bags005´ ElementLootBag 100494
+	carry_id coke
+	from_respawn false
+	position 6, -55, 106
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_sandwich´ ElementLootBag 100122
+	carry_id sandwich
+	from_respawn false
+	position -24, -55, 151
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_weapons001´ ElementLootBag 100124
+	carry_id weapon
+	from_respawn false
+	position 7, -55, 144
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_weapons002´ ElementLootBag 100123
+	carry_id weapon
+	from_respawn false
+	position -4, -55, 137
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_weapons003´ ElementLootBag 100127
+	carry_id weapon
+	from_respawn false
+	position 23, -55, 156
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_001´ ElementLootBag 100132
+	carry_id diamonds
+	from_respawn false
+	position -8, -55, 102
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_002´ ElementLootBag 100495
+	carry_id diamonds
+	from_respawn false
+	position 19, -55, 74
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_003´ ElementLootBag 100496
+	carry_id diamonds
+	from_respawn false
+	position -3, -55, 69
+	push_multiplier 1
+	rotation 0, 0, 2.68221E-07, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_004´ ElementLootBag 100497
+	carry_id diamonds
+	from_respawn false
+	position 1, -55, 103
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_005´ ElementLootBag 100498
+	carry_id diamonds
+	from_respawn false
+	position -3, -55, 88
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´high_chance_diamonds_006´ ElementLootBag 100499
+	carry_id diamonds
+	from_respawn false
+	position -8, -55, 117
+	push_multiplier 1
+	rotation 0, 0, 0, -1
+	spawn_dir 0,0269275 -0,998316 -0,0513609
+	on_executed
+		´bell rings´ (delay 0)
+´halloween_bank´ ElementPlaySound 100501
+	append_prefix false
+	interrupt true
+	position 1200, -7250, 0
+	rotation 0, 0, 0, -1
+	sound_event nail_cloaker_presence_stop
+	use_instigator false
+´SFX - Cloaker - Dash001´ ElementPlaySound 100502
+	append_prefix false
+	interrupt true
+	position 0, 0, -250
+	rotation 0, 0, 0, -1
+	sound_event nail_cloaker_detect
+	use_instigator false
+´SFX - Cloaker - idle´ ElementPlaySound 100178
+	append_prefix false
+	interrupt true
+	position 25, 325, 150
+	rotation 0, 0, 0, -1
+	sound_event nail_cloaker_presence_loop
+	use_instigator false
+´SFX - Cloaker - idle stop´ ElementPlaySound 100197
+	append_prefix false
+	interrupt true
+	position 1050, -9350, 0
+	rotation 0, 0, 0, -1
+	sound_event nail_cloaker_presence_stop
+	use_instigator false
+´SFX - Cloaker - taunt´ ElementPlaySound 100198
+	append_prefix false
+	interrupt true
+	position 25, 325, 400
+	rotation 0, 0, 0, -1
+	sound_event big_cloaker_taunt
+	use_instigator false
+´SFX - Cloaker - Bitch´ ElementPlaySound 100500
+	append_prefix false
+	interrupt true
+	position 25, 325, 500
+	rotation 0, 0, 0, -1
+	sound_event big_cloaker_bitch
+	use_instigator false
+´wave 8´ MissionScriptElement 100206
+	on_executed
+		´bain - lets finish strong´ (delay 0)
+´bain - 1 min001´ ElementDialogue 100189
+	dialogue play_pln_gen_bfr_04
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´Link_5´ MissionScriptElement 100207
+	BASE DELAY 0,25
+	on_executed
+		´bain - 1 min001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100066
+	position -350, -8300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_nails/props/nls_prop_giant_cloaker/nls_prop_giant_cloaker/001 (1900, -2300, -7.86523)
+			notify_unit_sequence state_vis_hide
+			time 0
+´event_beaten´ ElementInstanceOutput 100503
+	event event_beaten
+´func_experience_low´ ElementExperience 100504
+	TRIGGER TIMES 1
+	amount 30000
+´func_experience_mid´ ElementExperience 100505
+	TRIGGER TIMES 1
+	amount 22500
+´func_experience_high´ ElementExperience 100506
+	TRIGGER TIMES 1
+	amount 15000

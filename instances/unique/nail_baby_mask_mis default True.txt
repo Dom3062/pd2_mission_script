@@ -1,0 +1,248 @@
+´logic_norm_baby´ ElementFilter 100001
+	difficulty_easy true
+	difficulty_hard false
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -300, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_norm_baby´ (delay 0)
+´logic_hrd_baby´ ElementFilter 100002
+	difficulty_easy false
+	difficulty_hard true
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -200, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_hrd_baby´ (delay 0)
+´logic_ovk_baby´ ElementFilter 100003
+	difficulty_easy false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_ovk_baby´ (delay 0)
+´logic_vhrd_baby´ ElementFilter 100004
+	difficulty_easy false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_vhrd_baby´ (delay 0)
+´seq_norm_baby´ ElementUnitSequence 100005
+	position -300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_set_var_brazil
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´disable_bby_001´ (delay 0)
+´seq_hrd_baby´ ElementUnitSequence 100006
+	position -200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_set_var_cry
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´disable_bby_002´ (delay 0)
+´seq_ovk_baby´ ElementUnitSequence 100007
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_set_var_angry
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´disable_bby_004´ (delay 0)
+´seq_vhrd_baby´ ElementUnitSequence 100008
+	position -100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_set_var_happy
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´disable_bby_003´ (delay 0)
+´inst_in_showbby´ ElementInstanceInput 100009
+	TRIGGER TIMES 1
+	event show_baby_mask
+	on_executed
+		´logic_norm_baby´ (delay 0)
+		´logic_hrd_baby´ (delay 0)
+		´logic_vhrd_baby´ (delay 0)
+		´logic_ovk_baby´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´inst_in_startup´ ElementInstanceInput 100010
+	event startup
+	on_executed
+		´seq_hide_baby´ (delay 0)
+´seq_hide_baby´ ElementUnitSequence 100011
+	position -300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+´seq_interact_baby´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/hwn_prop_baby_cry_mask/hwn_prop_baby_cry_mask/001 (0, 0, 0)
+	on_executed
+		´inst_out_norm_bby´ (delay 0)
+		´inst_out_hrd_bby´ (delay 0)
+		´inst_out_vhrd_bby´ (delay 0)
+		´inst_out_ovk_bby´ (delay 0)
+´inst_out_norm_bby´ ElementInstanceOutput 100013
+	event interact_norm_baby
+´inst_out_hrd_bby´ ElementInstanceOutput 100014
+	event interact_hard_baby
+´inst_out_vhrd_bby´ ElementInstanceOutput 100015
+	event interact_vhard_baby
+´inst_out_ovk_bby´ ElementInstanceOutput 100016
+	event interact_ovk_baby
+´disable_bby_001´ ElementToggle 100017
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_out_hrd_bby´
+		2 ´inst_out_vhrd_bby´
+		3 ´inst_out_ovk_bby´
+´disable_bby_002´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_out_vhrd_bby´
+		2 ´inst_out_ovk_bby´
+		3 ´inst_out_norm_bby´
+´disable_bby_003´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_out_hrd_bby´
+		2 ´inst_out_norm_bby´
+		3 ´inst_out_ovk_bby´
+´disable_bby_004´ ElementToggle 100020
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_out_vhrd_bby´
+		2 ´inst_out_hrd_bby´
+		3 ´inst_out_norm_bby´
+´env_effect_play_001´ ElementPlayEffect 100021
+	base_time 0
+	effect effects/payday2/particles/explosions/burnpuff
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_002´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100022
+	append_prefix false
+	position 200, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_piano_gliss
+	use_instigator false
+´point_play_sound_002´ ElementPlaySound 100023
+	append_prefix false
+	position 100, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event swat_explosion
+	use_instigator false
+	on_executed
+		´point_play_sound_001´ (delay 0.5)
+´point_debug_001´ ElementDebug 100024
+	as_subtitle false
+	debug_string show baby
+	show_instigator false

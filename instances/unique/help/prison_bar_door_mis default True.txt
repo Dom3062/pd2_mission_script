@@ -1,0 +1,113 @@
+´AUTO_START´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´remove_doors001´ (delay 0)
+´Open_Door´ ElementInstanceInput 100003
+	event Open_Door
+	on_executed
+		´link´ (delay 0)
+´link´ MissionScriptElement 100005
+	on_executed
+		´remove_doors´ (delay 0)
+´Close_Door´ ElementInstanceInput 100007
+	event Close_Door
+	on_executed
+		´link_2´ (delay 0)
+´link_2´ MissionScriptElement 100010
+	on_executed
+		´enable_doors´ (delay 0)
+´TEST´ MissionScriptElement 100014
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´Open_Door´ (delay 5)
+		´Close_Door´ (delay 20)
+		´ai_spawn_enemy_001´ (delay 1)
+		´ai_spawn_enemy_002´ (delay 7)
+		´Test_p2´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100015
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, 250, 0
+	rotation 0, 0, 1, 1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100016
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 200, 250, 0
+	rotation 0, 0, 1, 1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´point_special_objective_001´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100017
+	SO_access 224
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 200, -125, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 0 100 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_enemy_001´
+		2 ´ai_spawn_enemy_002´
+´Test_p2´ MissionScriptElement 100018
+	on_executed
+		´ai_spawn_enemy_001´ (delay 10)
+		´ai_spawn_enemy_002´ (delay 12)
+´remove_doors´ ElementDisableUnit 100000
+	position -50, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/002 (200, 14, 0)
+		2 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/001 (200, 15.0001, 0)
+´enable_doors´ ElementEnableUnit 100004
+	position 400, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/002 (200, 14, 0)
+		2 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/001 (200, 15.0001, 0)
+´remove_doors001´ ElementDisableUnit 100008
+	position -150, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/002 (200, 14, 0)
+		2 units/pd2_dlc_help/architecture/hlp_int_prison_bars/hlp_int_fence_wall_thin/001 (200, 15.0001, 0)

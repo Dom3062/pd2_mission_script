@@ -1,0 +1,135 @@
+´trg_metal_detector_01´ ElementAreaTrigger 100001
+	amount 1
+	depth 40
+	height 200
+	instigator player
+	interval 0.1
+	position 58, 25, 87
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 100
+	rules_element_ids
+		1 ´dir_player_standard_mask_off´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´metaldetector_player´ (delay 0)
+´dir_player_standard_mask_off´ ElementInstigatorRule 100002
+	instigator player
+	rules
+		player
+			states
+				1 carry
+				2 mask_off
+				3 standard
+´metaldetector_player´ MissionScriptElement 100003
+	on_executed
+		´alarm´ (delay 0)
+		´seq_metaldetector_alarm´ (delay 0)
+´alarm´ ElementAiGlobalEvent 100005
+	TRIGGER TIMES 1
+	AI_event police_called
+	blame metal_detector
+	position 293, -76, 649
+	rotation 0, 0, 0, -1
+´sound_metal_detector´ ElementPlaySound 100006
+	append_prefix false
+	position 58, 25, 117
+	rotation 0, 0, 0, -1
+	sound_event metal_detector_alarm
+	use_instigator false
+´seq_metaldetector_alarm´ ElementUnitSequence 100007
+	position 0, -74, 649
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_store_alarm/com_prop_store_alarm/001 (3, 25, 0)
+			notify_unit_sequence alarm_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_store_alarm/com_prop_store_alarm/002 (111, 25, 0)
+			notify_unit_sequence alarm_on
+			time 0
+	on_executed
+		´sound_metal_detector´ (delay 0)
+´trg_metal_detector_02´ ElementAreaTrigger 100008
+	amount 1
+	depth 40
+	height 200
+	instigator enemies
+	interval 0.1
+	position 58, 25, 87
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 100
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´metaldetector_enemy´ (delay 0)
+´input_disable_metal_detector´ ElementInstanceInput 100009
+	event disable_metal_detector
+	on_executed
+		´trg_metal_detector_OFF´ (delay 0)
+´trg_metal_detector_OFF´ ElementToggle 100010
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trg_metal_detector_01´
+		2 ´trg_metal_detector_02´
+´metaldetector_enemy´ MissionScriptElement 100004
+	on_executed
+		´seq_metaldetector_alarm´ (delay 0)
+´data_instigator_rule_001´ ElementInstigatorRule 100011
+	instigator enemies
+	rules
+		enemies
+			enemy_names
+				1 units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
+				2 units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
+				3 units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
+				4 units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4
+				5 units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+				6 units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+				7 units/payday2/characters/ene_city_swat_3/ene_city_swat_3
+				8 units/payday2/characters/ene_cop_1/ene_cop_1
+				9 units/payday2/characters/ene_cop_2/ene_cop_2
+				10 units/payday2/characters/ene_cop_3/ene_cop_3
+				11 units/payday2/characters/ene_cop_4/ene_cop_4
+				12 units/payday2/characters/ene_fbi_1/ene_fbi_1
+				13 units/payday2/characters/ene_fbi_2/ene_fbi_2
+				14 units/payday2/characters/ene_fbi_3/ene_fbi_3
+				15 units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1
+				16 units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1
+				17 units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2
+				18 units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3
+				19 units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4
+				20 units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+				21 units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1
+				22 units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2
+				23 units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3
+				24 units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4
+				25 units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+				26 units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+				27 units/payday2/characters/ene_shield_1/ene_shield_1
+				28 units/payday2/characters/ene_shield_2/ene_shield_2
+				29 units/payday2/characters/ene_spook_1/ene_spook_1
+				30 units/payday2/characters/ene_swat_1/ene_swat_1
+				31 units/payday2/characters/ene_swat_2/ene_swat_2
+				32 units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
+				33 units/payday2/characters/ene_tazer_1/ene_tazer_1
+				34 units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1
+				35 units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2

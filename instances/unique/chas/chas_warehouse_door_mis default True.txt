@@ -1,0 +1,602 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2425, 425, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_close_door´ (delay 10)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence state_door_open_slide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+			notify_unit_sequence set_short_distance_interaction
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´adds_door_blocker´ (delay 0)
+´input_open_door´ ElementInstanceInput 100007
+	event open_shutter_door
+	on_executed
+		´seq_open_door´ (delay 0)
+´output_door_open´ ElementInstanceOutput 100008
+	event warehouse_door_open
+	on_executed
+		´point_debug_002´ (delay 0)
+´area_forklift´ ElementAreaTrigger 100012
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 500
+	instigator vehicle
+	instigator_name 
+	interval 0.1
+	position 0, 125, 110.166
+	radius 250
+	rotation 0, 0, 0.707107, -0.707107
+	shape_type box
+	substitute_object g_lootbag1
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_debug_001´ (delay 0)
+		´output_forklift_in_the_area´ (delay 0)
+´point_debug_001´ ElementDebug 100015
+	as_subtitle false
+	debug_string forklift_in_the area!
+	show_instigator false
+´point_interaction_001´ ElementInteraction 100018
+	DISABLED
+	host_only false
+	override_timer 3
+	position 0, -25, 136
+	rotation 0, 0, 0, -1
+	tweak_data_id chas_breach_shutter
+	on_executed
+		´point_feedback_001´ (delay 0) DISABLED (alternative interacted)
+		´seq_open_gate´ (delay 6) DISABLED (alternative interacted)
+		´remove_gate_interact_WP´ (delay 0) (alternative interacted)
+		´sound_forklift_forcing_gate´ (delay 6) (alternative interacted)
+		´sound_forklift_forcing_gate001´ (delay 0) (alternative interacted)
+´seq_open_gate´ ElementUnitSequence 100019
+	DISABLED
+	position -200, -75, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence anim_door_open_from_slide
+			time 0
+	on_executed
+		´enable_area_player_gate´ (delay 0)
+		´enable_WP_go_to_gate´ (delay 0)
+´point_feedback_001´ ElementFeedback 100023
+	DISABLED
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 0,2
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 5
+	effect mission_triggered
+	position 0, 0, 9.08099
+	range 600
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 0,35
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´seq_open_door´ ElementUnitSequence 100024
+	position 925, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence anim_door_open_from_slide
+			time 0
+	on_executed
+		´remove_WP´ (delay 0)
+		´enable_area_player_gate´ (delay 0)
+´disable_everything´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´ DISABLED
+		2 ´point_feedback_001´ DISABLED
+		3 ´seq_open_gate´ DISABLED
+		4 ´WP_gate_interact´
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´WP_gate_go_to´ ElementWaypoint 100034
+	TRIGGER TIMES 1
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 50, 210.166
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+´WP_gate_interact´ ElementWaypoint 100038
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -50, 160.166
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+´remove_gate_interact_WP´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´WP_gate_interact´
+´remove_WP´ ElementOperator 100040
+	operation remove
+	elements
+		1 ´WP_gate_interact´
+	on_executed
+		´enable_WP_go_to_gate´ (delay 0)
+´enable_WP_go_to_gate´ MissionScriptElement 100041
+	on_executed
+		´WP_gate_go_to´ (delay 0)
+		´disable_everything´ (delay 0)
+		´output_door_open´ (delay 0)
+		´seq_disable_lever_2´ (delay 0)
+´area_player_remove_WP´ ElementAreaTrigger 100042
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 50, 110.166
+	radius 250
+	rotation 0, 0, 0.707107, -0.707107
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´remove_WP002´ (delay 0)
+´remove_WP002´ ElementOperator 100043
+	operation remove
+	elements
+		1 ´WP_gate_go_to´
+	on_executed
+		´output_player_at_door´ (delay 0)
+		´point_debug_004´ (delay 0)
+´enable_area_player_gate´ ElementToggle 100044
+	TRIGGER TIMES 1
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_player_remove_WP´ DISABLED
+´output_player_at_door´ ElementInstanceOutput 100045
+	event player_at_warehouse_door
+´point_debug_004´ ElementDebug 100046
+	as_subtitle false
+	debug_string player_found_door
+	show_instigator false
+´WP_gate_drive_to´ ElementWaypoint 100047
+	TRIGGER TIMES 1
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -50, 210
+	rotation 0, 0, 0.707107, -0.707107
+	text_id debug_none
+´adds_door_blocker´ ElementNavObstacle 100050
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -75, 0)
+´remove_door_blocker´ ElementNavObstacle 100051
+	operation remove
+	position 925, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -75, 0)
+	on_executed
+		´disable_area_triggers_AI´ (delay 0)
+´input_close_door´ ElementInstanceInput 100052
+	event close_shutter_door
+	on_executed
+		´seq_close_door´ (delay 0)
+		´enable_area_triggers_AI´ (delay 0)
+		´point_debug_007´ (delay 0)
+´seq_close_door´ ElementUnitSequence 100053
+	position 1350, 225, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence anim_door_close_to_slide
+			time 0
+	on_executed
+		´add_door_blocker´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100054
+	operation add
+	position 1350, 150, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -75, 0)
+	on_executed
+		´enable_area_toggle_lever´ (delay 0)
+´output_forklift_in_the_area´ ElementInstanceOutput 100009
+	event output_disable_forklift
+	on_executed
+		´enable_door_things´ (delay 0)
+´enable_door_things´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_feedback_001´ DISABLED
+		2 ´seq_open_gate´ DISABLED
+		3 ´point_interaction_001´ DISABLED
+	on_executed
+		´WP_gate_interact´ (delay 0)
+		´sound_forklift_shutter_impact´ (delay 0)
+´lever_interacted´ ElementUnitSequenceTrigger 100014
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+	on_executed
+		´seq_open_door_2´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+		´lever_breaks´ (delay 0)
+´seq_open_door_2´ ElementUnitSequence 100016
+	position 1550, 225, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence anim_door_open_from_slide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+			notify_unit_sequence int_break
+			time 0
+	on_executed
+		´remove_WP_2´ (delay 0)
+´remove_WP_2´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´WP_gate_drive_to´
+		2 ´WP_gate_go_to´
+		3 ´WP_gate_interact´
+	on_executed
+		´disable_everything´ (delay 0)
+		´disable_area_trigger_lever´ (delay 0)
+´point_debug_002´ ElementDebug 100020
+	as_subtitle false
+	debug_string door_open
+	show_instigator false
+´area_enable_lever´ ElementAreaTrigger 100021
+	amount 1
+	depth 150
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -250, 75, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 150
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_enable_lever´ (delay 0)
+´area_disable_lever´ ElementAreaTrigger 100022
+	amount all
+	depth 150
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -250, 75, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 150
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_disable_lever´ (delay 0)
+´link_enable_lever´ MissionScriptElement 100026
+	on_executed
+		´seq_enable_lever´ (delay 0)
+´seq_enable_lever´ ElementUnitSequence 100027
+	position 1675, 225, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´link_disable_lever´ MissionScriptElement 100028
+	on_executed
+		´seq_disable_lever´ (delay 0)
+´seq_disable_lever´ ElementUnitSequence 100029
+	position 1800, 225, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´disable_area_trigger_lever´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_disable_lever´
+		2 ´area_enable_lever´
+		3 ´seq_disable_lever_2´
+	on_executed
+		´output_door_opened_from_inside´ (delay 0)
+´env_effect_play_001´ ElementPlayEffect 100031
+	TRIGGER TIMES 1
+	base_time 0
+	effect effects/payday2/particles/electric/electric_sparks_small
+	max_amount 0
+	position -250, 0, 125
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100032
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt false
+	position -250, 0, 103.922
+	rotation 0, 0, 0, -1
+	sound_event electric_sparks
+	use_instigator false
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100033
+	as_subtitle false
+	debug_string whoops... it broke... shaaame!
+	show_instigator false
+´output_door_opened_from_inside´ ElementInstanceOutput 100035
+	event door_opened_from_inside
+	on_executed
+		´point_debug_005´ (delay 0)
+´point_debug_005´ ElementDebug 100036
+	as_subtitle false
+	debug_string door_opened_from_inside
+	show_instigator false
+´seq_disable_lever_2´ ElementUnitSequence 100037
+	position 1000, -25, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_lever/chas_prop_lever/001 (-250, -2.00001, 124.405)
+			notify_unit_sequence state_interaction_disable
+			time 0
+	on_executed
+		´disable_area_toggle_lever´ (delay 0)
+´disable_area_toggle_lever´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_disable_lever´
+		2 ´area_enable_lever´
+´enable_area_toggle_lever´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_disable_lever´
+		2 ´area_enable_lever´
+´area_open_door_team_ai´ ElementAreaTrigger 100056
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 300
+	instigator ai_teammates
+	instigator_name 
+	interval 0.1
+	position 0, -375, 125
+	radius 250
+	rotation 0, 0, 0.707107, -0.707107
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_debug_006´ (delay 0)
+		´link_open_door_AI´ (delay 0)
+´point_debug_006´ ElementDebug 100057
+	as_subtitle false
+	debug_string door_open_team_AI
+	show_instigator false
+´link_open_door_AI´ MissionScriptElement 100058
+	TRIGGER TIMES 1
+	on_executed
+		´seq_open_door_3´ (delay 0)
+´seq_open_door_3´ ElementUnitSequence 100059
+	position 1950, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pex/props/pex_prop_garage_door/pex_prop_garage_door/001 (44, -15, 0)
+			notify_unit_sequence anim_door_open_from_slide
+			time 0
+	on_executed
+		´remove_door_blocker´ (delay 0)
+		´disable_area_triggers_AI´ (delay 0)
+´enable_area_triggers_AI´ ElementToggle 100060
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_open_door_team_ai´ DISABLED
+		2 ´area_open_door_AI_enemies´ DISABLED
+´disable_area_triggers_AI´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_open_door_team_ai´ DISABLED
+		2 ´area_open_door_AI_enemies´ DISABLED
+´point_debug_007´ ElementDebug 100062
+	as_subtitle false
+	debug_string AI_closed_warehouse_door
+	show_instigator false
+´area_open_door_AI_enemies´ ElementAreaTrigger 100063
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 700
+	height 300
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 0, -375, 125
+	radius 250
+	rotation 0, 0, 0.707107, -0.707107
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+		1 ´data_instigator_rule_001´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_open_door_AI´ (delay 0)
+		´point_debug_008´ (delay 0)
+´point_debug_008´ ElementDebug 100064
+	as_subtitle false
+	debug_string door_open_enemy_AI
+	show_instigator false
+´data_instigator_rule_001´ ElementInstigatorRule 100065
+	instigator enemies
+	invert true
+	rules
+		enemies
+			enemy_names
+				1 units/payday2/characters/ene_security_1/ene_security_1
+				2 units/payday2/characters/ene_security_2/ene_security_2
+				3 units/payday2/characters/ene_security_3/ene_security_3
+				4 units/payday2/characters/ene_security_4/ene_security_4
+				5 units/payday2/characters/ene_security_5/ene_security_5
+				6 units/payday2/characters/ene_security_6/ene_security_6
+				7 units/payday2/characters/ene_security_7/ene_security_7
+				8 units/payday2/characters/ene_security_8/ene_security_8
+´lever_breaks´ ElementPlaySound 100013
+	append_prefix false
+	interrupt false
+	position -250, 13, 121.856
+	rotation 0, 0, 0, -1
+	sound_event pull_metal_lever_break
+	use_instigator false
+´sound_forklift_shutter_impact´ ElementPlaySound 100067
+	append_prefix false
+	interrupt false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event forklift_chas_wall_impact
+	use_instigator false
+´sound_forklift_forcing_gate´ ElementPlaySound 100068
+	append_prefix false
+	interrupt false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event forklift_pry_gate_open
+	use_instigator false
+´sound_forklift_forcing_gate001´ ElementPlaySound 100069
+	append_prefix false
+	interrupt false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event forklift_chas_hydraulic_on
+	use_instigator false

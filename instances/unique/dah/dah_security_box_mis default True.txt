@@ -1,0 +1,497 @@
+´func_instance_output_001´ ElementInstanceOutput 100003
+	event Hacking Completed
+´On_Interact´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence first_interact
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+	on_executed
+		´logic_counter_filter_001´ (delay 0)
+		´logic_counter_operator_002´ (delay 0)
+		´point_waypoint_002´ (delay 0) DISABLED
+		´sterted_hacking´ (delay 0)
+		´logic_counter_operator_003´ (delay 0)
+´On_Completed´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´remove_fix_wp´ (delay 0)
+		´turn_off_interupt_entities´ (delay 0)
+		´remove_so´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+		´completed_toggle´ (delay 0)
+		´func_instance_output_001´ (delay 0)
+		´toggle_trigger_outline_off´ (delay 0)
+		´hacking_completed´ (delay 0)
+´Activate_Hackbox´ ElementInstanceInput 100002
+	event Activate Hackbox
+	on_executed
+		´Activate´ (delay 0)
+´Activate´ ElementUnitSequence 100008
+	position 100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence spawn_dummy
+			time 0
+´point_waypoint_defend´ ElementWaypoint 100011
+	icon pd2_defend
+	only_in_civilian false
+	position 39, 0, 28.0512
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100012
+	operation remove
+	elements
+		1 ´point_waypoint_defend´
+		2 ´point_waypoint_002´ DISABLED
+´trigger_global_event_001´ ElementGlobalEventTrigger 100013
+	TRIGGER TIMES 1
+	global_event police_called
+	position 200, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_operator_001´ (delay 0)
+		´logic_counter_filter_002´ (delay 0)
+		´logic_operator_002´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_001´ ElementToggle 100014
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_global_event_001´
+		2 ´logic_counter_filter_001´
+´logic_counter_001´ ElementCounter 100015
+	counter_target 0
+´logic_counter_filter_001´ ElementCounterFilter 100016
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´logic_counter_001´
+	on_executed
+		´point_waypoint_defend´ (delay 0)
+´logic_counter_operator_001´ ElementCounterOperator 100017
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´logic_counter_001´
+´logic_counter_002´ ElementCounter 100018
+	counter_target 0
+´logic_counter_operator_002´ ElementCounterOperator 100019
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´logic_counter_002´
+´logic_counter_filter_002´ ElementCounterFilter 100020
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´logic_counter_002´
+	on_executed
+		´point_waypoint_defend´ (delay 0)
+´sterted_hacking´ ElementInstanceOutput 100021
+	event Started Hacking
+´point_waypoint_002´ ElementWaypoint 100022
+	DISABLED
+	icon pd2_generic_look
+	only_in_civilian false
+	position 39, 0, 28.0512
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_002´ ElementOperator 100023
+	operation remove
+	elements
+		1 ´point_waypoint_002´ DISABLED
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100024
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_002´ DISABLED
+´interupt_so´ ElementSpecialObjective 100000
+	DISABLED
+	TRIGGER TIMES 1
+	SO_access 10112
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 100, 0, -100
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 2000
+	search_position 100 0 -100
+	so_action e_so_pull_lever
+	trigger_on none
+	use_instigator false
+	followup_elements
+´start_interupt´ MissionScriptElement 100001
+	on_executed
+		´turn_on_interupt_entities´ (delay 0)
+´turn_on_interupt_entities´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´turn_on_and_execute_so´ DISABLED
+		2 ´anim_complete´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´loop´ (delay 0)
+´loop´ MissionScriptElement 100028
+	on_executed
+		´turn_on_and_execute_so´ (delay 0) DISABLED
+´turn_on_and_execute_so´ ElementToggle 100029
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interupt_so´ DISABLED
+	on_executed
+		´interupt_so´ (delay 0.1) DISABLED
+´anim_complete´ ElementSpecialObjectiveTrigger 100030
+	DISABLED
+	event complete
+	position 800, 500, -85
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interupt_so´ DISABLED
+	on_executed
+		´turn_off_interupt_entities´ (delay 0)
+		´interupt_sequence´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100031
+	DISABLED
+	event fail
+	position 800, 700, -85
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interupt_so´ DISABLED
+	on_executed
+		´loop´ (delay 5)
+´remove_so´ ElementOperator 100032
+	operation remove
+	elements
+		1 ´interupt_so´ DISABLED
+	on_executed
+		´remove_defend_wp´ (delay 0)
+´turn_off_interupt_entities´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_complete´ DISABLED
+		2 ´turn_on_and_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+		4 ´interupt_so´ DISABLED
+	on_executed
+		´remove_so´ (delay 0)
+´interupt_sequence´ ElementUnitSequence 100034
+	position 800, 400, -85
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´point_waypoint_fix´ (delay 0)
+		´turn_off_interupt_entities´ (delay 0)
+´on_resumed´ ElementUnitSequenceTrigger 100035
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+	on_executed
+		´start_interupt´ (delay 5)
+		´remove_fix_wp´ (delay 0)
+		´point_waypoint_defend´ (delay 0)
+´point_waypoint_fix´ ElementWaypoint 100036
+	icon pd2_fix
+	only_in_civilian false
+	position 39, 0, 28.0512
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_wp´ ElementOperator 100038
+	operation remove
+	elements
+		1 ´point_waypoint_defend´
+´remove_fix_wp´ ElementOperator 100039
+	operation remove
+	elements
+		1 ´point_waypoint_fix´
+´completed_toggle´ ElementToggle 100037
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interupt_so´ DISABLED
+		2 ´start_interupt´
+		3 ´on_resumed´
+		4 ´remove_fix_wp´
+		5 ´turn_on_interupt_entities´
+		6 ´loop´
+		7 ´turn_on_and_execute_so´ DISABLED
+		8 ´anim_fail´ DISABLED
+		9 ´anim_complete´ DISABLED
+		10 ´interupt_sequence´
+		11 ´turn_off_interupt_entities´
+		12 ´remove_so´
+		13 ´remove_defend_wp´
+´show_outline´ ElementInstanceInput 100040
+	event Show outline
+	on_executed
+		´show_outline_2´ (delay 0)
+´show_outline_2´ ElementUnitSequence 100041
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence state_show_outline
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+		´toggle_on´ (delay 0)
+		´outlined´ (delay 0)
+´point_debug_001´ ElementDebug 100005
+	as_subtitle false
+	debug_string SHOW HACKBOX OUTLINE
+	show_instigator false
+´trigger_outline´ ElementAreaReportTrigger 100007
+	amount 1
+	depth 1500
+	height 248,6
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 1500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´show_outline_2´ (delay 0) (alternative enter)
+´toggle_trigger_outline_off´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_outline´
+	on_executed
+		´toggle_outline_off´ (delay 0)
+´toggle_outline_off´ ElementUnitSequence 100010
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence state_hide_outline
+			time 0
+´ecm_on´ ElementGlobalEventTrigger 100047
+	global_event ecm_jammer_on
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´is_hacking´ (delay 0)
+		´not_hacking´ (delay 0)
+		´completed_toggle´ (delay 0)
+´ecm_off´ ElementGlobalEventTrigger 100046
+	global_event ecm_jammer_off
+	position -300, 500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´not_hacking_2´ (delay 0)
+		´is_hacking_2´ (delay 0)
+		´toggle_chair_on´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100049
+	position 0, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´disable_outline´ (delay 0) DISABLED
+´enable_interaction´ ElementUnitSequence 100050
+	position -300, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence power_on
+			time 0
+	on_executed
+		´enable_outline´ (delay 0) DISABLED
+´if_hacking´ ElementCounter 100025
+	counter_target 0
+´is_hacking´ ElementCounterFilter 100042
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´if_hacking´
+	on_executed
+		´power_off´ (delay 0)
+´not_hacking´ ElementCounterFilter 100043
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´if_hacking´
+	on_executed
+		´disable_interaction´ (delay 0)
+´is_hacking_2´ ElementCounterFilter 100044
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´if_hacking´
+	on_executed
+		´power_on´ (delay 0)
+´not_hacking_2´ ElementCounterFilter 100045
+	check_type equal
+	needed_to_execute all
+	value 0
+	elements
+		1 ´if_hacking´
+	on_executed
+		´enable_interaction´ (delay 0)
+´power_off´ ElementUnitSequence 100048
+	position -100, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence power_off
+			time 0
+´power_on´ ElementUnitSequence 100051
+	position -400, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence power_on
+			time 0
+´hacking_completed´ ElementCounter 100052
+	counter_target 1
+	on_executed
+		´toggle_off´ (delay 0)
+´toggle_off´ ElementToggle 100053
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´completed_toggle´
+		2 ´toggle_chair_on´
+´toggle_chair_on´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interupt_so´ DISABLED
+		2 ´start_interupt´
+		3 ´on_resumed´
+		4 ´remove_fix_wp´
+		5 ´turn_on_interupt_entities´
+		6 ´loop´
+		7 ´turn_on_and_execute_so´ DISABLED
+		8 ´anim_fail´ DISABLED
+		9 ´anim_complete´ DISABLED
+		10 ´interupt_sequence´
+		11 ´turn_off_interupt_entities´
+		12 ´remove_so´
+		13 ´remove_defend_wp´
+´logic_counter_operator_003´ ElementCounterOperator 100055
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´if_hacking´
+´enable_outline´ ElementUnitSequence 100056
+	DISABLED
+	position -300, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence state_show_outline
+			time 0
+´disable_outline´ ElementUnitSequence 100057
+	DISABLED
+	position -100, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit/001 (0, 0, 0)
+			notify_unit_sequence state_hide_outline
+			time 0
+´toggle_on´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´disable_outline´ DISABLED
+		2 ´enable_outline´ DISABLED
+´outlined´ ElementInstanceOutput 100059
+	event outlined

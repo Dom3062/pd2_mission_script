@@ -1,0 +1,1573 @@
+´interact - get up´ ElementSpecialObjective 100006
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice escort_go
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance none
+	path_style precise
+	patrol_path none
+	pose none
+	position 0, 200, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_cover_exit
+	trigger_on interact
+	use_instigator false
+	followup_elements
+		1 ´elf - interogation - start´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+	on_executed
+		´elf - start work´ (delay 0)
+´Link´ MissionScriptElement 100013
+	on_executed
+		´debug´ (delay 0)
+		´elf - interogation - start´ (delay 0)
+		´On´ (delay 0)
+		´point_waypoint_save_elf´ (delay 0)
+´elf - hide´ ElementSpecialObjective 100014
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_cover_enter
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´interact - get up´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´Elf´ ElementSpawnCivilian 100044
+	enemy units/pd2_dlc_cane/characters/civ_male_helper_1/civ_male_helper_1
+	force_pickup none
+	position -33, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team neutral1
+	orientation_elements
+	on_executed
+		´elf - hide´ (delay 0)
+´Spawn´ ElementInstanceInput 100048
+	event spawn_elf
+	on_executed
+		´Link_2´ (delay 0)
+´Link_2´ MissionScriptElement 100045
+	on_executed
+		´On_2´ (delay 1)
+		´pick_random_elf´ (delay 0)
+		´Off_3´ (delay 0)
+		´min_police_force_001´ (delay 0)
+´TEMP AUTO START´ MissionScriptElement 100007
+	DISABLED
+	on_executed
+		´Spawn´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´show_elf´ (delay 5)
+		´cop´ (delay 5)
+´cop´ ElementSpawnEnemyDummy 100008
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -400, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´send_cop´ (delay 0) DISABLED
+´DEATH´ ElementEnemyDummyTrigger 100009
+	event death
+	position -300, 650, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Elf´
+		2 ´Elf003´
+		3 ´Elf002´
+		4 ´Elf001´
+	on_executed
+		´Link_4´ (delay 0)
+´cop - interrogate´ ElementSpecialObjective 100049
+	SO_access 1528
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interval 1
+	is_navigation_link false
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 75, 0, 0
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1,47353 -58,4216 0
+	so_action e_so_shouting
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´set_cop_to_Hunt´
+´kill elf´ ElementSpecialObjectiveTrigger 100051
+	event anim_start
+	position 400, 1025, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop - shoot´
+	on_executed
+		´Link_3´ (delay 0)
+´scare elf´ ElementSpecialObjectiveTrigger 100055
+	event anim_start
+	position 400, 725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop - interrogate´
+	on_executed
+		´Link´ (delay 0)
+´debug´ ElementDebug 100056
+	as_subtitle true
+	debug_string BAIN : The elves are under attack
+	show_instigator false
+´ai_remove_elf´ ElementAIRemove 100053
+	position 600, 1025, 2.5
+	rotation 0, 0, 0, -1
+	true_death true
+	use_instigator false
+	elements
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´Link_3´ MissionScriptElement 100010
+	on_executed
+		´ai_remove_elf´ (delay 0)
+´Link_4´ MissionScriptElement 100015
+	on_executed
+		´Off´ (delay 0)
+		´debug_2´ (delay 0)
+´Off´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´kill elf´
+		2 ´Link_3´
+		3 ´ai_remove_elf´
+		4 ´Link´
+		5 ´scare elf´
+		6 ´cop died´ DISABLED
+		7 ´Link_5´
+		8 ´Off_2´
+		9 ´On´
+		10 ´send_cop´ DISABLED
+		11 ´cop - interrogate´
+		12 ´elf - interogation - start´
+		13 ´elf - scared´
+		14 ´elf - work over ´
+		15 ´interact - get up´
+		16 ´start work´
+		17 ´Link_7´
+		18 ´start - resume´
+		19 ´start - no work´
+		20 ´debug_4´
+		21 ´timer´
+		22 ´debug_5´
+		23 ´pause - no work´
+		24 ´pause´
+		25 ´Link_8´
+		26 ´stop work´
+		27 ´timer_2´ DISABLED
+		28 ´stop working´ DISABLED
+		29 ´reset´ DISABLED
+		30 ´Link_6´
+		31 ´reset - work timer´
+		32 ´pause - stop working timer´
+		33 ´reset - stop working timer´
+		34 ´wait for player´
+		35 ´show temp ball´
+		36 ´present 1´
+		37 ´present 2´
+		38 ´present 3´
+		39 ´logic_random_001´
+		40 ´On_2´
+		41 ´Link_2´
+		42 ´elf - hide´
+		43 ´remove_waypoint´
+		44 ´On_3´
+		45 ´how many presents before getting scared´
+		46 ´Link_9´
+		47 ´show_elf´
+		48 ´elf - talked with first time´
+		49 ´cop - interrogate before talked to ´
+		50 ´elf - interrogate failed before talk´
+		51 ´Link_11´ DISABLED
+		52 ´remove_waypoint_2´
+		53 ´Off_3´
+		54 ´add_blockers´
+		55 ´elf_started_working_first_time´
+		56 ´trigger_special_objective_001´
+		57 ´Link_13´ DISABLED
+		58 ´cop - shoot´
+		59 ´elf - start work´
+		60 ´show_present´
+		61 ´On_4´
+	on_executed
+		´stop all´ (delay 0)
+´remove´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+		3 ´cop - interrogate´
+		4 ´elf - interogation - start´
+		5 ´elf - scared´
+		6 ´elf - work over ´
+		7 ´point_waypoint_save_elf´
+		8 ´talk to elf´
+		9 ´min_police_force_001´
+		10 ´cop - shoot´
+		11 ´elf - start work´
+	on_executed
+		´elf_died´ (delay 0)
+´debug_2´ ElementDebug 100018
+	as_subtitle true
+	debug_string elf died
+	show_instigator false
+´elf - interogation - start´ ElementSpecialObjective 100019
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 100, 200, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_scared
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´cop died´ ElementSpecialObjectiveTrigger 100023
+	DISABLED
+	event fail
+	position 400, 875, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop - interrogate´
+	on_executed
+		´Link_5´ (delay 0)
+´Link_5´ MissionScriptElement 100052
+	on_executed
+		´Off_2´ (delay 0)
+		´debug_3´ (delay 0)
+´On´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´cop died´ DISABLED
+	on_executed
+		´Link_15´ (delay 0)
+		´cop_arrived´ (delay 0)
+´Off_2´ ElementToggle 100054
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´cop died´ DISABLED
+		2 ´cop shoots´
+		3 ´Link_15´
+	on_executed
+		´elf - scared´ (delay 0)
+		´remove_waypoint´ (delay 0)
+´debug_3´ ElementDebug 100057
+	as_subtitle false
+	debug_string cop stopped
+	show_instigator false
+´elf - scared´ ElementSpecialObjective 100058
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 150, 200, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_cover_enter
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´Link_6´ MissionScriptElement 100050
+	on_executed
+		´reset - work timer´ (delay 0)
+		´Link_9´ (delay 0)
+´elf_died´ ElementInstanceOutput 100060
+	event elf_died
+	on_executed
+		´set_cop_to_Hunt´ (delay 0)
+´Link_7´ MissionScriptElement 100061
+	on_executed
+		´debug_4´ (delay 0)
+		´start - resume´ (delay 0)
+		´Off_4´ (delay 0)
+		´sound_start´ (delay 0)
+´start work´ ElementSpecialObjectiveTrigger 100062
+	event anim_start
+	position -300, 850, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interact - get up´
+	on_executed
+		´Link_7´ (delay 0)
+		´work pose´ (delay 0) DISABLED
+´stop work´ ElementSpecialObjectiveTrigger 100063
+	event fail
+	position -300, 1050, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interact - get up´
+	on_executed
+		´Link_8´ (delay 0)
+´Link_8´ MissionScriptElement 100064
+	on_executed
+		´debug_5´ (delay 0)
+		´pause´ (delay 0)
+		´sound_end´ (delay 0)
+´debug_4´ ElementDebug 100065
+	as_subtitle true
+	debug_string started working
+	show_instigator false
+´debug_5´ ElementDebug 100066
+	as_subtitle true
+	debug_string stopped working
+	show_instigator false
+´timer´ ElementTimer 100067
+	timer
+		1 120
+		2 30
+	on_executed
+		´Link_6´ (delay 0)
+´start - resume´ ElementTimerOperator 100068
+	operation start
+	position -100, 850, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´start - no work´ (delay 0)
+´pause´ ElementTimerOperator 100069
+	operation pause
+	position -100, 1050, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´pause - no work´ (delay 0)
+´reset - work timer´ ElementTimerOperator 100071
+	operation reset
+	position -100, 1600, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+	on_executed
+		´pause - stop working timer´ (delay 0)
+´wait for player´ MissionScriptElement 100072
+	on_executed
+		´elf - work over ´ (delay 0)
+		´show temp ball´ (delay 0.1)
+		´point_waypoint_grab_present´ (delay 0)
+		´bell_ring´ (delay 0)
+´elf - work over ´ ElementSpecialObjective 100073
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 200, 200, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_lazy
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´show temp ball´ ElementUnitSequence 100075
+	position 300, 1600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_christmas_gifts/com_prop_christmas_gift_multi/present001 (-84, 0, 85.4505)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence state_interact_enable
+			time 0
+	on_executed
+		´disable all´ (delay 0)
+		´On_6´ (delay 0)
+´grabbed present´ ElementUnitSequenceTrigger 100077
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+	on_executed
+		´spawn bag´ (delay 0)
+´spawn bag´ MissionScriptElement 100076
+	on_executed
+		´logic_random_001´ (delay 0)
+		´remove - waypoint´ (delay 0)
+´timer_2´ ElementTimer 100078
+	DISABLED
+	timer
+		1 30
+		2 60
+	on_executed
+		´stop working´ (delay 0) DISABLED
+´stop working´ MissionScriptElement 100079
+	DISABLED
+	on_executed
+		´elf - scared´ (delay 0)
+		´reset´ (delay 0) DISABLED
+´start - no work´ ElementTimerOperator 100080
+	operation start
+	position -50, 850, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_2´ DISABLED
+	on_executed
+		´show_present´ (delay 0)
+´reset´ ElementTimerOperator 100082
+	DISABLED
+	operation reset
+	position 200, 1300, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_2´ DISABLED
+´pause - stop working timer´ ElementTimerOperator 100083
+	operation pause
+	position 0, 1600, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_2´ DISABLED
+	on_executed
+		´reset - stop working timer´ (delay 0)
+´reset - stop working timer´ ElementTimerOperator 100084
+	operation reset
+	position 100, 1600, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_2´ DISABLED
+	on_executed
+		´wait for player´ (delay 0)
+´stop all´ ElementTimerOperator 100000
+	operation pause
+	position 0, 650, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer´
+		2 ´timer_2´ DISABLED
+	on_executed
+		´remove´ (delay 0)
+´send_cop´ ElementInstanceInput 100001
+	DISABLED
+	event send_cop
+	on_executed
+		´cop - get to location´ (delay 0)
+´pause - no work´ ElementTimerOperator 100002
+	operation pause
+	position -50, 1050, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_2´ DISABLED
+	on_executed
+		´stopped_working´ (delay 0)
+´present 1´ ElementUnitSequence 100003
+	position -250, 1900, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_christmas_gifts/com_prop_christmas_gift_multi/present001 (-84, 0, 85.4505)
+			notify_unit_sequence var_vis_tex_1_no_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence var_vis_tex_1
+			time 0
+´present 2´ ElementUnitSequence 100005
+	position -250, 1950, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_christmas_gifts/com_prop_christmas_gift_multi/present001 (-84, 0, 85.4505)
+			notify_unit_sequence var_vis_tex_2_no_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence var_vis_tex_2
+			time 0
+´present 3´ ElementUnitSequence 100046
+	position -250, 2000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_christmas_gifts/com_prop_christmas_gift_multi/present001 (-84, 0, 85.4505)
+			notify_unit_sequence var_vis_tex_3_no_lid
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence var_vis_tex_3
+			time 0
+´logic_random_001´ ElementRandom 100047
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´present 1´ (delay 0)
+		´present 2´ (delay 0)
+		´present 3´ (delay 0)
+´hide - setup´ ElementUnitSequence 100085
+	position -200, -1350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_prop_christmas_gift_multi/cne_prop_christmas_gift_multi/001 (-103, 150, 85.4505)
+			notify_unit_sequence state_interact_disable
+			time 0
+	on_executed
+		´random´ (delay 0)
+´AUTO SETUP´ MissionScriptElement 100086
+	EXECUTE ON STARTUP
+	on_executed
+		´hide - setup´ (delay 0)
+´On_2´ ElementToggle 100087
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Link_11´ DISABLED
+		2 ´Link_13´ DISABLED
+		3 ´send_cop´ DISABLED
+´point_waypoint_grab_present´ ElementWaypoint 100088
+	icon pd2_generic_interact
+	only_in_civilian false
+	position -100, 150, 160.45
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove - waypoint´ ElementOperator 100089
+	BASE DELAY 0,25
+	operation remove
+	elements
+		1 ´point_waypoint_grab_present´
+	on_executed
+		´play_hide´ (delay 0)
+´On_3´ ElementToggle 100090
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´timer_2´ DISABLED
+		2 ´stop working´ DISABLED
+		3 ´reset´ DISABLED
+´Link_9´ MissionScriptElement 100091
+	on_executed
+		´how many presents before getting scared´ (delay 0)
+´how many presents before getting scared´ ElementCounter 100092
+	counter_target 1
+	on_executed
+		´On_3´ (delay 0)
+´set 1´ ElementCounterOperator 100093
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´how many presents before getting scared´
+	on_executed
+		´point_debug_001´ (delay 0)
+´set 2´ ElementCounterOperator 100094
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´how many presents before getting scared´
+	on_executed
+		´point_debug_002´ (delay 0)
+´random´ ElementRandom 100095
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´set 1´ (delay 0)
+		´set 2´ (delay 0)
+´point_debug_001´ ElementDebug 100096
+	as_subtitle false
+	debug_string 1
+	show_instigator false
+´point_debug_002´ ElementDebug 100097
+	as_subtitle false
+	debug_string 2
+	show_instigator false
+´bell_ring´ ElementPlaySound 100101
+	append_prefix false
+	position -77, 153, 109.451
+	rotation 0, 0, 0, -1
+	sound_event chimes_and_bell
+	use_instigator false
+´point_waypoint_save_elf´ ElementWaypoint 100098
+	icon pd2_defend
+	only_in_civilian false
+	position -33, 0, 160.45
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_waypoint´ ElementOperator 100099
+	operation remove
+	elements
+		1 ´point_waypoint_save_elf´
+´hide_table´ ElementDisableUnit 100103
+	position -100, -1050, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/survivalist/canisters/canister_plastic/007 (-155.05, -63.0527, 83.808)
+		2 units/world/props/survivalist/canisters/canister_plastic/006 (-136.07, -63.6328, 83.808)
+		3 units/world/props/box/a4paperbox_bottom_01/001 (-139.99, -72.209, 85.45)
+		4 units/world/props/apartment/kitchen_counter/apartment_large_kastrull/001 (-98.3945, -74.2932, 85.45)
+		5 units/world/props/apartment/cocaine/cokebag_ripped/004 (-73.1398, -46.3385, 85.451)
+		6 units/world/props/mansion/man_prop_int_brass_bowl/man_prop_int_brass_bowl/001 (-153, -37, 85.45)
+		7 units/world/props/apartment/kitchen_counter/apartment_large_kastrull/002 (-166.96, -9.77492, 85.45)
+		8 units/world/props/apartment/cocaine/cokebag_ripped/002 (-101.911, -46.6291, 85.451)
+		9 units/world/props/apartment/cocaine/cokebag_depleted/001 (-76.1174, -60.7092, 86.446)
+		10 units/world/props/western/wst_prop_int_gen_table/wst_prop_int_gen_table_small/001 (-50, 211, 0)
+		11 units/world/props/western/wst_prop_int_gen_table/wst_prop_int_gen_table_medium/003 (-50, 100, 0)
+		12 units/world/props/apartment/kitchen_counter/apartment_kitchen_knife/001 (-69.8028, -80.2728, 85.45)
+		13 units/world/props/office/desk_accessories/desk_lamp_04/001 (-162, 16, 85.4505)
+		14 units/payday2/architecture/safehouse/safehouse_desk_service_bell_a/001 (-64, 150, 85.4504)
+		15 units/world/props/apartment/cocaine/cokebag/004 (-74, -16, 98.5755)
+		16 units/world/props/apartment/cocaine/cokebag/003 (-84, -16, 97.5755)
+		17 units/world/props/apartment/cocaine/cokebag/002 (-96, -16, 98.5755)
+		18 units/world/props/apartment/cocaine/cokebag/001 (-107, -16, 98.5755)
+		19 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/005 (-97, 13, 107.5)
+		20 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/004 (-108, 13, 110.5)
+		21 units/world/props/apartment/cocaine/cokebag/007 (-89.7726, -47.251, 92.451)
+		22 units/world/props/train/tra_prop_waterbottle/tra_prop_waterbottle/010 (-140.325, -10.571, 85.4505)
+		23 units/world/props/train/tra_prop_waterbottle/tra_prop_waterbottle/009 (-131.325, -9.57102, 85.4505)
+		24 units/world/props/box/a4paperbox_bottom_01/002 (-136.779, 43.6234, 85.45)
+		25 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/009 (-145.69, 48.4186, 97.3495)
+		26 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/006 (-76.2588, 55.9293, 80.0981)
+		27 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/007 (-91.7581, 53.9293, 83.8042)
+		28 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/008 (-87.4154, 46.4351, 91.325)
+		29 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/003 (-134.612, -19.7051, 85.5)
+		30 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/001 (-147, -9.53674E-06, 85.5)
+		31 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/002 (-144.347, 16.2027, 85.5)
+		32 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/004 (-74.2113, 20.0048, 92.5477)
+	on_executed
+		´remove_blockers´ (delay 0)
+´Link_10´ MissionScriptElement 100104
+	on_executed
+		´hide_table´ (delay 0)
+´disable_table´ ElementInstanceInput 100105
+	event disable_table
+	on_executed
+		´Link_10´ (delay 0)
+´Off_3´ ElementToggle 100106
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Link_10´
+		2 ´hide_table´
+		3 ´disable_table´
+		4 ´remove_blockers´
+	on_executed
+		´add_blockers´ (delay 0)
+´add_blockers´ ElementNavObstacle 100108
+	operation add
+	position -50, 550, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-155, 110, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-155, -90, 0)
+	on_executed
+		´choose_present_texture´ (delay 0)
+´remove_blockers´ ElementNavObstacle 100109
+	operation remove
+	position 0, -1050, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-155, -90, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-155, 110, 0)
+	on_executed
+		´remove_dev_clocks´ (delay 0)
+´elf_spawned´ ElementInstanceOutput 100110
+	event elf_spawned
+	on_executed
+		´Link_14´ (delay 0)
+´show_elf´ ElementInstanceInput 100111
+	event show_cook
+	on_executed
+		´Link_16´ (delay 0)
+´Link_11´ MissionScriptElement 100112
+	DISABLED
+	on_executed
+		´talk to elf´ (delay 0)
+´talk to elf´ ElementWaypoint 100113
+	icon pd2_talk
+	only_in_civilian false
+	position -33, 0, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´elf - talked with first time´ ElementSpecialObjectiveTrigger 100114
+	event anim_start
+	position -300, -700, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interact - get up´
+	on_executed
+		´Link_13´ (delay 0) DISABLED
+´remove_waypoint_2´ ElementOperator 100115
+	operation remove
+	elements
+		1 ´talk to elf´
+	on_executed
+		´elf_started_working_first_time´ (delay 0)
+´cop - interrogate before talked to ´ ElementSpecialObjectiveTrigger 100116
+	event anim_start
+	position -200, -700, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop - interrogate´
+	on_executed
+		´Link_13´ (delay 0) DISABLED
+´elf - interrogate failed before talk´ ElementSpecialObjectiveTrigger 100117
+	event fail
+	position 0, -800, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´elf - interogation - start´
+	on_executed
+		´Link_11´ (delay 0) DISABLED
+´set_cop_to_Hunt´ ElementSpecialObjective 100119
+	SO_access 1528
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 1
+	is_navigation_link false
+	needs_pos_rsrv true
+	path_haste walk
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 150, 0, 0
+	repeatable true
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1,47353 -58,4216 0
+	so_action AI_hunt
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´cop - interrogate´
+´cop - get to location´ ElementSpecialObjective 100121
+	SO_access 1528
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interval 1
+	is_navigation_link false
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 75, 0, 0
+	repeatable true
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 1,47353 -58,4216 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´set_cop_to_Hunt´
+		2 ´cop - interrogate´
+´Cop - Arrived at location´ ElementSpecialObjectiveTrigger 100122
+	event complete
+	position 400, 575, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop - get to location´
+	on_executed
+		´Link_12´ (delay 0)
+´Link_12´ MissionScriptElement 100120
+	on_executed
+		´cop - interrogate´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´On_5´ (delay 0)
+´point_debug_003´ ElementDebug 100123
+	as_subtitle false
+	debug_string cop arrived
+	show_instigator false
+´elf_started_working_first_time´ ElementInstanceOutput 100124
+	TRIGGER TIMES 1
+	event elf_started_working_first_time
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_004´ ElementDebug 100125
+	as_subtitle false
+	debug_string first_shout_started_working
+	show_instigator false
+´present_finished´ ElementInstanceOutput 100126
+	event present_finished
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100118
+	event anim_start
+	position 100, -800, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´elf - scared´
+		2 ´elf - hide´
+	on_executed
+		´Link_11´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100127
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´timer_2´ DISABLED
+		2 ´stop working´ DISABLED
+		3 ´reset´ DISABLED
+´remove_dev_clocks´ ElementUnitSequence 100128
+	position 100, -1050, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_all´ (delay 0)
+´Elf001´ ElementSpawnCivilian 100129
+	enemy units/pd2_dlc_cane/characters/civ_male_helper_2/civ_male_helper_2
+	force_pickup none
+	position -32.9999, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team neutral1
+	orientation_elements
+	on_executed
+		´elf - hide´ (delay 0)
+´Elf002´ ElementSpawnCivilian 100130
+	enemy units/pd2_dlc_cane/characters/civ_male_helper_3/civ_male_helper_3
+	force_pickup none
+	position -32.9999, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team neutral1
+	orientation_elements
+	on_executed
+		´elf - hide´ (delay 0)
+´Elf003´ ElementSpawnCivilian 100131
+	enemy units/pd2_dlc_cane/characters/civ_male_helper_4/civ_male_helper_4
+	force_pickup none
+	position -33, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team neutral1
+	orientation_elements
+	on_executed
+		´elf - hide´ (delay 0)
+´pick_random_elf´ ElementRandom 100132
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´Elf´ (delay 0)
+		´Elf001´ (delay 0)
+		´Elf002´ (delay 0)
+		´Elf003´ (delay 0)
+´Link_13´ MissionScriptElement 100133
+	DISABLED
+	on_executed
+		´remove_waypoint_2´ (delay 0)
+´play_hide´ MissionScriptElement 100151
+	on_executed
+		´elf - hide´ (delay 0)
+		´On_4´ (delay 0)
+´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100137
+	BASE DELAY 5
+	event death
+	position -550, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cop´
+	on_executed
+		´cop´ (delay 0)
+´min_police_force_001´ ElementAreaMinPoliceForce 100136
+	amount 2
+	position 50, 0, 25
+	rotation 0, 0, 0, -1
+´elf - start work´ ElementSpecialObjective 100139
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude avoid
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, 300, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 100 0 0
+	so_action cm_so_at_table_work
+	trigger_on none
+	use_instigator false
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	spawn_instigator_ids
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´
+´cop shoots´ MissionScriptElement 100140
+	on_executed
+		´cop - shoot´ (delay 0)
+´cop - shoot´ ElementSpecialObjective 100141
+	SO_access 1528
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interval 1
+	is_navigation_link false
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 75, -50, 0
+	repeatable false
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 1,47353 -58,4216 0
+	so_action e_so_gun_shot
+	trigger_on none
+	use_instigator true
+	followup_elements
+		1 ´set_cop_to_Hunt´
+´disable_plywood_table´ ElementDisableUnit 100142
+	position 1050, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/005 (-183, -88, 85)
+		2 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/006 (-50, -90, 85)
+		3 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/003 (-59, -90, 85)
+		4 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/007 (-183, 208, 86)
+´white_table´ ElementDisableUnit 100154
+	position 1350, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/western/wst_prop_int_gen_table/wst_prop_int_gen_table_small/001 (-50, 211, 0)
+		2 units/world/props/western/wst_prop_int_gen_table/wst_prop_int_gen_table_medium/003 (-50, 100, 0)
+´Link_14´ MissionScriptElement 100156
+	on_executed
+		´filter´ (delay 0)
+		´filter_2´ (delay 0)
+´params´ ElementInstanceParams 100158
+	position -500, -1100, 2.5
+	rotation 0, 0, 0, -1
+	params
+		1
+			default_value 0
+			type number
+			var_name var_top_floor
+		2
+			default_value 0
+			type number
+			var_name var_bottom_floor
+´top floor´ ElementCounter 100157
+	counter_target 0
+	instance_var_names
+		counter_target var_top_floor
+´bottom floor´ ElementCounter 100159
+	counter_target 0
+	instance_var_names
+		counter_target var_bottom_floor
+´filter´ ElementCounterFilter 100160
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´top floor´
+	on_executed
+		´remove_all_bottom_only´ (delay 0)
+´filter_2´ ElementCounterFilter 100161
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´bottom floor´
+	on_executed
+		´pick_1_table´ (delay 0)
+		´remove_white_table´ (delay 0)
+´remove_all´ MissionScriptElement 100162
+	on_executed
+		´disable_plywood_table´ (delay 0)
+		´white_table´ (delay 0)
+		´police_table´ (delay 0)
+		´tree_table_1´ (delay 0)
+		´bag_table´ (delay 0)
+		´pallet_table´ (delay 0)
+		´tire_table´ (delay 0)
+´pick_1_table´ ElementRandom 100163
+	amount 5
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´disable_plywood_table´ (delay 0)
+		´police_table´ (delay 0)
+		´tree_table_1´ (delay 0)
+		´bag_table´ (delay 0)
+		´pallet_table´ (delay 0)
+		´tire_table´ (delay 0)
+´remove_all_bottom_only´ MissionScriptElement 100164
+	on_executed
+		´disable_plywood_table´ (delay 0)
+		´police_table´ (delay 0)
+		´tree_table_1´ (delay 0)
+		´bag_table´ (delay 0)
+		´pallet_table´ (delay 0)
+		´tire_table´ (delay 0)
+´police_table´ ElementDisableUnit 100166
+	position 1100, -800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/008 (-183, -90, 85)
+		2 units/payday2/props/gen_prop_police_barrier/gen_prop_police_barrier/003 (-61, 60, -35)
+		3 units/payday2/props/gen_prop_police_barrier/gen_prop_police_barrier/004 (-161, 60, -35)
+´tree_table_1´ ElementDisableUnit 100173
+	position 1150, -800, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v3/001 (-108, -90, 18)
+		2 units/pd2_dlc_cane/props/cne_prop_steel_tree/cne_prop_steel_tree/001 (-114, -86, 85)
+		3 units/pd2_dlc_cane/props/cne_prop_steel_tree_big/cne_prop_steel_tree_large/001 (-105.634, 65.3431, 84.8445)
+		4 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/009 (-183, -90, 85)
+		5 units/pd2_dlc_cane/props/cne_prop_steel_tree/cne_prop_steel_tree/002 (-114, 205, 85)
+´bag_table´ ElementDisableUnit 100175
+	position 1200, -800, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cane/props/cne_prop_weed_gardensoil_pallet/cne_prop_weed_gardensoil_pallet/001 (-115, -29, 85)
+		2 units/pd2_dlc_cane/props/cne_prop_weed_gardensoil_pallet/cne_prop_weed_gardensoil_pallet/002 (-115, 149, 85)
+		3 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/010 (-50, -90, 85)
+		4 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/012 (-50, -85, 85)
+		5 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/011 (-50, 204, 85)
+´pallet_table´ ElementDisableUnit 100190
+	position 1250, -800, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/013 (-50, -90, 85)
+		2 units/world/props/pallet_01/pallet_pile_01/002 (-120, 1.99996, -5)
+		3 units/world/props/pallet_01/pallet_01/001 (-74, -48, -8)
+		4 units/world/props/pallet_01/pallet_01/002 (-74, 52, -8)
+		5 units/world/props/pallet_01/pallet_01/003 (-74, 152, -8)
+		6 units/world/props/pallet_01/pallet_pile_01/001 (-118, 133, -5)
+´tire_table´ ElementDisableUnit 100185
+	position 1300, -800, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_plywood/gen_prop_plywood_v2/014 (-183, -90, 85)
+		2 units/pd2_dlc_cane/props/cne_prop_santa_candycane/cne_prop_santa_candycane_02/002 (-117, -34, -268)
+		3 units/pd2_dlc_cane/props/cne_prop_xmas_tire/cne_prop_xmas_tire/002 (-124, -41.0001, 19)
+		4 units/pd2_dlc_cane/props/cne_prop_xmas_tire/cne_prop_xmas_tire/001 (-124, -41.0001, -3)
+		5 units/pd2_dlc_cane/props/cne_prop_int_box_pallet/cne_prop_int_box_pallet/001 (-158, 118, 1)
+		6 units/pd2_dlc_cane/props/cne_prop_santa_candycane/cne_prop_santa_candycane_02/005 (-117, 158, -268)
+		7 units/pd2_dlc_cane/props/cne_prop_xmas_tire/cne_prop_xmas_tire/007 (-115, 157, 19)
+		8 units/pd2_dlc_cane/props/cne_prop_xmas_tire/cne_prop_xmas_tire/008 (-115, 157, -3)
+´show_present´ ElementUnitSequence 100195
+	position 0, 850, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_christmas_gifts/com_prop_christmas_gift_multi/present001 (-84, 0, 85.4505)
+			notify_unit_sequence state_vis_show_no_lid
+			time 0
+	on_executed
+		´started working´ (delay 0)
+´choose_present_texture´ MissionScriptElement 100196
+	on_executed
+		´logic_random_001´ (delay 0)
+		´disable´ (delay 0)
+´On_4´ ElementToggle 100197
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´show_present´
+		2 ´Link_7´
+	on_executed
+		´Off_6´ (delay 0)
+´1´ ElementTimerTrigger 100150
+	position 100, 1825, 2.5
+	rotation 0, 0, 0, -1
+	time 103
+	elements
+		1 ´timer´
+	on_executed
+		´show 1´ (delay 0)
+´2´ ElementTimerTrigger 100198
+	position 100, 1875, 2.5
+	rotation 0, 0, 0, -1
+	time 86
+	elements
+		1 ´timer´
+	on_executed
+		´show 2´ (delay 0)
+´3´ ElementTimerTrigger 100199
+	position 100, 1925, 2.5
+	rotation 0, 0, 0, -1
+	time 69
+	elements
+		1 ´timer´
+	on_executed
+		´show 3´ (delay 0)
+´show 1´ MissionScriptElement 100206
+	on_executed
+		´enable´ (delay 0)
+´show 2´ MissionScriptElement 100207
+	on_executed
+		´enable_2´ (delay 0)
+´show 3´ MissionScriptElement 100208
+	on_executed
+		´enable_3´ (delay 0)
+´enable´ ElementEnableUnit 100143
+	position 250, 1825, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/apartment/cocaine/cokebag/001 (-107, -16, 98.5755)
+´enable_2´ ElementEnableUnit 100146
+	position 250, 1875, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/apartment/cocaine/cokebag/002 (-96, -16, 98.5755)
+´enable_3´ ElementEnableUnit 100148
+	position 250, 1925, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/apartment/cocaine/cokebag/003 (-84, -16, 97.5755)
+´disable all´ ElementDisableUnit 100155
+	position -25, 1975, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/004 (-108, 13, 110.5)
+		2 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/005 (-97, 13, 107.5)
+		3 units/world/props/apartment/cocaine/cokebag/001 (-107, -16, 98.5755)
+		4 units/world/props/apartment/cocaine/cokebag/002 (-96, -16, 98.5755)
+		5 units/world/props/apartment/cocaine/cokebag/003 (-84, -16, 97.5755)
+		6 units/world/props/apartment/cocaine/cokebag/004 (-74, -16, 98.5755)
+		7 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/004 (-74.2113, 20.0048, 92.5477)
+	on_executed
+		´add´ (delay 0)
+´disable´ ElementDisableUnit 100204
+	position 100, 550, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/apartment/cocaine/cokebag/001 (-107, -16, 98.5755)
+		2 units/world/props/apartment/cocaine/cokebag/002 (-96, -16, 98.5755)
+		3 units/world/props/apartment/cocaine/cokebag/004 (-74, -16, 98.5755)
+		4 units/world/props/apartment/cocaine/cokebag/003 (-84, -16, 97.5755)
+		5 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/005 (-97, 13, 107.5)
+		6 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/004 (-108, 13, 110.5)
+		7 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/004 (-74.2113, 20.0048, 92.5477)
+	on_executed
+		´elf_spawned´ (delay 0)
+´add´ ElementOperator 100211
+	operation add
+	elements
+		1 ´3´
+		2 ´2´
+		3 ´1´
+		4 ´4´
+		5 ´5´
+		6 ´6´
+		7 ´7´
+´4´ ElementTimerTrigger 100214
+	position 100, 1975, 2.5
+	rotation 0, 0, 0, -1
+	time 52
+	elements
+		1 ´timer´
+	on_executed
+		´show 4´ (delay 0)
+´show 4´ MissionScriptElement 100215
+	on_executed
+		´enable_4´ (delay 0)
+´enable_4´ ElementEnableUnit 100216
+	position 250, 1975, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/world/props/apartment/cocaine/cokebag/004 (-74, -16, 98.5755)
+´5´ ElementTimerTrigger 100217
+	position 100, 2025, 2.5
+	rotation 0, 0, 0, -1
+	time 35
+	elements
+		1 ´timer´
+	on_executed
+		´show 5´ (delay 0)
+´show 5´ MissionScriptElement 100218
+	on_executed
+		´enable_5´ (delay 0)
+´enable_5´ ElementEnableUnit 100219
+	position 250, 2025, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/004 (-108, 13, 110.5)
+´6´ ElementTimerTrigger 100220
+	position 100, 2075, 2.5
+	rotation 0, 0, 0, -1
+	time 18
+	elements
+		1 ´timer´
+	on_executed
+		´show 6´ (delay 0)
+´show 6´ MissionScriptElement 100221
+	on_executed
+		´enable_6´ (delay 0)
+´enable_6´ ElementEnableUnit 100222
+	position 250, 2075, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/005 (-97, 13, 107.5)
+´enable_7´ ElementEnableUnit 100223
+	position 250, 2125, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cane/props/cne_prop_weed_bong/cne_prop_weed_bong/004 (-74.2113, 20.0048, 92.5477)
+´show 7´ MissionScriptElement 100224
+	on_executed
+		´enable_7´ (delay 0)
+´7´ ElementTimerTrigger 100225
+	position 100, 2125, 2.5
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´timer´
+	on_executed
+		´show 7´ (delay 0)
+´remove_white_table´ MissionScriptElement 100134
+	on_executed
+		´white_table´ (delay 0)
+´stopped_working´ ElementInstanceOutput 100004
+	event stopped_working
+´started working´ ElementInstanceOutput 100011
+	event started_working
+´Link_15´ MissionScriptElement 100027
+	BASE DELAY 5
+	base_delay_rand 5
+	on_executed
+		´cop shoots´ (delay 0)
+´On_5´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Link_15´
+		2 ´cop shoots´
+´Link_16´ MissionScriptElement 100029
+	TRIGGER TIMES 1
+	on_executed
+		´Link_11´ (delay 0) DISABLED
+´Off_4´ ElementToggle 100031
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Link_16´
+´cop_arrived´ ElementInstanceOutput 100034
+	event cop_arrived
+´sound_start´ ElementUnitSequence 100070
+	position 125, 850, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_sound_packing_box/cne_sound_packing_box/001 (-88, -30, 106)
+			notify_unit_sequence sound_packing_start
+			time 0
+	on_executed
+		´disable shout´ (delay 0)
+´sound_end´ ElementUnitSequence 100192
+	position 125, 1050, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cane/equipment/cne_sound_packing_box/cne_sound_packing_box/001 (-88, -30, 106)
+			notify_unit_sequence sound_packing_stop
+			time 0
+	on_executed
+		´enable shout´ (delay 0)
+´work pose´ MissionScriptElement 100213
+	DISABLED
+	on_executed
+		´elf - work over ´ (delay 0)
+´On_6´ ElementToggle 100228
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´work pose´ DISABLED
+	on_executed
+		´Off_5´ (delay 0)
+´Off_5´ ElementToggle 100229
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Link_7´
+	on_executed
+		´present_finished´ (delay 0)
+´Off_6´ ElementToggle 100230
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´work pose´ DISABLED
+´disable shout´ ElementDisableShout 100231
+	disable_shout true
+	position 175, 850, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Elf002´
+		2 ´Elf´
+		3 ´Elf001´
+		4 ´Elf003´
+´enable shout´ ElementDisableShout 100234
+	disable_shout false
+	position 175, 1050, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´Elf´
+		2 ´Elf001´
+		3 ´Elf002´
+		4 ´Elf003´

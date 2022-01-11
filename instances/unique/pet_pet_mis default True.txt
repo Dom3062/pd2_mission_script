@@ -1,0 +1,320 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100001
+	DISABLED
+	EXECUTE ON STARTUP
+	position -100, -2200, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´enable_goat´ (delay 0)
+´startup´ MissionScriptElement 100011
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_interaction_disabled´ (delay 0)
+´enable_goat´ ElementInstanceInput 100012
+	event enable_goat
+	on_executed
+		´point_area_min_police_force_001´ (delay 0)
+		´show´ (delay 0)
+		´enable´ (delay 0)
+´goat_picked_up´ ElementInstanceOutput 100013
+	event goat_picked_up
+	on_executed
+		´remove_police_force´ (delay 120)
+		´disable_2´ (delay 0)
+´remove_police_force´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´point_area_min_police_force_001´
+´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100015
+	amount 1
+	position 0, 11, 171.5
+	rotation 0, 0, 0, -1
+´once_picked_up_goat´ ElementUnitSequenceTrigger 100002
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+	on_executed
+		´goat_picked_up´ (delay 0)
+		´disable´ (delay 0)
+´show´ ElementUnitSequence 100003
+	position -1500, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´bah_loop´ (delay 0)
+		´chance_to_sleep´ (delay 1)
+´hide_interaction_disabled´ ElementUnitSequence 100000
+	position -1500, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence state_vis_hide
+			time 0
+´player_close´ ElementAreaTrigger 100004
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	interval 0.1
+	position 0, 0, 0
+	radius 904,477
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´interaction_enabled´ (delay 0)
+´interaction_enabled´ ElementUnitSequence 100005
+	position -1400, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´enable´ ElementToggle 100006
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´player_close´ DISABLED
+		2 ´link´ DISABLED
+		3 ´headbutt_player_trigger_area´ DISABLED
+		4 ´kick_player_trigger_area´ DISABLED
+´link´ MissionScriptElement 100008
+	DISABLED
+	on_executed
+		´interaction_enabled´ (delay 0)
+´show_outlines´ ElementInstanceInput 100010
+	event show_outlines
+	on_executed
+		´link´ (delay 0) DISABLED
+´make_car_goat´ ElementInstanceInput 100018
+	event make_car_goat
+	on_executed
+		´play_anim_car´ (delay 0)
+´bah_loop´ MissionScriptElement 100019
+	on_executed
+		´bah´ (delay 5-35)
+´bah´ ElementUnitSequence 100020
+	position -1300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_yell_baah
+			time 0
+	on_executed
+		´bah_loop´ (delay 0)
+´disable´ ElementToggle 100021
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´bah_loop´
+		2 ´bah´
+		3 ´point_head_damage´
+		4 ´point_kick_damage´
+		5 ´chance_to_kick´
+		6 ´seq_kick´
+		7 ´chance_to_headbutt´
+		8 ´seq_headbutt´
+´make_fountain_goat´ ElementInstanceInput 100022
+	event make_fountain_goat
+	on_executed
+		´play_anim_fountain´ (delay 0)
+´make_hotdog_goat´ ElementInstanceInput 100023
+	event make_hotdog_goat
+	on_executed
+		´play_anim_hotdog´ (delay 0)
+´make_scaffold_goat´ ElementInstanceInput 100024
+	event make_scaffold_goat
+	on_executed
+		´play_anim_scaffold´ (delay 0)
+´play_anim_car´ ElementUnitSequence 100025
+	position -1000, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_jump
+			time 0
+	on_executed
+		´disable_2´ (delay 0)
+´play_anim_fountain´ ElementUnitSequence 100027
+	position -1000, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_drink_fountain
+			time 0
+	on_executed
+		´disable_2´ (delay 0)
+´play_anim_hotdog´ ElementUnitSequence 100028
+	position -1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_idle_korv
+			time 0
+	on_executed
+		´disable_2´ (delay 0)
+´play_anim_scaffold´ ElementUnitSequence 100029
+	position -1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_hanging_scaffold
+			time 0
+	on_executed
+		´disable_2´ (delay 0)
+´point_head_damage´ ElementExplosionDamage 100016
+	damage 40
+	position 0, 100, 50
+	range 100
+	rotation 0, 0, 0, -1
+´point_kick_damage´ ElementExplosionDamage 100026
+	damage 40
+	position 0, -75, 50
+	range 100
+	rotation 0, 0, 0, -1
+´kick_player_trigger_area´ ElementAreaTrigger 100030
+	DISABLED
+	amount 1
+	depth 110
+	height 200
+	instigator player
+	interval 0.1
+	position 0, -75, 0
+	radius 80
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 60
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´chance_to_kick´ (delay 0)
+´headbutt_player_trigger_area´ ElementAreaTrigger 100031
+	DISABLED
+	amount 1
+	depth 110
+	height 200
+	instigator player
+	interval 0.1
+	position 0, 100, 0
+	radius 80
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 60
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´chance_to_headbutt´ (delay 0)
+´chance_to_kick´ ElementLogicChance 100032
+	chance 65
+	position 100, -100, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_kick_damage´ (delay 0)
+		´seq_kick´ (delay 0)
+´seq_kick´ ElementUnitSequence 100033
+	position 200, -100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_attack_feet
+			time 0
+	on_executed
+		´point_kick_damage´ (delay 0.7)
+´chance_to_headbutt´ ElementLogicChance 100034
+	chance 65
+	position 100, 100, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_headbutt´ (delay 0)
+´seq_headbutt´ ElementUnitSequence 100035
+	position 200, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_attack_head
+			time 0
+	on_executed
+		´point_head_damage´ (delay 0.6)
+´disable_2´ ElementToggle 100036
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´headbutt_player_trigger_area´ DISABLED
+		2 ´kick_player_trigger_area´ DISABLED
+		3 ´chance_to_sleep´
+´chance_to_sleep´ ElementLogicChance 100038
+	chance 50
+	position -1400, 350, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´sleep´ (delay 0)
+´sleep´ ElementUnitSequence 100037
+	position -1300, 350, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_peta/characters/wld_goat_1/wld_goat_1/001 (0, 0, -4.47035E-06)
+			notify_unit_sequence anim_sleeping
+			time 0
+	on_executed
+		´disable_2´ (delay 0)

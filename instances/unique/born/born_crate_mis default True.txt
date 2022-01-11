@@ -1,0 +1,202 @@
+´opened´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (-2, 2, 0)
+	on_executed
+		´instance_output_opened_crate´ (delay 0)
+		´start_spawn_trash´ (delay 0) DISABLED
+		´start_spawn_part´ (delay 0) DISABLED
+´enable_interaction´ ElementUnitSequence 100002
+	position -500, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (-2, 2, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´instance_input_enable_interaction´ ElementInstanceInput 100003
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+´instance_output_opened_crate´ ElementInstanceOutput 100010
+	event opened_crate
+´start_spawn_trash´ MissionScriptElement 100008
+	DISABLED
+	on_executed
+		´random_empty´ (delay 0)
+		´point_debug_003´ (delay 0)
+´startup´ MissionScriptElement 100022
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´seq_hider´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´disable_interaction_crate´ (delay 0)
+´seq_hider´ ElementUnitSequence 100023
+	position -600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (-2, 2, 0)
+			notify_unit_sequence state_vis_hide_box
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100024
+	position -600, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/empty_weapon_case_small001 (3.86681, 7.05046, 53)
+		2 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_2x1_open/empty_weapon_case_large (-0.213499, 9.1132, 50)
+		3 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/001 (-41.0352, 9.72879, 53)
+		4 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/002 (26.7489, 2.35867, 53)
+´random_empty´ ElementRandom 100026
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´2´ (delay 0)
+		´4´ (delay 0)
+		´3´ (delay 0)
+		´empty´ (delay 0)
+´2´ ElementEnableUnit 100029
+	position -200, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/001 (-41.0352, 9.72879, 53)
+		2 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/002 (26.7489, 2.35867, 53)
+´3´ ElementEnableUnit 100030
+	position -100, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_1x1_open/empty_weapon_case_small001 (3.86681, 7.05046, 53)
+´4´ ElementEnableUnit 100031
+	position 0, -600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_weapon_case/gen_prop_weapon_case_2x1_open/empty_weapon_case_large (-0.213499, 9.1132, 50)
+´disable_interaction_crate´ ElementUnitSequence 100032
+	position -600, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (-2, 2, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´start_spawn_part´ MissionScriptElement 100009
+	DISABLED
+	on_executed
+		´point_debug_002´ (delay 0)
+		´show_enable_interaction_engine´ (delay 0)
+´instance_input_select_loot_or_empty´ ElementInstanceInput 100033
+	event select_loot_or_empty
+	on_executed
+		´enable_2´ (delay 0)
+´instance_input_select_part´ ElementInstanceInput 100034
+	event select_part
+	on_executed
+		´enable´ (delay 0)
+´enable´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_spawn_part´ DISABLED
+´enable_2´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´start_spawn_trash´ DISABLED
+´instance_output_part_picked_up´ ElementInstanceOutput 100005
+	event part_picked_up
+´empty´ MissionScriptElement 100040
+´instance_input_show_crate´ ElementInstanceInput 100006
+	event show_crate
+	on_executed
+		´show_crate´ (delay 0)
+		´show_crate_2´ (delay 0)
+´show_crate´ ElementEnableUnit 100037
+	position -400, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_debug_002´ ElementDebug 100041
+	as_subtitle false
+	debug_string start_spawn_part
+	show_instigator false
+´point_debug_003´ ElementDebug 100004
+	as_subtitle false
+	debug_string start_spawn_trash
+	show_instigator false
+´show_crate_2´ ElementUnitSequence 100011
+	position -400, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (-2, 2, 0)
+			notify_unit_sequence state_vis_show_box
+			time 0
+´picked_up_engine´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+	on_executed
+		´instance_output_part_picked_up´ (delay 0)
+		´hide_disable_interaction_engine´ (delay 0)
+		´point_debug_001´ (delay 0)
+´show_enable_interaction_engine´ ElementUnitSequence 100013
+	position 100, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+			notify_unit_sequence state_vis_show_interaction_enabled
+			time 0
+´hide_disable_interaction_engine´ ElementUnitSequence 100016
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_bike_assembly/parts/bor_prop_garage_assembly_part_engine/001 (-6, -3, 78)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´point_debug_001´ ElementDebug 100019
+	as_subtitle false
+	debug_string picked_up_engine
+	show_instigator false

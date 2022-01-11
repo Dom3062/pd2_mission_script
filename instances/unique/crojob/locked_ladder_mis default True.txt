@@ -1,0 +1,276 @@
+´is used´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/002 (-15, 30, -78.0017)
+	on_executed
+		´open´ (delay 0)
+		´enable ladder ineraction´ (delay 0) DISABLED
+´open´ ElementUnitSequence 100010
+	position -125, -275, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/002 (4, 0, -79)
+			notify_unit_sequence open
+			time 0
+	on_executed
+		´logic_toggle_003´ (delay 0.1)
+		´disable top incons´ (delay 0)
+		´remove saw icon up´ (delay 0)
+´is used_2´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/003 (-15, 30, -150.002)
+	on_executed
+		´open_2´ (delay 0)
+		´enable ladder ineraction´ (delay 0) DISABLED
+´open_2´ ElementUnitSequence 100013
+	position -125, 250, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/001 (4, 0, -151)
+			notify_unit_sequence open
+			time 0
+	on_executed
+		´logic_toggle_003´ (delay 0.1)
+		´disable bottom incons´ (delay 0)
+		´remove saw icon down´ (delay 0)
+´logic_toggle_003´ ElementToggle 100016
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´enable ladder ineraction´ DISABLED
+´disable bottom incons´ ElementUnitSequence 100022
+	position -325, 125, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/003 (-15, 30, -150.002)
+			notify_unit_sequence disable
+			time 0
+´disable top incons´ ElementUnitSequence 100023
+	position -325, -175, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/002 (-15, 30, -78.0017)
+			notify_unit_sequence disable
+			time 0
+´ladder_unlocked´ ElementInstanceOutput 100028
+	event unlocked
+´disable picklocking´ ElementUnitSequence 100000
+	position -325, 250, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/002 (-15, 30, -78.0017)
+			notify_unit_sequence disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/003 (-15, 30, -150.002)
+			notify_unit_sequence disable
+			time 0
+´disable locks input´ ElementInstanceInput 100030
+	event disable locks
+	on_executed
+		´disable picklocking´ (delay 0)
+´is sawed´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/001 (4, 0, -151)
+	on_executed
+		´disable bottom incons´ (delay 0)
+		´enable ladder ineraction´ (delay 0) DISABLED
+		´logic_toggle_003´ (delay 0.1)
+		´remove saw icon down´ (delay 0)
+´is sawed_2´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/002 (4, 0, -79)
+	on_executed
+		´disable top incons´ (delay 0)
+		´enable ladder ineraction´ (delay 0) DISABLED
+		´logic_toggle_003´ (delay 0.1)
+		´remove saw icon up´ (delay 0)
+´enable ladder ineraction´ ElementUnitSequence 100009
+	DISABLED
+	TRIGGER TIMES 1
+	position -125, 0, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_train_compact/ladder_train_compact/001 (0, 0, -214)
+			notify_unit_sequence interaction_enable
+			time 0
+´is ladder used´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/ladder_train_compact/ladder_train_compact/001 (0, 0, -214)
+	on_executed
+		´ladder_unlocked´ (delay 0)
+		´ladder used´ (delay 0)
+		´hide ladder´ (delay 0)
+´ladder used´ ElementDebug 100007
+	as_subtitle false
+	debug_string ladder_taken
+	show_instigator false
+´hide_instance´ ElementInstanceInput 100014
+	event hide instance
+	on_executed
+		´disable_interactions´ (delay 0)
+´disable_interactions´ ElementUnitSequence 100018
+	position -425, 250, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/002 (-15, 30, -78.0017)
+			notify_unit_sequence disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/003 (-15, 30, -150.002)
+			notify_unit_sequence disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_train_compact/ladder_train_compact/001 (0, 0, -214)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/001 (4, 0, -151)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/002 (4, 0, -79)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/down (-21, 0, -151)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/up (-18, 0, -78.4627)
+			notify_unit_sequence hide
+			time 0
+´show_instance´ ElementInstanceInput 100019
+	event show instance
+	on_executed
+		´enable_interaction´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100021
+	position -500, 250, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/002 (-15, 30, -78.0017)
+			notify_unit_sequence enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/lockpick_interactable/lockpick_interactable/003 (-15, 30, -150.002)
+			notify_unit_sequence enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/001 (4, 0, -151)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_lock/ladder_lock/002 (4, 0, -79)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_train_compact/ladder_train_compact/001 (0, 0, -214)
+			notify_unit_sequence show
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/down (-21, 0, -151)
+			notify_unit_sequence show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/up (-18, 0, -78.4627)
+			notify_unit_sequence show
+			time 0
+´hide ladder´ ElementUnitSequence 100031
+	position -75, -125, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/ladder_train_compact/ladder_train_compact/001 (0, 0, -214)
+			notify_unit_sequence hide
+			time 0
+´remove saw icon down´ ElementUnitSequence 100017
+	position -325, 25, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/down (-21, 0, -151)
+			notify_unit_sequence hide
+			time 0
+´remove saw icon up´ ElementUnitSequence 100026
+	position -325, -25, -150
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/sawblade_icon/sawblade_icon/up (-18, 0, -78.4627)
+			notify_unit_sequence hide
+			time 0

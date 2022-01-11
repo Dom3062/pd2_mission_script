@@ -1,0 +1,963 @@
+´STARTUP´ MissionScriptElement 100044
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´DELAY´ MissionScriptElement 100045
+	on_executed
+		´seq_disable_keyboard´ (delay 0)
+´seq_disable_keyboard´ ElementUnitSequence 100049
+	position -1100, -700, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´set_EMP_timer_001´ (delay 0)
+		´hide_bomb´ (delay 0)
+´inst_in_activate´ ElementInstanceInput 100035
+	event emp_activate
+	on_executed
+		´seq_enable_keyboard´ (delay 0)
+´seq_enable_keyboard´ ElementUnitSequence 100050
+	position -700, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´show_interact_emp_waypoint´ (delay 0)
+´interact_keyboard´ ElementUnitSequenceTrigger 100053
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+	on_executed
+		´enable_interrupt_so´ (delay 0)
+´inst_out_hack_started´ ElementInstanceOutput 100059
+	event emp_timer_started
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´teammate_comment_2min´ (delay 0)
+´inst_out_hack_completed´ ElementInstanceOutput 100061
+	event emp_timer_done
+	on_executed
+		´remove_interrupt_so´ (delay 0)
+´inst_out_hack_interrupted´ ElementInstanceOutput 100062
+	event emp_timer_interrupted
+	on_executed
+		´teammate_comment_swear´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100063
+	TRIGGER TIMES 1
+	SO_access 9696
+	action_duration_max 5
+	action_duration_min 5
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose stand
+	position 0, -75, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 5000
+	search_position 27,6549 -351,921 0
+	so_action e_so_keyboard_type_loop
+	trigger_on none
+	followup_elements
+		1 ´point_special_objective_002´
+	on_executed
+		´point_debug_004´ (delay 0)
+´hack_interrupt_administered´ ElementSpecialObjectiveTrigger 100064
+	event administered
+	position 500, -500, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´hack_interrupt_failed´ ElementSpecialObjectiveTrigger 100065
+	event fail
+	position 500, -600, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´reactivate_so_delay´ (delay 0.5)
+		´logic_toggle_002´ (delay 0)
+´hack_interrupt_started´ ElementSpecialObjectiveTrigger 100066
+	event anim_start
+	position 500, -700, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´hack_loop_stop´ (delay 5)
+´point_debug_001´ ElementDebug 100067
+	as_subtitle false
+	debug_string interrupt so start
+	show_instigator false
+´point_debug_002´ ElementDebug 100068
+	as_subtitle false
+	debug_string interrupt so fail
+	show_instigator false
+´point_debug_003´ ElementDebug 100069
+	as_subtitle false
+	debug_string interrupt so administered
+	show_instigator false
+´enable_interrupt_so´ MissionScriptElement 100073
+	on_executed
+		´reactivate_so_delay´ (delay 0)
+		´start_EMP_timer´ (delay 0)
+		´inst_out_hack_restarted´ (delay 0) DISABLED
+´point_debug_004´ ElementDebug 100076
+	as_subtitle false
+	debug_string interrupt SO actioned
+	show_instigator false
+´hack_loop_stop´ MissionScriptElement 100077
+	on_executed
+		´point_debug_005´ (delay 0)
+		´point_special_objective_002´ (delay 0)
+		´inst_out_hack_interrupted´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´logic_operator_001´ ElementOperator 100079
+	operation remove
+	elements
+		1 ´point_special_objective_001´
+´point_special_objective_002´ ElementSpecialObjective 100078
+	SO_access 13792
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance hos
+	path_style none
+	patrol_path none
+	pose stand
+	position 0, -200, 0
+	rotation 0, 0, 1, 4.47035E-08
+	scan false
+	search_distance 0
+	search_position 27,6549 -351,921 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_debug_005´ ElementDebug 100082
+	as_subtitle false
+	debug_string hack interrupt complete
+	show_instigator false
+´reactivate_interrupt_so´ ElementToggle 100085
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´point_special_objective_001´
+	on_executed
+		´point_special_objective_001´ (delay 0)
+		´point_debug_006´ (delay 0)
+´reactivate_so_delay´ MissionScriptElement 100084
+	on_executed
+		´reactivate_interrupt_so´ (delay 10-20)
+´inst_out_hack_restarted´ ElementInstanceOutput 100087
+	DISABLED
+	event emp_timer_resumed
+	on_executed
+		´remove_fix_waypoint´ (delay 0)
+´seq_enable_keyboard_2´ ElementUnitSequence 100088
+	position -1100, -1400, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence stop_bomb_timer
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´remove_defend_waypoint´ (delay 0)
+´logic_counter_001´ ElementCounter 100089
+	counter_target 1
+	on_executed
+		´inst_out_hack_started´ (delay 0)
+		´logic_toggle_001´ (delay 1)
+´logic_toggle_001´ ElementToggle 100090
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´inst_out_hack_restarted´ DISABLED
+´nuke_instance´ ElementToggle 100091
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_keyboard´ DISABLED
+		2 ´enable_interrupt_so´
+		3 ´logic_counter_001´
+		4 ´inst_out_hack_restarted´ DISABLED
+		5 ´logic_toggle_001´
+		6 ´inst_out_hack_started´
+		7 ´hack_interrupt_administered´
+		8 ´hack_interrupt_failed´
+		9 ´seq_enable_keyboard_2´
+		10 ´reactivate_so_delay´
+		11 ´reactivate_interrupt_so´
+		12 ´logic_operator_001´
+		13 ´teammate_comment_swear´
+		14 ´inst_out_hack_interrupted´
+	on_executed
+		´point_debug_007´ (delay 0)
+´remove_interrupt_so´ MissionScriptElement 100092
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´logic_operator_002´ (delay 0)
+		´point_special_objective_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100093
+	operation remove
+	elements
+		1 ´point_special_objective_002´
+		2 ´point_waypoint_001´
+	on_executed
+		´nuke_instance´ (delay 0)
+´logic_toggle_002´ ElementToggle 100097
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hack_loop_stop´
+	on_executed
+		´logic_toggle_003´ (delay 5.5)
+´logic_toggle_003´ ElementToggle 100098
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´hack_loop_stop´
+´logic_toggle_004´ ElementToggle 100105
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reactivate_so_delay´
+	on_executed
+		´logic_toggle_005´ (delay 1)
+´logic_toggle_005´ ElementToggle 100106
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´reactivate_so_delay´
+´point_debug_006´ ElementDebug 100107
+	as_subtitle false
+	debug_string renable so
+	show_instigator false
+´teammate_comment_2min´ ElementTeammateComment 100108
+	close_to_element true
+	comment g65
+	position -300, -1400, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´remove_fix_waypoint001´ (delay 0)
+		´point_debug_011´ (delay 0)
+´teammate_comment_swear´ ElementTeammateComment 100109
+	close_to_element true
+	comment g29
+	position -1100, -1300, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´seq_enable_keyboard_2´ (delay 0)
+		´point_debug_012´ (delay 0)
+´inst_in_show´ ElementInstanceInput 100111
+	event emp_show
+	on_executed
+		´func_sequence_002´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100112
+	icon pd2_defend
+	only_in_civilian false
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_waypoint´ ElementOperator 100114
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´show_fix_waypoint´ (delay 0)
+´remove_fix_waypoint´ ElementOperator 100115
+	operation remove
+	elements
+		1 ´point_waypoint_004´
+	on_executed
+		´show_defend_waypoint_002´ (delay 0)
+´show_defend_waypoint_002´ MissionScriptElement 100116
+	on_executed
+		´point_waypoint_001´ (delay 0)
+		´play_resume_sound´ (delay 0)
+´show_fix_waypoint´ MissionScriptElement 100117
+	on_executed
+		´point_waypoint_004´ (delay 0)
+		´pause_EMP_timer´ (delay 0)
+´point_waypoint_003´ ElementWaypoint 100118
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_debug_007´ ElementDebug 100124
+	as_subtitle false
+	debug_string EMP blew up
+	show_instigator false
+´point_waypoint_004´ ElementWaypoint 100002
+	icon pd2_fix
+	only_in_civilian false
+	position 0, -25, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_interact_emp_waypoint´ MissionScriptElement 100010
+	on_executed
+		´point_waypoint_003´ (delay 0)
+´EMP_Timer´ ElementTimer 100012
+	timer 0
+´start_EMP_timer´ ElementTimerOperator 100013
+	operation start
+	position -300, -900, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´start_countdown_sound´ (delay 0)
+´set_EMP_timer_001´ ElementTimerOperator 100014
+	operation set_time
+	position -1100, -900, 100
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´EMP_Timer´
+´timer_90s_left´ ElementTimerTrigger 100017
+	position -700, 0, 100
+	rotation 0, 0, 0, -1
+	time 90
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´teammate_comment_1m30s´ (delay 0)
+´teammate_comment_1m30s´ ElementTeammateComment 100018
+	close_to_element true
+	comment g64
+	position -700, 100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_008´ (delay 0)
+´tiemr_60s_left´ ElementTimerTrigger 100019
+	position -800, 0, 100
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´teammate_comment_60s´ (delay 0)
+´teammate_comment_60s´ ElementTeammateComment 100020
+	close_to_element true
+	comment g63
+	position -800, 100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_009´ (delay 0)
+´timer_30s_left´ ElementTimerTrigger 100021
+	position -900, 0, 100
+	rotation 0, 0, 0, -1
+	time 30
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´teammate_comment_30s´ (delay 0)
+		´func_dialogue_001´ (delay 0)
+´teammate_comment_30s´ ElementTeammateComment 100022
+	close_to_element true
+	comment g62
+	position -900, 100, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_010´ (delay 0)
+´pause_EMP_timer´ ElementTimerOperator 100023
+	operation pause
+	position -1100, -1700, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´countdown_loop_stop_001´ (delay 0) DISABLED
+´EMP_timer_done´ ElementTimerTrigger 100024
+	position -900, -1200, 100
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´inst_out_emp_explode´ (delay 0)
+		´explode´ (delay 0)
+		´point_feedback_001´ (delay 0)
+´remove_fix_waypoint001´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´point_waypoint_003´
+´sound_10s_countdown´ ElementPlaySound 100027
+	DISABLED
+	append_prefix true
+	interrupt true
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_ticking_down_10sec
+	use_instigator false
+´timer_10s_left´ ElementTimerTrigger 100028
+	position -500, 0, 100
+	rotation 0, 0, 0, -1
+	time 10
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´disable_interrupts´ (delay 0)
+		´teammate_comment_swear_baffled´ (delay 15)
+´countdown_loop´ ElementPlaySound 100030
+	DISABLED
+	append_prefix true
+	interrupt true
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop
+	use_instigator false
+´countdown_loop_stop_001´ ElementPlaySound 100031
+	DISABLED
+	append_prefix true
+	interrupt true
+	position -1100, -1800, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+´start_countdown_sound´ MissionScriptElement 100032
+	on_executed
+		´countdown_loop´ (delay 0) DISABLED
+		´logic_counter_001´ (delay 0)
+´countdown_loop_stop_002´ ElementPlaySound 100029
+	DISABLED
+	append_prefix true
+	interrupt true
+	position -450, 100, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_countdown_loop_stop
+	use_instigator false
+	on_executed
+		´sound_10s_countdown´ (delay 0) DISABLED
+´disable_interrupts´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reactivate_so_delay´
+		2 ´logic_toggle_005´
+		3 ´logic_toggle_004´
+		4 ´hack_loop_stop´
+		5 ´point_debug_005´
+		6 ´reactivate_interrupt_so´
+		7 ´point_debug_006´
+		8 ´logic_toggle_002´
+		9 ´logic_toggle_003´
+		10 ´inst_out_hack_interrupted´
+	on_executed
+		´logic_operator_001´ (delay 0)
+		´logic_link_001´ (delay 0)
+		´random_sparks´ (delay 0) DISABLED
+		´sound_sparks_001´ (delay 0) DISABLED
+´inst_out_emp_explode´ ElementInstanceOutput 100034
+	event emp_explosion_started
+´env_effect_play_001´ ElementPlayEffect 100036
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -50, -50, 50
+	random_time 0
+	rotation 0, 0, 1, 1.19209E-07
+	screen_space false
+´env_effect_play_002´ ElementPlayEffect 100037
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 0, -50, 50
+	random_time 0
+	rotation 0, 0, 1, 1.19209E-07
+	screen_space false
+´env_effect_play_003´ ElementPlayEffect 100038
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 50, -50, 50
+	random_time 0
+	rotation 0, 0, 1, 1.19209E-07
+	screen_space false
+´env_effect_play_004´ ElementPlayEffect 100039
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 75, -25, 50
+	random_time 0
+	rotation 0, 0, 0.707107, -0.707107
+	screen_space false
+´env_effect_play_005´ ElementPlayEffect 100040
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 75, 25, 50
+	random_time 0
+	rotation 0, 0, 0.707107, -0.707107
+	screen_space false
+´env_effect_play_006´ ElementPlayEffect 100041
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -75, -25, 50
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_007´ ElementPlayEffect 100042
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -75, 25, 50
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space false
+´env_effect_play_008´ ElementPlayEffect 100043
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -50, 50, 50
+	random_time 0
+	rotation 0, 0, -5.96046E-08, -1
+	screen_space false
+´env_effect_play_009´ ElementPlayEffect 100046
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -6.10352E-05, 50, 50
+	random_time 0
+	rotation 0, 0, -5.96046E-08, -1
+	screen_space false
+´env_effect_play_010´ ElementPlayEffect 100047
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 50, 50, 50
+	random_time 0
+	rotation 0, 0, -5.96046E-08, -1
+	screen_space false
+´env_effect_play_011´ ElementPlayEffect 100051
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -50, -25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´env_effect_play_012´ ElementPlayEffect 100052
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 3.8147E-06, -25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´env_effect_play_013´ ElementPlayEffect 100054
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 50, -25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´env_effect_play_014´ ElementPlayEffect 100055
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position 50, 25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´env_effect_play_015´ ElementPlayEffect 100056
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -1.52588E-05, 25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´env_effect_play_016´ ElementPlayEffect 100057
+	base_time 0
+	effect effects/payday2/menu/parts/electric_spark_console
+	max_amount 0
+	position -50, 25, 75
+	random_time 0
+	rotation -0.5, -0.5, -0.5, -0.5
+	screen_space false
+´random_sparks´ ElementRandom 100058
+	DISABLED
+	amount 10
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´env_effect_play_001´ (delay 0)
+		´env_effect_play_002´ (delay 0)
+		´env_effect_play_003´ (delay 0)
+		´env_effect_play_004´ (delay 0)
+		´env_effect_play_005´ (delay 0)
+		´env_effect_play_006´ (delay 0)
+		´env_effect_play_007´ (delay 0)
+		´env_effect_play_008´ (delay 0)
+		´env_effect_play_009´ (delay 0)
+		´env_effect_play_010´ (delay 0)
+		´env_effect_play_011´ (delay 0)
+		´env_effect_play_012´ (delay 0)
+		´env_effect_play_013´ (delay 0)
+		´env_effect_play_014´ (delay 0)
+		´env_effect_play_015´ (delay 0)
+		´env_effect_play_016´ (delay 0)
+´logic_link_001´ MissionScriptElement 100060
+	on_executed
+		´logic_link_002´ (delay 0)
+		´random_sparks´ (delay 4) DISABLED
+		´sound_sparks_001´ (delay 4) DISABLED
+´logic_link_002´ MissionScriptElement 100070
+	on_executed
+		´logic_link_003´ (delay 0)
+		´random_sparks´ (delay 6) DISABLED
+		´sound_sparks_001´ (delay 6) DISABLED
+´logic_link_003´ MissionScriptElement 100071
+	on_executed
+		´random_sparks´ (delay 8) DISABLED
+		´sound_sparks_001´ (delay 8) DISABLED
+´sound_sparks_001´ ElementPlaySound 100072
+	DISABLED
+	append_prefix false
+	interrupt true
+	position 0, 0, 60
+	rotation 0, 0, 0, -1
+	sound_event electric_sparks
+	use_instigator false
+´explosion_effect´ ElementPlayEffect 100074
+	base_time 0
+	effect effects/payday2/particles/emp/emp_explosion
+	max_amount 0
+	position 0, 0, 100
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´explosion_sound_002´ ElementPlaySound 100075
+	DISABLED
+	append_prefix false
+	interrupt true
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event wall_explode_muffled
+	use_instigator false
+	on_executed
+		´explosion_sound_001´ (delay 0) DISABLED
+´explosion_sound_001´ ElementPlaySound 100080
+	DISABLED
+	append_prefix false
+	interrupt true
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event gas_station_pumps_explode
+	use_instigator false
+´inst_in_timer_15s´ ElementInstanceInput 100081
+	event emp_set_timer_15s
+	on_executed
+		´set_EMP_timer_002´ (delay 0)
+´set_EMP_timer_002´ ElementTimerOperator 100083
+	operation set_time
+	position -1300, -600, 100
+	rotation 0, 0, 0, -1
+	time 15
+	elements
+		1 ´EMP_Timer´
+´int_in_wmp_hide´ ElementInstanceInput 100086
+	event emp_hide
+	on_executed
+		´hide_bomb´ (delay 0)
+´opened_hatch´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100003
+	position -400, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´logic_toggle_006´ (delay 0.5)
+´logic_toggle_006´ ElementToggle 100004
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interact_keyboard´ DISABLED
+´play_resume_sound´ MissionScriptElement 100005
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100007
+	operation add
+	position -900, -700, 100
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-43, -53, -5.69011E-13)
+´explode´ ElementUnitSequence 100008
+	position -900, -1300, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence expload
+			time 0
+	on_executed
+		´inst_out_hack_completed´ (delay 0)
+´timer_3s´ ElementTimerTrigger 100009
+	position -400, 0, 100
+	rotation 0, 0, 0, -1
+	time 3
+	elements
+		1 ´EMP_Timer´
+	on_executed
+		´explosion_effect´ (delay 0)
+´point_debug_008´ ElementDebug 100015
+	as_subtitle false
+	debug_string teammate_comment_1m30s
+	show_instigator false
+´point_debug_009´ ElementDebug 100016
+	as_subtitle false
+	debug_string teammate_comment_60s
+	show_instigator false
+´point_debug_010´ ElementDebug 100026
+	as_subtitle false
+	debug_string teammate_comment_30s
+	show_instigator false
+´point_debug_011´ ElementDebug 100048
+	as_subtitle false
+	debug_string teammate_comment_2min
+	show_instigator false
+´point_debug_012´ ElementDebug 100096
+	as_subtitle false
+	debug_string teammate_comment_swear
+	show_instigator false
+´point_debug_013´ ElementDebug 100099
+	as_subtitle false
+	debug_string teammate_comment_swear_baffled
+	show_instigator false
+´teammate_comment_bain?1´ ElementTeammateComment 100100
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v35
+	position 0, -150, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´teammate_comment_swear´ (delay 5)
+		´teammate_comment_bain?2´ (delay 9)
+		´teammate_comment_swear_shocked´ (delay 4)
+´point_debug_014´ ElementDebug 100101
+	as_subtitle false
+	debug_string teammate_comment_bain?1
+	show_instigator false
+´teammate_comment_bain?2´ ElementTeammateComment 100102
+	close_to_element true
+	comment v35
+	position 1200, -150, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_016´ (delay 0)
+´soundbank_robber´ ElementPlaySound 100104
+	append_prefix false
+	interrupt true
+	position 300, 0, 300
+	rotation 0, 0, 0, -1
+	sound_event v53
+	use_instigator false
+´teammate_comment_swear_baffled´ ElementTeammateComment 100103
+	TRIGGER TIMES 2
+	close_to_element true
+	comment g29
+	position 0, -50, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_013´ (delay 0)
+		´teammate_comment_bain?1´ (delay 3)
+´teammate_comment_swear_shocked´ ElementTeammateComment 100011
+	TRIGGER TIMES 2
+	close_to_element true
+	comment g60
+	position 0, -250, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_015´ (delay 0)
+		´teammate_comment_now_what´ (delay 2)
+´point_debug_015´ ElementDebug 100113
+	as_subtitle false
+	debug_string teammate_comment_swear_shocked
+	show_instigator false
+´area_player_near_EMP´ ElementAreaTrigger 100119
+	TRIGGER TIMES 1
+	amount 1
+	depth 800
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 800
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_found_it´ (delay 0)
+´teammate_comment_found_it´ ElementTeammateComment 100120
+	close_to_element false
+	comment v04
+	position 100, 0, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´point_debug_016´ ElementDebug 100121
+	as_subtitle false
+	debug_string teammate_comment_bain?2
+	show_instigator false
+´teammate_comment_now_what´ ElementTeammateComment 100122
+	TRIGGER TIMES 2
+	close_to_element true
+	comment v36
+	position 0, -350, 350
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_017´ (delay 0)
+´point_debug_017´ ElementDebug 100123
+	as_subtitle false
+	debug_string teammate_comment_swear_shocked
+	show_instigator false
+´point_feedback_001´ ElementFeedback 100126
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,5
+	camera_shake_sustain 0,7
+	effect mission_triggered
+	position 0, -109, 0
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+´func_dialogue_001´ ElementDialogue 100127
+	dialogue Play_pln_mad_21
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´hide_bomb´ ElementUnitSequence 100094
+	position -1500, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence state_vis_hide
+			time 0
+´func_sequence_002´ ElementUnitSequence 100095
+	position -900, -600, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_interactable_bomb/drk_interactable_bomb/001 (0, 0, 100)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)

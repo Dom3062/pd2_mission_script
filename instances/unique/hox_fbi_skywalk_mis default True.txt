@@ -1,0 +1,256 @@
+´planted´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/001 (297, 289, -9.91821E-05)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/002 (297, 147, -9.91821E-05)
+	on_executed
+		´count_2´ (delay 0)
+´planted_2´ MissionScriptElement 100008
+	on_executed
+		´activate_explode´ (delay 0)
+		´explode´ (delay 5)
+		´disable_graph´ (delay 3)
+´count_2´ ElementCounter 100009
+	counter_target 2
+	on_executed
+		´planted_2´ (delay 0)
+´activate_explode´ ElementUnitSequence 100010
+	position 200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/001 (297, 289, -9.91821E-05)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/002 (297, 147, -9.91821E-05)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+´explode´ MissionScriptElement 100011
+	on_executed
+		´boom´ (delay 0)
+		´disable_gate´ (delay 0)
+		´point_explosion_001´ (delay 0.05)
+		´enable_kill_volume´ (delay 0)
+		´func_dialogue_001´ (delay 1)
+´boom´ ElementUnitSequence 100012
+	position 300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_4x8m_a_overpass_tile_a_interact/bridge_explode (0, 0, 0)
+			notify_unit_sequence seq_explode
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/001 (297, 289, -9.91821E-05)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge/gen_equipment_shape_charge/002 (297, 147, -9.91821E-05)
+			notify_unit_sequence hide
+			time 0
+´disable_gate´ ElementDisableUnit 100013
+	position 300, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_d_int/gov_d_int_gate_lock/001 (350, 216, 0)
+´point_explosion_001´ ElementExplosion 100014
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 2
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,7
+	damage 0
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	player_damage 0
+	position 300, 216, 50
+	range 2048
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake true
+	use_rumble true
+´kill_trigger´ ElementAreaTrigger 100020
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 500, 214, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 800
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´kill_hostiles´ (delay 0)
+´kill_hostiles´ ElementAIRemove 100022
+	backup_so 100029
+	force_ragdoll false
+	position 400, -300, 0
+	rotation 0, 0, 0, -1
+	true_death true
+	use_instigator true
+´enable_kill_volume´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´kill_trigger´ DISABLED
+	on_executed
+		´disable_kill_volume´ (delay 0.4)
+´disable_kill_volume´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´kill_trigger´ DISABLED
+´disable_graph´ ElementInstanceOutput 100016
+	TRIGGER TIMES 1
+	event disable_graph
+´open_area´ ElementAreaTrigger 100004
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 400
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 350, 200, 99.9999
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´on_enter´ (delay 0)
+´close_area´ ElementAreaTrigger 100005
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 325
+	instigator enemies
+	instigator_name 
+	interval 0.1
+	position 350, 200, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_empty
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´on_empty´ (delay 0)
+´on_enter´ MissionScriptElement 100006
+	on_executed
+		´enable_exit_volume´ (delay 0.05)
+		´func_sequence_001´ (delay 0)
+´on_empty´ MissionScriptElement 100015
+	on_executed
+		´enable_enter_volume´ (delay 0.05)
+		´func_sequence_002´ (delay 0)
+´enable_exit_volume´ ElementToggle 100024
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´close_area´ DISABLED
+´enable_enter_volume´ ElementToggle 100025
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´open_area´
+´func_sequence_001´ ElementUnitSequence 100026
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_gate_lock/001 (350, 216, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+´func_sequence_002´ ElementUnitSequence 100027
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_gate_lock/001 (350, 216, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+´func_dialogue_001´ ElementDialogue 100028
+	can_not_be_muted false
+	dialogue Play_pln_hb2_16
+	execute_on_executed_when_done false
+	use_instigator false
+	use_position false
+´point_special_objective_001´ ElementSpecialObjective 100029
+	SO_access 0
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 100 200 0
+	so_action e_so_sup_fumble_inplace
+	trigger_on none
+	use_instigator true
+	followup_elements

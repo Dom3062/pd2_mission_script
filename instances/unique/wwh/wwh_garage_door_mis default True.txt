@@ -1,0 +1,543 @@
+´input_state_closed´ ElementInstanceInput 100003
+	event State closed
+	on_executed
+		´state_close´ (delay 0)
+´input_state_open´ ElementInstanceInput 100004
+	event State open
+´state_close´ ElementUnitSequence 100005
+	position 0, 600, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_door/bor_prop_garage_door/001 (5.96046E-06, 0, 0.00400394)
+			notify_unit_sequence state_door_closed
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100006
+	operation add
+	position 100, 600, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (49.9999, 25, 0.00400394)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-150, 25, 0.00400394)
+´input_activate_saw´ ElementInstanceInput 100007
+	event Activate saw
+	on_executed
+		´activate_wp´ (delay 0)
+´output_saw_placed´ ElementInstanceOutput 100008
+	event Saw placed
+	on_executed
+		´activate_defend_wp´ (delay 0)
+´output_saw_interrupted´ ElementInstanceOutput 100009
+	event Saw interrupted
+	on_executed
+		´activate_fix_wp´ (delay 0)
+´output_saw_done´ ElementInstanceOutput 100010
+	event Saw done
+	on_executed
+		´activate_wp001´ (delay 0)
+´output_saw_taken´ ElementInstanceOutput 100011
+	event Saw taken
+	on_executed
+		´open_door´ (delay 0)
+´activate_wp´ MissionScriptElement 100012
+	on_executed
+		´saw_wp´ (delay 0)
+		´activate_saw´ (delay 0)
+		´enable_area_player_close_to_saw´ (delay 0)
+´activate_defend_wp´ MissionScriptElement 100013
+	on_executed
+		´defend_wp´ (delay 0)
+		´remove_saw_wp´ (delay 0)
+´activate_fix_wp´ MissionScriptElement 100014
+	on_executed
+		´fix_wp´ (delay 0)
+		´remove_defend_wp´ (delay 0)
+´output_saw_fixed´ ElementInstanceOutput 100015
+	event Saw fixed
+	on_executed
+		´activate_defend_wp_2´ (delay 0)
+´start´ MissionScriptElement 100018
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_saws´ (delay 1)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´hide_saws´ ElementUnitSequence 100019
+	position 0, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence hide_dummy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (0, 0, 0.00400394)
+			notify_unit_sequence state_vis_hide
+			time 0
+´saw_wp´ ElementWaypoint 100020
+	icon pd2_generic_saw
+	only_in_civilian false
+	position 0, 50, 100.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´defend_wp´ ElementWaypoint 100021
+	icon pd2_defend
+	only_in_civilian false
+	position 0, 50, 100.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fix_wp´ ElementWaypoint 100022
+	icon pd2_fix
+	only_in_civilian false
+	position 0, 50, 100.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_saw_wp´ ElementOperator 100023
+	operation remove
+	elements
+		1 ´saw_wp´
+	on_executed
+		´start_interrupt´ (delay 5)
+´remove_defend_wp´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´defend_wp´
+	on_executed
+		´set_jammed´ (delay 0)
+´remove_fix_wp´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´fix_wp´
+	on_executed
+		´start_interrupt´ (delay 5)
+´activate_defend_wp_2´ MissionScriptElement 100026
+	on_executed
+		´remove_fix_wp´ (delay 0)
+		´defend_wp´ (delay 0)
+´activate_wp001´ MissionScriptElement 100027
+	on_executed
+		´remove_defend_wp001´ (delay 0)
+		´interact_wp´ (delay 0)
+´remove_defend_wp001´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´fix_wp´
+		3 ´saw_wp´
+	on_executed
+		´remove_interrupt´ (delay 0)
+´interact_wp´ ElementWaypoint 100029
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, 50, 100.004
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_defend_wp002´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´defend_wp´
+		2 ´fix_wp´
+		3 ´saw_wp´
+		4 ´interact_wp´
+	on_executed
+		´func_nav_obstacle_002´ (delay 0)
+´remove_interrupt´ MissionScriptElement 100031
+	on_executed
+		´turn_off_so´ (delay 0)
+		´turn_off´ (delay 0)
+´start_interrupt´ MissionScriptElement 100032
+	on_executed
+		´interrupt_logic_start´ (delay 0)
+´interrupt_logic_start´ MissionScriptElement 100033
+	on_executed
+		´turn_on_interrupt_entities´ (delay 0)
+´interrupt_so´ ElementSpecialObjective 100034
+	TRIGGER TIMES 1
+	SO_access 9440
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 10
+	needs_pos_rsrv true
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8.45576E-06, 144, 0.00400543
+	rotation -1.33227E-15, -1.00583E-22, 1, -7.54979E-08
+	scan true
+	search_distance 2000
+	search_position 6,61639 297,457 0,00400394
+	so_action e_so_low_kicks
+	trigger_on none
+	followup_elements
+´loop´ MissionScriptElement 100039
+	on_executed
+		´turn_on_execute_so´ (delay 0) DISABLED
+´turn_on_execute_so´ ElementToggle 100040
+	DISABLED
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´interrupt_so´ (delay 1)
+´anim_complete´ ElementSpecialObjectiveTrigger 100041
+	DISABLED
+	event complete
+	position 800, 700, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´turn_off_so´ (delay 0)
+		´output_saw_interrupted´ (delay 0)
+		´chance_comment´ (delay 0)
+´anim_fail´ ElementSpecialObjectiveTrigger 100042
+	DISABLED
+	event fail
+	position 800, 900, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_so´
+	on_executed
+		´loop´ (delay 0)
+´turn_off_so´ ElementToggle 100043
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´anim_complete´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´remove_so´ (delay 0)
+´remove_so´ ElementOperator 100044
+	operation remove
+	elements
+		1 ´interrupt_so´
+´turn_off´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_logic_start´
+		2 ´loop´
+		3 ´turn_on_execute_so´ DISABLED
+		4 ´anim_fail´ DISABLED
+		5 ´anim_complete´ DISABLED
+		6 ´turn_on_interrupt_entities´
+	on_executed
+		´activate_saw_pickup´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100046
+	DISABLED
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 100, 300, 0.0039978
+	rotation 0, 0, 0.92388, 0.382683
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100047
+	DISABLED
+	position -100, 300, 0.0039978
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	on_executed
+		´input_state_closed´ (delay 0)
+		´input_activate_saw´ (delay 2)
+´activate_saw´ ElementUnitSequence 100048
+	position 100, 800, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence set_hack_time_90_sec
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence show_and_enable_interaction
+			time 0
+´saw_placed´ ElementUnitSequenceTrigger 100049
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+	on_executed
+		´output_saw_placed´ (delay 0)
+		´logic_toggle_001´ (delay 1)
+´saw_placed001´ ElementUnitSequenceTrigger 100050
+	DISABLED
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+	on_executed
+		´output_saw_fixed´ (delay 0)
+´logic_toggle_001´ ElementToggle 100051
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´saw_placed001´ DISABLED
+´set_jammed´ ElementUnitSequence 100052
+	position 200, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence set_jammed
+			time 0
+´trigger_area_001´ ElementAreaTrigger 100053
+	DISABLED
+	amount 1
+	depth 185
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -200, 8, 0.00400543
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 184,45
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0) DISABLED
+´trigger_area_002´ ElementAreaTrigger 100054
+	DISABLED
+	amount 1
+	depth 185
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 200, 8, 0.00400543
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 184,45
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_equipment_001´ (delay 0)
+´func_equipment_001´ ElementEquipment 100055
+	amount 1
+	equipment saw
+	position 300, 100, 0.00400543
+	rotation 0, 0, 0, -1
+´turn_on_interrupt_entities´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´anim_complete´ DISABLED
+		2 ´turn_on_execute_so´ DISABLED
+		3 ´anim_fail´ DISABLED
+	on_executed
+		´loop´ (delay 0.05)
+´saw_done´ ElementUnitSequenceTrigger 100057
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+	on_executed
+		´output_saw_done´ (delay 0)
+		´teammate_comment_done´ (delay 1)
+´activate_saw_pickup´ ElementUnitSequence 100058
+	position 400, 1300, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (0, 0, 0.00400394)
+			notify_unit_sequence show_prop_only
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (0, 0, 0.00400394)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (0, 0, 0.00400394)
+			notify_unit_sequence int_seq_show_complete_screen
+			time 0
+´saw_done001´ ElementUnitSequenceTrigger 100059
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_wwh/pickups/wwh_pku_saw/wwh_pku_saw/001 (0, 0, 0.00400394)
+	on_executed
+		´output_saw_taken´ (delay 0)
+´open_door´ ElementUnitSequence 100060
+	position 0, 1400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_born/props/bor_prop_garage_door/bor_prop_garage_door/001 (5.96046E-06, 0, 0.00400394)
+			notify_unit_sequence anim_door_open
+			time 0
+	on_executed
+		´remove_defend_wp002´ (delay 0)
+´func_nav_obstacle_002´ ElementNavObstacle 100061
+	operation remove
+	position 200, 1400, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (49.9999, 25, 0.00400394)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-150, 25, 0.00400394)
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100062
+	position 300, 1400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_wwh/equipment/wwh_interactable_saw_no_jam/wwh_interactable_saw_no_jam/001 (0, 0, 0.00400394)
+			notify_unit_sequence hide
+			time 0
+´teammate_comment_open_it_up´ ElementTeammateComment 100035
+	close_to_element false
+	comment v16
+	position 0, 150, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100036
+	as_subtitle false
+	debug_string from instance: teammate_comment_open_it_up
+	show_instigator false
+´area_player_close_to_saw´ ElementAreaTrigger 100037
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 100, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 400
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_open_it_up´ (delay 0)
+´enable_area_player_close_to_saw´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_close_to_saw´ DISABLED
+´teammate_comment_swear´ ElementTeammateComment 100063
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g60
+	position 0, 200, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100064
+	as_subtitle false
+	debug_string from instance: teammate_comment_swear
+	show_instigator false
+´chance_comment´ ElementLogicChance 100065
+	chance 40
+	position 50, 200, 100
+	rotation 0, 0, 0, -1
+	on_executed
+		´teammate_comment_swear´ (delay 0)
+´teammate_comment_done´ ElementTeammateComment 100066
+	close_to_element true
+	comment g60
+	position 0, 250, 100
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100067
+	as_subtitle false
+	debug_string from instance: teammate_comment_done
+	show_instigator false

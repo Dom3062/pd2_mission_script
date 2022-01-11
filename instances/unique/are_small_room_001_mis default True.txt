@@ -1,0 +1,923 @@
+´c4_interacted´ ElementUnitSequenceTrigger 100040
+	sequence_list
+	on_executed
+		´Found_All_C4´ (delay 0)
+´point_debug_001´ ElementDebug 100041
+	as_subtitle true
+	debug_string c4 found
+	show_instigator false
+´output_found_C4´ ElementInstanceOutput 100042
+	event Found C4
+´pick_2_shelfs´ ElementRandom 100078
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´Enable_Closet´ ElementInstanceInput 100079
+	event Enable_Closet
+	on_executed
+		´toggle_2´ (delay 0)
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100082
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_03_boxes/002 (209, -358, 0)
+	on_executed
+		´found_4´ (delay 0) DISABLED
+´func_sequence_trigger_004´ ElementUnitSequenceTrigger 100086
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_long_boxes/002 (103, -486, -0.452095)
+	on_executed
+		´found_3´ (delay 0) DISABLED
+´func_sequence_trigger_005´ ElementUnitSequenceTrigger 100087
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_02_boxes/002 (-16, -358, 0)
+	on_executed
+		´found_2´ (delay 0) DISABLED
+´func_sequence_trigger_006´ ElementUnitSequenceTrigger 100088
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_01_boxes/002 (-14, -183, 0)
+	on_executed
+		´found´ (delay 0) DISABLED
+´logic_toggle_001´ ElementToggle 100089
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_5´ DISABLED
+´logic_toggle_002´ ElementToggle 100090
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_4´ DISABLED
+´logic_toggle_003´ ElementToggle 100091
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_3´ DISABLED
+´logic_toggle_004´ ElementToggle 100092
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_2´ DISABLED
+´logic_toggle_005´ ElementToggle 100093
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found´ DISABLED
+´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100081
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_04_boxes/002 (208, -183, 0)
+	on_executed
+		´found_5´ (delay 0) DISABLED
+´door_opened´ ElementUnitSequenceTrigger 100095
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+	on_executed
+		´enable_buttons´ (delay 0) DISABLED
+		´toggle´ (delay 0)
+		´Waypoint enable - Find all c4 in room´ (delay 0) DISABLED
+		´output_door_open´ (delay 0)
+´enable_buttons´ ElementUnitSequence 100096
+	DISABLED
+	position 50, 175, 24.5479
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_01_boxes/002 (-14, -183, 0)
+			notify_unit_sequence state_int_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_02_boxes/002 (-16, -358, 0)
+			notify_unit_sequence state_int_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_03_boxes/002 (209, -358, 0)
+			notify_unit_sequence state_int_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_04_boxes/002 (208, -183, 0)
+			notify_unit_sequence state_int_enabled
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_long_boxes/002 (103, -486, -0.452095)
+			notify_unit_sequence state_int_enabled
+			time 0
+´enable_door_p3´ ElementUnitSequence 100109
+	position 350, -1400, -0.452148
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_01_boxes/002 (-14, -183, 0)
+			notify_unit_sequence state_vis_unhide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_02_boxes/002 (-16, -358, 0)
+			notify_unit_sequence state_vis_unhide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_03_boxes/002 (209, -358, 0)
+			notify_unit_sequence state_vis_unhide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_04_boxes/002 (208, -183, 0)
+			notify_unit_sequence state_vis_unhide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_long_boxes/002 (103, -486, -0.452095)
+			notify_unit_sequence state_vis_unhide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_vis_show
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_vis_door_show
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´disable_door_p1´ ElementDisableUnit 100110
+	EXECUTE ON STARTUP
+	position 225, 25, -0.452148
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_lobby/are_cross/001 (21, -23, 125)
+´output_door_open´ ElementInstanceOutput 100111
+	event Door_Opened
+	on_executed
+		´remove_door_waypoint´ (delay 0)
+		´link´ (delay 0) DISABLED
+´input_enable_green´ ElementInstanceInput 100176
+	event enable_green
+	on_executed
+		´green´ (delay 0)
+´input_enable_red´ ElementInstanceInput 100177
+	event enable_red
+	on_executed
+		´red´ (delay 0)
+´input_enable_blue´ ElementInstanceInput 100178
+	event enable_blue
+	on_executed
+		´blue´ (delay 0)
+´input_enable_yellow´ ElementInstanceInput 100179
+	event enable_yellow
+	on_executed
+		´yellow´ (delay 0)
+´Found_All_C4´ ElementCounter 100182
+	counter_target 1
+	on_executed
+		´point_debug_001´ (delay 0)
+		´remove waypoint´ (delay 0)
+		´disable boxes´ (delay 0)
+´Enable_Loot´ ElementInstanceInput 100039
+	event Enable_Loot
+	on_executed
+		´pick_2_shelfs´ (delay 0)
+		´TEMP_Enable_X_Mark´ (delay 0)
+		´toggle - waypoint´ (delay 0)
+		´enable_loot_closet_opened´ (delay 0)
+´TEMP_Enable_X_Mark´ ElementEnableUnit 100098
+	position -25, 0, 174.548
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_lobby/are_cross/001 (21, -23, 125)
+´enable_door_p1´ ElementDisableUnit 100004
+	position 350, -1475, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/equipment/gen_prop_door_metal_v2/gen_prop_door_metal_v2/001 (100, -50, 0)
+	on_executed
+		´enable_door_p3´ (delay 0)
+´bag_secure_area´ ElementAreaTrigger 100008
+	DISABLED
+	EXECUTE ON STARTUP
+	amount 1
+	depth 295
+	height 96,6
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 100, -400, 375.056
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 85
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´secure´ (delay 0)
+		´remove_leftovers´ (delay 0) DISABLED
+´secure´ ElementCarry 100009
+	operation secure
+	type_filter money
+	on_executed
+		´remove´ (delay 0.25)
+		´Bag Secured´ (delay 0)
+´remove´ ElementCarry 100011
+	operation remove
+	type_filter money
+´point_interaction_001´ ElementInteraction 100012
+	DISABLED
+	host_only false
+	override_timer 1
+	position 100, -300, 288.056
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id hold_open
+	on_executed
+		´Vent_was_opened´ (delay 0) (alternative interacted)
+´open_vent´ ElementUnitSequence 100014
+	position -1100, -1500, -0.508179
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling/001 (100, -300, 300.056)
+			notify_unit_sequence release_vent_no_bagblock
+			time 0
+	on_executed
+		´enable_vent_stash´ (delay 0)
+´enable_vent_stash´ MissionScriptElement 100018
+	on_executed
+		´bag_enable´ (delay 0)
+´bag_enable´ ElementToggle 100019
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´bag_secure_area´ DISABLED
+´alarm_toggle´ ElementToggle 100021
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_interaction_001´ DISABLED
+		2 ´enable_vent_stash´
+		3 ´enable_costume_change´
+		4 ´Trigger_Costume_Change´
+		5 ´Vent_was_opened´
+		6 ´trigger_costume´ DISABLED
+		7 ´Remove_Mask´
+		8 ´func_whisper_turn_on´ DISABLED
+		9 ´secure´
+		10 ´enable_vent_and_waypoint´
+		11 ´enable costume´ DISABLED
+		12 ´off_2´
+		13 ´on_5´
+	on_executed
+		´remove_secure´ (delay 0)
+		´remove_costume´ (delay 0)
+		´Hide_Costume_Zone´ (delay 0)
+		´remove_goto´ (delay 0)
+		´enable_vent_bagblock´ (delay 0)
+´enable_costume_change´ MissionScriptElement 100034
+	on_executed
+		´remove_secure´ (delay 0)
+		´waypoint_costume´ (delay 0)
+		´Show_Costume_Zone´ (delay 0)
+´waypoint_goto´ ElementWaypoint 100035
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 100, -300, 275
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_goto´ ElementOperator 100036
+	operation remove
+	elements
+		1 ´waypoint_goto´
+´waypoint_secure´ ElementWaypoint 100037
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 100, -300, 375
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_secure´ ElementOperator 100038
+	operation remove
+	elements
+		1 ´waypoint_secure´
+´waypoint_costume´ ElementWaypoint 100049
+	icon pd2_escape
+	only_in_civilian false
+	only_on_instigator false
+	position 100, -400, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_costume´ ElementOperator 100050
+	operation remove
+	elements
+		1 ´waypoint_costume´
+´Vent_was_opened´ MissionScriptElement 100051
+	on_executed
+		´open_vent´ (delay 0)
+		´remove_goto´ (delay 0)
+		´waypoint_secure´ (delay 0)
+´Enable_Silent_Escape´ ElementInstanceInput 100052
+	DISABLED
+	event enable_silent_escape
+	on_executed
+		´enable_vent_and_waypoint´ (delay 0)
+´enable_vent_and_waypoint´ MissionScriptElement 100053
+	BASE DELAY 5
+	on_executed
+		´on´ (delay 0)
+´on´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´point_interaction_001´ DISABLED
+		2 ´enable costume´ DISABLED
+	on_executed
+		´waypoint_goto´ (delay 0)
+´Show_Costume_Zone´ ElementUnitSequence 100058
+	position -1300, -1500, -0.508179
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_4x15/gen_prop_square_goal_marker_4x15/001 (100, -325, -8.00007)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´on_2´ (delay 0)
+´trigger_costume´ ElementAreaTrigger 100059
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 375
+	height 270
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 100, -325, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 140
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´Trigger_Costume_Change´ (delay 0)
+´on_2´ ElementToggle 100060
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_costume´ DISABLED
+	on_executed
+		´phone_answered´ (delay 0)
+´Trigger_Costume_Change´ MissionScriptElement 100061
+	on_executed
+		´on_3´ (delay 0)
+		´remove_costume´ (delay 0)
+´Remove_Mask´ ElementPlayerState 100064
+	position -1475, -1350, -0.508179
+	rotation 0, 0, 0, -1
+	state mask_off
+	use_instigator false
+	on_executed
+		´ready_for_exit´ (delay 0)
+		´Close_door´ (delay 0)
+		´Vo - Bain´ (delay 0)
+´func_whisper_turn_on´ ElementWhisperState 100065
+	DISABLED
+	disable_hud false
+	position -1475, -1150, -0.508179
+	rotation 0, 0, 0, -1
+	state true
+´on_3´ ElementToggle 100066
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_whisper_turn_on´ DISABLED
+	on_executed
+		´fade_out´ (delay 0)
+´fade_out´ ElementOverlayEffect 100067
+	effect fade_out_in
+	fade_in 1
+	fade_out 1
+	position -1475, -1425, -0.508179
+	rotation 0, 0, 0, -1
+	sustain 12
+	on_executed
+		´Remove_Mask´ (delay 1)
+		´Hide_Costume_Zone´ (delay 0)
+		´about_to_fade_in´ (delay 12.75)
+´Hide_Costume_Zone´ ElementUnitSequence 100070
+	position -1600, -1425, -0.508179
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_4x15/gen_prop_square_goal_marker_4x15/001 (100, -325, -8.00007)
+			notify_unit_sequence hide
+			time 0
+´Close_door´ ElementUnitSequence 100071
+	position -1600, -1350, -0.508179
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_door_close
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_interaction_disable
+			time 0
+	on_executed
+		´Open_Door´ (delay 5) DISABLED
+´Open_Door´ ElementUnitSequence 100072
+	DISABLED
+	position -1600, -1150, -0.508179
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_door_open
+			time 0
+´Closet_Closed´ ElementInstanceOutput 100073
+	event Closet_Closed
+	on_executed
+		´func_whisper_turn_on´ (delay 0) DISABLED
+´ready_for_exit´ ElementCounter 100099
+	counter_target 2
+	on_executed
+		´Closet_Closed´ (delay 0)
+´Door_Closed´ ElementUnitSequenceTrigger 100101
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_door_close
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+	on_executed
+		´ready_for_exit´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+´logic_toggle_006´ ElementToggle 100102
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Open_Door´ DISABLED
+´enable_vent_bagblock´ ElementUnitSequence 100105
+	position 1050, -1375, -0.452148
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/com_prop_vent_ceiling/com_prop_vent_ceiling/001 (100, -300, 300.056)
+			notify_unit_sequence state_bagblock_on
+			time 0
+	on_executed
+		´On´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´Door disable´ (delay 0)
+		´Door panel´ (delay 0)
+´remove_leftovers´ ElementCarry 100106
+	DISABLED
+	operation remove
+	type_filter none
+	on_executed
+		´point_loot_bag_001´ (delay 0)
+´On´ ElementToggle 100107
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´remove_leftovers´ DISABLED
+		2 ´Security_Removed´ DISABLED
+		3 ´off_3´ DISABLED
+´point_loot_bag_001´ ElementLootBag 100114
+	carry_id money
+	from_respawn false
+	position 100, -300, 225
+	rotation 0, 0, 0, -1
+´Bag Secured´ ElementInstanceOutput 100022
+	event Bag Secured
+´enable costume´ ElementInstanceInput 100017
+	DISABLED
+	event Enable_Costume_Change
+	on_executed
+		´enable call´ (delay 0)
+´Door panel´ ElementUnitSequence 100104
+	position 1050, -1275, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_screen_enabled
+			time 0
+´toggle´ ElementToggle 100033
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´Door panel´
+		2 ´remove_security - door´
+´toggle_2´ ElementToggle 100115
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Alarm´ DISABLED
+	on_executed
+		´enable_door_p1´ (delay 0)
+´waypoint_loot closet´ ElementWaypoint 100119
+	icon pd2_loot
+	only_in_civilian false
+	only_on_instigator false
+	position 100, -275, 99.9999
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´Waypoint enable - Find all c4 in room´ MissionScriptElement 100120
+	DISABLED
+	on_executed
+		´waypoint_loot closet´ (delay 0)
+´toggle - waypoint´ ElementToggle 100121
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Waypoint enable - Find all c4 in room´ DISABLED
+´remove waypoint´ ElementOperator 100125
+	operation remove
+	elements
+		1 ´waypoint_loot closet´
+´found´ MissionScriptElement 100005
+	DISABLED
+	on_executed
+		´Found_All_C4´ (delay 0)
+´found_2´ MissionScriptElement 100006
+	DISABLED
+	on_executed
+		´Found_All_C4´ (delay 0)
+´found_3´ MissionScriptElement 100010
+	DISABLED
+	on_executed
+		´Found_All_C4´ (delay 0)
+´found_4´ MissionScriptElement 100013
+	DISABLED
+	on_executed
+		´Found_All_C4´ (delay 0)
+´found_5´ MissionScriptElement 100015
+	DISABLED
+	on_executed
+		´Found_All_C4´ (delay 0)
+´give_c4_x10´ ElementEquipment 100027
+	amount 2
+	equipment c4_x10
+	position 1500, -1275, 24.5479
+	rotation 0, 0, 0, -1
+	on_executed
+		´output_found_C4´ (delay 0)
+´disable boxes´ ElementUnitSequence 100028
+	position 1500, -1375, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_01_boxes/002 (-14, -183, 0)
+			notify_unit_sequence state_int_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_02_boxes/002 (-16, -358, 0)
+			notify_unit_sequence state_int_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_03_boxes/002 (209, -358, 0)
+			notify_unit_sequence state_int_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_04_boxes/002 (208, -183, 0)
+			notify_unit_sequence state_int_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_boxes/are_supply_shelf_long_boxes/002 (103, -486, -0.452095)
+			notify_unit_sequence state_int_disable
+			time 0
+	on_executed
+		´give_c4_x10´ (delay 0)
+		´give_cutter´ (delay 0)
+´Security_Removed´ ElementInstanceInput 100029
+	DISABLED
+	event Security_Removed
+	on_executed
+		´off_3´ (delay 0) DISABLED
+´remove_security - panel´ ElementUnitSequence 100030
+	position 1050, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_screen_disabled
+			time 0
+	on_executed
+		´remove_security - door´ (delay 0)
+´output_loot_closet_opened´ ElementInstanceOutput 100031
+	event loot_closet_opened
+	on_executed
+		´point_debug_002´ (delay 0)
+´enable_loot_closet_opened´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_found_closet´ DISABLED
+		2 ´enable_buttons´ DISABLED
+		3 ´link´ DISABLED
+´enable call´ ElementUnitSequence 100045
+	position -1200, -1500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´call´ (delay 0)
+´call answered´ ElementUnitSequenceTrigger 100046
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+	on_executed
+		´enable_costume_change´ (delay 0)
+		´logic_operator_001´ (delay 0)
+´Choose_Silent_Escape´ ElementInstanceInput 100047
+	TRIGGER TIMES 1
+	event Choose_Silent_Escape
+	on_executed
+		´on_4´ (delay 0)
+´on_4´ ElementToggle 100048
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Enable_Silent_Escape´ DISABLED
+´call´ ElementWaypoint 100056
+	icon pd2_phone
+	only_in_civilian false
+	only_on_instigator false
+	position 180, -17, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100057
+	operation remove
+	elements
+		1 ´call´
+´give_cutter´ ElementEquipment 100069
+	amount 1
+	equipment circle_cutter
+	position 1350, -1275, 24.5479
+	rotation 0, 0, 0, -1
+	on_executed
+		´output_found_cutter´ (delay 0)
+´off´ ElementToggle 100068
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´give_cutter´
+´Disable Cutters´ ElementInstanceInput 100074
+	event disable_cutters
+	on_executed
+		´off´ (delay 0)
+´about_to_fade_in´ ElementInstanceOutput 100043
+	event about_to_fade_in
+´Vo - Bain´ ElementDialogue 100044
+	can_not_be_muted false
+	dialogue Play_pln_al1_08
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´output_found_cutter´ ElementInstanceOutput 100077
+	event Found Cutter
+´green´ ElementUnitSequence 100080
+	position 400, -975, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_room_01/001 (-50, -25, 0)
+			notify_unit_sequence state_color_green
+			time 0
+´red´ ElementUnitSequence 100083
+	position 300, -975, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_room_01/001 (-50, -25, 0)
+			notify_unit_sequence state_color_red
+			time 0
+´blue´ ElementUnitSequence 100084
+	position 200, -975, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_room_01/001 (-50, -25, 0)
+			notify_unit_sequence state_color_blue
+			time 0
+´yellow´ ElementUnitSequence 100085
+	position 100, -975, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/architecture/are_supply_room_01/are_supply_room_01/001 (-50, -25, 0)
+			notify_unit_sequence state_color_yellow
+			time 0
+´ecm_on´ ElementGlobalEventTrigger 100143
+	global_event ecm_jammer_on
+	position 875, -1550, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´on_5´ (delay 0)
+´ecm_off´ ElementGlobalEventTrigger 100144
+	global_event ecm_jammer_off
+	position 875, -1125, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´off_2´ (delay 0)
+´on_5´ MissionScriptElement 100145
+	on_executed
+		´jam´ (delay 0)
+		´Door disable´ (delay 0)
+´jam´ ElementUnitSequence 100147
+	position 875, -1375, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/are_interactable_gensec_panel/are_interactable_gensec_panel/security_panel (180, -25, 125)
+			notify_unit_sequence state_screen_jammed
+			time 0
+´Door disable´ ElementUnitSequence 100152
+	position 975, -1275, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´off_2´ MissionScriptElement 100146
+	on_executed
+		´remove_security - panel´ (delay 0)
+´off_3´ MissionScriptElement 100148
+	DISABLED
+	on_executed
+		´remove_security - panel´ (delay 0)
+´trigger_found_closet´ ElementAreaTrigger 100149
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 100, 125, 125
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 300
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´VO Team - Found Closet´ (delay 0)
+		´found_closet_output´ (delay 0)
+´remove_door_waypoint´ ElementOperator 100151
+	operation remove
+´VO Team - Found Closet´ ElementTeammateComment 100153
+	close_to_element true
+	comment g14
+	position 100, -25, 125
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´found_closet_output´ ElementInstanceOutput 100154
+	event found_closet
+´remove_security - door´ ElementUnitSequence 100150
+	position 1050, -925, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/equipment/gen_interactable_door_keycard_v2/gen_interactable_door_keycard_v2/security_door (155, -29, -0.452023)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´Alarm´ ElementInstanceInput 100155
+	DISABLED
+	event Alarm
+	on_executed
+		´alarm_toggle´ (delay 0)
+´link´ MissionScriptElement 100020
+	DISABLED
+	on_executed
+		´output_loot_closet_opened´ (delay 0)
+´point_debug_002´ ElementDebug 100156
+	as_subtitle false
+	debug_string opened_closet_output
+	show_instigator false
+´phone_answered´ ElementInstanceOutput 100157
+	TRIGGER TIMES 1
+	event phone_answered

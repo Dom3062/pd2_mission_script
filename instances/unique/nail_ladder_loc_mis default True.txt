@@ -1,0 +1,147 @@
+´ladder_bag_trigger´ ElementAreaTrigger 100003
+	TRIGGER TIMES 1
+	amount 1
+	depth 300
+	height 100
+	instigator loot
+	interval 0.1
+	position -75, 0, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 200
+	rules_element_ids
+		1 ´ladder_bag_filter´
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´carry_remove_ladderbag´ (delay 0)
+´ladder_bag_filter´ ElementInstigatorRule 100004
+	instigator loot
+	invert false
+	rules
+		loot
+			carry_ids
+				1 ladder_bag
+´enable_transparent´ ElementEnableUnit 100005
+	position 0, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/ladder_train_transparent/ladder_train_transparent/001 (0, 0, 0)
+		2 units/pd2_dlc_cro/gen_prop_ladder_marker/gen_prop_ladder_marker/001 (-75, 0, 0)
+´enable_ladder_prop´ ElementEnableUnit 100006
+	position 0, 800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/ladder_train/ladder_train/001 (0, 0, 0)
+	on_executed
+		´seq_enable_ladder´ (delay 0)
+´disable_ladder_prop´ ElementDisableUnit 100007
+	position -100, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/ladder_train/ladder_train/001 (0, 0, 0)
+	on_executed
+		´disable_transparent´ (delay 0)
+´disable_transparent´ ElementDisableUnit 100008
+	position -200, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_cro/gen_prop_ladder_marker/gen_prop_ladder_marker/001 (-75, 0, 0)
+		2 units/pd2_dlc_cro/ladder_train_transparent/ladder_train_transparent/001 (0, 0, 0)
+´seq_disable_ladder´ ElementUnitSequence 100009
+	position 0, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (-3.99756, -2.38419E-07, 0.139598)
+			notify_unit_sequence state_ladder_disable
+			time 0
+	on_executed
+		´disable_ladder_prop´ (delay 0)
+´seq_enable_ladder´ ElementUnitSequence 100010
+	position -100, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (-3.99756, -2.38419E-07, 0.139598)
+			notify_unit_sequence state_ladder_enable
+			time 0
+	on_executed
+		´point_special_objective_001´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´inst_ladder_loc_startup´ ElementInstanceInput 100011
+	event ladder_loc_startup
+	on_executed
+		´seq_disable_ladder´ (delay 0)
+´inst_ladder_loc_startup001´ ElementInstanceInput 100012
+	event ladder_loc_player_has_ladder
+	on_executed
+		´enable_transparent´ (delay 0)
+´inst_received_bag´ ElementInstanceOutput 100013
+	event ladder_loc_recieved_bag
+	on_executed
+		´disable_transparent´ (delay 0)
+´carry_remove_ladderbag´ ElementCarry 100015
+	operation remove
+	type_filter none
+	on_executed
+		´enable_ladder_prop´ (delay 0)
+´point_special_objective_001´ ElementSpecialObjective 100016
+	SO_access 262140
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 2
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance hos
+	path_style destination
+	patrol_path none
+	pose none
+	position -100, 0, 6.82777E-12
+	rotation -5.26836E-09, 5.26836E-09, 0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 97,9349 -0,911236 600
+	so_action e_nl_cs_up_sewer_ladder
+	trigger_on none
+	followup_elements
+´inst_disable_ladder_loc´ ElementInstanceInput 100017
+	event ladder_loc_disable
+	on_executed
+		´toggle_ladderbag_trigger´ (delay 0)
+´toggle_ladderbag_trigger´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ladder_bag_trigger´
+	on_executed
+		´inst_ladder_loc_startup´ (delay 0)
+´logic_toggle_001´ ElementToggle 100019
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´inst_ladder_loc_startup´
+	on_executed
+		´inst_received_bag´ (delay 0)
+´inst_ladder_loc_startup002´ ElementInstanceInput 100020
+	event ladder_loc_enable
+	on_executed
+		´enable_ladder_prop´ (delay 0)

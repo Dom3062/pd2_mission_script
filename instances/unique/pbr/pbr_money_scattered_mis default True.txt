@@ -1,0 +1,112 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	position 350, -25, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+´startup´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´hide´ (delay 0)
+´hide´ ElementUnitSequence 100002
+	position 250, -325, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_money_pile/jry_pku_money_pile/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_money_pile/jry_pku_money_pile/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´show_money´ ElementInstanceInput 100003
+	event show_money
+	on_executed
+		´show´ (delay 0)
+		´enable001´ (delay 0)
+´show´ ElementUnitSequence 100004
+	position 250, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_money_pile/jry_pku_money_pile/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+´found_first´ ElementInstanceOutput 100006
+	event found_first
+´on_player_enter´ ElementAreaTrigger 100007
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 2341,86
+	instigator player
+	interval 0.1
+	position 0, 0, 202.5
+	radius 885,96
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´found_first´ (delay 0)
+		´pick_1´ (delay 0)
+		´enable_interaction´ (delay 0)
+´found_one´ ElementTeammateComment 100008
+	close_to_element true
+	comment v05
+	position 0, 0, 102.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´found_another´ ElementTeammateComment 100009
+	DISABLED
+	close_to_element true
+	comment v06
+	position 0, 0, 127.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´enable_found_other´ ElementInstanceInput 100010
+	event enable_found_other
+	on_executed
+		´enable´ (delay 0)
+´enable´ ElementToggle 100011
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´found_another´ DISABLED
+´pick_1´ ElementRandom 100013
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´found_another´ (delay 0) DISABLED
+		´found_one´ (delay 0)
+´enable001´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´on_player_enter´ DISABLED
+´enable_interaction´ ElementUnitSequence 100005
+	position 175, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jerry/pickups/jry_pku_money_pile/jry_pku_money_pile/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0

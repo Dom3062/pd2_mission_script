@@ -1,0 +1,71 @@
+´puddle_radius´ ElementAreaTrigger 100003
+	amount 1
+	depth 500
+	height 163,087
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 50
+	radius 92,2453
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link´ (delay 0) DISABLED
+´link´ MissionScriptElement 100004
+	DISABLED
+	on_executed
+		´func_player_state_FATAL´ (delay 0)
+´func_player_state_FATAL´ ElementPlayerState 100009
+	position 0, -150, 0
+	rotation 0, 0, 0, -1
+	state incapacitated
+	use_instigator false
+´AUTO_START´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_2´ (delay 0)
+´hide´ ElementDisableUnit 100007
+	position -150, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/com_prop_janitor_mop/com_prop_janitor_sign_wetfloor_standing/001 (0, 0, 0)
+		2 units/world/architecture/street/decals/ground/decal_ground_middle_puddle/001 (6, -4, 0)
+		3 units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/001 (4.25209E-07, 1, 76)
+		4 units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/002 (-9.21848E-07, 1, 76)
+	on_executed
+		´OFF´ (delay 0)
+´show´ ElementInstanceInput 100008
+	event show
+	on_executed
+		´show_2´ (delay 0)
+´show_2´ ElementEnableUnit 100010
+	position 150, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/com_prop_janitor_mop/com_prop_janitor_sign_wetfloor_standing/001 (0, 0, 0)
+		2 units/world/architecture/street/decals/ground/decal_ground_middle_puddle/001 (6, -4, 0)
+		3 units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/001 (4.25209E-07, 1, 76)
+		4 units/pd2_dlc_berry/props/bry_prop_vault_lamp/bry_prop_vault_lamp/002 (-9.21848E-07, 1, 76)
+	on_executed
+		´ON´ (delay 0)
+´OFF´ ElementToggle 100011
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link´ DISABLED
+´ON´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link´ DISABLED
+´hide_2´ ElementInstanceInput 100000
+	event hide
+	on_executed
+		´hide´ (delay 0)

@@ -1,0 +1,443 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_call_helicopter_backup´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence hidden
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_call_helicopter_backup´ ElementInstanceInput 100007
+	event call_helicopter_backup
+	on_executed
+		´seq_helicopter_flyin´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event none
+´seq_helicopter_flyin´ ElementUnitSequence 100010
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence change_material_to_mexican
+			time 0
+	on_executed
+		´seq_helicopter_open_doors´ (delay 23)
+´seq_helicopter_open_doors´ ElementUnitSequence 100011
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence open_door_right
+			time 0.25
+	on_executed
+		´seq_helicopter_close_doors´ (delay 7)
+		´filter_easy_to_hard´ (delay 0)
+		´filter_VH_and_OK´ (delay 0)
+		´filter_EW_and_DW´ (delay 0)
+		´filter_SW´ (delay 0)
+´seq_helicopter_close_doors´ ElementUnitSequence 100012
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence close_door_right
+			time 0.5
+	on_executed
+		´seq_helicopter_flyout´ (delay 4)
+´seq_helicopter_flyout´ ElementUnitSequence 100013
+	position 800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´seq_helicopter_hide´ (delay 25)
+´filter_easy_to_hard´ ElementFilter 100014
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_001´ (delay 3)
+		´ai_spawn_enemy_002´ (delay 3.5)
+		´ai_spawn_enemy_009´ (delay 4)
+		´ai_spawn_enemy_013´ (delay 4.5)
+´filter_VH_and_OK´ ElementFilter 100015
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_003´ (delay 3.5)
+		´ai_spawn_enemy_004´ (delay 3)
+		´ai_spawn_enemy_010´ (delay 4)
+		´ai_spawn_enemy_014´ (delay 4.5)
+´filter_EW_and_DW´ ElementFilter 100016
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1200, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_005´ (delay 3)
+		´ai_spawn_enemy_006´ (delay 3.5)
+		´ai_spawn_enemy_011´ (delay 4.5)
+		´ai_spawn_enemy_015´ (delay 4)
+´filter_SW´ ElementFilter 100017
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1300, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_007´ (delay 3.5)
+		´ai_spawn_enemy_008´ (delay 3)
+		´ai_spawn_enemy_012´ (delay 4)
+		´ai_spawn_enemy_016´ (delay 4.5)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100018
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100019
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, 50, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100020
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, 50, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100022
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100023
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, 50, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_007´ ElementSpawnEnemyDummy 100024
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, 50, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_008´ ElementSpawnEnemyDummy 100025
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, 50, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´seq_helicopter_hide´ ElementUnitSequence 100026
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -150)
+			notify_unit_sequence hidden
+			time 0
+´ai_spawn_enemy_009´ ElementSpawnEnemyDummy 100027
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_010´ ElementSpawnEnemyDummy 100028
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_011´ ElementSpawnEnemyDummy 100029
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_012´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -300, -75, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_013´ ElementSpawnEnemyDummy 100031
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -75, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_014´ ElementSpawnEnemyDummy 100032
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -75, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_015´ ElementSpawnEnemyDummy 100033
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -75, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_016´ ElementSpawnEnemyDummy 100034
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 300, -75, 0
+	rotation 0, 0, -2.68221E-07, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements

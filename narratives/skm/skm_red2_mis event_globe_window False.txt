@@ -1,0 +1,302 @@
+´ai_enemy_prefered_add_001´ ElementEnemyPreferedAdd 100343
+	spawn_groups
+´get_C4_now´ MissionScriptElement 100344
+	on_executed
+		´SO_place_C4001´ (delay 0)
+		´SO_place_C4002´ (delay 0)
+		´SO_place_C4003´ (delay 0)
+		´point_debug_014´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100350
+	position -3650, 2750, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_C4_SO001´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100351
+	position -3650, 2400, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_C4_SO002´ (delay 0)
+´func_sequence_004´ ElementUnitSequence 100354
+	position -3600, 1825, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_C4_SO003´ (delay 0)
+´logic_counter_001´ ElementCounter 100361
+	counter_target 1
+	on_executed
+		´destroy_glass´ (delay 0)
+		´boom´ (delay 5)
+		´func_execute_in_other_mission_001´ (delay 0)
+´destroy_glass´ ElementUnitSequence 100496
+	position -3900, 2650, 250
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/012 (-2588, 2597, 196)
+			notify_unit_sequence destroy_02
+			time 5
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/011 (-2588, 2597, -12)
+			notify_unit_sequence destroy_02
+			time 5
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/009 (-2338, 2597, -12)
+			notify_unit_sequence destroy_02
+			time 5
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/010 (-2338, 2597, 196)
+			notify_unit_sequence destroy_02
+			time 5
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/008 (-2078, 2597, 196)
+			notify_unit_sequence destroy_01
+			time 5
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/007 (-2078, 2597, -12)
+			notify_unit_sequence destroy_01
+			time 5
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/006 (-2028, 2338, 196)
+			notify_unit_sequence destroy_01
+			time 5
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/005 (-2028, 2338, -12)
+			notify_unit_sequence destroy_01
+			time 5
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/003 (-2028, 1953, -12)
+			notify_unit_sequence destroy_01
+			time 5
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/004 (-2028, 1953, 196)
+			notify_unit_sequence destroy_01
+			time 5
+		11
+			id 11
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/001 (-2028, 1568, 196)
+			notify_unit_sequence destroy_01
+			time 5
+		12
+			id 12
+			name run_sequence
+			notify_unit_id units/world/architecture/bank/bank_glass_a/bank_glass_a/002 (-2028, 1568, -12)
+			notify_unit_sequence destroy_01
+			time 5
+´boom´ MissionScriptElement 100506
+	on_executed
+		´func_sequence_043´ (delay 0)
+		´ai_enemy_prefered_add_001´ (delay 5)
+		´func_execute_in_other_mission_006´ (delay 0)
+´ai_enemy_trigger_005´ ElementEnemyDummyTrigger 100593
+	event spawn
+	position -2900, 2775, 152.177
+	rotation 0, 0, 0, -1
+´logic_counter_002´ ElementCounter 100358
+	counter_target 3
+	on_executed
+		´logic_counter_001´ (delay 3)
+´func_sequence_043´ ElementUnitSequence 102237
+	position -4000, 3175, 350
+	rotation 0, 0, 0, -1
+	trigger_list
+´ai_enemy_trigger_049´ ElementEnemyDummyTrigger 101286
+	event death
+	position -2650, 2725, -25.0001
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_toggle_008´ (delay 0)
+´logic_toggle_008´ ElementToggle 101287
+	set_trigger_times -1
+	toggle off
+´func_execute_in_other_mission_001´ ElementExecuteInOtherMission 100680
+	BASE DELAY -0
+	TRIGGER TIMES -0
+	position -3600, 3050, 300
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_kill_navlinks_windows_globe´ (delay -0)
+´logic_link_force_glb_wndw´ MissionScriptElement 102165
+	on_executed
+		´get_C4_now´ (delay 0)
+´func_execute_in_other_mission_006´ ElementExecuteInOtherMission 103866
+	position -3550, 3150, 250
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_execute_in_other_mission_007´ (delay 20)
+´func_execute_in_other_mission_007´ ElementExecuteInOtherMission 103878
+	position -3550, 3250, 250
+	rotation 0, 0, 0, -1
+´logic_toggle_097´ ElementToggle 101054
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´plant_C4_fail(enemy_death_in_original)´
+	on_executed
+		´point_debug_008´ (delay 0)
+´point_debug_008´ ElementDebug 103509
+	as_subtitle false
+	debug_string wndw offff
+	show_instigator false
+´SO_place_C4001´ ElementSpecialObjective 100598
+	SO_access 448
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 20
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -3428, 2737, -25
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 3000
+	search_position -3469,22 2687,59 -24,9984
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´SO_place_C4002´ ElementSpecialObjective 102509
+	SO_access 448
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 20
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -3428, 2287, -25
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 3000
+	search_position -3474,91 2248,23 -24,9983
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´SO_place_C4003´ ElementSpecialObjective 103238
+	SO_access 448
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 20
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -3428, 1837, -25
+	rotation 0, 0, 0.707107, -0.707107
+	scan true
+	search_distance 3000
+	search_position -3477,61 1860,35 -24,9983
+	so_action e_so_plant_c4_hi
+	trigger_on none
+	followup_elements
+´remove_C4_SO001´ ElementOperator 103244
+	operation remove
+	elements
+		1 ´SO_place_C4001´
+´remove_C4_SO002´ ElementOperator 103246
+	operation remove
+	elements
+		1 ´SO_place_C4002´
+´remove_C4_SO003´ ElementOperator 103251
+	operation remove
+	elements
+		1 ´SO_place_C4003´
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 103257
+	event anim_start
+	position -3550, 2750, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_place_C4001´
+	on_executed
+		´func_sequence_002´ (delay 1)
+		´logic_counter_002´ (delay 0)
+´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100348
+	event anim_start
+	position -3575, 2325, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_place_C4002´
+	on_executed
+		´func_sequence_003´ (delay 1)
+		´logic_counter_002´ (delay 0)
+´trigger_special_objective_003´ ElementSpecialObjectiveTrigger 103261
+	event anim_start
+	position -3600, 1900, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_place_C4003´
+	on_executed
+		´logic_counter_002´ (delay 0)
+		´func_sequence_004´ (delay 1)
+		´logic_toggle_097´ (delay 0)
+´plant_C4_fail(enemy_death_in_original)´ ElementSpecialObjectiveTrigger 100352
+	event fail
+	position -3500, 3000, 400
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_place_C4001´
+		2 ´SO_place_C4002´
+		3 ´SO_place_C4003´
+´point_debug_014´ ElementDebug 103268
+	as_subtitle false
+	debug_string C4 NOW
+	show_instigator false

@@ -1,0 +1,53 @@
+´opened_armoury_door´ ElementUnitSequenceTrigger 100021
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_b/001 (-882, -27, 0)
+	on_executed
+		´allow_armoury_graph´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´allow_armoury_graph´ ElementInstanceOutput 100022
+	event allow_armoury_graph
+	on_executed
+		´func_dialogue_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100033
+	append_prefix false
+	position -900, -150, 100
+	rotation 0, 0, 0, -1
+	sound_event Play_sys_hb2_07
+	use_instigator false
+´vo_trigger´ ElementAreaTrigger 100034
+	TRIGGER TIMES 1
+	amount 1
+	depth 400
+	height 300
+	instigator player
+	interval 0.1
+	position -775, 200, 125.935
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 700
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+´func_dialogue_001´ ElementDialogue 100035
+	dialogue Play_pln_hb2_14
+	execute_on_executed_when_done false
+	use_position false
+´used_keycard´ ElementUnitSequenceTrigger 100031
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door_keycard
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_door_b/001 (-882, -27, 0)
+	on_executed
+		´used_keycard_2´ (delay 0)
+´used_keycard_2´ ElementInstanceOutput 100032
+	event used_keycard

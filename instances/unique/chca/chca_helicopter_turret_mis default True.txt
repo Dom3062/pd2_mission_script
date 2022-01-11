@@ -1,0 +1,524 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´logic_filter_002´ (delay 0)
+		´logic_filter_003´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_summon_chopper_01´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence state_vis_hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_summon_chopper_01´ ElementInstanceInput 100007
+	event summon_choppe_turret_01
+	on_executed
+		´disable_wrong_side_001´ (delay 0)
+´output_turret_done´ ElementInstanceOutput 100008
+	TRIGGER TIMES 1
+	event chopper_dealt_with
+	on_executed
+		´point_debug_001´ (delay 0)
+´arrive_chopper_01´ ElementUnitSequence 100010
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_enter_01
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence turret_spawn
+			time 0
+´enable_turret´ ElementUnitSequence 100011
+	position 800, -175, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence turret_activate
+			time 0
+´fly_out_chopper_001´ ElementUnitSequence 100013
+	position 1400, -4.57764E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_exit_01
+			time 0
+´seq_hide_chopper´ ElementUnitSequence 100014
+	TRIGGER TIMES 1
+	position 1400, -175, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence state_vis_hide
+			time 0
+´WP_kill_chopper_001´ ElementWaypoint 100015
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -4575, 4599, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link´ MissionScriptElement 100016
+	TRIGGER TIMES 1
+	on_executed
+		´output_chopper_inplace´ (delay 0)
+		´show_WP´ (delay 0)
+		´enable_turret´ (delay 0)
+´remove_WP´ ElementOperator 100017
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´WP_kill_chopper_002´
+		2 ´WP_kill_chopper_001´
+		3 ´WP_kill_chopper_003´
+	on_executed
+		´fly_out_chopper_001´ (delay 0)
+		´fly_out_chopper_002´ (delay 0)
+		´fly_out_chopper_003´ (delay 0)
+´turret_damaged´ ElementUnitSequenceTrigger 100022
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence damaged
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´start_timer´ (delay 0)
+		´point_debug_002´ (delay 0)
+´point_debug_001´ ElementDebug 100024
+	as_subtitle false
+	debug_string chopper_no_more
+	show_instigator false
+´output_chopper_inplace´ ElementInstanceOutputEvent 100028
+	event_list
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100031
+	as_subtitle false
+	debug_string turret_chopper_inplace
+	show_instigator false
+´input_show_WP´ ElementInstanceInput 100033
+	event show_WP
+	on_executed
+		´show_WP´ (delay 0)
+´show_WP´ ElementCounter 100046
+	counter_target 2
+	on_executed
+		´WP_kill_chopper_001´ (delay 0)
+		´WP_kill_chopper_002´ (delay 0)
+		´WP_kill_chopper_003´ (delay 0)
+´battle_timer´ ElementTimer 100012
+	timer 0
+´logic_filter_002´ ElementFilter 100019
+	difficulty_easy true
+	difficulty_easy_wish true
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_timer_operator_001´ (delay 0)
+		´logic_timer_operator_004´ (delay 0)
+´logic_filter_003´ ElementFilter 100020
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1200, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_timer_operator_002´ (delay 0)
+		´logic_timer_operator_004´ (delay 0)
+´logic_timer_operator_001´ ElementTimerOperator 100018
+	operation set_time
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
+	time
+		1 60
+		2 30
+	elements
+		1 ´battle_timer´
+´logic_timer_operator_002´ ElementTimerOperator 100023
+	operation set_time
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	time
+		1 90
+		2 30
+	elements
+		1 ´battle_timer´
+´timer_reached_0´ ElementTimerTrigger 100025
+	position 1400, 300, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´battle_timer´
+	on_executed
+		´disable_other_trigger_002´ (delay 0)
+		´output_turret_done´ (delay 0)
+		´stop_timer´ (delay 0)
+´start_timer´ ElementTimerOperator 100027
+	operation start
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´battle_timer´
+´stop_timer´ ElementTimerOperator 100029
+	operation pause
+	position 1300, 400, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´battle_timer´
+´turret_destroyed´ ElementUnitSequenceTrigger 100030
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_turret_destroyed
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´disable_other_trigger_001´ (delay 0)
+		´output_turret_done´ (delay 0)
+´disable_other_trigger_001´ ElementToggle 100034
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´timer_reached_0´
+		2 ´global_timer_reached_0´
+	on_executed
+		´remove_WP´ (delay 0)
+´disable_other_trigger_002´ ElementToggle 100032
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´turret_destroyed´
+		2 ´global_timer_reached_0´
+	on_executed
+		´remove_WP´ (delay 0)
+´point_debug_002´ ElementDebug 100035
+	as_subtitle false
+	debug_string turret_damaged
+	show_instigator false
+´input_summon_chopper_02´ ElementInstanceInput 100021
+	event summon_choppe_turret_02
+	on_executed
+		´disable_wrong_side_002´ (delay 0)
+´arrive_chopper_02´ ElementUnitSequence 100037
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_enter_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence turret_spawn
+			time 0
+´disable_wrong_side_001´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_kill_chopper_002´
+		2 ´fly_out_chopper_002´
+		3 ´fly_out_chopper_003´
+		4 ´WP_kill_chopper_003´
+	on_executed
+		´arrive_chopper_01´ (delay 0)
+´disable_wrong_side_002´ ElementToggle 100041
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_kill_chopper_001´
+		2 ´fly_out_chopper_001´
+		3 ´fly_out_chopper_003´
+		4 ´WP_kill_chopper_003´
+	on_executed
+		´arrive_chopper_02´ (delay 0)
+´WP_kill_chopper_002´ ElementWaypoint 100042
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -13625, 4600, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´fly_out_chopper_002´ ElementUnitSequence 100043
+	position 1500, -4.57764E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_exit_02
+			time 0
+´enter_anim_done_001´ ElementUnitSequenceTrigger 100038
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_enter_01_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´link´ (delay 0)
+´enter_anim_done_002´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_enter_02_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´link´ (delay 0)
+´exit_anim_done_001´ ElementUnitSequenceTrigger 100044
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_exit_01_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´seq_hide_chopper´ (delay 0)
+´exit_anim_done_002´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_exit_02_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´seq_hide_chopper´ (delay 0)
+´input_summon_chopper_03´ ElementInstanceInput 100047
+	TRIGGER TIMES 1
+	event summon_chopper_turret_03
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fly_out_chopper_001´
+		2 ´fly_out_chopper_002´
+		3 ´WP_kill_chopper_001´
+		4 ´WP_kill_chopper_002´
+	on_executed
+		´func_sequence_001´ (delay 1)
+´func_sequence_001´ ElementUnitSequence 100049
+	position 800, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_enter_03
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence turret_spawn
+			time 0
+´seq_chopper_002_inplace´ ElementUnitSequenceTrigger 100050
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_enter_03_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´link´ (delay 0)
+´fly_out_chopper_003´ ElementUnitSequence 100052
+	position 1600, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+			notify_unit_sequence anim_chca_exit_03
+			time 0
+´exit_anim_done_003´ ElementUnitSequenceTrigger 100053
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_chca_exit_03_done
+			notify_unit_id units/pd2_dlc_chca/vehicles/chca_vehicle_helicopter_cops_turret/chca_vehicle_helicopter_cops_turret/001 (-9096, -5200, -799)
+	on_executed
+		´seq_hide_chopper´ (delay 0)
+´WP_kill_chopper_003´ ElementWaypoint 100054
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -9400, 16725, 802.5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_player_saw_chopper´ ElementInstanceInput 100009
+	event player_saw_chopper
+	on_executed
+		´point_debug_004´ (delay 0)
+		´start_timer_global´ (delay 0)
+´start_timer_global´ ElementTimerOperator 100036
+	operation start
+	position 1000, -100, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_global´
+´point_debug_004´ ElementDebug 100051
+	as_subtitle false
+	debug_string player_saw_turret
+	show_instigator false
+´timer_global´ ElementTimer 100055
+	timer 0
+´logic_timer_operator_004´ ElementTimerOperator 100057
+	operation set_time
+	position 1100, 400, 2.5
+	rotation 0, 0, 0, -1
+	time
+		1 330
+		2 30
+	elements
+		1 ´timer_global´
+´global_timer_reached_0´ ElementTimerTrigger 100056
+	TRIGGER TIMES 1
+	position 1600, 300, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_global´
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´output_turret_done´ (delay 0)
+		´stop_global_timer´ (delay 0)
+´logic_toggle_002´ ElementToggle 100058
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´turret_destroyed´
+		2 ´timer_reached_0´
+	on_executed
+		´remove_WP´ (delay 0)
+´stop_global_timer´ ElementTimerOperator 100059
+	operation pause
+	position 1300, 300, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´timer_global´

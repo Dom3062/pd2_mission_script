@@ -1,0 +1,255 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´randomize_keycard_guard´ (delay 0)
+		´randomize_regular_guard´ (delay 2)
+		´randomize_regular_guard_2´ (delay 1)
+		´randomize_regular_guard_3´ (delay 3)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 50, -1025, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 4400, -2400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 4400, -2500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´randomize_keycard_guard´ ElementRandom 100025
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´jaguar´ (delay 0)
+		´serpent´ (delay 0)
+		´owl´ (delay 0)
+		´dog´ (delay 0)
+´randomize_regular_guard´ ElementRandom 100026
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´jaguar_2´ (delay 0)
+		´owl_2´ (delay 0)
+		´dog_2´ (delay 0)
+		´serpent_4´ (delay 0)
+´randomize_regular_guard_2´ ElementRandom 100027
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´jaguar_3´ (delay 0)
+		´serpent_3´ (delay 0)
+		´dog_3´ (delay 0)
+		´owl_4´ (delay 0)
+´randomize_regular_guard_3´ ElementRandom 100028
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´jaguar_4´ (delay 0)
+		´serpent_2´ (delay 0)
+		´owl_3´ (delay 0)
+		´dog_4´ (delay 0)
+´jaguar´ MissionScriptElement 100029
+	on_executed
+		´toggle_OFF_guard_spawns´ (delay 0)
+		´output_jaguar_keycard´ (delay 0)
+´serpent´ MissionScriptElement 100030
+	on_executed
+		´toggle_OFF_guard_spawns_2´ (delay 0)
+		´output_serpent_keycard´ (delay 0)
+´owl´ MissionScriptElement 100031
+	on_executed
+		´toggle_OFF_guard_spawns_3´ (delay 0)
+		´output_owl_keycard´ (delay 0)
+´dog´ MissionScriptElement 100032
+	on_executed
+		´toggle_OFF_guard_spawns_4´ (delay 0)
+		´output_dog_keycard´ (delay 0)
+´dog_2´ MissionScriptElement 100033
+	on_executed
+		´toggle_OFF_guard_spawns_9´ (delay 0)
+		´output_regular_guard_003_dog´ (delay 0)
+´owl_2´ MissionScriptElement 100034
+	on_executed
+		´toggle_OFF_guard_spawns_10´ (delay 0)
+		´output_regular_guard_003_owl´ (delay 0)
+´serpent_2´ MissionScriptElement 100035
+	on_executed
+		´output_regular_guard_004_serpent´ (delay 0)
+´jaguar_2´ MissionScriptElement 100036
+	on_executed
+		´toggle_OFF_guard_spawns_12´ (delay 0)
+		´output_regular_guard_003_jaguar´ (delay 0)
+´dog_3´ MissionScriptElement 100037
+	on_executed
+		´toggle_OFF_guard_spawns_5´ (delay 0)
+		´output_regular_guard_002_dog´ (delay 0)
+´owl_3´ MissionScriptElement 100038
+	on_executed
+		´output_regular_guard_004_owl´ (delay 0)
+´serpent_3´ MissionScriptElement 100039
+	on_executed
+		´toggle_OFF_guard_spawns_7´ (delay 0)
+		´output_regular_guard_002_serpent´ (delay 0)
+´jaguar_3´ MissionScriptElement 100040
+	on_executed
+		´toggle_OFF_guard_spawns_8´ (delay 0)
+		´output_regular_guard_002_jaguar´ (delay 0)
+´dog_4´ MissionScriptElement 100041
+	on_executed
+		´output_regular_guard_004_dog´ (delay 0)
+´owl_4´ MissionScriptElement 100042
+	on_executed
+		´toggle_OFF_guard_spawns_6´ (delay 0)
+		´output_regular_guard_002_owl´ (delay 0)
+´serpent_4´ MissionScriptElement 100043
+	on_executed
+		´toggle_OFF_guard_spawns_11´ (delay 0)
+		´output_regular_guard_003_serpent´ (delay 0)
+´jaguar_4´ MissionScriptElement 100044
+	on_executed
+		´output_regular_guard_004_jaguar´ (delay 0)
+´toggle_OFF_guard_spawns´ ElementToggle 100045
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´jaguar_3´
+		2 ´jaguar_2´
+		3 ´jaguar_4´
+	on_executed
+		´point_debug_001´ (delay 0)
+´toggle_OFF_guard_spawns_2´ ElementToggle 100046
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´serpent_3´
+		2 ´serpent_4´
+		3 ´serpent_2´
+	on_executed
+		´point_debug_002´ (delay 0)
+´toggle_OFF_guard_spawns_3´ ElementToggle 100047
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´owl_4´
+		2 ´owl_2´
+		3 ´owl_3´
+	on_executed
+		´point_debug_003´ (delay 0)
+´toggle_OFF_guard_spawns_4´ ElementToggle 100048
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´dog_3´
+		2 ´dog_2´
+		3 ´dog_4´
+	on_executed
+		´point_debug_004´ (delay 0)
+´toggle_OFF_guard_spawns_5´ ElementToggle 100049
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´dog_2´
+		2 ´dog_4´
+´toggle_OFF_guard_spawns_6´ ElementToggle 100050
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´owl_2´
+		2 ´owl_3´
+´toggle_OFF_guard_spawns_7´ ElementToggle 100051
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´serpent_4´
+		2 ´serpent_2´
+´toggle_OFF_guard_spawns_8´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´jaguar_2´
+		2 ´jaguar_4´
+´toggle_OFF_guard_spawns_9´ ElementToggle 100053
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´dog_4´
+´toggle_OFF_guard_spawns_10´ ElementToggle 100054
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´owl_3´
+´toggle_OFF_guard_spawns_11´ ElementToggle 100055
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´serpent_2´
+´toggle_OFF_guard_spawns_12´ ElementToggle 100056
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´jaguar_4´
+´point_debug_001´ ElementDebug 100007
+	as_subtitle false
+	debug_string JAGUAR_KEYCARD
+	show_instigator false
+´point_debug_002´ ElementDebug 100008
+	as_subtitle false
+	debug_string SERPENT_KEYCARD
+	show_instigator false
+´point_debug_003´ ElementDebug 100057
+	as_subtitle false
+	debug_string OWL_KEYCARD
+	show_instigator false
+´point_debug_004´ ElementDebug 100058
+	as_subtitle false
+	debug_string DOG_KEYCARD
+	show_instigator false
+´output_regular_guard_003_jaguar´ ElementInstanceOutput 100009
+	event regular_guard_003_jaguar
+´output_regular_guard_003_serpent´ ElementInstanceOutput 100010
+	event regular_guard_003_serpent
+´output_regular_guard_002_dog´ ElementInstanceOutput 100011
+	event regular_guard_002_dog
+´output_regular_guard_003_owl´ ElementInstanceOutput 100012
+	event regular_guard_003_owl
+´output_regular_guard_002_owl´ ElementInstanceOutput 100013
+	event regular_guard_002_owl
+´output_regular_guard_003_dog´ ElementInstanceOutput 100014
+	event regular_guard_003_dog
+´output_regular_guard_002_serpent´ ElementInstanceOutput 100015
+	event regular_guard_002_serpent
+´output_regular_guard_002_jaguar´ ElementInstanceOutput 100016
+	event regular_guard_002_jaguar
+´output_regular_guard_004_jaguar´ ElementInstanceOutput 100017
+	event regular_guard_004_jaguar
+´output_regular_guard_004_serpent´ ElementInstanceOutput 100018
+	event regular_guard_004_serpent
+´output_regular_guard_004_owl´ ElementInstanceOutput 100019
+	event regular_guard_004_owl
+´output_regular_guard_004_dog´ ElementInstanceOutput 100020
+	event regular_guard_004_dog
+´output_dog_keycard´ ElementInstanceOutput 100021
+	event dog_keycard
+´output_owl_keycard´ ElementInstanceOutput 100022
+	event owl_keycard
+´output_serpent_keycard´ ElementInstanceOutput 100023
+	event serpent_keycard
+´output_jaguar_keycard´ ElementInstanceOutput 100024
+	event jaguar_keycard

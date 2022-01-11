@@ -1,0 +1,297 @@
+´interrupt_hacking´ ElementSpecialObjective 100006
+	TRIGGER TIMES 1
+	SO_access 248
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interval 15
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -36, 141, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 2000
+	search_position -25 200 0
+	so_action e_so_interact_mid
+	trigger_on none
+	followup_elements
+´screen001´ ElementUnitSequence 100008
+	position 600, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence main_screen_on_v1
+			time 0
+´setup_computer´ MissionScriptElement 100009
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´logic_random_001´ (delay 0)
+´logic_random_001´ ElementRandom 100010
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´screen001´ (delay 0)
+		´screen002´ (delay 0)
+		´screen003´ (delay 0)
+		´screen004´ (delay 0)
+´screen002´ ElementUnitSequence 100011
+	position 500, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence main_screen_on_v2
+			time 0
+´screen003´ ElementUnitSequence 100012
+	position 400, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence main_screen_on_v3
+			time 0
+´screen004´ ElementUnitSequence 100013
+	position 300, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence main_screen_on_v4
+			time 0
+´enable_interaction´ MissionScriptElement 100014
+	on_executed
+		´enable_interaction_2´ (delay 0)
+		´WP_computer_hack´ (delay 0)
+´enable_interaction_2´ ElementUnitSequence 100015
+	position -200, 0, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´instance_input_enable_interaction´ ElementInstanceInput 100016
+	event I_am_the_chosen_one
+	on_executed
+		´enable_interaction´ (delay 0)
+´setup_computer_2´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+	on_executed
+		´start_interrupting´ (delay 0-5)
+		´logic_toggle_001´ (delay 1)
+		´instance_setup_by_player_done´ (delay 0)
+		´start_hacking´ (delay 0)
+´WP_computer_hack´ ElementWaypoint 100018
+	icon pd2_computer
+	only_in_civilian false
+	position -29, 33, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_computer´ ElementOperator 100019
+	operation remove
+	elements
+		1 ´WP_computer_hack´
+		2 ´interrupt_hacking´
+´start_interrupting´ MissionScriptElement 100020
+	on_executed
+		´interrupt_hacking´ (delay 5)
+		´enable_interrupt´ (delay 0)
+´interrupt_started´ ElementSpecialObjectiveTrigger 100021
+	event anim_start
+	position 100, 200, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_hacking´
+	on_executed
+		´interrupted´ (delay 2)
+´interrupt_computer´ ElementUnitSequence 100022
+	position 100, 400, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence state_device_jammed
+			time 0
+´interrupted´ MissionScriptElement 100023
+	on_executed
+		´interrupt_computer´ (delay 0)
+		´WP_computer_fix´ (delay 0)
+		´disable_fail_anim_state´ (delay 0)
+		´remove_interrupt_anim´ (delay 0)
+		´remove_WP_computer´ (delay 0)
+´WP_computer_fix´ ElementWaypoint 100024
+	icon pd2_fix
+	only_in_civilian false
+	position -29, 33, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_fix´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´WP_computer_fix´
+´fixed_computer´ ElementUnitSequenceTrigger 100026
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+	on_executed
+		´fixed´ (delay 0)
+		´func_instance_fixed´ (delay 0)
+´logic_toggle_001´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´fixed_computer´ DISABLED
+´fixed´ MissionScriptElement 100028
+	on_executed
+		´enable_fail_anim_state´ (delay 0)
+		´fix_computer´ (delay 0)
+		´remove_WP_fix´ (delay 0)
+		´start_interrupting´ (delay 0)
+		´WP_computer_hack´ (delay 0)
+´interrupt_failed´ ElementSpecialObjectiveTrigger 100029
+	event fail
+	position 100, 100, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_hacking´
+	on_executed
+		´interrupt_hacking´ (delay 10)
+		´point_debug_004´ (delay 0)
+		´enable_interrupt´ (delay 5)
+		´disable_interrupt´ (delay 0)
+´disable_fail_anim_state´ ElementToggle 100030
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_failed´
+´enable_fail_anim_state´ ElementToggle 100031
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interrupt_failed´
+´fix_computer´ ElementUnitSequence 100032
+	position -400, 200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence state_device_resumed
+			time 0
+´start_hacking´ ElementUnitSequence 100033
+	position -300, 100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence state_device_start
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+			notify_unit_sequence main_screen_off
+			time 0
+´hacking_done´ ElementUnitSequenceTrigger 100034
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-31, 33, 80)
+	on_executed
+		´done´ (delay 0)
+´remove_interrupt_anim´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´interrupt_hacking´
+´done´ MissionScriptElement 100036
+	on_executed
+		´remove_interrupt_anim´ (delay 0)
+		´instance_output_done´ (delay 0)
+		´remove_WP_computer´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´instance_output_done´ ElementInstanceOutput 100001
+	event hacking_done
+´func_instance_fixed´ ElementInstanceOutput 100002
+	event fixed_computer
+´instance_setup_by_player_done´ ElementInstanceOutput 100003
+	event player_set_up_computer
+´point_debug_004´ ElementDebug 100038
+	as_subtitle false
+	debug_string anim fail
+	show_instigator false
+´enable_interrupt´ ElementToggle 100039
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´interrupt_hacking´
+		2 ´interrupted´
+´disable_interrupt´ ElementToggle 100037
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´interrupted´
+´interrupt_complete´ ElementSpecialObjectiveTrigger 100042
+	event complete
+	position 0, 500, 100
+	rotation 0, 0, 0, -1
+	elements
+		1 ´interrupt_hacking´
+	on_executed
+		´remove_interrupt_anim´ (delay 0)
+´logic_toggle_002´ ElementToggle 100004
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_hacking´
+		2 ´interrupted´
+´logic_toggle_003´ ElementToggle 100005
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interrupt_started´
+		2 ´interrupt_failed´
+		3 ´interrupted´
+		4 ´interrupt_computer´
+		5 ´interrupt_complete´
+		6 ´interrupt_hacking´

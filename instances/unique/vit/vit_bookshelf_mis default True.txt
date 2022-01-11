@@ -1,0 +1,759 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_enable_bookshelf_interactions´ (delay 1)
+		´input_set_keycard_reader´ (delay 2)
+		´input_switch_to_1m_bookshelf´ (delay 0.5)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-38, 24, 117)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/002 (55, 24, 114)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/003 (-65, 24, 158)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/004 (74, 24, 159)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/005 (-49, 24, 197)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/006 (61, 24, 195)
+			notify_unit_sequence state_interaction_disable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-38, 24, 117)
+		2 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/002 (55, 24, 114)
+		3 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/003 (-65, 24, 158)
+		4 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/004 (74, 24, 159)
+		5 units/pd2_dlc_vit/architecture/vit_int/vit_int_trims/vit_int_wall_book_shelf_1_m/001 (0, 0, 0)
+		6 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/005 (-49, 24, 197)
+		7 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/006 (61, 24, 195)
+	on_executed
+		´logic_random_001´ (delay 2)
+´input_enable_bookshelf_interactions´ ElementInstanceInput 100007
+	event enable_bookshelf_interactions
+	on_executed
+		´link_enable_bookshelf_interactions´ (delay 0)
+´removed_books001´ MissionScriptElement 100028
+	on_executed
+		´enable_interaction_keycard_reader001´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.5)
+´removed_books002´ MissionScriptElement 100029
+	on_executed
+		´enable_interaction_keycard_reader002´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.5)
+´removed_books003´ MissionScriptElement 100030
+	on_executed
+		´enable_interaction_keycard_reader003´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.7)
+´removed_books004´ MissionScriptElement 100031
+	on_executed
+		´enable_interaction_keycard_reader004´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.7)
+´link_enable_bookshelf_interactions´ MissionScriptElement 100036
+	on_executed
+		´enable_2m_interactions´ (delay 0)
+		´enable_1m_interactions´ (delay 0) DISABLED
+´enable_2m_interactions´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´enable_2m_interactions_2´ (delay 0)
+´random_keycard_reader_location´ ElementRandom 100048
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´relay´ (delay 0)
+		´relay_2´ (delay 0)
+		´relay_3´ (delay 0)
+		´relay_4´ (delay 0)
+		´relay001´ (delay 0)
+		´relay002´ (delay 0)
+´relay´ MissionScriptElement 100049
+	on_executed
+		´func_enable_unit_007´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+´relay_2´ MissionScriptElement 100050
+	on_executed
+		´func_enable_unit_009´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´relay_3´ MissionScriptElement 100051
+	on_executed
+		´func_enable_unit_010´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´relay_4´ MissionScriptElement 100052
+	on_executed
+		´func_enable_unit_008´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´input_set_keycard_reader´ ElementInstanceInput 100053
+	event set_keycard_reader
+	on_executed
+		´random_keycard_reader_location´ (delay 0)
+´enable_interaction_keycard_reader001´ ElementUnitSequence 100062
+	DISABLED
+	position 1400, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-38, 24, 117)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact001´ (delay 0)
+´enable_interaction_keycard_reader002´ ElementUnitSequence 100063
+	DISABLED
+	position 1500, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/002 (55, 24, 114)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact002´ (delay 0)
+´enable_interaction_keycard_reader003´ ElementUnitSequence 100064
+	DISABLED
+	position 1600, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/003 (-65, 24, 158)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact003´ (delay 0)
+´enable_interaction_keycard_reader004´ ElementUnitSequence 100065
+	DISABLED
+	position 1700, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/004 (74, 24, 159)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact004´ (delay 0)
+´found_keycard_reader´ MissionScriptElement 100066
+	on_executed
+		´output_found_keycard_reader´ (delay 0)
+		´seq_disable_interaction´ (delay 0)
+		´point_debug_003´ (delay 0)
+´output_found_keycard_reader´ ElementInstanceOutput 100067
+	event found_keycard_reader
+´input_disable_bookshelf_interactions´ ElementInstanceInput 100039
+	event disable_bookshelf_interactions
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´interacted_with_button´ ElementUnitSequenceTrigger 100069
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-38, 24, 117)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/002 (55, 24, 114)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/003 (-65, 24, 158)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/004 (74, 24, 159)
+		5
+			guis_id 5
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/005 (-49, 24, 197)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/006 (61, 24, 195)
+	on_executed
+		´output_used_keycard´ (delay 0)
+		´remove_WP_interact´ (delay 0)
+´output_used_keycard´ ElementInstanceOutput 100070
+	event used_keycard
+´input_move_bookshelf_left´ ElementInstanceInput 100072
+	event move_bookshelf_left
+	on_executed
+		´func_sequence_002´ (delay 0)
+´input_move_bookshelf_right´ ElementInstanceInput 100073
+	event move_bookshelf_right
+	on_executed
+		´func_sequence_001´ (delay 1)
+´WP_interact001´ ElementWaypoint 100081
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -37, -3, 116
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´WP_interact002´ ElementWaypoint 100082
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 54, -7, 114
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´WP_interact003´ ElementWaypoint 100083
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -62, -1, 160
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´WP_interact004´ ElementWaypoint 100084
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 73, 2, 155
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´func_enable_unit_007´ ElementEnableUnit 100085
+	position 1400, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/001 (-38, 24, 117)
+´func_enable_unit_008´ ElementEnableUnit 100086
+	position 1699, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/004 (74, 24, 159)
+´func_enable_unit_009´ ElementEnableUnit 100087
+	position 1500, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/002 (55, 24, 114)
+´func_enable_unit_010´ ElementEnableUnit 100088
+	position 1599, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/003 (-65, 24, 158)
+´remove_WP_interact´ ElementOperator 100089
+	operation remove
+	elements
+		1 ´WP_interact001´
+		2 ´WP_interact002´
+		3 ´WP_interact003´
+		4 ´WP_interact004´
+		5 ´WP_interact005´
+		6 ´WP_interact006´
+´logic_random_001´ ElementRandom 100091
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_enable_unit_011´ (delay 0)
+		´func_enable_unit_012´ (delay 0)
+		´func_enable_unit_013´ (delay 0)
+´func_enable_unit_011´ ElementEnableUnit 100092
+	position 550, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_012´ ElementEnableUnit 100093
+	position 600, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_013´ ElementEnableUnit 100094
+	position 650, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_014´ ElementEnableUnit 100095
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_vit/architecture/vit_int/vit_int_trims/vit_int_wall_book_shelf_1_m/001 (0, 0, 0)
+´func_disable_unit_006´ ElementDisableUnit 100096
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_vit/architecture/vit_int/vit_int_trims/vit_int_wall_book_shelf_2_m/001 (-100, 0, 0)
+´input_switch_to_1m_bookshelf´ ElementInstanceInput 100097
+	event switch_to_1m_bookshelf
+	on_executed
+		´func_enable_unit_014´ (delay 0)
+		´func_disable_unit_006´ (delay 0)
+		´disable´ (delay 0)
+		´toggle´ (delay 0)
+		´seq_hide_books_left_side´ (delay 0)
+´disable´ ElementToggle 100044
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´relay´
+		2 ´relay_3´
+		3 ´func_enable_unit_011´
+		4 ´relay001´
+´enable_1m_interactions´ ElementToggle 100045
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´enable_1m_interactions_2´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100046
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/architecture/vit_int/vit_int_trims/vit_int_wall_book_shelf_2_m/001 (-100, 0, 0)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+			notify_unit_sequence make_books_dynamic
+			time 0
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100047
+	position 1500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/architecture/vit_int/vit_int_trims/vit_int_wall_book_shelf_2_m/001 (-100, 0, 0)
+			notify_unit_sequence open_door_right
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+			notify_unit_sequence make_books_dynamic
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+			notify_unit_sequence make_books_dynamic
+			time 0
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´enable_2m_interactions_2´ ElementUnitSequence 100014
+	position 950, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+			notify_unit_sequence enable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+			notify_unit_sequence enable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+			notify_unit_sequence enable_interaction
+			time 0
+´enable_1m_interactions_2´ ElementUnitSequence 100023
+	position 850, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+			notify_unit_sequence enable_interaction
+			time 0
+´toggle´ ElementToggle 100068
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´enable_1m_interactions´ DISABLED
+		2 ´enable_2m_interactions´
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+	on_executed
+		´removed_books001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+	on_executed
+		´removed_books002´ (delay 0)
+		´point_debug_001´ (delay 0)
+´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+	on_executed
+		´removed_books003´ (delay 0)
+		´point_debug_001´ (delay 0)
+´func_sequence_trigger_004´ ElementUnitSequenceTrigger 100018
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+	on_executed
+		´removed_books004´ (delay 0)
+		´point_debug_001´ (delay 0)
+´removed_books005´ MissionScriptElement 100019
+	on_executed
+		´enable_interaction_keycard_reader005´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.8)
+´func_sequence_trigger_005´ ElementUnitSequenceTrigger 100020
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+	on_executed
+		´removed_books005´ (delay 0)
+		´point_debug_001´ (delay 0)
+´removed_books006´ MissionScriptElement 100021
+	on_executed
+		´enable_interaction_keycard_reader006´ (delay 0) DISABLED
+		´point_play_sound_books_impact_floor´ (delay 0.8)
+´func_sequence_trigger_006´ ElementUnitSequenceTrigger 100022
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+	on_executed
+		´removed_books006´ (delay 0)
+		´point_debug_001´ (delay 0)
+´relay001´ MissionScriptElement 100032
+	on_executed
+		´func_enable_unit_015´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´relay002´ MissionScriptElement 100033
+	on_executed
+		´func_enable_unit_016´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´WP_interact005´ ElementWaypoint 100040
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -50, -0.999997, 203
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´WP_interact006´ ElementWaypoint 100041
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 62, 2, 198
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´func_enable_unit_015´ ElementEnableUnit 100043
+	position 1799, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/005 (-49, 24, 197)
+´func_enable_unit_016´ ElementEnableUnit 100099
+	position 1899, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/006 (61, 24, 195)
+´enable_interaction_keycard_reader005´ ElementUnitSequence 100101
+	DISABLED
+	position 1800, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/005 (-49, 24, 197)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact005´ (delay 0)
+´enable_interaction_keycard_reader006´ ElementUnitSequence 100102
+	DISABLED
+	position 1900, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_arena/props/are_prop_security_button/are_prop_security_button/006 (61, 24, 195)
+			notify_unit_sequence state_interaction_enable
+			time 0
+	on_executed
+		´found_keycard_reader´ (delay 0)
+		´WP_interact006´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100104
+	position 1650, -900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/001 (64, 17, 96)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_02/002 (62, 22, 181)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_03/001 (75, 20, 138)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+			notify_unit_sequence disable_interaction
+			time 0
+´seq_hide_books_left_side´ ElementUnitSequence 100105
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/001 (-53, 20, 96)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_04/001 (-48, 18, 139)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_vit/equipment/vit_interactable_books/vit_interactable_books_01/002 (-45, 19, 181)
+			notify_unit_sequence hide
+			time 0
+´point_debug_003´ ElementDebug 100024
+	as_subtitle false
+	debug_string from instance: found_keycard_reader
+	show_instigator false
+´point_play_sound_001´ ElementPlaySound 100025
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position 0, -25, 125
+	rotation 0, 0, 0, -1
+	sound_event vit_bookshelf_move
+	use_instigator false
+´point_debug_001´ ElementDebug 100026
+	as_subtitle false
+	debug_string from instance: removed books
+	show_instigator false
+´logic_toggle_001´ ElementToggle 100027
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader002´ DISABLED
+´logic_toggle_002´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader003´ DISABLED
+´logic_toggle_003´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader004´ DISABLED
+´logic_toggle_004´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader005´ DISABLED
+´logic_toggle_005´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader006´ DISABLED
+´logic_toggle_006´ ElementToggle 100056
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_interaction_keycard_reader001´ DISABLED
+´point_play_sound_books_impact_floor´ ElementPlaySound 100057
+	append_prefix false
+	interrupt true
+	position 0, -25, 0
+	rotation 0, 0, 0, -1
+	sound_event books_impact_floor
+	use_instigator false

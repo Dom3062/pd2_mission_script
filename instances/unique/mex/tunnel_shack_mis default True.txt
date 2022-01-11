@@ -1,0 +1,502 @@
+´startup´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0.5)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´seq_hider´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´nav_add_door_blocker´ (delay 0)
+´seq_hider´ ElementUnitSequence 100005
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence state_door_closed
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/goal_marker (312.983, 1266.66, -391.673)
+			notify_unit_sequence hide
+			time 0
+´point_spawn_player_001´ ElementPlayerSpawner 100007
+	position 300, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test(disabled_by_default)´ MissionScriptElement 100008
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 0)
+		´point_spawn_player_001´ (delay 0)
+´test_delay´ MissionScriptElement 100009
+	on_executed
+		´enable_enable_chosen_one´ (delay 3)
+´input_disable_interaction_remove_tarp´ ElementInstanceInput 100011
+	event disable_interaction_remove_tarp
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´link_interacted_with_tarp´ MissionScriptElement 100013
+	on_executed
+		´link_chosen_one´ (delay 0) DISABLED
+		´seq_tarp_opened´ (delay 0)
+´link_chosen_one´ MissionScriptElement 100014
+	DISABLED
+	on_executed
+		´seq_setup_door´ (delay 0)
+		´output_found_chosen_one´ (delay 0)
+		´teammate_comment_over_there´ (delay 0.5)
+´seq_setup_door´ ElementUnitSequence 100015
+	position 1600, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´disable_temp_door´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100017
+	position 1300, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_square_drop_marker_2x1/gen_prop_square_drop_marker_2x1/loot_drop_marker (324, 1169.22, -303.641)
+		2 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/001 (314.019, 1089.45, -300.595)
+		3 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/002 (315.021, 1128.37, -297.962)
+		4 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/003 (365.023, 1126.27, -296.115)
+		5 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/004 (324.977, 1203.28, -294.045)
+		6 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/005 (324.978, 1243.23, -291.952)
+		7 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/006 (369.98, 1240.13, -290.153)
+´link_door_opened´ MissionScriptElement 100020
+	on_executed
+		´seq_anim_door_open´ (delay 0)
+		´nav_remove_door_blocker´ (delay 3)
+		´output_door_opened´ (delay 0)
+		´enable_area_player_teleport´ (delay 2)
+´seq_anim_door_open´ ElementUnitSequence 100022
+	position 2000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence anim_door_open
+			time 0
+´nav_remove_door_blocker´ ElementNavObstacle 100026
+	operation remove
+	position 2000, -200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (425, -50, 0)
+´nav_add_door_blocker´ ElementNavObstacle 100028
+	operation add
+	position 1400, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (425, -50, 0)
+´output_door_opened´ ElementInstanceOutput 100030
+	event door_opened
+´input_open_door´ ElementInstanceInput 100031
+	event open_door
+	on_executed
+		´link_door_opened´ (delay 0)
+´area_player_teleport´ ElementAreaTrigger 100032
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 396,049
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 309, 1274, -400
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 315,605
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_all_players_in_area´ (delay 0)
+´enable_area_player_teleport´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_player_teleport´ DISABLED
+		2 ´area_player_inside´ DISABLED
+	on_executed
+		´WP_goto_teleport´ (delay 0)
+		´seq_show_marker´ (delay 0)
+´WP_goto_teleport´ ElementWaypoint 100034
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 192, 1260, -249.594
+	rotation 0, 0, -0.707107, -0.707107
+	text_id debug_none
+´link_all_players_in_area´ MissionScriptElement 100035
+	on_executed
+		´output_all_players_in_area´ (delay 0)
+		´seq_hide_marker´ (delay 5)
+		´disable_areas´ (delay 0)
+´output_all_players_in_area´ ElementInstanceOutput 100036
+	event all_players_in_area
+´remove_WP_goto_teleport´ ElementOperator 100037
+	operation remove
+	elements
+		1 ´WP_goto_teleport´
+		2 ´WP_loot_drop´
+´seq_hide_marker´ ElementUnitSequence 100038
+	position 2600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/goal_marker (312.983, 1266.66, -391.673)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´remove_WP_goto_teleport´ (delay 0)
+´output_found_chosen_one´ ElementInstanceOutput 100042
+	event found_chosen_one
+´disable_temp_door´ ElementDisableUnit 100045
+	position 1700, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_mex/architecture/mex_tunnel_entrance/mex_tunnel_entrance_wallplugg/001 (250, 0, 0)
+´input_enable_chosen_one´ ElementInstanceInput 100046
+	event enable_chosen_one
+	on_executed
+		´enable_enable_chosen_one´ (delay 0)
+´enable_enable_chosen_one´ ElementToggle 100047
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´link_chosen_one´ DISABLED
+´input_explode_door´ ElementInstanceInput 100018
+	event explode_door
+	on_executed
+		´link_explode_door´ (delay 0)
+´link_explode_door´ MissionScriptElement 100039
+	on_executed
+		´seq_door_explode´ (delay 0.5)
+		´nav_remove_door_blocker´ (delay 0)
+		´output_door_opened´ (delay 0)
+		´enable_area_player_teleport´ (delay 2)
+´seq_door_explode´ ElementUnitSequence 100040
+	position 2400, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_mountain_door/mex_prop_mountain_door/001 (325, 14, 0)
+			notify_unit_sequence anim_door_explode_hang
+			time 0
+´pku_meth´ ElementGlobalEventTrigger 100041
+	TRIGGER TIMES 1
+	global_event pku_meth
+	position 1600, -800, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´picked_up_any_loot´ (delay 0)
+´picked_up_any_loot´ MissionScriptElement 100048
+	TRIGGER TIMES 1
+	on_executed
+		´inside_and_any_loot_discovered´ (delay 0)
+´inside_and_any_loot_discovered´ ElementCounter 100049
+	counter_target 2
+	on_executed
+		´enable_area_loot´ (delay 0)
+		´enable_loot_drop_marker´ (delay 0)
+		´WP_loot_drop´ (delay 0)
+´area_player_inside´ ElementAreaTrigger 100051
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 806,344
+	height 635
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 319, 456, -94.9345
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 505
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´inside_and_any_loot_discovered´ (delay 0)
+´disable_areas´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_player_inside´ DISABLED
+		2 ´area_loot´ DISABLED
+		3 ´pku_meth´
+´enable_area_loot´ ElementToggle 100010
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_loot´ DISABLED
+´area_loot´ ElementAreaTrigger 100053
+	DISABLED
+	amount 1
+	depth 134
+	height 100
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 325, 1153.42, -257.583
+	radius 250
+	rotation -0.0185099, 0.0185099, -0.706864, -0.706864
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 264,18
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´thrown_in_loot´ (delay 0)
+´thrown_in_loot´ MissionScriptElement 100054
+	on_executed
+		´carry_remove_loot´ (delay 0)
+		´sound_bag_stashed´ (delay 0)
+		´add1´ (delay 0)
+		´output_stashed_a_bag´ (delay 0)
+		´point_teammate_comment_001´ (delay 0.5)
+		´logic_counter_001´ (delay 0)
+´enable_loot_drop_marker´ ElementEnableUnit 100055
+	position 1500, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_prop_square_drop_marker_2x1/gen_prop_square_drop_marker_2x1/loot_drop_marker (324, 1169.22, -303.641)
+´WP_loot_drop´ ElementWaypoint 100057
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 325, 1167, -224.594
+	rotation 0, 0, -0.707107, -0.707107
+	text_id debug_none
+´counter_bags´ ElementCounter 100063
+	counter_target 0
+´add1´ ElementCounterOperator 100064
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter_bags´
+´bag_secured001´ ElementCounterTrigger 100065
+	amount 1
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag001´ (delay 0)
+´bag_secured002´ ElementCounterTrigger 100066
+	amount 2
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag002´ (delay 0)
+´bag_secured003´ ElementCounterTrigger 100067
+	amount 3
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag003´ (delay 0)
+´bag_secured004´ ElementCounterTrigger 100068
+	amount 4
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag004´ (delay 0)
+´bag_secured005´ ElementCounterTrigger 100071
+	amount 5
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag005´ (delay 0)
+´bag_secured006´ ElementCounterTrigger 100072
+	amount 6
+	trigger_type value
+	elements
+		1 ´counter_bags´
+	on_executed
+		´enable_static_bag006´ (delay 0)
+´enable_static_bag001´ ElementEnableUnit 100073
+	position 2000, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/001 (314.019, 1089.45, -300.595)
+´enable_static_bag002´ ElementEnableUnit 100074
+	position 2100, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/002 (315.021, 1128.37, -297.962)
+´enable_static_bag003´ ElementEnableUnit 100075
+	position 2200, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/003 (365.023, 1126.27, -296.115)
+´enable_static_bag004´ ElementEnableUnit 100076
+	position 2300, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/004 (324.977, 1203.28, -294.045)
+´enable_static_bag005´ ElementEnableUnit 100077
+	position 2400, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/005 (324.978, 1243.23, -291.952)
+´enable_static_bag006´ ElementEnableUnit 100078
+	position 2500, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/006 (369.98, 1240.13, -290.153)
+´output_stashed_a_bag´ ElementInstanceOutput 100079
+	event stashed_a_bag
+´sound_bag_stashed´ ElementPlaySound 100080
+	append_prefix false
+	interrupt true
+	position 325, 1167, -249.594
+	rotation 0, 0, -0.707107, -0.707107
+	sound_event bag_light_drop
+	use_instigator false
+´carry_remove_loot´ ElementCarry 100059
+	operation remove
+	type_filter none
+´trigger_area_001´ ElementAreaTrigger 100001
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 300, -250, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 740
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´WP_interact_tarp´ (delay 0)
+´WP_interact_tarp´ ElementWaypoint 100003
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 325, -50, 146.392
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interaction_tarp´ ElementInteraction 100023
+	host_only false
+	override_timer -1
+	position 325, -50, 146.392
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_remove_tarp
+	on_executed
+		´remove_WP_interact_tarp´ (delay 0) (alternative interacted)
+		´link_interacted_with_tarp´ (delay 0) (alternative interacted)
+´remove_WP_interact_tarp´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´WP_interact_tarp´
+´seq_tarp_opened´ ElementUnitSequence 100019
+	position 1700, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/architecture/mex_tunnel_entrance/mex_tunnel_entrance_shack_tarp/001 (0, 0, 0)
+			notify_unit_sequence opened
+			time 0
+´logic_toggle_001´ ElementToggle 100006
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_interact_tarp´
+		2 ´interaction_tarp´
+	on_executed
+		´remove_WP_interact_tarp´ (delay 0)
+´seq_show_marker´ ElementUnitSequence 100027
+	position 2200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_square_goal_marker_8x15/gen_prop_square_goal_marker_8x15/goal_marker (312.983, 1266.66, -391.673)
+			notify_unit_sequence show
+			time 0
+´teammate_comment_over_there´ ElementTeammateComment 100043
+	close_to_element true
+	comment v04
+	position 325, -125, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100044
+	as_subtitle false
+	debug_string from instance: teammate_comment_over_there
+	show_instigator false
+´point_teammate_comment_001´ ElementTeammateComment 100050
+	close_to_element true
+	comment p27
+	position 325, 900, -384.346
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_counter_001´ ElementCounter 100058
+	counter_target 4
+	on_executed
+		´remove_WP_goto_teleport´ (delay 0)

@@ -1,0 +1,2520 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´func_whisper_state_001´ (delay 0)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´spawn_civilians´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -1000, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 3900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 3900, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´mandatory_spawns´ MissionScriptElement 100017
+	on_executed
+		´Overkill_and_below´ (delay 0)
+		´start_spawn_shark_tank´ (delay 0)
+		´start_spawn_patio´ (delay 0)
+		´Above_overkill´ (delay 0)
+		´start_spawn_masked_guards_groups´ (delay 0)
+´Overkill_and_below´ ElementFilter 100018
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 4050, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´start_spawn_dining_room´ (delay 0)
+´spawned´ ElementEnemyDummyTrigger 100112
+	event spawn
+	position 7900, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´entrance_counter001´
+´spawned_2´ ElementEnemyDummyTrigger 100113
+	event spawn
+	position 8000, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´entrance_idle001´
+	on_executed
+		´entrance_idle_positions001´ (delay 0)
+´spawned_3´ ElementEnemyDummyTrigger 100114
+	event spawn
+	position 8200, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´upstairs_right001´
+	on_executed
+		´upstairs_right_postions001´ (delay 0)
+´spawned_4´ ElementEnemyDummyTrigger 100115
+	event spawn
+	position 8400, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´upstairs_left001´
+	on_executed
+		´upstairs_left_positions001´ (delay 0)
+´spawned_5´ ElementEnemyDummyTrigger 100118
+	event spawn
+	position 8600, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´cafeteria001´
+	on_executed
+		´cafeteria_positions´ (delay 0)
+´start_spawn_dining_room´ MissionScriptElement 100073
+	on_executed
+		´group_002_2´ (delay 0)
+´civilian´ ElementSpawnCivilianGroup 100133
+	amount 1
+	ignore_disabled true
+	position 4400, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_091´
+		2 ´ai_spawn_civilian_035´
+´randomize_groups´ ElementRandom 100138
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´group_001´ (delay 0)
+		´group_002´ (delay 0)
+		´group_003´ (delay 0)
+		´group_006´ (delay 0)
+´cafeteria_positions´ ElementSpecialObjectiveGroup 100083
+	base_chance 1
+	mode randomizer
+	position 8700, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´SO_answer_phone´ ElementSpecialObjective 100002
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9100, -1400, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+´SO_smoke´ ElementSpecialObjective 100004
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9100, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_smoke
+	trigger_on none
+	followup_elements
+´SO_answer_phone_2´ ElementSpecialObjective 100007
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8700, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+		1 ´cafeteria_positions´
+´SO_answer_phone_3´ ElementSpecialObjective 100008
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8900, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+´SO_idle_var´ ElementSpecialObjective 100035
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9100, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+´SO_idle_var2´ ElementSpecialObjective 100036
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 5
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8700, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+		1 ´cafeteria_positions´
+´SO_smoke_2´ ElementSpecialObjective 100037
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8900, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_smoke
+	trigger_on none
+	followup_elements
+´SO_answer_phone_4´ ElementSpecialObjective 100038
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8300, -1400, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+		1 ´upstairs_right_postions001´
+´SO_idle´ ElementSpecialObjective 100044
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9100, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+´SO_idle_2´ ElementSpecialObjective 100049
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 5
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8700, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+		1 ´cafeteria_positions´
+´SO_answer_phone_5´ ElementSpecialObjective 100050
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9600, -1400, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+		1 ´exterior_hole_positions001´
+´SO_look_windows´ ElementSpecialObjective 100051
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8300, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_look_windows
+	trigger_on none
+	followup_elements
+		1 ´upstairs_right_postions001´
+´SO_smoke_3´ ElementSpecialObjective 100052
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9600, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_smoke
+	trigger_on none
+	followup_elements
+		1 ´exterior_hole_positions001´
+´SO_idle_var2_2´ ElementSpecialObjective 100053
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8300, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+		1 ´upstairs_right_postions001´
+´SO_idle_var2_3´ ElementSpecialObjective 100054
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9600, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+		1 ´exterior_hole_positions001´
+´SO_answer_phone_6´ ElementSpecialObjective 100055
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8100, -1400, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_answer_phone
+	trigger_on none
+	followup_elements
+´SO_idle_3´ ElementSpecialObjective 100056
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8300, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+		1 ´upstairs_right_postions001´
+´SO_smoke_4´ ElementSpecialObjective 100057
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8100, -1300, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_smoke
+	trigger_on none
+	followup_elements
+´SO_idle_4´ ElementSpecialObjective 100058
+	SO_access 3
+	action_duration_max 15
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 9600, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+		1 ´exterior_hole_positions001´
+´SO_idle_var2_4´ ElementSpecialObjective 100059
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8100, -1200, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle_var2
+	trigger_on none
+	followup_elements
+´SO_idle_5´ ElementSpecialObjective 100060
+	SO_access 3
+	action_duration_max 20
+	action_duration_min 10
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 8100, -1100, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 5100 -800 3502,5
+	so_action cmf_so_idle
+	trigger_on none
+	followup_elements
+´exterior_hole_anims001´ ElementSpecialObjectiveGroup 100029
+	base_chance 1
+	mode randomizer
+	position 9600, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_idle_4´
+		2 ´SO_idle_var2_3´
+		3 ´SO_smoke_3´
+		4 ´SO_answer_phone_5´
+´start_spawn´ MissionScriptElement 100032
+	on_executed
+		´car_civ002´ (delay 0)
+		´car_civ001´ (delay 0)
+´start_spawn_2´ MissionScriptElement 100033
+	on_executed
+		´grill_civ001´ (delay 0)
+´start_spawn_3´ MissionScriptElement 100061
+	on_executed
+		´hole_civ001´ (delay 0)
+´start_spawn_4´ MissionScriptElement 100062
+	on_executed
+		´road_sign001´ (delay 0)
+´start_spawn_5´ MissionScriptElement 100063
+	on_executed
+		´exterior_wall001´ (delay 0)
+´start_spawn_6´ MissionScriptElement 100066
+	on_executed
+		´cafeteria001´ (delay 0)
+´start_spawn_7´ MissionScriptElement 100071
+	on_executed
+		´upstairs_left001´ (delay 0)
+´start_spawn_8´ MissionScriptElement 100072
+	on_executed
+		´upstairs_right001´ (delay 0)
+´start_spawn_9´ MissionScriptElement 100078
+	on_executed
+		´entrance_counter001´ (delay 0)
+´start_spawn_10´ MissionScriptElement 100081
+	on_executed
+		´entrance_idle001´ (delay 0)
+´spawned_6´ ElementEnemyDummyTrigger 100043
+	event spawn
+	position 9500, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´hole_civ001´
+	on_executed
+		´exterior_hole_positions001´ (delay 0)
+´spawned_7´ ElementEnemyDummyTrigger 100082
+	event spawn
+	position 9400, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´grill_civ001´
+´spawned_8´ ElementEnemyDummyTrigger 100085
+	event spawn
+	position 9300, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´car_civ002´
+´spawned_9´ ElementEnemyDummyTrigger 100086
+	event spawn
+	position 9200, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´car_civ001´
+´exterior_hole_positions001´ ElementSpecialObjectiveGroup 100087
+	base_chance 1
+	mode randomizer
+	position 9600, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´hole_civ001´ ElementSpawnCivilianGroup 100088
+	amount 1
+	ignore_disabled true
+	position 9500, -800, 0
+	random false
+	rotation 0, 0, 0, -1
+	team default
+´grill_civ001´ ElementSpawnCivilianGroup 100089
+	amount 1
+	ignore_disabled true
+	position 9400, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´car_civ002´ ElementSpawnCivilianGroup 100090
+	amount 1
+	ignore_disabled true
+	position 9300, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´car_civ001´ ElementSpawnCivilianGroup 100091
+	amount 1
+	ignore_disabled true
+	position 9200, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´start_spawn_shark_tank´ MissionScriptElement 100092
+	on_executed
+		´VH_below´ (delay 0)
+		´Overkill_above´ (delay 0)
+		´group_004´ (delay 0)
+		´mariachi´ (delay 0)
+´upstairs_left001´ ElementSpawnCivilianGroup 100094
+	amount 1
+	ignore_disabled true
+	position 8400, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´cafeteria001´ ElementSpawnCivilianGroup 100095
+	amount 1
+	ignore_disabled true
+	position 8600, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´upstairs_right001´ ElementSpawnCivilianGroup 100096
+	amount 1
+	ignore_disabled true
+	position 8200, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´road_sign001´ ElementSpawnCivilianGroup 100098
+	amount 1
+	ignore_disabled true
+	position 8800, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´entrance_idle001´ ElementSpawnCivilianGroup 100099
+	amount 1
+	ignore_disabled true
+	position 8000, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´entrance_counter001´ ElementSpawnCivilianGroup 100101
+	amount 1
+	ignore_disabled true
+	position 7900, -800, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´exterior_wall001´ ElementSpawnCivilianGroup 100102
+	amount 1
+	ignore_disabled true
+	position 9000, -800, 2.5
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´spawned_10´ ElementEnemyDummyTrigger 100097
+	event spawn
+	position 9000, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´exterior_wall001´
+	on_executed
+		´exterior_wall_positions001´ (delay 0)
+´road_sign_anims001´ ElementSpecialObjectiveGroup 100100
+	base_chance 1
+	mode randomizer
+	position 8900, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_smoke_2´
+		2 ´SO_answer_phone_3´
+´cafeteria_anims001´ ElementSpecialObjectiveGroup 100103
+	base_chance 1
+	mode randomizer
+	position 8700, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_idle_2´
+		2 ´SO_idle_var2´
+		3 ´SO_answer_phone_2´
+´exterior_wall_anims001´ ElementSpecialObjectiveGroup 100084
+	base_chance 1
+	mode randomizer
+	position 9100, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_idle´
+		2 ´SO_idle_var´
+		3 ´SO_smoke´
+		4 ´SO_answer_phone´
+´exterior_wall_positions001´ ElementSpecialObjectiveGroup 100104
+	base_chance 1
+	mode randomizer
+	position 9100, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´spawned_11´ ElementEnemyDummyTrigger 100105
+	event spawn
+	position 8800, -900, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´road_sign001´
+	on_executed
+		´road_sign_positions001´ (delay 0)
+´road_sign_positions001´ ElementSpecialObjectiveGroup 100106
+	base_chance 1
+	mode randomizer
+	position 8900, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´entrance_idle_anims001´ ElementSpecialObjectiveGroup 100107
+	base_chance 1
+	mode randomizer
+	position 8100, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_idle_5´
+		2 ´SO_idle_var2_4´
+		3 ´SO_smoke_4´
+		4 ´SO_answer_phone_6´
+´entrance_idle_positions001´ ElementSpecialObjectiveGroup 100108
+	base_chance 1
+	mode randomizer
+	position 8100, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´upstairs_right_postions001´ ElementSpecialObjectiveGroup 100109
+	base_chance 1
+	mode randomizer
+	position 8300, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´upstairs_left_positions001´ ElementSpecialObjectiveGroup 100110
+	base_chance 1
+	mode randomizer
+	position 8500, -900, 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	followup_elements
+´upstairs_right_anims001´ ElementSpecialObjectiveGroup 100111
+	base_chance 1
+	mode randomizer
+	position 8300, -1000, 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	followup_elements
+		1 ´SO_idle_3´
+		2 ´SO_idle_var2_2´
+		3 ´SO_look_windows´
+		4 ´SO_answer_phone_4´
+´ai_spawn_civilian_025´ ElementSpawnCivilian 100163
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position -195.711, 3195.71, -43
+	rotation 0, 0, 0.930418, -0.366501
+	state cf_sp_stand_talk_calm
+	team default
+	orientation_elements
+´ai_spawn_civilian_026´ ElementSpawnCivilian 100164
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -125, 3125, -43
+	rotation 0, 0, -0.333808, -0.942641
+	state cm_sp_talking_normal
+	team default
+	orientation_elements
+´ai_spawn_civilian_027´ ElementSpawnCivilian 100165
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position 275, 3575, -13
+	rotation 0, 0, 0.258819, -0.965926
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_028´ ElementSpawnCivilian 100166
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position 331.125, 3644.21, -13
+	rotation 0, 0, 0.965926, 0.258819
+	state cm_sp_drink_idle1_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_029´ ElementSpawnCivilian 100167
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position -599.593, 5018.79, 100
+	rotation 0, 0, 0.182235, -0.983255
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_030´ ElementSpawnCivilian 100168
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -504.576, 5098.2, 100
+	rotation 0, 0, -0.857167, -0.515038
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_031´ ElementSpawnCivilian 100169
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position -600, 5125, 100
+	rotation 0, 0, 0.942641, -0.333807
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_032´ ElementSpawnCivilian 100170
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position 250, 3100, -26
+	rotation 0, 0, 0.182235, -0.983255
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_033´ ElementSpawnCivilian 100171
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 334.91, 3188.7, -13
+	rotation 0, 0, -0.782608, -0.622514
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_034´ ElementSpawnCivilian 100172
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position 228.855, 3275.51, -26
+	rotation 0, 0, 0.999962, -0.00872701
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_035´ ElementSpawnCivilian 100173
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -200, 2690, -44
+	rotation 0, 0, 0, -1
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_036´ ElementSpawnCivilian 100174
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -186, 2778, -44
+	rotation 0, 0, 1, -0
+	state cm_sp_drink_idle1_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_043´ ElementSpawnCivilian 100181
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position 1050, 2300, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state cm_sp_talk_slow
+	team default
+	orientation_elements
+´ai_spawn_civilian_044´ ElementSpawnCivilian 100182
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 1050, 2200, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_060´ ElementSpawnCivilian 100198
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position 248.768, 915.64, 0
+	rotation 0, 0, -0.760406, -0.649448
+	state cf_sp_stand_hands_on_hip_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_061´ ElementSpawnCivilian 100199
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position 150, 900, 0
+	rotation 0, 0, 0.649448, -0.760406
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_063´ ElementSpawnCivilian 100201
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -1449.26, 512.186, 0
+	rotation 0, 0, 0.748956, -0.66262
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_064´ ElementSpawnCivilian 100202
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -375, 4475, 100
+	rotation 0, 0, -0.333807, -0.942641
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_065´ ElementSpawnCivilian 100203
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -476.428, 4518.1, 100
+	rotation 0, 0, 0.866025, -0.5
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_066´ ElementSpawnCivilian 100204
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position 575, 5000, 100
+	rotation 0, 0, -0.5, -0.866026
+	state cm_sp_phone2
+	team default
+	orientation_elements
+´ai_spawn_civilian_070´ ElementSpawnCivilian 100208
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position -153, 3600.14, -13
+	rotation 0, 0, -0.669131, -0.743144
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_071´ ElementSpawnCivilian 100209
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position 486.612, 5088.39, 100
+	rotation 0, 0, 0.923879, -0.382684
+	state cm_sp_phone2
+	team default
+	orientation_elements
+´ai_spawn_civilian_072´ ElementSpawnCivilian 100210
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position -262.387, 3620.47, -13
+	rotation 0, 0, 0.803857, -0.594823
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_073´ ElementSpawnCivilian 100211
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position 25, 4975, 100
+	rotation 0, 0, -0.333807, -0.942641
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_074´ ElementSpawnCivilian 100212
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -95.149, 4978.21, 100
+	rotation 0, 0, -0.00872627, -0.999962
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_075´ ElementSpawnCivilian 100213
+	enemy units/payday2/characters/civ_male_bartender_1/civ_male_bartender_1
+	force_pickup none
+	position -25, 5200, 100
+	rotation 0, 0, 0.999848, 0.0174522
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_079´ ElementSpawnCivilian 100217
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position -1775, 1925, 0
+	rotation 0, 0, 0.983255, 0.182235
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_081´ ElementSpawnCivilian 100219
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position -1775, 1818.93, 0
+	rotation 0, 0, -0.199368, -0.979925
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´civilian_2´ ElementSpawnCivilianGroup 100010
+	amount 1
+	ignore_disabled true
+	position 6375, 0, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_136´
+		2 ´ai_spawn_civilian_061´
+´civilian_3´ ElementSpawnCivilianGroup 100011
+	amount 1
+	ignore_disabled true
+	position 6175, 0, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_062´
+		2 ´ai_spawn_civilian_063´
+´start_spawn_lobby´ MissionScriptElement 100014
+	on_executed
+		´group_002_3´ (delay 0)
+´civilian_4´ ElementSpawnCivilianGroup 100021
+	amount 1
+	ignore_disabled true
+	position 4700, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_070´
+		2 ´ai_spawn_civilian_107´
+´randomize_groups_2´ ElementRandom 100022
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´group_001_2´ (delay 0)
+		´group_003_2´ (delay 0)
+		´group_004_2´ (delay 0)
+´start_spawn_patio´ MissionScriptElement 100023
+	on_executed
+		´VH_below_2´ (delay 0)
+		´Overkill_above_2´ (delay 0)
+		´civilian_17´ (delay 0)
+		´group_005´ (delay 0)
+´civilian_5´ ElementSpawnCivilianGroup 100024
+	amount 1
+	ignore_disabled true
+	position 5825, 0, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+´start_spawn_living_room´ MissionScriptElement 100026
+	on_executed
+		´group_001_4´ (delay 0)
+´spawn_civilians´ MissionScriptElement 100039
+	on_executed
+		´mandatory_spawns´ (delay 0)
+´group_001´ MissionScriptElement 100045
+	on_executed
+		´civilian_6´ (delay 0)
+		´civilian´ (delay 0)
+´group_002´ MissionScriptElement 100046
+	on_executed
+		´civilian_7´ (delay 0)
+		´civilian_8´ (delay 0)
+´group_003´ MissionScriptElement 100047
+	on_executed
+		´civilian_11´ (delay 0)
+		´civilian_10´ (delay 0)
+		´civilian_13´ (delay 0)
+´group_004´ MissionScriptElement 100075
+	on_executed
+		´civilian_9´ (delay 0)
+		´civilian_12´ (delay 0)
+		´play_hubby_wife´ (delay 0)
+´civilian_6´ ElementSpawnCivilianGroup 100077
+	amount 1
+	ignore_disabled true
+	position 4400, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_036´
+		2 ´ai_spawn_civilian_092´
+´civilian_7´ ElementSpawnCivilianGroup 100079
+	amount 1
+	ignore_disabled true
+	position 4500, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_027´
+		2 ´ai_spawn_civilian_094´
+´civilian_8´ ElementSpawnCivilianGroup 100080
+	amount 1
+	ignore_disabled true
+	position 4500, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_093´
+		2 ´ai_spawn_civilian_028´
+´mariachi´ ElementSpawnCivilianGroup 100117
+	amount 1
+	ignore_disabled true
+	position 4600, 300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_089´
+	on_executed
+		´play_mariachi´ (delay 0)
+´civilian_9´ ElementSpawnCivilianGroup 100119
+	amount 1
+	ignore_disabled true
+	position 4800, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_026´
+		2 ´ai_spawn_civilian_090´
+´civilian_10´ ElementSpawnCivilianGroup 100120
+	amount 1
+	ignore_disabled true
+	position 4600, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_033´
+		2 ´ai_spawn_civilian_095´
+´civilian_11´ ElementSpawnCivilianGroup 100122
+	amount 1
+	ignore_disabled true
+	position 4600, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_034´
+		2 ´ai_spawn_civilian_096´
+´civilian_12´ ElementSpawnCivilianGroup 100123
+	amount 1
+	ignore_disabled true
+	position 4800, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_088´
+		2 ´ai_spawn_civilian_025´
+´ai_spawn_civilian_088´ ElementSpawnCivilian 100124
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -195.711, 3195.71, -43
+	rotation 0, 0, 0.930418, -0.366501
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_089´ ElementSpawnCivilian 100126
+	enemy units/pd2_dlc_bex/characters/civ_male_mariachi_02/civ_male_mariachi_02
+	force_pickup none
+	position -5.96046E-06, 4025, -0
+	rotation 0, 0, 1, -1.78814E-07
+	state cm_sp_guitar
+	team default
+	orientation_elements
+´ai_spawn_civilian_090´ ElementSpawnCivilian 100127
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position -125, 3125, -43
+	rotation 0, 0, -0.333808, -0.942641
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_091´ ElementSpawnCivilian 100128
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position -199, 2690, -44
+	rotation 0, 0, 0, -1
+	state cm_sp_listen_music_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_092´ ElementSpawnCivilian 100129
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position -185, 2778, -44
+	rotation 0, 0, 1, -0
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_093´ ElementSpawnCivilian 100139
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position 331.125, 3644.21, -13
+	rotation 0, 0, 0.965926, 0.258819
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_094´ ElementSpawnCivilian 100140
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position 275, 3575, -13
+	rotation 0, 0, 0.258819, -0.965926
+	state cm_sp_drink_idle2_var1
+	team default
+	orientation_elements
+´civilian_13´ ElementSpawnCivilianGroup 100141
+	amount 1
+	ignore_disabled true
+	position 4600, -300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_097´
+		2 ´ai_spawn_civilian_032´
+´ai_spawn_civilian_095´ ElementSpawnCivilian 100142
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position 334.91, 3188.7, -13
+	rotation 0, 0, -0.782608, -0.622514
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_096´ ElementSpawnCivilian 100153
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position 228.855, 3275.51, -26
+	rotation 0, 0, 0.999962, -0.00872701
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_097´ ElementSpawnCivilian 100223
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position 250, 3100, -26
+	rotation 0, 0, 0.182235, -0.983255
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_101´ ElementSpawnCivilian 100227
+	enemy units/pd2_dlc_sah/characters/civ_male_shacklethorn_waiter_01/civ_male_shacklethorn_waiter_01
+	force_pickup none
+	position -25, 5200, 100
+	rotation 0, 0, 0.999848, 0.0174522
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_102´ ElementSpawnCivilian 100228
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position -95.149, 4978.21, 100
+	rotation 0, 0, -0.00872627, -0.999962
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_103´ ElementSpawnCivilian 100229
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position 25, 4975, 100
+	rotation 0, 0, -0.333807, -0.942641
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_104´ ElementSpawnCivilian 100230
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position -375, 4475, 100
+	rotation 0, 0, -0.333807, -0.942641
+	state cm_sp_drink_idle1_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_105´ ElementSpawnCivilian 100231
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position -476.428, 4518.1, 100
+	rotation 0, 0, 0.866025, -0.5
+	state cf_sp_drink_idle2_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_106´ ElementSpawnCivilian 100232
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position 575, 5000, 100
+	rotation 0, 0, -0.5, -0.866026
+	state cm_sp_phone2
+	team default
+	orientation_elements
+´ai_spawn_civilian_107´ ElementSpawnCivilian 100233
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position -153, 3600.14, -13
+	rotation 0, 0, -0.669131, -0.743144
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_108´ ElementSpawnCivilian 100234
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position -262.387, 3620.47, -13
+	rotation 0, 0, 0.803857, -0.594823
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_109´ ElementSpawnCivilian 100235
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 486.612, 5088.39, 100
+	rotation 0, 0, 0.923879, -0.382684
+	state cm_sp_phone2
+	team default
+	orientation_elements
+´ai_spawn_civilian_113´ ElementSpawnCivilian 100239
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position -600, 5125, 100
+	rotation 0, 0, 0.942641, -0.333807
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_114´ ElementSpawnCivilian 100240
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -504.576, 5098.2, 100
+	rotation 0, 0, -0.857167, -0.515038
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_115´ ElementSpawnCivilian 100241
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position -599.593, 5018.79, 100
+	rotation 0, 0, 0.182235, -0.983255
+	state cm_sp_stand_idle
+	team default
+	orientation_elements
+´group_001_2´ MissionScriptElement 100242
+	on_executed
+		´randomize_amount´ (delay 0)
+´group_003_2´ MissionScriptElement 100244
+	on_executed
+		´randomize_amount_2´ (delay 0)
+´group_004_2´ MissionScriptElement 100245
+	on_executed
+		´randomize_amount_3´ (delay 0)
+´group_005´ MissionScriptElement 100246
+	on_executed
+		´randomize_amount_4´ (delay 0)
+		´play_phone_guy´ (delay 5-15)
+´randomize_amount´ ElementRandom 100224
+	amount 2
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_23´ (delay 0)
+		´civilian_22´ (delay 0)
+´randomize_amount_2´ ElementRandom 100226
+	amount 2
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_18´ (delay 0)
+		´civilian_16´ (delay 0)
+´randomize_amount_3´ ElementRandom 100247
+	amount 3
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_21´ (delay 0)
+		´civilian_20´ (delay 0)
+		´civilian_19´ (delay 0)
+´randomize_amount_4´ ElementRandom 100248
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´civilian_24´ (delay 0)
+		´civilian_14´ (delay 0)
+´civilian_14´ ElementSpawnCivilianGroup 100249
+	amount 1
+	ignore_disabled true
+	position 5300, -300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_071´
+		2 ´ai_spawn_civilian_109´
+	on_executed
+		´play_party_girls´ (delay 0)
+´civilian_15´ ElementSpawnCivilianGroup 100250
+	amount 1
+	ignore_disabled true
+	position 4700, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_108´
+		2 ´ai_spawn_civilian_072´
+´civilian_16´ ElementSpawnCivilianGroup 100254
+	amount 1
+	ignore_disabled true
+	position 5100, -300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_073´
+		2 ´ai_spawn_civilian_103´
+´civilian_17´ ElementSpawnCivilianGroup 100255
+	amount 1
+	ignore_disabled true
+	position 5200, 300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_101´
+		2 ´ai_spawn_civilian_075´
+´civilian_18´ ElementSpawnCivilianGroup 100256
+	amount 1
+	ignore_disabled true
+	position 5100, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_074´
+		2 ´ai_spawn_civilian_102´
+´civilian_19´ ElementSpawnCivilianGroup 100257
+	amount 1
+	ignore_disabled true
+	position 5200, -400, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_114´
+		2 ´ai_spawn_civilian_030´
+´civilian_20´ ElementSpawnCivilianGroup 100258
+	amount 1
+	ignore_disabled true
+	position 5200, -300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_031´
+		2 ´ai_spawn_civilian_113´
+´civilian_21´ ElementSpawnCivilianGroup 100259
+	amount 1
+	ignore_disabled true
+	position 5200, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_115´
+		2 ´ai_spawn_civilian_029´
+´civilian_22´ ElementSpawnCivilianGroup 100260
+	amount 1
+	ignore_disabled true
+	position 5000, -300, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_065´
+		2 ´ai_spawn_civilian_105´
+´civilian_23´ ElementSpawnCivilianGroup 100261
+	amount 1
+	ignore_disabled true
+	position 5000, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_064´
+		2 ´ai_spawn_civilian_104´
+´civilian_24´ ElementSpawnCivilianGroup 100262
+	amount 1
+	ignore_disabled true
+	position 5300, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_066´
+		2 ´ai_spawn_civilian_106´
+	on_executed
+		´play_party_girls´ (delay 0)
+´civilian_25´ ElementSpawnCivilianGroup 100116
+	amount 1
+	ignore_disabled true
+	position 5575, 0, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_118´
+		2 ´ai_spawn_civilian_043´
+´civilian_26´ ElementSpawnCivilianGroup 100121
+	amount 1
+	ignore_disabled true
+	position 5575, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_044´
+		2 ´ai_spawn_civilian_117´
+´group_002_2´ MissionScriptElement 100266
+	on_executed
+		´randomize_civs´ (delay 0)
+		´play_gangsters´ (delay 10-15)
+´ai_spawn_civilian_117´ ElementSpawnCivilian 100272
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position 1050, 2200, 0
+	rotation 0, 0, -2.68221E-07, -1
+	state cm_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_118´ ElementSpawnCivilian 100273
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position 1050, 2300, 0
+	rotation 0, 0, 1, -1.19209E-07
+	state cm_sp_talking_normal
+	team default
+	orientation_elements
+´ai_spawn_civilian_134´ ElementSpawnCivilian 100312
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position -1350, 500, 0
+	rotation 0, 0, -0.66262, -0.748955
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_062´ ElementSpawnCivilian 100200
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position -1449.26, 512.186, 0
+	rotation 0, 0, 0.748956, -0.66262
+	state cf_sp_stand_idle_var1
+	team default
+	orientation_elements
+´ai_spawn_civilian_135´ ElementSpawnCivilian 100313
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_3/civ_male_masquerade_3
+	force_pickup none
+	position -1350, 500, 0
+	rotation 0, 0, -0.66262, -0.748955
+	state cm_sp_listen_music_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_136´ ElementSpawnCivilian 100314
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position 150, 900, 0
+	rotation 0, 0, 0.649448, -0.760406
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_137´ ElementSpawnCivilian 100315
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 248.768, 915.64, 0
+	rotation 0, 0, -0.760406, -0.649448
+	state cm_sp_drink_idle2_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_140´ ElementSpawnCivilian 100318
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_1/civ_male_masquerade_1
+	force_pickup none
+	position -1775, 1925, 0
+	rotation 0, 0, 0.983255, 0.182235
+	state cm_sp_standing_idle_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_142´ ElementSpawnCivilian 100320
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -1775, 1818.93, 0
+	rotation 0, 0, -0.199368, -0.979925
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´group_001_3´ MissionScriptElement 100324
+	on_executed
+		´randomize_amount_5´ (delay 0)
+´group_002_3´ MissionScriptElement 100325
+	on_executed
+		´randomize_amount_6´ (delay 0)
+´civilian_27´ ElementSpawnCivilianGroup 100326
+	amount 1
+	ignore_disabled true
+	position 6175, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_135´
+		2 ´ai_spawn_civilian_134´
+´civilian_28´ ElementSpawnCivilianGroup 100327
+	amount 1
+	ignore_disabled true
+	position 6375, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_060´
+		2 ´ai_spawn_civilian_137´
+´randomize_amount_5´ ElementRandom 100328
+	amount 2
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_3´ (delay 0)
+		´civilian_27´ (delay 0)
+´randomize_amount_6´ ElementRandom 100329
+	amount 2
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_2´ (delay 0)
+		´civilian_28´ (delay 0)
+´group_001_4´ MissionScriptElement 100331
+	on_executed
+		´randomize_amount_7´ (delay 0)
+´civilian_29´ ElementSpawnCivilianGroup 100333
+	amount 1
+	ignore_disabled true
+	position 5825, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_081´
+		2 ´ai_spawn_civilian_142´
+´civilian_30´ ElementSpawnCivilianGroup 100334
+	amount 1
+	ignore_disabled true
+	position 5825, -200, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_140´
+		2 ´ai_spawn_civilian_079´
+´randomize_amount_7´ ElementRandom 100338
+	amount 2
+	amount_random 1
+	ignore_disabled true
+	on_executed
+		´civilian_5´ (delay 0)
+		´civilian_29´ (delay 0)
+		´civilian_30´ (delay 0)
+´start_spawn_masked_guards_groups´ MissionScriptElement 100048
+	on_executed
+		´masked_guards_group_001´ (delay 0)
+		´masked_guards_group_002´ (delay 0)
+		´masked_guards_group_003´ (delay 0)
+		´masked_guards_group_004´ (delay 0)
+´masked_guards_group_001´ MissionScriptElement 100125
+	on_executed
+		´masked_guards_group_001_2´ (delay 0)
+		´play_party_girls´ (delay 0-3)
+´masked_guards_group_002´ MissionScriptElement 100130
+	on_executed
+		´masked_guards_group_002_2´ (delay 0)
+´masked_guards_group_003´ MissionScriptElement 100131
+	on_executed
+		´masked_guards_group_003_2´ (delay 0)
+´masked_guards_group_004´ MissionScriptElement 100143
+	on_executed
+		´masked_guards_group_004_2´ (delay 0)
+´masked_guards_group_001_2´ ElementSpawnCivilianGroup 100144
+	amount 1
+	ignore_disabled true
+	position 6675, 100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_009´
+	on_executed
+		´masked_guards_group_005´ (delay 0)
+´masked_guards_group_002_2´ ElementSpawnCivilianGroup 100145
+	amount 3
+	ignore_disabled true
+	position 6775, 100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_005´
+		2 ´ai_spawn_civilian_006´
+		3 ´ai_spawn_civilian_007´
+´masked_guards_group_003_2´ ElementSpawnCivilianGroup 100146
+	amount 2
+	ignore_disabled true
+	position 6875, 100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_003´
+		2 ´ai_spawn_civilian_004´
+´masked_guards_group_004_2´ ElementSpawnCivilianGroup 100147
+	amount 2
+	ignore_disabled true
+	position 6975, 100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_008´
+		2 ´ai_spawn_civilian_010´
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100148
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_1/civ_female_masquerade_1
+	force_pickup none
+	position -1820, 2720, 0
+	rotation 0, 0, 0.087156, -0.996195
+	state cf_sp_stand_talk_calm
+	team default
+	orientation_elements
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100149
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position -1750, 2825, 0
+	rotation 0, 0, -0.843391, -0.5373
+	state cf_sp_stand_talk_normal
+	team default
+	orientation_elements
+´ai_spawn_civilian_003´ ElementSpawnCivilian 100150
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_4/civ_male_masquerade_4
+	force_pickup none
+	position 139.952, 2849.1, -44
+	rotation 0, 0, 0.92388, 0.382683
+	state cm_sp_talking_normal
+	team default
+	orientation_elements
+´ai_spawn_civilian_004´ ElementSpawnCivilian 100151
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position 49.1481, 2806.47, -44
+	rotation 0, 0, 0.608762, -0.793353
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_005´ ElementSpawnCivilian 100152
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 50, 4750, 99.9997
+	rotation 0, 0, 0.92388, -0.382683
+	state cm_sp_standing_talk1
+	team default
+	orientation_elements
+´ai_spawn_civilian_006´ ElementSpawnCivilian 100154
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position 75, 4650, 100
+	rotation 0, 0, 0.382684, -0.923879
+	state cf_sp_stand_hands_on_hip_idle
+	team default
+	orientation_elements
+´ai_spawn_civilian_007´ ElementSpawnCivilian 100155
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_3/civ_female_masquerade_3
+	force_pickup none
+	position 175, 4750, 100
+	rotation 0, 0, 0.923879, 0.382684
+	state cf_sp_stand_talk_upset
+	team default
+	orientation_elements
+´ai_spawn_civilian_008´ ElementSpawnCivilian 100156
+	enemy units/pd2_dlc_fex/characters/civ_male_masquerade_2/civ_male_masquerade_2
+	force_pickup none
+	position 1525, 2075, 0
+	rotation 0, 0, 0.608761, -0.793353
+	state cm_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´ai_spawn_civilian_010´ ElementSpawnCivilian 100158
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position 1562.82, 2190.5, 0
+	rotation 0, 0, 0.991445, -0.130526
+	state cf_sp_drink_idle1_var2
+	team default
+	orientation_elements
+´Above_overkill´ ElementFilter 100159
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 4150, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´start_spawn_sitting_room´ (delay 0)
+		´start_spawn_lobby´ (delay 0)
+		´start_spawn_dining_room´ (delay 0)
+´VH_below´ ElementFilter 100015
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 4500, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´randomize_groups´ (delay 0)
+´Overkill_above´ ElementFilter 100016
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 4600, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´randomize_groups_3´ (delay 0)
+´randomize_groups_3´ ElementRandom 100020
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´group_001´ (delay 0)
+		´group_002´ (delay 0)
+		´group_003´ (delay 0)
+		´group_006´ (delay 0)
+´Overkill_above_2´ ElementFilter 100027
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 5200, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´randomize_groups_4´ (delay 0)
+´VH_below_2´ ElementFilter 100028
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill true
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 5100, 200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´randomize_groups_2´ (delay 0)
+´randomize_groups_4´ ElementRandom 100030
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´group_001_2´ (delay 0)
+		´group_003_2´ (delay 0)
+		´group_004_2´ (delay 0)
+´randomize_civs´ ElementRandom 100067
+	amount 2
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´civilian_25´ (delay 0)
+		´civilian_26´ (delay 0)
+´group_006´ MissionScriptElement 100025
+	on_executed
+		´civilian_4´ (delay 0)
+		´civilian_15´ (delay 0)
+´start_spawn_sitting_room´ MissionScriptElement 100009
+	on_executed
+		´group_001_3´ (delay 0)
+´func_whisper_state_001´ ElementWhisperState 100019
+	disable_hud false
+	position 4000, 300, 2.5
+	rotation 0, 0, 0, -1
+	state true
+´phone_guy_scared´ ElementEnemyDummyTrigger 100064
+	event alerted
+	position 3900, -925, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_071´
+		2 ´ai_spawn_civilian_109´
+		3 ´ai_spawn_civilian_066´
+		4 ´ai_spawn_civilian_106´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´remove_phone_guy´ (delay 0)
+´point_debug_001´ ElementDebug 100041
+	as_subtitle false
+	debug_string phone_guy_quiet
+	show_instigator false
+´remove_phone_guy´ ElementOperator 100068
+	operation remove
+	elements
+		1 ´play_phone_guy´
+	on_executed
+		´disable_phone_guy´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100040
+	TRIGGER TIMES 1
+	global_event police_called
+	position 3900, -1225, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´remove_all_conversations´ (delay 0)
+´disable_phone_guy´ ElementToggle 100042
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_phone_guy´
+´disable_all_conversations´ ElementToggle 100069
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_gangsters´
+		2 ´play_hubby_wife´
+		3 ´play_party_girls´
+		4 ´play_phone_guy´
+		5 ´play_mariachi´
+´remove_all_conversations´ ElementOperator 100070
+	operation remove
+	elements
+		1 ´play_gangsters´
+		2 ´play_hubby_wife´
+		3 ´play_party_girls´
+		4 ´play_phone_guy´
+		5 ´play_mariachi´
+	on_executed
+		´disable_all_conversations´ (delay 0)
+´point_debug_002´ ElementDebug 100076
+	as_subtitle false
+	debug_string party_girls_quiet
+	show_instigator false
+´remove_party_girls´ ElementOperator 100093
+	operation remove
+	elements
+		1 ´play_party_girls´
+	on_executed
+		´disable_party_girls´ (delay 0)
+´party_girls_scared´ ElementEnemyDummyTrigger 100132
+	event alerted
+	position 4325, -925, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_009´
+		2 ´ai_spawn_civilian_001´
+		3 ´ai_spawn_civilian_002´
+		4 ´ai_spawn_civilian_011´
+	on_executed
+		´remove_party_girls´ (delay 0)
+		´point_debug_002´ (delay 0)
+´disable_party_girls´ ElementToggle 100134
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_party_girls´
+´ai_spawn_civilian_009´ ElementSpawnCivilian 100135
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_2/civ_female_masquerade_2
+	force_pickup none
+	position -1820, 2720, 0
+	rotation 0, 0, 0.087156, -0.996195
+	state cf_sp_stand_talk_normal
+	team default
+	orientation_elements
+´ai_spawn_civilian_011´ ElementSpawnCivilian 100136
+	enemy units/pd2_dlc_fex/characters/civ_female_masquerade_4/civ_female_masquerade_4
+	force_pickup none
+	position -1750, 2825, 0
+	rotation 0, 0, -0.843391, -0.5373
+	state cf_sp_stand_talk_calm
+	team default
+	orientation_elements
+´masked_guards_group_005´ ElementSpawnCivilianGroup 100137
+	amount 1
+	ignore_disabled true
+	position 6675, 25, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_002´
+		2 ´ai_spawn_civilian_011´
+´play_party_girls´ ElementPlaySound 100013
+	append_prefix false
+	interrupt false
+	position -1825, 2800, 100
+	rotation 0, 0, 0, -1
+	sound_event Play_party_girls
+	use_instigator false
+´play_phone_guy´ ElementPlaySound 100031
+	append_prefix false
+	interrupt false
+	position 550, 5050, 200
+	rotation 0, 0, 0, -1
+	sound_event Play_phone_guy
+	use_instigator false
+´play_gangsters´ ElementPlaySound 100034
+	append_prefix false
+	interrupt false
+	position 1050, 2250, 100
+	rotation 0, 0, 0, -1
+	sound_event Play_gangster_conversation
+	use_instigator false
+´point_debug_003´ ElementDebug 100065
+	as_subtitle false
+	debug_string gangsters_quiet
+	show_instigator false
+´gangsters_scared´ ElementEnemyDummyTrigger 100074
+	event alerted
+	position 4725, -925, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_117´
+		2 ´ai_spawn_civilian_044´
+		3 ´ai_spawn_civilian_043´
+		4 ´ai_spawn_civilian_118´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´remove_gangsters´ (delay 0)
+´remove_gangsters´ ElementOperator 100157
+	operation remove
+	elements
+		1 ´play_gangsters´
+	on_executed
+		´disable_gangsters´ (delay 0)
+´disable_gangsters´ ElementToggle 100160
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_gangsters´
+´play_hubby_wife´ ElementPlaySound 100161
+	append_prefix false
+	interrupt false
+	position -175, 3150, 100
+	rotation 0, 0, 0, -1
+	sound_event Play_wife_husband
+	use_instigator false
+´hubby_wife_scared´ ElementEnemyDummyTrigger 100162
+	event alerted
+	position 5150, -925, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_025´
+		2 ´ai_spawn_civilian_088´
+		3 ´ai_spawn_civilian_090´
+		4 ´ai_spawn_civilian_026´
+	on_executed
+		´point_debug_004´ (delay 0)
+		´remove_hubby_wife´ (delay 0)
+´remove_hubby_wife´ ElementOperator 100175
+	operation remove
+	elements
+		1 ´play_hubby_wife´
+	on_executed
+		´disable_hubby_wife´ (delay 0)
+´point_debug_004´ ElementDebug 100176
+	as_subtitle false
+	debug_string hubby_wife_quiet
+	show_instigator false
+´disable_hubby_wife´ ElementToggle 100177
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_hubby_wife´
+´play_mariachi´ ElementPlaySound 100012
+	append_prefix false
+	interrupt true
+	position 0, 4000, 135.847
+	rotation 0, 0, 1, -1.19209E-07
+	sound_event mexican_guitar_player_loop
+	use_instigator false
+´disable_mariachi´ ElementToggle 100183
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´play_mariachi´
+´point_debug_006´ ElementDebug 100184
+	as_subtitle false
+	debug_string mariachi_quiet
+	show_instigator false
+´remove_mariachi´ ElementOperator 100185
+	operation remove
+	elements
+		1 ´play_mariachi´
+	on_executed
+		´disable_mariachi´ (delay 0)
+´mariachi_scared´ ElementEnemyDummyTrigger 100186
+	event alerted
+	position 5600, -925, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_089´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´remove_mariachi´ (delay 0)
+´phone_guy_dead´ ElementEnemyDummyTrigger 100189
+	event death
+	position 3900, -825, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_071´
+		2 ´ai_spawn_civilian_109´
+		3 ´ai_spawn_civilian_066´
+		4 ´ai_spawn_civilian_106´
+	on_executed
+		´remove_phone_guy´ (delay 0)
+		´point_debug_001´ (delay 0)
+´phone_guy_tied´ ElementEnemyDummyTrigger 100190
+	event tied
+	position 3900, -725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_071´
+		2 ´ai_spawn_civilian_109´
+		3 ´ai_spawn_civilian_066´
+		4 ´ai_spawn_civilian_106´
+	on_executed
+		´remove_phone_guy´ (delay 0)
+		´point_debug_001´ (delay 0)
+´party_girls_dead´ ElementEnemyDummyTrigger 100191
+	event death
+	position 4325, -825, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_009´
+		2 ´ai_spawn_civilian_001´
+		3 ´ai_spawn_civilian_002´
+		4 ´ai_spawn_civilian_011´
+	on_executed
+		´remove_party_girls´ (delay 0)
+		´point_debug_002´ (delay 0)
+´party_girls_tied´ ElementEnemyDummyTrigger 100192
+	event tied
+	position 4325, -725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_009´
+		2 ´ai_spawn_civilian_001´
+		3 ´ai_spawn_civilian_002´
+		4 ´ai_spawn_civilian_011´
+	on_executed
+		´remove_party_girls´ (delay 0)
+		´point_debug_002´ (delay 0)
+´gangsters_dead´ ElementEnemyDummyTrigger 100193
+	event death
+	position 4725, -825, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_117´
+		2 ´ai_spawn_civilian_044´
+		3 ´ai_spawn_civilian_043´
+		4 ´ai_spawn_civilian_118´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´remove_gangsters´ (delay 0)
+´gangsters_tied´ ElementEnemyDummyTrigger 100194
+	event tied
+	position 4725, -725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_117´
+		2 ´ai_spawn_civilian_044´
+		3 ´ai_spawn_civilian_043´
+		4 ´ai_spawn_civilian_118´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´remove_gangsters´ (delay 0)
+´hubby_wife_dead´ ElementEnemyDummyTrigger 100195
+	event death
+	position 5150, -825, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_025´
+		2 ´ai_spawn_civilian_088´
+		3 ´ai_spawn_civilian_090´
+		4 ´ai_spawn_civilian_026´
+	on_executed
+		´point_debug_004´ (delay 0)
+		´remove_hubby_wife´ (delay 0)
+´hubby_wife_tied´ ElementEnemyDummyTrigger 100196
+	event tied
+	position 5150, -725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_025´
+		2 ´ai_spawn_civilian_088´
+		3 ´ai_spawn_civilian_090´
+		4 ´ai_spawn_civilian_026´
+	on_executed
+		´point_debug_004´ (delay 0)
+		´remove_hubby_wife´ (delay 0)
+´mariachi_dead´ ElementEnemyDummyTrigger 100197
+	event death
+	position 5600, -825, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_089´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´remove_mariachi´ (delay 0)
+´mariachi_tied´ ElementEnemyDummyTrigger 100205
+	event tied
+	position 5600, -725, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_089´
+	on_executed
+		´point_debug_006´ (delay 0)
+		´remove_mariachi´ (delay 0)

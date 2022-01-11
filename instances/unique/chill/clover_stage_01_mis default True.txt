@@ -1,0 +1,192 @@
+´enable_stage_2´ ElementEnableUnit 100073
+	position -100, -1600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/001 (0, -50.0001, 75)
+	on_executed
+		´enable_security_console001´ (delay 0)
+´enable_stage_3´ ElementEnableUnit 100075
+	position 0, -1600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni/light_omni/S3_light_omni_001 (1558.68, -176.391, 175)
+	on_executed
+		´enable_security_console´ (delay 0)
+´disable_stage_2´ ElementDisableUnit 100089
+	position 150, -1500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/off_prop_appliance_mouse/off_prop_appliance_mouse/001 (0, -50.0001, 75)
+		2 core/units/light_omni/light_omni/S3_light_omni_001 (1558.68, -176.391, 175)
+	on_executed
+		´hide_console´ (delay 0)
+´enable_security_console´ ElementUnitSequence 100007
+	position 0, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S3_gen_prop_security_console_001 (-121, -219, 87.1498)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S3_gen_prop_security_console_001 (-121, -219, 87.1498)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´output003´ (delay 0)
+´disable_all´ MissionScriptElement 100023
+	on_executed
+		´disable_stage_2´ (delay 0)
+´startup´ MissionScriptElement 100037
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_all´ (delay 0)
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100038
+	on_executed
+		´tier_1´ (delay 0)
+		´tier_2´ (delay 0)
+		´tier_3´ (delay 0)
+´tier_1´ ElementCustomSafehouseFilter 100039
+	check_type equal
+	position -200, -1500, 2.5
+	room_id clover
+	room_tier 1
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´output001´ (delay 0)
+´tier_2´ ElementCustomSafehouseFilter 100040
+	check_type equal
+	position -100, -1500, 2.5
+	room_id clover
+	room_tier 2
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´enable_stage_2´ (delay 0)
+´tier_3´ ElementCustomSafehouseFilter 100041
+	check_type equal
+	position 0, -1500, 2.5
+	room_id clover
+	room_tier 3
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´enable_stage_3´ (delay 0)
+´output001´ ElementInstanceOutput 100000
+	event Room is tier 1
+	on_executed
+		´s1´ (delay 0)
+´output002´ ElementInstanceOutput 100003
+	event Room is tier 2
+	on_executed
+		´s2´ (delay 0)
+´output003´ ElementInstanceOutput 100005
+	event Room is tier 3
+	on_executed
+		´s3´ (delay 0)
+´enable_security_console001´ ElementUnitSequence 100013
+	position -100, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S2_gen_prop_security_console_001 (-130.263, -71.193, 74)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S2_gen_prop_security_console_001 (-130.263, -71.193, 74)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´output002´ (delay 0)
+´s1´ ElementLoadDelayed 100029
+	unit_ids
+		1 units/payday2/props/com_prop_club_bottles/com_prop_club_bottle_3/S1_com_prop_club_bottle_3_003 (10, -50, 75.1498)
+		2 units/payday2/props/com_prop_election_table/com_prop_election_table/S1_com_prop_election_table_001 (-6.19888E-05, -75, 0)
+		3 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S1_ind_prop_warehouse_box_b_002 (250, -325, 0)
+		4 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_d/S1_ind_prop_warehouse_box_d_002 (184, -344, 0)
+		5 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_e/S1_ind_prop_warehouse_box_e_002 (-158, -319, 108)
+		6 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_f/S1_ind_prop_warehouse_box_f_002 (250, -339, 54)
+		7 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_4/S1_ind_prop_warehouse_box_stack_4_003 (-158, -319, 0)
+		8 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_4/S1_ind_prop_warehouse_box_stack_4_004 (150, -70, 0)
+		9 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_8/S1_ind_prop_warehouse_box_stack_8_002 (-148, -108, 0)
+		10 units/world/props/gym/stn_prop_monitor/stn_prop_monitor/S1_stn_prop_monitor_001 (-41.0001, -50, 74.1498)
+		11 units/world/props/gym/stn_prop_monitor/stn_prop_monitor/S1_stn_prop_monitor_002 (50, -50, 74.1498)
+´s2´ ElementLoadDelayed 100034
+	unit_ids
+		1 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_013 (279, -375, 0.999939)
+		2 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_014 (279, -175, 0.999939)
+		3 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_015 (79, -375, 0.999939)
+		4 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_016 (79, -175, 0.999939)
+		5 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_017 (-121, -375, 0.999939)
+		6 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S2_chl_d_int_floor_rubber_2x2m_018 (-121, -175, 0.999939)
+		7 units/payday2/props/com_prop_club_bottles/com_prop_club_bottle_3/S2_com_prop_club_bottle_3_001 (-115, -18.0001, 79.5)
+		8 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four_wall/S2_gen_prop_security_monitors_four_wall_001 (-3.05176E-05, 0, 25)
+		9 units/payday2/props/gen_prop_security_monitors/gen_prop_security_monitors_four_wall/S2_gen_prop_security_monitors_four_wall_002 (-125, 3.05176E-05, 25)
+		10 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_b/S2_ind_prop_warehouse_box_b_004 (250, -325, 0)
+		11 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_e/S2_ind_prop_warehouse_box_e_003 (-158, -319, 108)
+		12 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_4/S2_ind_prop_warehouse_box_stack_4_005 (-158, -319, 0)
+		13 units/payday2/props/ind_prop_warehouse_set/ind_prop_warehouse_box_stack_4/S2_ind_prop_warehouse_box_stack_4_006 (150, -69, 0)
+		14 units/world/props/diamond_heist/apartment/apartment_room/mousepad/mousepad/S2_mousepad_001 (1.99997, -54.0001, 75)
+		15 units/payday2/props/off_prop_appliance_keyboard/off_prop_appliance_keyboard/S2_off_prop_appliance_keyboard_001 (-49.9999, -50, 75)
+		16 units/payday2/props/off_prop_office_monitor/off_prop_office_monitor/S2_off_prop_office_monitor_001 (-78.7032, -20.2858, 75)
+		17 units/payday2/props/off_prop_office_monitor/off_prop_office_monitor/S2_off_prop_office_monitor_002 (-33.9799, -15.3956, 75)
+		18 units/payday2/props/off_prop_office_monitor/off_prop_office_monitor/S2_off_prop_office_monitor_003 (9.32932, -27.9902, 75)
+		19 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_corner_legs/S2_off_prop_officehigh_desk_plastic_corner_legs_001 (-199, -102, -2.28882E-05)
+		20 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_drawers/S2_off_prop_officehigh_desk_plastic_drawers_001 (-201, -141, -2.28882E-05)
+		21 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_straight_10_legs/S2_off_prop_officehigh_desk_plastic_straight_10_legs_001 (-199, -202, 0)
+		22 units/payday2/props/off_prop_officehigh_desk/off_prop_officehigh_desk_plastic_straight_15_legs/S2_off_prop_officehigh_desk_plastic_straight_15_legs_001 (-98.9999, -1.99991, 0)
+´s3´ ElementLoadDelayed 100046
+	unit_ids
+		1 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_013 (79, -175, 0.999939)
+		2 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_014 (79, -375, 0.999939)
+		3 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_015 (-121, -375, 0.999939)
+		4 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_016 (-121, -175, 0.999939)
+		5 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_017 (279, -375, 0.999939)
+		6 units/pd2_dlc_chill/architecture/chl_d_int_floor/chl_d_int_floor_rubber_2x2m/S3_chl_d_int_floor_rubber_2x2m_018 (279, -175, 0.999939)
+		7 units/pd2_dlc_chill/props/chl_veg_planingroom_dallas_plant/chl_veg_planingroom_dallas_plant_medium/S3_chl_veg_planingroom_dallas_plant_medium_001 (231, -31, 0.999939)
+		8 units/pd2_dlc_chill/props/chl_veg_planingroom_dallas_plant/chl_veg_planingroom_dallas_plant_small/S3_chl_veg_planingroom_dallas_plant_small_001 (121, -21, 0.999939)
+		9 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_console_corner/S3_gen_prop_security_console_corner_001 (3, -5.00006, 0)
+		10 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_console_corner_variation_1/S3_gen_prop_security_console_corner_variation_1_001 (3, -5.00006, 0)
+		11 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_console_left/S3_gen_prop_security_console_left_001 (-197, -205, 0)
+		12 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_console_right/S3_gen_prop_security_console_right_001 (3, -5.00006, 0)
+		13 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_monitor_hanging_01/S3_gen_prop_security_monitor_hanging_01_001 (25, -9.00009, 320)
+		14 units/pd2_dlc2/props/gen_prop_security_console/gen_prop_security_monitor_hanging_02/S3_gen_prop_security_monitor_hanging_02_001 (-152.788, -76.0218, 320)
+		15 units/pd2_dlc_cage/props/ind_prop_cardealership_planter/ind_prop_cardealership_planter_long/S3_ind_prop_cardealership_planter_long_001 (-165, -335, 0.999939)
+´hide_console´ ElementUnitSequence 100035
+	position 150, -1600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S2_gen_prop_security_console_001 (-130.263, -71.193, 74)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S3_gen_prop_security_console_001 (-121, -219, 87.1498)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S2_gen_prop_security_console_001 (-130.263, -71.193, 74)
+			notify_unit_sequence state_vis_hidden
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_prop_security_console/gen_prop_security_console/S3_gen_prop_security_console_001 (-121, -219, 87.1498)
+			notify_unit_sequence state_vis_hidden
+			time 0

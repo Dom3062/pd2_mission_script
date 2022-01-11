@@ -1,0 +1,511 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100111
+	DISABLED
+	EXECUTE ON STARTUP
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´set_blocker´ (delay 2)
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´hide_stuff´ (delay 0)
+´set_blocker´ ElementInstanceInput 100001
+	BASE DELAY 2
+	event set_blocker
+	on_executed
+		´logic_toggle_006´ (delay 0)
+		´activate_random_ladder´ (delay 0.1)
+		´func_sequence_005´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´logic_toggle_007´ (delay 0)
+´hide_stuff´ ElementUnitSequence 100072
+	position 700, 900, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (-1.4363, 780.454, -10)
+			notify_unit_sequence state_ladder_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/004 (-1.51461, 1280.19, -8.88174)
+			notify_unit_sequence state_ladder_disable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/001 (-1, 800, 387.508)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100077
+	position 800, 900, 102.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/mkp/mkp_int_wall_1m_a/001 (55, 790, -11.0842)
+		2 units/payday2/architecture/mkp/mkp_int_wall_1m_a/002 (55, 1296, -11.0842)
+	on_executed
+		´hide_markers´ (delay 0)
+´thrown_in_trigger001´ MissionScriptElement 100079
+	on_executed
+		´remove_wps´ (delay 0)
+		´enable_climbable001´ (delay 0.1)
+		´func_nav_obstacle_001´ (delay 0)
+´enable_climbable001´ ElementUnitSequence 100081
+	position 800, 1200, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (-1.4363, 780.454, -10)
+			notify_unit_sequence state_ladder_enable
+			time 0
+´hide_markers´ ElementUnitSequence 100083
+	position 900, 900, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´remove_wps´ ElementOperator 100090
+	operation remove
+	elements
+		1 ´shoot_wp001´ DISABLED
+		2 ´shoot_wp´ DISABLED
+	on_executed
+		´planted_ladder´ (delay 0)
+´activate_random_ladder´ ElementRandom 100091
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´func_sequence_002´ (delay 0)
+´enable_climbable002´ ElementUnitSequence 100106
+	position 800, 1300, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/004 (-1.51461, 1280.19, -8.88174)
+			notify_unit_sequence state_ladder_enable
+			time 0
+´thrown_in_trigger002´ MissionScriptElement 100107
+	on_executed
+		´remove_wps´ (delay 0)
+		´enable_climbable002´ (delay 0.1)
+		´func_nav_obstacle_002´ (delay 0)
+´planted_ladder´ ElementInstanceOutput 100109
+	event Ladder placed
+´unlocked_ladder001´ ElementUnitSequenceTrigger 100009
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence unlock
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/001 (-1, 800, 387.508)
+	on_executed
+		´thrown_in_trigger001´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+		´logic_counter_001´ (delay 0)
+		´hurry´ (delay 2-4)
+		´logic_toggle_003´ (delay 0) DISABLED
+		´toggle_bugfix_001´ (delay 0)
+´unlocked_ladder002´ ElementUnitSequenceTrigger 100010
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence unlock
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+	on_executed
+		´thrown_in_trigger002´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+		´logic_counter_001´ (delay 0)
+		´hurry´ (delay 2-4)
+		´logic_toggle_004´ (delay 0) DISABLED
+		´toggle_bugfix_002´ (delay 0)
+´shoot_wp´ ElementWaypoint 100004
+	DISABLED
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -10, 833, 343.508
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´shoot_wp001´ ElementWaypoint 100005
+	DISABLED
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position -10, 1333, 343.508
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_area_report_001´ ElementAreaReportTrigger 100011
+	DISABLED
+	amount 1
+	depth 1931,93
+	height 425
+	instigator player
+	instigator_name 
+	interval 1
+	position 0, 1029, 159.508
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	use_disabled_shapes false
+	width 516,15
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´people_in_trigger´ (delay 0) (alternative enter)
+		´trigger_went_empty´ (delay 0) (alternative empty)
+´people_in_trigger´ MissionScriptElement 100012
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´point_debug_001´ (delay 0)
+´trigger_went_empty´ MissionScriptElement 100013
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100014
+	operation none
+	elements
+		1 ´shoot_wp001´ DISABLED
+		2 ´shoot_wp´ DISABLED
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´activate_wp´ MissionScriptElement 100015
+	on_executed
+		´shoot_wp´ (delay 0) DISABLED
+		´shoot_wp001´ (delay 0) DISABLED
+		´func_sequence_003´ (delay 0) DISABLED
+		´func_sequence_004´ (delay 0) DISABLED
+´logic_toggle_002´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´activate_wp´
+	on_executed
+		´func_dialogue_001´ (delay 0)
+´logic_toggle_003´ ElementToggle 100018
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´shoot_wp´ DISABLED
+		2 ´ladder_nl001´ DISABLED
+		3 ´func_sequence_003´ DISABLED
+´logic_toggle_004´ ElementToggle 100019
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´shoot_wp001´ DISABLED
+		2 ´ladder_nl002´ DISABLED
+		3 ´func_sequence_004´ DISABLED
+´logic_toggle_005´ ElementToggle 100020
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_report_001´ DISABLED
+´logic_toggle_001´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´activate_wp´
+		2 ´shoot_wp001´ DISABLED
+		3 ´shoot_wp´ DISABLED
+´logic_toggle_006´ ElementToggle 100021
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_report_001´ DISABLED
+		2 ´trigger_area_002´ DISABLED
+´point_debug_001´ ElementDebug 100022
+	as_subtitle true
+	debug_string BAIN: Damn, the door must be locked from the outside. Maybe there's another way out.
+	show_instigator false
+´ladder_nl001´ ElementSpecialObjective 100023
+	DISABLED
+	SO_access 246912
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 17, 672, 29.5085
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -112,136 777,875 416,31
+	so_action e_nl_up_ladder_4m_left_exit
+	trigger_on none
+	followup_elements
+´ladder_nl002´ ElementSpecialObjective 100024
+	DISABLED
+	SO_access 246912
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0
+	interrupt_objective false
+	interval 5
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 17, 1182, 29.5085
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position -111,777 1262,05 416,31
+	so_action e_nl_up_ladder_4m_left_exit
+	trigger_on none
+	followup_elements
+´trigger_area_001´ ElementAreaTrigger 100025
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 1589, 655.31
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´logic_counter_001´ (delay 0)
+´logic_counter_001´ ElementCounter 100026
+	counter_target 2
+	on_executed
+		´ladder_nl002´ (delay 0) DISABLED
+		´ladder_nl001´ (delay 0) DISABLED
+		´point_debug_004´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100029
+	operation add
+	position 700, 1200, 102.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 17652730322857077516
+			unit_id units/payday2/architecture/mkp/mkp_int_wall_1m_a/001 (55, 790, -11.0842)
+´func_nav_obstacle_002´ ElementNavObstacle 100030
+	operation add
+	position 700, 1300, 102.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 17652730322857077516
+			unit_id units/payday2/architecture/mkp/mkp_int_wall_1m_a/002 (55, 1296, -11.0842)
+´func_dialogue_001´ ElementDialogue 100031
+	TRIGGER TIMES 1
+	can_not_be_muted false
+	dialogue Play_pln_chw_21
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´activate_wp´ (delay 10)
+´not_this_way´ ElementTeammateComment 100032
+	close_to_element false
+	comment g11
+	position 18, 1900, -8.49154
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´func_dialogue_001´ (delay 0)
+		´activate_wp´ (delay 0)
+´trigger_area_002´ ElementAreaTrigger 100033
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 205
+	height 500
+	instigator player
+	instigator_name 
+	interval 1
+	position 0, 1900, 91.5084
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 420
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´not_this_way´ (delay 0)
+´hurry´ ElementTeammateComment 100034
+	close_to_element false
+	comment g09
+	position 500, 1100, 102.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+´func_sequence_001´ ElementUnitSequence 100007
+	position 1100, 1100, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/001 (-1, 800, 387.508)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´logic_toggle_003´ (delay 0) DISABLED
+		´toggle_bugfix_001´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100008
+	position 1100, 1200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´logic_toggle_004´ (delay 0) DISABLED
+		´toggle_bugfix_002´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100035
+	DISABLED
+	position 1200, 1400, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/001 (-1, 800, 387.508)
+			notify_unit_sequence state_outline_enable
+			time 0
+´func_sequence_004´ ElementUnitSequence 100036
+	DISABLED
+	position 1200, 1500, 102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+			notify_unit_sequence state_outline_enable
+			time 0
+´boxcar_selected´ ElementInstanceInput 100038
+	BASE DELAY 2
+	event boxcar_selected
+	on_executed
+		´func_sequence_006´ (delay 0)
+		´point_debug_002´ (delay 0)
+´func_sequence_005´ ElementUnitSequence 100006
+	position 900, 1200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/001 (-1, 800, 387.508)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+			notify_unit_sequence hide
+			time 0
+´func_sequence_006´ ElementUnitSequence 100037
+	position 1300, 900, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/props/chw_prop_folding_ladder/chw_prop_folding_ladder/002 (-1, 1300, 387.508)
+			notify_unit_sequence show
+			time 0
+´point_debug_002´ ElementDebug 100039
+	as_subtitle false
+	debug_string badum
+	show_instigator false
+´point_debug_003´ ElementDebug 100040
+	as_subtitle false
+	debug_string disch
+	show_instigator false
+´logic_toggle_007´ ElementToggle 100041
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´boxcar_selected´
+		2 ´func_sequence_006´
+		3 ´point_debug_002´
+´point_debug_004´ ElementDebug 100042
+	as_subtitle false
+	debug_string ENABLE LADDER LINKS
+	show_instigator false
+´toggle_bugfix_001´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_003´ DISABLED
+		2 ´ladder_nl001´ DISABLED
+		3 ´shoot_wp´ DISABLED
+´toggle_bugfix_002´ ElementToggle 100044
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´func_sequence_004´ DISABLED
+		2 ´ladder_nl002´ DISABLED
+		3 ´shoot_wp001´ DISABLED

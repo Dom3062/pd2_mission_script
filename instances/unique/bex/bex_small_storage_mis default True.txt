@@ -1,0 +1,77 @@
+´door_opened´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (491, -5, 0)
+		2
+			guis_id 2
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (491, -5, 0)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´close_door´ ElementUnitSequence 100025
+	position -100, 700, 301
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (491, -5, 0)
+			notify_unit_sequence activate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (491, -5, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´start´ MissionScriptElement 100026
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100027
+	on_executed
+		´close_door´ (delay 1)
+		´add_blockers´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100029
+	position 0, 700, 300
+	rotation 0, 0, 0, -1
+	unit_ids
+´add_blockers´ ElementNavObstacle 100034
+	operation add
+	position -200, 800, 301
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (656, 425, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (439, 357, 0)
+		3
+			guis_id 3
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (174, 75, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (234, -25, 0)
+		5
+			guis_id 5
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (380, -65, 0)
+´remove_door_blocker´ ElementNavObstacle 100037
+	operation remove
+	position 200, 700, 300
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (380, -65, 0)

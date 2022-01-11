@@ -1,0 +1,170 @@
+´enter´ ElementInstanceInput 100000
+	event enter
+	on_executed
+		´if_entered_2´ (delay 0)
+´exit´ ElementInstanceInput 100001
+	event exit
+	on_executed
+		´if_entered´ (delay 0) DISABLED
+´if_entered´ MissionScriptElement 100002
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´enable_enter - ON´ (delay 2)
+		´enable_enter - OFF´ (delay 0.1)
+		´hide´ (delay 0)
+´if_entered_2´ MissionScriptElement 100003
+	TRIGGER TIMES 1
+	on_executed
+		´enable_exit - ON´ (delay 5)
+		´Smoke_Attack´ (delay 0)
+		´smoke_grenade_anim´ (delay 0)
+´enable_exit - ON´ ElementToggle 100004
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´if_entered´ DISABLED
+´Smoke_Attack´ ElementUnitSequence 100006
+	position 850, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (-2.23418E-05, 8000, -2200)
+			notify_unit_sequence anim_smoke_attack
+			time 0
+	on_executed
+		´shake_pin_pull´ (delay 3.1)
+		´point_play_sound_001´ (delay 0)
+´Smoke_Exploded´ ElementUnitSequenceTrigger 100015
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_smoke_expload
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (-2.23418E-05, 8000, -2200)
+	on_executed
+		´is_entered´ (delay 0)
+		´point_play_sound_002´ (delay 0)
+´enable_enter - ON´ ElementToggle 100028
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´if_entered_2´
+´is_entered´ MissionScriptElement 100032
+	on_executed
+		´shake_explosion´ (delay 0)
+		´point_blurzone_001´ (delay 0)
+		´fade_needs_grey´ (delay 0)
+		´environment_operator_001´ (delay 0)
+´create_mist_done´ ElementInstanceOutput 100038
+	event create_mist_done
+´environment_operator_001´ ElementEnvironmentOperator 100036
+	BASE DELAY 1
+	blend_time 0
+	environment environments/pd2_env_help/pd2_env_help_smoke
+	operation enable_global_override
+	position 850, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_operator_001´ (delay 0)
+´enable_enter - OFF´ ElementToggle 100026
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´if_entered´ DISABLED
+´shake_explosion´ ElementFeedback 100005
+	above_camera_effect none
+	above_camera_effect_distance 0,75
+	camera_shake_amplitude 3
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 1
+	effect mission_triggered
+	position 0, 0, 0
+	range 4000
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 2
+	rumble_release 2,1
+	rumble_sustain 1
+	use_camera_shake true
+	use_rumble true
+´shake_pin_pull´ ElementFeedback 100007
+	above_camera_effect none
+	above_camera_effect_distance 0,75
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 0,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 0,2
+	camera_shake_sustain 0,25
+	effect mission_triggered
+	position 0, 0, 0
+	range 4000
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 0,1
+	rumble_sustain 0,75
+	use_camera_shake true
+	use_rumble true
+´hide´ ElementUnitSequence 100013
+	position 1350, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_giant_cloaker/hlp_prop_giant_cloaker/001 (-2.23418E-05, 8000, -2200)
+			notify_unit_sequence state_vis_hide
+			time 0
+´smoke_grenade_anim´ ElementUnitSequence 100016
+	position 950, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_help/props/hlp_prop_cloaker_grenade/hlp_prop_cloaker_grenade/001 (-2.23418E-05, 8000, -2200)
+			notify_unit_sequence show_play_animation
+			time 0
+´point_blurzone_001´ ElementBlurZone 100008
+	height 4000
+	mode 2
+	position 0, 0, 225
+	radius 4000
+	rotation 0, 0, 0, -1
+´logic_operator_001´ ElementOperator 100009
+	operation remove
+	elements
+		1 ´point_blurzone_001´
+	on_executed
+		´create_mist_done´ (delay 0)
+´fade_needs_grey´ ElementOverlayEffect 100018
+	effect fade_out
+	fade_in 0,25
+	fade_out 2
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	sustain 0,1
+´point_play_sound_001´ ElementPlaySound 100010
+	append_prefix false
+	interrupt true
+	position -25.0003, 4000, 2000
+	rotation 0, 0, 1, -4.37114E-08
+	sound_event Play_big_clk_help_02
+	use_instigator false
+´point_spawn_player_001´ ElementPlayerSpawner 100019
+	position 0, 0, 0
+	rotation 0, 0, 0, -1
+	state mask_off
+´point_play_sound_002´ ElementPlaySound 100011
+	append_prefix false
+	interrupt false
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	sound_event ambience_switch_halloween_2016_state_ext_to_smoke
+	use_instigator false

@@ -1,0 +1,206 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -350, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/vehicles/chw_vehicle_helicopter_blackhawk/chw_vehicle_helicopter_blackhawk/001 (65213, -2037, 3050)
+			notify_unit_sequence state_vis_hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/dev/are_gen_square_goal_marker_2_4x4_35/are_gen_square_goal_marker_2_4x4_35/001 (300, 5500, 125)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/002 (42, 6000, 225)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-57.9999, 6000, 225)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/004 (-57.9999, 6000, 325)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/003 (42, 6000, 325)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/001 (500, 5775, 375)
+		7 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_8x3m/001 (-300, 5775, 425)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/002 (-300, 5775, 425)
+´escape_zone_trigger´ ElementAreaTrigger 100010
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 250
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 300, 5500, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 450
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´output_all_players_in_escape_zone´ (delay 0)
+´output_all_players_in_escape_zone´ ElementInstanceOutput 100011
+	event all_players_in_escape_zone
+´toggle_ON_escape_trigger´ ElementToggle 100012
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´escape_zone_trigger´ DISABLED
+	on_executed
+		´enable_goal_marker´ (delay 0)
+´enable_goal_marker´ ElementEnableUnit 100013
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/dev/are_gen_square_goal_marker_2_4x4_35/are_gen_square_goal_marker_2_4x4_35/001 (300, 5500, 125)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/004 (-57.9999, 6000, 325)
+		3 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/001 (-57.9999, 6000, 225)
+		4 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/002 (42, 6000, 225)
+		5 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x1m/003 (42, 6000, 325)
+		6 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/001 (500, 5775, 375)
+		7 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_8x3m/001 (-300, 5775, 425)
+		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/002 (-300, 5775, 425)
+	on_executed
+		´escape_WP´ (delay 0)
+		´lootdrop_WP´ (delay 0) DISABLED
+		´remove_WP´ (delay 0)
+´heli_fly_in´ ElementUnitSequence 100007
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/vehicles/chw_vehicle_helicopter_blackhawk/chw_vehicle_helicopter_blackhawk/001 (65213, -2037, 3050)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chew/vehicles/chw_vehicle_helicopter_blackhawk/chw_vehicle_helicopter_blackhawk/001 (65213, -2037, 3050)
+			notify_unit_sequence anim_fex_arrive
+			time 0
+	on_executed
+		´env_effect_play_001´ (delay 13)
+´extraction_timer´ ElementTimer 100015
+	timer 180
+´start_timer´ ElementTimerOperator 100016
+	operation start
+	position 700, 200, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´extraction_timer´
+´input_start_extraction´ ElementInstanceInput 100008
+	event start_extraction
+	on_executed
+		´start_timer´ (delay 0)
+		´defend_WP´ (delay 0)
+´escape_WP´ ElementWaypoint 100020
+	icon pd2_escape
+	only_in_civilian false
+	only_on_instigator false
+	position 300, 5500, 350
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´lootdrop_WP´ ElementWaypoint 100021
+	DISABLED
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 48, 5850, 332
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´output_heli_has_arrived´ ElementInstanceOutput 100022
+	event heli_has_arrived
+´defend_WP´ ElementWaypoint 100023
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 5500, 350
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´defend_WP´
+´env_effect_play_001´ ElementPlayEffect 100018
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 5850, 175
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´60s´ ElementTimerTrigger 100024
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	time 60
+	elements
+		1 ´extraction_timer´
+	on_executed
+		´output_60s´ (delay 0)
+´25s´ ElementTimerTrigger 100030
+	position 1300, -300, 0
+	rotation 0, 0, 0, -1
+	time 25
+	elements
+		1 ´extraction_timer´
+	on_executed
+		´output_25s´ (delay 0)
+´0s´ ElementTimerTrigger 100031
+	position 1400, -300, 0
+	rotation 0, 0, 0, -1
+	time 0
+	elements
+		1 ´extraction_timer´
+	on_executed
+		´output_0s´ (delay 0)
+		´toggle_ON_escape_trigger´ (delay 2)
+		´output_heli_has_arrived´ (delay 0)
+´output_0s´ ElementInstanceOutput 100032
+	event 0_secs
+´output_25s´ ElementInstanceOutput 100033
+	event 30_secs
+´output_60s´ ElementInstanceOutput 100034
+	event 60_secs
+´38s´ ElementTimerTrigger 100035
+	position 1200, -300, 0
+	rotation 0, 0, 0, -1
+	time 38
+	elements
+		1 ´extraction_timer´
+	on_executed
+		´heli_fly_in´ (delay 0)
+´120s´ ElementTimerTrigger 100036
+	position 1000, -300, 0
+	rotation 0, 0, 0, -1
+	time 120
+	elements
+		1 ´extraction_timer´
+	on_executed
+		´output_120s´ (delay 0)
+´output_120s´ ElementInstanceOutput 100037
+	event 120_secs

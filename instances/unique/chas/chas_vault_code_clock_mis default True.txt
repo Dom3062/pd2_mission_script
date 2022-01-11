@@ -1,0 +1,116 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 1400, 425, 2.5
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_set_code_002´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´unit_disabler´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_code_001 (-7, 92, -102)
+		2 units/dev_tools/editable_text_long/editable_text_long/text_code_002 (-7, 92, -102)
+		3 units/dev_tools/editable_text_long/editable_text_long/text_code_003 (-7, 92, -102)
+		4 units/dev_tools/editable_text_long/editable_text_long/text_code_004 (-7, 92, -102)
+´input_set_code_001´ ElementInstanceInput 100007
+	event set_code_001
+	on_executed
+		´show_code_001´ (delay 1)
+		´seq_set_clock_001´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event none
+´input_set_code_002´ ElementInstanceInput 100014
+	event set_code_002
+	on_executed
+		´show_code_002´ (delay 1)
+		´seq_set_clock_002´ (delay 0)
+´input_set_code_003´ ElementInstanceInput 100015
+	event set_code_003
+	on_executed
+		´show_code_003´ (delay 1)
+		´seq_set_clock_003´ (delay 0)
+´input_set_code_004´ ElementInstanceInput 100016
+	event set_code_004
+	on_executed
+		´show_code_004´ (delay 1)
+		´seq_set_clock_004´ (delay 0)
+´show_code_001´ ElementEnableUnit 100017
+	position 750, 225, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_code_001 (-7, 92, -102)
+´show_code_002´ ElementEnableUnit 100018
+	position 850, 225, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_code_002 (-7, 92, -102)
+´show_code_003´ ElementEnableUnit 100019
+	position 950, 225, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_code_003 (-7, 92, -102)
+´show_code_004´ ElementEnableUnit 100020
+	position 1050, 225, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/text_code_004 (-7, 92, -102)
+´seq_set_clock_001´ ElementUnitSequence 100022
+	position 750, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_clock_wall/chas_prop_clock_wall/001 (0, -4, 200)
+			notify_unit_sequence int_seq_1912
+			time 0
+´seq_set_clock_002´ ElementUnitSequence 100023
+	position 850, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_clock_wall/chas_prop_clock_wall/001 (0, -4, 200)
+			notify_unit_sequence int_seq_1924
+			time 0
+´seq_set_clock_003´ ElementUnitSequence 100024
+	position 950, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_clock_wall/chas_prop_clock_wall/001 (0, -4, 200)
+			notify_unit_sequence int_seq_1939
+			time 0
+´seq_set_clock_004´ ElementUnitSequence 100025
+	position 1050, 150, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/props/chas_prop_clock_wall/chas_prop_clock_wall/001 (0, -4, 200)
+			notify_unit_sequence int_seq_1950
+			time 0

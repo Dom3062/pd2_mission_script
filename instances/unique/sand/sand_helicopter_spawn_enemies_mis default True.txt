@@ -1,0 +1,622 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence hidden
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_spawn_sequence´ ElementInstanceInput 100007
+	event start_spawn
+	on_executed
+		´link_input_spawn´ (delay 0)
+´ai_spawn_enemy_001_set1´ ElementSpawnEnemyDummy 100010
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, 25, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´link_input_spawn´ MissionScriptElement 100014
+	on_executed
+		´seq_heli_fly_in´ (delay 0)
+´link_open_doors_after_time´ MissionScriptElement 100015
+	BASE DELAY 25
+	on_executed
+		´seq_open_heli_doors´ (delay 0)
+´seq_heli_fly_in´ ElementUnitSequence 100016
+	position 1400, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence swat
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´link_open_doors_after_time´ (delay 0)
+		´link_vfx´ (delay 0)
+´seq_open_heli_doors´ ElementUnitSequence 100017
+	position 1400, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence open_door_right
+			time 0
+	on_executed
+		´link_001´ (delay 0)
+´link_001´ MissionScriptElement 100018
+	BASE DELAY 2
+	on_executed
+		´link_fly_away´ (delay 0)
+		´filter_diff_below_vhard´ (delay 0)
+		´filter_diff_vhard_overkill´ (delay 0)
+		´filter_diff_wish´ (delay 0)
+		´logic_filter_001´ (delay 0)
+´link_fly_away´ MissionScriptElement 100023
+	BASE DELAY 10
+	on_executed
+		´seq_close_doors´ (delay 0)
+´seq_close_doors´ ElementUnitSequence 100024
+	BASE DELAY 4
+	position 1400, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence close_door_right
+			time 0
+	on_executed
+		´seq_heli_fly_away´ (delay 0)
+		´env_effect_fade_off´ (delay 0)
+´seq_heli_fly_away´ ElementUnitSequence 100025
+	BASE DELAY 15
+	position 1400, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´seq_hide´ (delay 0)
+´ai_spawn_enemy_002_set1´ ElementSpawnEnemyDummy 100011
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, -75, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003_set1´ ElementSpawnEnemyDummy 100012
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_2/ene_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 25, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004_set1´ ElementSpawnEnemyDummy 100013
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, -75, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´filter_diff_below_vhard´ ElementFilter 100026
+	difficulty_easy true
+	difficulty_easy_wish false
+	difficulty_hard true
+	difficulty_normal true
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_spawn_blue_swat_set1´ (delay 0)
+´filter_diff_vhard_overkill´ ElementFilter 100027
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1200, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_spawn_green_swat_set2´ (delay 0)
+´filter_diff_wish´ ElementFilter 100028
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1600, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_spawn_elite_set3´ (delay 0)
+´link_spawn_blue_swat_set1´ MissionScriptElement 100029
+	on_executed
+		´ai_spawn_enemy_001_set1´ (delay 0)
+		´ai_spawn_enemy_002_set1´ (delay 0)
+		´ai_spawn_enemy_003_set1´ (delay 0)
+		´ai_spawn_enemy_004_set1´ (delay 0)
+		´point_debug_001´ (delay 0) DISABLED
+´link_spawn_green_swat_set2´ MissionScriptElement 100030
+	on_executed
+		´ai_spawn_enemy_001_set2´ (delay 0)
+		´ai_spawn_enemy_002_set2´ (delay 0)
+		´ai_spawn_enemy_003_set2´ (delay 0)
+		´ai_spawn_enemy_004_set2´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+´link_spawn_elite_set3´ MissionScriptElement 100031
+	on_executed
+		´ai_spawn_enemy_001_set3´ (delay 0)
+		´ai_spawn_enemy_003_set3´ (delay 0)
+		´point_debug_003´ (delay 0) DISABLED
+		´ai_spawn_enemy_002_set3´ (delay 0)
+		´ai_spawn_enemy_004_set3´ (delay 0)
+´ai_spawn_enemy_001_set2´ ElementSpawnEnemyDummy 100040
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, 25, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´logic_filter_001´ ElementFilter 100041
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_pc_only false
+	platform_ps3 true
+	platform_ps4_only false
+	platform_win32 true
+	platform_xb1_only false
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1700, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_spawn_zeal_set4´ (delay 0)
+´link_spawn_zeal_set4´ MissionScriptElement 100042
+	on_executed
+		´point_debug_004´ (delay 0) DISABLED
+		´ai_spawn_enemy_001_set4´ (delay 0)
+		´ai_spawn_enemy_002_set4´ (delay 0)
+		´ai_spawn_enemy_003_set4´ (delay 0)
+		´ai_spawn_enemy_004_set4´ (delay 0)
+´ai_spawn_enemy_002_set2´ ElementSpawnEnemyDummy 100047
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, -75, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003_set2´ ElementSpawnEnemyDummy 100048
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 25, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004_set2´ ElementSpawnEnemyDummy 100049
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, -75, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_001_set3´ ElementSpawnEnemyDummy 100019
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, 25, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003_set3´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 25, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_001_set4´ ElementSpawnEnemyDummy 100032
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, 25, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002_set4´ ElementSpawnEnemyDummy 100033
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, -75, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003_set4´ ElementSpawnEnemyDummy 100034
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 25, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004_set4´ ElementSpawnEnemyDummy 100035
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, -75, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´point_debug_001´ ElementDebug 100036
+	DISABLED
+	as_subtitle false
+	debug_string Heli - easy-hard
+	show_instigator false
+´point_debug_002´ ElementDebug 100037
+	DISABLED
+	as_subtitle false
+	debug_string Heli - vhard-overkill
+	show_instigator false
+´point_debug_003´ ElementDebug 100038
+	DISABLED
+	as_subtitle false
+	debug_string Heli - easywish-deathwish
+	show_instigator false
+´point_debug_004´ ElementDebug 100039
+	DISABLED
+	as_subtitle false
+	debug_string Heli - smwish
+	show_instigator false
+´ai_spawn_enemy_002_set3´ ElementSpawnEnemyDummy 100008
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 250, -75, 0
+	rotation 0, 0, 0, -1
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004_set3´ ElementSpawnEnemyDummy 100020
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, -75, 0
+	rotation 0, 0, 1, 4.37114E-08
+	spawn_action e_sp_down_17m_var2
+	team default
+	voice 0
+	orientation_elements
+´seq_hide´ ElementUnitSequence 100009
+	position 1400, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/vehicle_blackhawk/001 (0, 0, -200)
+			notify_unit_sequence hidden
+			time 0
+	on_executed
+		´all_cops_dealt_with´ (delay 0)
+´output_heli_despawned´ ElementInstanceOutput 100003
+	event heli_despawned
+	on_executed
+		´point_debug_005´ (delay 0) DISABLED
+		´reset_counter´ (delay 0)
+´ai_dead´ ElementEnemyDummyTrigger 100022
+	event death
+	position 700, -1100, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001_set1´
+		2 ´ai_spawn_enemy_001_set2´
+		3 ´ai_spawn_enemy_001_set3´
+		4 ´ai_spawn_enemy_001_set4´
+		5 ´ai_spawn_enemy_002_set1´
+		6 ´ai_spawn_enemy_002_set2´
+		7 ´ai_spawn_enemy_002_set3´
+		8 ´ai_spawn_enemy_002_set4´
+		9 ´ai_spawn_enemy_003_set1´
+		10 ´ai_spawn_enemy_003_set2´
+		11 ´ai_spawn_enemy_003_set3´
+		12 ´ai_spawn_enemy_003_set4´
+		13 ´ai_spawn_enemy_004_set1´
+		14 ´ai_spawn_enemy_004_set2´
+		15 ´ai_spawn_enemy_004_set3´
+		16 ´ai_spawn_enemy_004_set4´
+	on_executed
+		´all_cops_dealt_with´ (delay 0)
+		´point_debug_008´ (delay 0) DISABLED
+´ai_fled´ ElementEnemyDummyTrigger 100043
+	event fled
+	position 800, -1100, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001_set1´
+		2 ´ai_spawn_enemy_001_set2´
+		3 ´ai_spawn_enemy_001_set3´
+		4 ´ai_spawn_enemy_001_set4´
+		5 ´ai_spawn_enemy_002_set1´
+		6 ´ai_spawn_enemy_002_set2´
+		7 ´ai_spawn_enemy_002_set3´
+		8 ´ai_spawn_enemy_002_set4´
+		9 ´ai_spawn_enemy_003_set1´
+		10 ´ai_spawn_enemy_003_set2´
+		11 ´ai_spawn_enemy_003_set3´
+		12 ´ai_spawn_enemy_003_set4´
+		13 ´ai_spawn_enemy_004_set1´
+		14 ´ai_spawn_enemy_004_set2´
+		15 ´ai_spawn_enemy_004_set3´
+		16 ´ai_spawn_enemy_004_set4´
+	on_executed
+		´all_cops_dealt_with´ (delay 0)
+		´point_debug_007´ (delay 0) DISABLED
+´ai_tied´ ElementEnemyDummyTrigger 100044
+	event tied
+	position 900, -1100, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_001_set1´
+		2 ´ai_spawn_enemy_001_set2´
+		3 ´ai_spawn_enemy_001_set3´
+		4 ´ai_spawn_enemy_001_set4´
+		5 ´ai_spawn_enemy_002_set1´
+		6 ´ai_spawn_enemy_002_set2´
+		7 ´ai_spawn_enemy_002_set3´
+		8 ´ai_spawn_enemy_002_set4´
+		9 ´ai_spawn_enemy_003_set1´
+		10 ´ai_spawn_enemy_003_set2´
+		11 ´ai_spawn_enemy_003_set3´
+		12 ´ai_spawn_enemy_003_set4´
+		13 ´ai_spawn_enemy_004_set1´
+		14 ´ai_spawn_enemy_004_set2´
+		15 ´ai_spawn_enemy_004_set3´
+		16 ´ai_spawn_enemy_004_set4´
+	on_executed
+		´all_cops_dealt_with´ (delay 0)
+		´point_debug_006´ (delay 0) DISABLED
+´all_cops_dealt_with´ ElementCounter 100045
+	counter_target 5
+	on_executed
+		´output_heli_despawned´ (delay 0)
+´point_debug_005´ ElementDebug 100046
+	DISABLED
+	as_subtitle false
+	debug_string heli_despawned
+	show_instigator false
+´point_debug_006´ ElementDebug 100050
+	DISABLED
+	as_subtitle false
+	debug_string heli_cop_tied
+	show_instigator false
+´point_debug_007´ ElementDebug 100051
+	DISABLED
+	as_subtitle false
+	debug_string heli_cop_fled
+	show_instigator false
+´point_debug_008´ ElementDebug 100052
+	DISABLED
+	as_subtitle false
+	debug_string heli_cop_dead
+	show_instigator false
+´reset_counter´ ElementCounterOperator 100056
+	amount 5
+	operation reset
+	instance_var_names
+	elements
+		1 ´all_cops_dealt_with´
+´env_effect_play_wind´ ElementPlayEffect 100053
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 0, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´env_effect_fade_off´ ElementStopEffect 100054
+	operation fade_kill
+	position 1300, -500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´env_effect_play_wind´
+´link_vfx´ MissionScriptElement 100055
+	BASE DELAY 21
+	on_executed
+		´env_effect_play_wind´ (delay 0)
+		´logic_random´ (delay 0)
+´teammate_comment_heli_incoming´ ElementTeammateComment 100057
+	close_to_element true
+	comment p41
+	position 0, 0, 125
+	radius 5000
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_random´ ElementRandom 100058
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´link_no_comment´ (delay 0)
+		´teammate_comment_heli_incoming´ (delay 0)
+´link_no_comment´ MissionScriptElement 100059

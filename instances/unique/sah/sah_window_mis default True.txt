@@ -1,0 +1,458 @@
+´point_special_objective_001´ ElementSpecialObjective 100001
+	SO_access 65027552
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 67, 190, 0.00405884
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 58,6127 -82,8687 0,00405163
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´point_special_objective_006´ ElementSpecialObjective 100006
+	SO_access 65027552
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 51, -149, 0.00405121
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position 61,36 117,583 0,00405163
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´point_special_objective_007´ ElementSpecialObjective 100007
+	SO_access 65027552
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 135, -149, 0.00405121
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position 144,026 133,118 0,00405163
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´point_special_objective_005´ ElementSpecialObjective 100005
+	SO_access 65027552
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 151, 190, 0.00405121
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 150,395 -44,408 0,00405163
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´toggle_sos_off´ ElementToggle 100003
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_special_objective_005´
+		2 ´point_special_objective_001´
+		3 ´point_special_objective_007´
+		4 ´point_special_objective_006´
+	on_executed
+		´remove_sos´ (delay 4)
+´remove_sos´ ElementOperator 100004
+	operation remove
+	elements
+		1 ´point_special_objective_005´
+		2 ´point_special_objective_001´
+		3 ´point_special_objective_007´
+		4 ´point_special_objective_006´
+´destroy_win_from_inside´ ElementUnitSequence 100009
+	position -300, 100, 0.00405121
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+			notify_unit_sequence break_window_out
+			time 0
+	on_executed
+		´window_broken´ (delay 0)
+´destroy_win_from_outside´ ElementUnitSequence 100010
+	position -300, -100, 0.00405121
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+			notify_unit_sequence break_window_in
+			time 0
+	on_executed
+		´window_broken´ (delay 0)
+´window_broken´ ElementInstanceOutput 100011
+	TRIGGER TIMES 1
+	event window_broken
+	on_executed
+		´only_if_window_broken´ (delay 0) DISABLED
+		´1´ (delay 0)
+´point_debug_001´ ElementDebug 100012
+	as_subtitle false
+	debug_string from window instance: break window
+	show_instigator false
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100002
+	event anim_act_04
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_001´
+		2 ´point_special_objective_005´
+	on_executed
+		´toggle_sos_off´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´destroy_win_from_inside´ (delay 0.5)
+´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100008
+	event anim_act_04
+	position -100, -100, 0.00400543
+	rotation 0, 0, 0, -1
+	elements
+		1 ´point_special_objective_007´
+		2 ´point_special_objective_006´
+	on_executed
+		´toggle_sos_off´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´destroy_win_from_outside´ (delay 0.5)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100013
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 100, -425, 0.0039978
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100014
+	DISABLED
+	EXECUTE ON STARTUP
+	position 100, 400, 0.0039978
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+´window_be_broke´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_window_1
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+		2
+			guis_id 2
+			sequence break_window_2
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+		3
+			guis_id 3
+			sequence break_frame
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+	on_executed
+		´disable_light_frame´ (delay 0)
+		´enable_light_no_frame´ (delay 0)
+		´toggle´ (delay 0)
+		´window_broken´ (delay 0)
+´disable_light_frame´ ElementDisableUnit 100018
+	position -200, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/002 (100, -18, 282)
+´enable_light_no_frame´ ElementEnableUnit 100019
+	position -300, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/003 (100, 41, 282)
+´startup´ MissionScriptElement 100020
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_light_no_frame´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+		´emitter_rain_on_window_indoor_sphere´ (delay 0)
+´disable_light_no_frame´ ElementDisableUnit 100021
+	position -200, 900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/003 (100, 41, 282)
+´func_instance_input_disable_lights´ ElementInstanceInput 100022
+	event disable_lights
+	on_executed
+		´func_disable_unit_003´ (delay 0)
+		´toggle_2´ (delay 0)
+		´set2´ (delay 0)
+´func_disable_unit_003´ ElementDisableUnit 100023
+	position -200, 600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/002 (100, -18, 282)
+		2 units/lights/light_projection_01/light_projection_02/003 (100, 41, 282)
+´func_instance_input_event_001´ ElementInstanceInputEvent 100024
+	event_list
+´func_instance_input_enable_lights´ ElementInstanceInput 100025
+	event enable_lights
+	on_executed
+		´enable_light_frame´ (delay 0)
+		´enable_light_no_frame_2´ (delay 0) DISABLED
+		´toggle_2´ (delay 0)
+		´1´ (delay 0)
+´enable_light_frame´ ElementEnableUnit 100026
+	position -200, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/002 (100, -18, 282)
+´toggle´ ElementToggle 100027
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´enable_light_frame´
+		2 ´enable_light_no_frame_2´ DISABLED
+´enable_light_no_frame_2´ ElementEnableUnit 100028
+	DISABLED
+	position -300, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/lights/light_projection_01/light_projection_02/003 (100, 41, 282)
+´point_special_objective_team_AI´ ElementSpecialObjective 100029
+	TRIGGER TIMES 1
+	SO_access 65257472
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 135, -149, 0.00405121
+	rotation 0, 0, -2.68221E-07, -1
+	scan true
+	search_distance 0
+	search_position 125,219 142,986 0,00400394
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´point_special_objective_team_AI001´ ElementSpecialObjective 100030
+	TRIGGER TIMES 1
+	SO_access 65257472
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 65, 190, 0.00405884
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 104,48 -216,935 0,00400394
+	so_action e_nl_fwd_2m
+	trigger_on none
+	followup_elements
+´relay´ MissionScriptElement 100031
+	EXECUTE ON STARTUP
+	on_executed
+		´point_special_objective_007´ (delay 0)
+		´point_special_objective_006´ (delay 0)
+		´point_special_objective_001´ (delay 0)
+		´point_special_objective_005´ (delay 0)
+´input_activate_navlinks´ ElementInstanceInput 100032
+	DISABLED
+	event activate_navlinks
+	on_executed
+		´only_if_window_broken´ (delay 0) DISABLED
+´only_if_window_broken´ ElementCounter 100033
+	DISABLED
+	counter_target 2
+	on_executed
+		´point_special_objective_team_AI001´ (delay 0)
+		´point_special_objective_team_AI´ (delay 0)
+		´relay´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100037
+	operation add
+	position -300, 900, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (50, -50, 0)
+´remove_door_blocker´ ElementNavObstacle 100039
+	TRIGGER TIMES 1
+	operation remove
+	position -600, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (50, -50, 0)
+´toggle_2´ ElementToggle 100040
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´window_be_broke´
+´shutters_in_place´ ElementInstanceInput 100042
+	event shutters_in_place
+	on_executed
+		´toggle_sos_off´ (delay 0)
+		´remove_sos´ (delay 0.1)
+´shutters_open´ ElementInstanceInput 100043
+	event shutters_open
+	on_executed
+		´point_special_objective_005´ (delay 0)
+		´point_special_objective_team_AI001´ (delay 0)
+		´point_special_objective_001´ (delay 0)
+		´point_special_objective_006´ (delay 0)
+		´point_special_objective_team_AI´ (delay 0)
+		´point_special_objective_007´ (delay 0)
+´1´ ElementCounter 100045
+	counter_target 1
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´set2´ ElementCounterOperator 100041
+	amount 2
+	operation set
+	instance_var_names
+	elements
+		1 ´1´
+´emitter_rain_on_window_indoor_sphere´ ElementPlaySound 100044
+	append_prefix false
+	interrupt true
+	position 100, 11, 187.004
+	rotation 0, 0, 0, -1
+	sound_event emitter_rain_on_window_indoor_sphere
+	use_instigator false
+´emitter_heavy_rain_asphalt´ ElementPlaySound 100047
+	append_prefix false
+	interrupt true
+	position 100, 11, 187.004
+	rotation 0, 0, 0, -1
+	sound_event emitter_heavy_rain_asphalt
+	use_instigator false
+´window_broken_2´ ElementUnitSequenceTrigger 100046
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence glass_break
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+		2
+			guis_id 2
+			sequence break_frame
+			notify_unit_id units/pd2_dlc_sah/architecture/sah_ext/sah_ext_glass_door/sah_ext_glass_window/001 (0, 0, 0.00405163)
+	on_executed
+		´remove_emitter_rain_on_window_indoor_sphere´ (delay 0)
+		´window_broken_3´ (delay 0)
+´remove_emitter_rain_on_window_indoor_sphere´ ElementOperator 100048
+	operation remove
+	elements
+		1 ´emitter_rain_on_window_indoor_sphere´
+	on_executed
+		´emitter_heavy_rain_asphalt´ (delay 0)
+´window_broken_3´ ElementInstanceOutput 100049
+	event window_broken

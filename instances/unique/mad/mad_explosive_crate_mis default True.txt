@@ -1,0 +1,59 @@
+´point_spawn_player_001´ ElementPlayerSpawner 100000
+	DISABLED
+	position -525, 225, 25
+	rotation 0, 0, 0, -1
+	state standard
+´explosives_picked_up´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (-1, 1, -3)
+	on_executed
+		´disable_interact´ (delay 0)
+´disable_interact´ ElementUnitSequence 100008
+	position -300, -200, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (-1, 1, -3)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (-1, 1, -3)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´remove_wp´ (delay 0)
+´activate_input´ ElementInstanceInput 100011
+	event Activate
+	on_executed
+		´activate_wp´ (delay 0)
+´activate_wp´ MissionScriptElement 100012
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100013
+	icon pd2_generic_interact
+	only_in_civilian false
+	position -3, 0, 59
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_wp´ ElementOperator 100014
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´explosives_picked_up_output´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´explosives_picked_up_output´ ElementInstanceOutput 100015
+	event Explosives picked up
+´logic_toggle_001´ ElementToggle 100003
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_001´

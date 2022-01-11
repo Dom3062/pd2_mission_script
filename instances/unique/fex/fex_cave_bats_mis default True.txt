@@ -1,0 +1,130 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´enable_area_bats´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_area bats´ ElementInstanceInput 100007
+	event enable_area_bats
+	on_executed
+		´logic_chance_001´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event none
+´env_effect_bats_001´ ElementPlayEffect 100009
+	base_time 0
+	effect effects/payday2/particles/enviroment/fex_cave_bats_flying
+	max_amount 0
+	position -3850, 2500, -550
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_bats_001´ (delay 0)
+´area_trigger_bats´ ElementAreaTrigger 100010
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 600
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -4300, 2650, -800
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 2000
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_trigger_bats_flying´ (delay 0)
+´link_trigger_bats_flying´ MissionScriptElement 100011
+	on_executed
+		´env_effect_bats_001´ (delay 0)
+		´env_effect_bats_002´ (delay 0.07)
+		´env_effect_bats_003´ (delay 0.15)
+´env_effect_bats_002´ ElementPlayEffect 100013
+	base_time 0
+	effect effects/payday2/particles/enviroment/fex_cave_bats_flying
+	max_amount 0
+	position -4400, 2550, -450
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_bats_002´ (delay 0)
+´env_effect_bats_003´ ElementPlayEffect 100016
+	base_time 0
+	effect effects/payday2/particles/enviroment/fex_cave_bats_flying
+	max_amount 0
+	position -4150, 2850, -400
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_bats_003´ (delay 0)
+´point_play_sound_bats_001´ ElementPlaySound 100014
+	append_prefix false
+	interrupt true
+	position -3850, 2500, -600
+	rotation 0, 0, 0, -1
+	sound_event bats_fly_away
+	use_instigator false
+´point_play_sound_bats_002´ ElementPlaySound 100015
+	append_prefix false
+	interrupt true
+	position -4400, 2550, -500
+	rotation 0, 0, 0, -1
+	sound_event bats_fly_away
+	use_instigator false
+´point_play_sound_bats_003´ ElementPlaySound 100017
+	append_prefix false
+	interrupt true
+	position -4150, 2850, -450
+	rotation 0, 0, 0, -1
+	sound_event bats_fly_away
+	use_instigator false
+´enable_area_bats´ ElementToggle 100012
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´area_trigger_bats´ DISABLED
+´logic_chance_001´ ElementLogicChance 100018
+	chance 50
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+´logic_chance_trigger_001´ ElementLogicChanceTrigger 100019
+	outcome success
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´logic_chance_001´
+	on_executed
+		´enable_area_bats´ (delay 0)

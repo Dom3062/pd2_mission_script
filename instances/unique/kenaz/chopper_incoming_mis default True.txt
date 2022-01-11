@@ -1,0 +1,455 @@
+´input_light_flare´ ElementInstanceInput 100001
+	event light_flare
+	on_executed
+		´seq_flare_SHOW´ (delay 0) DISABLED
+´seq_flare_SHOW´ ElementUnitSequence 100002
+	DISABLED
+	position -350, -750, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´WP_flare´ (delay 0) DISABLED
+		´light_flare_WP_ON´ (delay 0)
+		´wait_for_chopper_WP_OFF´ (delay 0)
+´seq_trg_flare_INTERACT´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+	on_executed
+		´output_flare_lighted´ (delay 0)
+		´FX_flare´ (delay 0)
+		´WP_flare_REMOVE´ (delay 0)
+		´wait_for_chopper´ (delay 0)
+		´sound_flare_loop´ (delay 0)
+´output_flare_lighted´ ElementInstanceOutput 100005
+	event flare_lighted
+´output_chopper_dropped_winch_bags´ ElementInstanceOutput 100008
+	event chopper_dropped_winch_bags
+´FX_flare´ ElementPlayEffect 100009
+	base_time 0
+	effect effects/payday2/environment/bengal_flare
+	max_amount 0
+	position 0, 15, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´FX_chopper_smoke´ ElementPlayEffect 100010
+	base_time 0
+	effect effects/particles/dest/bridge_heli_smoke
+	max_amount 0
+	position 0, 15, 0
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´WP_flare´ ElementWaypoint 100011
+	DISABLED
+	TRIGGER TIMES 1
+	icon pd2_fire
+	only_in_civilian false
+	position 0, 15, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_chopper_incoming´ ElementWaypoint 100012
+	DISABLED
+	TRIGGER TIMES 1
+	icon pd2_generic_look
+	only_in_civilian false
+	position 0, 15, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_winch_parts´ ElementWaypoint 100013
+	TRIGGER TIMES 1
+	icon pd2_goto
+	only_in_civilian false
+	position 0, 15, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´winch_part_01´ ElementLootBag 100014
+	carry_id winch_part
+	from_respawn false
+	position -59, 2.09808E-05, 1800
+	rotation 0, 0, 0.991445, 0.130526
+´winch_part_02´ ElementLootBag 100015
+	carry_id winch_part
+	from_respawn false
+	position 69, 50, 1800
+	rotation 0, 0, 1, 2.98023E-08
+´winch_part_03´ ElementLootBag 100016
+	carry_id winch_part
+	from_respawn false
+	position 0, 100, 1800
+	rotation 0, 0, -0.707107, -0.707107
+´STARTUP´ MissionScriptElement 100006
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´DELAY´ MissionScriptElement 100007
+	on_executed
+		´HIDE´ (delay 0)
+´HIDE´ MissionScriptElement 100017
+	on_executed
+		´seq_all_HIDE´ (delay 0)
+´seq_all_HIDE´ ElementUnitSequence 100018
+	position -450, -925, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´WP_flare_REMOVE´ ElementOperator 100019
+	operation remove
+	elements
+		1 ´WP_flare´ DISABLED
+´wait_for_chopper´ MissionScriptElement 100020
+	on_executed
+		´WP_chopper_incoming´ (delay 0) DISABLED
+		´delay_60s´ (delay 0)
+		´delay_30s´ (delay 0) DISABLED
+		´wait_for_chopper_WP_ON´ (delay 0)
+		´light_flare_WP_OFF´ (delay 0)
+		´delay_e3´ (delay 0) DISABLED
+		´bileHere´ (delay 3)
+´delay_60s´ MissionScriptElement 100021
+	on_executed
+		´start_chopper_flyin´ (delay 60)
+´start_chopper_flyin´ MissionScriptElement 100022
+	on_executed
+		´seq_chopper_flyin´ (delay 0)
+		´30secs´ (delay 3)
+´seq_chopper_flyin´ ElementUnitSequence 100023
+	position -75, -925, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence diamondheist
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence flyin_fwd_hover
+			time 0
+	on_executed
+		´chopper_arrived´ (delay 22)
+´chopper_arrived´ MissionScriptElement 100024
+	on_executed
+		´FX_chopper_smoke´ (delay 0)
+		´FX_flare_STOP´ (delay 0)
+		´seq_chopper_OPEN_DOORS´ (delay 0)
+		´WP_chopper_incoming_REMOVE´ (delay 0)
+		´sound_flare_stop´ (delay 0)
+		´here´ (delay 0)
+´FX_flare_STOP´ ElementStopEffect 100025
+	operation fade_kill
+	position 50, -1025, 802.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´FX_flare´
+´seq_chopper_OPEN_DOORS´ ElementUnitSequence 100026
+	position -75, -1100, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence open_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence open_door_right
+			time 0
+	on_executed
+		´drop_winch_parts´ (delay 1)
+´drop_winch_parts´ MissionScriptElement 100027
+	on_executed
+		´winch_part_01´ (delay 0)
+		´winch_part_02´ (delay 1)
+		´winch_part_03´ (delay 2)
+		´WP_winch_parts´ (delay 0)
+		´output_chopper_dropped_winch_bags´ (delay 2)
+		´seq_chopper_flyout´ (delay 4)
+		´wait_for_chopper_WP_OFF´ (delay 0)
+		´light_flare_WP_OFF´ (delay 0)
+		´winch_part_01_e3´ (delay 0) DISABLED
+		´winch_part_02_e3´ (delay 1) DISABLED
+		´winch_part_03_e3´ (delay 2) DISABLED
+		´pick_up_winch_parts_WP_ON´ (delay 0)
+		´pick_up_winch_parts_WP´ (delay 0.25) DISABLED
+´WP_chopper_incoming_REMOVE´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´WP_chopper_incoming´ DISABLED
+´trg_loot_winch_part´ ElementLootBagTrigger 100029
+	trigger_type load
+	elements
+		1 ´winch_part_01´
+		2 ´winch_part_02´
+		3 ´winch_part_03´
+		4 ´winch_part_01_e3´ DISABLED
+		5 ´winch_part_02_e3´ DISABLED
+		6 ´winch_part_03_e3´ DISABLED
+	on_executed
+		´winch_part_picked_up´ (delay 0)
+		´pick_up_winch_parts_WP_OFF´ (delay 0)
+´winch_part_picked_up´ MissionScriptElement 100030
+	on_executed
+		´output_winch_part_picked_up´ (delay 0)
+		´WP_winch_parts_REMOVE´ (delay 0)
+´WP_winch_parts_REMOVE´ ElementOperator 100035
+	operation remove
+	elements
+		1 ´WP_winch_parts´
+´output_winch_part_picked_up´ ElementInstanceOutput 100037
+	event winch_part_picked_up
+´seq_chopper_flyout´ ElementUnitSequence 100038
+	position -75, -1250, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence close_door_left
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence close_door_right
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence hover_flyout_back
+			time 0
+	on_executed
+		´seq_chopper_HIDE´ (delay 22)
+		´FX_chopper_smoke_STOP´ (delay 5)
+´seq_chopper_HIDE´ ElementUnitSequence 100039
+	position -75, -1350, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/chopper (0, 0, 0)
+			notify_unit_sequence hidden
+			time 0
+´FX_chopper_smoke_STOP´ ElementStopEffect 100040
+	operation fade_kill
+	position 50, -1250, 802.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´FX_chopper_smoke´
+´input_disable_flare´ ElementInstanceInput 100031
+	event disable_flare
+	on_executed
+		´seq_flare_HIDE´ (delay 0)
+		´WP_flare_REMOVE´ (delay 0)
+´seq_flare_HIDE´ ElementUnitSequence 100032
+	position 175, -750, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_roadflare/cas_prop_roadflare/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´sound_flare_loop´ ElementPlaySound 100036
+	append_prefix false
+	position 0, 15, 25
+	rotation 0, 0, 0, -1
+	sound_event flare_start_loop
+	use_instigator false
+´sound_flare_stop´ ElementPlaySound 100041
+	append_prefix false
+	position 0, 15, 25
+	rotation 0, 0, 0, -1
+	sound_event flare_end
+	use_instigator false
+´delay_30s´ MissionScriptElement 100042
+	DISABLED
+	on_executed
+		´start_chopper_flyin´ (delay 30)
+´delay_TOGGLE´ ElementToggle 100043
+	set_trigger_times -1
+	toggle toggle
+	elements
+		1 ´delay_60s´
+		2 ´delay_30s´ DISABLED
+´input_ace_pilot´ ElementInstanceInput 100044
+	event ace_pilot
+	on_executed
+		´delay_TOGGLE´ (delay 0)
+´input_show_WP´ ElementInstanceInput 100045
+	event show_WP
+	on_executed
+		´light_flare_WP´ (delay 0.5) DISABLED
+		´wait_for_chopper_WP´ (delay 0.5) DISABLED
+		´pick_up_winch_parts_WP´ (delay 0.5) DISABLED
+		´WPs_ON´ (delay 0)
+´light_flare_WP´ MissionScriptElement 100046
+	DISABLED
+	on_executed
+		´WP_flare´ (delay 0) DISABLED
+´wait_for_chopper_WP´ MissionScriptElement 100047
+	DISABLED
+	on_executed
+		´WP_chopper_incoming´ (delay 0) DISABLED
+´pick_up_winch_parts_WP´ MissionScriptElement 100048
+	DISABLED
+	on_executed
+		´WP_winch_parts´ (delay 0)
+´WPs_ON´ ElementToggle 100049
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´WP_chopper_incoming´ DISABLED
+		2 ´WP_flare´ DISABLED
+		3 ´WP_winch_parts´
+´light_flare_WP_ON´ ElementToggle 100050
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´light_flare_WP´ DISABLED
+´light_flare_WP_OFF´ ElementToggle 100051
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´light_flare_WP´ DISABLED
+´wait_for_chopper_WP_OFF´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wait_for_chopper_WP´ DISABLED
+´wait_for_chopper_WP_ON´ ElementToggle 100053
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´wait_for_chopper_WP´ DISABLED
+´pick_up_winch_parts_WP_OFF´ ElementToggle 100054
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´pick_up_winch_parts_WP´ DISABLED
+´pick_up_winch_parts_WP_ON´ ElementToggle 100055
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pick_up_winch_parts_WP´ DISABLED
+´input_activate´ ElementInstanceInput 100056
+	event activate
+	on_executed
+		´seq_flare_SHOW_ON´ (delay 0)
+´seq_flare_SHOW_ON´ ElementToggle 100057
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´seq_flare_SHOW´ DISABLED
+´input_e3_version´ ElementInstanceInput 100058
+	event chopper_e3_version
+	on_executed
+		´disable_delay_non_e3´ (delay 0)
+		´enable_delay_e3´ (delay 0)
+´disable_delay_non_e3´ ElementToggle 100059
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´input_ace_pilot´
+		2 ´delay_60s´
+		3 ´delay_30s´ DISABLED
+		4 ´winch_part_01´
+		5 ´winch_part_02´
+		6 ´winch_part_03´
+´delay_e3´ MissionScriptElement 100060
+	DISABLED
+	on_executed
+		´start_chopper_flyin´ (delay 0)
+´enable_delay_e3´ ElementToggle 100061
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´delay_e3´ DISABLED
+		2 ´winch_part_01_e3´ DISABLED
+		3 ´winch_part_02_e3´ DISABLED
+		4 ´winch_part_03_e3´ DISABLED
+´winch_part_01_e3´ ElementLootBag 100062
+	DISABLED
+	carry_id winch_part_e3
+	from_respawn false
+	position -59, 1.52588E-05, 1775
+	rotation 0, 0, 0.991445, -0.130526
+´winch_part_02_e3´ ElementLootBag 100063
+	DISABLED
+	carry_id winch_part_e3
+	from_respawn false
+	position 69, 50, 1775
+	rotation 0, 0, 0.991445, -0.130526
+´winch_part_03_e3´ ElementLootBag 100064
+	DISABLED
+	carry_id winch_part_e3
+	from_respawn false
+	position -2.28882E-05, 100, 1775
+	rotation 0, 0, 0.92388, 0.382683
+´bileSNDbank´ ElementPlaySound 100065
+	append_prefix false
+	position 425, -1375, 800
+	rotation 0, 0, 0, -1
+	sound_event Play_plt_a02
+	use_instigator false
+´bileHere´ ElementDialogue 100066
+	dialogue Play_plt_a02
+	execute_on_executed_when_done false
+	use_position false
+´30secs´ ElementDialogue 100067
+	dialogue Play_plt_a07
+	execute_on_executed_when_done false
+	use_position false
+´here´ ElementDialogue 100068
+	dialogue Play_plt_a08
+	execute_on_executed_when_done false
+	use_position false

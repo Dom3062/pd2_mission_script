@@ -1,0 +1,493 @@
+´STARTUP´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´seq_all_SHOW´ ElementUnitSequence 100008
+	position -180, -475, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence set_interactable
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence close_case
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/chips (73, -26, 2)
+			notify_unit_sequence show
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/chips (73, -26, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´wp_gear_silent_ON´ (delay 0)
+´gear_case_opened´ MissionScriptElement 100010
+	on_executed
+		´show_digit´ (delay 0)
+		´seq_enable_interaction´ (delay 0)
+´output_gear_picked_up´ ElementInstanceOutput 100011
+	event gear_picked_up
+´seq_trg_gas_can_INTERACT´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+	on_executed
+		´gas_can_picked_up´ (delay 0)
+´gas_can_picked_up´ MissionScriptElement 100014
+	on_executed
+		´output_gas_can_picked_up´ (delay 0)
+´output_gas_can_picked_up´ ElementInstanceOutput 100015
+	event gas_can_picked_up
+´player_state_mask_off´ ElementPlayerState 100016
+	position 195, -375, 800
+	rotation 0, 0, 0, -1
+	state mask_off
+	use_instigator true
+´DELAY´ MissionScriptElement 100017
+	on_executed
+		´HIDE´ (delay 0)
+´HIDE´ MissionScriptElement 100018
+	on_executed
+		´seq_hide_all´ (delay 0)
+		´card_masks_disable´ (delay 0)
+´seq_hide_all´ ElementUnitSequence 100019
+	position -425, -550, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence diable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/chips (73, -26, 2)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/chips (73, -26, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+´pd_digit_0´ ElementDebug 100024
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 0
+	show_instigator false
+´pd_digit_1´ ElementDebug 100025
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 1
+	show_instigator false
+´pd_digit_3´ ElementDebug 100026
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 3
+	show_instigator false
+´pd_digit_2´ ElementDebug 100027
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 2
+	show_instigator false
+´pd_digit_5´ ElementDebug 100028
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 5
+	show_instigator false
+´pd_digit_4´ ElementDebug 100029
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 4
+	show_instigator false
+´pd_digit_7´ ElementDebug 100030
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 7
+	show_instigator false
+´pd_digit_6´ ElementDebug 100031
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 6
+	show_instigator false
+´pd_digit_8´ ElementDebug 100032
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 8
+	show_instigator false
+´pd_digit_9´ ElementDebug 100033
+	DISABLED
+	as_subtitle true
+	debug_string BLUE NUMBER: 9
+	show_instigator false
+´show_digit´ MissionScriptElement 100034
+	on_executed
+		´pd_digit_0´ (delay 0) DISABLED
+		´pd_digit_1´ (delay 0) DISABLED
+		´pd_digit_2´ (delay 0) DISABLED
+		´pd_digit_3´ (delay 0) DISABLED
+		´pd_digit_4´ (delay 0) DISABLED
+		´pd_digit_5´ (delay 0) DISABLED
+		´pd_digit_6´ (delay 0) DISABLED
+		´pd_digit_7´ (delay 0) DISABLED
+		´pd_digit_8´ (delay 0) DISABLED
+		´pd_digit_9´ (delay 0) DISABLED
+´pd_digit_0_ON´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_0´ DISABLED
+´pd_digit_1_ON´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_1´ DISABLED
+´pd_digit_2_ON´ ElementToggle 100037
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_2´ DISABLED
+´pd_digit_3_ON´ ElementToggle 100038
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_3´ DISABLED
+´pd_digit_4_ON´ ElementToggle 100039
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_4´ DISABLED
+´pd_digit_5_ON´ ElementToggle 100040
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_5´ DISABLED
+´pd_digit_6_ON´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_6´ DISABLED
+´pd_digit_7_ON´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_7´ DISABLED
+´pd_digit_8_ON´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_8´ DISABLED
+´pd_digit_9_ON´ ElementToggle 100044
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´pd_digit_9´ DISABLED
+´input_show_digit_0´ ElementInstanceInput 100045
+	event show_digit_0
+	on_executed
+		´pd_digit_0_ON´ (delay 0)
+´input_show_digit_1´ ElementInstanceInput 100046
+	event show_digit_1
+	on_executed
+		´pd_digit_1_ON´ (delay 0)
+´input_show_digit_2´ ElementInstanceInput 100047
+	event show_digit_2
+	on_executed
+		´pd_digit_2_ON´ (delay 0)
+´input_show_digit_3´ ElementInstanceInput 100048
+	event show_digit_3
+	on_executed
+		´pd_digit_3_ON´ (delay 0)
+´input_show_digit_4´ ElementInstanceInput 100049
+	event show_digit_4
+	on_executed
+		´pd_digit_4_ON´ (delay 0)
+´input_show_digit_5´ ElementInstanceInput 100050
+	event show_digit_5
+	on_executed
+		´pd_digit_5_ON´ (delay 0)
+´input_show_digit_6´ ElementInstanceInput 100051
+	event show_digit_6
+	on_executed
+		´pd_digit_6_ON´ (delay 0)
+´input_show_digit_7´ ElementInstanceInput 100052
+	event show_digit_7
+	on_executed
+		´pd_digit_7_ON´ (delay 0)
+´input_show_digit_8´ ElementInstanceInput 100053
+	event show_digit_8
+	on_executed
+		´pd_digit_8_ON´ (delay 0)
+´input_show_digit_9´ ElementInstanceInput 100054
+	event show_digit_9
+	on_executed
+		´pd_digit_9_ON´ (delay 0)
+´wp_gear_loud´ ElementWaypoint 100055
+	DISABLED
+	icon pd2_generic_look
+	only_in_civilian true
+	position 0, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_wp´ ElementInstanceInput 100056
+	event enable_wp
+	on_executed
+		´show_loud_wp_ON´ (delay 0)
+		´wp_gear_loud´ (delay 0) DISABLED
+´show_loud_wp´ MissionScriptElement 100057
+	DISABLED
+	on_executed
+		´wp_gear_loud´ (delay 0) DISABLED
+´show_loud_wp_ON´ ElementToggle 100058
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´show_loud_wp´ DISABLED
+´input_show_gear_case´ ElementInstanceInput 100059
+	event show_gear_case
+	on_executed
+		´seq_all_SHOW´ (delay 0)
+		´card_masks_enable´ (delay 0)
+´seq_trg_gear_bag_interact´ ElementUnitSequenceTrigger 100062
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+	on_executed
+		´player_state_mask_off´ (delay 0)
+		´show_loud_wp´ (delay 0) DISABLED
+		´seq_gear_bag_enable_interaction´ (delay 0)
+		´output_gear_picked_up´ (delay 0)
+		´wp_gear_silent´ (delay 0) DISABLED
+		´seq_gas_can_enable_interaction´ (delay 0)
+´seq_gear_bag_enable_interaction´ ElementUnitSequence 100006
+	position 195, -650, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence enable_interaction
+			time 0
+´seq_enable_interaction´ ElementUnitSequence 100009
+	position -25, -475, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence set_interactable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+			notify_unit_sequence open_case
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gear_bag/cas_prop_gear_bag/gear_bag (52, 15, 16)
+			notify_unit_sequence enable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/dev/cas_dev_gambling_chips/cas_dev_gambling_chips/chips (73, -26, 2)
+			notify_unit_sequence enable_interaction
+			time 0
+´seq_trg_ger_case_interact´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_guitar_case/cas_prop_guitar_case/gear_case (-25, 0, 0)
+	on_executed
+		´gear_case_opened´ (delay 0)
+´wp_gear_silent´ ElementWaypoint 100068
+	DISABLED
+	icon pd2_generic_look
+	only_in_civilian true
+	position 0, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_hide_silent_wp´ ElementInstanceInput 100069
+	event hide_silent_wp
+	on_executed
+		´wp_gear_silent_REMOVE´ (delay 0)
+		´wp_gear_silent_OFF´ (delay 0)
+´wp_gear_silent_REMOVE´ ElementOperator 100070
+	operation remove
+	elements
+		1 ´wp_gear_silent´ DISABLED
+´wp_gear_silent_OFF´ ElementToggle 100071
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´wp_gear_silent´ DISABLED
+´wp_gear_silent_ON´ ElementToggle 100003
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´wp_gear_silent´ DISABLED
+		2 ´trigger_area_pln_ca1_67´ DISABLED
+´input_show_silent_wp´ ElementInstanceInput 100073
+	event show_silent_wp
+	on_executed
+		´wp_gear_silent´ (delay 0) DISABLED
+´trigger_area_pln_ca1_67´ ElementAreaTrigger 100007
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 1351,45
+	height 500
+	instigator player
+	interval 0.1
+	position -50, 0, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 1173,9
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´func_dialogue_001´ (delay 0)
+´func_dialogue_001´ ElementDialogue 100021
+	dialogue Play_pln_ca1_67
+	execute_on_executed_when_done false
+	use_position false
+´police_called´ ElementGlobalEventTrigger 100020
+	TRIGGER TIMES 1
+	global_event police_called
+	position 387, -775, 802.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_sleeping_gas_disable´ (delay 0)
+´seq_sleeping_gas_disable´ ElementUnitSequence 100022
+	position 387, -850, 802.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence disable_interaction
+			time 0
+´card_masks_disable´ ElementDisableUnit 100005
+	position -348, -550, 802.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/cas/cas_prop_playingcard_d/card (-26, 16, 3)
+		2 units/pd2_dlc_casino/props/cas_prop_gear/cas_prop_gear/masks (-25, 0, 0)
+´card_masks_enable´ ElementEnableUnit 100023
+	position -180, -560, 800
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/cas/cas_prop_playingcard_d/card (-26, 16, 3)
+		2 units/pd2_dlc_casino/props/cas_prop_gear/cas_prop_gear/masks (-25, 0, 0)
+´seq_gas_can_enable_interaction´ ElementUnitSequence 100064
+	position 120, -550, 800
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/props/cas_prop_gas_can/cas_prop_gas_can/gas_can (-133, 0, 2)
+			notify_unit_sequence enable_interaction
+			time 0

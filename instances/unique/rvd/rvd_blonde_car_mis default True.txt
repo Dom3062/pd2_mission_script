@@ -1,0 +1,1050 @@
+´test(disabled_by_default)´ MissionScriptElement 100000
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 2)
+		´test_spawn_player´ (delay 0)
+´test_delay´ MissionScriptElement 100001
+	on_executed
+		´toggle_test´ (delay 0) DISABLED
+		´instance_input_show_vehicle´ (delay 0)
+´test_spawn_player´ ElementPlayerSpawner 100002
+	position 0, -700, 0
+	rotation 0, 0, 0, -1
+	state standard
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100004
+	on_executed
+		´unit_disabler´ (delay 0)
+		´seq_setup´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100005
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/shadow_mullplan/mullplan_vehicle/001 (0, 0, 2)
+´seq_setup´ ElementUnitSequence 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/001 (63, 30, 59)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/002 (70, 50.0824, 65.1398)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence state_hide_character
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cop/rvd_prop_cop/rvd_prop_cop (6, -209, 56)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/003 (73, 79, 33)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/004 (71, 101, 35)
+			notify_unit_sequence hide
+			time 0
+´add_door_blockers´ ElementNavObstacle 100014
+	operation add
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -275, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-100, -275, 0)
+		3
+			guis_id 3
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/003 (-100, -100, 0)
+		4
+			guis_id 4
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/004 (0, -100, 0)
+´instance_input_show_vehicle´ ElementInstanceInput 100015
+	event show_vehicle
+	on_executed
+		´add_door_blockers´ (delay 0)
+		´seq_show_vehicle´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´seq_show_vehicle´ ElementUnitSequence 100016
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/001 (63, 30, 59)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/002 (70, 50.0824, 65.1398)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/003 (73, 79, 33)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/004 (71, 101, 35)
+			notify_unit_sequence show
+			time 0
+´enable_interaction_open_trunk´ ElementToggle 100018
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_open_trunk´ DISABLED
+	on_executed
+		´WP_interaction_open_trunk´ (delay 0)
+´instance_input_enable_interaction_trunk´ ElementInstanceInput 100019
+	event enable_interaction_trunk
+	on_executed
+		´blonde_also_in_trunk´ (delay 0)
+´WP_interaction_open_trunk´ ElementWaypoint 100020
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -275, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_interaction_open_trunk´ ElementOperator 100021
+	operation remove
+	elements
+		1 ´WP_interaction_open_trunk´
+´opened_trunk´ MissionScriptElement 100022
+	on_executed
+		´seq_open_trunk´ (delay 0)
+		´remove_WP_interaction_open_trunk´ (delay 0)
+		´enable´ (delay 0)
+		´instance_output_opened_trunk´ (delay 0)
+		´Play_mrb_rvd_13´ (delay 0.5)
+´seq_enable_LN´ ElementUnitSequence 100023
+	position 700, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/001 (63, 30, 59)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/002 (70, 50.0824, 65.1398)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/003 (73, 79, 33)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/004 (71, 101, 35)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´WP_interaction_LN´ (delay 0)
+´WP_interaction_LN´ ElementWaypoint 100024
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 35, 34, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´took_LN´ ElementUnitSequenceTrigger 100025
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/001 (63, 30, 59)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/002 (70, 50.0824, 65.1398)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/003 (73, 79, 33)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/004 (71, 101, 35)
+	on_executed
+		´took_LN_2´ (delay 0)
+		´teammate_comment_got_one´ (delay 0)
+´took_LN_2´ MissionScriptElement 100026
+	on_executed
+		´2´ (delay 0)
+		´instance_output_took_a_LN´ (delay 0)
+		´relay´ (delay 0)
+		´Play_mrb_rvd_14´ (delay 1)
+´2´ ElementCounter 100027
+	counter_target 2
+	on_executed
+		´disable´ (delay 0)
+		´remove_WP_interaction_LN´ (delay 0)
+		´teammate_comment_found_one_more´ (delay 0)
+´disable´ ElementToggle 100028
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´activate_WP_2nd_LN´
+´activate_WP_2nd_LN´ MissionScriptElement 100030
+	on_executed
+		´WP_interaction_LN´ (delay 0)
+´remove_WP_interaction_LN´ ElementOperator 100031
+	operation remove
+	elements
+		1 ´WP_interaction_LN´
+´instance_input_show_hint_2nd_LN´ ElementInstanceInput 100032
+	event show_hint_2nd_LN
+	on_executed
+		´activate_WP_2nd_LN´ (delay 0)
+´area_loot´ ElementAreaTrigger 100034
+	DISABLED
+	amount 1
+	depth 156,4
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 0, -185, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 164
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´secured_loot´ (delay 0)
+		´point_play_sound_bag_drop001´ (delay 0)
+´secured_loot´ MissionScriptElement 100035
+	on_executed
+		´carry_remove_money´ (delay 0)
+		´relay_2´ (delay 0)
+		´carry_remove_diamonds´ (delay 0)
+		´carry_remove_jewelry´ (delay 0)
+		´sound_cop´ (delay 0)
+		´seq_show_bag´ (delay 0)
+		´teammate_comment_lootbag_down´ (delay 0)
+´enable´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_loot´ DISABLED
+		2 ´activate_WP_again´ DISABLED
+	on_executed
+		´WP_lootdrop´ (delay 1)
+´WP_lootdrop´ ElementWaypoint 100037
+	TRIGGER TIMES 1
+	icon pd2_lootdrop
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -209, 129
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_lootdrop´ ElementOperator 100041
+	operation remove
+	elements
+		1 ´WP_lootdrop´
+´instance_output_took_a_LN´ ElementInstanceOutput 100043
+	event took_a_LN
+´trigger_area_test´ ElementAreaTrigger 100044
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 50
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -625, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´point_loot_bag_001´ (delay 0)
+		´point_loot_bag_002´ (delay 0)
+		´point_loot_bag_003´ (delay 0)
+		´point_loot_bag_004´ (delay 0)
+		´point_loot_bag_005´ (delay 0)
+		´point_loot_bag_007´ (delay 0)
+		´point_loot_bag_006´ (delay 0)
+		´point_loot_bag_008´ (delay 0)
+		´enable_interaction_open_trunk´ (delay 0)
+´toggle_test´ ElementToggle 100045
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_test´ DISABLED
+´seq_open_trunk´ ElementUnitSequence 100047
+	position 700, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence anim_trunk
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cop/rvd_prop_cop/rvd_prop_cop (6, -209, 56)
+			notify_unit_sequence show
+			time 0
+´instance_input_secured_all_loot´ ElementInstanceInput 100029
+	event secured_all_loot
+	on_executed
+		´remove_WP_lootdrop´ (delay 0)
+		´disable_that_shit´ (delay 0)
+		´Play_mrb_rvd_28´ (delay 0.5)
+´carry_remove_money´ ElementCarry 100039
+	operation secure
+	type_filter money
+	on_executed
+		´instance_output_secured_a_money´ (delay 0)
+		´carry_secure_money´ (delay 0)
+´disable_2´ ElementToggle 100040
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´relay´
+´relay´ MissionScriptElement 100042
+	on_executed
+		´remove_WP_interaction_LN´ (delay 0)
+´instance_input_disable_early_WP_removal´ ElementInstanceInput 100049
+	event disable_early_WP_removal
+	on_executed
+		´disable_2´ (delay 0)
+´seq_show_bag´ ElementUnitSequence 100052
+	position 900, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence state_add_loot_bag
+			time 0
+´WP_interaction_open_side´ ElementWaypoint 100054
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 95, -11, 100
+	rotation 0, 0, 1, -1.19209E-07
+	text_id debug_none
+´interaction_open_side´ ElementInteraction 100055
+	DISABLED
+	host_only false
+	override_timer -1
+	position 95, -11, 100
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id hold_open
+	on_executed
+		´opened_side´ (delay 0) (alternative interacted)
+´seq_open_side´ ElementUnitSequence 100033
+	position 700, -300, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence anim_open_door_right
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence disable_outline_right_door
+			time 0
+´opened_side´ MissionScriptElement 100053
+	on_executed
+		´seq_open_side´ (delay 0)
+		´remove_WP_interaction_open_side´ (delay 0)
+		´seq_enable_LN´ (delay 1)
+´remove_WP_interaction_open_side´ ElementOperator 100056
+	operation remove
+	elements
+		1 ´WP_interaction_open_side´
+´enable_interaction_open_side´ ElementToggle 100057
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interaction_open_side´ DISABLED
+		2 ´area_player_infront_of_LN´ DISABLED
+	on_executed
+		´WP_interaction_open_side´ (delay 0)
+		´seq_enable_outline_right_door´ (delay 0)
+´instance_input_enable_interaction_side´ ElementInstanceInput 100058
+	event enable_interaction_side
+	on_executed
+		´enable_interaction_open_side´ (delay 0)
+´counter_loot_WP´ ElementCounter 100046
+	counter_target 0
+´less_than_1´ ElementCounterFilter 100051
+	check_type less_than
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_loot_WP´
+	on_executed
+		´remove_WP_lootdrop´ (delay 0)
+		´enable_once´ (delay 0.01)
+´greater_or_equal_than_1´ ElementCounterFilter 100059
+	check_type greater_or_equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter_loot_WP´
+	on_executed
+		´activate_WP_again´ (delay 0) DISABLED
+´add1´ ElementCounterOperator 100060
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter_loot_WP´
+	on_executed
+		´check´ (delay 0.01)
+´sub1´ ElementCounterOperator 100061
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´counter_loot_WP´
+	on_executed
+		´check´ (delay 0.01)
+´instance_input_found_a_loot´ ElementInstanceInput 100062
+	event found_a_loot
+	on_executed
+		´add1´ (delay 0)
+´enable_once´ ElementToggle 100063
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´WP_lootdrop´
+´disable_that_shit´ ElementToggle 100064
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_once´
+		2 ´add1´
+		3 ´less_than_1´
+		4 ´greater_or_equal_than_1´
+		5 ´sub1´
+		6 ´counter_loot_WP´
+		7 ´activate_WP_again´ DISABLED
+		8 ´bag_008´ DISABLED
+		9 ´bag_007´ DISABLED
+		10 ´bag_006´ DISABLED
+		11 ´bag_005´ DISABLED
+		12 ´bag_003´ DISABLED
+		13 ´bag_004´ DISABLED
+´check´ MissionScriptElement 100067
+	on_executed
+		´less_than_1´ (delay 0)
+		´greater_or_equal_than_1´ (delay 0)
+´relay_2´ MissionScriptElement 100068
+	on_executed
+		´sub1´ (delay 0)
+´instance_output_opened_trunk´ ElementInstanceOutput 100069
+	event opened_trunk
+´activate_WP_again´ MissionScriptElement 100070
+	DISABLED
+	on_executed
+		´WP_lootdrop´ (delay 0)
+´carry_remove_diamonds´ ElementCarry 100073
+	operation remove
+	type_filter diamonds_dah
+	on_executed
+		´instance_output_secured_a_diamond´ (delay 0)
+		´count_loot´ (delay 0.5)
+		´10´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100009
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/shadow_mullplan/mullplan_vehicle/001 (0, 0, 2)
+´instance_output_secured_a_jewelry´ ElementInstanceOutput 100075
+	event secured_a_jewelry
+´carry_remove_jewelry´ ElementCarry 100076
+	operation remove
+	type_filter diamonds
+	on_executed
+		´instance_output_secured_a_jewelry´ (delay 0)
+		´carry_secure_jewelry´ (delay 0)
+´instance_output_secured_a_diamond´ ElementInstanceOutput 100079
+	event secured_a_diamond
+´instance_output_secured_a_money´ ElementInstanceOutput 100080
+	event secured_a_money
+´area_open_trunk´ ElementAreaTrigger 100081
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 360
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -25, -275, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 485
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´opened_trunk´ (delay 0)
+´seq_enable_outline_right_door´ ElementUnitSequence 100017
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence enable_outline_right_door
+			time 0
+	on_executed
+		´point_debug_006´ (delay 0)
+´point_debug_006´ ElementDebug 100082
+	as_subtitle false
+	debug_string enable now
+	show_instigator false
+´instance_input_show_open_door_left´ ElementInstanceInput 100083
+	event open_door_left
+	on_executed
+		´seq_open_door_left´ (delay 0)
+		´enable_2´ (delay 7)
+´seq_open_door_left´ ElementUnitSequence 100085
+	TRIGGER TIMES 1
+	position 1300, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence anim_open_door_left
+			time 0
+	on_executed
+		´blonde_also_in_trunk´ (delay 2)
+		´seq_close_door_left´ (delay 1.5)
+´seq_close_door_left´ ElementUnitSequence 100091
+	position 1400, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence anim_close_door_left
+			time 0
+´sound_cop´ ElementPlaySound 100084
+	append_prefix false
+	interrupt true
+	position 0, -200, 89
+	rotation 0, 0, 0, -1
+	sound_event Play_mrp_rvd_05
+	use_instigator false
+´point_play_sound_bag_drop001´ ElementPlaySound 100090
+	append_prefix false
+	interrupt true
+	position 0, -209, 90
+	rotation 0, 0, 0, -1
+	sound_event bag_medium_drop
+	use_instigator false
+´Play_mrb_rvd_13´ ElementPlaySound 100092
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_13
+	use_instigator false
+´Play_mrb_rvd_14´ ElementPlaySound 100093
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_14
+	use_instigator false
+´Play_mrb_rvd_15´ ElementPlaySound 100094
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_15
+	use_instigator false
+´area_open_trunk001´ ElementAreaTrigger 100096
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 522,125
+	height 200
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -9, 174
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 157,577
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´Play_mrb_rvd_15´ (delay 0)
+´Play_mrb_rvd_17´ ElementPlaySound 100095
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_17
+	use_instigator false
+´count_loot´ MissionScriptElement 100038
+	on_executed
+		´bag_001´ (delay 0)
+		´bag_002´ (delay 0) DISABLED
+		´bag_003´ (delay 0) DISABLED
+		´bag_004´ (delay 0) DISABLED
+		´bag_005´ (delay 0) DISABLED
+		´bag_006´ (delay 0) DISABLED
+		´bag_007´ (delay 0) DISABLED
+		´bag_008´ (delay 0) DISABLED
+´Play_mrb_rvd_18´ ElementPlaySound 100074
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_18
+	use_instigator false
+´Play_mrb_rvd_19´ ElementPlaySound 100097
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_19
+	use_instigator false
+´Play_mrb_rvd_20´ ElementPlaySound 100098
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_20
+	use_instigator false
+´Play_mrb_rvd_21´ ElementPlaySound 100099
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_21
+	use_instigator false
+´Play_mrb_rvd_22´ ElementPlaySound 100100
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_22
+	use_instigator false
+´Play_mrb_rvd_23´ ElementPlaySound 100101
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_23
+	use_instigator false
+´Play_mrb_rvd_24´ ElementPlaySound 100102
+	DISABLED
+	TRIGGER TIMES 1
+	append_prefix false
+	interrupt true
+	position -33, 18, 116
+	rotation 0, 0, 0, -1
+	sound_event Play_mrb_rvd_24
+	use_instigator false
+´enable_next001´ ElementToggle 100103
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_18´ DISABLED
+		2 ´bag_002´ DISABLED
+´enable_next002´ ElementToggle 100104
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_19´ DISABLED
+		2 ´bag_003´ DISABLED
+´enable_next003´ ElementToggle 100105
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_20´ DISABLED
+		2 ´bag_004´ DISABLED
+´enable_next004´ ElementToggle 100106
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_21´ DISABLED
+		2 ´bag_005´ DISABLED
+´enable_next005´ ElementToggle 100107
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_22´ DISABLED
+		2 ´bag_006´ DISABLED
+´enable_next006´ ElementToggle 100108
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_23´ DISABLED
+		2 ´bag_007´ DISABLED
+´enable_next007´ ElementToggle 100109
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´Play_mrb_rvd_24´ DISABLED
+		2 ´bag_008´ DISABLED
+´bag_001´ MissionScriptElement 100110
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_17´ (delay 0)
+		´enable_next001´ (delay 0.1)
+´bag_002´ MissionScriptElement 100111
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_18´ (delay 0) DISABLED
+		´enable_next002´ (delay 0.1)
+´bag_003´ MissionScriptElement 100112
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_19´ (delay 0) DISABLED
+		´enable_next003´ (delay 0.1)
+´bag_004´ MissionScriptElement 100113
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_20´ (delay 0) DISABLED
+		´enable_next004´ (delay 0.1)
+´bag_005´ MissionScriptElement 100114
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_21´ (delay 0) DISABLED
+		´enable_next005´ (delay 0.1)
+´bag_006´ MissionScriptElement 100115
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_22´ (delay 0) DISABLED
+		´enable_next006´ (delay 0.1)
+´bag_007´ MissionScriptElement 100116
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_23´ (delay 0) DISABLED
+		´enable_next007´ (delay 0.1)
+´bag_008´ MissionScriptElement 100117
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´Play_mrb_rvd_24´ (delay 0) DISABLED
+´Play_mrb_rvd_28´ ElementDialogue 100120
+	can_not_be_muted false
+	dialogue Play_mrb_rvd_28
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´point_loot_bag_001´ ElementLootBag 100119
+	carry_id diamonds_dah
+	from_respawn false
+	position 150, -450, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_002´ ElementLootBag 100121
+	carry_id diamonds_dah
+	from_respawn false
+	position 96, -407, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_003´ ElementLootBag 100122
+	carry_id diamonds_dah
+	from_respawn false
+	position 118, -340, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_004´ ElementLootBag 100123
+	carry_id diamonds_dah
+	from_respawn false
+	position 60, -350, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_005´ ElementLootBag 100124
+	carry_id diamonds_dah
+	from_respawn false
+	position -76, -355, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_006´ ElementLootBag 100125
+	carry_id diamonds_dah
+	from_respawn false
+	position -166, -375, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_007´ ElementLootBag 100126
+	carry_id diamonds_dah
+	from_respawn false
+	position -141, -325, 0
+	rotation 0, 0, 0, -1
+´point_loot_bag_008´ ElementLootBag 100127
+	carry_id diamonds_dah
+	from_respawn false
+	position -208, -331, 0
+	rotation 0, 0, 0, -1
+´blonde_also_in_trunk´ ElementCounter 100118
+	counter_target 2
+	on_executed
+		´enable_interaction_open_trunk´ (delay 0)
+´carry_secure_money´ ElementCarry 100150
+	operation remove
+	type_filter money
+´carry_secure_jewelry´ ElementCarry 100152
+	operation secure
+	type_filter diamonds
+´enable_2´ ElementToggle 100154
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_open_trunk001´ DISABLED
+´input_hide_car´ ElementInstanceInput 100071
+	event input_hide_car
+	on_executed
+		´hide_car´ (delay 0)
+´hide_car´ ElementUnitSequence 100072
+	position 1000, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cop/rvd_prop_cop/rvd_prop_cop (6, -209, 56)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/001 (63, 30, 59)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/002 (70, 50.0824, 65.1398)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/vehicles/rvd_vehicle_car_cadillac/rvd_vehicle_cadillac/001 (0, 0, 0)
+			notify_unit_sequence state_reset_loot_bag
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/003 (73, 79, 33)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_nitrogen_canister/rvd_prop_nitrogen_canister/004 (71, 101, 35)
+			notify_unit_sequence hide
+			time 0
+	on_executed
+		´unit_disabler´ (delay 0)
+´teammate_comment_found_it´ ElementTeammateComment 100050
+	TRIGGER TIMES 1
+	close_to_element false
+	comment v04
+	position 175, 125, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100065
+	as_subtitle false
+	debug_string from instance: teammate_comment_found_it
+	show_instigator false
+´area_player_infront_of_LN´ ElementAreaTrigger 100066
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 575
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 175, 50, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´teammate_comment_found_it´ (delay 0)
+		´enable_interaction_open_side´ (delay 0)
+´teammate_comment_found_one_more´ ElementTeammateComment 100048
+	TRIGGER TIMES 1
+	close_to_element false
+	comment v06
+	position 275, 125, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_002´ (delay 0)
+´point_debug_002´ ElementDebug 100128
+	as_subtitle false
+	debug_string from instance: teammate_comment_found_one_more
+	show_instigator false
+´teammate_comment_got_one´ ElementTeammateComment 100129
+	TRIGGER TIMES 1
+	close_to_element false
+	comment v05
+	position 350, 125, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator true
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_003´ ElementDebug 100130
+	as_subtitle false
+	debug_string from instance: teammate_comment_got_one
+	show_instigator false
+´teammate_comment_lootbag_down´ ElementTeammateComment 100131
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p27
+	position 0, -275, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_004´ (delay 0)
+´point_debug_004´ ElementDebug 100132
+	as_subtitle false
+	debug_string from instance: teammate_comment_lootbag_down
+	show_instigator false
+´teammate_comment_all_lootbags´ ElementTeammateComment 100133
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p28
+	position 0, -300, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´point_debug_005´ (delay 0)
+´point_debug_005´ ElementDebug 100134
+	as_subtitle false
+	debug_string from instance: teammate_comment_all_lootbags
+	show_instigator false
+´10´ ElementCounter 100135
+	counter_target 10
+	on_executed
+		´teammate_comment_all_lootbags´ (delay 0)

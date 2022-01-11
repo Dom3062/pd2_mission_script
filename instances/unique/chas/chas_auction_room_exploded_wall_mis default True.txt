@@ -1,0 +1,188 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 3)
+		´point_spawn_player_001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_001´ (delay 0)
+		´input_explode_wall´ (delay 5)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/architecture/int/chas_int_teashop_01/chas_int_auctionroom_destroyed_wall_brick/001 (-150, -0.000244141, 0)
+			notify_unit_sequence whole
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´input_explode_wall´ ElementInstanceInput 100007
+	event explode_wall
+	on_executed
+		´link_explode_wall´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event none
+´SO_navlink_jump_wall´ ElementSpecialObjective 100011
+	SO_access 8064
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 4
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style precise
+	patrol_path none
+	pose none
+	position 0, 125, 0
+	rotation 0, 0, 1, -4.17233E-07
+	scan true
+	search_distance 0
+	search_position 16,6172 -241,008 0
+	so_action e_nl_jump_over_0_5m
+	trigger_on none
+	use_instigator false
+	followup_elements
+´link_explode_wall´ MissionScriptElement 100012
+	on_executed
+		´seq_explode_wall´ (delay 0)
+´seq_explode_wall´ ElementUnitSequence 100013
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/architecture/int/chas_int_teashop_01/chas_int_auctionroom_destroyed_wall_brick/001 (-150, -0.000244141, 0)
+			notify_unit_sequence int_seq_destroy
+			time 0
+	on_executed
+		´point_feedback_001´ (delay 0)
+´point_feedback_001´ ElementFeedback 100014
+	TRIGGER TIMES 1
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,5
+	effect mission_triggered
+	position 0, -50, 100
+	range 350
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake true
+	use_rumble true
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100015
+	append_prefix false
+	interrupt false
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion
+	use_instigator false
+	on_executed
+		´point_explosion_damage_001´ (delay 0)
+		´point_play_sound_002´ (delay 0)
+		´point_play_sound_003´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100016
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -250, 250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100017
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -99.9999, 250, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´point_explosion_damage_001´ ElementExplosionDamage 100010
+	damage 60
+	position 0, -25, 0
+	range 200
+	rotation 0, 0, 0, -1
+´enable_navlink´ MissionScriptElement 100018
+	on_executed
+		´SO_navlink_jump_wall´ (delay 0)
+´point_play_sound_002´ ElementPlaySound 100009
+	append_prefix false
+	interrupt false
+	position 150, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion_debris_02
+	use_instigator false
+´point_play_sound_003´ ElementPlaySound 100021
+	append_prefix false
+	interrupt false
+	position -150, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event chas_explosion_debris_01
+	use_instigator false
+´func_nav_obstacle_001´ ElementNavObstacle 100023
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, -75, 0)
+´police_called´ ElementGlobalEventTrigger 100024
+	TRIGGER TIMES 1
+	global_event police_called
+	position 800, 300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´enable_navlink´ (delay 0)

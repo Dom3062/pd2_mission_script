@@ -1,0 +1,711 @@
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100001
+	enemy units/payday2/characters/civ_male_casual_1/civ_male_casual_1
+	force_pickup none
+	position 0, 3.05176E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´male_group´ ElementSpawnCivilianGroup 100002
+	amount 1
+	ignore_disabled true
+	position 150, 100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_003´
+´ai_spawn_civilian_002´ ElementSpawnCivilian 100003
+	enemy units/payday2/characters/civ_male_casual_4/civ_male_casual_4
+	force_pickup none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´ai_spawn_civilian_003´ ElementSpawnCivilian 100004
+	enemy units/payday2/characters/civ_male_casual_3/civ_male_casual_3
+	force_pickup none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´ai_lady_001´ ElementSpawnCivilian 100005
+	enemy units/payday2/characters/civ_female_casual_1/civ_female_casual_1
+	force_pickup none
+	position 0, -9.15527E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´ai_lady_002´ ElementSpawnCivilian 100006
+	enemy units/payday2/characters/civ_female_casual_2/civ_female_casual_2
+	force_pickup none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´ai_lady_003´ ElementSpawnCivilian 100007
+	enemy units/payday2/characters/civ_female_casual_3/civ_female_casual_3
+	force_pickup none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+´point_spawn_player_001´ ElementPlayerSpawner 100009
+	DISABLED
+	position -250, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	on_executed
+		´exit´ (delay 3)
+´lady_group´ ElementSpawnCivilianGroup 100010
+	amount 1
+	ignore_disabled true
+	position 150, -100, 0
+	random true
+	rotation 0, 0, 0, -1
+	team default
+	elements
+		1 ´ai_lady_001´
+		2 ´ai_lady_002´
+		3 ´ai_lady_003´
+´random_male_or_female´ ElementRandom 100011
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´male_group´ (delay 0)
+		´lady_group´ (delay 0)
+´so_male_start_001´ ElementSpecialObjective 100012
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 0 0
+	so_action none
+	trigger_on none
+	followup_elements
+´start´ ElementSpecialObjectiveTrigger 100013
+	event administered
+	position 0, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_male_start_001´
+	on_executed
+		´random´ (delay 0)
+´male_intro_001´ ElementSpecialObjective 100014
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 2.28882E-05, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_idle_var1
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´001´ (delay 0)
+´link´ MissionScriptElement 100015
+	BASE DELAY 0,5
+	TRIGGER TIMES 1
+	base_delay_rand 1,5
+	on_executed
+		´male_exit_001´ (delay 0) DISABLED
+		´male_exit_002´ (delay 0) DISABLED
+		´male_exit_003´ (delay 0) DISABLED
+		´female_exit_001´ (delay 0) DISABLED
+		´female_exit_002´ (delay 0) DISABLED
+		´female_exit_003´ (delay 0) DISABLED
+´exit´ ElementInstanceInput 100016
+	event exit
+	on_executed
+		´link´ (delay 0)
+´male_exit_001´ ElementSpecialObjective 100018
+	DISABLED
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, 250, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_exit_var1
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_003´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_001´
+´men_spawn´ ElementEnemyDummyTrigger 100017
+	event spawn
+	position 50, 100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_001´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_003´
+	on_executed
+		´so_male_start_001´ (delay 0)
+´random´ ElementRandom 100019
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´male_intro_001´ (delay 0)
+		´male_intro_002´ (delay 0)
+		´male_intro_003´ (delay 0)
+´male_intro_002´ ElementSpecialObjective 100020
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 2.28882E-05, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_idle_var2
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´002´ (delay 0)
+´male_intro_003´ ElementSpecialObjective 100021
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 2.28882E-05, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_idle_var3
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´003´ (delay 0)
+´male_exit_002´ ElementSpecialObjective 100022
+	DISABLED
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, 150, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_exit_var2
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_003´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_001´
+´male_exit_003´ ElementSpecialObjective 100023
+	DISABLED
+	SO_access 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, 50, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cm_so_hurt_exit_var3
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_civilian_003´
+		2 ´ai_spawn_civilian_002´
+		3 ´ai_spawn_civilian_001´
+´002´ ElementToggle 100024
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´male_exit_002´ DISABLED
+´001´ ElementToggle 100025
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´male_exit_001´ DISABLED
+´003´ ElementToggle 100026
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´male_exit_003´ DISABLED
+´lady_spawn´ ElementEnemyDummyTrigger 100027
+	event spawn
+	position 50, -100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_lady_001´
+		2 ´ai_lady_002´
+		3 ´ai_lady_003´
+	on_executed
+		´so_female_start_001´ (delay 0)
+´so_female_start_001´ ElementSpecialObjective 100028
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 0 0
+	so_action none
+	trigger_on none
+	use_instigator true
+	followup_elements
+´spawn´ ElementSpecialObjectiveTrigger 100029
+	event administered
+	position 0, -100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_female_start_001´
+	on_executed
+		´random_2´ (delay 0)
+´random_2´ ElementRandom 100030
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´female_intro_003´ (delay 0)
+		´female_intro_002´ (delay 0)
+		´female_intro_001´ (delay 0)
+´female_intro_001´ ElementSpecialObjective 100031
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_idle_var1
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´f_001´ (delay 0)
+´female_intro_002´ ElementSpecialObjective 100032
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_idle_var2
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´f_002´ (delay 0)
+´female_intro_003´ ElementSpecialObjective 100033
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_idle_var3
+	trigger_on none
+	use_instigator true
+	followup_elements
+	on_executed
+		´f_003´ (delay 0)
+´f_001´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´female_exit_001´ DISABLED
+´f_002´ ElementToggle 100035
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´female_exit_002´ DISABLED
+´f_003´ ElementToggle 100036
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´female_exit_003´ DISABLED
+´female_exit_001´ ElementSpecialObjective 100037
+	DISABLED
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, -50, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_exit_var1
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_lady_001´
+		2 ´ai_lady_002´
+		3 ´ai_lady_003´
+´female_exit_002´ ElementSpecialObjective 100038
+	DISABLED
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, -150, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_exit_var2
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_lady_001´
+		2 ´ai_lady_002´
+		3 ´ai_lady_003´
+´female_exit_003´ ElementSpecialObjective 100039
+	DISABLED
+	SO_access 2
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -300, -250, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 0 150 0
+	so_action cf_so_hurt_exit_var3
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_lady_001´
+		2 ´ai_lady_002´
+		3 ´ai_lady_003´
+´point_special_objective_001´ ElementSpecialObjective 100040
+	SO_access 3
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -400, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -200 -800 0
+	so_action cmf_so_panic
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_lady_003´
+		2 ´ai_lady_002´
+		3 ´ai_lady_001´
+		4 ´ai_spawn_civilian_003´
+		5 ´ai_spawn_civilian_002´
+		6 ´ai_spawn_civilian_001´
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100041
+	event administered
+	position -350, 0, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´male_exit_003´ DISABLED
+		2 ´male_exit_002´ DISABLED
+		3 ´male_exit_001´ DISABLED
+		4 ´female_exit_001´ DISABLED
+		5 ´female_exit_002´ DISABLED
+		6 ´female_exit_003´ DISABLED
+	on_executed
+		´point_special_objective_001´ (delay 6)
+´spawn_2´ ElementInstanceInput 100000
+	TRIGGER TIMES 1
+	event spawn
+	on_executed
+		´random_male_or_female´ (delay 0)

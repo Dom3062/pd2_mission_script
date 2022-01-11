@@ -1,0 +1,295 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´nav_add_blocker´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´input_enable_interaction´ (delay 2)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´interact_WP´ ElementWaypoint 100017
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hack_box_opened´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+	on_executed
+		´enable_hit_boxes´ (delay 1)
+		´point_debug_003´ (delay 0) DISABLED
+´enable_hit_boxes´ ElementUnitSequence 100038
+	position 1200, 200, 0.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´remove_interact_WP´ (delay 0)
+´output_electric_box_disabled´ ElementInstanceOutput 100007
+	event electric_box_disabled
+	on_executed
+		´point_debug_002´ (delay 0) DISABLED
+´input_disable_interaction´ ElementInstanceInput 100008
+	event disable_interaction
+	on_executed
+		´link_disable_interaction´ (delay 0)
+		´disable_everything´ (delay 0.1)
+´area_enable_interaction´ ElementAreaTrigger 100015
+	DISABLED
+	amount 1
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´area_disable_interaction´ ElementAreaTrigger 100016
+	DISABLED
+	amount all
+	depth 300
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_exit
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_disable_interaction´ (delay 0)
+´link_enable_interaction´ MissionScriptElement 100019
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´link_disable_interaction´ MissionScriptElement 100020
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´seq_enable_outline´ ElementUnitSequence 100021
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence show_outline
+			time 0
+	on_executed
+		´enable_area_triggers´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100022
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence hide_outline
+			time 0
+´disable_everything´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
+		3 ´interact_WP´
+		4 ´hit_WP´
+		5 ´link_enable_interaction´
+		6 ´hack_box_opened´
+		7 ´hack_box_hit´
+	on_executed
+		´remove_WP´ (delay 0)
+´enable_interact_WP´ MissionScriptElement 100024
+	on_executed
+		´interact_WP´ (delay 0)
+´remove_WP´ ElementOperator 100025
+	operation remove
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+	on_executed
+		´seq_disable_outline´ (delay 0)
+´enable_area_triggers´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
+´hit_WP´ ElementWaypoint 100031
+	icon pd2_melee
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -25, 124
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_enable_link_WP´ MissionScriptElement 100032
+	on_executed
+		´hit_WP´ (delay 0)
+´remove_interact_WP´ ElementOperator 100033
+	operation remove
+	elements
+		1 ´interact_WP´
+	on_executed
+		´link_enable_link_WP´ (delay 0.5)
+		´disable_interactions_box´ (delay 0)
+´hack_box_hit´ ElementUnitSequenceTrigger 100045
+	TRIGGER TIMES 1
+	sequence_list
+		7
+			guis_id 7
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+	on_executed
+		´disable_everything´ (delay 0)
+		´output_electric_box_disabled´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+´point_debug_002´ ElementDebug 100046
+	DISABLED
+	as_subtitle false
+	debug_string TAkE THAT SUCkER!!! - Alarm gone.
+	show_instigator false
+´point_debug_003´ ElementDebug 100009
+	DISABLED
+	as_subtitle false
+	debug_string You can hit me now!
+	show_instigator false
+´env_effect_play_001´ ElementPlayEffect 100010
+	base_time 0
+	effect effects/payday2/particles/electric/electric_sparks_small
+	max_amount 0
+	position 0, 0, 100
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100011
+	append_prefix false
+	interrupt true
+	position 0, 0, 76.4465
+	rotation 0, 0, 0, -1
+	sound_event electric_sparks
+	use_instigator false
+´seq_disable_outline´ ElementUnitSequence 100012
+	position 1500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence hide_outline
+			time 0
+´disable_interactions_box´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_enable_interaction´
+		2 ´interact_WP´
+	on_executed
+		´link_enable_link_WP´ (delay 0.5)
+´seq_enable_interaction´ ElementUnitSequence 100014
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/equipment/chas_interactable_alarmbox/chas_interactable_alarmbox/001 (0, 25, 0)
+			notify_unit_sequence interact_enabled
+			time 0
+	on_executed
+		´seq_enable_outline´ (delay 0)
+´input_enable_interaction´ ElementInstanceInput 100018
+	event enable_interaction
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´enable_waypoint´ ElementInstanceInput 100027
+	event show_waypoint
+	on_executed
+		´enable_interact_WP´ (delay 0)
+´logic_toggle_001´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100034
+	operation remove
+	elements
+		1 ´interact_WP´
+		2 ´hit_WP´
+´disable_waypoint´ ElementInstanceInput 100028
+	event hide_waypoint
+	on_executed
+		´link_disable_waypoint´ (delay 0)
+´link_disable_waypoint´ MissionScriptElement 100026
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´nav_add_blocker´ ElementNavObstacle 100047
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -25, 0)

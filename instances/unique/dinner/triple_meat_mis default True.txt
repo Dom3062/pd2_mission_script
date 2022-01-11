@@ -1,0 +1,75 @@
+´activate´ ElementInstanceInput 100001
+	event Activate random meat
+	on_executed
+		´choose_random_variation´ (delay 0)
+´choose_random_variation´ ElementRandom 100002
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´var001´ (delay 0)
+		´var002´ (delay 0)
+		´var003´ (delay 0)
+´var001´ ElementUnitSequence 100003
+	position -400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+			notify_unit_sequence pick_var_1
+			time 0
+´var002´ ElementUnitSequence 100004
+	position -500, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+			notify_unit_sequence pick_var_2
+			time 0
+´var003´ ElementUnitSequence 100005
+	position -600, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+			notify_unit_sequence pick_var_3
+			time 0
+´interaction_enabled´ ElementUnitSequence 100006
+	position -500, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enable
+			time 0
+´activate_special_pig´ ElementInstanceInput 100007
+	event Activate special pig
+	on_executed
+		´interaction_enabled´ (delay 0)
+´grabbed_a_motherfucking_pig´ ElementUnitSequenceTrigger 100008
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+	on_executed
+		´disable_interaction´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100009
+	position -600, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dinner/props/din_prop_hanging_meat/din_hanging_meat_01/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0

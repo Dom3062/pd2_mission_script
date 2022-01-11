@@ -1,0 +1,2456 @@
+´STARTUP´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+		´debug_spawn_2´ (delay 0) DISABLED
+´delay´ MissionScriptElement 100001
+	BASE DELAY 1
+	on_executed
+		´disable_arrow´ (delay 0)
+´skm_spawn_hostage_bankmanager´ ElementSpawnCivilian 100002
+	enemy units/pd2_skirmish/characters/civ_male_bank_manager_hostage/civ_male_bank_manager_hostage
+	force_pickup none
+	position -200, 400, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+		1 ´point_orientation_001´
+	on_executed
+		´SO_hostage_anim_sitting´ (delay 0)
+		´disable_damage_bankmanager´ (delay 0)
+´SO_hostage_anim_sitting´ ElementSpecialObjective 100004
+	SO_access 1073741823
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance hos
+	path_style none
+	patrol_path none
+	pose stand
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 0 -100 0
+	so_action cm_so_hostage_idle
+	trigger_on none
+	use_instigator true
+	followup_elements
+´disable_arrow´ ElementDisableUnit 100006
+	position -700, 1600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/com_int_basement/com_int_basement_garage_parkingline_arrow/001 (-75, 0, 100)
+	on_executed
+		´disable_collision´ (delay 0)
+´spawn_hostage_bankmanager´ ElementInstanceInput 100003
+	event spawn_hostage_bankmanager
+	on_executed
+		´turn_off_7´ (delay 0)
+´hostage_link_bankmanager´ MissionScriptElement 100007
+	on_executed
+		´skm_spawn_hostage_bankmanager´ (delay 1)
+		´enable_collision´ (delay 0) DISABLED
+		´enable_nav´ (delay 0) DISABLED
+		´show_waypoint_defend_hostage_link´ (delay 0)
+		´seq_disable_intel´ (delay 0)
+´debug_spawn´ ElementPlayerSpawner 100008
+	position -500, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+´debug_spawn_2´ MissionScriptElement 100009
+	DISABLED
+	on_executed
+		´debug_spawn´ (delay 0)
+		´spawn_enemy´ (delay 0) DISABLED
+		´debug_delay´ (delay 0) DISABLED
+		´turn_off_7´ (delay 0)
+´disable_shout´ ElementDisableShout 100011
+	disable_shout true
+	position -400, 1400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´skm_spawn_hostage_bankmanager´
+		2 ´skm_spawn_hostage_curator´
+		3 ´skm_spawn_hostage_druglord´
+		4 ´skm_spawn_hostage_prisoner´
+	on_executed
+		´point_debug_002´ (delay 1) DISABLED
+´show_outline´ ElementSetOutline 100010
+	clear_previous false
+	position -200, 4900, 0
+	rotation 0, 0, 0.707107, -0.707107
+	set_outline true
+	use_instigator false
+	elements
+		1 ´skm_spawn_hostage_bankmanager´
+		2 ´skm_spawn_hostage_curator´
+		3 ´skm_spawn_hostage_druglord´
+		4 ´skm_spawn_hostage_prisoner´
+	on_executed
+		´point_debug_001´ (delay 0) DISABLED
+´disable_collision´ ElementDisableUnit 100019
+	position -600, 1600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´disable_nav´ (delay 0) DISABLED
+´enable_collision´ ElementEnableUnit 100020
+	DISABLED
+	position -500, 2500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´disable_nav´ ElementNavObstacle 100022
+	DISABLED
+	operation remove
+	position -500, 1600, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id 100021
+´enable_nav´ ElementNavObstacle 100023
+	DISABLED
+	operation add
+	position -400, 2500, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+	on_executed
+		´show_waypoint_defend_hostage_link´ (delay 0)
+´waypoint_defend_hostage´ ElementWaypoint 100024
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 7, 0, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_waypoint_defend_hostage_link´ MissionScriptElement 100025
+	on_executed
+		´waypoint_defend_hostage´ (delay 0)
+´hide_waypoint_defend_hostage´ ElementInstanceInput 100026
+	event hide_waypoint_defend_hostage
+	on_executed
+		´hide_waypoint_defend_hostage_link´ (delay 0)
+´hide_waypoint_defend_hostage_link´ MissionScriptElement 100027
+	on_executed
+		´remove_waypoint_defend_hostage´ (delay 0)
+´remove_waypoint_defend_hostage´ ElementOperator 100028
+	operation remove
+	elements
+		1 ´waypoint_defend_hostage´
+	on_executed
+		´removed_waypoint_hostage_defend´ (delay 0)
+´removed_waypoint_hostage_defend´ ElementInstanceOutput 100029
+	event removed_waypoint_defend_hostage
+´trigger_SO´ ElementSpecialObjectiveTrigger 100012
+	event anim_start
+	position -500, 1400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_hostage_anim_sitting´
+	on_executed
+		´disable_shout´ (delay 0)
+´point_debug_001´ ElementDebug 100013
+	DISABLED
+	as_subtitle false
+	debug_string from instance: showing outline
+	show_instigator false
+´point_debug_002´ ElementDebug 100018
+	DISABLED
+	as_subtitle false
+	debug_string from instance: disable shout
+	show_instigator false
+´anim_start_freeing_hostage´ ElementSpecialObjectiveTrigger 100031
+	event anim_start
+	position 300, 2600, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_002´
+		2 ´SO_free_hostage_003´
+		3 ´SO_free_hostage_004´
+	on_executed
+		´point_debug_005´ (delay 0)
+		´turn_on_2´ (delay 0)
+´start_freeing_hostage_VO´ MissionScriptElement 100032
+	on_executed
+		´logic_link_004´ (delay 0)
+		´logic_link_005´ (delay 0)
+		´remove_waypoint_interact_hostage´ (delay 0)
+		´remove_waypoint_defend_hostage´ (delay 0)
+		´remove_waypoint_interact_intel´ (delay 0)
+		´remove_waypoint_defend_intel´ (delay 0)
+		´remove_waypoint_interact_laptop´ (delay 0)
+		´remove_waypoint_defend_laptop´ (delay 0)
+´fail_mission´ ElementMissionEnd 100034
+	position 700, 2900, 0
+	rotation 0, 0, 0, -1
+	state failed
+´freeing_failed_SO´ ElementSpecialObjectiveTrigger 100035
+	event fail
+	position 300, 3100, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_002´
+		2 ´SO_free_hostage_003´
+		3 ´SO_free_hostage_004´
+		4 ´SO_position_002´ DISABLED
+		5 ´SO_position_003´ DISABLED
+		6 ´SO_position_004´ DISABLED
+	on_executed
+		´reset_link´ (delay 0)
+		´point_debug_004´ (delay 0)
+´reset_link´ MissionScriptElement 100036
+	on_executed
+		´turn_off_3´ (delay 0)
+		´remove_kill_waypoints´ (delay 0)
+		´point_debug_024´ (delay 0)
+´point_debug_004´ ElementDebug 100038
+	as_subtitle false
+	debug_string from instance: freeing_failed_SO
+	show_instigator false
+´point_debug_005´ ElementDebug 100039
+	as_subtitle false
+	debug_string from instance: anim_start_freeing_hostage
+	show_instigator false
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100040
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, -150, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´spawn_enemy´ MissionScriptElement 100041
+	DISABLED
+	BASE DELAY 5
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´ai_spawn_enemy_007´ (delay 0)
+		´ai_spawn_enemy_008´ (delay 0)
+		´ai_spawn_enemy_009´ (delay 0)
+		´ai_spawn_enemy_004´ (delay 0)
+		´ai_spawn_enemy_005´ (delay 0)
+		´ai_spawn_enemy_006´ (delay 0)
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100043
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100044
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, 150, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´turn_off´ ElementToggle 100046
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_position_004´ DISABLED
+		2 ´SO_position_003´ DISABLED
+		3 ´SO_position_002´ DISABLED
+		4 ´reset_SO_link´
+	on_executed
+		´interaction_delay´ (delay 0)
+		´point_debug_079´ (delay 0) DISABLED
+		´toggle_on_hostage_trade´ (delay 0)
+´turn_on_hostage_SO´ ElementToggle 100049
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_position_004´ DISABLED
+		2 ´SO_position_003´ DISABLED
+		3 ´SO_position_002´ DISABLED
+		4 ´reset_SO_link´
+´fade_out´ ElementOverlayEffect 100050
+	effect fade_out_in
+	fade_in 1
+	fade_out 1
+	position 600, 2900, 0
+	rotation 0, 0, 0, -1
+	sustain 2
+	on_executed
+		´fail_mission´ (delay 2.5)
+´assault_end´ ElementGlobalEventTrigger 100033
+	global_event end_assault_late
+	position -800, 2200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´turn_off´ (delay 0)
+		´remove_waypoint_defend_intel´ (delay 0)
+		´remove_waypoint_defend_hostage´ (delay 0)
+		´counter_final_wave´ (delay 0)
+		´logic_random_005´ (delay 0)
+		´remove_kill_waypoints´ (delay 0)
+		´counter_final_wave_completed´ (delay 0)
+		´remove_waypoint_defend_laptop´ (delay 0)
+		´wave_1´ (delay 0)
+		´wave_2´ (delay 0)
+		´wave_3´ (delay 0)
+		´wave_4´ (delay 0)
+		´wave_5´ (delay 0)
+		´wave_6´ (delay 0)
+		´wave_7´ (delay 0)
+		´wave_8´ (delay 0)
+		´wave_9´ (delay 0)
+		´logic_link_002´ (delay 2)
+		´logic_link_003´ (delay 10) DISABLED
+´assault_start´ ElementGlobalEventTrigger 100051
+	global_event start_assault
+	position -800, 1900, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´turn_on_hostage_SO´ (delay 0) DISABLED
+		´show_waypoint_defend_hostage_link´ (delay 0)
+		´turn_on_intel_SO´ (delay 0) DISABLED
+		´show_waypoint_defend_intel_link´ (delay 0)
+		´turn_off_2´ (delay 0)
+		´turn_off_6´ (delay 0)
+		´remove_waypoint_interact_intel´ (delay 0)
+		´remove_waypoint_interact_hostage´ (delay 0)
+		´hide_outline´ (delay 0)
+		´logic_random_004´ (delay 0)
+		´logic_random_001´ (delay 0)
+		´counter_wave1´ (delay 0) DISABLED
+		´counter_wave3´ (delay 0) DISABLED
+		´counter_wave5´ (delay 0) DISABLED
+		´counter_wave7´ (delay 0) DISABLED
+		´counter_wave9´ (delay 0) DISABLED
+		´show_waypoint_defend_laptop_link´ (delay 0)
+		´remove_waypoint_interact_laptop´ (delay 0)
+		´logic_toggle_006´ (delay 0)
+		´logic_link_001´ (delay 0) DISABLED
+´start_SO_link´ MissionScriptElement 100045
+	on_executed
+		´reset_SO_link´ (delay 0)
+		´point_debug_078´ (delay 0)
+´enable_hostage_interaction´ ElementInstanceInput 100047
+	DISABLED
+	event enable_hostage_interaction
+	on_executed
+		´hostage_interaction_link´ (delay 0)
+´hostage_interaction_link´ MissionScriptElement 100048
+	on_executed
+		´turn_on´ (delay 0)
+		´show_waypoint_interact_hostage_link´ (delay 0)
+		´show_outline´ (delay 0)
+		´point_debug_006´ (delay 0)
+´interact_hostage´ ElementInteraction 100052
+	DISABLED
+	host_only true
+	override_timer -1
+	position -25, 0, 75
+	rotation 0, 0, 0, -1
+	tweak_data_id hostage_skm
+	on_executed
+		´traded_the_thing´ (delay 0) (alternative interacted)
+´turn_on´ ElementToggle 100053
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interact_hostage´ DISABLED
+	on_executed
+		´hide_outline´ (delay 0)
+´debug_delay´ MissionScriptElement 100054
+	DISABLED
+	on_executed
+		´interaction_delay´ (delay 0)
+´interaction_delay´ MissionScriptElement 100058
+	BASE DELAY 7
+	on_executed
+		´hostage_interaction_link´ (delay 0)
+		´intel_interaction_link´ (delay 0)
+´turn_off_2´ ElementToggle 100060
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´interact_hostage´ DISABLED
+´turn_off_3´ ElementToggle 100061
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´fail_link2´
+	on_executed
+		´reset_SO_link´ (delay 5)
+		´point_debug_020´ (delay 0)
+´turn_on_2´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´fail_link2´
+	on_executed
+		´start_freeing_hostage_VO´ (delay 0)
+´fail_link2´ MissionScriptElement 100063
+	on_executed
+		´fade_out´ (delay 4)
+		´remove_kill_waypoints´ (delay 0)
+		´logic_random_003´ (delay 1)
+		´output_heist_failed´ (delay 0)
+		´remove_waypoint_interact_hostage´ (delay 0)
+		´remove_waypoint_defend_hostage´ (delay 0)
+		´remove_waypoint_interact_intel´ (delay 0)
+		´remove_waypoint_defend_intel´ (delay 0)
+		´remove_waypoint_interact_laptop´ (delay 0)
+		´remove_waypoint_defend_laptop´ (delay 0)
+		´SO_hostage_anim_exit´ (delay 1)
+		´logic_link_008´ (delay 0)
+		´logic_link_007´ (delay 0)
+		´SO_female_hostage_anim_exit´ (delay 1)
+´traded_the_thing´ MissionScriptElement 100064
+	on_executed
+		´remove_waypoint_defend_hostage´ (delay 0)
+		´win_link´ (delay 0)
+		´SO_hostage_anim_exit´ (delay 0.5)
+		´SO_female_hostage_anim_exit´ (delay 0.5)
+		´remove_WP_interact_intel´ (delay 0.1)
+		´hide_outline´ (delay 0.1)
+		´logic_link_010´ (delay 0)
+´hide_waypoint_interact_hostage´ ElementInstanceInput 100037
+	event hide_waypoint_interact_hostage
+	on_executed
+		´hide_waypoint_interact_hostage_link´ (delay 0)
+´hide_waypoint_interact_hostage_link´ MissionScriptElement 100067
+	on_executed
+		´remove_waypoint_interact_hostage´ (delay 0)
+´removed_waypoint_hostage_interact´ ElementInstanceOutput 100068
+	event removed_waypoint_interact_hostage
+´show_waypoint_interact_hostage_link´ MissionScriptElement 100069
+	on_executed
+		´waypoint_interact_hostage´ (delay 0)
+´remove_waypoint_interact_hostage´ ElementOperator 100070
+	operation remove
+	elements
+		1 ´waypoint_interact_hostage´
+	on_executed
+		´removed_waypoint_hostage_interact´ (delay 0)
+´waypoint_interact_hostage´ ElementWaypoint 100071
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position -8, 0, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´reset_SO_link´ MissionScriptElement 100073
+	on_executed
+		´rrrandom_SO´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´pick_intel_SO´ (delay 0)
+´point_debug_003´ ElementDebug 100075
+	as_subtitle false
+	debug_string from instance: reset_SO_link
+	show_instigator false
+´SO_position_002´ ElementSpecialObjective 100072
+	DISABLED
+	SO_access 128
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 15
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 35, -119, 0
+	rotation 0, 0, -0.19081, -0.981627
+	scan true
+	search_distance 1000
+	search_position -100 0 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_free_hostage_002´
+	on_executed
+		´point_debug_010´ (delay 0) DISABLED
+´SO_free_hostage_002´ ElementSpecialObjective 100074
+	SO_access 65012216
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 37, -112, 75
+	rotation 0, 0, -0.19081, -0.981627
+	scan false
+	search_distance 0
+	search_position 100 -100 0
+	so_action e_so_release_hostage_right
+	trigger_on none
+	use_instigator true
+	followup_elements
+´SO_free_hostage_003´ ElementSpecialObjective 100076
+	SO_access 65012216
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 114, -14, 75
+	rotation 0, 0, -0.707107, -0.707106
+	scan false
+	search_distance 0
+	search_position 100 -100 0
+	so_action e_so_release_hostage_back
+	trigger_on none
+	use_instigator true
+	followup_elements
+´SO_position_003´ ElementSpecialObjective 100077
+	DISABLED
+	SO_access 128
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 15
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 114, -14, 0
+	rotation 0, 0, -0.707107, -0.707106
+	scan true
+	search_distance 1000
+	search_position -100 0 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_free_hostage_003´
+	on_executed
+		´point_debug_010´ (delay 0) DISABLED
+´SO_free_hostage_004´ ElementSpecialObjective 100078
+	SO_access 65012216
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 0
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 48, 105, 75
+	rotation 0, 0, 0.986286, 0.165047
+	scan false
+	search_distance 0
+	search_position 100 -100 0
+	so_action e_so_release_hostage_left
+	trigger_on none
+	use_instigator true
+	followup_elements
+´SO_position_004´ ElementSpecialObjective 100079
+	DISABLED
+	SO_access 128
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced false
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval 15
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 48, 105, 0
+	rotation 0, 0, 0.986286, 0.165047
+	scan true
+	search_distance 1000
+	search_position -100 0 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´SO_free_hostage_004´
+	on_executed
+		´point_debug_010´ (delay 0) DISABLED
+´trigger_SO_001´ ElementSpecialObjectiveTrigger 100080
+	event anim_start
+	position 300, 1400, 0
+	rotation 0, 0, 0, -1
+´trigger_SO_002´ ElementSpecialObjectiveTrigger 100081
+	event anim_start
+	position 300, 1600, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_002´
+	on_executed
+		´waypoint_freeing_hostage_002´ (delay 0)
+´trigger_SO_003´ ElementSpecialObjectiveTrigger 100082
+	event anim_start
+	position 300, 1800, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_003´
+	on_executed
+		´waypoint_freeing_hostage_003´ (delay 0)
+´trigger_SO_004´ ElementSpecialObjectiveTrigger 100083
+	event anim_start
+	position 300, 2000, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_004´
+	on_executed
+		´waypoint_freeing_hostage_004´ (delay 0)
+´point_debug_010´ ElementDebug 100088
+	DISABLED
+	as_subtitle false
+	debug_string SO_position
+	show_instigator false
+´rrrandom_SO´ ElementRandom 100089
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´logic_link_011´ ElementDebug 100090
+	as_subtitle true
+	debug_string kÃ¶ttmarie
+	show_instigator false
+´fail_link´ MissionScriptElement 100091
+	DISABLED
+	BASE DELAY 15
+	base_delay_rand 20
+	on_executed
+		´logic_link_011´ (delay 0)
+´logic_toggle_002´ ElementToggle 100093
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_position_002´ DISABLED
+	on_executed
+		´SO_position_002´ (delay 0) DISABLED
+´logic_toggle_003´ ElementToggle 100094
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_position_003´ DISABLED
+	on_executed
+		´SO_position_003´ (delay 0) DISABLED
+´logic_toggle_004´ ElementToggle 100095
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´SO_position_004´ DISABLED
+	on_executed
+		´SO_position_004´ (delay 0) DISABLED
+´freeing_anim_failed´ ElementSpecialObjectiveTrigger 100096
+	DISABLED
+	TRIGGER TIMES 1
+	event fail
+	position 300, 3500, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_002´
+		2 ´SO_free_hostage_003´
+		3 ´SO_free_hostage_004´
+	on_executed
+		´point_debug_018´ (delay 0) DISABLED
+		´turn_off_14´ (delay 0) DISABLED
+		´remove_kill_waypoints´ (delay 0)
+´spawn_intel´ ElementInstanceInput 100099
+	event spawn_intel
+	on_executed
+		´logic_counter_filter_005´ (delay 0)
+		´logic_counter_filter_006´ (delay 0)
+´intel_laptop_link´ MissionScriptElement 100100
+	on_executed
+		´disable_case´ (delay 0)
+		´show_waypoint_defend_laptop_link´ (delay 0)
+´disable_intel_units´ ElementDisableUnit 100102
+	position -300, 2600, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fish/lxy_interactable_laptop/lxy_interactable_laptop/001 (3.8147E-06, 9.53674E-07, 87)
+		2 units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+	on_executed
+		´turn_off_4´ (delay 0)
+´remove_waypoint_defend_intel´ ElementOperator 100103
+	operation remove
+	elements
+		1 ´waypoint_defend_intel´
+	on_executed
+		´removed_waypoint_intel_defend´ (delay 0)
+´hide_waypoint_defend_intel_link´ MissionScriptElement 100104
+	on_executed
+		´remove_waypoint_defend_intel´ (delay 0)
+´removed_waypoint_intel_defend´ ElementInstanceOutput 100105
+	event removed_waypoint_defend_intel
+´hide_waypoint_defend_intel´ ElementInstanceInput 100106
+	event hide_waypoint_defend_intel
+	on_executed
+		´hide_waypoint_defend_intel_link´ (delay 0)
+´remove_waypoint_interact_intel´ ElementOperator 100107
+	operation remove
+	elements
+		1 ´WP_interact_intel002´
+	on_executed
+		´removed_waypoint_intel_interact´ (delay 0)
+´hide_waypoint_interact_intel_link´ MissionScriptElement 100108
+	on_executed
+		´remove_waypoint_interact_intel´ (delay 0)
+´removed_waypoint_intel_interact´ ElementInstanceOutput 100109
+	event removed_waypoint_interact_intel
+´hide_waypoint_interact_intel´ ElementInstanceInput 100110
+	event hide_waypoint_interact_intel
+	on_executed
+		´hide_waypoint_interact_intel_link´ (delay 0)
+´show_waypoint_defend_intel_link´ MissionScriptElement 100111
+	on_executed
+		´waypoint_defend_intel´ (delay 0)
+´show_waypoint_interact_intel_link´ MissionScriptElement 100112
+	on_executed
+		´WP_interact_intel002´ (delay 0)
+´waypoint_defend_intel´ ElementWaypoint 100113
+	icon pd2_defend
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 108.85
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_interact_intel002´ ElementWaypoint 100114
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 96.8497
+	rotation 0, 0, 0, -1
+	text_id debug_none
+	on_executed
+		´point_debug_008´ (delay 0)
+´pick_intel_SO´ MissionScriptElement 100115
+´turn_off_4´ ElementToggle 100116
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´pick_intel_SO´
+		2 ´turn_on_intel_SO´ DISABLED
+		3 ´turn_off_6´
+		4 ´show_waypoint_defend_intel_link´
+		5 ´intel_interaction_link´
+		6 ´player_spawn_intel´
+		7 ´show_waypoint_defend_laptop_link´
+		8 ´players_traded_asset´
+		9 ´logic_link_004´
+		10 ´logic_link_008´
+		11 ´logic_link_009´
+´turn_off_5´ ElementToggle 100117
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´rrrandom_SO´
+		2 ´turn_on_hostage_SO´ DISABLED
+		3 ´turn_off_2´
+		4 ´show_waypoint_defend_hostage_link´
+		5 ´hostage_interaction_link´
+		6 ´player_spawn_hostage´
+		7 ´players_traded_hostage´
+		8 ´logic_link_005´
+		9 ´logic_link_007´
+		10 ´logic_link_010´
+´turn_on_intel_SO´ ElementToggle 100118
+	DISABLED
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´reset_SO_link´
+´enable_intel_interaction´ ElementInstanceInput 100119
+	event enable_intel_interaction
+	on_executed
+		´intel_interaction_link´ (delay 0)
+´intel_interaction_link´ MissionScriptElement 100120
+	on_executed
+		´turn_on_3´ (delay 0)
+		´show_waypoint_interact_intel_link´ (delay 0)
+´turn_on_3´ ElementToggle 100121
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´WP_interact_intel001´ DISABLED
+´turn_off_6´ ElementToggle 100122
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´WP_interact_intel001´ DISABLED
+´WP_interact_intel001´ ElementInteraction 100123
+	DISABLED
+	host_only true
+	override_timer -1
+	position 0, 0, 96.8497
+	rotation 0, 0, 0, -1
+	tweak_data_id hostage_skm
+	on_executed
+		´traded_the_thing´ (delay 0) (alternative interacted)
+		´point_debug_009´ (delay 0) (alternative interacted)
+´func_dialogue_001´ ElementDialogue 100124
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_g01x
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´seq_disable_intel´ ElementUnitSequence 100126
+	position -400, 2600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_interactable_laptop/lxy_interactable_laptop/001 (3.8147E-06, 9.53674E-07, 87)
+			notify_unit_sequence deactivate
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´disable_intel_units´ (delay 0)
+´hostage_link_curator´ MissionScriptElement 100127
+	on_executed
+		´seq_disable_intel´ (delay 0)
+		´skm_spawn_hostage_curator´ (delay 1)
+		´show_waypoint_defend_hostage_link´ (delay 0)
+´hostage_link_prisoner´ MissionScriptElement 100128
+	on_executed
+		´seq_disable_intel´ (delay 0)
+		´show_waypoint_defend_hostage_link´ (delay 0)
+		´skm_spawn_hostage_prisoner´ (delay 1)
+´hostage_link_druglord´ MissionScriptElement 100129
+	on_executed
+		´seq_disable_intel´ (delay 0)
+		´show_waypoint_defend_hostage_link´ (delay 0)
+		´skm_spawn_hostage_druglord´ (delay 1)
+´spawn_hostage_curator´ ElementInstanceInput 100130
+	event spawn_hostage_curator
+	on_executed
+		´turn_off_8´ (delay 0)
+´spawn_hostage_prisoner´ ElementInstanceInput 100131
+	event spawn_hostage_prisoner
+	on_executed
+		´turn_off_9´ (delay 0)
+´spawn_hostage_druglord´ ElementInstanceInput 100132
+	event spawn_hostage_druglord
+	on_executed
+		´turn_off_10´ (delay 0)
+´turn_off_7´ ElementToggle 100133
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hostage_link_curator´
+		2 ´hostage_link_prisoner´
+		3 ´hostage_link_druglord´
+		4 ´hostage_link_generic´
+	on_executed
+		´hostage_link_bankmanager´ (delay 0)
+´turn_off_8´ ElementToggle 100134
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hostage_link_bankmanager´
+		2 ´hostage_link_prisoner´
+		3 ´hostage_link_druglord´
+		4 ´hostage_link_generic´
+	on_executed
+		´hostage_link_curator´ (delay 0)
+´turn_off_9´ ElementToggle 100135
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hostage_link_bankmanager´
+		2 ´hostage_link_curator´
+		3 ´hostage_link_druglord´
+		4 ´hostage_link_generic´
+	on_executed
+		´hostage_link_prisoner´ (delay 0)
+´turn_off_10´ ElementToggle 100136
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hostage_link_prisoner´
+		2 ´hostage_link_curator´
+		3 ´hostage_link_bankmanager´
+		4 ´hostage_link_generic´
+	on_executed
+		´hostage_link_druglord´ (delay 0)
+´skm_spawn_hostage_curator´ ElementSpawnCivilian 100137
+	enemy units/pd2_skirmish/characters/civ_female_museum_curator_hostage/civ_female_museum_curator_hostage
+	force_pickup none
+	position -200, -400, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+		1 ´point_orientation_001´
+	on_executed
+		´disable_damage_curator´ (delay 0)
+		´SO_female_hostage_anim_sitting´ (delay 0)
+´skm_spawn_hostage_prisoner´ ElementSpawnCivilian 100138
+	enemy units/pd2_skirmish/characters/civ_male_prisoner_hostage/civ_male_prisoner_hostage
+	force_pickup none
+	position -200, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+		1 ´point_orientation_001´
+	on_executed
+		´SO_hostage_anim_sitting´ (delay 0)
+		´disable_damage_prisoner´ (delay 0)
+´skm_spawn_hostage_druglord´ ElementSpawnCivilian 100139
+	enemy units/pd2_skirmish/characters/civ_female_drug_lord_hostage/civ_female_drug_lord_hostage
+	force_pickup none
+	position -200, -300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state none
+	team default
+	orientation_elements
+		1 ´point_orientation_001´
+	on_executed
+		´disable_damage_druglord´ (delay 0)
+		´SO_female_hostage_anim_sitting´ (delay 0)
+´instance_parameters´ ElementInstanceParams 100140
+	position -500, 3100, -2.5
+	rotation 0, 0, 0, -1
+	params
+		1
+			default_value 0
+			type number
+			var_name var_spawn_bankman
+		2
+			default_value 0
+			type number
+			var_name var_spawn_curator
+		3
+			default_value 0
+			type number
+			var_name var_spawn_prisoner
+		4
+			default_value 0
+			type number
+			var_name var_spawn_druglord
+		5
+			default_value 0
+			type number
+			var_name var_intel_laptop
+		6
+			default_value 0
+			type number
+			var_name var_intel_case
+		7
+			default_value 0
+			type number
+			var_name var_spawn_generic
+		8
+			default_value 0
+			type number
+			var_name var_wave_amount
+´counter_bankman´ ElementCounter 100141
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_spawn_bankman
+´counter_curator´ ElementCounter 100142
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_spawn_curator
+´counter_druglord´ ElementCounter 100143
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_spawn_druglord
+´counter_prisoner´ ElementCounter 100144
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_spawn_prisoner
+´point_debug_011´ ElementDebug 100149
+	as_subtitle false
+	debug_string spawn bankman
+	show_instigator false
+´point_debug_012´ ElementDebug 100150
+	as_subtitle false
+	debug_string spawn curator
+	show_instigator false
+´point_debug_013´ ElementDebug 100151
+	as_subtitle false
+	debug_string spawn prisoner
+	show_instigator false
+´point_debug_014´ ElementDebug 100152
+	as_subtitle false
+	debug_string spawn druglord
+	show_instigator false
+´spawn_hostage´ ElementInstanceInput 100153
+	event spawn_hostage
+	on_executed
+		´logic_counter_filter_001´ (delay 0)
+		´logic_counter_filter_002´ (delay 0)
+		´logic_counter_filter_003´ (delay 0)
+		´logic_counter_filter_004´ (delay 0)
+		´logic_counter_filter_007´ (delay 0)
+´logic_counter_filter_001´ ElementCounterFilter 100145
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_bankman´
+	on_executed
+		´point_debug_011´ (delay 0)
+		´turn_off_7´ (delay 0)
+´logic_counter_filter_002´ ElementCounterFilter 100146
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_curator´
+	on_executed
+		´point_debug_012´ (delay 0)
+		´turn_off_8´ (delay 0)
+´logic_counter_filter_003´ ElementCounterFilter 100147
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_prisoner´
+	on_executed
+		´point_debug_013´ (delay 0)
+		´turn_off_9´ (delay 0)
+´logic_counter_filter_004´ ElementCounterFilter 100148
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_druglord´
+	on_executed
+		´point_debug_014´ (delay 0)
+		´turn_off_10´ (delay 0)
+´disable_damage_bankmanager´ ElementInvulnerable 100155
+	immortal false
+	invulnerable true
+	position 300, -300, 0
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´skm_spawn_hostage_bankmanager´
+´disable_damage_druglord´ ElementInvulnerable 100154
+	immortal false
+	invulnerable true
+	position 300, 300, 0
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´skm_spawn_hostage_druglord´
+´disable_damage_curator´ ElementInvulnerable 100156
+	immortal false
+	invulnerable true
+	position 300, -100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´skm_spawn_hostage_curator´
+´disable_damage_prisoner´ ElementInvulnerable 100157
+	immortal false
+	invulnerable true
+	position 300, 100, 0
+	rotation 0, 0, 0.707107, -0.707107
+	elements
+		1 ´skm_spawn_hostage_prisoner´
+´counter_laptop´ ElementCounter 100158
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_intel_laptop
+´logic_counter_filter_005´ ElementCounterFilter 100159
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_laptop´
+	on_executed
+		´point_debug_015´ (delay 0)
+		´turn_off_11´ (delay 0)
+´point_debug_015´ ElementDebug 100160
+	as_subtitle false
+	debug_string spawn laptop
+	show_instigator false
+´counter_case´ ElementCounter 100161
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_intel_case
+´logic_counter_filter_006´ ElementCounterFilter 100162
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_case´
+	on_executed
+		´point_debug_016´ (delay 0)
+		´turn_off_12´ (delay 0)
+´point_debug_016´ ElementDebug 100163
+	as_subtitle false
+	debug_string spawn case
+	show_instigator false
+´intel_case_link´ MissionScriptElement 100165
+	on_executed
+		´show_waypoint_defend_intel_link´ (delay 0)
+		´disable_laptop´ (delay 0)
+´disable_laptop´ ElementUnitSequence 100166
+	position -300, 4100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_interactable_laptop/lxy_interactable_laptop/001 (3.8147E-06, 9.53674E-07, 87)
+			notify_unit_sequence deactivate
+			time 0
+	on_executed
+		´disable_laptop_unit´ (delay 0)
+´disable_laptop_unit´ ElementDisableUnit 100167
+	position -200, 4100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_fish/lxy_interactable_laptop/lxy_interactable_laptop/001 (3.8147E-06, 9.53674E-07, 87)
+	on_executed
+		´turn_off_5´ (delay 0)
+		´disable_interaction´ (delay 0)
+´turn_off_11´ ElementToggle 100168
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´intel_case_link´
+		2 ´show_waypoint_defend_intel_link´
+	on_executed
+		´intel_laptop_link´ (delay 0)
+´turn_off_12´ ElementToggle 100169
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´intel_laptop_link´
+		2 ´show_waypoint_defend_laptop_link´
+	on_executed
+		´intel_case_link´ (delay 0)
+´disable_case´ ElementUnitSequence 100170
+	position -300, 4000, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+			notify_unit_sequence state_vis_hide
+			time 0
+	on_executed
+		´disable_case_unit´ (delay 0)
+´disable_case_unit´ ElementDisableUnit 100171
+	position -200, 4000, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/bnk_prop_office_briefcase_steel/bnk_prop_office_briefcase_steel/001 (3.8147E-06, 0, 87)
+	on_executed
+		´turn_off_5´ (delay 0)
+´hostage_link_generic´ MissionScriptElement 100015
+	on_executed
+		´seq_disable_intel´ (delay 0)
+		´show_waypoint_defend_hostage_link´ (delay 0)
+		´skm_spawn_hostage_prisoner´ (delay 0)
+´turn_off_13´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´hostage_link_prisoner´
+		2 ´hostage_link_curator´
+		3 ´hostage_link_bankmanager´
+		4 ´hostage_link_druglord´
+	on_executed
+		´hostage_link_generic´ (delay 0)
+´spawn_hostage_generic´ ElementInstanceInput 100017
+	event spawn_hostage_generic
+	on_executed
+		´turn_off_13´ (delay 0)
+´point_debug_017´ ElementDebug 100021
+	as_subtitle false
+	debug_string spawn generic
+	show_instigator false
+´logic_counter_filter_007´ ElementCounterFilter 100174
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´counter_generic´
+	on_executed
+		´point_debug_017´ (delay 0)
+		´turn_off_13´ (delay 0)
+´counter_generic´ ElementCounter 100175
+	TRIGGER TIMES 1
+	counter_target 0
+	instance_var_names
+		counter_target var_spawn_generic
+´point_debug_018´ ElementDebug 100176
+	DISABLED
+	as_subtitle false
+	debug_string from instance: SO pos failed
+	show_instigator false
+´turn_off_14´ ElementToggle 100177
+	DISABLED
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´SO_position_002´ DISABLED
+		2 ´SO_position_003´ DISABLED
+		3 ´SO_position_004´ DISABLED
+	on_executed
+		´reset_link´ (delay 0)
+´disable_interaction´ ElementUnitSequence 100178
+	position -100, 4100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_fish/lxy_interactable_laptop/lxy_interactable_laptop/001 (3.8147E-06, 9.53674E-07, 87)
+			notify_unit_sequence disable_interaction
+			time 0
+´counter_final_wave´ ElementCounter 100179
+	counter_target 0
+	instance_var_names
+		counter_target var_wave_amount
+	on_executed
+		´win_link´ (delay 0)
+´win_link´ MissionScriptElement 100180
+	on_executed
+		´logic_random_002´ (delay 0.5)
+		´players_traded_hostage´ (delay 0)
+		´players_traded_asset´ (delay 0)
+		´SO_hostage_anim_exit´ (delay 0)
+		´fade_out_2´ (delay 3)
+		´endscreen_win´ (delay 0)
+´fade_out_2´ ElementOverlayEffect 100181
+	effect fade_out_in
+	fade_in 1
+	fade_out 1
+	position 300, 4900, 0
+	rotation 0, 0, 0, -1
+	sustain 2
+	on_executed
+		´you_win´ (delay 2)
+´you_win´ ElementMissionEnd 100182
+	position 300, 5000, 0
+	rotation 0, 0, 0, -1
+	state success
+´comment_win_001´ ElementTeammateComment 100183
+	close_to_element true
+	comment g24
+	position 7, 0, 225
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´hide_outline´ ElementSetOutline 100066
+	clear_previous false
+	position -200, 5000, 0
+	rotation 0, 0, 0.707107, -0.707107
+	set_outline false
+	use_instigator false
+	elements
+		1 ´skm_spawn_hostage_bankmanager´
+		2 ´skm_spawn_hostage_curator´
+		3 ´skm_spawn_hostage_druglord´
+		4 ´skm_spawn_hostage_prisoner´
+´waypoint_freeing_hostage_002´ ElementWaypoint 100185
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 35, -119, 125
+	rotation 0, 0, -0.190809, -0.981627
+	text_id debug_none
+´waypoint_freeing_hostage_003´ ElementWaypoint 100186
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 114, -14, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_freeing_hostage_004´ ElementWaypoint 100187
+	icon pd2_kill
+	only_in_civilian false
+	only_on_instigator false
+	position 48, 105, 125
+	rotation 0, 0, 0.986286, 0.165047
+	text_id debug_none
+´remove_kill_waypoints´ ElementOperator 100189
+	operation remove
+	elements
+		1 ´waypoint_freeing_hostage_002´
+		2 ´waypoint_freeing_hostage_003´
+		3 ´waypoint_freeing_hostage_004´
+		4 ´SO_position_002´ DISABLED
+		5 ´SO_position_003´ DISABLED
+		6 ´SO_position_004´ DISABLED
+´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100190
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, -300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100191
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, -450, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100192
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, -600, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_007´ ElementSpawnEnemyDummy 100193
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, 600, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_008´ ElementSpawnEnemyDummy 100194
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, 450, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_009´ ElementSpawnEnemyDummy 100195
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 650, 300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+	orientation_elements
+´trigger_SO_005´ ElementSpecialObjectiveTrigger 100084
+	event anim_start
+	position 300, 2200, 0
+	rotation 0, 0, 0, -1
+´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100085
+	event administered
+	position 600, 3500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100197
+	operation remove
+	elements
+		1 ´SO_position_002´ DISABLED
+		2 ´SO_position_003´ DISABLED
+		3 ´SO_position_004´ DISABLED
+	on_executed
+		´point_debug_021´ (delay 0)
+´logic_operator_002´ ElementOperator 100086
+	operation remove
+	elements
+		1 ´SO_position_003´ DISABLED
+		2 ´SO_position_004´ DISABLED
+	on_executed
+		´point_debug_021´ (delay 0)
+´logic_operator_003´ ElementOperator 100087
+	operation remove
+	elements
+		1 ´SO_position_002´ DISABLED
+		2 ´SO_position_004´ DISABLED
+	on_executed
+		´point_debug_021´ (delay 0)
+´logic_operator_004´ ElementOperator 100196
+	operation remove
+	elements
+		1 ´SO_position_002´ DISABLED
+		2 ´SO_position_003´ DISABLED
+	on_executed
+		´point_debug_021´ (delay 0)
+´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100198
+	event administered
+	position 600, 3600, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_position_002´ DISABLED
+	on_executed
+		´logic_operator_002´ (delay 0)
+´trigger_special_objective_003´ ElementSpecialObjectiveTrigger 100199
+	event administered
+	position 600, 3700, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_position_003´ DISABLED
+	on_executed
+		´logic_operator_003´ (delay 0)
+´trigger_special_objective_004´ ElementSpecialObjectiveTrigger 100200
+	event administered
+	position 600, 3800, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_position_004´ DISABLED
+	on_executed
+		´logic_operator_004´ (delay 0)
+´point_debug_020´ ElementDebug 100097
+	as_subtitle false
+	debug_string turn_off
+	show_instigator false
+´logic_operator_005´ ElementOperator 100098
+	operation none
+	on_executed
+		´point_debug_021´ (delay 0)
+´trigger_special_objective_005´ ElementSpecialObjectiveTrigger 100201
+	event administered
+	position 600, 3900, 0
+	rotation 0, 0, 0, -1
+´point_debug_021´ ElementDebug 100202
+	as_subtitle false
+	debug_string SO_position administered
+	show_instigator false
+´comment_fail_001´ ElementTeammateComment 100203
+	close_to_element true
+	comment g29
+	position 7, 0, 275
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´check_if_player_spawned´ ElementPlayerStateTrigger 100207
+	BASE DELAY 2
+	TRIGGER TIMES 1
+	position -700, 6100, 0
+	rotation 0, 0, 0, -1
+	state standard
+	on_executed
+		´player_spawn_hostage´ (delay 0)
+		´player_spawn_intel´ (delay 0)
+		´Play_loc_skm_03´ (delay 0) DISABLED
+		´logic_random_006´ (delay 7)
+´player_spawn_hostage´ MissionScriptElement 100208
+	on_executed
+		´Play_loc_skm_01´ (delay 0)
+´player_spawn_intel´ MissionScriptElement 100210
+	on_executed
+		´Play_loc_skm_02´ (delay 0)
+´player_criminal_death´ ElementGlobalEventTrigger 100212
+	TRIGGER TIMES 1
+	global_event player_criminal_death
+	position 500, 7600, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_011_2´ (delay 0)
+		´point_debug_007´ (delay 0)
+´comment_30_seconds´ ElementTeammateComment 100213
+	DISABLED
+	close_to_element false
+	comment g62
+	position 900, 5300, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_any_second´ ElementTeammateComment 100214
+	close_to_element false
+	comment p17
+	position -200, 6100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_kill_em_all´ ElementTeammateComment 100215
+	close_to_element false
+	comment v18
+	position 600, 8350, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´vo_locke_20_seconds´ ElementDialogue 100125
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_b02a
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´vo_locke_10_seconds´ ElementDialogue 100218
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_b05x
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´vo_locke_survived_001´ ElementDialogue 100219
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_b10
+	execute_on_executed_when_done false
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´vo_locke_survived_002´ ElementDialogue 100220
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_b11
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´vo_locke_start_001´ ElementDialogue 100221
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_b12
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´comment_fight_back´ ElementTeammateComment 100222
+	close_to_element false
+	comment g16
+	position 600, 8450, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_get_ready´ ElementTeammateComment 100223
+	close_to_element false
+	comment g67
+	position 600, 8550, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_lets_go´ ElementTeammateComment 100225
+	close_to_element false
+	comment g13
+	position 600, 8650, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_random_001´ ElementRandom 100226
+	BASE DELAY 5
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_kill_em_all´ (delay 0)
+		´comment_fight_back´ (delay 0)
+		´comment_get_ready´ (delay 0)
+		´comment_lets_go´ (delay 0)
+´comment_win_002´ ElementTeammateComment 100227
+	close_to_element true
+	comment v46
+	position 7, 0, 225
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_random_002´ ElementRandom 100228
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_win_001´ (delay 0)
+		´comment_win_002´ (delay 0)
+´logic_random_003´ ElementRandom 100229
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_fail_001´ (delay 0)
+		´comment_fail_002´ (delay 0)
+´comment_fail_002´ ElementTeammateComment 100230
+	close_to_element true
+	comment g60
+	position 7, 0, 275
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_back_to_work´ ElementTeammateComment 100232
+	DISABLED
+	close_to_element false
+	comment p24
+	position -600, 8450, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´comment_lets_get_it_on´ ElementTeammateComment 100233
+	DISABLED
+	close_to_element false
+	comment p47
+	position -600, 8550, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´logic_random_004´ ElementRandom 100234
+	BASE DELAY 4
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_back_to_work´ (delay 0) DISABLED
+		´comment_lets_get_it_on´ (delay 0) DISABLED
+´logic_random_005´ ElementRandom 100235
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_prepare´ (delay 10-15)
+´comment_prepare´ ElementTeammateComment 100236
+	close_to_element true
+	comment g50
+	position 0, 8500, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´Play_loc_skm_01´ ElementDialogue 100217
+	can_not_be_muted false
+	dialogue Play_loc_skm_01
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_02´ ElementDialogue 100241
+	can_not_be_muted false
+	dialogue Play_loc_skm_02
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_04´ ElementDialogue 100246
+	can_not_be_muted false
+	dialogue Play_loc_skm_04
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_19´ ElementDialogue 100255
+	can_not_be_muted false
+	dialogue Play_loc_skm_19
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_21´ ElementDialogue 100264
+	can_not_be_muted false
+	dialogue Play_loc_skm_21
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_20´ ElementDialogue 100273
+	can_not_be_muted false
+	dialogue Play_loc_skm_20
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_23´ ElementDialogue 100286
+	can_not_be_muted false
+	dialogue Play_loc_skm_23
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´point_debug_023´ (delay 0)
+´Play_loc_skm_25´ ElementDialogue 100289
+	can_not_be_muted false
+	dialogue Play_loc_skm_25
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´point_debug_019´ (delay 0)
+´output_heist_failed´ ElementInstanceOutput 100293
+	event heist_failed_retrieved
+´Play_loc_skm_03´ ElementDialogue 100209
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_skm_03
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+	on_executed
+		´turn_on_4´ (delay 0) DISABLED
+´turn_on_4´ ElementToggle 100307
+	DISABLED
+	set_trigger_times -1
+	toggle on
+´counter_wave1´ ElementCounter 100315
+	DISABLED
+	BASE DELAY 11
+	counter_target 1
+	on_executed
+		´Play_loc_skm_06´ (delay 0)
+´counter_wave3´ ElementCounter 100316
+	DISABLED
+	BASE DELAY 11
+	counter_target 3
+	on_executed
+		´Play_loc_skm_07´ (delay 0)
+´counter_wave5´ ElementCounter 100317
+	DISABLED
+	BASE DELAY 11
+	counter_target 5
+	on_executed
+		´Play_loc_skm_08´ (delay 0) DISABLED
+´counter_wave7´ ElementCounter 100318
+	DISABLED
+	BASE DELAY 11
+	counter_target 7
+	on_executed
+		´Play_loc_skm_09´ (delay 0)
+´counter_wave9´ ElementCounter 100319
+	DISABLED
+	BASE DELAY 11
+	counter_target 9
+	on_executed
+		´Play_loc_skm_10´ (delay 0)
+´Play_loc_skm_06´ ElementDialogue 100320
+	can_not_be_muted false
+	dialogue Play_loc_skm_06
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_07´ ElementDialogue 100329
+	can_not_be_muted false
+	dialogue Play_loc_skm_07
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_09´ ElementDialogue 100331
+	can_not_be_muted false
+	dialogue Play_loc_skm_09
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_08´ ElementDialogue 100333
+	DISABLED
+	can_not_be_muted false
+	dialogue Play_loc_skm_08
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_10´ ElementDialogue 100335
+	can_not_be_muted false
+	dialogue Play_loc_skm_10
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_22´ ElementDialogue 100367
+	can_not_be_muted false
+	dialogue Play_loc_skm_22
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_24´ ElementDialogue 100391
+	can_not_be_muted false
+	dialogue Play_loc_skm_24
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´counter_final_wave_completed´ ElementCounter 100205
+	counter_target 0
+	instance_var_names
+		counter_target var_wave_amount
+	on_executed
+		´final_wave_done_output´ (delay 0)
+		´Play_loc_skm_28´ (delay 0.5)
+´Play_loc_skm_28´ ElementDialogue 100398
+	can_not_be_muted false
+	dialogue Play_loc_skm_28
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´final_wave_done_output´ ElementInstanceOutput 100299
+	event final_wave_done
+´trigger_anim_complete´ ElementSpecialObjectiveTrigger 100404
+	event complete
+	position 300, 2900, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_free_hostage_002´
+		2 ´SO_free_hostage_003´
+		3 ´SO_free_hostage_004´
+	on_executed
+		´point_debug_025´ (delay 0)
+		´fail_link2´ (delay 0)
+´waypoint_defend_laptop´ ElementWaypoint 100373
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 108.85
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´hide_waypoint_interact_laptop´ ElementInstanceInput 100374
+	event hide_waypoint_interact_laptop
+	on_executed
+		´hide_waypoint_interact_laptop_link´ (delay 0)
+´hide_waypoint_defend_laptop´ ElementInstanceInput 100381
+	event hide_waypoint_defend_laptop
+	on_executed
+		´hide_waypoint_defend_laptop_link´ (delay 0)
+´hide_waypoint_interact_laptop_link´ MissionScriptElement 100382
+	on_executed
+		´remove_waypoint_interact_laptop´ (delay 0)
+´hide_waypoint_defend_laptop_link´ MissionScriptElement 100407
+	on_executed
+		´remove_waypoint_defend_laptop´ (delay 0)
+´remove_waypoint_interact_laptop´ ElementOperator 100408
+	operation remove
+	elements
+		1 ´WP_interact_intel002´
+	on_executed
+		´removed_waypoint_laptop_interact´ (delay 0)
+´remove_waypoint_defend_laptop´ ElementOperator 100409
+	operation remove
+	elements
+		1 ´waypoint_defend_laptop´
+	on_executed
+		´removed_waypoint_laptop_defend´ (delay 0)
+´removed_waypoint_laptop_interact´ ElementInstanceOutput 100410
+	event removed_waypoint_interact_laptop
+´removed_waypoint_laptop_defend´ ElementInstanceOutput 100411
+	event removed_waypoint_defend_laptop
+´show_waypoint_interact_laptop_link´ MissionScriptElement 100412
+	on_executed
+		´WP_interact_intel002´ (delay 0)
+´show_waypoint_defend_laptop_link´ MissionScriptElement 100413
+	on_executed
+		´waypoint_defend_laptop´ (delay 0)
+´point_debug_078´ ElementDebug 100414
+	as_subtitle false
+	debug_string hostagÃ© le on
+	show_instigator false
+´point_debug_079´ ElementDebug 100415
+	DISABLED
+	as_subtitle false
+	debug_string no freeing pls
+	show_instigator false
+´logic_toggle_006´ ElementToggle 100416
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´reset_SO_link´
+	on_executed
+		´start_SO_link´ (delay 0)
+		´toggle_off_hostage_trade´ (delay 0)
+´SO_hostage_anim_exit´ ElementSpecialObjective 100417
+	SO_access 1073741823
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance hos
+	path_style none
+	patrol_path none
+	pose stand
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 74,1962 275,066 0
+	so_action cm_so_hostage_exit
+	trigger_on none
+	use_instigator false
+	followup_elements
+	spawn_instigator_ids
+		1 ´skm_spawn_hostage_bankmanager´
+		2 ´skm_spawn_hostage_prisoner´
+´func_experience_001´ ElementExperience 100427
+	amount 8000
+	on_executed
+		´point_debug_093´ (delay 0)
+´func_experience_002´ ElementExperience 100428
+	amount 9200
+	on_executed
+		´point_debug_094´ (delay 0)
+´func_experience_003´ ElementExperience 100429
+	amount 10600
+	on_executed
+		´point_debug_095´ (delay 0)
+´func_experience_004´ ElementExperience 100430
+	amount 12200
+	on_executed
+		´point_debug_096´ (delay 0)
+´func_experience_005´ ElementExperience 100431
+	amount 14100
+	on_executed
+		´point_debug_097´ (delay 0)
+´func_experience_006´ ElementExperience 100432
+	amount 16300
+	on_executed
+		´point_debug_098´ (delay 0)
+´func_experience_007´ ElementExperience 100433
+	amount 18800
+	on_executed
+		´point_debug_099´ (delay 0)
+´func_experience_008´ ElementExperience 100434
+	amount 21700
+	on_executed
+		´point_debug_100´ (delay 0)
+´func_experience_009´ ElementExperience 100435
+	amount 25000
+	on_executed
+		´point_debug_101´ (delay 0)
+´wave_1´ ElementCounter 100436
+	counter_target 1
+	on_executed
+		´func_experience_001´ (delay 0)
+´wave_2´ ElementCounter 100437
+	counter_target 2
+	on_executed
+		´func_experience_002´ (delay 0)
+´wave_3´ ElementCounter 100438
+	counter_target 3
+	on_executed
+		´func_experience_003´ (delay 0)
+´wave_4´ ElementCounter 100439
+	counter_target 4
+	on_executed
+		´func_experience_004´ (delay 0)
+´wave_5´ ElementCounter 100440
+	counter_target 5
+	on_executed
+		´func_experience_005´ (delay 0)
+´wave_6´ ElementCounter 100441
+	counter_target 6
+	on_executed
+		´func_experience_006´ (delay 0)
+´wave_7´ ElementCounter 100442
+	counter_target 7
+	on_executed
+		´func_experience_007´ (delay 0)
+´wave_8´ ElementCounter 100443
+	counter_target 8
+	on_executed
+		´func_experience_008´ (delay 0)
+´wave_9´ ElementCounter 100444
+	counter_target 9
+	on_executed
+		´func_experience_009´ (delay 0)
+		´output_end_of_wave_9´ (delay 0)
+´turn_off_15´ ElementToggle 100445
+	set_trigger_times -1
+	toggle off
+´turn_off_16´ ElementToggle 100446
+	set_trigger_times -1
+	toggle off
+´turn_off_17´ ElementToggle 100447
+	set_trigger_times -1
+	toggle off
+´turn_off_18´ ElementToggle 100448
+	set_trigger_times -1
+	toggle off
+´turn_off_19´ ElementToggle 100449
+	set_trigger_times -1
+	toggle off
+´turn_off_20´ ElementToggle 100450
+	set_trigger_times -1
+	toggle off
+´turn_off_21´ ElementToggle 100451
+	set_trigger_times -1
+	toggle off
+´turn_off_22´ ElementToggle 100452
+	set_trigger_times -1
+	toggle off
+´turn_off_23´ ElementToggle 100453
+	set_trigger_times -1
+	toggle off
+´turn_on_5´ ElementToggle 100454
+	set_trigger_times -1
+	toggle on
+´turn_on_6´ ElementToggle 100455
+	set_trigger_times -1
+	toggle on
+´turn_on_7´ ElementToggle 100456
+	set_trigger_times -1
+	toggle on
+´turn_on_8´ ElementToggle 100457
+	set_trigger_times -1
+	toggle on
+´turn_on_9´ ElementToggle 100458
+	set_trigger_times -1
+	toggle on
+´turn_on_10´ ElementToggle 100459
+	set_trigger_times -1
+	toggle on
+´turn_on_11´ ElementToggle 100460
+	set_trigger_times -1
+	toggle on
+´turn_on_12´ ElementToggle 100461
+	set_trigger_times -1
+	toggle on
+´logic_toggle_024´ ElementToggle 100462
+	set_trigger_times -1
+	toggle on
+´point_debug_093´ ElementDebug 100463
+	as_subtitle false
+	debug_string wave 1 XP
+	show_instigator false
+´point_debug_094´ ElementDebug 100464
+	as_subtitle false
+	debug_string wave 2 XP
+	show_instigator false
+´point_debug_095´ ElementDebug 100465
+	as_subtitle false
+	debug_string wave 3 XP
+	show_instigator false
+´point_debug_096´ ElementDebug 100466
+	as_subtitle false
+	debug_string wave 4 XP
+	show_instigator false
+´point_debug_097´ ElementDebug 100467
+	as_subtitle false
+	debug_string wave 5 XP
+	show_instigator false
+´point_debug_098´ ElementDebug 100468
+	as_subtitle false
+	debug_string wave 6 XP
+	show_instigator false
+´point_debug_099´ ElementDebug 100469
+	as_subtitle false
+	debug_string wave 7 XP
+	show_instigator false
+´point_debug_100´ ElementDebug 100470
+	as_subtitle false
+	debug_string wave 8 XP
+	show_instigator false
+´point_debug_101´ ElementDebug 100471
+	as_subtitle false
+	debug_string wave 9 XP
+	show_instigator false
+´Play_loc_skm_27´ ElementDialogue 100059
+	can_not_be_muted false
+	dialogue Play_loc_skm_27
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´Play_loc_skm_26´ ElementDialogue 100283
+	can_not_be_muted false
+	dialogue Play_loc_skm_26
+	execute_on_executed_when_done false
+	force_quit_current true
+	play_on_player_instigator_only false
+	use_instigator false
+	use_position false
+´players_traded_hostage´ ElementInstanceOutput 100204
+	event players_traded_hostage
+´players_traded_asset´ ElementInstanceOutput 100282
+	event players_traded_asset
+´endscreen_fail´ ElementEndscreenVariant 100295
+	position 700, 7800, 0
+	rotation 0, 0, 0, -1
+	variant 2
+´endscreen_win´ ElementEndscreenVariant 100297
+	position 400, 4800, 0
+	rotation 0, 0, 0, -1
+	variant 1
+´soundbank_skm´ ElementPlaySound 100298
+	append_prefix false
+	interrupt true
+	position -900, 1600, 0
+	rotation 0, 0, 0, -1
+	sound_event Play_loc_skm_24
+	use_instigator false
+´logic_link_001´ MissionScriptElement 100216
+	DISABLED
+	on_executed
+		´Play_loc_skm_04´ (delay 0)
+´logic_link_002´ MissionScriptElement 100239
+	on_executed
+		´Play_loc_skm_19´ (delay 4)
+´logic_link_003´ MissionScriptElement 100240
+	DISABLED
+	on_executed
+		´Play_loc_skm_20´ (delay 2)
+´logic_link_004´ MissionScriptElement 100242
+	on_executed
+		´Play_loc_skm_21´ (delay 0)
+´logic_link_005´ MissionScriptElement 100243
+	on_executed
+		´Play_loc_skm_22´ (delay 0.5)
+´logic_link_007´ MissionScriptElement 100245
+	on_executed
+		´Play_loc_skm_23´ (delay 0)
+´logic_link_008´ MissionScriptElement 100247
+	on_executed
+		´Play_loc_skm_24´ (delay 0)
+´logic_link_009´ MissionScriptElement 100248
+	on_executed
+		´Play_loc_skm_27´ (delay 0.5)
+´logic_link_010´ MissionScriptElement 100055
+	on_executed
+		´Play_loc_skm_26´ (delay 1)
+´comment_cops_are_here001´ ElementTeammateComment 100056
+	close_to_element false
+	comment g70
+	position -300, 6050, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´comment_any_second´ (delay 4)
+´logic_random_006´ ElementRandom 100057
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´comment_cops_are_here001´ (delay 0)
+		´comment_cops_are_here002´ (delay 0)
+´comment_cops_are_here002´ ElementTeammateComment 100206
+	close_to_element false
+	comment p22
+	position -300, 6150, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+	on_executed
+		´comment_any_second´ (delay 4)
+´point_debug_006´ ElementDebug 100211
+	as_subtitle false
+	debug_string hostage_interaction_link !!!!!!!!!111
+	show_instigator false
+´SO_female_hostage_anim_exit´ ElementSpecialObjective 100249
+	SO_access 1073741823
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance hos
+	path_style none
+	patrol_path none
+	pose stand
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 0 -100 0
+	so_action cf_so_hostage_exit
+	trigger_on none
+	use_instigator false
+	followup_elements
+	spawn_instigator_ids
+		1 ´skm_spawn_hostage_druglord´
+		2 ´skm_spawn_hostage_curator´
+´SO_female_hostage_anim_sitting´ ElementSpecialObjective 100250
+	SO_access 1073741823
+	action_duration_max 0
+	action_duration_min 0
+	ai_group civilians
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste walk
+	path_stance hos
+	path_style none
+	patrol_path none
+	pose stand
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan false
+	search_distance 0
+	search_position 0 -100 0
+	so_action cf_so_hostage_idle
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_orientation_001´ MissionScriptElement 100251
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+´remove_WP_interact_intel´ ElementOperator 100030
+	operation remove
+	elements
+		1 ´WP_interact_intel001´ DISABLED
+		2 ´WP_interact_intel002´
+	on_executed
+		´point_debug_022´ (delay 0)
+		´remove_waypoint_interact_hostage´ (delay 0)
+´logic_link_011_2´ MissionScriptElement 100042
+	on_executed
+		´Play_loc_skm_25´ (delay 0)
+		´set_wave_to_last´ (delay 0)
+´point_debug_008´ ElementDebug 100092
+	as_subtitle false
+	debug_string WP_interact_intel002
+	show_instigator false
+´point_debug_009´ ElementDebug 100164
+	as_subtitle false
+	debug_string WP_interact_intel001
+	show_instigator false
+´point_debug_022´ ElementDebug 100172
+	as_subtitle false
+	debug_string remove_WP_interact_intel
+	show_instigator false
+´point_debug_007´ ElementDebug 100065
+	as_subtitle false
+	debug_string from instance: player_in_custody
+	show_instigator false
+´point_debug_019´ ElementDebug 100173
+	as_subtitle false
+	debug_string from instance: Play_loc_skm_25
+	show_instigator false
+´point_debug_023´ ElementDebug 100188
+	as_subtitle false
+	debug_string Play_loc_skm_23
+	show_instigator false
+´output_end_of_wave_9´ ElementInstanceOutput 100224
+	event end_of_wave_9
+´point_debug_024´ ElementDebug 100231
+	as_subtitle false
+	debug_string from instance: reset_link
+	show_instigator false
+´point_debug_025´ ElementDebug 100237
+	as_subtitle false
+	debug_string from instance: trigger_anim_complete
+	show_instigator false
+´set_wave_to_last´ ElementCounterOperator 100014
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´counter_final_wave´
+	on_executed
+		´logic_link_end_if_no_assault´ (delay 0)
+´ai_in_custody´ ElementGlobalEventTrigger 100238
+	TRIGGER TIMES 1
+	global_event ai_in_custody
+	position 500, 7800, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_011_2´ (delay 0)
+		´point_debug_007´ (delay 0)
+´logic_link_end_if_no_assault´ MissionScriptElement 100244
+	on_executed
+		´counter_final_wave´ (delay 0)
+´toggle_off_hostage_trade´ ElementToggle 100252
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´logic_link_end_if_no_assault´
+´toggle_on_hostage_trade´ ElementToggle 100253
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´logic_link_end_if_no_assault´

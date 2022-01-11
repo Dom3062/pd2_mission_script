@@ -1,0 +1,67 @@
+´STARTUP´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´DELAY´ (delay 1)
+´DELAY´ MissionScriptElement 100003
+	on_executed
+		´door_blocker_add´ (delay 0)
+		´door_closed´ (delay 0)
+´door_blocker_add´ ElementNavObstacle 100004
+	TRIGGER TIMES 1
+	operation add
+	position -275, 175, 125
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
+´door_blocker_remove´ ElementNavObstacle 100005
+	TRIGGER TIMES 1
+	operation remove
+	position -275, 300, 125
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
+´open_door´ ElementUnitSequenceTrigger 100006
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_employee_door/cas_employee_door/001 (0, 0, 0)
+	on_executed
+		´door_blocker_remove´ (delay 0)
+´door_closed´ ElementUnitSequence 100007
+	position -350, 50, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_employee_door/cas_employee_door/001 (0, 0, 0)
+			notify_unit_sequence state_door_closed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_employee_door/cas_employee_door/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´input_change_interaction´ ElementInstanceInput 100008
+	event change_interaction
+	on_executed
+		´seq_door_change_interaction´ (delay 5)
+´seq_door_change_interaction´ ElementUnitSequence 100009
+	position -150, 450, 125
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_casino/architecture/cas_employee_door/cas_employee_door/001 (0, 0, 0)
+			notify_unit_sequence change_interaction
+			time 0

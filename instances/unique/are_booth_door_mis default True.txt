@@ -1,0 +1,273 @@
+´door_reinforced_setup´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	BASE DELAY 0,5
+	on_executed
+		´hide_door´ (delay 0)
+´door_block´ ElementNavObstacle 100004
+	TRIGGER TIMES 1
+	operation add
+	position -100, 0, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (57, 14, 0)
+´door_opened´ ElementUnitSequenceTrigger 100006
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+	on_executed
+		´door_unblock´ (delay 0)
+		´door_opened_output´ (delay 0)
+		´remove_navlinks´ (delay 0)
+		´already_opened´ (delay 0)
+´door_unblock´ ElementNavObstacle 100007
+	operation remove
+	position 400, -300, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (57, 14, 0)
+	on_executed
+		´enable_door_block´ (delay 0)
+´door_opened_output´ ElementInstanceOutput 100008
+	TRIGGER TIMES 1
+	event door_opened
+	on_executed
+		´enable_close_door´ (delay 0)
+´breach_door001´ ElementSpecialObjective 100009
+	TRIGGER TIMES 1
+	SO_access 259576
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interval 35
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 50, -143, 2.5
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 49,658 106,629 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´breach_door002´ ElementSpecialObjective 100001
+	TRIGGER TIMES 1
+	SO_access 259576
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interval 35
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 50, 143, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan true
+	search_distance 0
+	search_position 51,1036 -102,3 2,5
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´door_navlinked_open´ ElementSpecialObjectiveTrigger 100010
+	TRIGGER TIMES 1
+	event anim_act_04
+	position 300, 400, 0
+	rotation 0, 0, -0.707107, -0.707107
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+	on_executed
+		´open_door_2´ (delay 0)
+´remove_breach_navlinks´ ElementOperator 100011
+	operation remove
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+´disable_breach_navlinks´ ElementToggle 100012
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´breach_door002´
+		2 ´breach_door001´
+		3 ´door_navlinked_open´
+´remove_navlinks´ MissionScriptElement 100014
+	on_executed
+		´remove_breach_navlinks´ (delay 0)
+		´disable_breach_navlinks´ (delay 0)
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100015
+	as_subtitle false
+	debug_string navlinks removed
+	show_instigator false
+´open_door´ ElementInstanceInput 100016
+	DISABLED
+	BASE DELAY 3
+	event open_door
+	on_executed
+		´open_door_2´ (delay 0)
+		´already_opened´ (delay 0)
+´open_door_2´ MissionScriptElement 100013
+	TRIGGER TIMES 1
+	on_executed
+		´open_door_3´ (delay 0)
+´open_door_3´ ElementUnitSequence 100017
+	position 300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+			notify_unit_sequence open_door
+			time 0
+´setup_navlinks´ MissionScriptElement 100025
+	DISABLED
+	on_executed
+		´breach_door002´ (delay 0)
+		´breach_door001´ (delay 0)
+´already_opened´ ElementToggle 100027
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´setup_navlinks´ DISABLED
+´hide_door´ ElementUnitSequence 100023
+	position -400, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+			notify_unit_sequence state_door_hide
+			time 0
+´set_door´ ElementInstanceInput 100000
+	BASE DELAY 1
+	event set_door
+	on_executed
+		´disable_barrier´ (delay 0)
+		´show_door´ (delay 0)
+		´door_block´ (delay 0)
+		´enable_door_inputs´ (delay 0)
+´disable_barrier´ ElementDisableUnit 100028
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_lobby/are_corridor_barrier_small/001 (55, 21.0001, 0)
+´show_door´ ElementUnitSequence 100029
+	position -100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+			notify_unit_sequence activate_door
+			time 0.5
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+			notify_unit_sequence state_door_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/001 (0, -7.62939E-05, 0)
+			notify_unit_sequence state_door_close
+			time 0
+´set_barrier´ ElementInstanceInput 100030
+	DISABLED
+	event set_barrier
+	on_executed
+		´hide_door´ (delay 0)
+		´enable_barrier´ (delay 0)
+		´remove_breach_navlinks´ (delay 0)
+		´disable_breach_navlinks´ (delay 0)
+		´door_unblock´ (delay 0)
+		´disable_door_inputs´ (delay 0)
+		´door_block´ (delay 0)
+´enable_barrier´ ElementEnableUnit 100031
+	position -400, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_arena/architecture/are_lobby/are_corridor_barrier_small/001 (55, 21.0001, 0)
+´enable_door_inputs´ ElementToggle 100032
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´set_barrier´ DISABLED
+		2 ´open_door´ DISABLED
+		3 ´setup_navlinks´ DISABLED
+´disable_door_inputs´ ElementToggle 100018
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´open_door´ DISABLED
+		2 ´setup_navlinks´ DISABLED
+´called_police´ ElementGlobalEventTrigger 100019
+	TRIGGER TIMES 1
+	global_event police_called
+	position -100, 400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´setup_navlinks´ (delay 0) DISABLED
+´close_door´ ElementInstanceInput 100021
+	DISABLED
+	BASE DELAY 1
+	event close_door
+	on_executed
+		´close_door_2´ (delay 0)
+´enable_close_door´ ElementToggle 100024
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´close_door´ DISABLED
+´close_door_2´ MissionScriptElement 100026
+	on_executed
+		´door_block´ (delay 0)
+		´show_door´ (delay 0)
+		´navlinks_can_be_used´ (delay 0)
+´navlinks_can_be_used´ ElementToggle 100033
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´breach_door001´
+		2 ´breach_door002´
+´enable_door_block´ ElementToggle 100034
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´door_block´

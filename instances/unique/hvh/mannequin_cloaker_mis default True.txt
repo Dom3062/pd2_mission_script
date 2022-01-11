@@ -1,0 +1,411 @@
+´Auto_Start´ MissionScriptElement 100005
+	EXECUTE ON STARTUP
+	on_executed
+		´hide_all´ (delay 0)
+´hide_all´ ElementDisableUnit 100006
+	position 100, 150, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_01/previs_mannequin_01 (0, 0, 0)
+		2 units/payday2/props/previs/mannequins/previs_mannequin_02/previs_mannequin_02 (0, 0, 0)
+		3 units/payday2/props/previs/mannequins/previs_mannequin_03/previs_mannequin_03 (-1.19209E-05, 0, 0)
+		4 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/03 (3.89566, 0.779007, 156)
+		5 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/01 (5.37096, 2.34708, 157)
+		6 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/02 (8.71434, -7.457, 157)
+		7 units/payday2/architecture/mkp/mkp_int_floor_2x2m_a/001 (-100, -100, 0)
+´spawn_mannequin´ ElementInstanceInput 100007
+	event spawn_mannequin
+	on_executed
+		´link´ (delay 0)
+´link´ MissionScriptElement 100008
+	TRIGGER TIMES 1
+	on_executed
+		´random´ (delay 0)
+´random´ ElementRandom 100009
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´1´ (delay 0)
+		´2´ (delay 0)
+		´3´ (delay 0)
+´1´ ElementEnableUnit 100010
+	position 200, 50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_01/previs_mannequin_01 (0, 0, 0)
+		2 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/01 (5.37096, 2.34708, 157)
+	on_executed
+		´on_1´ (delay 0)
+´2´ ElementEnableUnit 100011
+	position 200, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_02/previs_mannequin_02 (0, 0, 0)
+		2 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/02 (8.71434, -7.457, 157)
+	on_executed
+		´on_2´ (delay 0)
+´3´ ElementEnableUnit 100012
+	position 200, -50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_03/previs_mannequin_03 (-1.19209E-05, 0, 0)
+		2 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/03 (3.89566, 0.779007, 156)
+	on_executed
+		´on_3´ (delay 0)
+´break_01´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence make_dynamic
+			notify_unit_id units/payday2/props/previs/mannequins/previs_mannequin_01/previs_mannequin_01 (0, 0, 0)
+	on_executed
+		´dis_01´ (delay 0)
+´dis_01´ ElementDisableUnit 100017
+	position -200, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/01 (5.37096, 2.34708, 157)
+	on_executed
+		´effect_01´ (delay 0)
+		´death´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100018
+	DISABLED
+	EXECUTE ON STARTUP
+	position -100, -100, 0
+	rotation 0, 0, 0.382683, -0.92388
+	state standard
+	on_executed
+		´spawn_mannequin´ (delay 3)
+		´spawn_cloaker´ (delay 6)
+		´clean_up_dead´ (delay 5)
+´break_03´ ElementUnitSequenceTrigger 100019
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence make_dynamic
+			notify_unit_id units/payday2/props/previs/mannequins/previs_mannequin_03/previs_mannequin_03 (-1.19209E-05, 0, 0)
+	on_executed
+		´dis_03´ (delay 0)
+´break_02´ ElementUnitSequenceTrigger 100020
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence make_dynamic
+			notify_unit_id units/payday2/props/previs/mannequins/previs_mannequin_02/previs_mannequin_02 (0, 0, 0)
+	on_executed
+		´dis_02´ (delay 0)
+´dis_02´ ElementDisableUnit 100021
+	position -200, -50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/02 (8.71434, -7.457, 157)
+	on_executed
+		´effect_02´ (delay 0)
+		´death´ (delay 0)
+´dis_03´ ElementDisableUnit 100022
+	position -200, 50, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/03 (3.89566, 0.779007, 156)
+	on_executed
+		´effect_01_2´ (delay 0)
+		´death´ (delay 0)
+´effect_01´ ElementPlayEffect 100023
+	base_time 0
+	effect effects/particles/explosions/burnpuff
+	max_amount 0
+	position 0, 0, 163
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´effect_02´ ElementPlayEffect 100024
+	base_time 0
+	effect effects/particles/explosions/burnpuff
+	max_amount 0
+	position 6, -7, 164
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´effect_01_2´ ElementPlayEffect 100025
+	base_time 0
+	effect effects/particles/explosions/burnpuff
+	max_amount 0
+	position 0, 0, 162
+	random_time 0
+	rotation 0, 0, 0, -1
+	screen_space false
+´death´ MissionScriptElement 100027
+	on_executed
+		´On´ (delay 0)
+´hide_dead´ ElementDisableUnit 100028
+	position -200, -200, -2.28882E-05
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/previs/mannequins/previs_mannequin_01/previs_mannequin_01 (0, 0, 0)
+		2 units/payday2/props/previs/mannequins/previs_mannequin_02/previs_mannequin_02 (0, 0, 0)
+		3 units/payday2/props/previs/mannequins/previs_mannequin_03/previs_mannequin_03 (-1.19209E-05, 0, 0)
+´link_2´ MissionScriptElement 100029
+	DISABLED
+	on_executed
+		´hide_dead´ (delay 0)
+´On´ ElementToggle 100030
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´link_2´ DISABLED
+	on_executed
+		´Off´ (delay 0)
+´clean_up_dead´ ElementInstanceInput 100031
+	event clean_up_dead
+	on_executed
+		´link_2´ (delay 0) DISABLED
+´cloaker_01´ ElementSpawnEnemyDummy 100032
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 0, -3.05176E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_stand_sniper_loop
+	team default
+	voice 0
+	orientation_elements
+´link_3´ MissionScriptElement 100033
+	on_executed
+		´pick_available´ (delay 0.1)
+´spawn_cloaker´ ElementInstanceInput 100034
+	event spawn_cloaker
+	on_executed
+		´link_3´ (delay 0)
+´pick_available´ ElementRandom 100035
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´1_2´ (delay 0) DISABLED
+		´2_2´ (delay 0) DISABLED
+		´3_2´ (delay 0) DISABLED
+´1_2´ MissionScriptElement 100036
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´cloaker_01´ (delay 0)
+		´dis_all´ (delay 0)
+´2_2´ MissionScriptElement 100037
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´cloaker_02´ (delay 0)
+		´dis_all´ (delay 0)
+´3_2´ MissionScriptElement 100038
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´cloaker_03´ (delay 0)
+		´dis_all´ (delay 0)
+´cloaker_02´ ElementSpawnEnemyDummy 100039
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1.52588E-05, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_stand_sniper_loop
+	team default
+	voice 0
+	orientation_elements
+´cloaker_03´ ElementSpawnEnemyDummy 100040
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1.52588E-05, -9.15527E-05, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action e_sp_stand_sniper_loop
+	team default
+	voice 0
+	orientation_elements
+´on_1´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´1_2´ DISABLED
+´on_2´ ElementToggle 100042
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´2_2´ DISABLED
+´on_3´ ElementToggle 100043
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´3_2´ DISABLED
+´dis_all´ ElementDisableUnit 100044
+	TRIGGER TIMES 1
+	position 50, -300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/01 (5.37096, 2.34708, 157)
+		2 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/02 (8.71434, -7.457, 157)
+		3 units/pd2_dlc_tng/masks/tng_cloaker/msk_tng_cloaker/03 (3.89566, 0.779007, 156)
+		4 units/payday2/props/previs/mannequins/previs_mannequin_01/previs_mannequin_01 (0, 0, 0)
+		5 units/payday2/props/previs/mannequins/previs_mannequin_02/previs_mannequin_02 (0, 0, 0)
+		6 units/payday2/props/previs/mannequins/previs_mannequin_03/previs_mannequin_03 (-1.19209E-05, 0, 0)
+	on_executed
+		´All_Off´ (delay 0)
+´Off´ ElementToggle 100045
+	set_trigger_times 1
+	toggle off
+	elements
+		1 ´link_3´
+´All_Off´ ElementToggle 100046
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´3_2´ DISABLED
+		2 ´2_2´ DISABLED
+		3 ´1_2´ DISABLED
+		4 ´pick_available´
+		5 ´link_3´
+	on_executed
+		´trigger_on´ (delay 0)
+´down_001´ ElementSpecialObjective 100026
+	SO_access 1024
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -152,866 -1,78719 -300
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´cloaker_01´
+´down_002´ ElementSpecialObjective 100047
+	SO_access 1024
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 0, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -152,866 -1,78719 -300
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´cloaker_02´
+´down_003´ ElementSpecialObjective 100048
+	SO_access 1024
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position 2.91038E-11, 0, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position -152,866 -1,78719 -300
+	so_action e_nl_down_3m
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´cloaker_03´
+´trigger_area´ ElementAreaTrigger 100049
+	DISABLED
+	amount 1
+	depth 500
+	height 2534,4
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 229.084
+	radius 889,017
+	rotation 0, 0, 0, -1
+	shape_type cylinder
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_4´ (delay 0)
+´link_4´ MissionScriptElement 100050
+	on_executed
+		´down_001´ (delay 0)
+		´down_003´ (delay 0)
+		´down_002´ (delay 0)
+´trigger_on´ ElementToggle 100051
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´trigger_area´ DISABLED

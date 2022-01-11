@@ -1,0 +1,680 @@
+´start´ MissionScriptElement 100003
+	on_executed
+		´Spray_Sound´ (delay 0)
+		´add_2´ (delay 0)
+´counter´ ElementCounter 100004
+	counter_target 0
+´add´ ElementCounterOperator 100005
+	amount 1
+	operation add
+	instance_var_names
+	elements
+		1 ´counter´
+	on_executed
+		´choose new color´ (delay 0)
+´1(overkill)´ ElementCounterFilter 100006
+	check_type equal
+	needed_to_execute all
+	value 1
+	elements
+		1 ´counter´
+	on_executed
+		´point_debug_001´ (delay 0)
+		´enable_001´ (delay 0)
+´choose new color´ MissionScriptElement 100007
+	BASE DELAY 0,1
+	on_executed
+		´1(overkill)´ (delay 0)
+		´2´ (delay 0)
+		´3´ (delay 0) DISABLED
+		´4´ (delay 0) DISABLED
+		´5´ (delay 0) DISABLED
+		´On´ (delay 1)
+		´6´ (delay 0) DISABLED
+		´lvl 1 reset´ (delay 0)
+		´lvl 2 reset´ (delay 0) DISABLED
+		´lvl 3 reset´ (delay 0) DISABLED
+´2´ ElementCounterFilter 100008
+	check_type equal
+	needed_to_execute all
+	value 2
+	elements
+		1 ´counter´
+	on_executed
+		´point_debug_002´ (delay 0)
+		´enable_002´ (delay 0)
+´3´ ElementCounterFilter 100009
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´counter´
+	on_executed
+		´point_debug_003´ (delay 0)
+		´enable_003´ (delay 0)
+´4´ ElementCounterFilter 100010
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 4
+	elements
+		1 ´counter´
+	on_executed
+		´point_debug_004´ (delay 0)
+		´enable_004´ (delay 0)
+´5´ ElementCounterFilter 100011
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´counter´
+	on_executed
+		´point_debug_005´ (delay 0)
+		´enable_005´ (delay 0)
+´reset´ ElementCounterOperator 100012
+	amount 1
+	operation set
+	instance_var_names
+	elements
+		1 ´counter´
+´Loop´ MissionScriptElement 100013
+	on_executed
+		´reset´ (delay 0)
+		´1(overkill)´ (delay 0.1)
+´point_debug_001´ ElementDebug 100014
+	as_subtitle false
+	debug_string skin 1
+	show_instigator false
+´point_debug_002´ ElementDebug 100015
+	as_subtitle false
+	debug_string skin 2
+	show_instigator false
+´point_debug_003´ ElementDebug 100016
+	as_subtitle false
+	debug_string skin 3
+	show_instigator false
+´point_debug_004´ ElementDebug 100017
+	as_subtitle false
+	debug_string skin 4
+	show_instigator false
+´point_debug_005´ ElementDebug 100018
+	as_subtitle false
+	debug_string skin 5
+	show_instigator false
+´enable_001´ ElementEnableUnit 100019
+	position 0, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´enable_002´ ElementEnableUnit 100020
+	position 100, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´enable_003´ ElementEnableUnit 100021
+	position 400, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´enable_004´ ElementEnableUnit 100022
+	position 500, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´AUTO START´ MissionScriptElement 100027
+	EXECUTE ON STARTUP
+	on_executed
+		´disable´ (delay 0)
+		´delay_no_dlc´ (delay 1)
+		´delay_dlc´ (delay 1) DISABLED
+		´func_dlc_check_001´ (delay 0)
+´disable´ ElementDisableUnit 100028
+	position -300, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´On´ ElementToggle 100029
+	set_trigger_times 1
+	toggle on
+	elements
+		1 ´func_sequence_trigger_002´
+	on_executed
+		´func_sequence_001´ (delay 0)
+´disable - all´ ElementDisableUnit 100030
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´add´ (delay 0)
+´6´ ElementCounterFilter 100031
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 6
+	elements
+		1 ´counter´
+	on_executed
+		´enable_006´ (delay 0)
+		´point_debug_006´ (delay 0)
+´point_debug_006´ ElementDebug 100032
+	as_subtitle false
+	debug_string skin 6
+	show_instigator false
+´enable_005´ ElementEnableUnit 100033
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´enable_006´ ElementEnableUnit 100034
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´lvl 1 reset´ ElementCounterFilter 100035
+	check_type greater_or_equal
+	needed_to_execute all
+	value 3
+	elements
+		1 ´counter´
+	on_executed
+		´Loop´ (delay 0)
+		´point_debug_007´ (delay 0)
+´point_debug_007´ ElementDebug 100036
+	as_subtitle false
+	debug_string skin reset
+	show_instigator false
+´lvl 2 reset´ ElementCounterFilter 100037
+	DISABLED
+	check_type greater_or_equal
+	needed_to_execute all
+	value 5
+	elements
+		1 ´counter´
+	on_executed
+		´Loop´ (delay 0)
+		´point_debug_008´ (delay 0)
+´point_debug_008´ ElementDebug 100038
+	as_subtitle false
+	debug_string skin reset
+	show_instigator false
+´lvl 3 reset´ ElementCounterFilter 100039
+	DISABLED
+	check_type greater_or_equal
+	needed_to_execute all
+	value 7
+	elements
+		1 ´counter´
+	on_executed
+		´Loop´ (delay 0)
+		´point_debug_009´ (delay 0)
+´point_debug_009´ ElementDebug 100040
+	as_subtitle false
+	debug_string skin reset
+	show_instigator false
+´On_2´ ElementToggle 100042
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´3´ DISABLED
+		2 ´4´ DISABLED
+		3 ´lvl 2 reset´ DISABLED
+		4 ´4_2´ DISABLED
+		5 ´5_2´ DISABLED
+		6 ´lvl2reset´ DISABLED
+´lvl_3_unlocked´ ElementInstanceInput 100043
+	event lvl_3_unlocked
+´Off´ ElementToggle 100044
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´lvl 1 reset´
+		2 ´lvl1reset´
+´link´ MissionScriptElement 100045
+	TRIGGER TIMES 1
+	on_executed
+		´On_2´ (delay 0)
+		´Off´ (delay 0)
+´On_3´ ElementToggle 100046
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´lvl 3 reset´ DISABLED
+		2 ´6´ DISABLED
+		3 ´5´ DISABLED
+		4 ´4´ DISABLED
+		5 ´3´ DISABLED
+		6 ´4_2´ DISABLED
+		7 ´5_2´ DISABLED
+		8 ´6_2´ DISABLED
+		9 ´7´ DISABLED
+		10 ´lvl3reset´ DISABLED
+		11 ´007´ DISABLED
+´link_2´ MissionScriptElement 100047
+	TRIGGER TIMES 1
+	on_executed
+		´On_3´ (delay 0)
+		´Off_2´ (delay 0)
+´Off_2´ ElementToggle 100048
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´lvl 2 reset´ DISABLED
+		2 ´lvl 1 reset´
+		3 ´lvl2reset´ DISABLED
+		4 ´lvl1reset´
+´Spray_Sound´ ElementPlaySound 100057
+	append_prefix false
+	interrupt true
+	position -200, -125, 75
+	rotation 0, 0, 0, -1
+	sound_event spray_can
+	use_instigator false
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_interactable_paint_bucket/chl_interactable_paint_bucket/001 (-200, -125, 0)
+´func_sequence_001´ ElementUnitSequence 100058
+	position 0, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_interactable_paint_bucket/chl_interactable_paint_bucket/001 (-200, -125, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´logic_link_001´ MissionScriptElement 100002
+	EXECUTE ON STARTUP
+	on_executed
+		´tier_3´ (delay 0)
+		´tier_2´ (delay 0)
+´lvl_2_unlocked´ ElementInstanceInput 100041
+	TRIGGER TIMES 1
+	event lvl_2_unlocked
+´tier_2´ ElementCustomSafehouseFilter 100059
+	check_type equal
+	position 500, -100, 0
+	room_id american
+	room_tier 2
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´link´ (delay 0)
+´tier_3´ ElementCustomSafehouseFilter 100060
+	check_type equal
+	position 800, -100, 0
+	room_id american
+	room_tier 3
+	rotation 0, 0, 0, -1
+	tier_check current
+	on_executed
+		´link_2´ (delay 0)
+´func_instance_input_001´ ElementInstanceInput 100061
+	event combat_disable_interaction
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100062
+	position -300, -150, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_interactable_paint_bucket/chl_interactable_paint_bucket/001 (-200, -125, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´1(overkill_skin)´ ElementStopwatchFilter 100023
+	check_type equal
+	needed_to_execute all
+	value 1
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_010´ (delay 0)
+		´func_van_skin_007´ (delay 0)
+´add_2´ ElementStopwatchOperator 100024
+	condition always
+	operation add_time
+	position -100, -700, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 1
+	elements
+		1 ´counter_2´
+	on_executed
+		´logic_link_002´ (delay 0)
+´counter_2´ ElementStopwatch 100025
+	position -100, -800, 0
+	rotation 0, 0, 0, -1
+	timer
+		1 0
+		2 0
+´2_2´ ElementStopwatchFilter 100049
+	check_type equal
+	needed_to_execute all
+	value 2
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_011´ (delay 0)
+		´func_van_skin_008´ (delay 0)
+´3_2´ ElementStopwatchFilter 100050
+	check_type equal
+	needed_to_execute all
+	value 3
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_012´ (delay 0)
+		´func_van_skin_013´ (delay 0)
+´lvl1reset´ ElementStopwatchFilter 100063
+	check_type equal
+	needed_to_execute all
+	value 4
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_013´ (delay 0)
+		´loop´ (delay 0)
+´4_2´ ElementStopwatchFilter 100064
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 4
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_014´ (delay 0)
+		´func_van_skin_009´ (delay 0)
+´5_2´ ElementStopwatchFilter 100066
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 5
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_015´ (delay 0)
+		´func_van_skin_010´ (delay 0)
+´lvl2reset´ ElementStopwatchFilter 100067
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 6
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_016´ (delay 0)
+		´loop´ (delay 0)
+´6_2´ ElementStopwatchFilter 100068
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 6
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_017´ (delay 0)
+		´func_van_skin_011´ (delay 0)
+´7´ ElementStopwatchFilter 100069
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 7
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_018´ (delay 0)
+		´func_van_skin_012´ (delay 0)
+´lvl3reset´ ElementStopwatchFilter 100070
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 9
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_019´ (delay 0)
+		´loop´ (delay 0)
+´point_debug_010´ ElementDebug 100071
+	as_subtitle false
+	debug_string skin(ovk)
+	show_instigator false
+´point_debug_011´ ElementDebug 100072
+	as_subtitle false
+	debug_string skin2
+	show_instigator false
+´point_debug_012´ ElementDebug 100073
+	as_subtitle false
+	debug_string skin3
+	show_instigator false
+´point_debug_013´ ElementDebug 100074
+	as_subtitle false
+	debug_string skin_reset1
+	show_instigator false
+´point_debug_014´ ElementDebug 100075
+	as_subtitle false
+	debug_string skin4
+	show_instigator false
+´point_debug_015´ ElementDebug 100076
+	as_subtitle false
+	debug_string skin5
+	show_instigator false
+´point_debug_016´ ElementDebug 100077
+	as_subtitle false
+	debug_string skin_reset2
+	show_instigator false
+´point_debug_017´ ElementDebug 100078
+	as_subtitle false
+	debug_string skin6
+	show_instigator false
+´point_debug_018´ ElementDebug 100079
+	as_subtitle false
+	debug_string skin7
+	show_instigator false
+´point_debug_019´ ElementDebug 100080
+	as_subtitle false
+	debug_string skin_reset3
+	show_instigator false
+´func_van_skin_007´ ElementChangeVanSkin 100081
+	position 0, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin overkill
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_008´ ElementChangeVanSkin 100082
+	position 100, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin default
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_009´ ElementChangeVanSkin 100083
+	position 400, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin yellow
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_010´ ElementChangeVanSkin 100084
+	position 500, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin white
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_011´ ElementChangeVanSkin 100085
+	position 700, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin grey
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_012´ ElementChangeVanSkin 100086
+	position 800, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin red
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´func_van_skin_013´ ElementChangeVanSkin 100087
+	position 200, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin icecream
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´logic_link_002´ MissionScriptElement 100088
+	BASE DELAY 0,1
+	on_executed
+		´1(overkill_skin)´ (delay 0)
+		´2_2´ (delay 0)
+		´3_2´ (delay 0)
+		´lvl1reset´ (delay 0)
+		´4_2´ (delay 0) DISABLED
+		´5_2´ (delay 0) DISABLED
+		´lvl2reset´ (delay 0) DISABLED
+		´6_2´ (delay 0) DISABLED
+		´7´ (delay 0) DISABLED
+		´lvl3reset´ (delay 0) DISABLED
+		´On´ (delay 0)
+		´007´ (delay 0) DISABLED
+´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100089
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chill/equipment/chl_interactable_paint_bucket/chl_interactable_paint_bucket/001 (-200, -125, 0)
+	on_executed
+		´start´ (delay 0)
+´loop´ MissionScriptElement 100090
+	on_executed
+		´reset_no_dlc´ (delay 0)
+		´reset_dlc´ (delay 0) DISABLED
+´reset_no_dlc_off´ ElementToggle 100092
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´reset_no_dlc´
+		2 ´delay_no_dlc´
+	on_executed
+		´point_debug_024´ (delay 0)
+´reset_no_dlc´ ElementStopwatchOperator 100093
+	condition always
+	operation set_time
+	position -100, -900, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 2
+	elements
+		1 ´counter_2´
+	on_executed
+		´2_2´ (delay 0.1)
+´reset_dlc´ ElementStopwatchOperator 100094
+	DISABLED
+	condition always
+	operation set_time
+	position -200, -900, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 1
+	elements
+		1 ´counter_2´
+	on_executed
+		´1(overkill_skin)´ (delay 0.1)
+´set1´ ElementStopwatchOperator 100095
+	condition always
+	operation set_time
+	position -100, 400, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 1
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_022´ (delay 0)
+´reset_dlc_on´ ElementToggle 100096
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´reset_dlc´ DISABLED
+		2 ´delay_dlc´ DISABLED
+	on_executed
+		´point_debug_023´ (delay 0)
+´delay_no_dlc´ MissionScriptElement 100097
+	on_executed
+		´set1´ (delay 0)
+´delay_dlc´ MissionScriptElement 100098
+	DISABLED
+	on_executed
+		´set0´ (delay 0)
+´set0´ ElementStopwatchOperator 100099
+	condition always
+	operation set_time
+	position -100, 300, 0
+	rotation 0, 0, 0, -1
+	save_key 
+	time 0
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_021´ (delay 0)
+´point_debug_020´ ElementDebug 100026
+	as_subtitle false
+	debug_string dlc_check_ovk_pack
+	show_instigator false
+´point_debug_021´ ElementDebug 100051
+	as_subtitle false
+	debug_string set0
+	show_instigator false
+´point_debug_022´ ElementDebug 100052
+	as_subtitle false
+	debug_string set1
+	show_instigator false
+´point_debug_023´ ElementDebug 100053
+	as_subtitle false
+	debug_string dlc_on
+	show_instigator false
+´point_debug_024´ ElementDebug 100054
+	as_subtitle false
+	debug_string dlc_off
+	show_instigator false
+´func_dlc_check_001´ ElementCheckDLC 100055
+	invert false
+	position -400, 300, 0
+	require_all true
+	rotation 0, 0, 0, -1
+	dlc_ids
+		100055 overkill_pack
+	on_executed
+		´reset_dlc_on´ (delay 0)
+		´reset_no_dlc_off´ (delay 0)
+		´point_debug_020´ (delay 0)
+´func_van_skin_014´ ElementChangeVanSkin 100056
+	position 900, -1000, 0
+	rotation 0, 0, 0, -1
+	target_skin spooky
+	unit_ids
+		1 units/payday2/vehicles/str_vehicle_van_player/str_vehicle_van_player/001 (-0.000183105, 0.00012207, 0)
+´point_debug_025´ ElementDebug 100091
+	as_subtitle false
+	debug_string skin8
+	show_instigator false
+´007´ ElementStopwatchFilter 100100
+	DISABLED
+	check_type equal
+	needed_to_execute all
+	value 8
+	stopwatch_value_ids
+	elements
+		1 ´counter_2´
+	on_executed
+		´point_debug_025´ (delay 0)
+		´func_van_skin_014´ (delay 0)

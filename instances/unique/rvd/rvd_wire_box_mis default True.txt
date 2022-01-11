@@ -1,0 +1,126 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_show_box´ (delay 1)
+		´input_enable_interaction´ (delay 2)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_show_box´ ElementInstanceInput 100007
+	event show_box
+	on_executed
+		´seq_show_box´ (delay 0)
+´output_cut_wire´ ElementInstanceOutput 100008
+	event cut_wire
+´seq_show_box´ ElementUnitSequence 100010
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+			notify_unit_sequence show
+			time 0
+´seq_enable_interaction´ ElementUnitSequence 100011
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+			notify_unit_sequence enable_interaction
+			time 0
+´input_enable_interaction´ ElementInstanceInput 100012
+	event enable_interaction
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+		´WP_interact´ (delay 0)
+´WP_interact´ ElementWaypoint 100013
+	icon pd2_generic_interact
+	only_in_civilian false
+	position 0, -30, 134
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´interacted_with_box´ ElementUnitSequenceTrigger 100014
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+	on_executed
+		´remove_WP_interact´ (delay 0)
+		´seq_enable_wirecut´ (delay 1)
+		´enable_interacted_with_wire´ (delay 0.5)
+´remove_WP_interact´ ElementOperator 100015
+	operation remove
+	elements
+		1 ´WP_interact´
+´WP_wire´ ElementWaypoint 100016
+	icon pd2_wirecutter
+	only_in_civilian false
+	position 0, -17, 144
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´seq_enable_wirecut´ ElementUnitSequence 100017
+	position 1000, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´WP_wire´ (delay 0)
+´interacted_with_wire´ ElementUnitSequenceTrigger 100018
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence int_seq_cut
+			notify_unit_id units/pd2_dlc_rvd/props/rvd_prop_cable_box/rvd_prop_cable_box/001 (0, 0, 137)
+	on_executed
+		´remove_WP_wire´ (delay 0)
+		´output_cut_wire´ (delay 0)
+´remove_WP_wire´ ElementOperator 100019
+	operation remove
+	elements
+		1 ´WP_wire´
+´enable_interacted_with_wire´ ElementToggle 100020
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´interacted_with_wire´ DISABLED

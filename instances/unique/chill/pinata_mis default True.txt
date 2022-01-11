@@ -1,0 +1,364 @@
+´startup´ MissionScriptElement 100252
+	EXECUTE ON STARTUP
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´random_amount´ (delay 0)
+´broken´ ElementUnitSequenceTrigger 100258
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence break_pinata
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+	on_executed
+		´greater_than_0´ (delay 0)
+		´explosion´ (delay 0)
+		´point_teammate_comment_001´ (delay 0)
+		´func_nav_obstacle_002´ (delay 0)
+´spawn_5k´ MissionScriptElement 100259
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_10k´ MissionScriptElement 100260
+	on_executed
+		´set_10´ (delay 0)
+´spawn_25k´ MissionScriptElement 100261
+	on_executed
+		´set_25´ (delay 0)
+´spawn_50k´ MissionScriptElement 100262
+	on_executed
+		´set_50´ (delay 0)
+´spawn_100k´ MissionScriptElement 100263
+	on_executed
+		´set_100´ (delay 0)
+´spawn_250k´ MissionScriptElement 100264
+	on_executed
+		´set_250´ (delay 0)
+´spawn_5k_2´ MissionScriptElement 100265
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_5k_3´ MissionScriptElement 100266
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_10k_2´ MissionScriptElement 100267
+	on_executed
+		´set_10´ (delay 0)
+´spawn_10k_3´ MissionScriptElement 100268
+	on_executed
+		´set_10´ (delay 0)
+´spawn_25k_2´ MissionScriptElement 100269
+	on_executed
+		´set_25´ (delay 0)
+´random_amount´ ElementRandom 100270
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´spawn_250k´ (delay 0)
+		´spawn_100k´ (delay 0)
+		´spawn_50k´ (delay 0)
+		´spawn_25k_2´ (delay 0)
+		´spawn_25k´ (delay 0)
+		´spawn_10k_3´ (delay 0)
+		´spawn_10k_2´ (delay 0)
+		´spawn_10k´ (delay 0)
+		´spawn_5k_3´ (delay 0)
+		´spawn_5k_2´ (delay 0)
+		´spawn_5k´ (delay 0)
+		´spawn_5k_4´ (delay 0)
+		´spawn_5k_5´ (delay 0)
+		´spawn_10k_4´ (delay 0)
+		´spawn_25k_3´ (delay 0)
+		´spawn_50k_2´ (delay 0)
+		´spawn_5k001´ (delay 0)
+		´spawn_5k002´ (delay 0)
+		´spawn_10k001´ (delay 0)
+		´spawn_25k001´ (delay 0)
+		´spawn_50k001´ (delay 0)
+		´spawn_100k001´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100274
+	DISABLED
+	EXECUTE ON STARTUP
+	position 0, 600, 0.0039978
+	rotation 0, 0, 1, -1.19209E-07
+	state standard
+´func_sequence_001´ ElementUnitSequence 100000
+	position 200, 400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence hide
+			time 0
+´amount_to_spawn´ ElementCounter 100002
+	counter_target 0
+´set_5k´ ElementCounterOperator 100003
+	amount 5
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_5´ (delay 0)
+´set_10´ ElementCounterOperator 100004
+	amount 10
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_10´ (delay 0)
+´set_25´ ElementCounterOperator 100005
+	amount 25
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_010´ (delay 0)
+´set_50´ ElementCounterOperator 100006
+	amount 50
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_011´ (delay 0)
+´set_100´ ElementCounterOperator 100007
+	amount 100
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_012´ (delay 0)
+´set_250´ ElementCounterOperator 100008
+	amount 250
+	operation set
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_013´ (delay 0)
+´greater_than_0´ ElementCounterFilter 100009
+	check_type greater_than
+	needed_to_execute all
+	value 0
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´spawn_random_pos´ (delay 0)
+´subtract_1´ ElementCounterOperator 100010
+	amount 1
+	operation subtract
+	instance_var_names
+	elements
+		1 ´amount_to_spawn´
+	on_executed
+		´greater_than_0´ (delay 0)
+´spawn_random_pos´ ElementRandom 100011
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´spawn_head´ (delay 0)
+		´spawn_torso´ (delay 0)
+		´spawn_arm001´ (delay 0)
+		´spawn_arm002´ (delay 0)
+		´spawn_leg001´ (delay 0)
+		´spawn_leg002´ (delay 0)
+´loop´ MissionScriptElement 100012
+	on_executed
+		´subtract_1´ (delay 0.1)
+´spawn_head´ ElementUnitSequence 100013
+	position -100, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_head
+			time 0
+	on_executed
+		´return´ (delay 0)
+´spawn_torso´ ElementUnitSequence 100014
+	position -200, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_torso
+			time 0
+	on_executed
+		´return´ (delay 0)
+´spawn_arm001´ ElementUnitSequence 100015
+	position -300, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_arm_left
+			time 0
+	on_executed
+		´return´ (delay 0)
+´spawn_arm002´ ElementUnitSequence 100016
+	position -400, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_arm_right
+			time 0
+	on_executed
+		´return´ (delay 0)
+´spawn_leg001´ ElementUnitSequence 100017
+	position -500, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_leg_left
+			time 0
+	on_executed
+		´return´ (delay 0)
+´spawn_leg002´ ElementUnitSequence 100018
+	position -600, 1100, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence spawn_cash_leg_right
+			time 0
+	on_executed
+		´return´ (delay 0)
+´return´ MissionScriptElement 100019
+	on_executed
+		´loop´ (delay 0)
+´spawn_5´ ElementDebug 100020
+	as_subtitle false
+	debug_string should_spawn 5
+	show_instigator false
+´spawn_10´ ElementDebug 100021
+	as_subtitle false
+	debug_string should_spawn 10
+	show_instigator false
+´spawn_010´ ElementDebug 100022
+	as_subtitle false
+	debug_string should_spawn 25
+	show_instigator false
+´spawn_011´ ElementDebug 100023
+	as_subtitle false
+	debug_string should_spawn 50
+	show_instigator false
+´spawn_012´ ElementDebug 100024
+	as_subtitle false
+	debug_string should_spawn 100
+	show_instigator false
+´spawn_013´ ElementDebug 100025
+	as_subtitle false
+	debug_string should_spawn 250
+	show_instigator false
+´explosion´ ElementPlaySound 100027
+	append_prefix false
+	position 1, 8, 107.004
+	rotation 0, 0, 0, -1
+	sound_event explosion_human
+	use_instigator false
+´point_teammate_comment_001´ ElementTeammateComment 100026
+	close_to_element true
+	comment v46
+	position 0, 100, 150.004
+	radius 750
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_play_sound_001´ ElementPlaySound 100028
+	append_prefix false
+	position -200, 100, 0.00400543
+	rotation 0, 0, 0, -1
+	sound_event f11m_sin
+	use_instigator false
+´point_play_sound_002´ ElementPlaySound 100029
+	append_prefix false
+	position -300, 100, 0.00400543
+	rotation 0, 0, 0, -1
+	sound_event p14
+	use_instigator false
+´activate_input´ ElementInstanceInput 100030
+	event Show_pinata
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100031
+	position 100, 400, 0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chill/props/chl_prop_pinata/chl_prop_pinata/001 (0, 0, 100)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´func_nav_obstacle_001´ ElementNavObstacle 100033
+	operation add
+	position 100, 500, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-54, -38, 0.00400394)
+´func_nav_obstacle_002´ ElementNavObstacle 100034
+	operation remove
+	position -400, 800, 0.00400543
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-54, -38, 0.00400394)
+´spawn_5k_4´ MissionScriptElement 100035
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_5k_5´ MissionScriptElement 100036
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_10k_4´ MissionScriptElement 100037
+	on_executed
+		´set_10´ (delay 0)
+´spawn_25k_3´ MissionScriptElement 100038
+	on_executed
+		´set_25´ (delay 0)
+´spawn_50k_2´ MissionScriptElement 100039
+	on_executed
+		´set_50´ (delay 0)
+´spawn_5k001´ MissionScriptElement 100040
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_5k002´ MissionScriptElement 100041
+	on_executed
+		´set_5k´ (delay 0)
+´spawn_10k001´ MissionScriptElement 100042
+	on_executed
+		´set_10´ (delay 0)
+´spawn_25k001´ MissionScriptElement 100043
+	on_executed
+		´set_25´ (delay 0)
+´spawn_50k001´ MissionScriptElement 100044
+	on_executed
+		´set_50´ (delay 0)
+´spawn_100k001´ MissionScriptElement 100045
+	on_executed
+		´set_100´ (delay 0)

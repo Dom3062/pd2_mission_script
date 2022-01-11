@@ -1,0 +1,1337 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/001 (0, -525, 0)
+			notify_unit_sequence anim_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/002 (425, -300, 0)
+			notify_unit_sequence anim_open
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence deactivate
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence deactivate
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence state_hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence state_hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_camera_hackingtool/gen_equipment_camera_hackingtool/001 (0, 29, 142)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_camera_hackingtool/gen_equipment_camera_hackingtool/001 (0, 29, 142)
+			notify_unit_sequence state_vis_hidden
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 1200, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/txt_device_attached (-85, 22, 105)
+´input_show_it_room_wp´ ElementInstanceInput 100007
+	event show it room waypoint
+	on_executed
+		´link_show_it_wp´ (delay 0)
+´output_device_attached´ ElementInstanceOutput 100008
+	event device attached
+´interaction_attach_device´ ElementInteraction 100010
+	host_only false
+	override_timer -1
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	tweak_data_id use_server_device
+	on_executed
+		´link_server interaction´ (delay 0) (alternative interacted)
+´link_server interaction´ MissionScriptElement 100011
+	on_executed
+		´func_enable_unit_txt´ (delay 0) DISABLED
+		´seq_enable_camera_console´ (delay 0)
+		´remove_device_WP´ (delay 0)
+		´sfx_hack_placed´ (delay 0)
+´func_enable_unit_txt´ ElementEnableUnit 100013
+	DISABLED
+	position 1700, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/txt_device_attached (-85, 22, 105)
+´seq_enable_camera_console´ ElementUnitSequence 100016
+	position 1500, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_camera_hackingtool/gen_equipment_camera_hackingtool/001 (0, 29, 142)
+			notify_unit_sequence state_vis_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_camera_hackingtool/gen_equipment_camera_hackingtool/001 (0, 29, 142)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_camera_hackingtool/gen_equipment_camera_hackingtool/001 (0, 29, 142)
+			notify_unit_sequence state_range_contour_enabled
+			time 0
+´police_called´ ElementGlobalEventTrigger 100022
+	TRIGGER TIMES 1
+	global_event police_called
+	position 2250, 325, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_police_called´ (delay 0)
+		´counter_front_loud_triggerarea´ (delay 0)
+		´counter_side_loud_triggerarea´ (delay 0)
+´link_police_called´ MissionScriptElement 100023
+	on_executed
+		´counter=2´ (delay 0)
+		´link_room_lockdown´ (delay 0.5)
+		´toggle_ON_team_comment´ (delay 0)
+´trigger_doors_opened´ ElementUnitSequenceTrigger 100024
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_door_open
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		2
+			guis_id 2
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		3
+			guis_id 3
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		4
+			guis_id 4
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		5
+			guis_id 5
+			sequence state_door_open
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		6
+			guis_id 6
+			sequence door_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		7
+			guis_id 7
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		8
+			guis_id 8
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		9
+			guis_id 9
+			sequence c4_placed
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		10
+			guis_id 10
+			sequence c4_placed
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+	on_executed
+		´counter=2´ (delay 0)
+´counter=2´ ElementCounter 100025
+	counter_target 2
+	on_executed
+		´toggle_off_door_close´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100026
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 600
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -200, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 780
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´link_player_in_room´ (delay 0)
+´link_player_in_room´ MissionScriptElement 100027
+	TRIGGER TIMES 1
+	on_executed
+		´counter=2´ (delay 0)
+		´attach_device_WP´ (delay 0)
+		´link_hide_it_wp´ (delay 0)
+		´link_hide_server_wp´ (delay 0)
+		´toggle_off_wp_2´ (delay 0)
+´toggle_off_door_close´ ElementToggle 100029
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´seq_close_shutters´
+		2 ´link_room_lockdown´
+		3 ´point_waypoint_side_drill´
+		4 ´point_waypoint_front_drill´
+		5 ´counter_side_loud_triggerarea´
+		6 ´counter_front_loud_triggerarea´
+		7 ´link_drill_wp_front´
+		8 ´link_drill_wp_side´
+		9 ´trigger_area_drill_front001´
+		10 ´trigger_area_drill_front´
+´link_room_lockdown´ MissionScriptElement 100030
+	on_executed
+		´seq_close_shutters´ (delay 0)
+´seq_close_shutters´ ElementUnitSequence 100032
+	position 2250, -275, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/001 (0, -525, 0)
+			notify_unit_sequence anim_close
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/002 (425, -300, 0)
+			notify_unit_sequence anim_close
+			time 0
+	on_executed
+		´link_trigger_door_drills´ (delay 0)
+´seq_activate_drills´ ElementUnitSequence 100033
+	position 2250, -475, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence state_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence activate
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence activate
+			time 0
+´link_trigger_door_drills´ MissionScriptElement 100035
+	on_executed
+		´seq_activate_drills´ (delay 2)
+´trigger_front_door_opened´ ElementUnitSequenceTrigger 100036
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_door_open
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		2
+			guis_id 2
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		3
+			guis_id 3
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+		4
+			guis_id 4
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+	on_executed
+		´link_door_open´ (delay 0)
+´trigger_drills_complete_front´ ElementUnitSequenceTrigger 100037
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+	on_executed
+		´link_drill_completed´ (delay 0)
+´trigger_drills_complete_side´ ElementUnitSequenceTrigger 100038
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+	on_executed
+		´link_drill_completed_2´ (delay 0)
+´link_drill_completed´ MissionScriptElement 100039
+	TRIGGER TIMES 1
+	on_executed
+		´seq_drill_completed´ (delay 0)
+		´toggle_off´ (delay 0)
+		´operator_remove_so_points´ (delay 0)
+		´logic_link_001´ (delay 0)
+´link_drill_completed_2´ MissionScriptElement 100040
+	TRIGGER TIMES 1
+	on_executed
+		´seq_drill_completed_2´ (delay 0)
+		´toggle_off_2´ (delay 0)
+		´operator_remove_so_points_2´ (delay 0)
+		´logic_link_001´ (delay 0)
+´seq_drill_completed´ ElementUnitSequence 100042
+	TRIGGER TIMES 1
+	position 2175, -775, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/001 (0, -525, 0)
+			notify_unit_sequence anim_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence destroy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence deactivate
+			time 0
+	on_executed
+		´seq_open_front_door´ (delay 2)
+´seq_drill_completed_2´ ElementUnitSequence 100043
+	TRIGGER TIMES 1
+	position 2325, -775, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_shutter_01/brb_prop_shutter_01/002 (425, -300, 0)
+			notify_unit_sequence anim_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence destroy
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence deactivate
+			time 0
+	on_executed
+		´seq_open_side_door´ (delay 2)
+´func_nav_blocker_remove´ ElementNavObstacle 100046
+	operation remove
+	position 2075, -1200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -560, 0)
+´func_nav_blocker_remove_2´ ElementNavObstacle 100047
+	operation remove
+	position 2425, -1200, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (359, -350, 0)
+´link_door_open´ MissionScriptElement 100048
+	on_executed
+		´func_nav_blocker_remove´ (delay 0)
+		´toggle_off_door_so´ (delay 0)
+		´so_kick_open_door´ (delay 0) DISABLED
+		´toggle_on_trigger_area´ (delay 0)
+		´link_waypoint´ (delay 0)
+´link_door_open_2´ MissionScriptElement 100049
+	on_executed
+		´func_nav_blocker_remove_2´ (delay 0)
+		´toggle_off_door_so_2´ (delay 0)
+		´so_kick_open_door001´ (delay 0) DISABLED
+		´toggle_on_trigger_area´ (delay 0)
+		´link_waypoint´ (delay 0)
+´trigger_side_door_opened´ ElementUnitSequenceTrigger 100050
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_door_open
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		2
+			guis_id 2
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		3
+			guis_id 3
+			sequence done_exploded
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+		4
+			guis_id 4
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+	on_executed
+		´link_door_open_2´ (delay 0)
+´toggle_off_door_so´ ElementToggle 100051
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´so_kick_open_door´ DISABLED
+		2 ´link_drill_completed´
+		3 ´seq_drill_completed´
+		4 ´seq_open_front_door´
+		5 ´trigger_front_door_opened´
+´toggle_off_door_so_2´ ElementToggle 100052
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_kick_open_door001´ DISABLED
+		2 ´seq_drill_completed_2´
+		3 ´seq_open_side_door´
+		4 ´trigger_side_door_opened´
+´so_kick_open_door´ ElementSpecialObjective 100053
+	DISABLED
+	SO_access 23080444
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -600, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 2,69351 -350,15 0
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´so_kick_open_door001´ ElementSpecialObjective 100054
+	DISABLED
+	SO_access 23080444
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	is_navigation_link true
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 500, -300, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 249,167 -297,689 0
+	so_action e_nl_kick_enter
+	trigger_on none
+	followup_elements
+´waypoint_it_room´ ElementWaypoint 100055
+	DISABLED
+	icon pd2_goto
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -200, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_it_room_server´ ElementWaypoint 100056
+	DISABLED
+	icon pd2_computer
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_hide_it_room_wp´ ElementInstanceInput 100031
+	event hide it room waypoint
+	on_executed
+		´link_hide_it_wp´ (delay 0)
+´input_hide_server_wp´ ElementInstanceInput 100057
+	event hide server waypoint
+	on_executed
+		´link_hide_server_wp´ (delay 0)
+´input_show_server_wp´ ElementInstanceInput 100058
+	event show server waypoint
+	on_executed
+		´link_show_server_wp´ (delay 0)
+´op_remove_it_wp´ ElementOperator 100062
+	operation remove
+	elements
+		1 ´waypoint_it_room´ DISABLED
+´op_remove_server_wp´ ElementOperator 100064
+	operation remove
+	elements
+		1 ´waypoint_it_room_server´ DISABLED
+´link_show_it_wp´ MissionScriptElement 100065
+	on_executed
+		´waypoint_it_room´ (delay 0.5) DISABLED
+		´toggle_on_room_wp´ (delay 0)
+´link_hide_it_wp´ MissionScriptElement 100066
+	on_executed
+		´op_remove_it_wp´ (delay 0)
+		´toggle_off_room_wp´ (delay 0)
+´link_show_server_wp´ MissionScriptElement 100067
+	on_executed
+		´waypoint_it_room_server´ (delay 0.5) DISABLED
+		´toggle_on_server_wp´ (delay 0)
+´link_hide_server_wp´ MissionScriptElement 100068
+	on_executed
+		´op_remove_server_wp´ (delay 0)
+		´toggle_off_server_wp´ (delay 0)
+´input_set_drill_time_30s´ ElementInstanceInput 100069
+	event set drill time - 30s
+	on_executed
+		´seq_drill_time_30s´ (delay 0)
+´seq_drill_time_30s´ ElementUnitSequence 100059
+	position 1200, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence set_hack_time_30s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence set_hack_time_30s
+			time 0
+´input_set_drill_time_60s´ ElementInstanceInput 100070
+	event set drill time - 60s
+	on_executed
+		´seq_drill_time_60s´ (delay 0)
+´seq_drill_time_60s´ ElementUnitSequence 100071
+	position 1350, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence set_hack_time_60s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence set_hack_time_60s
+			time 0
+´input_set_drill_time_90s´ ElementInstanceInput 100072
+	event set drill time - 90s
+	on_executed
+		´seq_drill_time_90s´ (delay 0)
+´seq_drill_time_90s´ ElementUnitSequence 100073
+	position 1525, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence set_hack_time_90s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence set_hack_time_90s
+			time 0
+´input_set_drill_time_120s´ ElementInstanceInput 100074
+	event set drill time - 120s
+	on_executed
+		´seq_drill_time_120s´ (delay 0)
+´seq_drill_time_120s´ ElementUnitSequence 100075
+	position 1675, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence set_hack_time_120s
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence set_hack_time_120s
+			time 0
+´toggle_on_room_wp´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´waypoint_it_room´ DISABLED
+´toggle_off_room_wp´ ElementToggle 100060
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´waypoint_it_room´ DISABLED
+		2 ´link_show_it_wp´
+		3 ´toggle_on_room_wp´
+´toggle_on_server_wp´ ElementToggle 100061
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´waypoint_it_room_server´ DISABLED
+´toggle_off_server_wp´ ElementToggle 100063
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´waypoint_it_room_server´ DISABLED
+´seq_open_side_door´ ElementUnitSequence 100017
+	BASE DELAY 0,5
+	TRIGGER TIMES 1
+	position 2325, -875, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/side (400, -245, 0)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´link_drill_completed´ (delay 0)
+´seq_open_front_door´ ElementUnitSequence 100034
+	BASE DELAY 0,5
+	TRIGGER TIMES 1
+	position 2175, -875, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/front (55, -500, 0)
+			notify_unit_sequence open_door
+			time 0
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´link_drill_completed_2´ (delay 0)
+´so_drill_nav´ ElementSpecialObjective 100084
+	SO_access 8700
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 25, -650, 0
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 2000
+	search_position -75,4071 -598,654 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_drill_anim´
+´so_drill_anim´ ElementSpecialObjective 100085
+	SO_access 8700
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 25, -650, 100
+	rotation 0, 0, 0, -1
+	scan true
+	search_distance 0
+	search_position 75,715 -599,541 0
+	so_action e_so_push_button
+	trigger_on none
+	followup_elements
+´so_drill_nav001´ ElementSpecialObjective 100086
+	SO_access 8700
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 550, -275, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 2000
+	search_position 500,579 -373,611 0
+	so_action none
+	trigger_on none
+	followup_elements
+		1 ´so_drill_anim001´
+´so_drill_anim001´ ElementSpecialObjective 100087
+	SO_access 8700
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude engage
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 550, -275, 100
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 502,262 -198,978 0
+	so_action e_so_push_button
+	trigger_on none
+	followup_elements
+´trigger_front_door_drill_active´ ElementUnitSequenceTrigger 100088
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+	on_executed
+		´link_front_drill´ (delay 0)
+´trigger_side_door_drill_active´ ElementUnitSequenceTrigger 100089
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+	on_executed
+		´link_side_drill´ (delay 0)
+´link_front_drill´ MissionScriptElement 100090
+	on_executed
+		´so_drill_nav´ (delay 0)
+		´toggle_off_wp´ (delay 0)
+´link_side_drill´ MissionScriptElement 100091
+	on_executed
+		´so_drill_nav001´ (delay 0)
+		´toggle_off_3´ (delay 0)
+´trigger_so_success´ ElementSpecialObjectiveTrigger 100092
+	event complete
+	position -750, -1200, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_drill_anim´
+	on_executed
+		´link_drill_jammed´ (delay 0)
+´trigger_so_fail´ ElementSpecialObjectiveTrigger 100093
+	event fail
+	position -400, -1200, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_drill_nav´
+		2 ´so_drill_anim´
+	on_executed
+		´link_drill_not_jammed´ (delay 0)
+´link_drill_jammed´ MissionScriptElement 100094
+	on_executed
+		´point_debug_001´ (delay 0)
+		´toggle_disable_interupt´ (delay 0)
+		´seq_drill_jammed´ (delay 0)
+´link_drill_not_jammed´ MissionScriptElement 100095
+	on_executed
+		´toggle_on´ (delay 0)
+		´point_debug_002´ (delay 0)
+´point_debug_001´ ElementDebug 100096
+	as_subtitle false
+	debug_string Drill front disable success
+	show_instigator false
+´point_debug_002´ ElementDebug 100097
+	as_subtitle false
+	debug_string Drill front disable failed
+	show_instigator false
+´toggle_disable_interupt´ ElementToggle 100098
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_drill_nav´
+		2 ´so_drill_anim´
+		3 ´trigger_so_success´
+		4 ´trigger_so_fail´
+´toggle_on´ ElementToggle 100099
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_so_fail´
+		2 ´trigger_so_success´
+		3 ´so_drill_nav´
+		4 ´so_drill_anim´
+	on_executed
+		´link_rest´ (delay 0)
+´seq_drill_jammed´ ElementUnitSequence 100100
+	position -650, -1400, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/001 (40, -515, 100)
+			notify_unit_sequence set_jammed
+			time 0
+´toggle_on_2´ ElementToggle 100101
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_so_fail001´
+		2 ´trigger_so_success001´
+		3 ´so_drill_nav001´
+		4 ´so_drill_anim001´
+	on_executed
+		´link_reset´ (delay 0)
+´point_debug_003´ ElementDebug 100102
+	as_subtitle false
+	debug_string Drill side disable failed
+	show_instigator false
+´toggle_disable_interupt_2´ ElementToggle 100103
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_drill_nav001´
+		2 ´so_drill_anim001´
+		3 ´trigger_so_success001´
+		4 ´trigger_so_fail001´
+´seq_drill_jammed_2´ ElementUnitSequence 100104
+	position 400, -1400, 25
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam/002 (415, -265, 100)
+			notify_unit_sequence set_jammed
+			time 0
+´point_debug_004´ ElementDebug 100105
+	as_subtitle false
+	debug_string Drill side disable success
+	show_instigator false
+´link_drill_not_jammed_2´ MissionScriptElement 100106
+	on_executed
+		´point_debug_003´ (delay 0)
+		´toggle_on_2´ (delay 0)
+´link_drill_jammed_2´ MissionScriptElement 100107
+	on_executed
+		´point_debug_004´ (delay 0)
+		´toggle_disable_interupt_2´ (delay 0)
+		´seq_drill_jammed_2´ (delay 0)
+´trigger_so_fail001´ ElementSpecialObjectiveTrigger 100108
+	event fail
+	position 650, -1200, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_drill_nav001´
+		2 ´so_drill_anim001´
+	on_executed
+		´link_drill_not_jammed_2´ (delay 0)
+´trigger_so_success001´ ElementSpecialObjectiveTrigger 100109
+	event complete
+	position 300, -1200, 25
+	rotation 0, 0, 0, -1
+	elements
+		1 ´so_drill_anim001´
+	on_executed
+		´link_drill_jammed_2´ (delay 0)
+´link_rest´ MissionScriptElement 100110
+	on_executed
+		´link_front_drill´ (delay 0)
+´link_reset´ MissionScriptElement 100111
+	on_executed
+		´link_side_drill´ (delay 0)
+´toggle_off´ ElementToggle 100080
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_drill_nav´
+		2 ´so_drill_anim´
+		3 ´trigger_so_fail´
+		4 ´trigger_so_success´
+		5 ´link_drill_jammed´
+		6 ´link_drill_not_jammed´
+		7 ´point_debug_001´
+		8 ´toggle_disable_interupt´
+		9 ´seq_drill_jammed´
+		10 ´point_debug_002´
+		11 ´link_rest´
+		12 ´toggle_on´
+		13 ´link_front_drill´
+		14 ´trigger_front_door_drill_active´
+		15 ´logic_counter_2´
+´toggle_off_2´ ElementToggle 100081
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´so_drill_anim001´
+		2 ´so_drill_nav001´
+		3 ´trigger_so_success001´
+		4 ´link_drill_jammed_2´
+		5 ´toggle_disable_interupt_2´
+		6 ´point_debug_004´
+		7 ´seq_drill_jammed_2´
+		8 ´trigger_so_fail001´
+		9 ´link_drill_not_jammed_2´
+		10 ´point_debug_003´
+		11 ´toggle_on_2´
+		12 ´link_reset´
+		13 ´trigger_side_door_drill_active´
+		14 ´link_side_drill´
+		15 ´teammate_comment_drill_done001´
+		16 ´logic_counter_2´
+´operator_remove_so_points´ ElementOperator 100112
+	operation remove
+	elements
+		1 ´so_drill_nav´
+		2 ´so_drill_anim´
+´operator_remove_so_points_2´ ElementOperator 100113
+	operation remove
+	elements
+		1 ´so_drill_nav001´
+		2 ´so_drill_anim001´
+´attach_device_WP´ ElementWaypoint 100116
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_device_WP´ ElementOperator 100117
+	operation remove
+	elements
+		1 ´attach_device_WP´
+	on_executed
+		´output_device_attached´ (delay 0)
+´input_kitchen_walls´ ElementInstanceInput 100115
+	event kitchen_walls
+	on_executed
+		´enable_walls´ (delay 0)
+´input_office_walls´ ElementInstanceInput 100144
+	event office_walls
+	on_executed
+		´enable_walls_2´ (delay 0)
+´enable_walls´ ElementUnitSequence 100145
+	position 2600, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/architecture/int/sand_mainbuilding_01/sand_mainbuilding_instanced_wall_01/001 (200, -512, 0)
+			notify_unit_sequence wall1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/architecture/int/sand_mainbuilding_01/sand_mainbuilding_instanced_wall_01/002 (412, -100, 0)
+			notify_unit_sequence wall1
+			time 0
+´enable_walls_2´ ElementUnitSequence 100146
+	position 2700, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/architecture/int/sand_mainbuilding_01/sand_mainbuilding_instanced_wall_01/001 (200, -512, 0)
+			notify_unit_sequence wall1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/architecture/int/sand_mainbuilding_01/sand_mainbuilding_instanced_wall_01/002 (412, -100, 0)
+			notify_unit_sequence wall1
+			time 0
+´input_comment_there_he_is´ ElementInstanceInput 100135
+	event comment_there_he_is
+	on_executed
+		´teammate_comment_there_he_is´ (delay 0) DISABLED
+´teammate_comment_there_he_is´ ElementTeammateComment 100134
+	DISABLED
+	close_to_element true
+	comment v30
+	position 0, -25, 150
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´link_waypoint´ MissionScriptElement 100133
+	TRIGGER TIMES 1
+	on_executed
+		´toggle_off_4´ (delay 0)
+´toggle_ON_team_comment´ ElementToggle 100136
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´teammate_comment_there_he_is´ DISABLED
+´point_waypoint_front_drill´ ElementWaypoint 100141
+	icon pd2_drill
+	only_in_civilian false
+	only_on_instigator false
+	position 25, -525, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_side_drill´ ElementWaypoint 100147
+	icon pd2_drill
+	only_in_civilian false
+	only_on_instigator false
+	position 425, -275, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_drill_wp_front´ MissionScriptElement 100148
+	on_executed
+		´point_waypoint_front_drill´ (delay 0)
+´trigger_area_drill_front´ ElementAreaTrigger 100149
+	TRIGGER TIMES 1
+	amount 1
+	depth 350
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -700, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´counter_front_loud_triggerarea´ (delay 0)
+´counter_front_loud_triggerarea´ ElementCounter 100150
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´link_drill_wp_front´ (delay 0)
+´counter_side_loud_triggerarea´ ElementCounter 100151
+	counter_target 2
+	on_executed
+		´link_drill_wp_side´ (delay 0)
+´trigger_area_drill_front001´ ElementAreaTrigger 100152
+	TRIGGER TIMES 1
+	amount 1
+	depth 350
+	height 300
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 600, -300, 150
+	radius 250
+	rotation 0, 0, -0.707107, -0.707107
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 600
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´counter_side_loud_triggerarea´ (delay 0)
+´link_drill_wp_side´ MissionScriptElement 100153
+	on_executed
+		´point_waypoint_side_drill´ (delay 0)
+´toggle_off_wp´ ElementToggle 100154
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_front_drill´
+	on_executed
+		´operator_remove_wp´ (delay 0)
+´operator_remove_wp´ ElementOperator 100155
+	operation remove
+	elements
+		1 ´point_waypoint_front_drill´
+´operator_remove´ ElementOperator 100156
+	operation remove
+	elements
+		1 ´point_waypoint_side_drill´
+´toggle_off_3´ ElementToggle 100157
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_side_drill´
+	on_executed
+		´operator_remove´ (delay 0)
+´toggle_off_4´ ElementToggle 100079
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_side_drill´
+		2 ´point_waypoint_front_drill´
+		3 ´link_room_lockdown´
+		4 ´seq_close_shutters´
+		5 ´teammate_comment_drill_done001´
+	on_executed
+		´operator_remove_2´ (delay 0)
+´operator_remove_2´ ElementOperator 100172
+	TRIGGER TIMES 1
+	operation remove
+	elements
+		1 ´point_waypoint_side_drill´
+		2 ´point_waypoint_front_drill´
+´teammate_comment_drill_done001´ ElementTeammateComment 100173
+	TRIGGER TIMES 1
+	close_to_element true
+	comment v23
+	position 200, -350, 50
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´toggle_off_wp_2´ ElementToggle 100175
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´waypoint_it_room_server´ DISABLED
+		2 ´waypoint_it_room´ DISABLED
+´toggle_on_trigger_area´ ElementToggle 100174
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´func_nav_obstacle_001´ ElementNavObstacle 100076
+	operation add
+	position 1300, 100, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -560, 0)
+		2
+			guis_id 2
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (359, -350, 0)
+		3
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (300, -150, 0)
+		4
+			guis_id 4
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (134, 1.3113E-06, 0)
+		5
+			guis_id 5
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/004 (-400, -500, 0)
+		6
+			guis_id 6
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-400, -275, 0)
+		7
+			guis_id 7
+			obj_name 7692370639133479206
+			unit_id units/payday2/props/off_prop_officehigh_drawer/off_prop_officehigh_drawer_dark_large_shelves_2_long/002 (144, -500, 0)
+		8
+			guis_id 8
+			obj_name 7692370639133479206
+			unit_id units/payday2/props/off_prop_officehigh_drawer/off_prop_officehigh_drawer_dark_large_shelves_2_long/001 (247, -500, 0)
+´sfx_hack_placed´ ElementPlaySound 100176
+	append_prefix false
+	interrupt true
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	sound_event hacking_device_place
+	use_instigator false
+´logic_toggle_001´ ElementToggle 100140
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_door_open_2´
+		2 ´link_drill_completed´
+		3 ´seq_open_front_door´
+		4 ´seq_drill_completed´
+´logic_toggle_002´ ElementToggle 100178
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´link_drill_completed_2´
+		2 ´link_door_open´
+		3 ´seq_drill_completed_2´
+		4 ´seq_open_side_door´
+´trigger_global_loud´ ElementGlobalEventTrigger 100179
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1975, -575, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_2´ (delay 0)
+´logic_counter_2´ ElementCounter 100180
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´teammate_comment_drill_done001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100137
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter_2´ (delay 0)

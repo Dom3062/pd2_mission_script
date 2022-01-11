@@ -1,0 +1,625 @@
+´enemy_triad´ ElementSpawnEnemyDummy 100030
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai false
+	position -494.265, 504.022, 4
+	rotation 0, 0, 0.737277, -0.675591
+	spawn_action none
+	team law1
+	voice 0
+	orientation_elements
+	on_executed
+		´randomize_idle_SO´ (delay 0)
+´SO_idle001´ ElementSpecialObjective 100031
+	SO_access 156
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position -314.737, 487.375, 0
+	rotation 0, 0, 0.258819, -0.965926
+	scan true
+	search_distance 0
+	search_position -188,924 236,93 0
+	so_action e_so_sit_student_var4
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´enemy_triad´
+´start´ MissionScriptElement 100033
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+		´test(disabled_by_default)´ (delay 0) DISABLED
+		´seq_setup_metal_normal´ (delay 0)
+´delay´ MissionScriptElement 100034
+	BASE DELAY 1
+	on_executed
+		´add_door_blocker´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100008
+	position 325, 275, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+´test(disabled_by_default)´ MissionScriptElement 100010
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´whisper_state_ON´ (delay 0)
+		´input_enable_interactions´ (delay 2)
+		´switch_door´ (delay 0)
+´whisper_state_ON´ ElementWhisperState 100011
+	disable_hud false
+	position 500, -100, 0
+	rotation 0, 0, 0, -1
+	state true
+´randomize_idle_SO´ ElementRandom 100024
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´SO_idle001´ (delay 0)
+		´SO_idle003´ (delay 0)
+´SO_idle003´ ElementSpecialObjective 100025
+	SO_access 156
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position -322.864, 489.944, 6
+	rotation 0, 0, 0.258819, -0.965926
+	scan true
+	search_distance 0
+	search_position -228,949 240,023 0
+	so_action e_so_sit_student_var2
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´enemy_triad´
+´spawn_random_guard´ ElementRandom 100021
+	amount 1
+	amount_random 0
+	ignore_disabled true
+	on_executed
+		´enemy_triad´ (delay 0)
+´door_opened´ ElementUnitSequenceTrigger 100020
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence drill_completed
+			notify_unit_id units/payday2/equipment/gen_interactable_door_keycard/gen_interactable_door_keycard/002 (-3, 222, -250.314)
+		2
+			guis_id 2
+			sequence c4_completed
+			notify_unit_id units/payday2/equipment/gen_interactable_door_keycard/gen_interactable_door_keycard/002 (-3, 222, -250.314)
+		3
+			guis_id 3
+			sequence open_door
+			notify_unit_id units/payday2/equipment/gen_interactable_door_keycard/gen_interactable_door_keycard/002 (-3, 222, -250.314)
+		4
+			guis_id 4
+			sequence open_door
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_signs/chca_prop_sign_control_room/001 (0, 271, 238)
+		5
+			guis_id 5
+			sequence c4_completed
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_signs/chca_prop_sign_control_room/001 (0, 271, 238)
+		6
+			guis_id 6
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_signs/chca_prop_sign_control_room/001 (0, 271, 238)
+		7
+			guis_id 7
+			sequence drill_completed
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_signs/chca_prop_sign_control_room/001 (0, 271, 238)
+		8
+			guis_id 8
+			sequence c4_completed
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+		9
+			guis_id 9
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+		10
+			guis_id 10
+			sequence open_door
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+	on_executed
+		´remove_door_blocker´ (delay 0)
+´remove_door_blocker´ ElementNavObstacle 100032
+	operation remove
+	position 400, -500, 0
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (29.148, 319.849, 0)
+	on_executed
+		´output_door_open´ (delay 0)
+´seq_setup_metal_normal´ ElementUnitSequence 100051
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence power_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence set_hack_time_state_12
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 200, 116.185)
+			notify_unit_sequence interact_disable
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 200, 116.185)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+			notify_unit_sequence activate_door
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+			notify_unit_sequence state_door_close
+			time 0
+	on_executed
+		´disable_keycard_door´ (delay 0)
+´add_door_blocker´ ElementNavObstacle 100048
+	operation add
+	position 400, -100, 2.5
+	rotation 0, 0, 0, -1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (29.148, 319.849, 0)
+´ainar_called´ ElementGlobalEventTrigger 100050
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1200, 0, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100054
+	position 1200, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence power_off
+			time 0
+	on_executed
+		´ready_guard´ (delay 0)
+´ready_guard´ MissionScriptElement 100055
+	on_executed
+		´SO_ready_up´ (delay 0)
+		´toggle_off´ (delay 0)
+´SO_ready_up´ ElementSpecialObjective 100057
+	SO_access 152
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis -1
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv true
+	path_haste none
+	path_stance none
+	path_style warp
+	patrol_path none
+	pose none
+	position -296.094, 514.214, 4.00002
+	rotation -1.03817E-07, -3.3178E-07, 0.984807, -0.17365
+	scan true
+	search_distance 0
+	search_position -184,521 113,759 0
+	so_action e_so_guard_arms_crossed_draw_gun
+	trigger_on none
+	use_instigator true
+	followup_elements
+	spawn_instigator_ids
+		1 ´enemy_triad´
+´switch_door´ ElementInstanceInput 100002
+	event enable_keycard_door_1
+	on_executed
+		´disable´ (delay 1)
+´disable´ ElementDisableUnit 100029
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´enable_keycard_door´ (delay 0)
+´enable_keycard_door´ ElementEnableUnit 100036
+	position 1000, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´seq_setup_keycard´ (delay 0)
+´disable_keycard_door´ ElementDisableUnit 100037
+	position 700, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_interactable_door_keycard/gen_interactable_door_keycard/002 (-3, 222, -250.314)
+´seq_setup_keycard´ ElementUnitSequence 100039
+	position 1000, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 200, 116.185)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 200, 116.185)
+			notify_unit_sequence interact_enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+			notify_unit_sequence deactivate_door
+			time 0
+´input_spawn_triad´ ElementInstanceInput 100058
+	event spawn_triad_1
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_spawn_civi´ ElementInstanceInput 100064
+	event spawn_civi_1
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100065
+	on_executed
+		´ai_spawn_civilian_001´ (delay 0)
+´logic_link_002´ MissionScriptElement 100066
+	on_executed
+		´spawn_random_guard´ (delay 0)
+´ai_spawn_civilian_001´ ElementSpawnCivilian 100067
+	enemy units/payday2/characters/civ_male_casual_1/civ_male_casual_1
+	force_pickup none
+	position -458.224, 600.965, 0
+	rotation 0, 0, -0.5373, -0.843391
+	state cm_sp_sit_feet_table
+	team default
+	orientation_elements
+´pc_interaction´ ElementUnitSequenceTrigger 100080
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100088
+	position 1100, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´turn_on´ (delay 0)
+´enable_pc´ ElementUnitSequence 100089
+	position 600, -500, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence main_screen_on_v4
+			time 0
+	on_executed
+		´enable_trigger_areas´ (delay 0)
+´pc_hack_completed´ ElementUnitSequenceTrigger 100091
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+	on_executed
+		´func_sequence_003´ (delay 0)
+´hack_completed´ ElementInstanceOutput 100092
+	event hack_completed_1
+	on_executed
+		´point_debug_001´ (delay 0)
+´output_hack_started´ ElementInstanceOutput 100093
+	event hack_started_1
+	on_executed
+		´point_debug_002´ (delay 0)
+´output_door_open´ ElementInstanceOutput 100094
+	event control_room_door_open_1
+´func_sequence_003´ ElementUnitSequence 100090
+	position 500, -500, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence main_screen_on_v2
+			time 0
+	on_executed
+		´turn_off´ (delay 0)
+´ecm_jam_on´ ElementGlobalEventTrigger 100096
+	DISABLED
+	global_event ecm_jammer_on
+	position 1200, -500, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´pause_hack´ (delay 0)
+´pause_hack´ ElementUnitSequence 100097
+	position 1200, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_device_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´ecm_jam_off´ ElementGlobalEventTrigger 100098
+	DISABLED
+	global_event ecm_jammer_off
+	position 1100, -500, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´resume´ (delay 0)
+´resume´ ElementUnitSequence 100099
+	position 1100, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_device_resumed
+			time 0
+´turn_on´ ElementToggle 100100
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´ecm_jam_off´ DISABLED
+		2 ´ecm_jam_on´ DISABLED
+	on_executed
+		´turn_off_trigger_areas´ (delay 0)
+´turn_off´ ElementToggle 100101
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´ecm_jam_on´ DISABLED
+		2 ´ecm_jam_off´ DISABLED
+		3 ´disable_pc_outline_2´
+		4 ´enable_pc_outline´
+	on_executed
+		´hack_completed´ (delay 0)
+´enable_pc_outline´ ElementUnitSequence 100102
+	position 800, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´input_enable_interactions´ ElementInstanceInput 100103
+	TRIGGER TIMES 1
+	event enable_interactions
+	on_executed
+		´enable_pc´ (delay 0)
+´point_debug_001´ ElementDebug 100104
+	as_subtitle false
+	debug_string hack_completed
+	show_instigator false
+´point_debug_002´ ElementDebug 100105
+	as_subtitle false
+	debug_string hack_started
+	show_instigator false
+´pc_outline_trigger_area´ ElementShape 100106
+	depth 500
+	height 500
+	position -525, 575, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 300
+´enable_pc_outline_2´ ElementAreaTrigger 100107
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.5
+	position 700, -600, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´pc_outline_trigger_area´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´enable_pc_outline´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´disable_pc_outline´ ElementAreaTrigger 100108
+	DISABLED
+	TRIGGER TIMES 1
+	amount all
+	depth 500
+	height 500
+	instigator player_criminals
+	instigator_name 
+	interval 0.5
+	position 700, -700, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	substitute_object 
+	trigger_on on_empty
+	use_disabled_shapes false
+	width 500
+	rules_element_ids
+	spawn_unit_elements
+		1 ´pc_outline_trigger_area´
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´disable_pc_outline_2´ (delay 0)
+´disable_pc_outline_2´ ElementUnitSequence 100109
+	position 800, -700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (-621, 575, 88)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´enable_trigger_areas´ ElementToggle 100110
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´enable_pc_outline_2´ DISABLED
+´turn_off_trigger_areas´ ElementToggle 100111
+	TRIGGER TIMES 1
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´disable_pc_outline´ DISABLED
+		2 ´enable_pc_outline_2´ DISABLED
+		3 ´logic_toggle_001´
+	on_executed
+		´output_hack_started´ (delay 0)
+´toggle_off´ ElementToggle 100112
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´enable_pc´
+		2 ´ecm_jam_on´ DISABLED
+		3 ´ecm_jam_off´ DISABLED
+		4 ´resume´
+		5 ´pause_hack´
+		6 ´pc_interaction´
+		7 ´pc_hack_completed´
+´keycard_used´ ElementUnitSequenceTrigger 100114
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 200, 116.185)
+	on_executed
+		´open_door´ (delay 0)
+´open_door´ ElementUnitSequence 100115
+	position 1000, -600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/equipment/chca_interactable_door_reinforced/chca_interactable_door_reinforced/001 (-5, 220, 0)
+			notify_unit_sequence open_door
+			time 0
+´logic_toggle_001´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´disable_pc_outline´ DISABLED
+´civie_dead´ ElementEnemyDummyTrigger 100116
+	TRIGGER TIMES 1
+	event death
+	position 1300, 0, 2.5
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_civilian_001´
+	on_executed
+		´output_civie_dead´ (delay 0)
+´output_civie_dead´ ElementInstanceOutput 100117
+	TRIGGER TIMES 1
+	event civie_dead

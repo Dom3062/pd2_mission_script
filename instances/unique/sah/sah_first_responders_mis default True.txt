@@ -1,0 +1,1027 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -1350, 0.5
+	rotation 0, 0, 1, 1.19209E-07
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_start_first_responders´ (delay 2)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/001 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/002 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/003 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence state_vis_hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_start_first_responders´ ElementInstanceInput 100007
+	event start_first_responders
+	on_executed
+		´link_start_first_responders´ (delay 0)
+´seq_anim_sah_arrive001´ ElementUnitSequence 100008
+	position 700, -0.00012207, 2.5
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/001 (-4716, -13194, -350)
+			notify_unit_sequence anim_sah_arrive_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/001 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_show
+			time 0
+´link_start_first_responders´ MissionScriptElement 100009
+	on_executed
+		´seq_anim_sah_arrive001´ (delay 8)
+		´vhard_and_above´ (delay 0)
+		´seq_anim_sah_arrive003´ (delay 3)
+		´seq_anim_sah_arrive002´ (delay 6)
+		´point_play_sound_001´ (delay 0)
+		´point_teammate_comment_cops_arrived´ (delay 0)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100018
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_1/ene_cop_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1556, -4003, -100
+	rotation 0, 0, 0.5, -0.866025
+	spawn_action e_sp_car_exit_to_cbt_front_r
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100019
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_2/ene_cop_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1353, -3656, -100
+	rotation 0, 0, 0.430511, -0.902585
+	spawn_action e_sp_car_exit_to_cbt_front_l_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100020
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_1/ene_cop_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1535, -4258, -100
+	rotation 0, 0, -0.601815, -0.798635
+	spawn_action e_sp_car_exit_to_cbt_front_l_var2
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100021
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_3/ene_cop_3
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position -1335, -3885, -100
+	rotation 0, 0, -0.477159, -0.878817
+	spawn_action e_sp_car_exit_to_cbt_front_r
+	team default
+	voice 0
+	orientation_elements
+´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100027
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_2/ene_cop_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 619, -2441, -100
+	rotation 0, 0, -0.573576, -0.819152
+	spawn_action e_sp_car_exit_to_cbt_front_r
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´SO_cover001´ (delay 2)
+´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100028
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_cop_3/ene_cop_3
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 556, -2723, -100
+	rotation 0, 0, -0.66262, -0.748955
+	spawn_action e_sp_car_exit_to_cbt_front_l
+	team default
+	voice 0
+	orientation_elements
+	on_executed
+		´SO_megaphone´ (delay 2)
+´done_anim_police_response001´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_anim_police_responce
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/001 (-4716, -13194, -350)
+	on_executed
+		´relay´ (delay 0)
+		´output_first_responders_arrived´ (delay 0)
+´relay´ MissionScriptElement 100030
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+´relay_2´ MissionScriptElement 100031
+	on_executed
+		´ai_spawn_enemy_004´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+´done_anim_police_response002´ ElementUnitSequenceTrigger 100032
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_anim_police_responce
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/002 (-4716, -13194, -350)
+	on_executed
+		´relay_2´ (delay 0)
+		´output_first_responders_arrived´ (delay 0)
+´done_anim_police_response003´ ElementUnitSequenceTrigger 100033
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_anim_police_responce
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/003 (-4716, -13194, -350)
+	on_executed
+		´relay_3´ (delay 0)
+		´output_first_responders_arrived´ (delay 0)
+´relay_3´ MissionScriptElement 100034
+	on_executed
+		´ai_spawn_enemy_005´ (delay 0)
+		´ai_spawn_enemy_006´ (delay 0)
+´seq_anim_sah_arrive002´ ElementUnitSequence 100035
+	position 800, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/002 (-4716, -13194, -350)
+			notify_unit_sequence anim_sah_arrive_2
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/002 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_show
+			time 0
+´seq_anim_sah_arrive003´ ElementUnitSequence 100036
+	position 900, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/003 (-4716, -13194, -350)
+			notify_unit_sequence anim_sah_arrive_3
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_car_police/anim_vehicle_car_police/003 (-4716, -13194, -350)
+			notify_unit_sequence state_vis_show
+			time 0
+´seq_swat_anim_sah_arrive001´ ElementUnitSequence 100037
+	position 1100, -0.00012207, 0
+	rotation 0, 0, 0.707107, -0.707107
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence anim_sah_arrive_1
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence state_vis_show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence state_lights_on
+			time 0
+´vhard_and_above´ ElementFilter 100038
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 true
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, 99.9999, 0
+	rotation 0, 0, 0.707107, -0.707107
+	on_executed
+		´seq_swat_anim_sah_arrive001´ (delay 0)
+´done_car_anim´ ElementUnitSequenceTrigger 100039
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_car_anim
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+	on_executed
+		´relay_4´ (delay 0)
+		´output_first_responders_arrived´ (delay 0)
+´relay_4´ MissionScriptElement 100040
+	on_executed
+		´seq_open_rear´ (delay 0)
+		´chance_smoke´ (delay 1)
+		´link_spawn_turret´ (delay 5)
+´ai_spawn_enemy_swat001´ ElementSpawnEnemyDummy 100041
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_shield_1/ene_shield_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1500, -400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_1st
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_003´
+´ai_spawn_enemy_swat002´ ElementSpawnEnemyDummy 100017
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1600, -400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_2nd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_002´
+´ai_spawn_enemy_swat003´ ElementSpawnEnemyDummy 100042
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1700, -400, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_3rd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_001´
+´seq_open_rear´ ElementUnitSequence 100044
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence anim_doors_rear_open
+			time 0
+	on_executed
+		´spawn_dudes´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100045
+	append_prefix false
+	interrupt true
+	position 0, -4500, 0
+	rotation 0, 0, 0, -1
+	sound_event bd_police_siren_02
+	use_instigator false
+´point_smoke_grenade_001´ ElementSmokeGrenade 100046
+	duration 15
+	effect_type smoke
+	ignore_control true
+	immediate true
+	position -1205, -2997, -97.4321
+	rotation 0, 0, 0, -1
+´chance_smoke´ ElementLogicChance 100047
+	chance 70
+	position 1100, -700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_smoke_grenade_001´ (delay 0)
+		´sound_smoke´ (delay 0)
+´sound_move´ ElementPlaySound 100048
+	append_prefix false
+	interrupt true
+	position 1200, -400, 0
+	rotation 0, 0, 0, -1
+	sound_event l2n_mov
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_swat003´
+		2 ´ai_spawn_enemy_swat006´
+		3 ´ai_spawn_enemy_swat009´
+´sound_get_civis´ ElementPlaySound 100049
+	append_prefix false
+	interrupt true
+	position 1300, -400, 0
+	rotation 0, 0, 0, -1
+	sound_event l3n_civ
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_swat001´
+		2 ´ai_spawn_enemy_swat004´
+		3 ´ai_spawn_enemy_swat007´
+´sound_smoke´ ElementPlaySound 100050
+	append_prefix false
+	interrupt true
+	position 1100, -800, 0
+	rotation 0, 0, 0, -1
+	sound_event l3n_d01
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_swat002´
+		2 ´ai_spawn_enemy_swat005´
+		3 ´ai_spawn_enemy_swat008´
+´swat_spawned´ ElementEnemyDummyTrigger 100051
+	TRIGGER TIMES 1
+	event spawn
+	position 1400, -400, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_swat001´
+		2 ´ai_spawn_enemy_swat002´
+		3 ´ai_spawn_enemy_swat003´
+		4 ´ai_spawn_enemy_swat004´
+		5 ´ai_spawn_enemy_swat005´
+		6 ´ai_spawn_enemy_swat006´
+		7 ´ai_spawn_enemy_swat007´
+		8 ´ai_spawn_enemy_swat008´
+		9 ´ai_spawn_enemy_swat009´
+	on_executed
+		´SO_hunt´ (delay 4)
+´SO_hunt´ ElementSpecialObjective 100052
+	SO_access 16376
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	path_haste none
+	path_stance cbt
+	path_style none
+	patrol_path none
+	pose none
+	position 1400, -500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan false
+	search_distance 0
+	search_position 800 -600 2,5
+	so_action AI_hunt
+	trigger_on none
+	use_instigator true
+	followup_elements
+´chance_turret40´ ElementLogicChance 100053
+	chance 40
+	position 1000, -1200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_spawn_turret´ (delay 0)
+´seq_spawn_turret´ ElementUnitSequence 100054
+	position 1000, -1300, -2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence turret_spawn
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/vehicles/anim_vehicle_van_swat/anim_vehicle_van_swat/001 (-4784, -13201, -367)
+			notify_unit_sequence turret_activate
+			time 1
+´vhard_ovk´ ElementFilter 100055
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1000, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´chance_turret40´ (delay 0)
+´SM´ ElementFilter 100056
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1200, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_spawn_turret´ (delay 0)
+´chance_turret70´ ElementLogicChance 100057
+	chance 50
+	position 1100, -1200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_spawn_turret´ (delay 0)
+´EW_DW´ ElementFilter 100058
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´chance_turret70´ (delay 0)
+´output_first_responders_arrived´ ElementInstanceOutput 100060
+	TRIGGER TIMES 1
+	event first_responders_arrived
+	on_executed
+		´point_debug_001´ (delay 0)
+´vhrd_ovk´ ElementFilter 100043
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill true
+	difficulty_overkill_145 true
+	difficulty_overkill_290 false
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1000, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_swat003´ (delay 0)
+		´ai_spawn_enemy_swat002´ (delay 0)
+		´ai_spawn_enemy_swat001´ (delay 0)
+´ew_dw´ ElementFilter 100061
+	difficulty_easy false
+	difficulty_easy_wish true
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 true
+	difficulty_sm_wish false
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1100, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_swat006´ (delay 0)
+		´ai_spawn_enemy_swat005´ (delay 0)
+		´ai_spawn_enemy_swat004´ (delay 0)
+´sm´ ElementFilter 100062
+	difficulty_easy false
+	difficulty_easy_wish false
+	difficulty_hard false
+	difficulty_normal false
+	difficulty_overkill false
+	difficulty_overkill_145 false
+	difficulty_overkill_290 false
+	difficulty_sm_wish true
+	mode_assault true
+	mode_control true
+	platform_ps3 true
+	platform_win32 true
+	player_1 true
+	player_2 true
+	player_3 true
+	player_4 true
+	position 1200, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´ai_spawn_enemy_swat008´ (delay 0)
+		´ai_spawn_enemy_swat007´ (delay 0)
+		´ai_spawn_enemy_swat009´ (delay 0)
+´ai_spawn_enemy_swat004´ ElementSpawnEnemyDummy 100059
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_1/ene_city_swat_1
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1500, -500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_3rd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_001´
+´ai_spawn_enemy_swat005´ ElementSpawnEnemyDummy 100063
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_shield/ene_city_shield
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1600, -500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_1st
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_003´
+´ai_spawn_enemy_swat006´ ElementSpawnEnemyDummy 100064
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_city_swat_2/ene_city_swat_2
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1700, -500, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_2nd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_002´
+´ai_spawn_enemy_swat007´ ElementSpawnEnemyDummy 100065
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1600, -600, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_1st
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_003´
+´ai_spawn_enemy_swat008´ ElementSpawnEnemyDummy 100066
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1500, -600, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_3rd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_001´
+´ai_spawn_enemy_swat009´ ElementSpawnEnemyDummy 100067
+	accessibility any
+	amount 0
+	enemy units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy
+	force_pickup none
+	interval 5
+	participate_to_group_ai true
+	position 1700, -600, 0
+	rotation 0, 0, 1, -1.19209E-07
+	spawn_action e_sp_armored_truck_2nd
+	team default
+	voice 0
+	orientation_elements
+		1 ´point_orientation_002´
+´spawn_dudes´ MissionScriptElement 100068
+	on_executed
+		´vhrd_ovk´ (delay 0)
+		´sm´ (delay 0)
+		´ew_dw´ (delay 0)
+		´sound_move´ (delay 1)
+		´sound_get_civis´ (delay 6)
+´swat_smoke_death´ ElementEnemyDummyTrigger 100069
+	event death
+	position 1200, -700, 0
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_swat002´
+		2 ´ai_spawn_enemy_swat005´
+		3 ´ai_spawn_enemy_swat008´
+	on_executed
+		´disable_smoke_VO´ (delay 0)
+´disable_smoke_VO´ ElementToggle 100070
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´sound_smoke´
+´link_spawn_turret´ MissionScriptElement 100071
+	on_executed
+		´vhard_ovk´ (delay 0)
+		´EW_DW´ (delay 0)
+		´SM´ (delay 0)
+´point_debug_001´ ElementDebug 100072
+	as_subtitle false
+	debug_string from instance: output_first_responders_arrived
+	show_instigator false
+´SO_megaphone´ ElementSpecialObjective 100073
+	SO_access 160
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 7
+	interrupt_dmg 0
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 556, -2723, -100
+	rotation 0, 0, -0.342021, -0.939692
+	scan true
+	search_distance 0
+	search_position 515,522 -2792,55 -97,4321
+	so_action e_so_talking_in_megaphone
+	trigger_on none
+	use_instigator true
+	followup_elements
+´death´ ElementEnemyDummyTrigger 100074
+	event death
+	position 400, -2800, -97.4321
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´disable_megaphone_VO´ (delay 0)
+´fail´ ElementSpecialObjectiveTrigger 100075
+	event fail
+	position 400, -2900, -97.4321
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_megaphone´
+	on_executed
+		´disable_megaphone_VO´ (delay 0)
+´disable_megaphone_VO´ ElementToggle 100076
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´sound_listen_up´
+		2 ´sound_we_know_john_snow´
+		3 ´sound_surrounded´
+		4 ´sound_in_charge´
+		5 ´sound_give_up´
+		6 ´sound_not_give_up´
+		7 ´SO_megaphone´
+	on_executed
+		´remove_SO_megaphone´ (delay 0)
+´anim_start´ ElementSpecialObjectiveTrigger 100077
+	event anim_start
+	position 400, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	elements
+		1 ´SO_megaphone´
+	on_executed
+		´link_start_megaphone´ (delay 1)
+´link_start_megaphone´ MissionScriptElement 100078
+	on_executed
+		´sound_listen_up´ (delay 0)
+´sound_listen_up´ ElementPlaySound 100079
+	append_prefix false
+	interrupt true
+	position 200, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s01
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´sound_we_know_john_snow´ (delay 5)
+´sound_we_know_john_snow´ ElementPlaySound 100080
+	append_prefix false
+	interrupt true
+	position 100, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s02
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´sound_surrounded´ (delay 5)
+´sound_surrounded´ ElementPlaySound 100081
+	append_prefix false
+	interrupt true
+	position 0, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s03
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´sound_in_charge´ (delay 6)
+´sound_in_charge´ ElementPlaySound 100082
+	append_prefix false
+	interrupt true
+	position -100, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s04
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´sound_give_up´ (delay 6)
+´sound_give_up´ ElementPlaySound 100083
+	append_prefix false
+	interrupt true
+	position -200, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s05
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´sound_not_give_up´ (delay 6)
+´sound_not_give_up´ ElementPlaySound 100084
+	append_prefix false
+	interrupt true
+	position -300, -3000, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event mga_s07
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+	on_executed
+		´disable_megaphone_VO´ (delay 5)
+´death_best_buddy´ ElementEnemyDummyTrigger 100086
+	event death
+	position 400, -2700, -97.4321
+	rotation 0, 0, 0, -1
+	elements
+		1 ´ai_spawn_enemy_005´
+	on_executed
+		´disable_megaphone_VO´ (delay 0)
+		´sound_swear´ (delay 1)
+		´AI_hunt´ (delay 0.25)
+´AI_hunt´ ElementSpecialObjective 100087
+	SO_access 160
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position false
+	align_rotation false
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste none
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose none
+	position 300, -2700, -100
+	rotation 0, 0, -0.707107, -0.707107
+	scan true
+	search_distance 0
+	search_position 515,522 -2792,55 -97,4321
+	so_action AI_hunt
+	trigger_on none
+	use_instigator false
+	followup_elements
+	spawn_instigator_ids
+		1 ´ai_spawn_enemy_006´
+´sound_swear´ ElementPlaySound 100085
+	append_prefix false
+	interrupt true
+	position 200, -2700, -97.4321
+	rotation 0, 0, 0, -1
+	sound_event l2n_lk3b
+	use_instigator false
+	elements
+		1 ´ai_spawn_enemy_006´
+´remove_SO_megaphone´ ElementOperator 100088
+	operation remove
+	elements
+		1 ´SO_megaphone´
+´SO_cover001´ ElementSpecialObjective 100089
+	SO_access 160
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position true
+	align_rotation true
+	attitude none
+	base_chance 1
+	chance_inc 0
+	forced true
+	interaction_voice none
+	interrupt_dis 3
+	interrupt_dmg 1
+	interrupt_objective false
+	interval -1
+	needs_pos_rsrv false
+	no_arrest false
+	path_haste walk
+	path_stance none
+	path_style destination
+	patrol_path none
+	pose crouch
+	position 619, -2441, -100
+	rotation 0, 0, -0.406736, -0.913546
+	scan true
+	search_distance 0
+	search_position 515,522 -2792,55 -97,4321
+	so_action AI_sniper
+	trigger_on none
+	use_instigator true
+	followup_elements
+´point_orientation_001´ MissionScriptElement 100014
+	position -1172, -2962, -100
+	rotation 0, 0, 0.87462, 0.484809
+´point_orientation_002´ MissionScriptElement 100015
+	position -1159, -3011, -100
+	rotation 0, 0, 0.87462, 0.484809
+´point_orientation_003´ MissionScriptElement 100016
+	position -1225, -3001, -100
+	rotation 0, 0, 0.87462, 0.484809
+´point_teammate_comment_cops_arrived´ ElementTeammateComment 100091
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p05
+	position 900, 100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´end_assault´ ElementGlobalEventTrigger 100090
+	global_event end_assault
+	position 1300, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_teammate_comment_get_ready´ (delay 20)
+		´point_teammate_comment_back_to_work´ (delay 5-7)
+´start_assault´ ElementGlobalEventTrigger 100092
+	global_event start_assault
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_teammate_comment_keep_defending´ (delay 60-90)
+´point_teammate_comment_get_ready´ ElementTeammateComment 100093
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p22
+	position 1300, -200, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_keep_defending´ ElementTeammateComment 100094
+	TRIGGER TIMES 1
+	close_to_element true
+	comment g16
+	position 1400, -100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´police_called´ ElementGlobalEventTrigger 100095
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1500, 0, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_teammate_comment_plan_B´ (delay 10-13)
+´point_teammate_comment_plan_B´ ElementTeammateComment 100096
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p21
+	position 1500, -100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false
+´point_teammate_comment_back_to_work´ ElementTeammateComment 100097
+	TRIGGER TIMES 1
+	close_to_element true
+	comment p24
+	position 1300, -100, 0
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator false

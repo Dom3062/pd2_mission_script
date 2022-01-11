@@ -1,0 +1,140 @@
+´Input_compound_a´ ElementInstanceInput 100001
+	event set_compound_a
+	on_executed
+		´set_compound_a´ (delay 0.1)
+´Input_compound_b´ ElementInstanceInput 100002
+	event set_compound_b
+	on_executed
+		´set_compound_b´ (delay 0.1)
+´Input_compound_c´ ElementInstanceInput 100003
+	event set_compound_c
+	on_executed
+		´set_compound_c´ (delay 0.1)
+´Input_compound_d´ ElementInstanceInput 100004
+	event set_compound_d
+	on_executed
+		´set_compound_d´ (delay 0.1)
+´set_compound_a´ ElementUnitSequence 100005
+	position -350, 150, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence set_compound_a
+			time 0
+	on_executed
+		´func_disable_unit_001´ (delay 1)
+´set_compound_b´ ElementUnitSequence 100006
+	position -350, 50, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence set_compound_b
+			time 0
+	on_executed
+		´func_disable_unit_002´ (delay 1)
+´set_compound_c´ ElementUnitSequence 100007
+	position -350, -50, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence set_compound_c
+			time 0
+	on_executed
+		´func_disable_unit_003´ (delay 1)
+´set_compound_d´ ElementUnitSequence 100008
+	position -350, -150, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence set_compound_d
+			time 0
+	on_executed
+		´func_disable_unit_004´ (delay 1)
+´compound_a_set´ ElementInstanceOutput 100009
+	event compound_a_set
+´compound_b_set´ ElementInstanceOutput 100010
+	event compound_b_set
+´compound_c_set´ ElementInstanceOutput 100011
+	event compound_c_set
+´compound_d_set´ ElementInstanceOutput 100012
+	event compound_d_set
+´func_disable_unit_001´ ElementDisableUnit 100017
+	position -450, 150, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_001´ (delay 1)
+´func_enable_unit_001´ ElementEnableUnit 100018
+	position -550, 150, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_002´ ElementEnableUnit 100019
+	position -550, 50, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_003´ ElementEnableUnit 100020
+	position -550, -50, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_004´ ElementEnableUnit 100021
+	position -550, -150, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_fridge´ ElementInstanceInput 100022
+	event enable_fridge
+	on_executed
+		´enable_fridge´ (delay 0)
+´enable_fridge´ ElementUnitSequence 100023
+	position -350, 250, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_disable_unit_002´ ElementDisableUnit 100024
+	position -450, 50, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_002´ (delay 1)
+´func_disable_unit_003´ ElementDisableUnit 100025
+	position -450, -50, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_003´ (delay 1)
+´func_disable_unit_004´ ElementDisableUnit 100026
+	position -450, -150, 50
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_004´ (delay 1)
+´input_open_doors_wide´ ElementInstanceInput 100027
+	event open_doors_wide
+	on_executed
+		´enable_fridge001´ (delay 0)
+´enable_fridge001´ ElementUnitSequence 100028
+	position -550, 250, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_des/props/des_prop_fridge/des_prop_fridge/001 (-7.62939E-06, 75, 0)
+			notify_unit_sequence set_open_wide
+			time 0

@@ -1,0 +1,145 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_outline_enabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_usb_WP´ ElementInstanceInput 100007
+	event enable_usb_WP
+	on_executed
+		´enable_WP´ (delay 0)
+´output_usb_taken´ ElementInstanceOutput 100008
+	event usb_taken
+´point_waypoint_001´ ElementWaypoint 100010
+	icon pd2_question
+	only_in_civilian false
+	only_on_instigator false
+	position 0, 0, 50
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_WP´ MissionScriptElement 100011
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´input_enable_interaction´ ElementInstanceInput 100012
+	event enable_interaction
+	on_executed
+		´enable_interaction´ (delay 0)
+´enable_interaction´ MissionScriptElement 100013
+	on_executed
+		´enable_interaction_2´ (delay 0)
+´enable_interaction_2´ ElementUnitSequence 100014
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´usb_taken´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+	on_executed
+		´toggle_ON_WP´ (delay 0)
+´toggle_ON_WP´ ElementToggle 100016
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100017
+	operation remove
+	elements
+		1 ´point_waypoint_001´
+	on_executed
+		´output_usb_taken´ (delay 0)
+´enable_outline´ ElementUnitSequence 100018
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_outline_enabled
+			time 0
+´enable_outline_2´ MissionScriptElement 100019
+	on_executed
+		´enable_outline´ (delay 0)
+´input_enable_outline´ ElementInstanceInput 100020
+	event enable_outline
+	on_executed
+		´enable_outline_2´ (delay 0)
+´input_disable_everything´ ElementInstanceInput 100021
+	event disable_everything
+	on_executed
+		´disable_interactions´ (delay 0)
+´disable_interactions´ ElementUnitSequence 100022
+	position 1100, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/pickups/sand_pku_usb_stick/sand_pku_usb_stick/001 (0, -2.38419E-05, 0)
+			notify_unit_sequence state_outline_disabled
+			time 0
+	on_executed
+		´toggle_OFF_everything´ (delay 0)
+´toggle_OFF_everything´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´point_waypoint_001´
+		2 ´output_usb_taken´
+		3 ´remove_WP´
+		4 ´toggle_ON_WP´
+		5 ´usb_taken´
+	on_executed
+		´remove_WP_2´ (delay 0)
+´remove_WP_2´ ElementOperator 100024
+	operation remove
+	elements
+		1 ´point_waypoint_001´

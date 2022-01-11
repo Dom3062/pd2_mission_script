@@ -1,0 +1,156 @@
+´lock_wp´ ElementWaypoint 100001
+	icon pd2_generic_interact
+	only_in_civilian false
+	only_on_instigator false
+	position 0, -9, 138
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´enable_lock_input´ ElementInstanceInput 100002
+	event enable_lock
+	on_executed
+		´enable_interaction´ (delay 0)
+´logic_operator_001´ ElementOperator 100003
+	operation remove
+	elements
+		1 ´lock_wp´
+	on_executed
+		´keys_used´ (delay 0)
+´keys_used´ ElementInstanceOutput 100006
+	event keys_used
+´logic_operator_002´ ElementOperator 100007
+	operation remove
+	elements
+		1 ´lock_wp´
+	on_executed
+		´disable_interaction_2´ (delay 0)
+´disable_interaction´ ElementInstanceInput 100008
+	event disable_interaction
+	on_executed
+		´logic_operator_002´ (delay 0)
+´enable_interaction´ ElementUnitSequence 100010
+	position -100, -400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´key_used´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+	on_executed
+		´logic_operator_001´ (delay 0)
+´disable´ ElementUnitSequence 100005
+	EXECUTE ON STARTUP
+	position -200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence show_red_light
+			time 0
+´disable_interaction_2´ ElementUnitSequence 100011
+	position 100, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100012
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 434,7
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -219, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	trigger_on on_enter
+	use_disabled_shapes false
+	width 504
+	rules_element_ids
+	spawn_unit_elements
+	use_shape_element_ids
+	unit_ids
+	on_executed
+		´lock_wp´ (delay 0)
+´logic_toggle_001´ ElementToggle 100014
+	set_trigger_times -1
+	toggle on
+	elements
+		1 ´trigger_area_001´ DISABLED
+´logic_toggle_002´ ElementToggle 100015
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´trigger_area_001´ DISABLED
+´leds_off´ ElementUnitSequence 100016
+	position 300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence disable_leds
+			time 0
+´leds_off_input´ ElementInstanceInput 100017
+	event leds_off
+	on_executed
+		´leds_off´ (delay 0)
+´leds_green_input´ ElementInstanceInput 100018
+	event leds_green
+	on_executed
+		´leds_green´ (delay 0)
+´leds_green´ ElementUnitSequence 100019
+	position 200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_electronic_lock/bex_prop_electronic_lock/001 (0, 0, 102)
+			notify_unit_sequence show_green_light
+			time 0
+´disable_wp´ ElementInstanceInput 100000
+	event disable_wp
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100009
+	set_trigger_times -1
+	toggle off
+	elements
+		1 ´lock_wp´
+		2 ´trigger_area_001´ DISABLED
+		3 ´logic_toggle_001´
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_003´ ElementOperator 100020
+	operation remove
+	elements
+		1 ´lock_wp´
