@@ -51,27 +51,27 @@
 	on_executed
 		´remove_door_blockers´ (delay 0)
 ´remove_door_blockers´ ElementNavObstacle 100013
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, -50, 0)
 	operation remove
 	position 900, 0, 0
 	rotation 0, 0, 0, -1
+´add_door_blocker´ ElementNavObstacle 100014
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 6454096881371725503
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, -50, 0)
-´add_door_blocker´ ElementNavObstacle 100014
 	operation add
 	position 600, -100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, -50, 0)
 ´goto_WP´ ElementWaypoint 100016
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -100, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -87,16 +87,16 @@
 	on_executed
 		´goto_WP´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100019
+	elements
+ 		1 ´goto_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´goto_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´goto_WP´
+ 		1 ´goto_WP´
+	operation remove
 ´trigger_anim_open´ ElementUnitSequenceTrigger 100009
 	TRIGGER TIMES 1
 	sequence_list
@@ -110,41 +110,41 @@
 	event gate_opening
 ´teammate_comment_were_in´ ElementTeammateComment 100004
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v38
 	position -50, 0, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_open´ MissionScriptElement 100022
 	on_executed
 		´output_anim_open´ (delay 0)
 		´logic_counter_2´ (delay 1)
 ´teammate_comment_inside´ ElementTeammateComment 100023
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g08
 	position 0, 0, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´random_comment´ ElementRandom 100024
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´teammate_comment_were_in´ (delay 0)
 		´teammate_comment_inside´ (delay 0)
 		´point_teammate_comment_001´ (delay 0)
 ´point_teammate_comment_001´ ElementTeammateComment 100025
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v41
 	position 50, 0, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´logic_counter_2´ ElementCounter 100026
 	counter_target 2
 	on_executed
@@ -157,7 +157,7 @@
 	on_executed
 		´logic_counter_2´ (delay 0)
 ´toggle_off´ ElementToggle 100028
+	elements
+ 		1 ´trigger_global_loud´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_global_loud´

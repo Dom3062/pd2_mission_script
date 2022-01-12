@@ -8,14 +8,14 @@
 	position 0, -62, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 100
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 100
 	on_executed
 		´remove´ (delay 0)
 ´remove´ ElementCarry 100019
@@ -27,18 +27,18 @@
 	counter_target 0
 ´add´ ElementCounterOperator 100022
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´Number of Bags´
+ 		1 ´Number of Bags´
+	instance_var_names
+	operation add
 	on_executed
 		´if open already - spawn bags´ (delay 0) DISABLED
 ´No bags left´ ElementCounterFilter 100023
+	elements
+ 		1 ´Number of Bags´
 	check_type less_than
 	needed_to_execute all
 	value 1
-	elements
-		1 ´Number of Bags´
 	on_executed
 		´trigger - on_2´ (delay 0)
 ´Bag Removed´ ElementInstanceOutput 100021
@@ -52,7 +52,7 @@
 		´bag_arrived´ (delay 0)
 ´waypoint - bags ready´ ElementWaypoint 100025
 	icon pd2_loot
-	only_in_clean false
+	only_in_clean False
 	position 0, -100, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -61,9 +61,9 @@
 		´waypoint - bags ready´ (delay 0)
 		´add´ (delay 0)
 ´waypoint - remove´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´waypoint - bags ready´
+ 		1 ´waypoint - bags ready´
+	operation remove
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100032
 	sequence_list
 		1
@@ -82,7 +82,7 @@
 ´toggle - open - closed´ ElementRandom 100034
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´open´ (delay 0)
 		´close´ (delay 0) DISABLED
@@ -97,48 +97,48 @@
 			notify_unit_sequence state_interaction_enable
 			time 0
 ´allow - close´ ElementToggle 100036
+	elements
+ 		1 ´close´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´close´ DISABLED
 	on_executed
 		´enable button´ (delay 0)
 		´waypoint - remove´ (delay 0)
 ´allow - open´ ElementToggle 100037
+	elements
+ 		1 ´open´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´open´
 	on_executed
 		´enable button´ (delay 0)
 ´off´ ElementToggle 100038
+	elements
+ 		1 ´open´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´open´
 	on_executed
 		´trigger - on´ (delay 0)
 ´off_2´ ElementToggle 100039
+	elements
+ 		1 ´close´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´close´ DISABLED
 	on_executed
 		´trigger - off´ (delay 0)
 ´You have bags!´ ElementCounterFilter 100043
+	elements
+ 		1 ´Number of Bags´
 	check_type greater_than
 	needed_to_execute all
 	value 0
-	elements
-		1 ´Number of Bags´
 	on_executed
 		´trigger- off´ (delay 0)
 ´trigger - on´ ElementToggle 100044
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+		2 ´if open already - spawn bags´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
-		2 ´if open already - spawn bags´ DISABLED
 	on_executed
 		´open_2´ (delay 0)
 ´slight delay´ MissionScriptElement 100046
@@ -149,13 +149,13 @@
 ´spawn money bags´ ElementLootBag 100047
 	BASE DELAY 0,25
 	carry_id money
-	disable_orientation_on_use false
-	from_respawn false
+	disable_orientation_on_use False
+	from_respawn False
 	position 0, -25, 75
 	push_multiplier 0,7
 	rotation -0.707107, 0, 0, -0.707107
 	spawn_dir 0,021099 -0,975485 0,21905
-	use_orientation_sequenced false
+	use_orientation_sequenced False
 	on_executed
 		´subtract´ (delay 0)
 ´spawn bags´ MissionScriptElement 100048
@@ -163,35 +163,35 @@
 		´spawn money bags´ (delay 0)
 ´subtract´ ElementCounterOperator 100049
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´Number of Bags´
+ 		1 ´Number of Bags´
+	instance_var_names
+	operation subtract
 	on_executed
 		´Last Check´ (delay 0)
 ´trigger - off´ ElementToggle 100040
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+		2 ´if open already - spawn bags´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
-		2 ´if open already - spawn bags´ DISABLED
 	on_executed
 		´close_2´ (delay 0)
 ´Last Check´ MissionScriptElement 100054
 	on_executed
 		´slight delay´ (delay 0)
 ´trigger- off´ ElementToggle 100055
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´spawn bags´ (delay 0)
 ´trigger - on_2´ ElementToggle 100042
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´allow - close´ (delay 0)
 ´enable chute´ ElementInstanceInput 100045
@@ -213,10 +213,10 @@
 	on_executed
 		´remove button´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100053
+	elements
+ 		1 ´remove chute´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´remove chute´
 	on_executed
 		´enable_button´ (delay 0)
 ´remove button´ ElementDisableUnit 100052
@@ -254,10 +254,10 @@
 		´logic_counter_operator_001´ (delay 0)
 ´logic_counter_operator_001´ ElementCounterOperator 100001
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´Number of Bags´
+ 		1 ´Number of Bags´
+	instance_var_names
+	operation set
 	on_executed
 		´waypoint - remove´ (delay 0)
 ´if open already - spawn bags´ MissionScriptElement 100004
@@ -265,14 +265,14 @@
 	on_executed
 		´slight delay´ (delay 0)
 ´bag_sent´ ElementPlaySound 100005
-	append_prefix false
+	append_prefix False
 	position 0, -50, 50
 	rotation 0, 0, 0, -1
 	sound_event food_lift_bag_drop
-	use_instigator false
+	use_instigator False
 ´bag_arrived´ ElementPlaySound 100006
-	append_prefix false
+	append_prefix False
 	position 0, -100, 150
 	rotation 0, 0, 0, -1
 	sound_event food_lift_bag_arrived
-	use_instigator false
+	use_instigator False

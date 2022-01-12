@@ -45,17 +45,17 @@
 	on_executed
 		´link_2´ (delay 0)
 ´point_debug_001´ ElementDebug 100012
-	as_subtitle true
+	as_subtitle True
 	debug_string valve_used
-	show_instigator false
+	show_instigator False
 ´point_shape_001´ ElementShape 100006
 	depth 198,72
-	height 187,2
+	height 187.2
 	position 0, 0, 25
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 165,22
+	width 165.22
 ´enter´ ElementAreaReportTrigger 100007
 	amount 1
 	depth 500
@@ -66,15 +66,15 @@
 	position -50, 175, 25
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100006
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_3´ (delay 0) DISABLED (alternative enter)
 ´exit´ ElementAreaReportTrigger 100013
@@ -87,15 +87,15 @@
 	position 75, 175, 25
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100006
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) DISABLED (alternative empty)
 ´link_3´ MissionScriptElement 100014
@@ -107,21 +107,21 @@
 	on_executed
 		´exit_2´ (delay 0)
 ´On´ ElementToggle 100016
+	elements
+ 		1 ´link_4´ DISABLED
+		2 ´link_3´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_4´ DISABLED
-		2 ´link_3´ DISABLED
 	on_executed
 		´enable_3´ (delay 0)
 ´OFF´ ElementToggle 100017
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_4´ DISABLED
+ 		1 ´link_4´ DISABLED
 		2 ´link_3´ DISABLED
 		3 ´enter´
 		4 ´exit´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´valve_used´ (delay 0)
 ´enable_4´ ElementUnitSequence 100018

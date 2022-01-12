@@ -9,14 +9,14 @@
 	position 0, 300, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 1200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1200
 	on_executed
 		´enable_attack_downed_trigger´ (delay 0.5)
 		´disable_flee_input´ (delay 0)
@@ -26,7 +26,7 @@
 	position 0, 300, 0
 	rotation 0, 0, 0, -1
 	state bleed_out
-	use_instigator true
+	use_instigator True
 ´spooder_attack_downed´ ElementAreaTrigger 100002
 	DISABLED
 	amount 1
@@ -37,27 +37,27 @@
 	position 0, 400, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 1300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1300
 ´logic_toggle_001´ ElementToggle 100003
+	elements
+ 		1 ´spooder_attack_downed´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spooder_attack_downed´ DISABLED
 	on_executed
 		´inst_out_spooder_attacked´ (delay 0)
 		´logic_toggle_002´ (delay 0.5)
 ´enable_attack_downed_trigger´ ElementToggle 100004
+	elements
+ 		1 ´spooder_attack_downed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´spooder_attack_downed´ DISABLED
 	on_executed
 		´logic_toggle_001´ (delay 0.7)
 		´point_explosion_damage_001´ (delay 0)
@@ -80,25 +80,25 @@
 		´disable_attack_downed_trigger´ (delay 0)
 		´seq_spooder_hide´ (delay 0)
 ´disable_attack_trigger´ ElementToggle 100051
+	elements
+ 		1 ´spooder_attack_tigger´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spooder_attack_tigger´ DISABLED
 ´disable_attack_downed_trigger´ ElementToggle 100052
+	elements
+ 		1 ´spooder_attack_downed´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spooder_attack_downed´ DISABLED
 ´disable_spooder´ MissionScriptElement 100053
 	on_executed
 		´inst_in_spooder_flee´ (delay 0)
 ´enable_attack_trigger´ ElementToggle 100054
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´spooder_attack_tigger´ DISABLED
+ 		1 ´spooder_attack_tigger´ DISABLED
 		2 ´inst_in_spooder_flee´
 		3 ´seq_flee_anim´
+	set_trigger_times 1
+	toggle on
 ´inst_in_spooder_flee´ ElementInstanceInput 100055
 	TRIGGER TIMES 1
 	event spooder_flee
@@ -108,15 +108,15 @@
 		´inst_out_spooder_fled´ (delay 1)
 		´seq_flee_anim´ (delay 0)
 ´disable_flee_input´ ElementToggle 100056
+	elements
+ 		1 ´inst_in_spooder_flee´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´inst_in_spooder_flee´
 ´logic_toggle_002´ ElementToggle 100060
+	elements
+ 		1 ´inst_in_spooder_flee´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´inst_in_spooder_flee´
 	on_executed
 		´disable_spooder´ (delay 0.5)
 ´delay_until_flee´ MissionScriptElement 100061
@@ -184,10 +184,10 @@
 			notify_unit_sequence state_vis_hide
 			time 0
 ´logic_toggle_003´ ElementToggle 100019
+	elements
+ 		1 ´seq_flee_anim´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_flee_anim´
 	on_executed
 		´inst_in_spooder_flee´ (delay 0)
 ´point_explosion_damage_002´ ElementExplosionDamage 100012

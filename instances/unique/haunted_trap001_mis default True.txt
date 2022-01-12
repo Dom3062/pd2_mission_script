@@ -1,14 +1,6 @@
 ´trigger_laser_001´ ElementLaserTrigger 100000
 	DISABLED
 	color red
-	cycle_active_amount 1
-	cycle_interval 0,15
-	cycle_random false
-	cycle_type flow
-	instigator player
-	interval 0.1
-	skip_dummies true
-	visual_only false
 	connections
 		1
 			from 1
@@ -226,6 +218,12 @@
 		72
 			from 1
 			to 73
+	cycle_active_amount 1
+	cycle_interval 0,15
+	cycle_random False
+	cycle_type flow
+	instigator player
+	interval 0.1
 	points
 		1
 			pos -7.48083, -6.63117, 16.1758
@@ -446,6 +444,8 @@
 		73
 			pos -386.97, 2283.89, 4.56538
 			rot -0.0260229, 0.297443, 0.950753, -0.0831801
+	skip_dummies True
+	visual_only False
 	on_executed
 		´func_player_state_001´ (delay 0) (alternative enter)
 		´logic_toggle_001´ (delay 15) (alternative enter)
@@ -455,18 +455,18 @@
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100002
 	TRIGGER TIMES 1
+	elements
+ 		1 ´trigger_laser_001´ DISABLED
 	set_trigger_times 0
 	toggle on
-	elements
-		1 ´trigger_laser_001´ DISABLED
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´func_player_state_001´ ElementPlayerState 100003
 	position -100, 0, 0
 	rotation 0, 0, 0, -1
 	state electrocution
-	use_instigator false
+	use_instigator False
 ´logic_operator_001´ ElementOperator 100004
-	operation add
 	elements
-		1 ´trigger_laser_001´ DISABLED
+ 		1 ´trigger_laser_001´ DISABLED
+	operation add

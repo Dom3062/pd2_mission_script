@@ -95,18 +95,18 @@
 		´remove_component_WP´ (delay 0)
 		´add_gasoline´ (delay 0)
 ´remove_component_WP´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´wires_WP´
+ 		1 ´wires_WP´
 		2 ´alarm_clock_WP´
 		3 ´diesel_WP´
 		4 ´fertilizer_WP´
+	operation remove
 	on_executed
 		´toggle_OFF_component_WP´ (delay 0)
 ´wires_WP´ ElementWaypoint 100022
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 22
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -118,13 +118,13 @@
 	on_executed
 		´wires_WP´ (delay 0)
 ´toggle_OFF_component_WP´ ElementToggle 100025
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´wires_WP´
+ 		1 ´wires_WP´
 		2 ´alarm_clock_WP´
 		3 ´diesel_WP´
 		4 ´fertilizer_WP´
+	set_trigger_times -1
+	toggle off
 ´alarm_clock_picked_up´ ElementUnitSequenceTrigger 100009
 	TRIGGER TIMES 1
 	sequence_list
@@ -252,66 +252,66 @@
 	counter_target 0
 ´add1´ ElementCounterOperator 100046
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´state_counter´
+ 		1 ´state_counter´
+	instance_var_names
+	operation add
 	on_executed
 		´component_picked_and_objective_active´ (delay 0)
 ´add1_2´ ElementCounterOperator 100047
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´state_counter_2´
+ 		1 ´state_counter_2´
+	instance_var_names
+	operation add
 	on_executed
 		´component_picked_and_objective_active_2´ (delay 0)
 ´add1_3´ ElementCounterOperator 100048
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´state_counter_3´
+ 		1 ´state_counter_3´
+	instance_var_names
+	operation add
 	on_executed
 		´component_picked_and_objective_active_3´ (delay 0)
 ´add1_4´ ElementCounterOperator 100049
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´state_counter_4´
+ 		1 ´state_counter_4´
+	instance_var_names
+	operation add
 	on_executed
 		´component_picked_and_objective_active_4´ (delay 0)
 ´component_picked_and_objective_active´ ElementCounterFilter 100050
+	elements
+ 		1 ´state_counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´state_counter´
 	on_executed
 		´output_wires_picked_up´ (delay 0)
 ´component_picked_and_objective_active_2´ ElementCounterFilter 100051
+	elements
+ 		1 ´state_counter_2´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´state_counter_2´
 	on_executed
 		´output_diesel_picked_up´ (delay 0)
 ´component_picked_and_objective_active_3´ ElementCounterFilter 100052
+	elements
+ 		1 ´state_counter_3´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´state_counter_3´
 	on_executed
 		´output_timer_picked_up´ (delay 0)
 ´component_picked_and_objective_active_4´ ElementCounterFilter 100053
+	elements
+ 		1 ´state_counter_4´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´state_counter_4´
 	on_executed
 		´output_fertilizer_picked_up´ (delay 0)
 ´input_explosives_objective_active´ ElementInstanceInput 100054
@@ -413,22 +413,22 @@
 		´diesel_pickup_SFX´ (delay 0)
 ´diesel_WP´ ElementWaypoint 100038
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´alarm_clock_WP´ ElementWaypoint 100056
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -6, 36
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fertilizer_WP´ ElementWaypoint 100057
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -11, 51
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -530,33 +530,33 @@
 			notify_unit_sequence state_interaction_disabled
 			time 0
 ´diesel_pickup_SFX´ ElementPlaySound 100071
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, 0, 100
 	rotation 0, 0, 0, -1
 	sound_event diesel_can_pick_up
-	use_instigator false
+	use_instigator False
 ´fertilizer_pickup_SFX´ ElementPlaySound 100072
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, -11, 51
 	rotation 0, 0, 0, -1
 	sound_event fertilizer_pick_up
-	use_instigator false
+	use_instigator False
 ´wires_pickup_SFX´ ElementPlaySound 100073
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, 0, 22
 	rotation 0, 0, 0, -1
 	sound_event electrical_wires_pick_up
-	use_instigator false
+	use_instigator False
 ´alarm_clock_pickup_SFX´ ElementPlaySound 100074
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, -6, 36
 	rotation 0, 0, 0, -1
 	sound_event alarm_clock_pick_up
-	use_instigator false
+	use_instigator False
 ´input_enable_half_wires´ ElementInstanceInput 100075
 	BASE DELAY 2
 	event enable_wires_half_interaction

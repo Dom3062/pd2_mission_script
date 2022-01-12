@@ -54,9 +54,9 @@
 			notify_unit_sequence show
 			time 0
 ´point_debug_001´ ElementDebug 100004
-	as_subtitle false
+	as_subtitle False
 	debug_string thermal_found
-	show_instigator false
+	show_instigator False
 ´auto_start´ MissionScriptElement 100014
 	EXECUTE ON STARTUP
 	on_executed
@@ -151,19 +151,19 @@
 	on_executed
 		´On´ (delay 0)
 ´buzz´ ElementPlaySound 100000
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 5, 32, 90
 	rotation 0, 0, 0, -1
 	sound_event table_saw
-	use_instigator false
+	use_instigator False
 ´buzz-stop´ ElementPlaySound 100010
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -300, -100, 0
 	rotation 0, 0, 0, -1
 	sound_event table_saw_stop_global
-	use_instigator false
+	use_instigator False
 	on_executed
 		´off´ (delay 0)
 ´env_effect_play_001´ ElementPlayEffect 100012
@@ -173,43 +173,43 @@
 	position 2, 38.3151, 92.696
 	random_time 0
 	rotation 0.410619, 0.116707, -0.575666, -0.69741
-	screen_space false
+	screen_space False
 ´func_whisper_state_001´ ElementWhisperState 100017
 	EXECUTE ON STARTUP
 	position 350, 200, 0
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´spawn_ai´ MissionScriptElement 100031
 	on_executed
 		´env_effect_play_001´ (delay 0)
 		´buzz´ (delay 0)
 		´ai_spawn_civilian_002´ (delay 0)
 ´Death´ ElementEnemyDummyTrigger 100037
+	elements
+ 		1 ´ai_spawn_civilian_002´
 	event death
 	position -300, -250, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_civilian_002´
 	on_executed
 		´Stop - Saw´ (delay 0)
 ´Stop - Saw´ MissionScriptElement 100038
 	on_executed
 		´env_effect_stop_001´ (delay 0)
 ´env_effect_stop_001´ ElementStopEffect 100040
+	elements
+ 		1 ´env_effect_play_001´
 	operation kill
 	position -300, -150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´buzz-stop´ (delay 0)
 ´Alerted´ ElementEnemyDummyTrigger 100041
 	TRIGGER TIMES 1
+	elements
+ 		1 ´ai_spawn_civilian_002´
 	event alerted
 	position -250, -250, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_civilian_002´
 	on_executed
 		´Stop - Saw´ (delay 0)
 ´off´ ElementToggle 100020
@@ -239,15 +239,15 @@
 	position -300, 200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100022
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_3´ (delay 0) DISABLED (alternative enter)
 ´empty´ ElementAreaReportTrigger 100050
@@ -260,15 +260,15 @@
 	position -350, 200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100022
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) DISABLED (alternative empty)
 ´link_3´ MissionScriptElement 100052
@@ -336,18 +336,18 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´On´ ElementToggle 100056
+	elements
+ 		1 ´link_3´ DISABLED
+		2 ´link_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_3´ DISABLED
-		2 ´link_4´ DISABLED
 	on_executed
 		´enable´ (delay 0)
 ´point_shape_001´ ElementShape 100022
 	depth 500
 	height 230
 	position 0, 75, 100
-	radius 287,5
+	radius 287.5
 	rotation 0, 0, 0, -1
 	shape_type cylinder
 	width 400
@@ -355,8 +355,8 @@
 ´ai_spawn_civilian_002´ ElementSpawnCivilian 100042
 	enemy units/payday2/characters/civ_male_worker_docks_1/civ_male_worker_docks_1
 	force_pickup none
+	orientation_elements
 	position -3.05176E-05, 100, 0
 	rotation 0, 0, 1, 1.19209E-07
 	state cm_sp_saw
 	team default
-	orientation_elements

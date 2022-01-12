@@ -179,7 +179,7 @@
 	on_executed
 		´point_debug_001´ (delay 0)
 ´hold_open_door´ ElementInteraction 100010
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, -75, 100
 	rotation 0, 0, 1, -1.19209E-07
@@ -234,21 +234,21 @@
 		´func_enable_unit_001´ (delay 0)
 ´toggle_loot´ ElementToggle 100019
 	TRIGGER TIMES 1
+	elements
+ 		1 ´seq_open_door_and_enable_bag_loot´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_open_door_and_enable_bag_loot´ DISABLED
 ´disable_input´ ElementToggle 100020
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_loot´
+ 		1 ´input_enable_loot´
 		2 ´toggle_loot´
 		3 ´logic_toggle_001´
 		4 ´input_enable_instant_cash´
 		5 ´input_enable_private_safe´
 		6 ´seq_show_safe_and_coke´
 		7 ´enable_enable_trigger_area´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´seq_open_door_and_enable_bag_loot´ (delay 0) DISABLED
 		´seq_open_door´ (delay 0) DISABLED
@@ -264,7 +264,7 @@
 	TRIGGER TIMES 1
 	amount 3
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_003´ (delay 0)
 		´func_sequence_004´ (delay 0)
@@ -382,23 +382,23 @@
 		1 units/pd2_dlc_chca/props/chca_prop_paper_message/chca_prop_paper_message2/001 (-13, -44, 88.0494)
 		2 core/units/light_spot/light_spot/001 (-15, -70.5, 127.153)
 ´func_nav_obstacle_001´ ElementNavObstacle 100038
-	operation add
-	position 600, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/003 (200, -75, 0)
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
 ´input_enable_instant_cash´ ElementInstanceInput 100013
 	event enable_instant_cash
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100036
+	elements
+ 		1 ´seq_open_door´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_open_door´ DISABLED
 ´seq_open_door_2´ ElementUnitSequence 100039
 	position 700, 100, 2.5
 	rotation 0, 0, 0, -1
@@ -455,12 +455,12 @@
 	on_executed
 		´seq_open_safe_and_enable_coke´ (delay 1)
 ´enable_enable_trigger_area´ ElementToggle 100045
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´enable_trigger_area´ DISABLED
+ 		1 ´enable_trigger_area´ DISABLED
 		2 ´output_private_safe_found´ DISABLED
 		3 100045
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´disable_outher_inputs´ (delay 0)
 ´area_xun_khang_by_the_safe´ ElementAreaTrigger 100046
@@ -475,23 +475,23 @@
 	position 1200, 300, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
 		1 ´area_khang´
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_xun_khang_by_the_safe´ (delay 0)
 		´output_safe_open´ (delay 0)
 ´data_instigator_rule_001´ ElementInstigatorRule 100047
 	instigator civilians
-	invert false
+	invert False
 	rules
 		civilians
 			civilian_names
@@ -522,22 +522,22 @@
 			time 2
 ´enable_trigger_area´ ElementToggle 100050
 	DISABLED
+	elements
+ 		1 ´area_xun_khang_by_the_safe´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_xun_khang_by_the_safe´ DISABLED
 	on_executed
 		´output_private_safe_found´ (delay 0) DISABLED
 ´output_private_safe_found´ ElementInstanceOutput 100051
 	DISABLED
 	event private_safe_found
 ´point_debug_001´ ElementDebug 100052
-	as_subtitle false
+	as_subtitle False
 	debug_string achievement_private_safe_open
-	show_instigator false
+	show_instigator False
 ´disable_outher_inputs´ ElementToggle 100014
+	elements
+ 		1 ´input_enable_loot´
+		2 ´input_enable_instant_cash´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_enable_loot´
-		2 ´input_enable_instant_cash´

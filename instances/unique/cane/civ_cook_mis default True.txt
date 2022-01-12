@@ -1,40 +1,40 @@
 ´interact - get up´ ElementSpecialObjective 100006
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude avoid
 	base_chance 1
+	followup_elements
+		1 ´elf - interogation - start´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice escort_go
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste walk
 	path_stance none
 	path_style precise
 	patrol_path none
 	pose none
 	position 0, 200, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_cover_exit
-	trigger_on interact
-	use_instigator false
-	followup_elements
-		1 ´elf - interogation - start´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on interact
+	use_instigator False
 	on_executed
 		´elf - start work´ (delay 0)
 ´Link´ MissionScriptElement 100013
@@ -44,50 +44,50 @@
 		´On´ (delay 0)
 		´point_waypoint_save_elf´ (delay 0)
 ´elf - hide´ ElementSpecialObjective 100014
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´interact - get up´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 0, 0, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_cover_enter
-	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´interact - get up´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on none
+	use_instigator True
 ´Elf´ ElementSpawnCivilian 100044
 	enemy units/pd2_dlc_cane/characters/civ_male_helper_1/civ_male_helper_1
 	force_pickup none
+	orientation_elements
 	position -33, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
 	state none
 	team neutral1
-	orientation_elements
 	on_executed
 		´elf - hide´ (delay 0)
 ´Spawn´ ElementInstanceInput 100048
@@ -113,89 +113,89 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -400, 0, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´send_cop´ (delay 0) DISABLED
 ´DEATH´ ElementEnemyDummyTrigger 100009
-	event death
-	position -300, 650, 2.5
-	rotation 0, 0, 0, -1
 	elements
-		1 ´Elf´
+ 		1 ´Elf´
 		2 ´Elf003´
 		3 ´Elf002´
 		4 ´Elf001´
+	event death
+	position -300, 650, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´Link_4´ (delay 0)
 ´cop - interrogate´ ElementSpecialObjective 100049
-	SO_access 1528
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation true
+	align_position False
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´set_cop_to_Hunt´
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 1
 	interrupt_dmg 0
 	interval 1
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 75, 0, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 1,47353 -58,4216 0
+	SO_access 1528
 	so_action e_so_shouting
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´set_cop_to_Hunt´
+	use_instigator True
 ´kill elf´ ElementSpecialObjectiveTrigger 100051
+	elements
+ 		1 ´cop - shoot´
 	event anim_start
 	position 400, 1025, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop - shoot´
 	on_executed
 		´Link_3´ (delay 0)
 ´scare elf´ ElementSpecialObjectiveTrigger 100055
+	elements
+ 		1 ´cop - interrogate´
 	event anim_start
 	position 400, 725, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop - interrogate´
 	on_executed
 		´Link´ (delay 0)
 ´debug´ ElementDebug 100056
-	as_subtitle true
+	as_subtitle True
 	debug_string BAIN : The elves are under attack
-	show_instigator false
+	show_instigator False
 ´ai_remove_elf´ ElementAIRemove 100053
-	position 600, 1025, 2.5
-	rotation 0, 0, 0, -1
-	true_death true
-	use_instigator false
 	elements
-		1 ´Elf´
+ 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	position 600, 1025, 2.5
+	rotation 0, 0, 0, -1
+	true_death True
+	use_instigator False
 ´Link_3´ MissionScriptElement 100010
 	on_executed
 		´ai_remove_elf´ (delay 0)
@@ -204,10 +204,8 @@
 		´Off´ (delay 0)
 		´debug_2´ (delay 0)
 ´Off´ ElementToggle 100016
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´kill elf´
+ 		1 ´kill elf´
 		2 ´Link_3´
 		3 ´ai_remove_elf´
 		4 ´Link´
@@ -268,12 +266,13 @@
 		59 ´elf - start work´
 		60 ´show_present´
 		61 ´On_4´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´stop all´ (delay 0)
 ´remove´ ElementOperator 100017
-	operation remove
 	elements
-		1 ´interact - get up´
+ 		1 ´interact - get up´
 		2 ´elf - hide´
 		3 ´cop - interrogate´
 		4 ´elf - interogation - start´
@@ -284,57 +283,58 @@
 		9 ´min_police_force_001´
 		10 ´cop - shoot´
 		11 ´elf - start work´
+	operation remove
 	on_executed
 		´elf_died´ (delay 0)
 ´debug_2´ ElementDebug 100018
-	as_subtitle true
+	as_subtitle True
 	debug_string elf died
-	show_instigator false
+	show_instigator False
 ´elf - interogation - start´ ElementSpecialObjective 100019
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude avoid
 	base_chance 1
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 100, 200, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_scared
-	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interact - get up´
-		2 ´elf - hide´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on none
+	use_instigator False
 ´cop died´ ElementSpecialObjectiveTrigger 100023
 	DISABLED
+	elements
+ 		1 ´cop - interrogate´
 	event fail
 	position 400, 875, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop - interrogate´
 	on_executed
 		´Link_5´ (delay 0)
 ´Link_5´ MissionScriptElement 100052
@@ -342,65 +342,65 @@
 		´Off_2´ (delay 0)
 		´debug_3´ (delay 0)
 ´On´ ElementToggle 100020
+	elements
+ 		1 ´cop died´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´cop died´ DISABLED
 	on_executed
 		´Link_15´ (delay 0)
 		´cop_arrived´ (delay 0)
 ´Off_2´ ElementToggle 100054
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´cop died´ DISABLED
+ 		1 ´cop died´ DISABLED
 		2 ´cop shoots´
 		3 ´Link_15´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´elf - scared´ (delay 0)
 		´remove_waypoint´ (delay 0)
 ´debug_3´ ElementDebug 100057
-	as_subtitle false
+	as_subtitle False
 	debug_string cop stopped
-	show_instigator false
+	show_instigator False
 ´elf - scared´ ElementSpecialObjective 100058
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude avoid
 	base_chance 1
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 150, 200, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_cover_enter
-	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interact - get up´
-		2 ´elf - hide´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on none
+	use_instigator False
 ´Link_6´ MissionScriptElement 100050
 	on_executed
 		´reset - work timer´ (delay 0)
@@ -416,20 +416,20 @@
 		´Off_4´ (delay 0)
 		´sound_start´ (delay 0)
 ´start work´ ElementSpecialObjectiveTrigger 100062
+	elements
+ 		1 ´interact - get up´
 	event anim_start
 	position -300, 850, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interact - get up´
 	on_executed
 		´Link_7´ (delay 0)
 		´work pose´ (delay 0) DISABLED
 ´stop work´ ElementSpecialObjectiveTrigger 100063
+	elements
+ 		1 ´interact - get up´
 	event fail
 	position -300, 1050, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interact - get up´
 	on_executed
 		´Link_8´ (delay 0)
 ´Link_8´ MissionScriptElement 100064
@@ -438,13 +438,13 @@
 		´pause´ (delay 0)
 		´sound_end´ (delay 0)
 ´debug_4´ ElementDebug 100065
-	as_subtitle true
+	as_subtitle True
 	debug_string started working
-	show_instigator false
+	show_instigator False
 ´debug_5´ ElementDebug 100066
-	as_subtitle true
+	as_subtitle True
 	debug_string stopped working
-	show_instigator false
+	show_instigator False
 ´timer´ ElementTimer 100067
 	timer
 		1 120
@@ -452,30 +452,30 @@
 	on_executed
 		´Link_6´ (delay 0)
 ´start - resume´ ElementTimerOperator 100068
+	elements
+ 		1 ´timer´
 	operation start
 	position -100, 850, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´start - no work´ (delay 0)
 ´pause´ ElementTimerOperator 100069
+	elements
+ 		1 ´timer´
 	operation pause
 	position -100, 1050, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´pause - no work´ (delay 0)
 ´reset - work timer´ ElementTimerOperator 100071
+	elements
+ 		1 ´timer´
 	operation reset
 	position -100, 1600, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´pause - stop working timer´ (delay 0)
 ´wait for player´ MissionScriptElement 100072
@@ -485,43 +485,43 @@
 		´point_waypoint_grab_present´ (delay 0)
 		´bell_ring´ (delay 0)
 ´elf - work over ´ ElementSpecialObjective 100073
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude avoid
 	base_chance 1
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 200, 200, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_lazy
-	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interact - get up´
-		2 ´elf - hide´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on none
+	use_instigator False
 ´show temp ball´ ElementUnitSequence 100075
 	position 300, 1600, 2.5
 	rotation 0, 0, 0, -1
@@ -572,48 +572,48 @@
 		´elf - scared´ (delay 0)
 		´reset´ (delay 0) DISABLED
 ´start - no work´ ElementTimerOperator 100080
+	elements
+ 		1 ´timer_2´ DISABLED
 	operation start
 	position -50, 850, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_2´ DISABLED
 	on_executed
 		´show_present´ (delay 0)
 ´reset´ ElementTimerOperator 100082
 	DISABLED
+	elements
+ 		1 ´timer_2´ DISABLED
 	operation reset
 	position 200, 1300, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_2´ DISABLED
 ´pause - stop working timer´ ElementTimerOperator 100083
+	elements
+ 		1 ´timer_2´ DISABLED
 	operation pause
 	position 0, 1600, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_2´ DISABLED
 	on_executed
 		´reset - stop working timer´ (delay 0)
 ´reset - stop working timer´ ElementTimerOperator 100084
+	elements
+ 		1 ´timer_2´ DISABLED
 	operation reset
 	position 100, 1600, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_2´ DISABLED
 	on_executed
 		´wait for player´ (delay 0)
 ´stop all´ ElementTimerOperator 100000
+	elements
+ 		1 ´timer´
+		2 ´timer_2´ DISABLED
 	operation pause
 	position 0, 650, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
-		2 ´timer_2´ DISABLED
 	on_executed
 		´remove´ (delay 0)
 ´send_cop´ ElementInstanceInput 100001
@@ -622,12 +622,12 @@
 	on_executed
 		´cop - get to location´ (delay 0)
 ´pause - no work´ ElementTimerOperator 100002
+	elements
+ 		1 ´timer_2´ DISABLED
 	operation pause
 	position -50, 1050, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_2´ DISABLED
 	on_executed
 		´stopped_working´ (delay 0)
 ´present 1´ ElementUnitSequence 100003
@@ -681,7 +681,7 @@
 ´logic_random_001´ ElementRandom 100047
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´present 1´ (delay 0)
 		´present 2´ (delay 0)
@@ -709,33 +709,33 @@
 	on_executed
 		´hide - setup´ (delay 0)
 ´On_2´ ElementToggle 100087
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´Link_11´ DISABLED
+ 		1 ´Link_11´ DISABLED
 		2 ´Link_13´ DISABLED
 		3 ´send_cop´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´point_waypoint_grab_present´ ElementWaypoint 100088
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -100, 150, 160.45
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove - waypoint´ ElementOperator 100089
 	BASE DELAY 0,25
-	operation remove
 	elements
-		1 ´point_waypoint_grab_present´
+ 		1 ´point_waypoint_grab_present´
+	operation remove
 	on_executed
 		´play_hide´ (delay 0)
 ´On_3´ ElementToggle 100090
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´timer_2´ DISABLED
+ 		1 ´timer_2´ DISABLED
 		2 ´stop working´ DISABLED
 		3 ´reset´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´Link_9´ MissionScriptElement 100091
 	on_executed
 		´how many presents before getting scared´ (delay 0)
@@ -745,52 +745,52 @@
 		´On_3´ (delay 0)
 ´set 1´ ElementCounterOperator 100093
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´how many presents before getting scared´
+ 		1 ´how many presents before getting scared´
+	instance_var_names
+	operation set
 	on_executed
 		´point_debug_001´ (delay 0)
 ´set 2´ ElementCounterOperator 100094
 	amount 2
-	operation set
-	instance_var_names
 	elements
-		1 ´how many presents before getting scared´
+ 		1 ´how many presents before getting scared´
+	instance_var_names
+	operation set
 	on_executed
 		´point_debug_002´ (delay 0)
 ´random´ ElementRandom 100095
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´set 1´ (delay 0)
 		´set 2´ (delay 0)
 ´point_debug_001´ ElementDebug 100096
-	as_subtitle false
+	as_subtitle False
 	debug_string 1
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100097
-	as_subtitle false
+	as_subtitle False
 	debug_string 2
-	show_instigator false
+	show_instigator False
 ´bell_ring´ ElementPlaySound 100101
-	append_prefix false
+	append_prefix False
 	position -77, 153, 109.451
 	rotation 0, 0, 0, -1
 	sound_event chimes_and_bell
-	use_instigator false
+	use_instigator False
 ´point_waypoint_save_elf´ ElementWaypoint 100098
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position -33, 0, 160.45
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100099
-	operation remove
 	elements
-		1 ´point_waypoint_save_elf´
+ 		1 ´point_waypoint_save_elf´
+	operation remove
 ´hide_table´ ElementDisableUnit 100103
 	position -100, -1050, 2.5
 	rotation 0, 0, 0, -1
@@ -837,34 +837,31 @@
 	on_executed
 		´Link_10´ (delay 0)
 ´Off_3´ ElementToggle 100106
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´Link_10´
+ 		1 ´Link_10´
 		2 ´hide_table´
 		3 ´disable_table´
 		4 ´remove_blockers´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´add_blockers´ (delay 0)
 ´add_blockers´ ElementNavObstacle 100108
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-155, 110, 0)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-155, -90, 0)
 	operation add
 	position -50, 550, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-155, 110, 0)
-		2
-			guis_id 2
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-155, -90, 0)
 	on_executed
 		´choose_present_texture´ (delay 0)
 ´remove_blockers´ ElementNavObstacle 100109
-	operation remove
-	position 0, -1050, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -874,6 +871,9 @@
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-155, 110, 0)
+	operation remove
+	position 0, -1050, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´remove_dev_clocks´ (delay 0)
 ´elf_spawned´ ElementInstanceOutput 100110
@@ -890,113 +890,113 @@
 		´talk to elf´ (delay 0)
 ´talk to elf´ ElementWaypoint 100113
 	icon pd2_talk
-	only_in_civilian false
+	only_in_civilian False
 	position -33, 0, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´elf - talked with first time´ ElementSpecialObjectiveTrigger 100114
+	elements
+ 		1 ´interact - get up´
 	event anim_start
 	position -300, -700, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interact - get up´
 	on_executed
 		´Link_13´ (delay 0) DISABLED
 ´remove_waypoint_2´ ElementOperator 100115
-	operation remove
 	elements
-		1 ´talk to elf´
+ 		1 ´talk to elf´
+	operation remove
 	on_executed
 		´elf_started_working_first_time´ (delay 0)
 ´cop - interrogate before talked to ´ ElementSpecialObjectiveTrigger 100116
+	elements
+ 		1 ´cop - interrogate´
 	event anim_start
 	position -200, -700, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop - interrogate´
 	on_executed
 		´Link_13´ (delay 0) DISABLED
 ´elf - interrogate failed before talk´ ElementSpecialObjectiveTrigger 100117
+	elements
+ 		1 ´elf - interogation - start´
 	event fail
 	position 0, -800, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´elf - interogation - start´
 	on_executed
 		´Link_11´ (delay 0) DISABLED
 ´set_cop_to_Hunt´ ElementSpecialObjective 100119
-	SO_access 1528
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´cop - interrogate´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 1
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste walk
 	path_stance none
 	path_style destination
 	patrol_path none
 	pose none
 	position 150, 0, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 1,47353 -58,4216 0
+	SO_access 1528
 	so_action AI_hunt
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´cop - interrogate´
+	use_instigator True
 ´cop - get to location´ ElementSpecialObjective 100121
-	SO_access 1528
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´set_cop_to_Hunt´
+		2 ´cop - interrogate´
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 1
 	interrupt_dmg 0
 	interval 1
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste run
 	path_stance none
 	path_style destination
 	patrol_path none
 	pose none
 	position 75, 0, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 1,47353 -58,4216 0
+	SO_access 1528
 	so_action none
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´set_cop_to_Hunt´
-		2 ´cop - interrogate´
+	use_instigator True
 ´Cop - Arrived at location´ ElementSpecialObjectiveTrigger 100122
+	elements
+ 		1 ´cop - get to location´
 	event complete
 	position 400, 575, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop - get to location´
 	on_executed
 		´Link_12´ (delay 0)
 ´Link_12´ MissionScriptElement 100120
@@ -1005,36 +1005,36 @@
 		´point_debug_003´ (delay 0)
 		´On_5´ (delay 0)
 ´point_debug_003´ ElementDebug 100123
-	as_subtitle false
+	as_subtitle False
 	debug_string cop arrived
-	show_instigator false
+	show_instigator False
 ´elf_started_working_first_time´ ElementInstanceOutput 100124
 	TRIGGER TIMES 1
 	event elf_started_working_first_time
 	on_executed
 		´point_debug_004´ (delay 0)
 ´point_debug_004´ ElementDebug 100125
-	as_subtitle false
+	as_subtitle False
 	debug_string first_shout_started_working
-	show_instigator false
+	show_instigator False
 ´present_finished´ ElementInstanceOutput 100126
 	event present_finished
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100118
+	elements
+ 		1 ´elf - scared´
+		2 ´elf - hide´
 	event anim_start
 	position 100, -800, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´elf - scared´
-		2 ´elf - hide´
 	on_executed
 		´Link_11´ (delay 0) DISABLED
 ´logic_toggle_001´ ElementToggle 100127
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´timer_2´ DISABLED
+ 		1 ´timer_2´ DISABLED
 		2 ´stop working´ DISABLED
 		3 ´reset´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´remove_dev_clocks´ ElementUnitSequence 100128
 	position 100, -1050, 0
 	rotation 0, 0, 0, -1
@@ -1044,37 +1044,37 @@
 ´Elf001´ ElementSpawnCivilian 100129
 	enemy units/pd2_dlc_cane/characters/civ_male_helper_2/civ_male_helper_2
 	force_pickup none
+	orientation_elements
 	position -32.9999, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
 	state none
 	team neutral1
-	orientation_elements
 	on_executed
 		´elf - hide´ (delay 0)
 ´Elf002´ ElementSpawnCivilian 100130
 	enemy units/pd2_dlc_cane/characters/civ_male_helper_3/civ_male_helper_3
 	force_pickup none
+	orientation_elements
 	position -32.9999, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
 	state none
 	team neutral1
-	orientation_elements
 	on_executed
 		´elf - hide´ (delay 0)
 ´Elf003´ ElementSpawnCivilian 100131
 	enemy units/pd2_dlc_cane/characters/civ_male_helper_4/civ_male_helper_4
 	force_pickup none
+	orientation_elements
 	position -33, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
 	state none
 	team neutral1
-	orientation_elements
 	on_executed
 		´elf - hide´ (delay 0)
 ´pick_random_elf´ ElementRandom 100132
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´Elf´ (delay 0)
 		´Elf001´ (delay 0)
@@ -1090,11 +1090,11 @@
 		´On_4´ (delay 0)
 ´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100137
 	BASE DELAY 5
+	elements
+ 		1 ´cop´
 	event death
 	position -550, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop´
 	on_executed
 		´cop´ (delay 0)
 ´min_police_force_001´ ElementAreaMinPoliceForce 100136
@@ -1102,79 +1102,79 @@
 	position 50, 0, 25
 	rotation 0, 0, 0, -1
 ´elf - start work´ ElementSpecialObjective 100139
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude avoid
 	base_chance 1
+	followup_elements
+		1 ´interact - get up´
+		2 ´elf - hide´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 0, 300, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 0 0
+	SO_access 1
 	so_action cm_so_at_table_work
-	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interact - get up´
-		2 ´elf - hide´
 	spawn_instigator_ids
 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	trigger_on none
+	use_instigator False
 ´cop shoots´ MissionScriptElement 100140
 	on_executed
 		´cop - shoot´ (delay 0)
 ´cop - shoot´ ElementSpecialObjective 100141
-	SO_access 1528
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´set_cop_to_Hunt´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval 1
-	is_navigation_link false
-	needs_pos_rsrv false
+	is_navigation_link False
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 75, -50, 0
-	repeatable false
+	repeatable False
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 1,47353 -58,4216 0
+	SO_access 1528
 	so_action e_so_gun_shot
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´set_cop_to_Hunt´
+	use_instigator True
 ´disable_plywood_table´ ElementDisableUnit 100142
 	position 1050, -800, 0
 	rotation 0, 0, 0, -1
@@ -1194,8 +1194,6 @@
 		´filter´ (delay 0)
 		´filter_2´ (delay 0)
 ´params´ ElementInstanceParams 100158
-	position -500, -1100, 2.5
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value 0
@@ -1205,6 +1203,8 @@
 			default_value 0
 			type number
 			var_name var_bottom_floor
+	position -500, -1100, 2.5
+	rotation 0, 0, 0, -1
 ´top floor´ ElementCounter 100157
 	counter_target 0
 	instance_var_names
@@ -1214,19 +1214,19 @@
 	instance_var_names
 		counter_target var_bottom_floor
 ´filter´ ElementCounterFilter 100160
+	elements
+ 		1 ´top floor´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´top floor´
 	on_executed
 		´remove_all_bottom_only´ (delay 0)
 ´filter_2´ ElementCounterFilter 100161
+	elements
+ 		1 ´bottom floor´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´bottom floor´
 	on_executed
 		´pick_1_table´ (delay 0)
 		´remove_white_table´ (delay 0)
@@ -1242,7 +1242,7 @@
 ´pick_1_table´ ElementRandom 100163
 	amount 5
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´disable_plywood_table´ (delay 0)
 		´police_table´ (delay 0)
@@ -1322,35 +1322,35 @@
 		´logic_random_001´ (delay 0)
 		´disable´ (delay 0)
 ´On_4´ ElementToggle 100197
+	elements
+ 		1 ´show_present´
+		2 ´Link_7´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_present´
-		2 ´Link_7´
 	on_executed
 		´Off_6´ (delay 0)
 ´1´ ElementTimerTrigger 100150
+	elements
+ 		1 ´timer´
 	position 100, 1825, 2.5
 	rotation 0, 0, 0, -1
 	time 103
-	elements
-		1 ´timer´
 	on_executed
 		´show 1´ (delay 0)
 ´2´ ElementTimerTrigger 100198
+	elements
+ 		1 ´timer´
 	position 100, 1875, 2.5
 	rotation 0, 0, 0, -1
 	time 86
-	elements
-		1 ´timer´
 	on_executed
 		´show 2´ (delay 0)
 ´3´ ElementTimerTrigger 100199
+	elements
+ 		1 ´timer´
 	position 100, 1925, 2.5
 	rotation 0, 0, 0, -1
 	time 69
-	elements
-		1 ´timer´
 	on_executed
 		´show 3´ (delay 0)
 ´show 1´ MissionScriptElement 100206
@@ -1404,21 +1404,21 @@
 	on_executed
 		´elf_spawned´ (delay 0)
 ´add´ ElementOperator 100211
-	operation add
 	elements
-		1 ´3´
+ 		1 ´3´
 		2 ´2´
 		3 ´1´
 		4 ´4´
 		5 ´5´
 		6 ´6´
 		7 ´7´
+	operation add
 ´4´ ElementTimerTrigger 100214
+	elements
+ 		1 ´timer´
 	position 100, 1975, 2.5
 	rotation 0, 0, 0, -1
 	time 52
-	elements
-		1 ´timer´
 	on_executed
 		´show 4´ (delay 0)
 ´show 4´ MissionScriptElement 100215
@@ -1430,11 +1430,11 @@
 	unit_ids
 		1 units/world/props/apartment/cocaine/cokebag/004 (-74, -16, 98.5755)
 ´5´ ElementTimerTrigger 100217
+	elements
+ 		1 ´timer´
 	position 100, 2025, 2.5
 	rotation 0, 0, 0, -1
 	time 35
-	elements
-		1 ´timer´
 	on_executed
 		´show 5´ (delay 0)
 ´show 5´ MissionScriptElement 100218
@@ -1446,11 +1446,11 @@
 	unit_ids
 		1 units/pd2_dlc_cane/props/bby_prop_weed_bag/cne_prop_weed_bag/004 (-108, 13, 110.5)
 ´6´ ElementTimerTrigger 100220
+	elements
+ 		1 ´timer´
 	position 100, 2075, 2.5
 	rotation 0, 0, 0, -1
 	time 18
-	elements
-		1 ´timer´
 	on_executed
 		´show 6´ (delay 0)
 ´show 6´ MissionScriptElement 100221
@@ -1470,11 +1470,11 @@
 	on_executed
 		´enable_7´ (delay 0)
 ´7´ ElementTimerTrigger 100225
+	elements
+ 		1 ´timer´
 	position 100, 2125, 2.5
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´timer´
 	on_executed
 		´show 7´ (delay 0)
 ´remove_white_table´ MissionScriptElement 100134
@@ -1490,20 +1490,20 @@
 	on_executed
 		´cop shoots´ (delay 0)
 ´On_5´ ElementToggle 100028
+	elements
+ 		1 ´Link_15´
+		2 ´cop shoots´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Link_15´
-		2 ´cop shoots´
 ´Link_16´ MissionScriptElement 100029
 	TRIGGER TIMES 1
 	on_executed
 		´Link_11´ (delay 0) DISABLED
 ´Off_4´ ElementToggle 100031
+	elements
+ 		1 ´Link_16´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Link_16´
 ´cop_arrived´ ElementInstanceOutput 100034
 	event cop_arrived
 ´sound_start´ ElementUnitSequence 100070
@@ -1535,39 +1535,39 @@
 	on_executed
 		´elf - work over ´ (delay 0)
 ´On_6´ ElementToggle 100228
+	elements
+ 		1 ´work pose´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´work pose´ DISABLED
 	on_executed
 		´Off_5´ (delay 0)
 ´Off_5´ ElementToggle 100229
+	elements
+ 		1 ´Link_7´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Link_7´
 	on_executed
 		´present_finished´ (delay 0)
 ´Off_6´ ElementToggle 100230
+	elements
+ 		1 ´work pose´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´work pose´ DISABLED
 ´disable shout´ ElementDisableShout 100231
-	disable_shout true
-	position 175, 850, 0
-	rotation 0, 0, 0, -1
+	disable_shout True
 	elements
-		1 ´Elf002´
+ 		1 ´Elf002´
 		2 ´Elf´
 		3 ´Elf001´
 		4 ´Elf003´
-´enable shout´ ElementDisableShout 100234
-	disable_shout false
-	position 175, 1050, 0
+	position 175, 850, 0
 	rotation 0, 0, 0, -1
+´enable shout´ ElementDisableShout 100234
+	disable_shout False
 	elements
-		1 ´Elf´
+ 		1 ´Elf´
 		2 ´Elf001´
 		3 ´Elf002´
 		4 ´Elf003´
+	position 175, 1050, 0
+	rotation 0, 0, 0, -1

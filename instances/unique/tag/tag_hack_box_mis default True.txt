@@ -68,8 +68,8 @@
 		´WP_cut´ (delay 0)
 ´WP_open_box´ ElementWaypoint 100008
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -85,14 +85,14 @@
 	position 0, -145, 125
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 303,4
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 303.4
 	on_executed
 		´link_player_closbey´ (delay 0)
 ´seq_interactable´ ElementUnitSequence 100015
@@ -106,19 +106,19 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´enable´ ElementToggle 100016
+	elements
+ 		1 ´area_player_closeby´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_closeby´ DISABLED
 ´link_player_closbey´ MissionScriptElement 100017
 	on_executed
 		´seq_interactable´ (delay 0)
 		´WP_open_box´ (delay 0)
 		´output_player_found_box´ (delay 0)
 ´remove_WP_open_box´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´WP_open_box´
+ 		1 ´WP_open_box´
+	operation remove
 ´link_interacted_with_box´ MissionScriptElement 100019
 	on_executed
 		´seq_interactive001´ (delay 1)
@@ -135,23 +135,23 @@
 	on_executed
 		´link_interacted_second_time´ (delay 0)
 ´enable_2´ ElementToggle 100021
+	elements
+ 		1 ´interacted_second_time´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interacted_second_time´ DISABLED
 ´link_interacted_second_time´ MissionScriptElement 100022
 	on_executed
 		´remove_WP_cut´ (delay 0)
 		´output_done_cut´ (delay 0)
 		´seq_close´ (delay 0.5) DISABLED
 ´remove_WP_cut´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´WP_cut´
+ 		1 ´WP_cut´
+	operation remove
 ´WP_cut´ ElementWaypoint 100024
 	icon pd2_wirecutter
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -179,6 +179,6 @@
 	on_executed
 		´enable´ (delay 0)
 ´point_debug_001´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: input_enable_interaction
-	show_instigator false
+	show_instigator False

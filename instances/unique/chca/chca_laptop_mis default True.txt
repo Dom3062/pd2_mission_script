@@ -61,10 +61,10 @@
 	on_executed
 		´enable_interaction´ (delay 0)
 ´enable_interaction´ ElementToggle 100012
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´disable_outline´ ElementUnitSequence 100013
 	position 1100, 100, 0
 	rotation 0, 0, 0, -1
@@ -86,15 +86,15 @@
 	position 0, 0, 75
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´players_enter_trigger´ (delay 0)
 ´players_enter_trigger´ MissionScriptElement 100016
@@ -103,17 +103,17 @@
 ´output_player_close_to_laptop´ ElementInstanceOutput 100017
 	event player_close_to_laptop
 ´turns_off´ ElementToggle 100006
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+		2 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
-		2 ´point_waypoint_001´
 	on_executed
 		´output_laptop_interaction_finished´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100018
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -125,9 +125,9 @@
 	on_executed
 		´point_waypoint_001´ (delay 0)
 ´turns_of_wp´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´turns_off´ (delay 0)
 ´ftrigger_laptop_interacted_with´ ElementUnitSequenceTrigger 100023
@@ -140,6 +140,6 @@
 	on_executed
 		´laptop_interacted:with´ (delay 0)
 ´point_debug_001´ ElementDebug 100024
-	as_subtitle false
+	as_subtitle False
 	debug_string firewall_gone
-	show_instigator false
+	show_instigator False

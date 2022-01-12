@@ -743,7 +743,7 @@
 ´pick_1´ ElementRandom 100043
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´random_start_001´ (delay 0)
 		´random_start_002´ (delay 0)
@@ -769,11 +769,11 @@
 	position -1125, -450, 402.5
 	rotation 0, 0, 0, -1
 ´fail´ ElementLogicChanceTrigger 100045
+	elements
+ 		1 ´1_chance´
 	outcome fail
 	position -1175, -500, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´1_chance´
 	on_executed
 		´lose´ (delay 0)
 		´pick_1´ (delay 0)
@@ -781,11 +781,11 @@
 		´logic_chance_001´ (delay 7)
 		´start_blink´ (delay 0)
 ´success´ ElementLogicChanceTrigger 100046
+	elements
+ 		1 ´1_chance´
 	outcome success
 	position -1175, -400, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´1_chance´
 	on_executed
 		´pick_1_2´ (delay 0)
 		´use instigator to win´ (delay 0)
@@ -798,7 +798,7 @@
 ´pick_1_2´ ElementRandom 100047
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´random_win_012´ (delay 0)
 		´random_win_011´ (delay 0)
@@ -868,29 +868,29 @@
 	on_executed
 		´enable_interaction_OFF´ (delay 0)
 ´enable_interaction_OFF´ ElementToggle 100002
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´show_chips_c´
+ 		1 ´show_chips_c´
 		2 ´show_chips_b´
 		3 ´show_chips_a´
+	set_trigger_times -1
+	toggle off
 ´play´ ElementSpecialObjective 100054
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group civilians
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -898,35 +898,35 @@
 	pose none
 	position 4, 68, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position -150 400 400
+	SO_access 3
 	so_action cmf_so_slotmachine
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´ai_insert´ ElementInstanceInput 100052
 	event AI_Insert
 	on_executed
 		´link´ (delay 0)
 		´instance_busy´ (delay 0) DISABLED
 ´win´ ElementSpecialObjective 100055
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group civilians
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -934,49 +934,49 @@
 	pose none
 	position -2200, -1325, 402.5
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -2221,38 -1365,71 402,5
+	SO_access 3
 	so_action cmf_so_slotmachine_win
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 	on_executed
 		´add 50´ (delay 0)
 		´add 10´ (delay 0) DISABLED
 ´lose_2´ ElementSpecialObjective 100056
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group civilians
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
-	no_arrest false
+	needs_pos_rsrv True
+	no_arrest False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position -2200, -1500, 402.5
-	repeatable true
+	repeatable True
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -2282,24 -1577,43 402,5
+	SO_access 3
 	so_action cmf_so_slotmachine_loose
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 	on_executed
 		´remove 50´ (delay 0) DISABLED
 		´remove 10´ (delay 0)
@@ -1072,29 +1072,29 @@
 			notify_unit_sequence state_interaction_enable
 			time 0
 ´disable other machines´ ElementToggle 100067
+	elements
+ 		1 ´enable int slot b´
+		2 ´enable int slot c´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable int slot b´
-		2 ´enable int slot c´
 ´disable other machines_2´ ElementToggle 100068
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable int slot a´
+ 		1 ´enable int slot a´
 		2 ´enable int slot c´
-´disable other machines_3´ ElementToggle 100069
 	set_trigger_times -1
 	toggle off
+´disable other machines_3´ ElementToggle 100069
 	elements
-		1 ´enable int slot a´
+ 		1 ´enable int slot a´
 		2 ´enable int slot b´
+	set_trigger_times -1
+	toggle off
 ´ai lever pulled´ ElementSpecialObjectiveTrigger 100070
+	elements
+ 		1 ´play´
 	event anim_start
 	position -1250, -150, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´play´
 	on_executed
 		´1_chance´ (delay 3.2)
 		´point_play_sound_001´ (delay 0) DISABLED
@@ -1103,33 +1103,33 @@
 	position -1850, -1400, 402.5
 	rotation 0, 0, 0, -1
 ´add 50´ ElementLogicChanceOperator 100072
+	elements
+ 		1 ´chance to stay´
 	chance 20
 	operation add_chance
 	position -2100, -1325, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 ´remove 10´ ElementLogicChanceOperator 100073
+	elements
+ 		1 ´chance to stay´
 	chance 10
 	operation subtract_chance
 	position -2100, -1500, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 ´success_2´ ElementLogicChanceTrigger 100074
+	elements
+ 		1 ´chance to stay´
 	outcome success
 	position -1750, -1325, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 	on_executed
 		´set instigator to play´ (delay 0)
 ´fail_2´ ElementLogicChanceTrigger 100075
+	elements
+ 		1 ´chance to stay´
 	outcome fail
 	position -1750, -1475, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 	on_executed
 		´set instigator´ (delay 0)
 ´character leaves´ ElementInstanceOutput 100076
@@ -1140,146 +1140,146 @@
 		´enable int slot c´ (delay 0)
 		´clear instigator´ (delay 0.1)
 ´harder difficulty´ ElementFilter 100078
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault false
-	mode_control false
-	platform_pc_only false
-	platform_ps3 false
-	platform_ps4_only false
-	platform_win32 false
-	platform_xb1_only false
-	player_1 false
-	player_2 false
-	player_3 false
-	player_4 false
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault False
+	mode_control False
+	platform_pc_only False
+	platform_ps3 False
+	platform_ps4_only False
+	platform_win32 False
+	platform_xb1_only False
+	player_1 False
+	player_2 False
+	player_3 False
+	player_4 False
 	position -875, 125, 402.5
 	rotation 0, 0, 0, -1
 	on_executed
 		´switch dificulty chance operators´ (delay 0)
 ´add 10´ ElementLogicChanceOperator 100077
 	DISABLED
+	elements
+ 		1 ´chance to stay´
 	chance 10
 	operation add_chance
 	position -2100, -1200, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 ´remove 50´ ElementLogicChanceOperator 100079
 	DISABLED
+	elements
+ 		1 ´chance to stay´
 	chance 50
 	operation subtract_chance
 	position -2100, -1625, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 ´switch dificulty chance operators´ ElementToggle 100080
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´remove 50´ DISABLED
+ 		1 ´remove 50´ DISABLED
 		2 ´remove 10´
 		3 ´add 50´
 		4 ´add 10´ DISABLED
+	set_trigger_times -1
+	toggle toggle
 ´done anim´ ElementSpecialObjectiveTrigger 100081
+	elements
+ 		1 ´win´
+		2 ´lose_2´
 	event anim_start
 	position -1975, -1400, 402.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´win´
-		2 ´lose_2´
 	on_executed
 		´chance to stay´ (delay 3)
 ´instigator´ ElementInstigator 100082
 ´record instigator´ ElementInstigatorOperator 100083
-	keep_on_use true
-	operation add_first
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use True
+	operation add_first
 	on_executed
 		´toggle´ (delay 0.1)
 ´use instigator to win´ ElementInstigatorOperator 100084
-	keep_on_use true
-	operation use_first
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use True
+	operation use_first
 	on_executed
 		´win´ (delay 6)
 ´use instigator to lose´ ElementInstigatorOperator 100085
-	keep_on_use true
-	operation use_first
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use True
+	operation use_first
 	on_executed
 		´lose_2´ (delay 0)
 ´set instigator to play´ ElementInstigatorOperator 100086
-	keep_on_use true
-	operation use_first
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use True
+	operation use_first
 	on_executed
 		´play´ (delay 0)
 ´set instigator´ ElementInstigatorOperator 100087
-	keep_on_use true
-	operation use_first
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use True
+	operation use_first
 	on_executed
 		´character leaves´ (delay 0)
 ´clear instigator´ ElementInstigatorOperator 100088
-	keep_on_use false
-	operation clear
 	elements
-		1 ´instigator´
+ 		1 ´instigator´
+	keep_on_use False
+	operation clear
 	on_executed
 		´reset chance´ (delay 0)
 		´toggle´ (delay 0)
 ´reset chance´ ElementLogicChanceOperator 100089
+	elements
+ 		1 ´chance to stay´
 	chance 0
 	operation reset
 	position -1450, -1400, 400
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to stay´
 ´chance to be angry´ ElementLogicChance 100090
 	chance 15
 	position -2200, -1725, 400
 	rotation 0, 0, 0, -1
 ´if angry´ ElementLogicChanceTrigger 100091
+	elements
+ 		1 ´chance to be angry´
 	outcome success
 	position -2200, -1625, 400
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to be angry´
 	on_executed
 		´use instigator to lose´ (delay 0)
 ´if not angry´ ElementLogicChanceTrigger 100092
+	elements
+ 		1 ´chance to be angry´
 	outcome fail
 	position -2125, -1725, 400
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance to be angry´
 	on_executed
 		´remove 50´ (delay 0) DISABLED
 		´remove 10´ (delay 0)
 		´chance to stay´ (delay 0)
 ´toggle´ ElementToggle 100093
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´link´
+ 		1 ´link´
 		2 ´instance_busy´ DISABLED
 		3 ´logic_chance_operator_001´
 		4 ´show_chips_a´
 		5 ´show_chips_b´
 		6 ´show_chips_c´
+	set_trigger_times -1
+	toggle toggle
 ´link´ MissionScriptElement 100094
 	on_executed
 		´record instigator´ (delay 0)
@@ -1371,68 +1371,68 @@
 			notify_unit_sequence state_interaction_enabled
 			time 0
 ´logic_toggle_001´ ElementToggle 100106
+	elements
+ 		1 ´show_winning_chips_a´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_winning_chips_a´ DISABLED
 ´logic_toggle_002´ ElementToggle 100107
+	elements
+ 		1 ´show_winning_chips_b´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_winning_chips_b´ DISABLED
 ´logic_toggle_003´ ElementToggle 100108
+	elements
+ 		1 ´show_winning_chips_c´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_winning_chips_c´ DISABLED
 ´logic_chance_operator_001´ ElementLogicChanceOperator 100109
+	elements
+ 		1 ´1_chance´
 	chance 0
 	operation set_chance
 	position -1275, -425, 400
 	rotation 0, 0, 0, -1
-	elements
-		1 ´1_chance´
 ´slot_intro´ ElementDialogue 100112
 	DISABLED
 	TRIGGER TIMES 1
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_137
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´slot_failed´ ElementDialogue 100114
 	DISABLED
 	TRIGGER TIMES 1
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_134
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´slot_win´ ElementDialogue 100115
 	DISABLED
 	TRIGGER TIMES 1
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_135
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´logic_toggle_004´ ElementToggle 100113
+	elements
+ 		1 ´slot_win´ DISABLED
+		2 ´slot_failed´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´slot_win´ DISABLED
-		2 ´slot_failed´ DISABLED
 ´point_play_sound_001´ ElementPlaySound 100116
 	DISABLED
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1250, -75, 400
 	rotation 0, 0, 0, -1
 	sound_event Play_cv2_ca1_01
-	use_instigator true
+	use_instigator True
 ´logic_chance_001´ ElementLogicChance 100117
 	chance 10
 	position -1125, -550, 400

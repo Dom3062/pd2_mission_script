@@ -150,31 +150,31 @@
 		´remove_wp_ipda´ (delay 0)
 ´defend´ ElementWaypoint 100034
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -50, -25, 225
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´interaction_start_hack´ ElementWaypoint 100036
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -50, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp_ipda´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´interaction_start_hack´
+ 		1 ´interaction_start_hack´
+	operation remove
 	on_executed
 		´turn_on_so´ (delay 0)
 ´remove_wp_SO´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´defend´
+ 		1 ´defend´
 		2 ´so_anim´
 		3 ´so_drag´
 		4 ´repair´
+	operation remove
 	on_executed
 		´output_hack_done´ (delay 0)
 ´remove_wp_keyboard´ ElementOperator 100039
@@ -198,22 +198,22 @@
 		´turn_off_1´ (delay 0)
 ´so_anim´ ElementSpecialObjective 100043
 	TRIGGER TIMES 1
-	SO_access 6302716
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -221,30 +221,31 @@
 	pose none
 	position -54.3179, -149.62, 75
 	rotation 0, 0, 0.130526, -0.991445
-	scan true
+	scan True
 	search_distance 0
 	search_position -50 -100 0
+	SO_access 6302716
 	so_action e_so_pull_lever_var2
 	trigger_on none
-	followup_elements
 ´so_drag´ ElementSpecialObjective 100044
 	TRIGGER TIMES 1
-	SO_access 6302716
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´so_anim´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -252,13 +253,12 @@
 	pose none
 	position -49.9766, -150, 0
 	rotation 0, 0, 0.130526, -0.991445
-	scan true
+	scan True
 	search_distance 2000
 	search_position -50 -100 0
+	SO_access 6302716
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´so_anim´
 ´move_left´ ElementUnitSequence 100045
 	position 1000, 100, 2.5
 	rotation 0, 0, 0, -1
@@ -272,23 +272,23 @@
 	on_executed
 		´enable_powerbox´ (delay 0)
 ´turn_off_1´ ElementToggle 100047
+	elements
+ 		1 ´move_left´
+		2 ´move_right´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´move_left´
-		2 ´move_right´
 ´turn_off_002´ ElementToggle 100048
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´move_vent_down´
+ 		1 ´move_vent_down´
 		2 ´move_right´
-´turn_off_003´ ElementToggle 100049
 	set_trigger_times -1
 	toggle off
+´turn_off_003´ ElementToggle 100049
 	elements
-		1 ´move_left´
+ 		1 ´move_left´
 		2 ´move_vent_down´
+	set_trigger_times -1
+	toggle off
 ´open_vent_down´ ElementInstanceInput 100050
 	event open_vent_down
 	on_executed
@@ -304,11 +304,11 @@
 ´interrupt_succesful´ ElementSpecialObjectiveTrigger 100053
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´so_anim´
 	event complete
 	position -100, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_anim´
 	on_executed
 		´point_debug_002´ (delay 0)
 		´stop_interupt´ (delay 0)
@@ -316,23 +316,23 @@
 ´interrupt_fail´ ElementSpecialObjectiveTrigger 100054
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´so_anim´
+		2 ´so_drag´
 	event fail
 	position 100, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_anim´
-		2 ´so_drag´
 	on_executed
 		´point_debug_001´ (delay 0)
 		´turn_on_so´ (delay 0)
 ´point_debug_001´ ElementDebug 100055
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_interact_failed
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100056
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_interact_succesful
-	show_instigator false
+	show_instigator False
 ´resume_hacking´ ElementUnitSequence 100059
 	position 1500, 200, 2.5
 	rotation 0, 0, 0, -1
@@ -357,18 +357,18 @@
 		´disable_interupt´ (delay 0)
 		´remove_innterupt_so´ (delay 0)
 ´disable_interupt´ ElementToggle 100063
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_succesful´ DISABLED
+ 		1 ´interrupt_succesful´ DISABLED
 		2 ´interrupt_fail´ DISABLED
 		3 ´so_drag´
 		4 ´so_anim´
+	set_trigger_times -1
+	toggle off
 ´remove_innterupt_so´ ElementOperator 100064
-	operation remove
 	elements
-		1 ´so_drag´
+ 		1 ´so_drag´
 		2 ´so_anim´
+	operation remove
 ´ai_stoped_hack´ ElementUnitSequence 100065
 	position 1400, 300, 2.5
 	rotation 0, 0, 0, -1
@@ -388,10 +388,8 @@
 	on_executed
 		´remove´ (delay 0)
 ´turn_off_2´ ElementToggle 100071
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_fail´ DISABLED
+ 		1 ´interrupt_fail´ DISABLED
 		2 ´interrupt_succesful´ DISABLED
 		3 ´point_debug_002´
 		4 ´point_debug_001´
@@ -411,16 +409,18 @@
 		18 ´interrupt_timer´
 		19 ´input_firewall_down´
 		20 ´seq_resume_hack´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_wp_SO´ (delay 0)
 ´turn_on_so´ ElementToggle 100072
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interrupt_fail´ DISABLED
+ 		1 ´interrupt_fail´ DISABLED
 		2 ´interrupt_succesful´ DISABLED
 		3 ´so_drag´
 		4 ´so_anim´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´so_drag´ (delay 0)
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100075
@@ -429,39 +429,39 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -100, 0
 	rotation 0, 0, -0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100076
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -300, 0
 	rotation 0, 0, -0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100077
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -300, -200, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´resumed_hack´ ElementUnitSequenceTrigger 100066
 	sequence_list
 		2
@@ -473,15 +473,15 @@
 		´point_debug_007´ (delay 0)
 ´repair´ ElementWaypoint 100060
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -50, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove´ ElementOperator 100067
-	operation remove
 	elements
-		1 ´defend´
+ 		1 ´defend´
+	operation remove
 	on_executed
 		´show_repair´ (delay 0)
 ´show_repair´ MissionScriptElement 100068
@@ -489,9 +489,9 @@
 		´repair´ (delay 0)
 		´output_hack_stoped´ (delay 0)
 ´remove_repaiur´ ElementOperator 100069
-	operation remove
 	elements
-		1 ´repair´
+ 		1 ´repair´
+	operation remove
 	on_executed
 		´output_hack_resumed´ (delay 0)
 ´output_hack_started´ ElementInstanceOutput 100070
@@ -510,59 +510,59 @@
 		2 15
 ´trigger_timer_reached_0´ ElementTimerTrigger 100080
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_timer´
 	position 2000, 0, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´interrupt_timer´
 	on_executed
 		´point_debug_006´ (delay 0)
 		´stop_hack´ (delay 0)
 		´stop_interupt´ (delay 0)
 		´logic_toggle_001´ (delay 0)
 ´start_timer´ ElementTimerOperator 100081
+	elements
+ 		1 ´interrupt_timer´
 	operation start
 	position 2000, 300, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´interrupt_timer´
 	on_executed
 		´point_debug_003´ (delay 0)
 ´pause_timer´ ElementTimerOperator 100082
+	elements
+ 		1 ´interrupt_timer´
 	operation pause
 	position 2000, 200, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´interrupt_timer´
 	on_executed
 		´point_debug_004´ (delay 0)
 ´resume_timer´ ElementTimerOperator 100083
+	elements
+ 		1 ´interrupt_timer´
 	operation start
 	position 2000, 100, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´interrupt_timer´
 	on_executed
 		´point_debug_005´ (delay 0)
 ´point_debug_003´ ElementDebug 100084
-	as_subtitle false
+	as_subtitle False
 	debug_string timer_started
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100085
-	as_subtitle false
+	as_subtitle False
 	debug_string timer_paused
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100086
-	as_subtitle false
+	as_subtitle False
 	debug_string timer_resumed
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100087
-	as_subtitle false
+	as_subtitle False
 	debug_string time_to_disable_firewall
-	show_instigator false
+	show_instigator False
 ´output_disable_firewall´ ElementInstanceOutput 100088
 	event hack_paused_disable_firewall
 ´stop_hack´ ElementUnitSequence 100089
@@ -584,9 +584,9 @@
 	on_executed
 		´remove_defend_WP´ (delay 0)
 ´remove_defend_WP´ ElementOperator 100090
-	operation remove
 	elements
-		1 ´defend´
+ 		1 ´defend´
+	operation remove
 	on_executed
 		´output_disable_firewall´ (delay 0)
 ´input_firewall_down´ ElementInstanceInput 100091
@@ -612,20 +612,20 @@
 	on_executed
 		´repair´ (delay 0)
 ´point_debug_007´ ElementDebug 100093
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_resumed
-	show_instigator false
+	show_instigator False
 ´logic_toggle_001´ ElementToggle 100094
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´resume_timer´
+ 		1 ´resume_timer´
 		2 ´pause_timer´
 		3 ´start_timer´
 		4 ´point_debug_003´
 		5 ´point_debug_004´
 		6 ´point_debug_005´
+	set_trigger_times -1
+	toggle off
 ´trigger_hatch_open´ ElementUnitSequenceTrigger 100096
 	TRIGGER TIMES 1
 	sequence_list
@@ -690,10 +690,8 @@
 	on_executed
 		´disable_things´ (delay 0)
 ´disable_things´ ElementToggle 100013
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_hack_started´
+ 		1 ´trigger_hack_started´
 		2 ´resumed_hack´
 		3 ´hack_done´
 		4 ´keyboard_interaction´
@@ -710,13 +708,15 @@
 		15 ´func_sequence_002´
 		16 ´so_drag´
 		17 ´so_anim´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WPs´ (delay 0)
 ´remove_WPs´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´interaction_start_hack´
+ 		1 ´interaction_start_hack´
 		2 ´defend´
 		3 ´repair´
 		4 ´so_drag´
 		5 ´so_anim´
+	operation remove

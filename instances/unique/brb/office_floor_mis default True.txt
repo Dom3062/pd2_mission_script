@@ -1,7 +1,4 @@
 ´nav_remove´ ElementNavObstacle 100006
-	operation remove
-	position 100, 600, 0.0039978
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -11,6 +8,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-100, 75, 0.00400394)
+	operation remove
+	position 100, 600, 0.0039978
+	rotation 0, 0, 0, -1
 ´input_activate_saw´ ElementInstanceInput 100007
 	event Activate saw
 	on_executed
@@ -75,41 +75,41 @@
 		´nav_remove´ (delay 0)
 ´saw_wp´ ElementWaypoint 100020
 	icon pd2_generic_saw
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´defend_wp´ ElementWaypoint 100021
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fix_wp´ ElementWaypoint 100022
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_saw_wp´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´saw_wp´
+ 		1 ´saw_wp´
+	operation remove
 	on_executed
 		´start_interrupt´ (delay 5)
 ´remove_defend_wp´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 	on_executed
 		´set_jammed´ (delay 0)
 ´remove_fix_wp´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´fix_wp´
+ 		1 ´fix_wp´
+	operation remove
 	on_executed
 		´start_interrupt´ (delay 5)
 		´set_fixed´ (delay 0)
@@ -122,27 +122,27 @@
 		´remove_defend_wp001´ (delay 0)
 		´interact_wp´ (delay 0)
 ´remove_defend_wp001´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
 		2 ´fix_wp´
 		3 ´saw_wp´
+	operation remove
 	on_executed
 		´remove_interrupt´ (delay 0)
 ´interact_wp´ ElementWaypoint 100029
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_defend_wp002´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
 		2 ´fix_wp´
 		3 ´saw_wp´
 		4 ´interact_wp´
+	operation remove
 	on_executed
 		´nav_add´ (delay 0)
 ´remove_interrupt´ MissionScriptElement 100031
@@ -157,21 +157,21 @@
 		´turn_on_interrupt_entities´ (delay 0)
 ´interrupt_so´ ElementSpecialObjective 100034
 	TRIGGER TIMES 1
-	SO_access 9440
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance none
 	path_style none
@@ -179,66 +179,66 @@
 	pose none
 	position 0, 69, 0.00400543
 	rotation -1.33227E-15, -1.00583E-22, 1, -7.54979E-08
-	scan true
+	scan True
 	search_distance 2000
 	search_position 6,61639 297,457 0,00400394
+	SO_access 9440
 	so_action e_so_low_kicks
 	trigger_on none
-	followup_elements
 ´loop´ MissionScriptElement 100039
 	on_executed
 		´turn_on_execute_so´ (delay 0) DISABLED
 ´turn_on_execute_so´ ElementToggle 100040
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´interrupt_so´ (delay 1)
 ´anim_complete´ ElementSpecialObjectiveTrigger 100041
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	event complete
 	position 800, 600, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´turn_off_so´ (delay 0)
 		´output_saw_interrupted´ (delay 0)
 		´chance_comment´ (delay 0)
 ´anim_fail´ ElementSpecialObjectiveTrigger 100042
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	event fail
 	position 800, 800, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´loop´ (delay 0)
 ´turn_off_so´ ElementToggle 100043
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_complete´ DISABLED
+ 		1 ´anim_complete´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_fail´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_so´ (delay 0)
 ´remove_so´ ElementOperator 100044
+	elements
+ 		1 ´interrupt_so´
 	operation remove
-	elements
-		1 ´interrupt_so´
 ´turn_off´ ElementToggle 100045
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_logic_start´
+ 		1 ´interrupt_logic_start´
 		2 ´loop´
 		3 ´turn_on_execute_so´ DISABLED
 		4 ´anim_fail´ DISABLED
 		5 ´anim_complete´ DISABLED
 		6 ´turn_on_interrupt_entities´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´activate_saw_pickup´ (delay 0)
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100046
@@ -248,13 +248,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, 300, 0.0039978
 	rotation 0, 0, 0.92388, 0.382683
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_spawn_player_001´ ElementPlayerSpawner 100047
 	DISABLED
 	position -100, 300, 0.0039978
@@ -300,10 +300,10 @@
 			sequence interact
 			notify_unit_id units/pd2_dlc_brb/equipment/brb_interactable_circle_cutter/brb_interactable_circle_cutter/001 (0, -25, -0.341925)
 ´logic_toggle_001´ ElementToggle 100051
+	elements
+ 		1 ´saw_placed001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´saw_placed001´ DISABLED
 ´set_jammed´ ElementUnitSequence 100052
 	position 200, 1000, 0.00400543
 	rotation 0, 0, 0, -1
@@ -328,14 +328,14 @@
 	position -200, 8, 0.00400543
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 184,45
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 184.45
 	on_executed
 		´ai_spawn_enemy_001´ (delay 0) DISABLED
 ´trigger_area_002´ ElementAreaTrigger 100054
@@ -349,14 +349,14 @@
 	position 200, 8, 0.00400543
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 184,45
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 184.45
 	on_executed
 		´func_equipment_001´ (delay 0)
 ´func_equipment_001´ ElementEquipment 100055
@@ -367,12 +367,12 @@
 	on_executed
 		´func_equipment_002´ (delay 0)
 ´turn_on_interrupt_entities´ ElementToggle 100056
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´anim_complete´ DISABLED
+ 		1 ´anim_complete´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_fail´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´loop´ (delay 0.05)
 ´saw_done´ ElementUnitSequenceTrigger 100057
@@ -435,9 +435,6 @@
 	on_executed
 		´output_saw_taken´ (delay 0)
 ´nav_add´ ElementNavObstacle 100061
-	operation add
-	position 200, 1300, 0.00400543
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -447,6 +444,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-100, 75, 0.00400394)
+	operation add
+	position 200, 1300, 0.00400543
+	rotation 0, 0, 0, -1
 	on_executed
 		´hide´ (delay 0)
 ´hide´ ElementUnitSequence 100062
@@ -460,18 +460,18 @@
 			notify_unit_sequence hide_dummy
 			time 0
 ´teammate_comment_open_it_up´ ElementTeammateComment 100035
-	close_to_element false
+	close_to_element False
 	comment v16
 	position 0, 150, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100036
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_open_it_up
-	show_instigator false
+	show_instigator False
 ´area_player_close_to_saw´ ElementAreaTrigger 100037
 	DISABLED
 	TRIGGER TIMES 1
@@ -484,35 +484,35 @@
 	position 0, 0, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´teammate_comment_open_it_up´ (delay 0)
 ´enable_area_player_close_to_saw´ ElementToggle 100038
+	elements
+ 		1 ´area_player_close_to_saw´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_close_to_saw´ DISABLED
 ´teammate_comment_swear´ ElementTeammateComment 100063
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 0, 200, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100064
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_swear
-	show_instigator false
+	show_instigator False
 ´chance_comment´ ElementLogicChance 100065
 	chance 40
 	position 50, 200, 100
@@ -520,18 +520,18 @@
 	on_executed
 		´teammate_comment_swear´ (delay 0)
 ´teammate_comment_done´ ElementTeammateComment 100066
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 0, 250, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_003´ (delay 0)
 ´point_debug_003´ ElementDebug 100067
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_done
-	show_instigator false
+	show_instigator False
 ´c4_placed´ ElementUnitSequenceTrigger 100099
 	sequence_list
 		1
@@ -559,7 +559,7 @@
 	position 0, -25, 0.00390634
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 	on_executed
 		´point_shake´ (delay 0)
 ´3´ ElementCounter 100102
@@ -614,15 +614,15 @@
 		´link´ (delay 0)
 ´waypoint_c4´ ElementWaypoint 100106
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove´ ElementOperator 100107
-	operation remove
 	elements
-		1 ´waypoint_c4´
+ 		1 ´waypoint_c4´
+	operation remove
 	on_executed
 		´floor_blew_up´ (delay 5)
 ´show_c4´ ElementUnitSequence 100109
@@ -667,19 +667,19 @@
 	on_executed
 		´toggle´ (delay 0)
 ´toggle´ ElementToggle 100016
+	elements
+ 		1 ´activate_wp´ DISABLED
+		2 ´Go through floor´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´activate_wp´ DISABLED
-		2 ´Go through floor´
 ´chosen´ ElementInstanceInput 100017
 	event chosen
 	on_executed
 		´can_use´ (delay 0)
 ´waypoint_go_through´ ElementWaypoint 100004
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 0
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -699,14 +699,14 @@
 	position 0, 0, -144
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´players fell through´ (delay 0) DISABLED
 ´players fell through´ MissionScriptElement 100069
@@ -714,14 +714,14 @@
 	on_executed
 		´remove_2´ (delay 0)
 ´ON´ ElementToggle 100070
+	elements
+ 		1 ´players fell through´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´players fell through´ DISABLED
 ´remove_2´ ElementOperator 100071
-	operation remove
 	elements
-		1 ´waypoint_go_through´
+ 		1 ´waypoint_go_through´
+	operation remove
 ´point_shake´ ElementFeedback 100002
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -739,8 +739,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´point_explosion_damage_001´ (delay 0)
 		´explosion´ (delay 0)
@@ -757,25 +757,25 @@
 ´30´ ElementTimer 100076
 	timer 90
 ´start_2´ ElementTimerOperator 100077
+	elements
+ 		1 ´30´
 	operation start
 	position -425, 1150, -49.996
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´30´
 ´pause´ ElementTimerOperator 100078
+	elements
+ 		1 ´30´
 	operation pause
 	position -425, 1225, -49.996
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´30´
 ´timer_done´ ElementTimerTrigger 100079
+	elements
+ 		1 ´30´
 	position -275, 1200, 0.00400543
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´30´
 	on_executed
 		´output_saw_done´ (delay 0)
 ´set_fixed´ ElementUnitSequence 100080
@@ -792,7 +792,7 @@
 		´start_2´ (delay 0)
 ´repair_cutter_interaction´ ElementInteraction 100081
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, -25, 51.6581
 	rotation 0, 0, 0, -1
@@ -800,10 +800,10 @@
 	on_executed
 		´output_saw_fixed´ (delay 0) (alternative interacted)
 ´On´ ElementToggle 100082
+	elements
+ 		1 ´repair_cutter_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´repair_cutter_interaction´ DISABLED
 	on_executed
 		´brb_011´ (delay 0)
 ´door_picked´ ElementInstanceOutput 100083
@@ -814,65 +814,65 @@
 	on_executed
 		´brb_014´ (delay 0)
 ´OFF´ ElementToggle 100090
+	elements
+ 		1 ´reminder_delay´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´reminder_delay´
 ´explosion´ ElementPlaySound 100096
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -23, 23
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False
 ´brb_010´ ElementDialogue 100097
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_10
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´brb_011´ ElementDialogue 100084
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_11
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´brb_012´ ElementDialogue 100085
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_12
-	execute_on_executed_when_done true
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done True
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´2 step´ (delay 0)
 ´brb_013´ ElementDialogue 100086
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_13
-	execute_on_executed_when_done true
-	force_quit_current true
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done True
+	force_quit_current True
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´reminder_delay´ (delay 60-90)
 		´get_c4_equipment´ (delay 0)
 ´brb_014´ ElementDialogue 100087
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_14
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´brb_015´ ElementDialogue 100088
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_brb_15
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´get_c4_equipment´ ElementInstanceOutput 100095
 	event get_c4_equipment
 ´2 step´ ElementCounter 100098

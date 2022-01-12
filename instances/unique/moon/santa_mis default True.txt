@@ -15,30 +15,30 @@
 ´santa´ ElementSpawnCivilian 100004
 	enemy units/pd2_dlc_moon/characters/civ_male_pilot_2/civ_male_pilot_2
 	force_pickup none
+	orientation_elements
 	position -98, 4, 0
 	rotation 0, 0, -0.707107, -0.707107
 	state none
 	team default
-	orientation_elements
 	on_executed
 		´SO_tied´ (delay 0)
 ´SO_tied´ ElementSpecialObjective 100005
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -46,13 +46,13 @@
 	pose none
 	position -95, 4, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_tied_to_chair_loop
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´startup´ MissionScriptElement 100007
 	EXECUTE ON STARTUP
 	BASE DELAY 1
@@ -64,17 +64,17 @@
 		´hide_melee_box´ (delay 0)
 		´spawn_cops´ (delay 0)
 ´enable_outline´ ElementSetOutline 100009
+	elements
+ 		1 ´santa´
 	position -300, -600, 0
 	rotation 0, 0, -0.707107, -0.707107
-	set_outline true
-	elements
-		1 ´santa´
+	set_outline True
 ´disable_outline´ ElementSetOutline 100010
+	elements
+ 		1 ´santa´
 	position -300, -700, 0
 	rotation 0, 0, -0.707107, -0.707107
-	set_outline false
-	elements
-		1 ´santa´
+	set_outline False
 ´link_enable_outline´ MissionScriptElement 100011
 	TRIGGER TIMES 1
 	on_executed
@@ -88,18 +88,18 @@
 		´enable_once002´ (delay 1)
 		´point_debug_002´ (delay 0)
 ´enable_once001´ ElementToggle 100013
+	elements
+ 		1 ´link_enable_outline´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´link_enable_outline´
 ´enable_once002´ ElementToggle 100014
+	elements
+ 		1 ´link_disable_outline´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´link_disable_outline´
 ´WP_untie´ ElementWaypoint 100015
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -25, 0, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -114,7 +114,7 @@
 		´start_untie_obj´ (delay 0)
 ´interaction_untie´ ElementInteraction 100018
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -25, 0, 125
 	rotation 0, 0, 0, -1
@@ -122,10 +122,10 @@
 	on_executed
 		´untied_santa´ (delay 0) (alternative interacted)
 ´enable_interaction_untie´ ElementToggle 100019
+	elements
+ 		1 ´interaction_untie´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_untie´ DISABLED
 ´untied_santa´ MissionScriptElement 100020
 	on_executed
 		´link_disable_outline´ (delay 0)
@@ -136,36 +136,36 @@
 		´output_untied_santa´ (delay 0)
 		´Play_drs_moon_08´ (delay 0)
 ´remove_WP_untie´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´WP_untie´
+ 		1 ´WP_untie´
 		2 ´Play_drs_moon_07´
 		3 ´Play_drs_moon_09´
+	operation remove
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_outline
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string disable_outline
-	show_instigator false
+	show_instigator False
 ´SO_untied´ ElementSpecialObjective 100006
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -173,34 +173,34 @@
 	pose none
 	position -100, 100, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_sit_untied
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´santa´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´point_debug_006´ (delay 0)
 ´SO_punch_and_talk´ ElementSpecialObjective 100024
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -208,22 +208,22 @@
 	pose none
 	position -100, 200, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_sit_to_talk_enter
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´santa´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´point_debug_003´ (delay 0)
 		´start_VO_tell_obj´ (delay 5)
 ´point_debug_003´ ElementDebug 100026
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_talk
-	show_instigator false
+	show_instigator False
 ´input_start_talking´ ElementInstanceInput 100027
 	event start_anim_punch_and_talking
 	on_executed
@@ -233,22 +233,22 @@
 	on_executed
 		´SO_fall_asleep´ (delay 0)
 ´SO_fall_asleep´ ElementSpecialObjective 100028
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -256,21 +256,21 @@
 	pose none
 	position -100, 300, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_sit_to_talk_exit
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´santa´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´point_debug_004´ (delay 0)
 ´point_debug_004´ ElementDebug 100029
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_fall_asleep
-	show_instigator false
+	show_instigator False
 ´hide_melee_box´ ElementUnitSequence 100031
 	position 100, -600, 0
 	rotation 0, 0, 0, -1
@@ -307,7 +307,7 @@
 		´link_enable_outline´ (delay 0)
 ´WP_melee´ ElementWaypoint 100034
 	icon pd2_melee
-	only_in_civilian false
+	only_in_civilian False
 	position -35, 0, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -321,48 +321,48 @@
 	on_executed
 		´punched´ (delay 0)
 ´remove_WP_melee´ ElementOperator 100036
-	operation remove
 	elements
-		1 ´WP_melee´
+ 		1 ´WP_melee´
+	operation remove
 ´test_link´ MissionScriptElement 100037
 	DISABLED
 	on_executed
 		´input_start_punch´ (delay 5)
 ´test_toggle´ ElementToggle 100038
+	elements
+ 		1 ´test_link´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´test_link´ DISABLED
 ´point_debug_005´ ElementDebug 100039
-	as_subtitle false
+	as_subtitle False
 	debug_string input_start_punch
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100040
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_untied
-	show_instigator false
+	show_instigator False
 ´output_punch_done´ ElementInstanceOutput 100041
 	event punch_done
 	on_executed
 		´point_debug_013´ (delay 0)
 		´SO_punch_and_talk´ (delay 0)
 ´SO_chair_exit´ ElementSpecialObjective 100049
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -370,41 +370,41 @@
 	pose none
 	position -100, -200, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_sit_to_stand_enter
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´santa´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´point_debug_009´ (delay 0)
 ´point_debug_009´ ElementDebug 100051
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_chair_exit
-	show_instigator false
+	show_instigator False
 ´input_exit_chair_now´ ElementInstanceInput 100052
 	event exit_chair_now
 	on_executed
 		´SO_chair_exit´ (delay 0)
 		´link_disable_outline´ (delay 0)
 ´point_debug_013´ ElementDebug 100056
-	as_subtitle false
+	as_subtitle False
 	debug_string output_punch_done
-	show_instigator false
+	show_instigator False
 ´enable´ ElementToggle 100060
+	elements
+ 		1 ´hit´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´hit´
 ´anim_start´ ElementSpecialObjectiveTrigger 100062
+	elements
+ 		1 ´SO_chair_exit´
 	event anim_start
 	position 0, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_chair_exit´
 	on_executed
 		´SO_turn_dive´ (delay 7)
 		´Play_drs_moon_08_2´ (delay 0)
@@ -434,12 +434,12 @@
 	toggle on
 ´sound_hit´ ElementPlaySound 100043
 	DISABLED
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -35, 0, 125
 	rotation 0, 0, 0, -1
 	sound_event fist_hit_body
-	use_instigator false
+	use_instigator False
 ´effect_blood´ ElementPlayEffect 100044
 	base_time 0
 	effect effects/payday2/particles/impacts/blood/blood_impact_a
@@ -447,7 +447,7 @@
 	position 0, 0, 123
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´loop´ MissionScriptElement 100046
 	on_executed
 		´Play_drs_moon_07´ (delay 15-25)
@@ -459,32 +459,32 @@
 		´Play_drs_moon_05´ (delay 0) DISABLED
 		´Play_drs_moon_06´ (delay 0) DISABLED
 ´disable_VO´ ElementToggle 100067
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´loop´
+ 		1 ´loop´
 		2 ´Play_drs_moon_07´
 		3 ´Play_drs_moon_09´
 		4 ´Play_vld_moon003´
+	set_trigger_times -1
+	toggle off
 ´output_untied_santa´ ElementInstanceOutput 100053
 	event untied_santa
 ´SO_turn_dive´ ElementSpecialObjective 100054
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style destination
@@ -492,78 +492,78 @@
 	pose none
 	position -100, -300, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -166,22 2,50936 0
+	SO_access 3
 	so_action cm_so_turn_dive
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´santa´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´point_debug_010´ (delay 0)
 		´ai_remove_001´ (delay 7.3)
 ´point_debug_010´ ElementDebug 100050
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_turn_dive
-	show_instigator false
+	show_instigator False
 ´ai_remove_001´ ElementAIRemove 100055
-	force_ragdoll false
+	force_ragdoll False
 	position -300, -300, 0
 	rotation 0, 0, 0, -1
-	true_death false
-	use_instigator true
+	true_death False
+	use_instigator True
 	on_executed
 		´point_debug_007´ (delay 0)
 		´func_instance_output_001´ (delay 0)
 ´point_debug_007´ ElementDebug 100057
-	as_subtitle false
+	as_subtitle False
 	debug_string remove santa
-	show_instigator false
+	show_instigator False
 ´Play_drs_moon_02´ ElementPlaySound 100045
 	DISABLED
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2300, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_02
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´input_enable_jew_store_VO´ ElementInstanceInput 100048
 	event enable_jew_store_VO
 	on_executed
 		´enable_2´ (delay 0)
 ´enable_2´ ElementToggle 100058
+	elements
+ 		1 ´Play_drs_moon_02´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_drs_moon_02´ DISABLED
 ´enable_3´ ElementToggle 100059
+	elements
+ 		1 ´Play_drs_moon_03´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_drs_moon_03´ DISABLED
 ´input_enable_toy_store_VO´ ElementInstanceInput 100063
 	event enable_toy_store_VO
 	on_executed
 		´enable_3´ (delay 0)
 ´enable_4´ ElementToggle 100065
+	elements
+ 		1 ´Play_drs_moon_04´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_drs_moon_04´ DISABLED
 ´input_enable_shoe_store_VO´ ElementInstanceInput 100070
 	event enable_shoe_store_VO
 	on_executed
 		´enable_4´ (delay 0)
 ´enable_5´ ElementToggle 100074
+	elements
+ 		1 ´Play_drs_moon_05´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_drs_moon_05´ DISABLED
 ´input_enable_tech_store_VO´ ElementInstanceInput 100077
 	event enable_tech_store_VO
 	on_executed
@@ -571,114 +571,114 @@
 ´Play_drs_moon_03´ ElementPlaySound 100078
 	DISABLED
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2400, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_03
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_04´ ElementPlaySound 100079
 	DISABLED
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_04
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_05´ ElementPlaySound 100080
 	DISABLED
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2600, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_05
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´input_enable_wine_store_VO´ ElementInstanceInput 100071
 	event enable_wine_store_VO
 	on_executed
 		´enable_6´ (delay 0)
 ´enable_6´ ElementToggle 100072
+	elements
+ 		1 ´Play_drs_moon_06´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_drs_moon_06´ DISABLED
 ´Play_drs_moon_06´ ElementPlaySound 100073
 	DISABLED
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2700, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_06
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_07´ ElementPlaySound 100081
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 300, -1700, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_07
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 	on_executed
 		´Play_drs_moon_09´ (delay 5-8)
 ´Play_drs_moon_10´ ElementPlaySound 100068
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 300, -2100, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_10
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_09´ ElementPlaySound 100075
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 200, -1700, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_09
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 	on_executed
 		´loop´ (delay 0)
 ´Play_drs_moon_08´ ElementPlaySound 100082
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 300, -2000, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_08
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_08_2´ ElementPlaySound 100069
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -2900, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_08
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´Play_drs_moon_09_2´ ElementPlaySound 100047
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´santa´
+	interrupt True
 	position 0, -3000, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_drs_moon_09
-	use_instigator false
-	elements
-		1 ´santa´
+	use_instigator False
 ´func_instance_output_001´ ElementInstanceOutput 100076
 	event santa_despawned
 ´input_start_santa_intro_VO´ ElementInstanceInput 100030
@@ -687,22 +687,22 @@
 		´Play_drs_moon_07´ (delay 5)
 		´VO_reporting_in´ (delay 0)
 ´cop_hold_him_down´ ElementSpecialObjective 100084
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -710,29 +710,29 @@
 	pose none
 	position 114, 1, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action e_so_hands_on_1m_table
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´cop_tie_him_up´ ElementSpecialObjective 100085
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -740,26 +740,26 @@
 	pose none
 	position -52.8135, -52.8132, 0
 	rotation 0, 0, 0.382683, -0.92388
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action e_so_work_medium
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´cop_hold_down´ ElementSpawnEnemyDummy 100086
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_cop_2/ene_cop_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´cop_hold_him_down´ (delay 0)
 ´cop_tie_up´ ElementSpawnEnemyDummy 100087
@@ -768,31 +768,31 @@
 	enemy units/payday2/characters/ene_cop_3/ene_cop_3
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, -100, 0
 	rotation 0, 0, 0.382684, -0.923879
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´cop_tie_him_up´ (delay 0)
 ´cop_reporting_in´ ElementSpecialObjective 100088
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -800,26 +800,26 @@
 	pose none
 	position 25, 99.9863, 0
 	rotation 0, 0, 0.92388, 0.382683
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action e_so_talking_in_megaphone
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´cop_talktocops´ ElementSpawnEnemyDummy 100089
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_cop_1/ene_cop_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 6.10352E-05, 100, 0
 	rotation 0, 0, 0.923879, 0.382684
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´cop_reporting_in´ (delay 0)
 ´break_SOs´ MissionScriptElement 100091
@@ -841,100 +841,100 @@
 	on_executed
 		´break_SOs´ (delay 0)
 ´cop_break_001´ ElementSpecialObjective 100096
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 200, 50, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707106
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action AI_hunt
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´cop_tie_up´
+	trigger_on none
+	use_instigator True
 ´VO_reporting_in´ ElementPlaySound 100097
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´cop_talktocops´
+	interrupt True
 	position -1100, -700, 0
 	rotation 0, 0, 0, -1
 	sound_event l2n_a15
-	use_instigator false
-	elements
-		1 ´cop_talktocops´
+	use_instigator False
 	on_executed
 		´VO_its_over´ (delay 10)
 ´Off´ ElementToggle 100098
+	elements
+ 		1 ´VO_reporting_in´
+		2 ´VO_its_over´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´VO_reporting_in´
-		2 ´VO_its_over´
 ´VO_swear001´ ElementPlaySound 100099
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´cop_hold_down´
+	interrupt True
 	position -900, -1000, 0
 	rotation 0, 0, 0, -1
 	sound_event l4n_lk3a
-	use_instigator false
-	elements
-		1 ´cop_hold_down´
+	use_instigator False
 ´enemy_death001´ ElementEnemyDummyTrigger 100100
+	elements
+ 		1 ´cop_talktocops´
+		2 ´cop_tie_up´
 	event death
 	position -800, -1000, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop_talktocops´
-		2 ´cop_tie_up´
 	on_executed
 		´VO_swear001´ (delay 0.5)
 ´VO_swear002´ ElementPlaySound 100101
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´cop_tie_up´
+	interrupt True
 	position -900, -1100, 0
 	rotation 0, 0, 0, -1
 	sound_event l1n_lk3a
-	use_instigator false
-	elements
-		1 ´cop_tie_up´
+	use_instigator False
 ´enemy_death002´ ElementEnemyDummyTrigger 100102
+	elements
+ 		1 ´cop_hold_down´
 	event death
 	position -800, -1100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´cop_hold_down´
 	on_executed
 		´VO_swear002´ (delay 2-4)
 ´VO_its_over´ ElementPlaySound 100103
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´cop_hold_down´
+	interrupt True
 	position -1100, -800, 0
 	rotation 0, 0, 0, -1
 	sound_event l4n_i03
-	use_instigator false
-	elements
-		1 ´cop_hold_down´
+	use_instigator False
 	on_executed
 		´output_its_over´ (delay 0)
 ´area_player_nearby´ ElementAreaTrigger 100104
@@ -948,60 +948,60 @@
 	position 0, 0, 350
 	radius 1100
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 2000
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 2000
 	on_executed
 		´break_SOs´ (delay 0)
 		´Play_vld_moon002´ (delay 1)
 ´Play_vld_moon002´ ElementDialogue 100105
 	dialogue Play_vld_moon_02
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 	on_executed
 		´Play_vld_moon003´ (delay 10)
 ´Play_vld_moon003´ ElementDialogue 100106
 	dialogue Play_vld_moon_03
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´cop_tie_up001´ ElementSpawnEnemyDummy 100107
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_cop_4/ene_cop_4
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 25, -225, 0
 	rotation 0, 0, -0.382683, -0.92388
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´cop_tie_him_up001´ (delay 0)
 ´cop_tie_him_up001´ ElementSpecialObjective 100108
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -1009,129 +1009,129 @@
 	pose none
 	position 36, -222, 0
 	rotation 0, 0, -0.382684, -0.923879
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action e_so_ntl_bouncer_idle
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´output_its_over´ ElementInstanceOutput 100109
 	event its_over
 ´point_debug_008´ ElementDebug 100092
-	as_subtitle false
+	as_subtitle False
 	debug_string break_SOs
-	show_instigator false
+	show_instigator False
 ´cop_break_002´ ElementSpecialObjective 100095
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 200, -50, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707106
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action AI_hunt
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´cop_hold_down´
+	trigger_on none
+	use_instigator True
 ´cop_break_003´ ElementSpecialObjective 100110
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 200, -100, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707106
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action AI_hunt
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´cop_talktocops´
+	trigger_on none
+	use_instigator True
 ´cop_break_004´ ElementSpecialObjective 100111
-	SO_access 160
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 200, 0, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, -0.707107, -0.707106
-	scan false
+	scan False
 	search_distance 0
 	search_position 100 -100 0
+	SO_access 160
 	so_action AI_hunt
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´cop_tie_up001´
+	trigger_on none
+	use_instigator True
 ´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100112
-	event death
-	position -800, -800, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´cop_tie_up´
+ 		1 ´cop_tie_up´
 		2 ´cop_hold_down´
 		3 ´cop_talktocops´
 		4 ´cop_tie_up001´
+	event death
+	position -800, -800, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´break_SOs´ (delay 0)

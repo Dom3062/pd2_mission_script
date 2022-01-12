@@ -49,8 +49,8 @@
 	event fire_started
 ´fire_WP´ ElementWaypoint 100020
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -64,7 +64,7 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´input_show_interaction´ ElementInstanceInput 100018
 	event enable_interaction
 	on_executed
@@ -116,10 +116,10 @@
 	on_executed
 		´link_hide_wp´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100031
+	elements
+ 		1 ´fire_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fire_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´env_effect_static_fire´ ElementPlayEffect 100019
@@ -129,14 +129,11 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´link_heavy_vfx´ MissionScriptElement 100032
 	on_executed
 		´env_effect_heavy_smoke_fire_fade´ (delay 0)
 ´add_door_blockers´ ElementNavObstacle 100033
-	operation add
-	position 600, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -154,6 +151,9 @@
 			guis_id 4
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (17, -107, 0)
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
 ´point_blurzone_fire´ ElementBlurZone 100038
 	DISABLED
 	height 200
@@ -162,11 +162,11 @@
 	radius 250
 	rotation 0, 0, 0, -1
 ´toggle_on_sfx´ ElementToggle 100039
+	elements
+ 		1 ´point_blurzone_fire´ DISABLED
+		2 ´point_play_sound_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_blurzone_fire´ DISABLED
-		2 ´point_play_sound_001´ DISABLED
 ´link_blurvfx_sfx´ MissionScriptElement 100040
 	BASE DELAY 0,5
 	on_executed
@@ -174,12 +174,12 @@
 		´point_play_sound_001´ (delay 0) DISABLED
 ´point_play_sound_001´ ElementPlaySound 100041
 	DISABLED
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
 	sound_event str_car_fire
-	use_instigator false
+	use_instigator False
 ´input_disable_interaction´ ElementInstanceInput 100028
 	event disable_interaction
 	on_executed
@@ -198,9 +198,9 @@
 			notify_unit_sequence hide
 			time 0
 ´remove_WP´ ElementOperator 100004
-	operation remove
 	elements
-		1 ´fire_WP´
+ 		1 ´fire_WP´
+	operation remove
 ´kill_zone_fire´ ElementKillZone 100045
 	position 600, -300, 0
 	rotation 0, 0, 0, -1
@@ -216,22 +216,22 @@
 	position 0, 0, 175
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 250
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 250
 	on_executed
 		´kill_zone_fire´ (delay 0)
 ´toggle_on_fire_damage´ ElementToggle 100047
+	elements
+ 		1 ´trigger_area_fire_damage´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_fire_damage´ DISABLED
 ´env_effect_play_initial´ ElementPlayEffect 100049
 	base_time 0
 	effect effects/payday2/particles/explosions/flamethrower
@@ -239,13 +239,13 @@
 	position 0, 0, 100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100050
+	elements
+ 		1 ´env_effect_static_fire´
 	operation fade_kill
 	position 1650, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_static_fire´
 ´link_vfx_start´ MissionScriptElement 100051
 	on_executed
 		´env_effect_play_initial´ (delay 0)

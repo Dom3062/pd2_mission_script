@@ -180,16 +180,16 @@
 		´show_meth´ (delay 0)
 ´WP_meth´ ElementWaypoint 100067
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 188, -3, 147
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´WP_methlab´ ElementWaypoint 100068
 	TRIGGER TIMES 1
 	icon pd2_methlab
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -10, 0, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -205,15 +205,15 @@
 	position 4, -2, 225
 	radius 250
 	rotation 0, 0, 1, -5.96046E-08
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 1500
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1500
 	on_executed
 		´methlab_found´ (delay 0)
 		´teammate_comment_methlab_found´ (delay 1)
@@ -223,9 +223,9 @@
 		´blurzone_start_cooking´ (delay 0)
 		´Play_loc_mex_cook_19´ (delay 2)
 ´remove_WP_methlab´ ElementOperator 100071
-	operation remove
 	elements
-		1 ´WP_methlab´
+ 		1 ´WP_methlab´
+	operation remove
 ´instance_output_methlab_found´ ElementInstanceOutput 100072
 	event methlab_found
 ´instance_input_wrong´ ElementInstanceInput 100073
@@ -263,9 +263,9 @@
 		´start´ (delay 1)
 		´point_debug_006´ (delay 0)
 ´remove_WP_meth´ ElementOperator 100079
-	operation remove
 	elements
-		1 ´WP_meth´
+ 		1 ´WP_meth´
+	operation remove
 	on_executed
 		´enable_once_again_2´ (delay 1)
 ´enable_interaction_methlab´ ElementUnitSequence 100080
@@ -297,7 +297,7 @@
 	position -245, 8, 134
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect002´ ElementPlayEffect 100082
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -305,7 +305,7 @@
 	position -197, 25, 207
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect003´ ElementPlayEffect 100083
 	base_time 0
 	effect effects/payday2/environment/smoke_alex_must_die_1
@@ -313,7 +313,7 @@
 	position -116, 30, 207
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect004´ ElementPlayEffect 100084
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -321,7 +321,7 @@
 	position -38, 31, 132
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect006´ ElementPlayEffect 100086
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -329,29 +329,29 @@
 	position 64, 9, 156
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´sound_methlab´ ElementPlaySound 100087
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 4, 23, 125
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth
-	use_instigator false
+	use_instigator False
 ´sound_methlab_stop´ ElementPlaySound 100088
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 54, -27, 125
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth_stop
-	use_instigator false
+	use_instigator False
 ´effect_stop´ ElementStopEffect 100089
+	elements
+ 		1 ´effect002´
+		2 ´effect003´
+		3 ´effect001´
 	operation fade_kill
 	position 400, 1900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect002´
-		2 ´effect003´
-		3 ´effect001´
 ´effect_fire´ ElementPlayEffect 100090
 	base_time 0
 	effect effects/payday2/environment/fire_alex_must_die_1
@@ -359,14 +359,14 @@
 	position 148, -45, 38
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´teammate_comment_swear´ ElementTeammateComment 100091
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 54, -2, 275
 	radius 0
 	rotation 0, 0, 1, -5.96046E-08
-	use_instigator false
+	use_instigator False
 ´explode´ MissionScriptElement 100092
 	on_executed
 		´effect_fire´ (delay 0)
@@ -382,12 +382,12 @@
 	radius 850
 	rotation 0, 0, 0, -1
 ´sound_add_ingredient´ ElementPlaySound 100094
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -46, 23, 125
 	rotation 0, 0, 0, -1
 	sound_event add_meth_ingredients
-	use_instigator false
+	use_instigator False
 ´destroy_methlab´ ElementUnitSequence 100095
 	position 500, 2200, 0
 	rotation 0, 0, 0, -1
@@ -441,12 +441,12 @@
 	radius 300
 	rotation 0, 0, 0, -1
 ´sound_explosion´ ElementPlaySound 100098
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 110, -1, 149
 	rotation 0, 0, 0, -1
 	sound_event explosion_fire
-	use_instigator false
+	use_instigator False
 ´disable_interaction_methlab´ ElementUnitSequence 100000
 	position 400, 1600, 0
 	rotation 0, 0, 1, -1.19209E-07
@@ -487,22 +487,22 @@
 	position -11, -52, 125
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 900
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 900
 	on_executed
 		´kill_zone_fire´ (delay 0)
 ´enable_area_damage´ ElementToggle 100006
+	elements
+ 		1 ´area_fire_damage´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_fire_damage´ DISABLED
 ´kill_zone_fire´ ElementKillZone 100007
 	position 700, 2200, 0
 	rotation 0, 0, 0, -1
@@ -518,15 +518,15 @@
 	position -12, -52, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 900
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 900
 	on_executed
 		´destroy_meth´ (delay 0) DISABLED
 ´destroy_meth´ ElementCarry 100110
@@ -536,19 +536,19 @@
 ´cook001´ ElementSpawnCivilian 100101
 	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
 	force_pickup none
+	orientation_elements
 	position 91, -114, 0
 	rotation 0, 0, -0.382683, -0.92388
 	state cf_sp_stand_look_up
 	team default
-	orientation_elements
 ´cook002´ ElementSpawnCivilian 100100
 	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
 	force_pickup none
+	orientation_elements
 	position -159, -89, 0
 	rotation 0, 0, 0.382683, -0.92388
 	state cf_sp_stand_look_up
 	team default
-	orientation_elements
 ´instance_input_spawn_cooks´ ElementInstanceInput 100102
 	event spawn_cooks
 	on_executed
@@ -565,14 +565,14 @@
 	on_executed
 		´ai_remove´ (delay 0)
 ´ai_remove´ ElementAIRemove 100112
-	force_ragdoll false
+	elements
+ 		1 ´cook002´
+		2 ´cook001´
+	force_ragdoll False
 	position -400, 1900, 0
 	rotation 0, 0, 0, -1
-	true_death true
-	use_instigator false
-	elements
-		1 ´cook002´
-		2 ´cook001´
+	true_death True
+	use_instigator False
 ´effect_starting_fire´ ElementPlayEffect 100001
 	base_time 0
 	effect effects/payday2/environment/starting_fire_alex_must_die_1
@@ -580,14 +580,14 @@
 	position -38, 30, 132
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´teammate_comment_methlab_found´ ElementTeammateComment 100002
-	close_to_element true
+	close_to_element True
 	comment g14
 	position 4, -2, 275
 	radius 0
 	rotation 0, 0, 1, -5.96046E-08
-	use_instigator false
+	use_instigator False
 ´test(disabled_by_default)´ MissionScriptElement 100003
 	DISABLED
 	EXECUTE ON STARTUP
@@ -605,26 +605,26 @@
 	rotation 0, 0, 0, -1
 	state standard
 ´soundbank_robbers001´ ElementPlaySound 100111
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -600, 2200, 0
 	rotation 0, 0, 0, -1
 	sound_event f11m_sin
-	use_instigator false
+	use_instigator False
 ´soundbank_robbers002´ ElementPlaySound 100113
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -600, 2300, 0
 	rotation 0, 0, 0, -1
 	sound_event p14
-	use_instigator false
+	use_instigator False
 ´soundbank_locke´ ElementPlaySound 100114
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -600, 2400, 0
 	rotation 0, 0, 0, -1
 	sound_event p14
-	use_instigator false
+	use_instigator False
 ´show_props_cheap´ MissionScriptElement 100115
 	on_executed
 		´unit_enable_props_cheap´ (delay 0)
@@ -708,96 +708,96 @@
 			notify_unit_sequence state_show
 			time 0
 ´enable_area_methlab_found´ ElementToggle 100125
+	elements
+ 		1 ´area_methlab_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_methlab_found´ DISABLED
 ´Play_loc_mex_cook_19´ ElementDialogue 100015
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_19
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_mex_cook_03(acid)´ ElementDialogue 100028
-	can_not_be_muted true
+	can_not_be_muted True
 	dialogue Play_loc_mex_cook_03
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´relay´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´Play_loc_mex_cook_04(soda)´ ElementDialogue 100029
-	can_not_be_muted true
+	can_not_be_muted True
 	dialogue Play_loc_mex_cook_04
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´relay´ (delay 0)
 		´point_debug_002´ (delay 0)
 ´Play_loc_mex_cook_05(hydrogen)´ ElementDialogue 100085
-	can_not_be_muted true
+	can_not_be_muted True
 	dialogue Play_loc_mex_cook_05
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´relay´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´Play_loc_mex_cook_20´ ElementDialogue 100126
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_22
-	execute_on_executed_when_done false
-	force_quit_current true
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	force_quit_current True
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_mex_cook_12´ ElementDialogue 100127
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_12
-	execute_on_executed_when_done false
-	force_quit_current true
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	force_quit_current True
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_mex_cook_13´ ElementDialogue 100128
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_13
-	execute_on_executed_when_done false
-	force_quit_current false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	force_quit_current False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´Play_loc_mex_cook_14´ (delay 6)
 		´enable_next_VO´ (delay 1)
 ´Play_loc_mex_cook_14´ ElementDialogue 100129
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_14
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_mex_cook_17´ ElementDialogue 100130
 	DISABLED
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_17
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 	on_executed
 		´Play_loc_mex_cook_14´ (delay 6)
 ´enable_next_VO´ ElementToggle 100131
+	elements
+ 		1 ´Play_loc_mex_cook_17´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Play_loc_mex_cook_17´ DISABLED
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´relay´ MissionScriptElement 100133
@@ -809,18 +809,18 @@
 		´soda´ (delay 0) DISABLED
 		´hydrogen´ (delay 0) DISABLED
 ´soundbank_locke_system´ ElementPlaySound 100137
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -600, 2500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_h11y
-	use_instigator false
+	use_instigator False
 ´output_meth_spawned´ ElementInstanceOutput 100136
 	event meth_spawned
 ´random_ingredient´ ElementRandom 100139
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_acid´ (delay 0)
 		´enable_soda´ (delay 0)
@@ -842,35 +842,35 @@
 		´enable_loop´ (delay 0)
 ´enable_acid´ ElementToggle 100142
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´acid´ DISABLED
+ 		1 ´acid´ DISABLED
 		2 ´relay_acid_correct´ DISABLED
 		3 ´relay_soda_wrong´ DISABLED
 		4 ´relay_chloride_wrong´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_013´ (delay 0)
 ´enable_soda´ ElementToggle 100143
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´soda´ DISABLED
+ 		1 ´soda´ DISABLED
 		2 ´relay_soda_correct´ DISABLED
 		3 ´relay_acid_wrong´ DISABLED
 		4 ´relay_chloride_wrong´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_012´ (delay 0)
 ´enable_hydrogen´ ElementToggle 100144
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´hydrogen´ DISABLED
+ 		1 ´hydrogen´ DISABLED
 		2 ´relay_chloride_correct´ DISABLED
 		3 ´relay_acid_wrong´ DISABLED
 		4 ´relay_soda_wrong´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_011´ (delay 0)
 ´start´ MissionScriptElement 100145
@@ -879,17 +879,17 @@
 		´soda´ (delay 0) DISABLED
 		´hydrogen´ (delay 0) DISABLED
 ´point_debug_001´ ElementDebug 100146
-	as_subtitle false
+	as_subtitle False
 	debug_string yada yada acid
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100147
-	as_subtitle false
+	as_subtitle False
 	debug_string yada yada soda
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100148
-	as_subtitle false
+	as_subtitle False
 	debug_string yada yada hydrogen
-	show_instigator false
+	show_instigator False
 ´relay_acid_correct´ MissionScriptElement 100149
 	DISABLED
 	on_executed
@@ -924,16 +924,16 @@
 		´wrong´ (delay 0)
 		´point_debug_005´ (delay 0)
 ´disable_loop´ ElementToggle 100155
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´relay_acid_correct´ DISABLED
+ 		1 ´relay_acid_correct´ DISABLED
 		2 ´relay_soda_correct´ DISABLED
 		3 ´relay_chloride_correct´ DISABLED
 		4 ´relay_chloride_wrong´ DISABLED
 		5 ´relay_soda_wrong´ DISABLED
 		6 ´relay_acid_wrong´ DISABLED
 		7 ´loop´
+	set_trigger_times -1
+	toggle off
 ´counter_correct_ingredient´ ElementCounter 100156
 	counter_target 0
 ´spawn_meth´ MissionScriptElement 100157
@@ -943,29 +943,29 @@
 		´enable_once_again´ (delay 0)
 ´set_3´ ElementCounterOperator 100158
 	amount 0
-	operation set
+	elements
+ 		1 ´counter_correct_ingredient´
 	instance_var_names
-	elements
-		1 ´counter_correct_ingredient´
+	operation set
 ´disable´ ElementToggle 100159
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´hydrogen´ DISABLED
+ 		1 ´hydrogen´ DISABLED
 		2 ´soda´ DISABLED
 		3 ´acid´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´enable_once_again´ ElementToggle 100160
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´enable_hydrogen´
+ 		1 ´enable_hydrogen´
 		2 ´enable_soda´
 		3 ´enable_acid´
+	set_trigger_times 1
+	toggle on
 ´enable_loop´ ElementToggle 100161
+	elements
+ 		1 ´loop´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loop´
 ´func_equipment_001´ ElementEquipment 100162
 	amount 1
 	equipment hydrogen_chloride
@@ -1039,131 +1039,131 @@
 	on_executed
 		´func_equipment_003´ (delay 0)
 ´point_debug_004´ ElementDebug 100135
-	as_subtitle false
+	as_subtitle False
 	debug_string si acid
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100168
-	as_subtitle false
+	as_subtitle False
 	debug_string no
-	show_instigator false
+	show_instigator False
 ´soundbank_locke_system001´ ElementPlaySound 100170
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -500, 2500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_mex_cook_14
-	use_instigator false
+	use_instigator False
 ´output_methlab_exploded´ ElementInstanceOutput 100132
 	event methlab_exploded
 ´point_debug_006´ ElementDebug 100171
-	as_subtitle false
+	as_subtitle False
 	debug_string ready
-	show_instigator false
+	show_instigator False
 ´add1´ ElementCounterOperator 100172
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_correct_ingredient´
+ 		1 ´counter_correct_ingredient´
+	instance_var_names
+	operation add
 	on_executed
 		´counter_below3´ (delay 0.5)
 		´counter_equal3´ (delay 0.5)
 		´disable´ (delay 0)
 ´counter_below3´ ElementCounterFilter 100173
+	elements
+ 		1 ´counter_correct_ingredient´
 	check_type less_than
 	needed_to_execute all
 	value 3
-	elements
-		1 ´counter_correct_ingredient´
 	on_executed
 		´ready´ (delay 40-45)
 		´point_debug_007´ (delay 0)
 ´counter_equal3´ ElementCounterFilter 100174
+	elements
+ 		1 ´counter_correct_ingredient´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´counter_correct_ingredient´
 	on_executed
 		´spawn_meth´ (delay 10-15)
 		´point_debug_008´ (delay 0)
 ´point_debug_007´ ElementDebug 100175
-	as_subtitle false
+	as_subtitle False
 	debug_string counter_below3
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100176
-	as_subtitle false
+	as_subtitle False
 	debug_string counter_equal3
-	show_instigator false
+	show_instigator False
 ´point_debug_009´ ElementDebug 100177
-	as_subtitle false
+	as_subtitle False
 	debug_string si soda
-	show_instigator false
+	show_instigator False
 ´point_debug_010´ ElementDebug 100178
-	as_subtitle false
+	as_subtitle False
 	debug_string si chloride
-	show_instigator false
+	show_instigator False
 ´point_debug_011´ ElementDebug 100179
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_hydrogen
-	show_instigator false
+	show_instigator False
 ´point_debug_012´ ElementDebug 100180
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_soda
-	show_instigator false
+	show_instigator False
 ´point_debug_013´ ElementDebug 100181
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_acid
-	show_instigator false
+	show_instigator False
 ´point_debug_014´ ElementDebug 100169
-	as_subtitle false
+	as_subtitle False
 	debug_string from methlab instance: func_equipment_001
-	show_instigator false
+	show_instigator False
 ´point_debug_015´ ElementDebug 100182
-	as_subtitle false
+	as_subtitle False
 	debug_string from methlab instance: func_equipment_002
-	show_instigator false
+	show_instigator False
 ´point_debug_016´ ElementDebug 100183
-	as_subtitle false
+	as_subtitle False
 	debug_string from methlab instance: func_equipment_003
-	show_instigator false
+	show_instigator False
 ´test_enable´ ElementToggle 100184
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´func_sequence_trigger_001´ DISABLED
+ 		1 ´func_sequence_trigger_001´ DISABLED
 		2 ´func_sequence_trigger_002´ DISABLED
 		3 ´func_sequence_trigger_003´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´teammate_comment_its_done´ ElementTeammateComment 100185
-	close_to_element true
+	close_to_element True
 	comment v07
 	position 188, -3, 147
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´Play_loc_mex_cook_22´ ElementDialogue 100186
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_22
-	execute_on_executed_when_done false
-	force_quit_current true
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	force_quit_current True
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´logic_random_001´ ElementRandom 100187
 	BASE DELAY 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´Play_loc_mex_cook_22´ (delay 0)
 		´Play_loc_mex_cook_20´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100188
+	elements
+ 		1 ´Play_loc_mex_cook_13´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Play_loc_mex_cook_13´
 ´enable_once_again_2´ ElementToggle 100189
+	elements
+ 		1 ´WP_methlab´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´WP_methlab´

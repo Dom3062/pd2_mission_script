@@ -248,66 +248,67 @@
 	on_executed
 		´toggle_2´ (delay 0)
 ´toggle´ ElementToggle 100040
+	elements
+ 		1 ´briefcase´ DISABLED
+		2 ´trash´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´briefcase´ DISABLED
-		2 ´trash´
 ´toggle_2´ ElementToggle 100041
+	elements
+ 		1 ´ammo´ DISABLED
+		2 ´trash´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´ammo´ DISABLED
-		2 ´trash´
 ´add_door_blocker´ ElementNavObstacle 100046
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (98, -43, 0)
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100047
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (98, -43, 0)
-´remove_door_blocker´ ElementNavObstacle 100047
 	operation remove
 	position 1200, 100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (98, -43, 0)
 ´WP_loot´ ElementWaypoint 100049
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 16, 306, 41
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_loot´ ElementOperator 100050
-	operation remove
 	elements
-		1 ´WP_loot´
+ 		1 ´WP_loot´
+	operation remove
 ´output_interacted_with_briefcase´ ElementInstanceOutput 100051
 	event interacted_with_briefcase
 ´output_found_briefcase´ ElementInstanceOutput 100052
 	event found_briefcase
 ´civi_hands_up´ ElementSpecialObjective 100053
-	SO_access 3
 	action_duration_max 3
 	action_duration_min 3
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´civi_panic´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style destination
@@ -315,30 +316,29 @@
 	pose none
 	position 61.9387, 207, 0
 	rotation 0, 0, 0.994522, 0.104528
-	scan true
+	scan True
 	search_distance 0
 	search_position -175 -50 0
+	SO_access 3
 	so_action cmf_so_surrender
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´civi_panic´
+	use_instigator True
 ´civi_panic´ ElementSpecialObjective 100057
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style destination
@@ -346,24 +346,24 @@
 	pose none
 	position 61.9387, 207, 50
 	rotation 0, 0, 0.994522, 0.104528
-	scan true
+	scan True
 	search_distance 0
 	search_position -175 -50 0
+	SO_access 3
 	so_action cmf_so_panic
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´disable_lab_units´ ElementDisableUnit 100074
 	position 700, 100, 0
 	rotation 0, 0, 0, -1
 	unit_ids
 ´point_play_sound_001´ ElementPlaySound 100079
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 125, 75, 125
 	rotation 0, 0, 0, -1
 	sound_event f11m_sin
-	use_instigator false
+	use_instigator False
 ´point_blurzone_001´ ElementBlurZone 100089
 	height 200
 	mode 2
@@ -415,15 +415,15 @@
 		´relay´ (delay 0)
 ´WP_take_saw´ ElementWaypoint 100093
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 3, -21, 78
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_take_saw´ ElementOperator 100094
-	operation remove
 	elements
-		1 ´WP_take_saw´
+ 		1 ´WP_take_saw´
+	operation remove
 ´loose_money´ MissionScriptElement 100008
 	on_executed
 		´enable_money_units´ (delay 0)
@@ -437,11 +437,11 @@
 	on_executed
 		´toggle_3´ (delay 0)
 ´toggle_3´ ElementToggle 100099
+	elements
+ 		1 ´trash´
+		2 ´small_loot´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´trash´
-		2 ´small_loot´ DISABLED
 ´hide_saws´ ElementUnitSequence 100035
 	position 1800, 300, 2.5
 	rotation 0, 0, 0, -1
@@ -502,11 +502,11 @@
 	on_executed
 		´another_chance´ (delay 0)
 ´fail´ ElementLogicChanceTrigger 100115
+	elements
+ 		1 ´chance´
 	outcome fail
 	position 1700, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance´
 	on_executed
 		´most_important_thing_in_the_world´ (delay 0) DISABLED
 ´most_important_thing_in_the_world´ MissionScriptElement 100116
@@ -1032,87 +1032,87 @@
 		´2´ (delay 0)
 ´normal´ ElementFilter 100163
 	DISABLED
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 600, -500, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´4´ (delay 0) DISABLED
 ´hard´ ElementFilter 100164
 	DISABLED
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 700, -500, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´5´ (delay 0) DISABLED
 ´one_difficulty_rules_them_all´ ElementFilter 100165
-	difficulty_easy true
-	difficulty_easy_wish true
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish True
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 800, -500, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´6´ (delay 0)
 ´ovk´ ElementFilter 100166
 	DISABLED
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 900, -500, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -1201,22 +1201,22 @@
 			time 0
 ´ew_dw_sm´ ElementFilter 100181
 	DISABLED
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1000, -500, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -1237,7 +1237,7 @@
 	position 0, 71, -5
 	random_time 0
 	rotation -0.406736, 0, 0, -0.913546
-	screen_space false
+	screen_space False
 	on_executed
 		´sound_bats´ (delay 0)
 ´bats´ MissionScriptElement 100054
@@ -1260,14 +1260,14 @@
 	position -2, 209, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´sound_bats´ ElementPlaySound 100059
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 71, 24
 	rotation -0.406736, 0, 0, -0.913546
 	sound_event bats_fly_away
-	use_instigator false
+	use_instigator False
 ´another_chance´ ElementLogicChance 100060
 	chance 75
 	position 1500, -700, 2.5
@@ -1275,38 +1275,38 @@
 	on_executed
 		´mannequins´ (delay 0)
 ´fail_again´ ElementLogicChanceTrigger 100061
+	elements
+ 		1 ´another_chance´
 	outcome fail
 	position 1600, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´another_chance´
 	on_executed
 		´bats´ (delay 0)
 ´test_set_chance´ ElementLogicChanceOperator 100066
+	elements
+ 		1 ´another_chance´
 	chance 0
 	operation set_chance
 	position 2300, 0, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´another_chance´
 ´teammate_comment_here_it_is´ ElementTeammateComment 100067
-	close_to_element false
+	close_to_element False
 	comment g14
 	position 0, 25, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100070
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_here_it_is
-	show_instigator false
+	show_instigator False
 ´lookat_bags´ ElementLookAtTrigger 100071
 	DISABLED
 	TRIGGER TIMES 1
 	distance 200
-	in_front true
+	in_front True
 	interval 0.1
 	position 0, 100, 0
 	rotation 0, 0, 1, 1.19209E-07
@@ -1314,34 +1314,34 @@
 	on_executed
 		´teammate_comment_here_it_is´ (delay 0)
 ´enable_lookat_bags´ ElementToggle 100072
+	elements
+ 		1 ´lookat_bags´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´lookat_bags´ DISABLED
 ´teammate_comment_got_one´ ElementTeammateComment 100033
 	TRIGGER TIMES 1
-	close_to_element false
+	close_to_element False
 	comment v05
 	position 1500, 300, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´teammate_comment_got_another´ ElementTeammateComment 100069
 	TRIGGER TIMES 1
-	close_to_element false
+	close_to_element False
 	comment v06
 	position 1500, 100, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´2´ ElementCounter 100073
 	counter_target 2
 	on_executed
 		´teammate_comment_got_another´ (delay 0)
 ´teammate_comment_its_done´ ElementTeammateComment 100075
-	close_to_element true
+	close_to_element True
 	comment v07
 	position 2, -27, 59
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

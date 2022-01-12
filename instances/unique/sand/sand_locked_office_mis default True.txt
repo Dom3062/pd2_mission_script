@@ -95,23 +95,23 @@
 	on_executed
 		´link_door_open´ (delay 0)
 ´func_nav_blocker_remove´ ElementNavObstacle 100046
-	operation remove
-	position 1100, -1200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/front (-52, -551, 0)
-´func_nav_blocker_remove_2´ ElementNavObstacle 100047
 	operation remove
-	position 1500, -1200, 0
+	position 1100, -1200, 0
 	rotation 0, 0, 0, -1
+´func_nav_blocker_remove_2´ ElementNavObstacle 100047
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/side (348, -351, 0)
+	operation remove
+	position 1500, -1200, 0
+	rotation 0, 0, 0, -1
 ´link_door_open´ MissionScriptElement 100048
 	on_executed
 		´func_nav_blocker_remove´ (delay 0)
@@ -163,16 +163,16 @@
 	position 1100, -600, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on both
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´gas_point_shape´
-	use_shape_element_ids
+	substitute_object 
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´gas_kill_zone´ (delay 0)
 ´gas_point_shape´ ElementShape 100038
@@ -188,11 +188,11 @@
 	rotation 0, 0, 0, -1
 	type gas
 ´gas_effect_stop´ ElementStopEffect 100041
+	elements
+ 		1 ´gas_effect_play´
 	operation fade_kill
 	position 1200, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´gas_effect_play´
 	on_executed
 		´gas_vent_sound_stop´ (delay 0)
 ´gas_effect_play´ ElementPlayEffect 100042
@@ -202,12 +202,12 @@
 	position 0, -200, 150
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´toggle_ON_damage_area´ ElementToggle 100043
+	elements
+ 		1 ´gas_damage_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´gas_damage_area´ DISABLED
 	on_executed
 		´gas_effect_play´ (delay 3)
 		´toggle_OFF_damage_area´ (delay 20-25)
@@ -215,10 +215,10 @@
 		´remove_WP´ (delay 0)
 		´output_execute_loud_door_SOs´ (delay 15)
 ´toggle_OFF_damage_area´ ElementToggle 100055
+	elements
+ 		1 ´gas_damage_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´gas_damage_area´ DISABLED
 	on_executed
 		´gas_effect_stop´ (delay 0)
 ´open_front_door´ ElementUnitSequence 100056
@@ -275,16 +275,16 @@
 	position 1500, 0, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_get_close_to_keycard´
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´output_keycard_found´ (delay 0)
 		´output_keycard_found_LOUD´ (delay 0) DISABLED
@@ -306,10 +306,10 @@
 		´toggle_ON_trigger_area´ (delay 0)
 		´keycard_area_WP´ (delay 30)
 ´toggle_ON_trigger_area´ ElementToggle 100083
+	elements
+ 		1 ´trigger_area_keycard_obj´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_keycard_obj´ DISABLED
 ´output_keycard_found´ ElementInstanceOutput 100084
 	event keycard_found
 ´police_called´ ElementGlobalEventTrigger 100088
@@ -321,10 +321,10 @@
 		´toggle_OFF_stuff´ (delay 0)
 		´link_loud_card_reader´ (delay 0)
 ´toggle_OFF_stuff´ ElementToggle 100089
+	elements
+ 		1 ´output_keycard_found´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´output_keycard_found´
 	on_executed
 		´toggle_ON_stuff´ (delay 0)
 ´output_gas_canister_placed´ ElementInstanceOutput 100090
@@ -333,61 +333,61 @@
 	DISABLED
 	event keycard_found_LOUD
 ´toggle_ON_stuff´ ElementToggle 100092
+	elements
+ 		1 ´output_keycard_found_LOUD´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´output_keycard_found_LOUD´ DISABLED
 ´input_disable_obj_triggers´ ElementInstanceInput 100093
 	event disable_obj_triggers
 	on_executed
 		´toggle_OFF_stuff_2´ (delay 0)
 ´toggle_OFF_stuff_2´ ElementToggle 100094
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´output_keycard_found_LOUD´ DISABLED
+ 		1 ´output_keycard_found_LOUD´ DISABLED
 		2 ´output_keycard_found´
 		3 ´trigger_area_keycard_obj´ DISABLED
 		4 ´keycard_area_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_keycard_WP´ (delay 0.2)
 ´backup_timer_open_door_HOPEFULLY_DELETE_LATER´ ElementRandom 100021
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´open_side_door´ (delay 0)
 		´open_front_door´ (delay 0)
 ´place_gas_WP´ ElementWaypoint 100020
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -200, -542, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100106
-	operation remove
 	elements
-		1 ´place_gas_WP´
+ 		1 ´place_gas_WP´
+	operation remove
 ´toggle_OFF_keycard_WP´ ElementToggle 100107
+	elements
+ 		1 ´keycard_area_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´keycard_area_WP´
 	on_executed
 		´remove_keycard_WP´ (delay 5)
 ´keycard_area_WP´ ElementWaypoint 100108
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 108, 50, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_keycard_WP´ ElementOperator 100109
-	operation remove
 	elements
-		1 ´keycard_area_WP´
+ 		1 ´keycard_area_WP´
+	operation remove
 ´keycard_taken´ ElementUnitSequenceTrigger 100071
 	TRIGGER TIMES 1
 	sequence_list
@@ -401,22 +401,22 @@
 	event keycard_taken
 ´keycard_pku_WP´ ElementWaypoint 100119
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 108, 50, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´toggle_OFF_WP´ ElementToggle 100120
+	elements
+ 		1 ´keycard_pku_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´keycard_pku_WP´
 	on_executed
 		´remove_WP_2´ (delay 0)
 ´remove_WP_2´ ElementOperator 100121
-	operation remove
 	elements
-		1 ´keycard_pku_WP´
+ 		1 ´keycard_pku_WP´
+	operation remove
 	on_executed
 		´output_keycard_taken´ (delay 0)
 ´gas_canister_placed´ ElementUnitSequenceTrigger 100032
@@ -444,9 +444,6 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´nav_add_blockers´ ElementNavObstacle 100014
-	operation add
-	position 1100, 200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -484,6 +481,9 @@
 			guis_id 9
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (150, 100, 0)
+	operation add
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
 ´input_kitchen_walls´ ElementInstanceInput 100115
 	event kitchen_walls
 	on_executed
@@ -535,26 +535,26 @@
 ´output_execute_loud_door_SOs´ ElementInstanceOutput 100015
 	event execute_loud_door_SOs
 ´teammate_comment_take_that´ ElementTeammateComment 100017
-	close_to_element true
+	close_to_element True
 	comment v46
 	position 225, -350, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´gas_vent_sound_start´ ElementPlaySound 100114
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -200, -542, 100
 	rotation 0, 0, 0, -1
 	sound_event sleeping_gas_into_vent
-	use_instigator false
+	use_instigator False
 ´gas_vent_sound_stop´ ElementPlaySound 100122
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -200, -542, 100
 	rotation 0, 0, 0, -1
 	sound_event sleeping_gas_into_vent_stop
-	use_instigator false
+	use_instigator False
 ´link_loud_card_reader´ MissionScriptElement 100126
 	on_executed
 		´seq_card_reader´ (delay 0)

@@ -10,13 +10,13 @@
 			time 0
 ´logic_toggle_001´ ElementToggle 100003
 	DISABLED
+	elements
+ 		1 ´fingerprint_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fingerprint_interaction´ DISABLED
 ´fingerprint_interaction´ ElementInteraction 100004
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -85, -30, 20
 	rotation 0, 0, 0, -1
@@ -200,11 +200,11 @@
 	on_executed
 		´hide_books´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100025
+	elements
+ 		1 ´enable_interaction´ DISABLED
+		2 ´safe_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_interaction´ DISABLED
-		2 ´safe_found´ DISABLED
 ´hide_books´ ElementUnitSequence 100026
 	position 200, 0, 2.5
 	rotation 0, 0, 0, -1
@@ -212,9 +212,9 @@
 	on_executed
 		´safe_found´ (delay 0) DISABLED
 ´point_debug_001´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string keysa interacted
-	show_instigator false
+	show_instigator False
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´enable_interaction´ ElementInstanceInput 100005
@@ -228,8 +228,8 @@
 	event safe_found
 ´interact_wp´ ElementWaypoint 100030
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 28, -36, 2.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -238,9 +238,9 @@
 	on_executed
 		´interact_wp´ (delay 0)
 ´logic_operator_001´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´interact_wp´
+ 		1 ´interact_wp´
+	operation remove
 ´´ ElementInstanceInput 100033
 	event disable_book_interaction
 	on_executed
@@ -248,10 +248,10 @@
 		´func_sequence_003´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100034
 	DISABLED
+	elements
+ 		1 ´fingerprint_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fingerprint_interaction´ DISABLED
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´show_books_002´ ElementUnitSequence 100015
@@ -336,7 +336,7 @@
 ´logic_random_001´ ElementRandom 100043
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´logic_link_001´ (delay 0)
 		´logic_link_002´ (delay 0)
@@ -376,7 +376,7 @@
 ´logic_random_002´ ElementRandom 100051
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_enable_unit_002´ (delay 0)
 		´func_enable_unit_001´ (delay 0)
@@ -427,7 +427,7 @@
 ´logic_random_003´ ElementRandom 100056
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´logic_link_005´ (delay 0)
 		´logic_link_006´ (delay 0)
@@ -441,7 +441,7 @@
 ´logic_random_004´ ElementRandom 100058
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_enable_unit_005´ (delay 0)
 		´func_enable_unit_006´ (delay 0)
@@ -629,12 +629,12 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´point_play_sound_001´ ElementPlaySound 100107
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 28, -36, 2.5
 	rotation 0, 0, 0, -1
 	sound_event books_impact_floor
-	use_instigator false
+	use_instigator False
 ´books_removed001´ ElementUnitSequenceTrigger 100108
 	TRIGGER TIMES 1
 	sequence_list

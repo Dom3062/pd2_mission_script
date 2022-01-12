@@ -47,15 +47,15 @@
 			time 0
 ´point_waypoint_defend´ ElementWaypoint 100011
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 39, 0, 28.0512
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´point_waypoint_defend´
+ 		1 ´point_waypoint_defend´
 		2 ´point_waypoint_002´ DISABLED
+	operation remove
 ´trigger_global_event_001´ ElementGlobalEventTrigger 100013
 	TRIGGER TIMES 1
 	global_event police_called
@@ -67,41 +67,41 @@
 		´logic_operator_002´ (delay 0)
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100014
+	elements
+ 		1 ´trigger_global_event_001´
+		2 ´logic_counter_filter_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_global_event_001´
-		2 ´logic_counter_filter_001´
 ´logic_counter_001´ ElementCounter 100015
 	counter_target 0
 ´logic_counter_filter_001´ ElementCounterFilter 100016
+	elements
+ 		1 ´logic_counter_001´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´logic_counter_001´
 	on_executed
 		´point_waypoint_defend´ (delay 0)
 ´logic_counter_operator_001´ ElementCounterOperator 100017
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´logic_counter_001´
+ 		1 ´logic_counter_001´
+	instance_var_names
+	operation set
 ´logic_counter_002´ ElementCounter 100018
 	counter_target 0
 ´logic_counter_operator_002´ ElementCounterOperator 100019
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´logic_counter_002´
+ 		1 ´logic_counter_002´
+	instance_var_names
+	operation set
 ´logic_counter_filter_002´ ElementCounterFilter 100020
+	elements
+ 		1 ´logic_counter_002´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´logic_counter_002´
 	on_executed
 		´point_waypoint_defend´ (delay 0)
 ´sterted_hacking´ ElementInstanceOutput 100021
@@ -109,39 +109,39 @@
 ´point_waypoint_002´ ElementWaypoint 100022
 	DISABLED
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 39, 0, 28.0512
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_002´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´point_waypoint_002´ DISABLED
+ 		1 ´point_waypoint_002´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100024
+	elements
+ 		1 ´point_waypoint_002´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_002´ DISABLED
 ´interupt_so´ ElementSpecialObjective 100000
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 10112
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -149,23 +149,23 @@
 	pose none
 	position 100, 0, -100
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 2000
 	search_position 100 0 -100
+	SO_access 10112
 	so_action e_so_pull_lever
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´start_interupt´ MissionScriptElement 100001
 	on_executed
 		´turn_on_interupt_entities´ (delay 0)
 ´turn_on_interupt_entities´ ElementToggle 100027
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´turn_on_and_execute_so´ DISABLED
+ 		1 ´turn_on_and_execute_so´ DISABLED
 		2 ´anim_complete´ DISABLED
 		3 ´anim_fail´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´loop´ (delay 0)
 ´loop´ MissionScriptElement 100028
@@ -173,45 +173,45 @@
 		´turn_on_and_execute_so´ (delay 0) DISABLED
 ´turn_on_and_execute_so´ ElementToggle 100029
 	DISABLED
+	elements
+ 		1 ´interupt_so´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interupt_so´ DISABLED
 	on_executed
 		´interupt_so´ (delay 0.1) DISABLED
 ´anim_complete´ ElementSpecialObjectiveTrigger 100030
 	DISABLED
+	elements
+ 		1 ´interupt_so´ DISABLED
 	event complete
 	position 800, 500, -85
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interupt_so´ DISABLED
 	on_executed
 		´turn_off_interupt_entities´ (delay 0)
 		´interupt_sequence´ (delay 0)
 ´anim_fail´ ElementSpecialObjectiveTrigger 100031
 	DISABLED
+	elements
+ 		1 ´interupt_so´ DISABLED
 	event fail
 	position 800, 700, -85
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interupt_so´ DISABLED
 	on_executed
 		´loop´ (delay 5)
 ´remove_so´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´interupt_so´ DISABLED
+ 		1 ´interupt_so´ DISABLED
+	operation remove
 	on_executed
 		´remove_defend_wp´ (delay 0)
 ´turn_off_interupt_entities´ ElementToggle 100033
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_complete´ DISABLED
+ 		1 ´anim_complete´ DISABLED
 		2 ´turn_on_and_execute_so´ DISABLED
 		3 ´anim_fail´ DISABLED
 		4 ´interupt_so´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_so´ (delay 0)
 ´interupt_sequence´ ElementUnitSequence 100034
@@ -239,23 +239,21 @@
 		´point_waypoint_defend´ (delay 0)
 ´point_waypoint_fix´ ElementWaypoint 100036
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position 39, 0, 28.0512
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_defend_wp´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´point_waypoint_defend´
+ 		1 ´point_waypoint_defend´
+	operation remove
 ´remove_fix_wp´ ElementOperator 100039
+	elements
+ 		1 ´point_waypoint_fix´
 	operation remove
-	elements
-		1 ´point_waypoint_fix´
 ´completed_toggle´ ElementToggle 100037
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interupt_so´ DISABLED
+ 		1 ´interupt_so´ DISABLED
 		2 ´start_interupt´
 		3 ´on_resumed´
 		4 ´remove_fix_wp´
@@ -268,6 +266,8 @@
 		11 ´turn_off_interupt_entities´
 		12 ´remove_so´
 		13 ´remove_defend_wp´
+	set_trigger_times -1
+	toggle off
 ´show_outline´ ElementInstanceInput 100040
 	event Show outline
 	on_executed
@@ -287,33 +287,33 @@
 		´toggle_on´ (delay 0)
 		´outlined´ (delay 0)
 ´point_debug_001´ ElementDebug 100005
-	as_subtitle false
+	as_subtitle False
 	debug_string SHOW HACKBOX OUTLINE
-	show_instigator false
+	show_instigator False
 ´trigger_outline´ ElementAreaReportTrigger 100007
 	amount 1
 	depth 1500
-	height 248,6
+	height 248.6
 	instigator player
 	instigator_name 
 	interval 0.1
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 1500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1500
 	on_executed
 		´show_outline_2´ (delay 0) (alternative enter)
 ´toggle_trigger_outline_off´ ElementToggle 100009
+	elements
+ 		1 ´trigger_outline´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_outline´
 	on_executed
 		´toggle_outline_off´ (delay 0)
 ´toggle_outline_off´ ElementUnitSequence 100010
@@ -381,35 +381,35 @@
 ´if_hacking´ ElementCounter 100025
 	counter_target 0
 ´is_hacking´ ElementCounterFilter 100042
+	elements
+ 		1 ´if_hacking´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´if_hacking´
 	on_executed
 		´power_off´ (delay 0)
 ´not_hacking´ ElementCounterFilter 100043
+	elements
+ 		1 ´if_hacking´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´if_hacking´
 	on_executed
 		´disable_interaction´ (delay 0)
 ´is_hacking_2´ ElementCounterFilter 100044
+	elements
+ 		1 ´if_hacking´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´if_hacking´
 	on_executed
 		´power_on´ (delay 0)
 ´not_hacking_2´ ElementCounterFilter 100045
+	elements
+ 		1 ´if_hacking´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´if_hacking´
 	on_executed
 		´enable_interaction´ (delay 0)
 ´power_off´ ElementUnitSequence 100048
@@ -437,16 +437,14 @@
 	on_executed
 		´toggle_off´ (delay 0)
 ´toggle_off´ ElementToggle 100053
+	elements
+ 		1 ´completed_toggle´
+		2 ´toggle_chair_on´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´completed_toggle´
-		2 ´toggle_chair_on´
 ´toggle_chair_on´ ElementToggle 100054
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interupt_so´ DISABLED
+ 		1 ´interupt_so´ DISABLED
 		2 ´start_interupt´
 		3 ´on_resumed´
 		4 ´remove_fix_wp´
@@ -459,12 +457,14 @@
 		11 ´turn_off_interupt_entities´
 		12 ´remove_so´
 		13 ´remove_defend_wp´
+	set_trigger_times -1
+	toggle on
 ´logic_counter_operator_003´ ElementCounterOperator 100055
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´if_hacking´
+ 		1 ´if_hacking´
+	instance_var_names
+	operation set
 ´enable_outline´ ElementUnitSequence 100056
 	DISABLED
 	position -300, 800, 0
@@ -488,10 +488,10 @@
 			notify_unit_sequence state_hide_outline
 			time 0
 ´toggle_on´ ElementToggle 100058
+	elements
+ 		1 ´disable_outline´ DISABLED
+		2 ´enable_outline´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´disable_outline´ DISABLED
-		2 ´enable_outline´ DISABLED
 ´outlined´ ElementInstanceOutput 100059
 	event outlined

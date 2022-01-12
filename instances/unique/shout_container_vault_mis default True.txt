@@ -32,7 +32,7 @@
 ´set_random_colour´ ElementRandom 100006
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´colour_001´ (delay 0)
 		´colour_002´ (delay 0)
@@ -150,23 +150,23 @@
 		´vent_wp´ (delay 2)
 		´discovered_front´ (delay 0)
 ´disable_discover_back´ ElementToggle 100019
+	elements
+ 		1 ´discovered_front_link´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´discovered_front_link´
 ´vent_wp´ ElementWaypoint 100020
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -300, 136
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_front_wp´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´vent_wp´
+ 		1 ´vent_wp´
+	operation remove
 ´acunit_wp´ ElementWaypoint 100023
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position 3, -257, 216
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -177,12 +177,12 @@
 ´cooler_temp´ ElementTimer 100028
 	timer 0
 ´crowbar_001´ ElementTimerOperator 100029
+	elements
+ 		1 ´cooler_temp´
 	operation add_time
 	position -1000, 100, 0
 	rotation 0, 0, 0, -1
 	time 0,1
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´subtract_001´ (delay 0)
 ´started_hacking_output´ ElementInstanceOutput 100030
@@ -226,15 +226,15 @@
 	position -1800, 400, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´entered_container_shape´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´entered_vault_link´ (delay 0)
 		´entered_vault_output´ (delay 0)
@@ -272,9 +272,9 @@
 			notify_unit_sequence state_interaction_enabled
 			time 0
 ´remove_acunit_wp´ ElementOperator 100042
-	operation remove
 	elements
-		1 ´acunit_wp´
+ 		1 ´acunit_wp´
+	operation remove
 ´entered_vault_output´ ElementInstanceOutput 100045
 	event entered_vault
 ´added_crowbar´ ElementUnitSequenceTrigger 100051
@@ -301,29 +301,29 @@
 			notify_unit_sequence state_interaction_enable
 			time 0
 ´crowbar_002´ ElementTimerOperator 100015
+	elements
+ 		1 ´cooler_temp´
 	operation add_time
 	position -1100, 100, 0
 	rotation 0, 0, 0, -1
 	time 0,2
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´subtract_020´ (delay 0)
 ´crowbar_003´ ElementTimerOperator 100024
+	elements
+ 		1 ´cooler_temp´
 	operation add_time
 	position -1200, 100, 0
 	rotation 0, 0, 0, -1
 	time 0,5
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´subtract_050´ (delay 0)
 ´crowbar_001_2´ ElementCounterFilter 100027
+	elements
+ 		1 ´number_of_crowbars´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´number_of_crowbars´
 	on_executed
 		´crowbar_001´ (delay 0)
 		´crowbar_1_inserted´ (delay 0)
@@ -331,25 +331,25 @@
 	counter_target 0
 ´add_crowbar´ ElementCounterOperator 100054
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´number_of_crowbars´
+ 		1 ´number_of_crowbars´
+	instance_var_names
+	operation add
 ´crowbar_002_2´ ElementCounterFilter 100025
+	elements
+ 		1 ´number_of_crowbars´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´number_of_crowbars´
 	on_executed
 		´crowbar_002´ (delay 0)
 		´crowbar_2_inserted´ (delay 0)
 ´crowbar_003_2´ ElementCounterFilter 100055
+	elements
+ 		1 ´number_of_crowbars´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´number_of_crowbars´
 	on_executed
 		´crowbar_003´ (delay 0)
 		´remove_acunit_wp´ (delay 0)
@@ -389,52 +389,52 @@
 		´overheat´ (delay 0)
 		´p17´ (delay 2)
 ´disable_loop´ ElementToggle 100062
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´tick´
+ 		1 ´tick´
 		2 ´re_tick´
 		3 ´turn_orange´
 		4 ´alternate_loop´
 		5 ´alternate_001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´turn_red´ (delay 0.05)
 ´counter_temp´ ElementCounter 100063
 	counter_target 500
 ´subtract_001´ ElementCounterOperator 100064
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´counter_temp´
+ 		1 ´counter_temp´
+	instance_var_names
+	operation subtract
 ´subtract_020´ ElementCounterOperator 100058
 	amount 2
-	operation subtract
-	instance_var_names
 	elements
-		1 ´counter_temp´
+ 		1 ´counter_temp´
+	instance_var_names
+	operation subtract
 ´subtract_050´ ElementCounterOperator 100059
 	amount 5
-	operation subtract
-	instance_var_names
 	elements
-		1 ´counter_temp´
+ 		1 ´counter_temp´
+	instance_var_names
+	operation subtract
 ´logic_counter_filter_001´ ElementCounterFilter 100065
 	TRIGGER TIMES 1
+	elements
+ 		1 ´counter_temp´
 	check_type less_or_equal
 	needed_to_execute all
 	value 200
-	elements
-		1 ´counter_temp´
 	on_executed
 		´turn_orange´ (delay 0)
 ´logic_counter_filter_002´ ElementCounterFilter 100066
 	TRIGGER TIMES 1
+	elements
+ 		1 ´counter_temp´
 	check_type less_or_equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´counter_temp´
 	on_executed
 		´acunit_complete_link´ (delay 0)
 		´turn_red´ (delay 0)
@@ -456,27 +456,27 @@
 			notify_unit_sequence state_interaction_disabled
 			time 0
 ´disable_open_front´ ElementToggle 100033
+	elements
+ 		1 ´open_front_doors_if_not_opened´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´open_front_doors_if_not_opened´
 ´enter_vault_wp´ ElementWaypoint 100067
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 49, 236, 136
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_enter_wp´ ElementOperator 100068
-	operation remove
 	elements
-		1 ´enter_vault_wp´
+ 		1 ´enter_vault_wp´
+	operation remove
 ´logic_counter_filter_003´ ElementCounterFilter 100035
 	TRIGGER TIMES 1
+	elements
+ 		1 ´counter_temp´
 	check_type less_or_equal
 	needed_to_execute all
 	value 300
-	elements
-		1 ´counter_temp´
 	on_executed
 		´turn_yellow´ (delay 0)
 ´turn_yellow´ ElementUnitSequence 100041
@@ -491,11 +491,11 @@
 			time 0
 ´logic_counter_filter_004´ ElementCounterFilter 100043
 	TRIGGER TIMES 1
+	elements
+ 		1 ´counter_temp´
 	check_type less_or_equal
 	needed_to_execute all
 	value 100
-	elements
-		1 ´counter_temp´
 	on_executed
 		´alternate_001´ (delay 0)
 ´alternate_001´ MissionScriptElement 100044
@@ -507,35 +507,35 @@
 		´turn_red´ (delay 0)
 		´alternate_001´ (delay 0.5)
 ´reduce_temp´ ElementTimerOperator 100047
+	elements
+ 		1 ´cooler_temp´
 	operation start
 	position -1700, 200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´reduce_temp_pause´ (delay 0.5)
 ´reduce_temp_pause´ ElementTimerOperator 100069
+	elements
+ 		1 ´cooler_temp´
 	operation pause
 	position -1700, 100, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´reduce_temp´ (delay 0.2)
 ´done_cooling´ ElementToggle 100070
+	elements
+ 		1 ´reduce_temp´
+		2 ´reduce_temp_pause´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´reduce_temp´
-		2 ´reduce_temp_pause´
 ´cooled_enough´ ElementTimerTrigger 100071
+	elements
+ 		1 ´cooler_temp´
 	position -1400, 0, 0
 	rotation 0, 0, 0, -1
 	time 20
-	elements
-		1 ´cooler_temp´
 	on_executed
 		´turn_blue´ (delay 0)
 		´done_cooling´ (delay 8.5-13)
@@ -569,7 +569,7 @@
 		´reduce_temp´ (delay 0)
 ´loot_wp´ ElementWaypoint 100078
 	icon pd2_loot
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -579,9 +579,9 @@
 		´remove_loot_wp´ (delay 0)
 		´g17´ (delay 0)
 ´remove_loot_wp´ ElementOperator 100081
-	operation remove
 	elements
-		1 ´loot_wp´
+ 		1 ´loot_wp´
+	operation remove
 ´pku_warhead´ ElementGlobalEventTrigger 100085
 	TRIGGER TIMES 8
 	global_event pku_warhead
@@ -594,15 +594,12 @@
 		´ovk_dw_2´ (delay 0)
 		´warhead_picked_up´ (delay 0)
 ´point_debug_002´ ElementDebug 100079
-	as_subtitle false
+	as_subtitle False
 	debug_string warhead plus 1
-	show_instigator false
+	show_instigator False
 ´picked_up_warhead_output´ ElementInstanceOutput 100082
 	event picked_up_warhead
 ´add_obstacles´ ElementNavObstacle 100050
-	operation add
-	position -200, 400, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -616,34 +613,37 @@
 			guis_id 3
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-99.9999, -150, 0)
-´remove_front_obstacle´ ElementNavObstacle 100083
-	operation remove
-	position -1500, 400, 0
+	operation add
+	position -200, 400, 0
 	rotation 0, 0, 0, -1
+´remove_front_obstacle´ ElementNavObstacle 100083
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, 250, 0)
+	operation remove
+	position -1500, 400, 0
+	rotation 0, 0, 0, -1
 ´discovered_front´ ElementInstanceOutput 100022
 	event discovered_front
 ´ovk_dw´ ElementFilter 100087
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -1900, 300, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -664,43 +664,43 @@
 	unit_ids
 		1 units/pd2_dlc_shoutout_raid/props/ind_prop_murky_box/ind_prop_murky_box/004 (62, 123, 25)
 ´no_ha_veha´ ElementFilter 100090
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -2850, 300, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
 		´counting_thefts_6´ (delay 0)
 ´ovk_dw_2´ ElementFilter 100091
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -2950, 300, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
@@ -754,14 +754,14 @@
 ´wait_wp´ ElementWaypoint 100101
 	TRIGGER TIMES 1
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wait_wp´ ElementOperator 100102
-	operation remove
 	elements
-		1 ´wait_wp´
+ 		1 ´wait_wp´
+	operation remove
 ´disable_light_units´ ElementDisableUnit 100113
 	position -125, 400, 2.5
 	rotation 0, 0, 0, -1
@@ -817,78 +817,78 @@
 		´magnet_lock´ (delay 0)
 		´overheat_stop´ (delay 0)
 ´magnet_lock´ ElementPlaySound 100118
-	append_prefix false
+	append_prefix False
 	position 0, 75, 100
 	rotation 0, 0, 0, -1
 	sound_event vault_container_magnet_lock_open
-	use_instigator false
+	use_instigator False
 	on_executed
 		´airlock´ (delay 1.5)
 ´airlock´ ElementPlaySound 100119
-	append_prefix false
+	append_prefix False
 	position 0, 75, 75
 	rotation 0, 0, 0, -1
 	sound_event vault_container_airlock_open
-	use_instigator false
+	use_instigator False
 ´overheat´ ElementPlaySound 100120
 	TRIGGER TIMES 1
-	append_prefix false
+	append_prefix False
 	position 0, -300, 177.5
 	rotation 0, 0, 0, -1
 	sound_event alarm_vault_container_overheat
-	use_instigator false
+	use_instigator False
 ´overheat_stop´ ElementPlaySound 100121
-	append_prefix false
+	append_prefix False
 	position -2175, 100, 2.5
 	rotation 0, 0, 0, -1
 	sound_event alarm_vault_container_overheat_off
-	use_instigator false
+	use_instigator False
 ´g14´ ElementTeammateComment 100109
-	close_to_element true
+	close_to_element True
 	comment g14
 	position 0, 25, 347.404
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´g16´ ElementTeammateComment 100110
-	close_to_element true
+	close_to_element True
 	comment g16
 	position 0, 75, 347.404
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´g17´ ElementTeammateComment 100111
-	close_to_element true
+	close_to_element True
 	comment g17
 	position 0, 125, 347.404
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´p17´ ElementTeammateComment 100112
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment p17
 	position 0, 175, 347.404
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´n_h_vh´ ElementFilter 100122
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -300, 475, 0
 	rotation 0, 0, 0, -1
 	on_executed

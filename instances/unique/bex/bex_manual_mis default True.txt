@@ -411,21 +411,21 @@
 	TRIGGER TIMES 1
 	amount 1
 	depth 515
-	height 637,2
+	height 637.2
 	instigator player
 	instigator_name 
 	interval 0.1
 	position -135, 0, 127.142
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 355
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 355
 	on_executed
 		´manual_found_output´ (delay 0)
 ´enable_wp_input´ ElementInstanceInput 100130
@@ -437,31 +437,31 @@
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100132
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´logic_link_001´ (delay 120)
 ´wp´ ElementWaypoint 100000
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 61
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100002
-	operation remove
 	elements
-		1 ´wp´
+ 		1 ´wp´
+	operation remove
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100003
+	elements
+ 		1 ´logic_link_001´
+		2 ´wp´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´logic_link_001´
-		2 ´wp´
 ´logic_link_001´ MissionScriptElement 100004
 	on_executed
 		´wp´ (delay 0)

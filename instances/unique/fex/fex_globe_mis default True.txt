@@ -1,23 +1,23 @@
 ´globe_taken´ ElementInstanceOutput 100003
 	event globe_taken
 ´toggle_OFF_globe_WP´ ElementToggle 100004
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´globe_WP´
+ 		1 ´globe_WP´
 		2 ´relay´
 		3 ´input_enable_globe_WP´
 		4 ´remove_globe_WP´
+	set_trigger_times -1
+	toggle off
 ´remove_globe_WP´ ElementOperator 100005
-	operation remove
 	elements
-		1 ´globe_WP´
+ 		1 ´globe_WP´
+	operation remove
 	on_executed
 		´toggle_OFF_globe_WP´ (delay 0)
 ´globe_WP´ ElementWaypoint 100006
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 40
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -103,12 +103,12 @@
 		´remove_globe_WP´ (delay 0)
 		´toggle_OFF_globe_WP´ (delay 0)
 ´globe_taken_SFX´ ElementPlaySound 100015
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, 0, 25
 	rotation 0, 0, 0, -1
 	sound_event globe_pick_up
-	use_instigator false
+	use_instigator False
 ´input_enable_half_circle_interaction´ ElementInstanceInput 100016
 	event enable_half_circle_interaction
 	on_executed

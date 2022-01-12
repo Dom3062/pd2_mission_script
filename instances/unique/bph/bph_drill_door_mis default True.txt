@@ -27,25 +27,25 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´waypoint_drill´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100010
-	operation add
-	position 500, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	operation add
+	position 500, 0, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´close_the_door´ (delay 0)
 ´drill_done´ ElementUnitSequenceTrigger 100002
@@ -72,14 +72,14 @@
 			notify_unit_sequence open_door
 			time 0
 ´remove_door_blocker´ ElementNavObstacle 100008
-	operation remove
-	position 1000, -700, -2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	operation remove
+	position 1000, -700, -2.5
+	rotation 0, 0, 0, -1
 ´drill_done_output´ ElementInstanceOutput 100009
 	event drill_done_output
 ´hide_drill´ ElementUnitSequence 100011
@@ -137,8 +137,8 @@
 			time 0
 ´waypoint_drill´ ElementWaypoint 100017
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 38, 4, 93
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -147,37 +147,37 @@
 	on_executed
 		´waypoint_drill´ (delay 0)
 ´remove_waypoint´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´waypoint_drill´
+ 		1 ´waypoint_drill´
+	operation remove
 ´toggle_waypoint_off´ ElementToggle 100020
+	elements
+ 		1 ´waypoint_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´waypoint_drill´
 ´comment_30_seconds´ ElementTeammateComment 100021
-	close_to_element false
+	close_to_element False
 	comment g63
 	position 700, -700, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´comment_drill_placed´ ElementTeammateComment 100022
-	close_to_element false
+	close_to_element False
 	comment g21
 	position 600, -700, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´comment_30_seconds´ (delay 1-2)
 ´comment_drill_done´ ElementTeammateComment 100023
-	close_to_element false
+	close_to_element False
 	comment v23
 	position 1000, -200, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´put_drill_on_door´ ElementInstanceOutput 100024
 	event put_drill_on_door
 ´player_opened_door_link´ MissionScriptElement 100028
@@ -187,7 +187,7 @@
 		´remove_all_waypoints´ (delay 1)
 ´interaction_open_door´ ElementInteraction 100026
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 38, 8, 108.958
 	rotation 0, 0, 0, -1
@@ -196,10 +196,10 @@
 		´player_opened_door_link´ (delay 0) (alternative interacted)
 		´remove_all_waypoints´ (delay 0) (alternative interacted)
 ´logic_toggle_001´ ElementToggle 100029
+	elements
+ 		1 ´interaction_open_door´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_open_door´ DISABLED
 ´disable_waypoint´ ElementInstanceInput 100031
 	event disable_waypoint
 	on_executed
@@ -207,43 +207,43 @@
 		´remove_waypoint´ (delay 0)
 		´remove_all_waypoints´ (delay 0)
 ´filter_normal´ ElementFilter 100030
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 500, -500, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
 		´set_hacktime_normal´ (delay 0)
 ´filter_ovk´ ElementFilter 100032
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 700, -500, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
@@ -261,43 +261,43 @@
 	on_executed
 		´comment_drill_placed´ (delay 0)
 ´filter_ovk_startup´ ElementFilter 100034
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 600, 0, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
 		´func_sequence_002´ (delay 0)
 ´filter_normal_startup´ ElementFilter 100035
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 600, 100, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
@@ -320,15 +320,15 @@
 			time 0
 ´waypoint_defend´ ElementWaypoint 100037
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 38, 4, 93
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint_defend´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´waypoint_defend´
+ 		1 ´waypoint_defend´
+	operation remove
 ´close_the_door´ ElementUnitSequence 100039
 	position 500, -100, 0
 	rotation 0, 0, 0, -1
@@ -346,7 +346,7 @@
 			notify_unit_sequence deactivate_door
 			time 0
 ´remove_all_waypoints´ ElementOperator 100040
-	operation remove
 	elements
-		1 ´waypoint_defend´
+ 		1 ´waypoint_defend´
 		2 ´waypoint_drill´
+	operation remove

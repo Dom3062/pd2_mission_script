@@ -1,7 +1,7 @@
 ´lock_wp´ ElementWaypoint 100001
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -9, 138
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -10,17 +10,17 @@
 	on_executed
 		´enable_interaction´ (delay 0)
 ´logic_operator_001´ ElementOperator 100003
-	operation remove
 	elements
-		1 ´lock_wp´
+ 		1 ´lock_wp´
+	operation remove
 	on_executed
 		´keys_used´ (delay 0)
 ´keys_used´ ElementInstanceOutput 100006
 	event keys_used
 ´logic_operator_002´ ElementOperator 100007
-	operation remove
 	elements
-		1 ´lock_wp´
+ 		1 ´lock_wp´
+	operation remove
 	on_executed
 		´disable_interaction_2´ (delay 0)
 ´disable_interaction´ ElementInstanceInput 100008
@@ -89,26 +89,26 @@
 	position 0, -219, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 504
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 504
 	on_executed
 		´lock_wp´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100014
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´logic_toggle_002´ ElementToggle 100015
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´leds_off´ ElementUnitSequence 100016
 	position 300, -400, 0
 	rotation 0, 0, 0, -1
@@ -142,15 +142,15 @@
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100009
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´lock_wp´
+ 		1 ´lock_wp´
 		2 ´trigger_area_001´ DISABLED
 		3 ´logic_toggle_001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´logic_operator_003´ (delay 0)
 ´logic_operator_003´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´lock_wp´
+ 		1 ´lock_wp´
+	operation remove

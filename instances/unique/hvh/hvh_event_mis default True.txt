@@ -116,30 +116,30 @@
 ´timer´ ElementTimer 100012
 	timer 0
 ´timer_start´ ElementTimerOperator 100013
+	elements
+ 		1 ´timer´
 	operation start
 	position 1200, 500, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´sound_countdown_loop_start´ (delay 0)
 		´change_timer_color001´ (delay 0)
 		´60´ (delay 0)
 ´timer_stop´ ElementTimerOperator 100014
+	elements
+ 		1 ´timer´
 	operation pause
 	position 1000, 600, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 ´timer_0´ ElementTimerTrigger 100015
 	DISABLED
+	elements
+ 		1 ´timer´
 	position 1200, 800, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´link_success´ (delay 0)
 ´link_success´ MissionScriptElement 100016
@@ -174,16 +174,16 @@
 	instigator_name 
 	interval 0.1
 	position 0, 0, 200
-	radius 329,8
+	radius 329.8
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_all_player_inside´ (delay 0)
 ´link_player_exited´ MissionScriptElement 100020
@@ -191,9 +191,9 @@
 		´link_fail´ (delay 0)
 		´OFF´ (delay 0)
 ´point_debug_001´ ElementDebug 100021
-	as_subtitle false
+	as_subtitle False
 	debug_string link_fail
-	show_instigator false
+	show_instigator False
 ´link_all_player_inside´ MissionScriptElement 100022
 	on_executed
 		´point_debug_002´ (delay 0)
@@ -204,29 +204,29 @@
 		´event_started´ (delay 0)
 		´enable_all_bags´ (delay 0)
 ´point_debug_002´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string all_player_inside
-	show_instigator false
+	show_instigator False
 ´WP_event´ ElementWaypoint 100024
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 250
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_event´ ElementToggle 100025
+	elements
+ 		1 ´area_all_player_entered´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´area_all_player_entered´ DISABLED
 	on_executed
 		´enable_event_2´ (delay 0)
 ´timer_add_time´ ElementTimerOperator 100026
+	elements
+ 		1 ´timer´
 	operation set_time
 	position 1200, 600, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer´
 ´enable_event_2´ ElementEnableUnit 100030
 	position 1200, 0, 2.5
 	rotation 0, 0, 0, -1
@@ -248,7 +248,7 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´link_start_effects´ MissionScriptElement 100032
 	on_executed
 		´effect_fog001´ (delay 0)
@@ -260,13 +260,13 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect_stop_fog´ ElementStopEffect 100035
+	elements
+ 		1 ´effect_fog001´
 	operation kill
 	position 1000, 550, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_fog001´
 ´feedback_level_shake´ ElementFeedback 100036
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -284,8 +284,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´effect_vehicle_explosion´ ElementPlayEffect 100037
 	base_time 0
 	effect effects/payday2/particles/explosions/vehicle_explosion
@@ -293,30 +293,30 @@
 	position 0, 67, 100
 	random_time 0
 	rotation 0.707107, 0, 0, -0.707107
-	screen_space false
+	screen_space False
 	on_executed
 		´sound_safe_open´ (delay 0)
 ´sound_safe_open´ ElementPlaySound 100039
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	sound_event flashbang_explode_sfx_player
-	use_instigator false
+	use_instigator False
 ´remove_WP_event´ ElementOperator 100040
-	operation remove
 	elements
-		1 ´WP_event´
+ 		1 ´WP_event´
+	operation remove
 ´sound_bell_ring´ ElementPlaySound 100042
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, 1600, 0
 	rotation 0, 0, 0.707107, -0.707107
 	sound_event bell_ring
-	use_instigator false
+	use_instigator False
 ´loot_bag_cloaker_cocaine001´ ElementLootBag 100043
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 0, 67, 125
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -327,7 +327,7 @@
 ´loot_bag_cloaker_gold001´ ElementLootBag 100044
 	DISABLED
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 50, 100
 	push_multiplier 0,5
 	rotation 8.92003E-08, 3.07148E-16, 0, -1
@@ -337,7 +337,7 @@
 ´loot_bag_cloaker_money001´ ElementLootBag 100045
 	DISABLED
 	carry_id cloaker_money
-	from_respawn false
+	from_respawn False
 	position 20, 67, 100
 	push_multiplier 0,5
 	rotation 1.17025E-07, -8.31513E-22, 7.10543E-15, -1
@@ -348,63 +348,61 @@
 	on_executed
 		´delay_3´ (delay 0.1)
 ´sound_win_boop001´ ElementPlaySound 100047
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, 1100, 0
 	rotation 0, 0, 0.707107, -0.707107
 	sound_event slot_machine_loose
-	use_instigator false
+	use_instigator False
 	on_executed
 		´sound_win_boop002´ (delay 0.25)
 ´sound_win_boop002´ ElementPlaySound 100048
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, 1150, 0
 	rotation 0, 0, 0.707107, -0.707107
 	sound_event slot_machine_loose
-	use_instigator false
+	use_instigator False
 	on_executed
 		´sound_win_boop003´ (delay 0.25)
 ´sound_win_boop003´ ElementPlaySound 100049
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, 1200, 0
 	rotation 0, 0, 0.707107, -0.707107
 	sound_event slot_machine_loose
-	use_instigator false
+	use_instigator False
 ´sound_countdown_loop_start´ ElementPlaySound 100050
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 225
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop
-	use_instigator false
+	use_instigator False
 ´sound_countdown_loop_stop´ ElementPlaySound 100051
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, 750, 0
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop_stop
-	use_instigator false
+	use_instigator False
 ´sound_power_down´ ElementPlaySound 100052
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 275
 	rotation 0, 0, 0, -1
 	sound_event plasma_drill_powerdown
-	use_instigator false
+	use_instigator False
 ´sound_overheat´ ElementPlaySound 100053
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	sound_event plasma_drill_overheat
-	use_instigator false
+	use_instigator False
 ´enable_area_player_left´ ElementToggle 100054
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´success´
+ 		1 ´success´
 		2 ´60´
 		3 ´50´
 		4 ´40´
@@ -415,6 +413,8 @@
 		9 ´shape_player_left´ DISABLED
 		10 ´empty´
 		11 ´link_fail´
+	set_trigger_times 1
+	toggle on
 ´change_timer_color001´ ElementUnitSequence 100041
 	position 1200, 550, 0
 	rotation 0, 0, 0, -1
@@ -502,15 +502,15 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 	on_executed
 		´effect_stop_heli_smoke´ (delay 2)
 ´effect_stop_heli_smoke´ ElementStopEffect 100057
+	elements
+ 		1 ´effect_heli_smoke001´
 	operation fade_kill
 	position 0, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_heli_smoke001´
 ´func_disable_unit_001´ ElementDisableUnit 100061
 	position 950, 650, 0
 	rotation 0, 0, 0, -1
@@ -524,10 +524,8 @@
 		7 units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (-50, 76, -100)
 		8 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/interior (50, 27.0001, -100)
 ´disable_event´ ElementToggle 100064
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´area_all_player_entered´ DISABLED
+ 		1 ´area_all_player_entered´ DISABLED
 		2 ´60´
 		3 ´50´
 		4 ´40´
@@ -535,26 +533,28 @@
 		6 ´20´
 		7 ´10´
 		8 ´fire´
+	set_trigger_times -1
+	toggle off
 ´obstacle_add´ ElementNavObstacle 100066
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
 	operation add
 	position 1200, -100, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
 	on_executed
 		´enable_event´ (delay 0)
 ´obstacle_remove´ ElementNavObstacle 100067
-	operation remove
-	position 850, 650, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	operation remove
+	position 850, 650, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´delay_2´ MissionScriptElement 100068
@@ -587,13 +587,13 @@
 			notify_unit_sequence hide
 			time 0
 ´disable_area_player_left´ ElementToggle 100060
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´shape_player_left´ DISABLED
+ 		1 ´shape_player_left´ DISABLED
 		2 ´empty´
 		3 ´link_fail´
 		4 ´leave´
+	set_trigger_times -1
+	toggle off
 ´input_event_allow_cocaine´ ElementInstanceInput 100071
 	event allow_cocaine
 	on_executed
@@ -610,10 +610,8 @@
 		´logic_toggle_003´ (delay 0)
 		´logic_toggle_006´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100074
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´loot_bag_cloaker_cocaine001´
+ 		1 ´loot_bag_cloaker_cocaine001´
 		2 ´loot_bag_cloaker_cocaine002´
 		3 ´loot_bag_cloaker_cocaine003´
 		4 ´loot_bag_cloaker_cocaine004´
@@ -628,27 +626,27 @@
 		13 ´loot_bag_cloaker_cocaine013´
 		14 ´loot_bag_cloaker_cocaine014´
 		15 ´loot_bag_cloaker_cocaine015´
+	set_trigger_times -1
+	toggle on
 ´logic_toggle_002´ ElementToggle 100075
+	elements
+ 		1 ´loot_bag_cloaker_money001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loot_bag_cloaker_money001´ DISABLED
 ´logic_toggle_003´ ElementToggle 100076
+	elements
+ 		1 ´loot_bag_cloaker_gold001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loot_bag_cloaker_gold001´ DISABLED
 ´logic_toggle_004´ ElementToggle 100077
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´loot_bag_cloaker_money001´ DISABLED
+ 		1 ´loot_bag_cloaker_money001´ DISABLED
 		2 ´loot_bag_cloaker_gold001´ DISABLED
-´logic_toggle_005´ ElementToggle 100078
 	set_trigger_times -1
 	toggle off
+´logic_toggle_005´ ElementToggle 100078
 	elements
-		1 ´loot_bag_cloaker_cocaine001´
+ 		1 ´loot_bag_cloaker_cocaine001´
 		2 ´loot_bag_cloaker_gold001´ DISABLED
 		3 ´loot_bag_cloaker_cocaine002´
 		4 ´loot_bag_cloaker_cocaine003´
@@ -664,11 +662,11 @@
 		14 ´loot_bag_cloaker_cocaine013´
 		15 ´loot_bag_cloaker_cocaine014´
 		16 ´loot_bag_cloaker_cocaine015´
-´logic_toggle_006´ ElementToggle 100079
 	set_trigger_times -1
 	toggle off
+´logic_toggle_006´ ElementToggle 100079
 	elements
-		1 ´loot_bag_cloaker_money001´ DISABLED
+ 		1 ´loot_bag_cloaker_money001´ DISABLED
 		2 ´loot_bag_cloaker_cocaine001´
 		3 ´loot_bag_cloaker_cocaine002´
 		4 ´loot_bag_cloaker_cocaine003´
@@ -684,10 +682,12 @@
 		14 ´loot_bag_cloaker_cocaine013´
 		15 ´loot_bag_cloaker_cocaine014´
 		16 ´loot_bag_cloaker_cocaine015´
+	set_trigger_times -1
+	toggle off
 ´9´ ElementRandom 100080
 	amount 4
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´loot_bag_cloaker_cocaine001´ (delay 0)
 		´loot_bag_cloaker_cocaine002´ (delay 0.2)
@@ -706,7 +706,7 @@
 		´loot_bag_cloaker_cocaine015´ (delay 5)
 ´loot_bag_cloaker_cocaine002´ ElementLootBag 100092
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position -17, 67, 125
 	push_multiplier 0,4
 	rotation -3.36807E-08, 0, 0, -1
@@ -716,7 +716,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine003´ ElementLootBag 100093
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 27, 64, 125
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -726,7 +726,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine004´ ElementLootBag 100094
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position -10, 71, 141
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -736,7 +736,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine005´ ElementLootBag 100095
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 16, 67, 141
 	push_multiplier 0,6
 	rotation -3.36807E-08, 0, 0, -1
@@ -746,7 +746,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine006´ ElementLootBag 100096
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 16, 86, 125
 	push_multiplier 1
 	rotation -3.36807E-08, 0, 0, -1
@@ -756,7 +756,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine007´ ElementLootBag 100097
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position -8, 83, 125
 	push_multiplier 0,8
 	rotation -3.36807E-08, 0, 0, -1
@@ -766,7 +766,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine008´ ElementLootBag 100098
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 4, 84, 115
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -776,7 +776,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine009´ ElementLootBag 100099
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 4, 84, 168
 	push_multiplier 0,7
 	rotation -3.36807E-08, 0, 0, -1
@@ -786,7 +786,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine010´ ElementLootBag 100100
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 18, 84, 168
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -799,7 +799,7 @@
 		´9´ (delay 0.1)
 ´loot_bag_cloaker_cocaine011´ ElementLootBag 100084
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 36, 75, 168
 	push_multiplier 1
 	rotation -3.36807E-08, 0, 0, -1
@@ -809,7 +809,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine012´ ElementLootBag 100090
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 13, 73, 168
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -819,7 +819,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine013´ ElementLootBag 100091
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position -14, 76, 168
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -829,7 +829,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine014´ ElementLootBag 100101
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 14, 104, 168
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -839,7 +839,7 @@
 		´success´ (delay 0)
 ´loot_bag_cloaker_cocaine015´ ElementLootBag 100102
 	carry_id cloaker_cocaine
-	from_respawn false
+	from_respawn False
 	position 14, 104, 84
 	push_multiplier 0,5
 	rotation -3.36807E-08, 0, 0, -1
@@ -850,11 +850,11 @@
 ´output_event_failed´ ElementInstanceOutput 100104
 	event event_failed
 ´env_effect_stop_fade_kill´ ElementStopEffect 100105
+	elements
+ 		1 ´effect_fog001´
 	operation fade_kill
 	position 1200, 1200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_fog001´
 ´output_success´ ElementInstanceOutput 100106
 	event success
 ´link´ MissionScriptElement 100082
@@ -871,10 +871,8 @@
 	on_executed
 		´link_player_exited´ (delay 0)
 ´OFF´ ElementToggle 100086
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´loot_bag_cloaker_cocaine001´
+ 		1 ´loot_bag_cloaker_cocaine001´
 		2 ´loot_bag_cloaker_cocaine002´
 		3 ´loot_bag_cloaker_cocaine003´
 		4 ´loot_bag_cloaker_cocaine004´
@@ -893,13 +891,13 @@
 		17 ´link_fail´
 		18 ´empty´
 		19 ´leave´
+	set_trigger_times -1
+	toggle off
 ´event_started´ ElementInstanceOutput 100063
 	event event_started
 ´enable_all_bags´ ElementToggle 100034
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´loot_bag_cloaker_cocaine001´
+ 		1 ´loot_bag_cloaker_cocaine001´
 		2 ´loot_bag_cloaker_cocaine002´
 		3 ´loot_bag_cloaker_cocaine003´
 		4 ´loot_bag_cloaker_cocaine004´
@@ -915,6 +913,8 @@
 		14 ´loot_bag_cloaker_cocaine014´
 		15 ´loot_bag_cloaker_cocaine015´
 		16 ´leave´
+	set_trigger_times -1
+	toggle on
 ´success´ MissionScriptElement 100062
 	TRIGGER TIMES 1
 	on_executed
@@ -987,20 +987,20 @@
 	position 950, 325, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´shape_player_left´ DISABLED
-	use_shape_element_ids
 	unit_ids
 		1 100121
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_fail´ (delay 0) (alternative leave)
 		´empty´ (delay 0) (alternative empty)
 ´ON´ ElementToggle 100019
+	elements
+ 		1 ´link_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_2´ DISABLED

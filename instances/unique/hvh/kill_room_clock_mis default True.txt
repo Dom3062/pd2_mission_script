@@ -44,14 +44,14 @@
 	position 23, -200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´kill_zone_finished´ (delay 0)
 		´kill_room_cross_line´ (delay 0)
@@ -65,18 +65,18 @@
 	on_executed
 		´On 1´ (delay 0)
 ´On 1´ ElementToggle 100025
+	elements
+ 		1 ´point_interaction_001´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´point_interaction_001´
 	on_executed
 		´disable_button´ (delay 0.25)
 		´interact_with_me´ (delay 0)
 ´On´ ElementToggle 100026
+	elements
+ 		1 ´trigger_area_001´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_001´
 ´1´ ElementUnitSequence 100030
 	position 950, 200, 0
 	rotation 0, 0, 0, -1
@@ -116,12 +116,12 @@
 	on_executed
 		´kill_timer_countdown_ready´ (delay 0)
 ´kill_timer_countdown_ready´ ElementPlaySound 100037
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 50, 200, 200
 	rotation 0, 0, 0, -1
 	sound_event kill_timer_countdown_ready
-	use_instigator false
+	use_instigator False
 ´red_lights´ ElementUnitSequence 100039
 	position 1100, 350, 0
 	rotation 0, 0, 0, -1
@@ -169,33 +169,33 @@
 		´disable_button_2´ (delay 0)
 		´interact_with_me´ (delay 0)
 ´kill_timer_countdown_start´ ElementPlaySound 100232
-	append_prefix true
-	interrupt true
+	append_prefix True
+	interrupt True
 	position 50, 200, 225
 	rotation 0, 0, 0, -1
 	sound_event kill_timer_countdown_start
-	use_instigator false
+	use_instigator False
 ´kill_room_cross_line´ ElementPlaySound 100233
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -200, -200, 125
 	rotation 0, 0, 0, -1
 	sound_event kill_room_cross_line
-	use_instigator false
+	use_instigator False
 ´kill_room_cross_line_record´ ElementPlaySound 100234
-	append_prefix true
-	interrupt true
+	append_prefix True
+	interrupt True
 	position -200, -200, 175
 	rotation 0, 0, 0, -1
 	sound_event kill_room_cross_line_record
-	use_instigator false
+	use_instigator False
 ´kill_door_open´ ElementPlaySound 100015
-	append_prefix true
-	interrupt true
+	append_prefix True
+	interrupt True
 	position 50, 200, 125
 	rotation 0, 0, 0, -1
 	sound_event kill_room_door
-	use_instigator false
+	use_instigator False
 ´on_kill_room_empty´ ElementInstanceInput 100036
 	event on_kill_room_empty
 	on_executed
@@ -235,21 +235,21 @@
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100005
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 300, -200, 400
 	rotation 0.5, 0.5, -0.5, -0.5
 	sound_event Play_killroom_highscore
-	use_instigator false
+	use_instigator False
 ´kill_room_cross_line_record001´ ElementPlaySound 100006
-	append_prefix true
-	interrupt true
+	append_prefix True
+	interrupt True
 	position -100, -200, 375
 	rotation 0.5, 0.5, -0.5, -0.5
 	sound_event Play_killroom_highscore
-	use_instigator false
+	use_instigator False
 ´point_interaction_001´ ElementInteraction 100259
-	host_only false
+	host_only False
 	override_timer -1
 	position 48, 364, 127
 	rotation 0, 0, 0, -1
@@ -318,10 +318,8 @@
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´off´ ElementToggle 100014
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_interaction_001´
+ 		1 ´point_interaction_001´
 		2 ´trigger_area_001´
 		3 ´AUTO START´
 		4 ´disable_button_2´
@@ -346,27 +344,29 @@
 		23 ´Start´
 		24 ´On´
 		25 ´door´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´disable_open´ (delay 1)
 ´interact_with_me´ ElementWaypoint 100016
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 40, 364, 141
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100017
-	operation remove
 	elements
-		1 ´interact_with_me´
+ 		1 ´interact_with_me´
+	operation remove
 ´logic_operator_001´ ElementOperator 100002
-	operation remove
 	elements
-		1 ´interact_with_me´
+ 		1 ´interact_with_me´
+	operation remove
 	on_executed
 		´Door Open´ (delay 0)
 ´On 1_2´ ElementToggle 100019
+	elements
+ 		1 ´Door Open´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´Door Open´

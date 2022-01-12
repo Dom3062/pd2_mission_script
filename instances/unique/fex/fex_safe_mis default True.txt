@@ -156,18 +156,18 @@
 ´hacking_timer´ ElementTimer 100015
 	timer 45
 ´start_timer´ ElementTimerOperator 100016
+	elements
+ 		1 ´hacking_timer´
 	operation start
 	position 1500, -200, 2.5
 	rotation 0, 0, 0, -1
 	time 45
-	elements
-		1 ´hacking_timer´
 ´timer_done_trigger´ ElementTimerTrigger 100017
+	elements
+ 		1 ´hacking_timer´
 	position 1700, -200, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´hacking_timer´
 	on_executed
 		´open_door´ (delay 0)
 		´hide_device´ (delay 0)
@@ -190,10 +190,8 @@
 	on_executed
 		´stop_timer´ (delay 0)
 ´toggle_OFF_stuff´ ElementToggle 100019
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_loud_safe_interaction´
+ 		1 ´input_enable_loud_safe_interaction´
 		2 ´enable_door_interaction_loud´
 		3 ´drill_completed´
 		4 ´drill_resumed´
@@ -203,68 +201,70 @@
 		8 ´interrupt_failed´ DISABLED
 		9 ´drill_placed´
 		10 ´SO_interrupt_drill_anim´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´start_timer´ (delay 0)
 ´stop_timer´ ElementTimerOperator 100021
+	elements
+ 		1 ´hacking_timer´
 	operation pause
 	position 1900, -200, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´hacking_timer´
 ´interact_WP´ ElementWaypoint 100020
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 15, 0, 187.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´repair_WP´ ElementWaypoint 100022
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 50, 0, 130.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´loot_WP´ ElementWaypoint 100023
 	icon pd2_loot
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -27, 0, 79.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´toggle_OFF_stuff´ (delay 0)
 ´remove_and_execute_WP´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´drill_WP´ (delay 0)
 ´remove_WP_2´ ElementOperator 100026
-	operation remove
 	elements
-		1 ´repair_WP´
+ 		1 ´repair_WP´
 		2 ´defend_WP´
 		3 ´drill_WP´
+	operation remove
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´remove_WP_3´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´loot_WP´
+ 		1 ´loot_WP´
+	operation remove
 	on_executed
 		´output_loot_taken´ (delay 0)
 ´output_loot_taken´ ElementInstanceOutput 100028
 	event loot_taken
 ´defend_WP´ ElementWaypoint 100029
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 50, 0, 130.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -285,22 +285,22 @@
 		´remove_drill_WP´ (delay 0)
 		´enable_and_action_interrupt´ (delay 0)
 ´remove_drill_WP´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´repair_WP´
+ 		1 ´repair_WP´
 		2 ´drill_WP´
+	operation remove
 ´point_debug_002´ ElementDebug 100000
-	as_subtitle false
+	as_subtitle False
 	debug_string completed_drill_interrupt
-	show_instigator false
+	show_instigator False
 ´interrupt_succesful´ ElementSpecialObjectiveTrigger 100034
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_interrupt_drill_anim´
 	event complete
 	position 200, -100, 0
 	rotation 0, 0, -2.38418E-07, -1
-	elements
-		1 ´SO_interrupt_drill_anim´
 	on_executed
 		´stop_interrupt´ (delay 0)
 		´point_debug_002´ (delay 0)
@@ -308,33 +308,34 @@
 ´interrupt_failed´ ElementSpecialObjectiveTrigger 100035
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_interrupt_drill´
+		2 ´SO_interrupt_drill_anim´
 	event fail
 	position 200, 100, 0
 	rotation 0, 0, -2.38418E-07, -1
-	elements
-		1 ´SO_interrupt_drill´
-		2 ´SO_interrupt_drill_anim´
 	on_executed
 		´enable_and_action_interrupt´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´SO_interrupt_drill´ ElementSpecialObjective 100036
 	TRIGGER TIMES 1
-	SO_access 8672
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´SO_interrupt_drill_anim´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style precise
@@ -342,49 +343,48 @@
 	pose none
 	position 125, -3.00024, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 4500
 	search_position 330,131 -66,562 2,5
+	SO_access 8672
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_interrupt_drill_anim´
 ´disable_interrupt´ ElementToggle 100037
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_interrupt_drill´
+ 		1 ´SO_interrupt_drill´
 		2 ´interrupt_succesful´ DISABLED
 		3 ´interrupt_failed´ DISABLED
 		4 ´SO_interrupt_drill_anim´
+	set_trigger_times -1
+	toggle off
 ´stop_interrupt´ MissionScriptElement 100038
 	on_executed
 		´remove_interrupt_SO´ (delay 0)
 		´disable_interrupt´ (delay 0)
 		´jam_drill´ (delay 0)
 ´remove_interrupt_SO´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´SO_interrupt_drill´
+ 		1 ´SO_interrupt_drill´
 		2 ´SO_interrupt_drill_anim´
+	operation remove
 ´point_debug_001´ ElementDebug 100040
-	as_subtitle false
+	as_subtitle False
 	debug_string failed_drill_interrupt
-	show_instigator false
+	show_instigator False
 ´enable_and_action_interrupt´ ElementToggle 100041
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´SO_interrupt_drill´
+ 		1 ´SO_interrupt_drill´
 		2 ´interrupt_succesful´ DISABLED
 		3 ´interrupt_failed´ DISABLED
 		4 ´SO_interrupt_drill_anim´
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´SO_interrupt_drill´ (delay 0.05)
 ´remove_defend_WP_and_execute_repair_WP´ ElementOperator 100042
-	operation remove
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
+	operation remove
 	on_executed
 		´repair_WP´ (delay 0)
 ´drill_resumed´ ElementUnitSequenceTrigger 100043
@@ -411,15 +411,15 @@
 	on_executed
 		´output_drill_jammed´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100045
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´drill_resumed´
+ 		1 ´drill_resumed´
 		2 ´SO_interrupt_drill´
 		3 ´interrupt_failed´ DISABLED
 		4 ´interrupt_succesful´ DISABLED
 		5 ´jam_drill´
 		6 ´SO_interrupt_drill_anim´
+	set_trigger_times -1
+	toggle off
 ´output_drill_resumed´ ElementInstanceOutput 100046
 	event drill_resumed
 ´output_drill_jammed´ ElementInstanceOutput 100047
@@ -428,22 +428,22 @@
 	event drill_placed
 ´SO_interrupt_drill_anim´ ElementSpecialObjective 100049
 	TRIGGER TIMES 1
-	SO_access 8672
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -451,16 +451,16 @@
 	pose none
 	position 125, -3.00024, 100
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 198,394 100,605 2,5
+	SO_access 8672
 	so_action e_so_interact_mid
 	trigger_on none
-	followup_elements
 ´drill_WP´ ElementWaypoint 100050
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 50, 0, 130.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -503,15 +503,15 @@
 	on_executed
 		´interact_WP´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100056
+	elements
+ 		1 ´enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_interaction´ DISABLED
 ´logic_toggle_004´ ElementToggle 100058
+	elements
+ 		1 ´enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_interaction´ DISABLED
 ´trigger_global_event_police´ ElementGlobalEventTrigger 100054
 	global_event police_called
 	position 200, -300, 0
@@ -519,22 +519,22 @@
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100060
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_global_event_ecm_off´
+ 		1 ´trigger_global_event_ecm_off´
 		2 ´trigger_global_event_ecm_on´
 		3 ´disable_interaction´
 		4 ´logic_toggle_004´
 		5 ´logic_toggle_003´
 		6 ´enable_interaction´ DISABLED
-´logic_toggle_005´ ElementToggle 100059
 	set_trigger_times -1
 	toggle off
+´logic_toggle_005´ ElementToggle 100059
 	elements
-		1 ´enable_door_interaction´
+ 		1 ´enable_door_interaction´
+	set_trigger_times -1
+	toggle off
 ´logic_toggle_006´ ElementToggle 100057
+	elements
+ 		1 ´enable_door_interaction´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_door_interaction´

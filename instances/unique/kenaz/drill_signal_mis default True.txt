@@ -58,14 +58,14 @@
 		´wp_ignite_fireworks_REMOVE´ (delay 0)
 ´wp_drop_fireworks´ ElementWaypoint 100003
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_ignite_fireworks_REMOVE´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´wp_ignite_fireworks´
+ 		1 ´wp_ignite_fireworks´
+	operation remove
 ´trg_fireworks´ ElementAreaTrigger 100015
 	DISABLED
 	TRIGGER TIMES 1
@@ -77,15 +77,15 @@
 	position 0, 0, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dtr_fireworks´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´fireworks_dropped´ (delay 0)
 ´dtr_fireworks´ ElementInstigatorRule 100016
@@ -95,10 +95,10 @@
 			carry_ids
 				1 fireworks
 ´trg_fireworks_ON´ ElementToggle 100017
+	elements
+ 		1 ´trg_fireworks´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_fireworks´ DISABLED
 ´fireworks_dropped´ MissionScriptElement 100018
 	on_executed
 		´output_fireworks_dropped´ (delay 0)
@@ -149,14 +149,14 @@
 			time 0
 ´wp_ignite_fireworks´ ElementWaypoint 100021
 	icon pd2_fire
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_drop_fireworks_REMOVE´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´wp_drop_fireworks´
+ 		1 ´wp_drop_fireworks´
+	operation remove
 ´fireworks_REMOVE´ ElementCarry 100010
 	operation remove
 	type_filter fireworks

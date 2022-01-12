@@ -70,22 +70,22 @@
 	counter_target 0
 ´operator_hack_on´ ElementCounterOperator 100015
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´b_comp_hack_on´
+ 		1 ´b_comp_hack_on´
+	instance_var_names
+	operation set
 ´operator_hack_off´ ElementCounterOperator 100016
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´b_comp_hack_on´
+ 		1 ´b_comp_hack_on´
+	instance_var_names
+	operation set
 ´filter_is_hacking´ ElementCounterFilter 100017
+	elements
+ 		1 ´b_comp_hack_on´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´b_comp_hack_on´
 	on_executed
 		´seq_pause_hack´ (delay 0)
 ´seq_pause_hack´ ElementUnitSequence 100019
@@ -102,18 +102,18 @@
 	counter_target 0
 ´operator_ecm_on´ ElementCounterOperator 100021
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´b_ecm_on´
+ 		1 ´b_ecm_on´
+	instance_var_names
+	operation set
 	on_executed
 		´filter_is_hacking´ (delay 0)
 ´operator_ecm_off´ ElementCounterOperator 100022
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´b_ecm_on´
+ 		1 ´b_ecm_on´
+	instance_var_names
+	operation set
 	on_executed
 		´filter_is_not_hacking´ (delay 0)
 ´instance_start_60s_hack´ ElementInstanceInput 100001
@@ -186,59 +186,59 @@
 ´instance_hack_done´ ElementInstanceOutput 100029
 	event hack_done
 ´filter_ecm_on´ ElementCounterFilter 100030
+	elements
+ 		1 ´b_ecm_on´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´b_ecm_on´
 	on_executed
 		´seq_pause_hack´ (delay 0)
 ´point_debug_001´ ElementDebug 100031
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_jammer_on
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100032
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_jammer_off
-	show_instigator false
+	show_instigator False
 ´filter_is_not_hacking´ ElementCounterFilter 100035
+	elements
+ 		1 ´b_comp_hack_on´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´b_comp_hack_on´
 	on_executed
 		´seq_enable_interact´ (delay 0)
 ´point_debug_003´ ElementDebug 100036
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack started
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100037
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack restarted
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100038
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack paused
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100039
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack done
-	show_instigator false
+	show_instigator False
 ´instance_activate_waypoint´ ElementInstanceInput 100033
 	event enable_waypoint
 	on_executed
 		´computer_WP´ (delay 0)
 ´computer_WP´ ElementWaypoint 100034
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 6, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -247,9 +247,9 @@
 	on_executed
 		´link_remove_waypoint´ (delay 0)
 ´remove_waypoint´ ElementOperator 100041
-	operation remove
 	elements
-		1 ´computer_WP´
+ 		1 ´computer_WP´
+	operation remove
 ´link_start_up´ MissionScriptElement 100045
 	EXECUTE ON STARTUP
 	on_executed
@@ -326,7 +326,7 @@
 ´logic_random_warehouse´ ElementRandom 100057
 	amount 3
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´link_Xwarehouse_A´ (delay 0) DISABLED
 		´link_Xwarehouse_B´ (delay 0) DISABLED
@@ -351,41 +351,41 @@
 		´show_companyX_warehouseC´ (delay 0)
 ´point_debug_007´ ElementDebug 100063
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = X warehouse A
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100064
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = X warehouse B
-	show_instigator false
+	show_instigator False
 ´point_debug_009´ ElementDebug 100065
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = X warehouse C
-	show_instigator false
+	show_instigator False
 ´link_remove_waypoint´ MissionScriptElement 100066
 	on_executed
 		´remove_waypoint´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100079
+	elements
+ 		1 ´link_Xwarehouse_A´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Xwarehouse_A´ DISABLED
 	on_executed
 		´output_hack_complete_XwarehouseA´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100080
+	elements
+ 		1 ´link_Xwarehouse_B´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Xwarehouse_B´ DISABLED
 	on_executed
 		´output_hack_complete_XwarehouseB´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100081
+	elements
+ 		1 ´link_Xwarehouse_C´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Xwarehouse_C´ DISABLED
 	on_executed
 		´output_hack_complete_XwarehouseC´ (delay 0)
 ´output_hack_complete_YwarehouseB´ ElementInstanceOutput 100082
@@ -394,9 +394,9 @@
 		´output_correct_warehouseB_found_on_computer´ (delay 0) DISABLED
 ´point_debug_010´ ElementDebug 100083
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Y warehouse B
-	show_instigator false
+	show_instigator False
 ´output_hack_complete_YwarehouseA´ ElementInstanceOutput 100084
 	event hack_complete_Ywarehouse_A
 	on_executed
@@ -407,35 +407,35 @@
 		´output_correct_warehouseC_found_on_computer´ (delay 0) DISABLED
 ´point_debug_011´ ElementDebug 100086
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Y warehouse C
-	show_instigator false
+	show_instigator False
 ´logic_toggle_004´ ElementToggle 100087
+	elements
+ 		1 ´link_Ywarehouse_B´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Ywarehouse_B´ DISABLED
 	on_executed
 		´output_hack_complete_YwarehouseB´ (delay 0)
 ´logic_toggle_005´ ElementToggle 100088
+	elements
+ 		1 ´link_Ywarehouse_A´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Ywarehouse_A´ DISABLED
 	on_executed
 		´output_hack_complete_YwarehouseA´ (delay 0)
 ´logic_toggle_006´ ElementToggle 100089
+	elements
+ 		1 ´link_Ywarehouse_C´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Ywarehouse_C´ DISABLED
 	on_executed
 		´output_hack_complete_YwarehouseC´ (delay 0)
 ´point_debug_012´ ElementDebug 100092
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Y warehouse A
-	show_instigator false
+	show_instigator False
 ´link_Ywarehouse_B´ MissionScriptElement 100093
 	DISABLED
 	on_executed
@@ -460,9 +460,9 @@
 		´output_correct_warehouseB_found_on_computer´ (delay 0) DISABLED
 ´point_debug_013´ ElementDebug 100098
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Z warehouse B
-	show_instigator false
+	show_instigator False
 ´output_hack_complete_ZwarehouseA´ ElementInstanceOutput 100099
 	event hack_complete_Zwarehouse_A 
 	on_executed
@@ -473,35 +473,35 @@
 		´output_correct_warehouseC_found_on_computer´ (delay 0) DISABLED
 ´point_debug_014´ ElementDebug 100101
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Z warehouse C
-	show_instigator false
+	show_instigator False
 ´logic_toggle_007´ ElementToggle 100102
+	elements
+ 		1 ´link_Zwarehouse_B´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Zwarehouse_B´ DISABLED
 	on_executed
 		´output_hack_complete_ZwarehouseB´ (delay 0)
 ´logic_toggle_008´ ElementToggle 100103
+	elements
+ 		1 ´link_Zwarehouse_A´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Zwarehouse_A´ DISABLED
 	on_executed
 		´output_hack_complete_ZwarehouseA´ (delay 0)
 ´logic_toggle_009´ ElementToggle 100104
+	elements
+ 		1 ´link_Zwarehouse_C´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_Zwarehouse_C´ DISABLED
 	on_executed
 		´output_hack_complete_ZwarehouseC´ (delay 0)
 ´point_debug_015´ ElementDebug 100107
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack = Z warehouse A
-	show_instigator false
+	show_instigator False
 ´link_Zwarehouse_B´ MissionScriptElement 100108
 	DISABLED
 	on_executed
@@ -521,57 +521,57 @@
 		´logic_toggle_009´ (delay 0)
 		´show_companyZ_warehouseC´ (delay 0)
 ´toggle_ON_ABC´ ElementToggle 100090
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Xwarehouse_A´ DISABLED
+ 		1 ´link_Xwarehouse_A´ DISABLED
 		2 ´link_Ywarehouse_B´ DISABLED
 		3 ´link_Zwarehouse_C´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_016´ (delay 0) DISABLED
 ´toggle_ON_ACB´ ElementToggle 100091
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Xwarehouse_A´ DISABLED
+ 		1 ´link_Xwarehouse_A´ DISABLED
 		2 ´link_Ywarehouse_C´ DISABLED
 		3 ´link_Zwarehouse_B´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_017´ (delay 0) DISABLED
 ´toggle_ON_BAC´ ElementToggle 100094
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Xwarehouse_B´ DISABLED
+ 		1 ´link_Xwarehouse_B´ DISABLED
 		2 ´link_Ywarehouse_A´ DISABLED
 		3 ´link_Zwarehouse_C´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_018´ (delay 0) DISABLED
 ´toggle_ON_BCA´ ElementToggle 100105
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Zwarehouse_B´ DISABLED
+ 		1 ´link_Zwarehouse_B´ DISABLED
 		2 ´link_Xwarehouse_C´ DISABLED
 		3 ´link_Ywarehouse_A´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_020´ (delay 0) DISABLED
 ´toggle_ON_CAB´ ElementToggle 100106
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Xwarehouse_B´ DISABLED
+ 		1 ´link_Xwarehouse_B´ DISABLED
 		2 ´link_Ywarehouse_C´ DISABLED
 		3 ´link_Zwarehouse_A´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_019´ (delay 0) DISABLED
 ´toggle_ON_CBA´ ElementToggle 100109
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_Xwarehouse_C´ DISABLED
+ 		1 ´link_Xwarehouse_C´ DISABLED
 		2 ´link_Ywarehouse_B´ DISABLED
 		3 ´link_Zwarehouse_A´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´point_debug_021´ (delay 0) DISABLED
 ´input_enable_CAB´ ElementInstanceInput 100112
@@ -642,27 +642,27 @@
 	on_executed
 		´toggle_OFF_computer_interaction´ (delay 0)
 ´logic_toggle_010´ ElementToggle 100123
+	elements
+ 		1 ´output_correct_warehouseC_found_on_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´output_correct_warehouseC_found_on_computer´ DISABLED
 ´logic_toggle_011´ ElementToggle 100124
+	elements
+ 		1 ´output_correct_warehouseB_found_on_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´output_correct_warehouseB_found_on_computer´ DISABLED
 ´logic_toggle_012´ ElementToggle 100125
+	elements
+ 		1 ´output_correct_warehouseA_found_on_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´output_correct_warehouseA_found_on_computer´ DISABLED
 ´toggle_OFF_computer_interaction´ ElementToggle 100126
 	TRIGGER TIMES 1
+	elements
+ 		1 ´input_enable_interaction´
+		2 ´seq_enable_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_enable_interaction´
-		2 ´seq_enable_interaction´
 	on_executed
 		´disable_interaction´ (delay 0)
 ´disable_interaction´ ElementUnitSequence 100127
@@ -677,34 +677,34 @@
 			time 0
 ´point_debug_016´ ElementDebug 100128
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ABC_ENABLED
-	show_instigator false
+	show_instigator False
 ´point_debug_017´ ElementDebug 100132
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ACB_ENABLED
-	show_instigator false
+	show_instigator False
 ´point_debug_018´ ElementDebug 100133
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string BAC_ENABLED
-	show_instigator false
+	show_instigator False
 ´point_debug_019´ ElementDebug 100134
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string CAB_ENABLED
-	show_instigator false
+	show_instigator False
 ´point_debug_020´ ElementDebug 100135
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string BCA_ENABLED
-	show_instigator false
+	show_instigator False
 ´point_debug_021´ ElementDebug 100136
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string CBA_ENABLED
-	show_instigator false
+	show_instigator False
 ´turn_on_screen´ ElementUnitSequence 100137
 	position -700, 1200, 0
 	rotation 0, 0, 0, -1

@@ -4,13 +4,13 @@
 	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -100, 1.52588E-05, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team mobster1
 	voice 0
-	orientation_elements
 	on_executed
 		´output_go_so_001´ (delay 0)
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100001
@@ -19,13 +19,13 @@
 	enemy units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 100, 1.52588E-05, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team mobster1
 	voice 0
-	orientation_elements
 	on_executed
 		´output_go_so_002´ (delay 0)
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100002
@@ -34,13 +34,13 @@
 	enemy units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 0, 1.52588E-05, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team mobster1
 	voice 0
-	orientation_elements
 	on_executed
 		´output_go_so_003´ (delay 0)
 ´spawn_enemies´ ElementInstanceInput 100005
@@ -61,13 +61,13 @@
 ´output_go_so_005´ ElementInstanceOutput 100016
 	event output_go_so_005
 ´ai_enemy_death´ ElementEnemyDummyTrigger 100017
+	elements
+ 		1 ´ai_spawn_enemy_002´
+		2 ´ai_spawn_enemy_003´
+		3 ´ai_spawn_enemy_001´
 	event death
 	position 400, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
-		2 ´ai_spawn_enemy_003´
-		3 ´ai_spawn_enemy_001´
 	on_executed
 		´respawn_1_unit´ (delay 0) DISABLED
 ´spawn´ MissionScriptElement 100025
@@ -79,72 +79,72 @@
 	on_executed
 		´disable_respawn_2´ (delay 0)
 ´disable_respawn_2´ ElementToggle 100028
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´spawn´
+ 		1 ´spawn´
 		2 ´respawn_1_unit´ DISABLED
 		3 ´ai_enemy_death´
+	set_trigger_times -1
+	toggle off
 ´enable_respawn´ ElementInstanceInput 100029
 	event enable_respawn
 	on_executed
 		´enable_respawn_2´ (delay 0)
 ´enable_respawn_2´ ElementToggle 100030
+	elements
+ 		1 ´spawn´
+		2 ´respawn_1_unit´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´spawn´
-		2 ´respawn_1_unit´ DISABLED
 ´func_instance_params_death´ ElementInstanceParams 100031
-	position -400, -100, 2.5
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value 0
 			type number
 			var_name var_death
+	position -400, -100, 2.5
+	rotation 0, 0, 0, -1
 ´func_instance_output_001´ ElementInstanceOutput 100033
 	event amount_param_dead
 ´choose_3_random´ ElementRandom 100018
 	amount 3
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ai_spawn_enemy_002´ (delay 0)
 		´ai_spawn_enemy_001´ (delay 0)
 		´ai_spawn_enemy_003´ (delay 0)
 ´check_death´ ElementEnemyDummyTrigger 100020
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event death
 	position -50, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´unit_died´ (delay 0)
 ´unit_died´ ElementInstanceOutput 100021
 	event unit_died
 ´enemy_died_001´ ElementEnemyDummyTrigger 100022
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event death
 	position -400, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´enemy_died_002´ ElementEnemyDummyTrigger 100023
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	event death
 	position -300, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´enemy_died_003´ ElementEnemyDummyTrigger 100026
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	event death
 	position -200, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_003´
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´enemy_died_004´ ElementEnemyDummyTrigger 100034
@@ -160,20 +160,20 @@
 	on_executed
 		´logic_toggle_005´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100036
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ai_spawn_enemy_001´
 ´logic_toggle_002´ ElementToggle 100037
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ai_spawn_enemy_002´
 ´logic_toggle_003´ ElementToggle 100038
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ai_spawn_enemy_003´
 ´logic_toggle_004´ ElementToggle 100039
 	set_trigger_times -1
 	toggle on
@@ -181,27 +181,27 @@
 	set_trigger_times -1
 	toggle on
 ´enemy_spawned_001´ ElementEnemyDummyTrigger 100006
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event spawn
 	position 250, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´logic_toggle_006´ (delay 5)
 ´enemy_spawned_002´ ElementEnemyDummyTrigger 100007
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	event spawn
 	position 350, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
 	on_executed
 		´logic_toggle_007´ (delay 5)
 ´enemy_spawned_003´ ElementEnemyDummyTrigger 100008
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	event spawn
 	position 450, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_003´
 	on_executed
 		´logic_toggle_008´ (delay 5)
 ´enemy_spawned_004´ ElementEnemyDummyTrigger 100009
@@ -217,20 +217,20 @@
 	on_executed
 		´logic_toggle_010´ (delay 5)
 ´logic_toggle_006´ ElementToggle 100024
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ai_spawn_enemy_001´
 ´logic_toggle_007´ ElementToggle 100041
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ai_spawn_enemy_002´
 ´logic_toggle_008´ ElementToggle 100042
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ai_spawn_enemy_003´
 ´logic_toggle_009´ ElementToggle 100043
 	set_trigger_times -1
 	toggle off
@@ -241,33 +241,33 @@
 	DISABLED
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ai_spawn_enemy_001´ (delay 0)
 		´ai_spawn_enemy_002´ (delay 0)
 		´ai_spawn_enemy_003´ (delay 0)
 ´enemy_spawned_006´ ElementEnemyDummyTrigger 100049
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event spawn
 	position 650, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´func_set_outline_001´ (delay 5)
 ´enemy_spawned_007´ ElementEnemyDummyTrigger 100050
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	event spawn
 	position 750, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
 	on_executed
 		´func_set_outline_002´ (delay 5)
 ´enemy_spawned_008´ ElementEnemyDummyTrigger 100051
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	event spawn
 	position 850, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_003´
 	on_executed
 		´func_set_outline_003´ (delay 5)
 ´enemy_spawned_009´ ElementEnemyDummyTrigger 100052
@@ -283,55 +283,55 @@
 	on_executed
 		´func_set_outline_004´ (delay 5)
 ´func_set_outline_001´ ElementSetOutline 100054
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	position 650, 250, 2.5
 	rotation 0, 0, 0, -1
-	set_outline true
-	elements
-		1 ´ai_spawn_enemy_001´
+	set_outline True
 ´func_set_outline_002´ ElementSetOutline 100055
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	position 750, 250, 2.5
 	rotation 0, 0, 0, -1
-	set_outline true
-	elements
-		1 ´ai_spawn_enemy_002´
+	set_outline True
 ´func_set_outline_003´ ElementSetOutline 100056
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	position 850, 250, 2.5
 	rotation 0, 0, 0, -1
-	set_outline true
-	elements
-		1 ´ai_spawn_enemy_003´
+	set_outline True
 ´func_set_outline_004´ ElementSetOutline 100057
 	position 650, 150, 2.5
 	rotation 0, 0, 0, -1
-	set_outline true
+	set_outline True
 ´func_set_outline_005´ ElementSetOutline 100058
 	position 750, 150, 2.5
 	rotation 0, 0, 0, -1
-	set_outline true
+	set_outline True
 ´enemy_died_006´ ElementEnemyDummyTrigger 100059
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event death
 	position 625, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´func_set_outline_006´ (delay 0)
 		´logic_toggle_011´ (delay 0)
 ´enemy_died_007´ ElementEnemyDummyTrigger 100060
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	event death
 	position 725, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
 	on_executed
 		´func_set_outline_007´ (delay 0)
 		´logic_toggle_013´ (delay 0)
 ´enemy_died_008´ ElementEnemyDummyTrigger 100061
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	event death
 	position 825, -250, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_003´
 	on_executed
 		´func_set_outline_008´ (delay 0)
 		´logic_toggle_015´ (delay 0)
@@ -350,69 +350,69 @@
 		´func_set_outline_009´ (delay 0)
 		´logic_toggle_012´ (delay 0)
 ´func_set_outline_006´ ElementSetOutline 100064
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	position 625, -300, 2.5
 	rotation 0, 0, 0, -1
-	set_outline false
-	elements
-		1 ´ai_spawn_enemy_001´
+	set_outline False
 ´func_set_outline_007´ ElementSetOutline 100065
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	position 725, -300, 2.5
 	rotation 0, 0, 0, -1
-	set_outline false
-	elements
-		1 ´ai_spawn_enemy_002´
+	set_outline False
 ´func_set_outline_008´ ElementSetOutline 100066
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	position 825, -300, 2.5
 	rotation 0, 0, 0, -1
-	set_outline false
-	elements
-		1 ´ai_spawn_enemy_003´
+	set_outline False
 ´func_set_outline_009´ ElementSetOutline 100067
 	position 625, -400, 2.5
 	rotation 0, 0, 0, -1
-	set_outline false
+	set_outline False
 ´func_set_outline_010´ ElementSetOutline 100068
 	position 725, -400, 2.5
 	rotation 0, 0, 0, -1
-	set_outline false
+	set_outline False
 ´logic_toggle_011´ ElementToggle 100069
+	elements
+ 		1 ´func_set_outline_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_set_outline_001´
 ´logic_toggle_012´ ElementToggle 100070
+	elements
+ 		1 ´func_set_outline_009´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_set_outline_009´
 ´logic_toggle_013´ ElementToggle 100071
+	elements
+ 		1 ´func_set_outline_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_set_outline_002´
 ´logic_toggle_014´ ElementToggle 100072
+	elements
+ 		1 ´func_set_outline_010´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_set_outline_010´
 ´logic_toggle_015´ ElementToggle 100073
+	elements
+ 		1 ´func_set_outline_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_set_outline_003´
 ´check_death001´ ElementEnemyDummyTrigger 100003
+	elements
+ 		1 ´ai_spawn_enemy_003´
 	event death
 	position 0, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_003´
 	on_executed
 		´unit_died´ (delay 0)
 ´check_death002´ ElementEnemyDummyTrigger 100004
+	elements
+ 		1 ´ai_spawn_enemy_002´
 	event death
 	position 50, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_002´
 	on_executed
 		´unit_died´ (delay 0)

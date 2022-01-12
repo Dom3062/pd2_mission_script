@@ -35,14 +35,14 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´show_waypoints_thermite´ (delay 0)
 ´give_c4´ ElementEquipment 100013
@@ -56,24 +56,24 @@
 		´c4_placed_operator´ (delay 0)
 		´remove_c4_waypoint_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string placed all c4
-	show_instigator false
+	show_instigator False
 ´amount_of_c4s´ ElementCounter 100016
 	counter_target 0
 ´c4_placed_operator´ ElementCounterOperator 100017
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´amount_of_c4s´
+ 		1 ´amount_of_c4s´
+	instance_var_names
+	operation add
 	on_executed
 		´point_debug_002´ (delay 0)
 ´check_all_c4´ ElementCounterTrigger 100018
 	amount 3
-	trigger_type value
 	elements
-		1 ´amount_of_c4s´
+ 		1 ´amount_of_c4s´
+	trigger_type value
 	on_executed
 		´point_debug_001´ (delay 0)
 		´all_c4_placed´ (delay 0)
@@ -81,9 +81,9 @@
 ´all_c4_placed´ ElementInstanceOutput 100019
 	event all_c4_placed
 ´point_debug_002´ ElementDebug 100020
-	as_subtitle false
+	as_subtitle False
 	debug_string placed c4
-	show_instigator false
+	show_instigator False
 ´trigger_explosion´ ElementUnitSequence 100021
 	position 800, -600, 0
 	rotation 0, 0, 0, -1
@@ -99,8 +99,8 @@
 	unit_ids
 ´waypoint_c4_001´ ElementWaypoint 100002
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -2, -3, -8
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -117,9 +117,9 @@
 ´remove_c4_waypoint_001´ ElementOperator 100032
 	operation remove
 ´remove_c4_waypoint_002´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´waypoint_c4_001´
+ 		1 ´waypoint_c4_001´
+	operation remove
 ´remove_c4_waypoint_003´ ElementOperator 100034
 	operation remove
 ´show_waypoints_c4´ MissionScriptElement 100029
@@ -134,8 +134,8 @@
 		´waypoint_thermite´ (delay 0)
 ´waypoint_thermite´ ElementWaypoint 100037
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0.647995, -17.535
 	rotation -0.707107, 0, 0, -0.707107
 	text_id debug_none
@@ -150,9 +150,9 @@
 		´remove_thermite_waypoint´ (delay 0)
 		´start_thermite´ (delay 0)
 ´remove_thermite_waypoint´ ElementOperator 100046
-	operation remove
 	elements
-		1 ´waypoint_thermite´
+ 		1 ´waypoint_thermite´
+	operation remove
 ´thermite_effect´ ElementPlayEffect 100048
 	base_time 0
 	effect effects/payday2/particles/fire/thermite_infinite
@@ -160,7 +160,7 @@
 	position 0, 0, -17.535
 	random_time 0
 	rotation 1, 0, 0, -0
-	screen_space false
+	screen_space False
 ´start_thermite´ MissionScriptElement 100050
 	on_executed
 		´thermite_effect´ (delay 0)
@@ -169,11 +169,11 @@
 	on_executed
 		´stop_effect´ (delay 0)
 ´stop_effect´ ElementStopEffect 100053
+	elements
+ 		1 ´thermite_effect´
 	operation fade_kill
 	position 1500, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´thermite_effect´
 ´placed_thermite´ ElementInstanceOutput 100057
 	event placed_thermite
 ´stop_thermite_2´ ElementInstanceInput 100062
@@ -193,7 +193,7 @@
 		´func_disable_unit_002´ (delay 0)
 ´interaction_open_grate´ ElementInteraction 100008
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 1
 	position 0, 0, 0
 	rotation 0, 0, 0, -1

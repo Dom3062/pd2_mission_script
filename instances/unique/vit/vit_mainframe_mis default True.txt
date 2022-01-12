@@ -71,8 +71,8 @@
 ´WP_interact´ ElementWaypoint 100012
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -31, 106
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -104,9 +104,9 @@
 	on_executed
 		´seq_first_hack´ (delay 11)
 ´remove_WP_computer´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´WP_computer´
+ 		1 ´WP_computer´
+	operation remove
 ´seq_first_hack´ ElementUnitSequence 100017
 	position 1000, -200, 0
 	rotation 0, 0, 0, -1
@@ -133,36 +133,37 @@
 		´logic_link_001´ (delay 0)
 ´WP_computer´ ElementWaypoint 100018
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 1, 165
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_interact´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´WP_interact´ DISABLED
+ 		1 ´WP_interact´ DISABLED
+	operation remove
 ´start_interrupt´ MissionScriptElement 100020
 	on_executed
 		´SO_interrupt_none´ (delay 0) DISABLED
 ´SO_interrupt_none´ ElementSpecialObjective 100021
 	DISABLED
-	SO_access 480
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´SO_interact_mid´ DISABLED
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -170,73 +171,72 @@
 	pose none
 	position 0, -100, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 2000
 	search_position 0 -100 0
+	SO_access 480
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_interact_mid´ DISABLED
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100022
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 0.00445557, 1700, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100023
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 0.00445557, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100024
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 0.00445557, 700, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´delay_interrupt´ MissionScriptElement 100025
 	on_executed
 		´start_interrupt´ (delay 10-13)
 ´SO_interact_mid´ ElementSpecialObjective 100026
 	DISABLED
-	SO_access 480
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -244,27 +244,27 @@
 	pose none
 	position 0, -100, 100
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 0 -100 0
+	SO_access 480
 	so_action e_so_interact_mid
 	trigger_on none
-	followup_elements
 ´fail´ ElementSpecialObjectiveTrigger 100027
+	elements
+ 		1 ´SO_interrupt_none´ DISABLED
+		2 ´SO_interact_mid´ DISABLED
 	event fail
 	position 1300, 300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt_none´ DISABLED
-		2 ´SO_interact_mid´ DISABLED
 	on_executed
 		´delay_interrupt´ (delay 0)
 ´complete´ ElementSpecialObjectiveTrigger 100028
+	elements
+ 		1 ´SO_interact_mid´ DISABLED
 	event complete
 	position 1400, 300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interact_mid´ DISABLED
 	on_executed
 		´enemy_interrupted´ (delay 0)
 ´enemy_interrupted´ MissionScriptElement 100029
@@ -275,19 +275,19 @@
 		´WP_fix´ (delay 1)
 		´remove_WP_computer´ (delay 0)
 ´disable_interrupt_SOs´ ElementToggle 100030
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_interrupt_none´ DISABLED
+ 		1 ´SO_interrupt_none´ DISABLED
 		2 ´SO_interact_mid´ DISABLED
 		3 ´complete´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_interrupt_SOs´ (delay 0)
 ´remove_interrupt_SOs´ ElementOperator 100031
-	operation remove
 	elements
-		1 ´SO_interrupt_none´ DISABLED
+ 		1 ´SO_interrupt_none´ DISABLED
 		2 ´SO_interact_mid´ DISABLED
+	operation remove
 	on_executed
 		´output_computer_got_interrupted´ (delay 0)
 ´seq_interrupt´ ElementUnitSequence 100032
@@ -335,20 +335,20 @@
 		´seq_resume004´ (delay 0) DISABLED
 ´WP_fix´ ElementWaypoint 100036
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 1, 165
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_fix´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´WP_fix´
+ 		1 ´WP_fix´
+	operation remove
 ´enable´ ElementToggle 100038
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed_computer´ DISABLED
 ´hack_1_done´ ElementUnitSequenceTrigger 100039
 	TRIGGER TIMES 1
 	sequence_list
@@ -404,12 +404,12 @@
 ´output_hack_3_done´ ElementInstanceOutput 100050
 	event hack_3_done
 ´enable_interrupt_again´ ElementToggle 100051
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´SO_interrupt_none´ DISABLED
+ 		1 ´SO_interrupt_none´ DISABLED
 		2 ´SO_interact_mid´ DISABLED
 		3 ´complete´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´enable_2´ (delay 0)
 		´point_debug_006´ (delay 0)
@@ -522,18 +522,18 @@
 		´remove_interrupt_SOs´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100061
 	DISABLED
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fixed_computer´ DISABLED
 	on_executed
 		´logic_toggle_002´ (delay 0) DISABLED
 ´logic_toggle_002´ ElementToggle 100062
 	DISABLED
+	elements
+ 		1 ´keyboard_interacted´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keyboard_interacted´ DISABLED
 ´fixed_computer001´ ElementUnitSequenceTrigger 100063
 	DISABLED
 	sequence_list
@@ -827,43 +827,43 @@
 	on_executed
 		´func_disable_unit_002´ (delay 0) DISABLED
 ´logic_toggle_003´ ElementToggle 100080
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´seq_resume003´ DISABLED
+ 		1 ´seq_resume003´ DISABLED
 		2 ´second_hack_started_output´ DISABLED
 		3 ´hack_start_002´ DISABLED
-´logic_toggle_004´ ElementToggle 100081
 	set_trigger_times -1
 	toggle on
+´logic_toggle_004´ ElementToggle 100081
 	elements
-		1 ´seq_resume004´ DISABLED
+ 		1 ´seq_resume004´ DISABLED
 		2 ´third_hack_started_output´ DISABLED
 		3 ´hack_start_003´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´logic_toggle_005´ ElementToggle 100082
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_resume004´ DISABLED
+ 		1 ´seq_resume004´ DISABLED
 		2 ´hack_start_003´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´logic_toggle_006´ ElementToggle 100083
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_resume003´ DISABLED
+ 		1 ´seq_resume003´ DISABLED
 		2 ´hack_start_002´ DISABLED
-´logic_toggle_007´ ElementToggle 100084
 	set_trigger_times -1
 	toggle off
+´logic_toggle_007´ ElementToggle 100084
 	elements
-		1 ´seq_resume002´
+ 		1 ´seq_resume002´
 		2 ´hack_start_001´
+	set_trigger_times -1
+	toggle off
 ´logic_operator_001´ ElementOperator 100085
 	DISABLED
-	operation remove
 	elements
-		1 ´WP_computer´
+ 		1 ´WP_computer´
 		2 ´WP_fix´
+	operation remove
 	on_executed
 		´logic_toggle_001´ (delay 0) DISABLED
 ´keyboard_interacted´ ElementUnitSequenceTrigger 100086
@@ -884,47 +884,47 @@
 	on_executed
 		´WP_fix´ (delay 0)
 ´logic_toggle_008´ ElementToggle 100087
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fixed_computer´ DISABLED
 	on_executed
 		´logic_toggle_009´ (delay 0)
 ´logic_toggle_009´ ElementToggle 100089
+	elements
+ 		1 ´fixed_computer001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed_computer001´ DISABLED
 ´logic_toggle_010´ ElementToggle 100090
+	elements
+ 		1 ´fixed_computer001´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fixed_computer001´ DISABLED
 	on_executed
 		´bluescreen_rebooted_output´ (delay 0)
 ´logic_toggle_011´ ElementToggle 100091
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed_computer´ DISABLED
 	on_executed
 		´logic_toggle_010´ (delay 0)
 ´logic_toggle_012´ ElementToggle 100092
 	DISABLED
+	elements
+ 		1 ´keyboard_interacted´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´keyboard_interacted´ DISABLED
 	on_executed
 		´seq_resume´ (delay 0)
 		´logic_operator_002´ (delay 0) DISABLED
 ´logic_toggle_013´ ElementToggle 100093
 	DISABLED
+	elements
+ 		1 ´keyboard_interacted´ DISABLED
+		2 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keyboard_interacted´ DISABLED
-		2 ´fixed_computer´ DISABLED
 	on_executed
 		´logic_toggle_012´ (delay 0) DISABLED
 ´first_hack_done´ ElementUnitSequenceTrigger 100094
@@ -999,20 +999,20 @@
 	on_executed
 		´WP_fix´ (delay 0)
 ´logic_toggle_014´ ElementToggle 100100
+	elements
+ 		1 ´restarted_hack´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´restarted_hack´ DISABLED
 ´logic_toggle_015´ ElementToggle 100101
+	elements
+ 		1 ´restarted_hack´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´restarted_hack´ DISABLED
 ´logic_toggle_016´ ElementToggle 100102
+	elements
+ 		1 ´next_hack_started´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´next_hack_started´ DISABLED
 ´next_hack_started´ ElementUnitSequenceTrigger 100103
 	DISABLED
 	TRIGGER TIMES 1
@@ -1038,20 +1038,20 @@
 	on_executed
 		´logic_toggle_018´ (delay 0)
 ´logic_toggle_017´ ElementToggle 100106
+	elements
+ 		1 ´second_hack_started_output´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´second_hack_started_output´ DISABLED
 ´logic_toggle_018´ ElementToggle 100107
+	elements
+ 		1 ´third_hack_started_output´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´third_hack_started_output´ DISABLED
 ´logic_operator_002´ ElementOperator 100108
 	DISABLED
-	operation remove
 	elements
-		1 ´WP_fix´
+ 		1 ´WP_fix´
+	operation remove
 	on_executed
 		´WP_computer´ (delay 0)
 ´os_update_input´ ElementInstanceInput 100156
@@ -1098,10 +1098,10 @@
 		´logic_toggle_019´ (delay 0)
 		´WP_fix´ (delay 0)
 ´logic_toggle_019´ ElementToggle 100161
+	elements
+ 		1 ´update_aborted´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´update_aborted´ DISABLED
 	on_executed
 		´logic_toggle_022´ (delay 0)
 ´os_updated_output´ ElementInstanceOutput 100162
@@ -1125,17 +1125,17 @@
 		´seq_resume004´ (delay 0) DISABLED
 		´remove_WP_fix´ (delay 0)
 ´logic_toggle_020´ ElementToggle 100164
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fixed_computer´ DISABLED
 	on_executed
 		´logic_toggle_021´ (delay 0)
 ´logic_toggle_021´ ElementToggle 100165
+	elements
+ 		1 ´update_aborted´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´update_aborted´ DISABLED
 ´update_aborted´ ElementUnitSequenceTrigger 100166
 	DISABLED
 	TRIGGER TIMES 1
@@ -1153,30 +1153,30 @@
 		´remove_WP_fix´ (delay 0)
 		´updated_aborted_output´ (delay 0)
 ´logic_toggle_022´ ElementToggle 100167
+	elements
+ 		1 ´update finished´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´update finished´ DISABLED
 ´logic_toggle_023´ ElementToggle 100168
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed_computer´ DISABLED
 	on_executed
 		´os_updated_output´ (delay 0)
 		´link´ (delay 0)
 		´enable_interrupt_again´ (delay 0)
 ´logic_toggle_024´ ElementToggle 100169
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´os_updating´
+ 		1 ´os_updating´
 		2 ´enable_interaction_2´
 		3 ´logic_toggle_022´
 		4 ´logic_toggle_019´
 		5 ´logic_toggle_023´
 		6 ´os_updated_output´
 		7 ´update finished´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´link´ (delay 0)
 		´func_disable_unit_004´ (delay 0)
@@ -1254,37 +1254,37 @@
 		´remove_WP_fix´ (delay 0)
 		´WP_computer´ (delay 0)
 ´point_debug_002´ ElementDebug 100179
-	as_subtitle false
+	as_subtitle False
 	debug_string computer_fixed
-	show_instigator false
+	show_instigator False
 ´logic_toggle_025´ ElementToggle 100180
+	elements
+ 		1 ´fixed_computer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed_computer´ DISABLED
 ´point_debug_003´ ElementDebug 100181
-	as_subtitle false
+	as_subtitle False
 	debug_string updated_aborted
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100182
-	as_subtitle false
+	as_subtitle False
 	debug_string resumed_hacking
-	show_instigator false
+	show_instigator False
 ´enable_2´ ElementToggle 100184
+	elements
+ 		1 ´police_called´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´police_called´ DISABLED
 	on_executed
 		´output_resumed_computer´ (delay 0)
 ´point_debug_005´ ElementDebug 100185
-	as_subtitle false
+	as_subtitle False
 	debug_string from mainframe instance: police_called
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100186
-	as_subtitle false
+	as_subtitle False
 	debug_string from mainframe instance: enable_interrupt_again
-	show_instigator false
+	show_instigator False
 ´bsod´ ElementUnitSequence 100187
 	position 2100, 200, 2.5
 	rotation 0, 0, 0, -1
@@ -1555,37 +1555,37 @@
 		´point_debug_007´ (delay 0)
 		´output_set_up_computer´ (delay 0)
 ´hack_done_debug_001´ ElementDebug 100140
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done_debug_001 !!!!!!!!!!!!!!!
-	show_instigator false
+	show_instigator False
 ´hack_done_debug_002´ ElementDebug 100141
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done_debug_002!!!!!!!!!!!!!!!!
-	show_instigator false
+	show_instigator False
 ´hack_done_debug_003´ ElementDebug 100142
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done_debug_003!!!!!!!!!!!!!!!!!!!!!!!!
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100139
-	as_subtitle false
+	as_subtitle False
 	debug_string START HACKJÃVLEN
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100143
-	as_subtitle false
+	as_subtitle False
 	debug_string RESUMADE HACKJÃVELN
-	show_instigator false
+	show_instigator False
 ´point_debug_009´ ElementDebug 100144
-	as_subtitle false
+	as_subtitle False
 	debug_string first_hack_done
-	show_instigator false
+	show_instigator False
 ´point_debug_010´ ElementDebug 100145
-	as_subtitle false
+	as_subtitle False
 	debug_string second_hack_done
-	show_instigator false
+	show_instigator False
 ´point_debug_011´ ElementDebug 100146
-	as_subtitle false
+	as_subtitle False
 	debug_string third_hack_done
-	show_instigator false
+	show_instigator False
 ´updated_aborted_output´ ElementInstanceOutput 100008
 	event Updated_aborted
 ´resumed_hack_output´ ElementInstanceOutput 100111
@@ -1597,34 +1597,34 @@
 		1 45
 		2 5
 ´pause_timer´ ElementTimerOperator 100113
+	elements
+ 		1 ´time_left_timer´
 	operation pause
 	position 2000, -900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_left_timer´
 ´start_timer´ ElementTimerOperator 100114
+	elements
+ 		1 ´time_left_timer´
 	operation start
 	position 1800, -900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_left_timer´
 ´reset_timer´ ElementTimerOperator 100115
+	elements
+ 		1 ´time_left_timer´
 	operation set_time
 	position 2000, -1000, 0
 	rotation 0, 0, 0, -1
 	time
 		1 45
 		2 5
-	elements
-		1 ´time_left_timer´
 ´timer_out_trigger´ ElementTimerTrigger 100116
+	elements
+ 		1 ´time_left_timer´
 	position 1900, -1000, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_left_timer´
 	on_executed
 		´not_much_time_left_oputput´ (delay 0)
 ´not_much_time_left_oputput´ ElementInstanceOutput 100117
@@ -1715,23 +1715,23 @@
 		´pause_timer´ (delay 0)
 		´reset_timer´ (delay 0.1)
 ´logic_operator_003´ ElementOperator 100121
-	operation remove
 	elements
-		1 ´WP_fix´
+ 		1 ´WP_fix´
+	operation remove
 ´logic_toggle_026´ ElementToggle 100122
+	elements
+ 		1 ´update_aborted´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´update_aborted´ DISABLED
 ´disable_mainframe´ ElementInstanceInput 100070
 	event DISABLE_MAINFRAME
 	on_executed
 		´point_debug_001´ (delay 0)
 		´logic_toggle_027´ (delay 0)
 ´point_debug_001´ ElementDebug 100071
-	as_subtitle false
+	as_subtitle False
 	debug_string DISABLE_MAINFRAME!
-	show_instigator false
+	show_instigator False
 ´turn_off_mainframe´ ElementUnitSequence 100123
 	position 2200, -1100, 2.5
 	rotation 0, 0, 0, -1
@@ -1785,20 +1785,18 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´remove_all_waypoints´ ElementOperator 100110
-	operation remove
 	elements
-		1 ´WP_computer´
+ 		1 ´WP_computer´
 		2 ´WP_fix´
 		3 ´WP_interact´ DISABLED
 		4 ´SO_interrupt_none´ DISABLED
 		5 ´SO_interact_mid´ DISABLED
+	operation remove
 	on_executed
 		´turn_off_mainframe´ (delay 0)
 ´logic_toggle_027´ ElementToggle 100109
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´not_much_time_left_oputput´
+ 		1 ´not_much_time_left_oputput´
 		2 ´timer_out_trigger´
 		3 ´resumed_hack_output´
 		4 ´hack_start_001´
@@ -1860,5 +1858,7 @@
 		60 ´firewall_breached_input´
 		61 ´firewall_stopped_breach_input´
 		62 ´updated_aborted_output´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_all_waypoints´ (delay 0)

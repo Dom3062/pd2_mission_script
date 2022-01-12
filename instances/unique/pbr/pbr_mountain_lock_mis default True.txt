@@ -1,9 +1,9 @@
 ´door_opening_alarm´ ElementPlaySound 100107
-	append_prefix false
+	append_prefix False
 	position -400, 350, 325
 	rotation 0, 0, 0, -1
 	sound_event alarm_the_bomb_on_slow_fade
-	use_instigator false
+	use_instigator False
 ´time_to_open´ ElementInstanceInput 100108
 	event time_to_open
 	on_executed
@@ -68,14 +68,14 @@
 	position 550, 350, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´all_inside´ (delay 0)
 ´all_inside´ MissionScriptElement 100119
@@ -116,13 +116,13 @@
 			notify_unit_sequence open_door
 			time 0
 ´enable_area´ ElementToggle 100125
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´point_waypoint_001´ ElementWaypoint 100126
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 550, 350, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -130,9 +130,9 @@
 	on_executed
 		´point_waypoint_001´ (delay 0)
 ´logic_operator_001´ ElementOperator 100128
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 ´trigger_area_002´ ElementAreaTrigger 100130
 	DISABLED
 	TRIGGER TIMES 1
@@ -144,19 +144,19 @@
 	position -400, 350, 200
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´reached_vault´ (delay 0)
 ´point_waypoint_002´ ElementWaypoint 100131
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position -450, 350, 102.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -165,34 +165,34 @@
 		´logic_operator_002´ (delay 0)
 		´reached_vault_output´ (delay 0)
 ´logic_operator_002´ ElementOperator 100134
-	operation remove
 	elements
-		1 ´point_waypoint_002´
+ 		1 ´point_waypoint_002´
+	operation remove
 ´goal_is_vault´ ElementInstanceInput 100135
 	event goal_is_vault
 	on_executed
 		´point_waypoint_002´ (delay 0)
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100136
+	elements
+ 		1 ´trigger_area_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_002´ DISABLED
 ´keycard_is_goal´ ElementInstanceInput 100137
 	event keycard_is_goal
 	on_executed
 		´point_waypoint_003´ (delay 0)
 ´point_waypoint_003´ ElementWaypoint 100138
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -25, 75, 155.681
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_003´ ElementOperator 100140
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
 		2 ´point_waypoint_003´
+	operation remove
 ´hold_to_open´ ElementInteraction 100141
 	override_timer 3
 	position -50, 75, 125
@@ -218,11 +218,11 @@
 ´reached_vault_output´ ElementInstanceOutput 100115
 	event reached_vault_output
 ´hello_director_voice´ ElementPlaySound 100117
-	append_prefix true
+	append_prefix True
 	position -50, 75, 125
 	rotation 0, 0, 0, -1
 	sound_event keypad_correct_code
-	use_instigator false
+	use_instigator False
 ´entered_vault´ ElementInstanceOutput 100133
 	event entered_vault
 ´trigger_area_003´ ElementAreaTrigger 100139
@@ -235,26 +235,26 @@
 	position 200, 400, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´entered´ (delay 0)
 ´go_inside_wp_2´ ElementWaypoint 100145
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -50, 350, 102.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_004´ ElementOperator 100146
-	operation remove
 	elements
-		1 ´go_inside_wp_2´
+ 		1 ´go_inside_wp_2´
+	operation remove
 ´entered´ MissionScriptElement 100147
 	on_executed
 		´logic_operator_004´ (delay 0)
@@ -279,9 +279,9 @@
 			notify_unit_sequence state_light_red_blink
 			time 0
 ´point_debug_001´ ElementDebug 100003
-	as_subtitle false
+	as_subtitle False
 	debug_string done_opened
-	show_instigator false
+	show_instigator False
 ´keycard_interaction´ ElementInteraction 100008
 	DISABLED
 	override_timer -1
@@ -291,10 +291,10 @@
 	on_executed
 		´keycard_used´ (delay 0) (alternative interacted)
 ´logic_toggle_002´ ElementToggle 100009
+	elements
+ 		1 ´keycard_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keycard_interaction´ DISABLED
 ´func_sequence_003´ ElementUnitSequence 100007
 	position -500, 400, 0
 	rotation 0, 0, 0, -1
@@ -312,9 +312,9 @@
 			notify_unit_sequence close
 			time 0.5
 ´point_teammate_comment_001´ ElementTeammateComment 100011
-	close_to_element true
+	close_to_element True
 	comment v12
 	position -100, 78, 133.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

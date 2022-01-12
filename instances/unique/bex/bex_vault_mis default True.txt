@@ -16,50 +16,50 @@
 	on_executed
 		´func_nav_obstacle_001´ (delay 15)
 ´func_nav_obstacle_001´ ElementNavObstacle 100004
-	operation remove
-	position -300, 300, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (3.05176E-05, -75, 2.5)
+	operation remove
+	position -300, 300, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´func_nav_obstacle_003´ (delay 3)
 ´func_nav_obstacle_002´ ElementNavObstacle 100005
 	EXECUTE ON STARTUP
-	operation add
-	position -100, 300, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (3.05176E-05, -75, 2.5)
-´func_nav_obstacle_003´ ElementNavObstacle 100008
 	operation add
-	position -300, 400, 0
+	position -100, 300, 2.5
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_003´ ElementNavObstacle 100008
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-107, 107, 2.5)
+	operation add
+	position -300, 400, 0
+	rotation 0, 0, 0, -1
 ´teammate_comment_cheer´ ElementTeammateComment 100006
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v46
 	position -225, 50, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_cheer001´ ElementTeammateComment 100009
-	close_to_element true
+	close_to_element True
 	comment v03
 	position -250, -150, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´area_player_inside´ ElementAreaTrigger 100010
 	DISABLED
 	TRIGGER TIMES 1
@@ -72,14 +72,14 @@
 	position -150, -150, 50
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 100
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 100
 	on_executed
 		´teammate_comment_cheer001´ (delay 0)
 ´police_called´ ElementGlobalEventTrigger 100011
@@ -90,12 +90,12 @@
 	on_executed
 		´enable_loud_VO´ (delay 0)
 ´enable_loud_VO´ ElementToggle 100012
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´teammate_comment_cheer´ DISABLED
+ 		1 ´teammate_comment_cheer´ DISABLED
 		2 ´area_player_inside´ DISABLED
 		3 ´teammate_comment_payday´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´area_player_already_inside(stealth)´ ElementAreaTrigger 100013
 	TRIGGER TIMES 1
 	amount 1
@@ -107,21 +107,21 @@
 	position -150, -250, 50
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 100
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 100
 	on_executed
 		´disable´ (delay 0)
 ´disable´ ElementToggle 100014
+	elements
+ 		1 ´teammate_comment_cheer001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´teammate_comment_cheer001´
 ´pku_treasure´ ElementGlobalEventTrigger 100015
 	TRIGGER TIMES 1
 	global_event pku_treasure
@@ -146,24 +146,24 @@
 ´teammate_comment_payday´ ElementTeammateComment 100018
 	DISABLED
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v21
 	position -175, -525, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_001´ (delay 0)
 		´teammate_comment_get_it_out_of_here´ (delay 4)
 ´point_debug_001´ ElementDebug 100019
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_payday
-	show_instigator false
+	show_instigator False
 ´teammate_comment_get_it_out_of_here´ ElementTeammateComment 100020
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v51
 	position -175, -700, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

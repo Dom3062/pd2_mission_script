@@ -581,12 +581,12 @@
 		100 units/pd2_dlc_chill/props/chl_prop_plywood/chl_prop_plywood_v3/S3_chl_prop_plywood_v3_009 (16, -915, -1.86636)
 		101 units/pd2_dlc_chill/props/chl_prop_plywood/chl_prop_plywood_v3/S3_chl_prop_plywood_v3_010 (21, -412, 303.134)
 ´disable_regular_tables´ ElementToggle 100071
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´s001´
+ 		1 ´s001´
 		2 ´s002´
 		3 ´s003´
+	set_trigger_times -1
+	toggle off
 ´if_any_trophy_given´ MissionScriptElement 100072
 	TRIGGER TIMES 1
 	on_executed
@@ -721,7 +721,7 @@
 	on_executed
 		´safehouse_trophy_device_parts´ (delay 1)
 ´safehouse_trophy_device_parts´ ElementCustomSafehouseAwardTrophy 100422
-	award_instigator true
+	award_instigator True
 	objective_id trophy_device_parts
 	position -400, 1400, 400
 	rotation 0, 0, 0.707107, -0.707107
@@ -761,9 +761,9 @@
 		´filter_trophy_box002´ (delay 0)
 		´filter_trophy_box003´ (delay 0)
 ´point_debug_003´ ElementDebug 100431
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: filter_trophy_box003
-	show_instigator false
+	show_instigator False
 ´seq_hide_stuff´ ElementUnitSequence 100433
 	position -2100, 600, 400
 	rotation 0, 0, 0.707107, -0.707107
@@ -846,15 +846,15 @@
 	on_executed
 		´seq_show_thing001´ (delay 0)
 ´enable´ ElementToggle 100432
+	elements
+ 		1 ´interacted_again001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interacted_again001´ DISABLED
 ´enable_2´ ElementToggle 100438
+	elements
+ 		1 ´interacted_again002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interacted_again002´ DISABLED
 ´interacted_again002´ ElementUnitSequenceTrigger 100439
 	DISABLED
 	TRIGGER TIMES 1
@@ -1104,24 +1104,24 @@
 		20 units/payday2/props/lxa_prop_kitchen_chair/lxa_prop_kitchen_chair/S3_lxa_prop_kitchen_chair_002 (151.455, 1303.14, 401)
 		21 units/payday2/props/lxa_prop_kitchen_chair/lxa_prop_kitchen_chair/S3_lxa_prop_kitchen_chair_005 (281, 1466, 401)
 ´point_debug_004´ ElementDebug 100456
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: filter_trophy_collection
-	show_instigator false
+	show_instigator False
 ´disable_other_trophies´ ElementToggle 100457
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´filter_trophy_box003´
+ 		1 ´filter_trophy_box003´
 		2 ´filter_trophy_box002´
 		3 ´filter_trophy_box001´
+	set_trigger_times -1
+	toggle off
 ´point_debug_002´ ElementDebug 100430
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: filter_trophy_box002
-	show_instigator false
+	show_instigator False
 ´point_debug_001´ ElementDebug 100429
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: filter_trophy_box001
-	show_instigator false
+	show_instigator False
 ´output_boxes_spawned´ ElementInstanceOutput 100458
 	event boxes_spawned
 ´input_filter_standard´ ElementInstanceInput 100459
@@ -1200,7 +1200,7 @@
 		´seq_show_open_boxes´ (delay 0)
 		´set1´ (delay 0)
 ´award_safehouse_trophy_device_assembled´ ElementCustomSafehouseAwardTrophy 100508
-	award_instigator true
+	award_instigator True
 	objective_id trophy_device_assembled
 	position -1800, 1500, 400
 	rotation 0, 0, 0.707107, -0.707107
@@ -1217,15 +1217,15 @@
 		´enable_interaction_assemble_device´ (delay 0)
 ´disable_rings´ ElementToggle 100509
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_interaction_rings´
+ 		1 ´enable_interaction_rings´
 		2 ´point_debug_004´
 		3 ´seq_show_trophy_collection´
 		4 ´safehouse_trophy_filter_tablet´
 		5 ´shake_plate´
 		6 ´shake_rings´
+	set_trigger_times -1
+	toggle off
 ´glow_combined´ ElementUnitSequence 100510
 	DISABLED
 	position -1300, 1300, 400
@@ -1261,7 +1261,7 @@
 			notify_unit_sequence show
 			time 0
 ´award_safehouse_trophy_device_opened´ ElementCustomSafehouseAwardTrophy 100513
-	award_instigator true
+	award_instigator True
 	objective_id trophy_device_opened
 	position -1600, 1900, 400
 	rotation 0, 0, 0.707107, -0.707107
@@ -1280,10 +1280,8 @@
 		´enable_interaction´ (delay 3)
 		´set1´ (delay 0)
 ´disable_trophy_device_opened´ ElementToggle 100515
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´award_safehouse_trophy_device_opened´
+ 		1 ´award_safehouse_trophy_device_opened´
 		2 ´safehouse_trophy_filter_device_assemble´
 		3 ´safehouse_trophy_filter_tablet´
 		4 ´filter_trophy_collection´
@@ -1294,32 +1292,34 @@
 		9 ´filter_trophy_box003´
 		10 ´filter_trophy_box002´
 		11 ´filter_trophy_box001´
+	set_trigger_times -1
+	toggle off
 ´enable_glow_combined´ ElementToggle 100517
 	TRIGGER TIMES 1
+	elements
+ 		1 ´glow_combined´ DISABLED
+		2 ´input_shake´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´glow_combined´ DISABLED
-		2 ´input_shake´ DISABLED
 	on_executed
 		´disable_rings´ (delay 0)
 ´enable_shake´ ElementToggle 100518
+	elements
+ 		1 ´input_shake´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´input_shake´ DISABLED
 ´point_debug_006´ ElementDebug 100520
-	as_subtitle false
+	as_subtitle False
 	debug_string 1
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100521
-	as_subtitle false
+	as_subtitle False
 	debug_string 2
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100522
-	as_subtitle false
+	as_subtitle False
 	debug_string 3
-	show_instigator false
+	show_instigator False
 ´hide_collection_show_combined´ ElementUnitSequence 100523
 	TRIGGER TIMES 1
 	position -1800, 1550, 400
@@ -1347,26 +1347,26 @@
 		´point_debug_013´ (delay 0)
 		´seq_hide_tablet´ (delay 0)
 ´point_debug_009´ ElementDebug 100524
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: safehouse_trophy_filter_tablet
-	show_instigator false
+	show_instigator False
 ´point_debug_010´ ElementDebug 100525
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: safehouse_trophy_filter_device_assemble
-	show_instigator false
+	show_instigator False
 ´2´ ElementCounter 100526
 	TRIGGER TIMES 2
 	counter_target 2
 	on_executed
 		´enable_interaction_rings´ (delay 1)
 ´point_debug_011´ ElementDebug 100527
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_interaction_rings
-	show_instigator false
+	show_instigator False
 ´point_debug_012´ ElementDebug 100528
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: safehouse_trophy_device_parts
-	show_instigator false
+	show_instigator False
 ´done_loop´ ElementUnitSequenceTrigger 100530
 	DISABLED
 	TRIGGER TIMES 1
@@ -1378,35 +1378,35 @@
 	on_executed
 		´seq_stop_spinning´ (delay 0)
 ´disable_shake´ ElementToggle 100531
+	elements
+ 		1 ´shake_rings´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´shake_rings´
 ´enable_3´ ElementToggle 100532
+	elements
+ 		1 ´done_loop´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´done_loop´ DISABLED
 ´point_debug_013´ ElementDebug 100503
-	as_subtitle false
+	as_subtitle False
 	debug_string hide_collection_show_combined
-	show_instigator false
+	show_instigator False
 ´point_debug_017´ ElementDebug 100539
-	as_subtitle false
+	as_subtitle False
 	debug_string seq_show_tablet
-	show_instigator false
+	show_instigator False
 ´point_debug_018´ ElementDebug 100461
-	as_subtitle false
+	as_subtitle False
 	debug_string shakeshakeshake
-	show_instigator false
+	show_instigator False
 ´point_debug_019´ ElementDebug 100541
-	as_subtitle false
+	as_subtitle False
 	debug_string glow_combined
-	show_instigator false
+	show_instigator False
 ´point_debug_020´ ElementDebug 100542
-	as_subtitle false
+	as_subtitle False
 	debug_string safehouse_trophy_filter_device_opened
-	show_instigator false
+	show_instigator False
 ´shake_plate´ ElementUnitSequence 100448
 	position -1300, 1100, 402.5
 	rotation 0, 0, 0, -1
@@ -1420,9 +1420,9 @@
 	on_executed
 		´point_debug_021´ (delay 0)
 ´point_debug_021´ ElementDebug 100538
-	as_subtitle false
+	as_subtitle False
 	debug_string shake_plate
-	show_instigator false
+	show_instigator False
 ´seq_show_open_boxes´ ElementUnitSequence 100529
 	TRIGGER TIMES 1
 	position -1600, 1000, 402.5
@@ -1467,12 +1467,12 @@
 	on_executed
 		´point_debug_022´ (delay 0)
 ´point_debug_022´ ElementDebug 100535
-	as_subtitle false
+	as_subtitle False
 	debug_string seq_show_open_boxes
-	show_instigator false
+	show_instigator False
 ´interaction_assemble_device´ ElementInteraction 100544
 	DISABLED
-	host_only true
+	host_only True
 	override_timer -1
 	position 225, 1500, 500
 	rotation 0, 0, 0.707107, -0.707107
@@ -1481,7 +1481,7 @@
 		´logic_link_002´ (delay 0) (alternative interacted)
 ´interaction_use_device´ ElementInteraction 100545
 	DISABLED
-	host_only true
+	host_only True
 	override_timer -1
 	position 225, 1500, 500
 	rotation 0, 0, 0.707107, -0.707107
@@ -1489,19 +1489,19 @@
 	on_executed
 		´used_device´ (delay 0) (alternative interacted)
 ´enable_interaction_use_device´ ElementToggle 100546
+	elements
+ 		1 ´interaction_use_device´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interaction_use_device´ DISABLED
 ´used_device´ MissionScriptElement 100547
 	on_executed
 		´enable_interaction´ (delay 2.72)
 		´cycle_hints´ (delay 0)
 ´enable_interaction_assemble_device´ ElementToggle 100548
+	elements
+ 		1 ´interaction_assemble_device´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_assemble_device´ DISABLED
 ´logic_link_002´ MissionScriptElement 100549
 	TRIGGER TIMES 1
 	on_executed
@@ -1519,11 +1519,11 @@
 			notify_unit_sequence cycle_hints
 			time 0
 ´1´ ElementCounterFilter 100507
+	elements
+ 		1 ´counter_0´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´counter_0´
 	on_executed
 		´logic_link_003´ (delay 0)
 		´seq_generate_challenge´ (delay 0)
@@ -1537,10 +1537,10 @@
 	counter_target 0
 ´set1´ ElementCounterOperator 100543
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´counter_0´
+ 		1 ´counter_0´
+	instance_var_names
+	operation set
 ´seq_stop_spinning´ ElementUnitSequence 100551
 	position -1200, 1900, 402.5
 	rotation 0, 0, 0, -1
@@ -1566,9 +1566,9 @@
 	on_executed
 		´point_debug_014´ (delay 0)
 ´point_debug_014´ ElementDebug 100553
-	as_subtitle false
+	as_subtitle False
 	debug_string seq_hide_tablet
-	show_instigator false
+	show_instigator False
 ´seq_generate_challenge´ ElementUnitSequence 100540
 	position -1700, 1850, 400
 	rotation 0, 0, 0, -1
@@ -1582,20 +1582,20 @@
 	on_executed
 		´point_debug_015´ (delay 0)
 ´point_debug_015´ ElementDebug 100554
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: seq_generate_challenge
-	show_instigator false
+	show_instigator False
 ´point_debug_016´ ElementDebug 100555
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: input_played_in_correct_order
-	show_instigator false
+	show_instigator False
 ´sound_vlad_bex_safehouse_tape001´ ElementPlaySound 100557
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 724, 1772, 490
 	rotation 0, 0, 0, -1
 	sound_event vlad_bex_safehouse_tape
-	use_instigator false
+	use_instigator False
 ´interacted_with_tape001´ ElementUnitSequenceTrigger 100558
 	sequence_list
 		1
@@ -1606,19 +1606,19 @@
 		´sound_vlad_bex_safehouse_tape001´ (delay 0)
 		´func_sequence_006´ (delay 40)
 ´sound_vlad_bex_safehouse_tape002´ ElementPlaySound 100560
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 509, 1552, 498
 	rotation 0, 0, 0, -1
 	sound_event vlad_bex_safehouse_tape
-	use_instigator false
+	use_instigator False
 ´sound_vlad_bex_safehouse_tape003´ ElementPlaySound 100561
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 504, 1667, 498
 	rotation 0, 0, 0, -1
 	sound_event vlad_bex_safehouse_tape
-	use_instigator false
+	use_instigator False
 ´show_tape_recorder001´ ElementUnitSequence 100563
 	position 2100, -300, 0
 	rotation 0, 0, 0, -1

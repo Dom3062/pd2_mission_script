@@ -162,32 +162,32 @@
 	DISABLED
 	amount 1
 	depth 95,6521
-	height 175,192
+	height 175.192
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position 97, -925, 200
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 86
 	rules_element_ids
 		1 ´instigator_rule_weapons´ DISABLED
 		2 ´instigator_rule_coke´ DISABLED
 		3 ´instigator_rule_money´ DISABLED
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
 		2 ´point_shape_002´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 86
 	on_executed
 		´secure_loot_required´ (delay 0)
 ´instigator_rule_weapons´ ElementInstigatorRule 100004
 	DISABLED
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -195,7 +195,7 @@
 ´instigator_rule_coke´ ElementInstigatorRule 100005
 	DISABLED
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -203,7 +203,7 @@
 ´instigator_rule_money´ ElementInstigatorRule 100006
 	DISABLED
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -222,34 +222,34 @@
 		´logic_toggle_010´ (delay 0)
 ´toggle_on_001´ ElementToggle 100010
 	DISABLED
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´instigator_rule_weapons´ DISABLED
+ 		1 ´instigator_rule_weapons´ DISABLED
 		2 ´trigger_area_loot_required´ DISABLED
 		3 ´instigator_rule_weapons_extra´ DISABLED
 		4 ´link_show_waypoint_loot_drop´ DISABLED
 		5 ´trigger_area_loot_extra_001´
-´toggle_on_002´ ElementToggle 100011
-	DISABLED
 	set_trigger_times -1
 	toggle on
+´toggle_on_002´ ElementToggle 100011
+	DISABLED
 	elements
-		1 ´instigator_rule_coke´ DISABLED
+ 		1 ´instigator_rule_coke´ DISABLED
 		2 ´trigger_area_loot_required´ DISABLED
 		3 ´instigator_rule_coke_extra´ DISABLED
 		4 ´link_show_waypoint_loot_drop´ DISABLED
 		5 ´trigger_area_loot_extra_001´
-´toggle_on_003´ ElementToggle 100012
-	DISABLED
 	set_trigger_times -1
 	toggle on
+´toggle_on_003´ ElementToggle 100012
+	DISABLED
 	elements
-		1 ´instigator_rule_money´ DISABLED
+ 		1 ´instigator_rule_money´ DISABLED
 		2 ´trigger_area_loot_required´ DISABLED
 		3 ´instigator_rule_money_extra´ DISABLED
 		4 ´link_show_waypoint_loot_drop´ DISABLED
 		5 ´trigger_area_loot_extra_001´
+	set_trigger_times -1
+	toggle on
 ´secure_loot_required´ ElementCarry 100013
 	operation secure
 	type_filter none
@@ -275,8 +275,8 @@
 		´add_001´ (delay 0)
 ´waypoint_lootdrop´ ElementWaypoint 100017
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 21, -325, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -290,17 +290,17 @@
 		´waypoint_lootdrop´ (delay 0)
 		´show_loot_drop´ (delay 0)
 ´operator_remove_waypoint´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´waypoint_lootdrop´
+ 		1 ´waypoint_lootdrop´
+	operation remove
 	on_executed
 		´output_secured_all_loot´ (delay 0)
 ´add1´ ElementCounterOperator 100023
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_required_loot_amount´
+ 		1 ´counter_required_loot_amount´
+	instance_var_names
+	operation add
 	on_executed
 		´output_player_secured_loot´ (delay 0)
 		´logic_counter_filter_001´ (delay 0) DISABLED
@@ -313,13 +313,13 @@
 	instance_var_names
 		counter_target var_amount_required_loot
 ´instance_params´ ElementInstanceParams 100024
-	position 1400, -2000, -2.5
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value 0
 			type number
 			var_name var_amount_required_loot
+	position 1400, -2000, -2.5
+	rotation 0, 0, 0, -1
 ´output_secured_all_loot´ ElementInstanceOutput 100028
 	event output_secured_all_loot
 	on_executed
@@ -327,7 +327,7 @@
 ´instigator_rule_weapons_extra´ ElementInstigatorRule 100027
 	DISABLED
 	instigator loot
-	invert true
+	invert True
 	rules
 		loot
 			carry_ids
@@ -336,7 +336,7 @@
 ´instigator_rule_coke_extra´ ElementInstigatorRule 100029
 	DISABLED
 	instigator loot
-	invert true
+	invert True
 	rules
 		loot
 			carry_ids
@@ -345,7 +345,7 @@
 ´instigator_rule_money_extra´ ElementInstigatorRule 100030
 	DISABLED
 	instigator loot
-	invert true
+	invert True
 	rules
 		loot
 			carry_ids
@@ -361,9 +361,9 @@
 ´output_player_secured_loot´ ElementInstanceOutput 100036
 	event output_player_secured_loot
 ´point_debug_001´ ElementDebug 100037
-	as_subtitle false
+	as_subtitle False
 	debug_string from plane instance: secured all required loot
-	show_instigator false
+	show_instigator False
 ´show_escape_marker´ ElementUnitSequence 100038
 	position 100, -3200, 0
 	rotation 0, 0, 0, -1
@@ -389,221 +389,221 @@
 	position 25.0001, -664, 0
 	radius 250
 	rotation 0, 0, 1, -1.19209E-07
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 695,5
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 695.5
 	on_executed
 		´output_escaped´ (delay 2)
 		´2_3´ (delay 0)
 		´point_debug_017´ (delay 0)
 ´toggle_enable_escape_trigger´ ElementToggle 100041
+	elements
+ 		1 ´trigger_area_escape´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_escape´ DISABLED
 ´point_debug_002´ ElementDebug 100043
-	as_subtitle false
+	as_subtitle False
 	debug_string from plane instance: secured extra loot
-	show_instigator false
+	show_instigator False
 ´input_enable_escape´ ElementInstanceInput 100044
 	event input_enable_escape
 	on_executed
 		´show_escape_marker´ (delay 0)
 ´logic_counter_filter_001´ ElementCounterFilter 100045
 	DISABLED
+	elements
+ 		1 ´counter_required_loot_amount´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´counter_required_loot_amount´
 	on_executed
 		´operator_remove_waypoint´ (delay 0)
 ´logic_counter_filter_002´ ElementCounterFilter 100046
 	DISABLED
+	elements
+ 		1 ´counter_required_loot_amount´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´counter_required_loot_amount´
 	on_executed
 		´operator_remove_waypoint´ (delay 0)
 ´logic_counter_filter_003´ ElementCounterFilter 100047
 	DISABLED
+	elements
+ 		1 ´counter_required_loot_amount´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´counter_required_loot_amount´
 	on_executed
 		´operator_remove_waypoint´ (delay 0)
 ´logic_counter_filter_004´ ElementCounterFilter 100048
 	DISABLED
+	elements
+ 		1 ´counter_required_loot_amount´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´counter_required_loot_amount´
 	on_executed
 		´operator_remove_waypoint´ (delay 0)
 ´logic_counter_filter_005´ ElementCounterFilter 100049
 	DISABLED
+	elements
+ 		1 ´counter_required_loot_amount´
 	check_type equal
 	needed_to_execute all
 	value 7
-	elements
-		1 ´counter_required_loot_amount´
 	on_executed
 		´operator_remove_waypoint´ (delay 0)
 ´logic_filter_001´ ElementFilter 100050
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1400, -2700, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_filter_002´ ElementFilter 100051
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1400, -2800, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´logic_filter_003´ ElementFilter 100052
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1400, -2900, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_004´ (delay 0)
 ´logic_filter_004´ ElementFilter 100053
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1400, -3000, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_005´ (delay 0)
 ´logic_filter_005´ ElementFilter 100054
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1400, -3100, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_006´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100055
+	elements
+ 		1 ´logic_counter_filter_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_counter_filter_001´ DISABLED
 ´logic_toggle_003´ ElementToggle 100056
+	elements
+ 		1 ´logic_counter_filter_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_counter_filter_002´ DISABLED
 ´logic_toggle_004´ ElementToggle 100057
+	elements
+ 		1 ´logic_counter_filter_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_counter_filter_003´ DISABLED
 ´logic_toggle_005´ ElementToggle 100058
+	elements
+ 		1 ´logic_counter_filter_004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_counter_filter_004´ DISABLED
 ´logic_toggle_006´ ElementToggle 100059
+	elements
+ 		1 ´logic_counter_filter_005´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_counter_filter_005´ DISABLED
 ´seq_close_the_doors´ ElementUnitSequence 100066
 	position 1200, -1400, 0
 	rotation 0, 0, 0, -1
@@ -905,9 +905,6 @@
 		231 units/world/props/mansion/man_cover_int_shipping_crate_wide/man_cover_int_shipping_crate_wide/037 (501.355, 612.559, 0)
 ´add_door_blockers_plane´ ElementNavObstacle 100323
 	TRIGGER TIMES 1
-	operation add
-	position -600, -3100, -2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -941,6 +938,9 @@
 			guis_id 8
 			obj_name 15222891314593672833
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_plane_010 (550, -75, 0)
+	operation add
+	position -600, -3100, -2.5
+	rotation 0, 0, 0, -1
 ´seq_set_disabled´ ElementUnitSequence 100139
 	position -500, -3200, -2.5
 	rotation 0, 0, 0, -1
@@ -974,27 +974,27 @@
 		´remove_nav_obstacle_door_003´ (delay 0)
 		´logic_toggle_012´ (delay 0)
 ´remove_nav_obstacle_door_002´ ElementNavObstacle 100386
-	operation remove
-	position -300, -1700, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (1013, -250, 0)
-´remove_nav_obstacle_door_003´ ElementNavObstacle 100387
 	operation remove
-	position -300, -1900, 0
+	position -300, -1700, 0
 	rotation 0, 0, 0, -1
+´remove_nav_obstacle_door_003´ ElementNavObstacle 100387
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-1100, -50, 0)
+	operation remove
+	position -300, -1900, 0
+	rotation 0, 0, 0, -1
 ´waypoint_isithere´ ElementWaypoint 100408
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 112.879
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -1003,9 +1003,9 @@
 	on_executed
 		´waypoint_isithere´ (delay 0)
 ´remove_waypoint_plane´ ElementOperator 100411
-	operation remove
 	elements
-		1 ´waypoint_isithere´
+ 		1 ´waypoint_isithere´
+	operation remove
 	on_executed
 		´link_found_plane´ (delay 0)
 		´point_debug_003´ (delay 0)
@@ -1015,16 +1015,16 @@
 	on_executed
 		´point_teammate_comment_v28´ (delay 0)
 ´toggle_disable_plane_stuff´ ElementToggle 100413
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_found_plane´
+ 		1 ´link_found_plane´
 		2 ´toggle_on_001´ DISABLED
 		3 ´toggle_on_002´ DISABLED
 		4 ´toggle_on_003´ DISABLED
 		5 ´show_escape_marker´
 		6 ´trigger_area_loot_required´ DISABLED
 		7 ´trigger_area_loot_extra_001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´enable_bag_collision´ (delay 2)
 ´trigger_area_player_entered´ ElementAreaTrigger 100410
@@ -1038,14 +1038,14 @@
 	position 0, -25, 275
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1655,44
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1655.44
 	on_executed
 		´remove_waypoint_plane´ (delay 0-1)
 ´link_found_plane´ MissionScriptElement 100414
@@ -1059,35 +1059,35 @@
 	on_executed
 		´remove_waypoint_loot´ (delay 0)
 ´remove_waypoint_loot´ ElementOperator 100416
-	operation remove
 	elements
-		1 ´waypoint_isithere´
+ 		1 ´waypoint_isithere´
+	operation remove
 	on_executed
 		´logic_toggle_016´ (delay 0)
 ´point_debug_003´ ElementDebug 100418
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: "Blerrie! Check the other hangar!"
-	show_instigator false
+	show_instigator False
 ´toggle_disable_wrong_hangar_vo´ ElementToggle 100419
+	elements
+ 		1 ´point_debug_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_debug_003´
 ´input_show_waypoint´ ElementInstanceInput 100330
 	event input_show_waypoint
 	on_executed
 		´link_show_waypoint´ (delay 0)
 ´waypoint_escape´ ElementWaypoint 100421
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 25, -664, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´random_switch´ ElementRandom 100424
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 		´func_disable_unit_002´ (delay 0)
@@ -1109,7 +1109,7 @@
 		´func_enable_unit_003´ (delay 0)
 ´interact_switch_001´ ElementInteraction 100427
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 1001, -800, 131.236
 	rotation 0, 0, 0, -1
@@ -1120,7 +1120,7 @@
 		´toggle_all_off001´ (delay 0) (alternative interacted)
 ´interact_switch_002´ ElementInteraction 100428
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -995, -800, 131.236
 	rotation 0, 0, 0, -1
@@ -1144,24 +1144,24 @@
 		´func_nav_obstacle_001´ (delay 1)
 		´output_opened_hangar_doors´ (delay 1)
 ´func_nav_obstacle_001´ ElementNavObstacle 100455
+	obstacle_list
 	operation remove
 	position -1200, -1700, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
 ´toggle_enable_interaction_hangar_door002´ ElementToggle 100429
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interact_switch_002´ DISABLED
+ 		1 ´interact_switch_002´ DISABLED
 		2 ´WP_open_hangar002´ DISABLED
 		3 ´toggle_initiate_on´ DISABLED
-´toggle_enable_interaction_hangar_door001´ ElementToggle 100430
 	set_trigger_times -1
 	toggle on
+´toggle_enable_interaction_hangar_door001´ ElementToggle 100430
 	elements
-		1 ´interact_switch_001´ DISABLED
+ 		1 ´interact_switch_001´ DISABLED
 		2 ´WP_open_hangar001´ DISABLED
 		3 ´toggle_initiate_on001´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´unit_disabler´ ElementDisableUnit 100362
 	position 1300, -1500, 2.5
 	rotation 0, 0, 0, -1
@@ -1195,11 +1195,11 @@
 		´disable´ (delay 0)
 ´logic_toggle_013´ ElementToggle 100465
 	DISABLED
+	elements
+ 		1 ´interact_switch_001´ DISABLED
+		2 ´interact_switch_002´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_switch_001´ DISABLED
-		2 ´interact_switch_002´ DISABLED
 ´input_plant_c4´ ElementInstanceInput 100469
 	event input_plant_c4
 	on_executed
@@ -1213,8 +1213,8 @@
 	trigger_list
 ´WP_interact_hose´ ElementWaypoint 100456
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -64, -254, 125
 	rotation 0.707107, -1.68313E-10, 2.98023E-08, -0.707107
 	text_id debug_none
@@ -1230,9 +1230,9 @@
 		´WP_interact_hose´ (delay 0)
 		´seq_enable_interaction´ (delay 0)
 ´remove_WP_interact_hose´ ElementOperator 100502
-	operation remove
 	elements
-		1 ´WP_interact_hose´
+ 		1 ´WP_interact_hose´
+	operation remove
 ´input_start_connecting_hose´ ElementInstanceInput 100503
 	event start_connecting_hose
 	on_executed
@@ -1242,21 +1242,21 @@
 ´WP_open_hangar002´ ElementWaypoint 100505
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -995, -800, 131.236
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_open_hangar´ ElementOperator 100506
-	operation remove
 	elements
-		1 ´WP_open_hangar002´ DISABLED
+ 		1 ´WP_open_hangar002´ DISABLED
 		2 ´WP_open_hangar001´ DISABLED
+	operation remove
 ´WP_open_hangar001´ ElementWaypoint 100507
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 1001, -800, 131.236
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -1266,27 +1266,27 @@
 		´WP_open_hangar001´ (delay 0) DISABLED
 		´WP_open_hangar002´ (delay 0) DISABLED
 ´toggle_disable_WP_hangar´ ElementToggle 100509
+	elements
+ 		1 ´WP_open_hangar001´ DISABLED
+		2 ´WP_open_hangar002´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_open_hangar001´ DISABLED
-		2 ´WP_open_hangar002´ DISABLED
 ´enable´ ElementToggle 100501
+	elements
+ 		1 ´disconnected_hose´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´disconnected_hose´ DISABLED
 ´disable_WPs´ ElementToggle 100283
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´waypoint_isithere´
+ 		1 ´waypoint_isithere´
 		2 ´trigger_area_player_entered´
 		3 ´point_lookat_trigger_002´ DISABLED
 		4 ´logic_toggle_012´
 		5 ´point_lookat_trigger_001´ DISABLED
 		6 ´logic_toggle_014´
 		7 ´logic_toggle_011´
+	set_trigger_times -1
+	toggle off
 ´func_enable_unit_003´ ElementEnableUnit 100515
 	position -750, -1700, 0
 	rotation 0, 0, 0, -1
@@ -1299,26 +1299,26 @@
 		1 core/units/light_omni/light_omni/switch002 (-933, -799, 133)
 ´remove_nav_obstacle_door_001´ ElementNavObstacle 100517
 	TRIGGER TIMES 1
-	operation remove
-	position -300, -2100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id 100082
+	operation remove
+	position -300, -2100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´seq_disable_reader_001´ (delay 0)
 ´remove_nav_obstacle_door_002_2´ ElementNavObstacle 100518
 	TRIGGER TIMES 1
-	operation remove
-	position -300, -2300, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/payday2/architecture/ind/ind_ext_level/ind_ext_fence_2m_grey/008 (-800, 300, 0)
+	operation remove
+	position -300, -2300, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´seq_disable_reader_002´ (delay 0)
 ´player_opened_gate_001´ ElementUnitSequenceTrigger 100519
@@ -1390,13 +1390,13 @@
 		´sound_hose_connect_pour_stop´ (delay 0)
 		´point_debug_005´ (delay 0)
 ´remove_WP_detach_hose´ ElementOperator 100496
-	operation remove
 	elements
-		1 ´WP_detach_hose´
+ 		1 ´WP_detach_hose´
+	operation remove
 ´WP_detach_hose´ ElementWaypoint 100525
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -64, -254, 125
 	rotation 0.707107, -1.68313E-10, 2.98023E-08, -0.707107
 	text_id debug_none
@@ -1408,31 +1408,31 @@
 ´ai_spawn_civilian_001´ ElementSpawnCivilian 100532
 	enemy units/pd2_dlc_mex/characters/civ_male_italian/civ_male_italian
 	force_pickup none
+	orientation_elements
 	position 775, 775, 0
 	rotation 0, 0, 0, -1
 	state none
 	team default
-	orientation_elements
 	on_executed
 		´SO_italian_done_conversation001´ (delay 1)
 		´env_effect_play_001´ (delay 0)
 ´SO_italian_gesture´ ElementSpecialObjective 100533
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group civilians
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -1440,15 +1440,15 @@
 	pose none
 	position 773, 774, 0
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position 525 500 0
+	SO_access 1
 	so_action cm_talk_medium_gestures_var2
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_001´
+	trigger_on none
+	use_instigator True
 ´enable_italian_stuff´ ElementEnableUnit 100536
 	position 1200, -4500, 0
 	rotation 0, 0, 1, -1.19209E-07
@@ -1461,40 +1461,40 @@
 		6 units/payday2/props/shadow_mullplan/mullplan_vehicle_small_light/001 (785, 940, 2)
 		7 units/pd2_dlc_mex/props/mex_prop_espresso_cup/mex_prop_espresso_cup/001 (835, 841, 75.1498)
 ´disable´ ElementToggle 100537
+	elements
+ 		1 ´spawn_the_guy´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spawn_the_guy´
 ´func_whisper_state_001´ ElementWhisperState 100540
-	disable_hud false
+	disable_hud False
 	position 1300, -1600, 0
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´sound_italian001´ ElementPlaySound 100541
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 775, 821, 87
 	rotation 0, 0, -2.68221E-07, -1
 	sound_event Play_ita_mex_01
-	use_instigator false
+	use_instigator False
 	on_executed
 		´seq_enable_phone´ (delay 24)
 		´SO_italian_gesture´ (delay 0)
 ´italian_death´ ElementEnemyDummyTrigger 100548
+	elements
+ 		1 ´ai_spawn_civilian_001´
 	event death
 	position 1100, -4600, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´ai_spawn_civilian_001´
 	on_executed
 		´link_interrupted_phonecall´ (delay 0)
 ´italian_alerted´ ElementEnemyDummyTrigger 100549
+	elements
+ 		1 ´ai_spawn_civilian_001´
 	event alerted
 	position 1100, -4500, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´ai_spawn_civilian_001´
 	on_executed
 		´link_interrupted_phonecall´ (delay 0)
 ´link_interrupted_phonecall´ MissionScriptElement 100550
@@ -1503,34 +1503,34 @@
 		´disable_VO´ (delay 0)
 		´sound_italian002´ (delay 2.5)
 ´disable_VO´ ElementToggle 100551
+	elements
+ 		1 ´sound_italian001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´sound_italian001´
 	on_executed
 		´remove_VO´ (delay 0)
 		´seq_enable_phone´ (delay 10)
 ´remove_VO´ ElementOperator 100552
-	operation remove
 	elements
-		1 ´sound_italian001´
+ 		1 ´sound_italian001´
+	operation remove
 ´SO_italian_done_conversation´ ElementSpecialObjective 100554
-	SO_access 1
 	action_duration_max 5
 	action_duration_min 5
 	ai_group civilians
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -1538,15 +1538,15 @@
 	pose none
 	position 773, 774, 0
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position 525 500 0
+	SO_access 1
 	so_action cmf_so_idle
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_001´
+	trigger_on none
+	use_instigator False
 ´seq_enable_phone´ ElementUnitSequence 100559
 	TRIGGER TIMES 1
 	position 800, -4600, -2.5
@@ -1572,19 +1572,19 @@
 			notify_unit_sequence open_doors
 			time 0
 ´sound_hose_connect_pour´ ElementPlaySound 100061
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -64, -254, 125
 	rotation 0.707107, -1.68313E-10, 2.98023E-08, -0.707107
 	sound_event hose_connect_pour
-	use_instigator false
+	use_instigator False
 ´sound_hose_connect_pour_stop´ ElementPlaySound 100062
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -64, -254, 125
 	rotation 0.707107, -1.68313E-10, 2.98023E-08, -0.707107
 	sound_event hose_connect_pour_stop
-	use_instigator false
+	use_instigator False
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´input_stop_hose_sound´ ElementInstanceInput 100104
@@ -1597,9 +1597,6 @@
 		´sound_hose_connect_pour´ (delay 0)
 ´func_nav_obstacle_002´ ElementNavObstacle 100082
 	TRIGGER TIMES 1
-	operation add
-	position 1200, -1500, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -1609,10 +1606,13 @@
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (-1100, -50, 0)
+	operation add
+	position 1200, -1500, 0
+	rotation 0, 0, 0, -1
 ´logic_operator_001´ ElementOperator 100303
-	operation remove
 	elements
-		1 ´sound_hose_connect_pour´
+ 		1 ´sound_hose_connect_pour´
+	operation remove
 ´output_escaped´ ElementInstanceOutput 100307
 	event escaped
 ´show_bag_001´ ElementUnitSequence 100337
@@ -1811,10 +1811,10 @@
 	counter_target 0
 ´add_001´ ElementCounterOperator 100368
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´bags_secured_counter´
+ 		1 ´bags_secured_counter´
+	instance_var_names
+	operation add
 	on_executed
 		´if_less_than_4´ (delay 0.01)
 		´if_less_than_9´ (delay 0.01)
@@ -1822,114 +1822,114 @@
 		´if_less_than_16´ (delay 0.01)
 		´more_than_16´ (delay 0.01)
 ´if_less_than_4´ ElementCounterFilter 100370
+	elements
+ 		1 ´bags_secured_counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´rrrrandom_001´ (delay 0)
 ´rrrrandom_001´ ElementRandom 100376
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_bag_001´ (delay 0)
 		´show_bag_002´ (delay 0)
 		´show_bag_003´ (delay 0)
 		´show_bag_004´ (delay 0)
 ´toggle_off_001´ ElementToggle 100377
+	elements
+ 		1 ´show_bag_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_001´
 ´toggle_off_002´ ElementToggle 100378
+	elements
+ 		1 ´show_bag_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_002´
 ´toggle_off_003´ ElementToggle 100385
+	elements
+ 		1 ´show_bag_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_003´
 ´toggle_off_004´ ElementToggle 100388
+	elements
+ 		1 ´show_bag_004´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_004´
 ´toggle_off_005´ ElementToggle 100389
+	elements
+ 		1 ´show_bag_005´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_005´
 ´toggle_off_006´ ElementToggle 100390
+	elements
+ 		1 ´show_bag_006´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_006´
 ´toggle_off_007´ ElementToggle 100391
+	elements
+ 		1 ´show_bag_007´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_007´
 ´toggle_off_008´ ElementToggle 100392
+	elements
+ 		1 ´show_bag_008´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_008´
 ´toggle_off_009´ ElementToggle 100396
+	elements
+ 		1 ´show_bag_009´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_009´
 ´toggle_off_010´ ElementToggle 100397
+	elements
+ 		1 ´show_bag_010´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_010´
 ´toggle_off_011´ ElementToggle 100402
+	elements
+ 		1 ´show_bag_011´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_011´
 ´toggle_off_012´ ElementToggle 100403
+	elements
+ 		1 ´show_bag_012´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_012´
 ´toggle_off_013´ ElementToggle 100404
+	elements
+ 		1 ´show_bag_013´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_013´
 ´toggle_off_014´ ElementToggle 100405
+	elements
+ 		1 ´show_bag_014´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_014´
 ´toggle_off_015´ ElementToggle 100406
+	elements
+ 		1 ´show_bag_016´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_016´
 ´toggle_off_016´ ElementToggle 100407
+	elements
+ 		1 ´show_bag_015´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_bag_015´
 ´if_less_than_9´ ElementCounterFilter 100420
+	elements
+ 		1 ´bags_secured_counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 9
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´more_than_5´ (delay 0)
 ´rrrrandom_002´ ElementRandom 100431
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_bag_005´ (delay 0)
 		´show_bag_006´ (delay 0)
@@ -1937,75 +1937,73 @@
 		´show_bag_014´ (delay 0)
 		´show_bag_013´ (delay 0)
 ´more_than_5´ ElementCounterFilter 100432
+	elements
+ 		1 ´bags_secured_counter´
 	check_type greater_than
 	needed_to_execute all
 	value 4
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´rrrrandom_002´ (delay 0)
 ´if_less_than_14´ ElementCounterFilter 100433
+	elements
+ 		1 ´bags_secured_counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 12
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´more_than_005´ (delay 0)
 ´more_than_005´ ElementCounterFilter 100434
+	elements
+ 		1 ´bags_secured_counter´
 	check_type greater_than
 	needed_to_execute all
 	value 9
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´rrrrandom_003´ (delay 0)
 ´rrrrandom_003´ ElementRandom 100435
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_bag_008´ (delay 0)
 		´show_bag_009´ (delay 0)
 		´show_bag_015´ (delay 0)
 ´if_less_than_16´ ElementCounterFilter 100436
+	elements
+ 		1 ´bags_secured_counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 16
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´more_than_14´ (delay 0)
 ´rrrrandom_004´ ElementRandom 100437
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_bag_011´ (delay 0)
 		´show_bag_012´ (delay 0)
 		´show_bag_016´ (delay 0)
 		´show_bag_010´ (delay 0)
 ´more_than_14´ ElementCounterFilter 100438
+	elements
+ 		1 ´bags_secured_counter´
 	check_type greater_than
 	needed_to_execute all
 	value 12
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´rrrrandom_004´ (delay 0)
 ´more_than_16´ ElementCounterFilter 100439
+	elements
+ 		1 ´bags_secured_counter´
 	check_type greater_than
 	needed_to_execute all
 	value 16
-	elements
-		1 ´bags_secured_counter´
 	on_executed
 		´toggle_off´ (delay 0)
 ´toggle_off´ ElementToggle 100440
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´more_than_16´
+ 		1 ´more_than_16´
 		2 ´more_than_14´
 		3 ´if_less_than_16´
 		4 ´more_than_005´
@@ -2050,6 +2048,8 @@
 		43 ´show_bag_003´
 		44 ´show_bag_004´
 		45 ´show_bag_013´
+	set_trigger_times -1
+	toggle off
 ´trigger_area_001´ ElementAreaTrigger 100105
 	DISABLED
 	TRIGGER TIMES 1
@@ -2062,31 +2062,31 @@
 	position 0, -1000, 198
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 2150,4
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 2150.4
 	on_executed
 		´link_interact_switch_002´ (delay 0)
 ´logic_toggle_007´ ElementToggle 100116
+	elements
+ 		1 ´toggle_on_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´toggle_on_001´ DISABLED
 ´logic_toggle_009´ ElementToggle 100290
+	elements
+ 		1 ´toggle_on_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´toggle_on_002´ DISABLED
 ´logic_toggle_010´ ElementToggle 100357
+	elements
+ 		1 ´toggle_on_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´toggle_on_003´ DISABLED
 ´enable_securing_input´ ElementInstanceInput 100441
 	event enable_securing
 	on_executed
@@ -2098,7 +2098,7 @@
 	DISABLED
 	TRIGGER TIMES 1
 	distance 400
-	in_front true
+	in_front True
 	interval 0.1
 	position 750, -200, 1.9996
 	rotation 0, 0, 0.707107, -0.707107
@@ -2107,15 +2107,15 @@
 		´remove_waypoint_plane´ (delay 0)
 		´logic_toggle_014´ (delay 0)
 ´logic_toggle_011´ ElementToggle 100448
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_lookat_trigger_001´ DISABLED
 ´point_lookat_trigger_002´ ElementLookAtTrigger 100449
 	DISABLED
 	TRIGGER TIMES 1
 	distance 400
-	in_front true
+	in_front True
 	interval 0.1
 	position -825, 0, -9.91821E-05
 	rotation 0, 0, -0.707107, -0.707107
@@ -2124,16 +2124,16 @@
 		´remove_waypoint_plane´ (delay 0)
 		´logic_toggle_014´ (delay 0)
 ´logic_toggle_012´ ElementToggle 100450
+	elements
+ 		1 ´point_lookat_trigger_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_lookat_trigger_002´ DISABLED
 ´logic_toggle_014´ ElementToggle 100452
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
+		2 ´point_lookat_trigger_002´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_lookat_trigger_001´ DISABLED
-		2 ´point_lookat_trigger_002´ DISABLED
 ´show_loot_drop´ ElementEnableUnit 100002
 	position 1200, -1800, 0
 	rotation 0, 0, 0, -1
@@ -2149,29 +2149,30 @@
 	width 86
 ´point_shape_002´ ElementShape 100453
 	depth 95
-	height 311,5
+	height 311.5
 	position 24, -290, 199
-	radius 82,5
+	radius 82.5
 	rotation 0.707107, 0, 0, -0.707107
 	shape_type cylinder
 	width 86
 ´initiate_so´ ElementSpecialObjective 100454
 	DISABLED
-	SO_access 23069180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´pull_lever_anim´ DISABLED
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -2179,32 +2180,31 @@
 	pose none
 	position -849, -792, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 1500
 	search_position 4,0199 5,49719 -5,51343E-05
+	SO_access 23069180
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´pull_lever_anim´ DISABLED
+	use_instigator False
 ´pull_lever_anim´ ElementSpecialObjective 100460
 	DISABLED
-	SO_access 23069180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -2212,74 +2212,74 @@
 	pose none
 	position -849, -792, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -700 -800 0
+	SO_access 23069180
 	so_action e_so_pull_lever_var2
 	trigger_on none
-	followup_elements
 ´anim_completed´ ElementSpecialObjectiveTrigger 100461
+	elements
+ 		1 ´pull_lever_anim´ DISABLED
 	event complete
 	position -850, -900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´pull_lever_anim´ DISABLED
 	on_executed
 		´toggle_off_2´ (delay 0)
 		´point_debug_008´ (delay 0)
 ´anim_failed´ ElementSpecialObjectiveTrigger 100485
+	elements
+ 		1 ´pull_lever_anim´ DISABLED
+		2 ´initiate_so´ DISABLED
 	event fail
 	position -700, -900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´pull_lever_anim´ DISABLED
-		2 ´initiate_so´ DISABLED
 	on_executed
 		´toggle_initiate_on´ (delay 5) DISABLED
 		´point_debug_007´ (delay 0)
 ´toggle_off_2´ ElementToggle 100497
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´pull_lever_anim´ DISABLED
+ 		1 ´pull_lever_anim´ DISABLED
 		2 ´initiate_so´ DISABLED
 		3 ´interact_switch_002´ DISABLED
 		4 ´input_show_waypoint_hangar_switch´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_open_hangar´ (delay 0)
 		´link_interact_switch_002´ (delay 0)
 ´toggle_initiate_on´ ElementToggle 100498
 	DISABLED
+	elements
+ 		1 ´initiate_so´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´initiate_so´ DISABLED
 	on_executed
 		´point_debug_006´ (delay 0)
 		´toggle_pull_lever_on´ (delay 0)
 ´toggle_all_off´ ElementToggle 100499
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´toggle_initiate_on´ DISABLED
+ 		1 ´toggle_initiate_on´ DISABLED
 		2 ´toggle_off_2´
 		3 ´pull_lever_anim´ DISABLED
 		4 ´initiate_so´ DISABLED
 		5 ´anim_failed´
 		6 ´anim_completed´
 		7 ´toggle_pull_lever_on´
+	set_trigger_times -1
+	toggle off
 ´point_debug_006´ ElementDebug 100526
-	as_subtitle false
+	as_subtitle False
 	debug_string open_hangar_doors_on
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100527
-	as_subtitle false
+	as_subtitle False
 	debug_string open_hangar_doors_failed
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100575
-	as_subtitle false
+	as_subtitle False
 	debug_string open_hangar_doors_success
-	show_instigator false
+	show_instigator False
 ´police_called´ ElementGlobalEventTrigger 100500
 	TRIGGER TIMES 1
 	global_event police_called
@@ -2289,76 +2289,76 @@
 		´2´ (delay 0)
 		´2_2´ (delay 0)
 ´toggle_pull_lever_on´ ElementToggle 100578
+	elements
+ 		1 ´pull_lever_anim´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´pull_lever_anim´ DISABLED
 	on_executed
 		´initiate_so´ (delay 0) DISABLED
 ´toggle_all_off001´ ElementToggle 100579
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´toggle_initiate_on001´ DISABLED
+ 		1 ´toggle_initiate_on001´ DISABLED
 		2 ´toggle_pull_lever_on001´
 		3 ´toggle_off001´
 		4 ´anim_completed001´
 		5 ´anim_failed001´
 		6 ´pull_lever_anim001´ DISABLED
 		7 ´initiate_so001´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´point_debug_010´ ElementDebug 100580
-	as_subtitle false
+	as_subtitle False
 	debug_string open_hangar_doors_failed
-	show_instigator false
+	show_instigator False
 ´toggle_initiate_on001´ ElementToggle 100584
 	DISABLED
+	elements
+ 		1 ´initiate_so001´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´initiate_so001´ DISABLED
 	on_executed
 		´point_debug_012´ (delay 0)
 		´toggle_pull_lever_on001´ (delay 0)
 ´toggle_pull_lever_on001´ ElementToggle 100586
+	elements
+ 		1 ´pull_lever_anim001´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´pull_lever_anim001´ DISABLED
 	on_executed
 		´initiate_so001´ (delay 0) DISABLED
 ´toggle_off001´ ElementToggle 100587
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_show_waypoint_hangar_switch´
+ 		1 ´input_show_waypoint_hangar_switch´
 		2 ´initiate_so001´ DISABLED
 		3 ´pull_lever_anim001´ DISABLED
 		4 ´interact_switch_001´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_open_hangar´ (delay 0)
 		´link_interact_switch_002´ (delay 0)
 ´point_debug_012´ ElementDebug 100590
-	as_subtitle false
+	as_subtitle False
 	debug_string open_hangar_doors_on
-	show_instigator false
+	show_instigator False
 ´pull_lever_anim001´ ElementSpecialObjective 100591
 	DISABLED
-	SO_access 23069180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -2366,29 +2366,30 @@
 	pose none
 	position 851, -792, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -700 -800 0
+	SO_access 23069180
 	so_action e_so_pull_lever_var2
 	trigger_on none
-	followup_elements
 ´initiate_so001´ ElementSpecialObjective 100594
 	DISABLED
-	SO_access 23069180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´pull_lever_anim001´ DISABLED
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -2396,171 +2397,170 @@
 	pose none
 	position 851, -792, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 1500
 	search_position 4,0199 5,49719 -5,51343E-05
+	SO_access 23069180
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´pull_lever_anim001´ DISABLED
+	use_instigator False
 ´anim_failed001´ ElementSpecialObjectiveTrigger 100607
+	elements
+ 		1 ´pull_lever_anim001´ DISABLED
+		2 ´initiate_so001´ DISABLED
 	event fail
 	position 700, -900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´pull_lever_anim001´ DISABLED
-		2 ´initiate_so001´ DISABLED
 	on_executed
 		´toggle_initiate_on001´ (delay 0) DISABLED
 		´point_debug_010´ (delay 0)
 ´anim_completed001´ ElementSpecialObjectiveTrigger 100608
+	elements
+ 		1 ´pull_lever_anim001´ DISABLED
 	event complete
 	position 800, -900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´pull_lever_anim001´ DISABLED
 	on_executed
 		´toggle_off001´ (delay 0)
 ´play_loc_count_gen_001´ ElementDialogue 100610
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_01
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´point_play_sound_001´ ElementPlaySound 100613
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 2400, -1400, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_h11y
-	use_instigator false
+	use_instigator False
 ´play_loc_count_bag_001´ ElementDialogue 100615
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_01
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_002´ ElementDialogue 100616
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_02
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_002´ ElementDialogue 100614
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_02
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_003´ ElementDialogue 100617
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_03
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_003´ ElementDialogue 100618
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_03
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_004´ ElementDialogue 100619
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_04
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_004´ ElementDialogue 100620
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_04
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_005´ ElementDialogue 100621
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_05
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_005´ ElementDialogue 100622
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_05
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_006´ ElementDialogue 100623
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_06
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_006´ ElementDialogue 100624
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_06
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_007´ ElementDialogue 100625
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_07
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_007´ ElementDialogue 100626
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_07
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_bag_008´ ElementDialogue 100627
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_bag_08
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_008´ ElementDialogue 100628
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_08
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´filter_normal´ ElementFilter 100629
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1700, -1600, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -2569,25 +2569,25 @@
 		´normal_1_more´ (delay 0)
 		´normal_fin´ (delay 0)
 ´filter_hard´ ElementFilter 100630
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1700, -1700, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -2598,25 +2598,25 @@
 		´hard_1_more´ (delay 0)
 		´hard_fin´ (delay 0)
 ´filter_overkill´ ElementFilter 100631
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1700, -1800, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -2629,25 +2629,25 @@
 		´ovk_1_more´ (delay 0)
 		´ovk_fin´ (delay 0)
 ´filter_wishwish´ ElementFilter 100632
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1700, -1900, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -2666,19 +2666,19 @@
 ´bag_counter´ ElementCounter 100633
 	counter_target 0
 ´if_bag_001´ ElementCounterFilter 100634
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_001´ (delay 0)
 ´add_1_bag´ ElementCounterOperator 100635
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´bag_counter´
+ 		1 ´bag_counter´
+	instance_var_names
+	operation add
 	on_executed
 		´filter_normal´ (delay 0.01)
 		´filter_hard´ (delay 0.01)
@@ -2687,245 +2687,245 @@
 ´logic_random_001´ ElementRandom 100636
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_001´ (delay 0)
 		´play_loc_count_bag_001´ (delay 0)
 ´logic_random_002´ ElementRandom 100637
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_002´ (delay 0)
 		´play_loc_count_bag_002´ (delay 0)
 ´logic_random_003´ ElementRandom 100638
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_003´ (delay 0)
 		´play_loc_count_bag_003´ (delay 0)
 ´logic_random_004´ ElementRandom 100639
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_004´ (delay 0)
 		´play_loc_count_bag_004´ (delay 0)
 ´logic_random_005´ ElementRandom 100640
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_005´ (delay 0)
 		´play_loc_count_bag_005´ (delay 0)
 ´logic_random_006´ ElementRandom 100641
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_006´ (delay 0)
 		´play_loc_count_bag_006´ (delay 0)
 ´logic_random_007´ ElementRandom 100642
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_007´ (delay 0)
 		´play_loc_count_bag_007´ (delay 0)
 ´logic_random_008´ ElementRandom 100643
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´play_loc_count_gen_008´ (delay 0)
 		´play_loc_count_bag_008´ (delay 0)
 ´if_bag_002´ ElementCounterFilter 100644
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_002´ (delay 0)
 ´if_bag_003´ ElementCounterFilter 100645
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_003´ (delay 0)
 ´if_bag_004´ ElementCounterFilter 100646
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_004´ (delay 0)
 ´if_bag_005´ ElementCounterFilter 100647
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_005´ (delay 0)
 ´if_bag_006´ ElementCounterFilter 100648
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_006´ (delay 0)
 ´if_bag_007´ ElementCounterFilter 100649
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 7
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_007´ (delay 0)
 ´if_bag_008´ ElementCounterFilter 100650
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 8
-	elements
-		1 ´bag_counter´
 	on_executed
 		´logic_random_008´ (delay 0)
 ´Play_loc_count_gen_09´ ElementDialogue 100651
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_09
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_count_gen_10´ ElementDialogue 100652
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_10
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_count_gen_12´ ElementDialogue 100653
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_12
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´Play_loc_count_gen_011´ ElementDialogue 100654
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_11
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´normal_2_more´ ElementCounterFilter 100655
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_09´ (delay 0)
 ´normal_1_more´ ElementCounterFilter 100656
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_10´ (delay 0)
 ´normal_fin´ ElementCounterFilter 100657
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_12´ (delay 0)
 ´hard_2_more´ ElementCounterFilter 100658
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_09´ (delay 0)
 ´hard_1_more´ ElementCounterFilter 100659
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_10´ (delay 0)
 ´hard_fin´ ElementCounterFilter 100660
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_12´ (delay 0)
 ´ovk_2_more´ ElementCounterFilter 100661
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_09´ (delay 0)
 ´ovk_1_more´ ElementCounterFilter 100662
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 7
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_10´ (delay 0)
 ´ovk_fin´ ElementCounterFilter 100663
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 8
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_12´ (delay 0)
 ´fishwish_2_more´ ElementCounterFilter 100664
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 10
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_09´ (delay 0)
 ´swishwish_1_more´ ElementCounterFilter 100665
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 11
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_10´ (delay 0)
 ´wishywashy_fin´ ElementCounterFilter 100666
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 12
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_12´ (delay 0)
 ´if_bag_009´ ElementCounterFilter 100667
+	elements
+ 		1 ´bag_counter´
 	check_type equal
 	needed_to_execute all
 	value 9
-	elements
-		1 ´bag_counter´
 	on_executed
 		´Play_loc_count_gen_011´ (delay 0)
 ´disable_hangar_input´ ElementInstanceInput 100459
@@ -2967,7 +2967,7 @@
 		´func_nav_obstacle_003´ (delay 0)
 ´rule_roman_armor´ ElementInstigatorRule 100679
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -2979,41 +2979,41 @@
 		´point_debug_013´ (delay 0)
 ´func_award_achievement_mex_10´ ElementAwardAchievment 100683
 	achievment mex_10
-	award_instigator false
+	award_instigator False
 	position 200, -100, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´point_debug_015´ (delay 0)
 ´point_debug_015´ ElementDebug 100685
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: func_award_achievement_mex_10
-	show_instigator false
+	show_instigator False
 ´point_teammate_comment_v28´ ElementTeammateComment 100686
-	close_to_element false
+	close_to_element False
 	comment v28
 	position -1400, -3200, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_009´ (delay 0)
 ´point_debug_016´ ElementDebug 100042
-	as_subtitle false
+	as_subtitle False
 	debug_string none
-	show_instigator false
+	show_instigator False
 ´logic_toggle_015´ ElementToggle 100689
+	elements
+ 		1 ´trigger_area_002´
+		2 ´trigger_area_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_002´
-		2 ´trigger_area_003´
 ´point_teammate_comment_v15´ ElementTeammateComment 100690
-	close_to_element false
+	close_to_element False
 	comment v15
 	position 2100, -3000, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_011´ (delay 0)
 ´trigger_area_002´ ElementAreaTrigger 100692
@@ -3027,14 +3027,14 @@
 	position 1228, -200, 153
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´logic_chance_001´ (delay 0)
 ´trigger_area_003´ ElementAreaTrigger 100693
@@ -3048,14 +3048,14 @@
 	position -1231, 6, 153
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´logic_chance_001´ (delay 0)
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100694
@@ -3076,11 +3076,11 @@
 	position 1900, -3000, 2.5
 	rotation 0, 0, 0, -1
 ´logic_chance_trigger_001´ ElementLogicChanceTrigger 100687
+	elements
+ 		1 ´logic_chance_001´
 	outcome success
 	position 2000, -3000, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´logic_chance_001´
 	on_executed
 		´point_teammate_comment_v15´ (delay 0)
 		´logic_toggle_015´ (delay 0)
@@ -3089,45 +3089,43 @@
 	TRIGGER TIMES 4
 	amount 1
 	depth 500
-	height 195,65
+	height 195.65
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position 54, -296, 198
-	radius 79,825
+	radius 79.825
 	rotation 0.707107, 0, 0, -0.707107
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
 		1 ´rule_roman_armor´
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´secure_loot_roman´ (delay 0)
 ´sound_italian002´ ElementPlaySound 100101
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 775, 821, 87
 	rotation 0, 0, -2.68221E-07, -1
 	sound_event Play_ita_mex_02
-	use_instigator false
+	use_instigator False
 ´link_continue_idle´ MissionScriptElement 100232
 	on_executed
 		´SO_italian_done_conversation´ (delay 0)
 ´disable_sound_italian_02´ ElementToggle 100237
+	elements
+ 		1 ´sound_italian002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´sound_italian002´
 ´logic_toggle_001´ ElementToggle 100393
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´police_called´
+ 		1 ´police_called´
 		2 ´anim_completed´
 		3 ´anim_completed001´
 		4 ´anim_failed´
@@ -3137,6 +3135,8 @@
 		8 ´trigger_area_003´
 		9 ´trigger_area_player_entered´
 		10 ´trigger_area_002´
+	set_trigger_times -1
+	toggle off
 ´secure_loot_roman´ ElementCarry 100475
 	operation secure
 	type_filter roman_armor
@@ -3151,25 +3151,25 @@
 ´trigger_area_loot_extra_001´ ElementAreaTrigger 100513
 	amount 1
 	depth 500
-	height 377,4
+	height 377.4
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position 40.7284, -197.68, 200
-	radius 78,375
+	radius 78.375
 	rotation -0.706138, -0.0370071, -0.0370071, -0.706138
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
 		1 ´instigator_rule_weapons_extra´ DISABLED
 		2 ´instigator_rule_coke_extra´ DISABLED
 		3 ´instigator_rule_money_extra´ DISABLED
 		4 ´rule_not_roman_armor´
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´secure_loot_extra´ (delay 0)
 ´2´ ElementCounter 100026
@@ -3220,21 +3220,21 @@
 	on_executed
 		´hose_detached´ (delay 0)
 ´point_debug_004´ ElementDebug 100451
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: connected_hose
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100490
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: hose_detached
-	show_instigator false
+	show_instigator False
 ´point_debug_009´ ElementDebug 100491
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: point_teammate_comment_v28
-	show_instigator false
+	show_instigator False
 ´point_debug_011´ ElementDebug 100546
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: point_teammate_comment_v15
-	show_instigator false
+	show_instigator False
 ´2_3´ ElementCounter 100547
 	counter_target 2
 	on_executed
@@ -3261,11 +3261,11 @@
 			notify_unit_sequence trigger_animation
 			time 0
 ´logic_toggle_016´ ElementToggle 100155
+	elements
+ 		1 ´link_show_waypoint´
+		2 ´waypoint_isithere´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_show_waypoint´
-		2 ´waypoint_isithere´
 ´env_effect_play_001´ ElementPlayEffect 100529
 	base_time 0
 	effect effects/particles/character/cigarette_smoke
@@ -3273,13 +3273,13 @@
 	position 835, 841, 79.9998
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space true
+	screen_space True
 ´env_effect_stop_001´ ElementStopEffect 100561
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position 950, 850, -0.000198364
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 ´on_cup_destroyed´ ElementUnitSequenceTrigger 100562
 	TRIGGER TIMES 1
 	sequence_list
@@ -3290,22 +3290,22 @@
 	on_executed
 		´env_effect_stop_001´ (delay 0)
 ´SO_italian_done_conversation001´ ElementSpecialObjective 100564
-	SO_access 1
 	action_duration_max 5
 	action_duration_min 5
 	ai_group civilians
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -3313,57 +3313,54 @@
 	pose none
 	position 773, 774, 0
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position 525 500 0
+	SO_access 1
 	so_action cmf_so_idle
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_001´
+	trigger_on none
+	use_instigator False
 ´func_nav_obstacle_003´ ElementNavObstacle 100565
-	operation remove
-	position -900, -2900, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/007 (161, 275, 0)
+	operation remove
+	position -900, -2900, 0
+	rotation 0, 0, 0, -1
 ´point_debug_013´ ElementDebug 100669
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: roman_armour_secured_4
-	show_instigator false
+	show_instigator False
 ´point_debug_014´ ElementDebug 100670
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: secure_loot_roman
-	show_instigator false
+	show_instigator False
 ´point_debug_017´ ElementDebug 100671
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: trigger_area_escape
-	show_instigator false
+	show_instigator False
 ´point_debug_018´ ElementDebug 100672
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: 2
-	show_instigator false
+	show_instigator False
 ´rule_not_roman_armor´ ElementInstigatorRule 100673
 	instigator loot
-	invert true
+	invert True
 	rules
 		loot
 			carry_ids
 				1 roman_armor
 ´enable_area_roman_armor´ ElementToggle 100563
+	elements
+ 		1 ´area_roman_armor´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_roman_armor´ DISABLED
 ´add_door_blocker_loot_v2´ ElementNavObstacle 100695
 	TRIGGER TIMES 1
-	operation add
-	position -600, -2900, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -3409,5 +3406,8 @@
 			guis_id 11
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/new002 (450, 625, 0)
+	operation add
+	position -600, -2900, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_disable_plane_stuff´ (delay 0)

@@ -9,7 +9,7 @@
 ´wp_hackable_keycard_panel_interact´ ElementWaypoint 100003
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 15, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -87,29 +87,29 @@
 			notify_unit_sequence state_interaction_enabled
 			time 0
 ´wp_hackable_keycard_panel_REMOVE´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´wp_hackable_keycard_panel_interact´ DISABLED
+ 		1 ´wp_hackable_keycard_panel_interact´ DISABLED
+	operation remove
 ´hack_timer_60´ ElementTimerOperator 100017
+	elements
+ 		1 ´ hack_timer´
 	operation set_time
 	position 0, 525, 800
 	rotation 0, 0, 0, -1
 	time 30
-	elements
-		1 ´ hack_timer´
 ´hack_timer_START´ ElementTimerOperator 100018
+	elements
+ 		1 ´ hack_timer´
 	operation start
 	position -550, 525, 800
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´ hack_timer´
 ´hack_timer_0´ ElementTimerTrigger 100019
+	elements
+ 		1 ´ hack_timer´
 	position -725, 525, 800
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´ hack_timer´
 	on_executed
 		´output_hack_done´ (delay 0)
 		´stop_interrupting´ (delay 0)
@@ -131,31 +131,31 @@
 ´wp_hackable_keycard_panel_defend´ ElementWaypoint 100022
 	DISABLED
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 15, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_hackable_keycard_panel_defend_REMOVE´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´wp_hackable_keycard_panel_defend´ DISABLED
+ 		1 ´wp_hackable_keycard_panel_defend´ DISABLED
+	operation remove
 ´so_interrupt´ ElementSpecialObjective 100024
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 15840
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -163,12 +163,12 @@
 	pose none
 	position -19, 88, -25
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 5000
 	search_position -57,2067 82,9576 2,5
+	SO_access 15840
 	so_action e_so_push_button
 	trigger_on none
-	followup_elements
 ´start_interrupting´ MissionScriptElement 100025
 	on_executed
 		´start_interrupting_loop´ (delay 0)
@@ -177,16 +177,16 @@
 		´so_interrupt_ON´ (delay 0)
 		´so_interrupt´ (delay 0.5) DISABLED
 ´so_interrupt_ON´ ElementToggle 100027
+	elements
+ 		1 ´so_interrupt´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´so_interrupt´ DISABLED
 ´so_trg_interrupt_COMPLETE´ ElementSpecialObjectiveTrigger 100028
+	elements
+ 		1 ´so_interrupt´ DISABLED
 	event complete
 	position -725, 775, 800
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt´ DISABLED
 	on_executed
 		´hack_interrupted´ (delay 0)
 		´so_defend´ (delay 0)
@@ -202,9 +202,9 @@
 ´output_hack_interrupted´ ElementInstanceOutput 100030
 	event hack_interrupted
 ´so_interrupt_REMOVE´ ElementOperator 100031
-	operation remove
 	elements
-		1 ´so_interrupt´ DISABLED
+ 		1 ´so_interrupt´ DISABLED
+	operation remove
 ´seq_keycard_panel_hack_stopped´ ElementUnitSequence 100032
 	position -725, 1075, 800
 	rotation 0, 0, 0, -1
@@ -222,11 +222,11 @@
 			notify_unit_sequence state_interaction_enabled
 			time 0
 ´so_trg_interrupt_FAIL´ ElementSpecialObjectiveTrigger 100033
+	elements
+ 		1 ´so_interrupt´ DISABLED
 	event fail
 	position -1050, 775, 800
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt´ DISABLED
 	on_executed
 		´start_interrupting_loop´ (delay 0)
 ´start_interrupting_loop´ MissionScriptElement 100034
@@ -240,54 +240,54 @@
 		´so_interrupt_OFF´ (delay 0)
 		´loop_and_triggers_OFF´ (delay 0)
 ´so_interrupt_OFF´ ElementToggle 100036
+	elements
+ 		1 ´so_interrupt´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´so_interrupt´ DISABLED
 ´hack_timer_PAUSE´ ElementTimerOperator 100037
+	elements
+ 		1 ´ hack_timer´
 	operation pause
 	position -725, 1000, 800
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´ hack_timer´
 ´loop_and_triggers_OFF´ ElementToggle 100038
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_trg_interrupt_FAIL´
+ 		1 ´so_trg_interrupt_FAIL´
 		2 ´so_trg_interrupt_COMPLETE´
 		3 ´start_interrupting´
 		4 ´start_interrupting_loop´
 		5 ´interrupt_delay´
 		6 ´hack_interrupted´
 		7 ´so_interrupt_ON´
+	set_trigger_times -1
+	toggle off
 ´input_show_WP´ ElementInstanceInput 100004
 	event show_WP
 	on_executed
 		´WP_ON´ (delay 0)
 		´wp_hackable_keycard_panel_interact´ (delay 0.5) DISABLED
 ´WP_ON´ ElementToggle 100049
+	elements
+ 		1 ´wp_hackable_keycard_panel_defend´ DISABLED
+		2 ´wp_hackable_keycard_panel_interact´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´wp_hackable_keycard_panel_defend´ DISABLED
-		2 ´wp_hackable_keycard_panel_interact´ DISABLED
 ´so_defend´ ElementSpecialObjective 100042
-	SO_access 15864
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude avoid
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -295,12 +295,12 @@
 	pose none
 	position -19, 88, -25
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position -125 50 0
+	SO_access 15864
 	so_action AI_defend
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´ hack_timer´ ElementTimer 100002
 	timer 0

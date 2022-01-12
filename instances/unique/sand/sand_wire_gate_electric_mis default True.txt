@@ -144,7 +144,7 @@
 	position 3150, 200, 0
 	rotation 0, 0, 0, -1
 	state electrocution
-	use_instigator true
+	use_instigator True
 	on_executed
 		´output_player_eletrocuted´ (delay 0)
 		´reset_trigger_times´ (delay 3)
@@ -200,11 +200,11 @@
 	on_executed
 		´toggle_ON_stuff´ (delay 0)
 ´reset_trigger_times´ ElementToggle 100055
+	elements
+ 		1 ´player_is_electrified´
+		2 ´player_state_electrocution´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´player_is_electrified´
-		2 ´player_state_electrocution´
 ´input_enable_gate_crash´ ElementInstanceInput 100012
 	event enable_gate_crash
 	on_executed
@@ -229,20 +229,30 @@
 		´disable_interaction´ (delay 0.1)
 		´disable_electricity_2´ (delay 0)
 ´toggle_off_electric´ ElementToggle 100016
+	elements
+ 		1 ´player_state_electrocution´
+		2 ´player_is_electrified´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´player_state_electrocution´
-		2 ´player_is_electrified´
 	on_executed
 		´player_state_electrocution001´ (delay 0)
 ´link_disable_electric´ MissionScriptElement 100017
 	on_executed
 		´disable_electricity´ (delay 0)
 ´nav_obst_remove´ ElementNavObstacle 100002
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -75, 50)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -75, 50)
 	operation remove
 	position 1100, -100, 0
 	rotation 0, 0, 0, -1
+´nav_obst_add´ ElementNavObstacle 100019
 	obstacle_list
 		1
 			guis_id 1
@@ -252,19 +262,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -75, 50)
-´nav_obst_add´ ElementNavObstacle 100019
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (0, -75, 50)
-		2
-			guis_id 2
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -75, 50)
 ´disable_interaction´ ElementUnitSequence 100025
 	position 1375, 0, 0
 	rotation 0, 0, 0, -1
@@ -286,10 +286,10 @@
 			notify_unit_sequence set_fence_not_electrified
 			time 0
 ´toggle_off_disable_electricity´ ElementToggle 100013
+	elements
+ 		1 ´disable_electricity_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´disable_electricity_2´
 ´car_crash_trigger´ ElementUnitSequenceTrigger 100027
 	TRIGGER TIMES 1
 	sequence_list
@@ -300,14 +300,14 @@
 	on_executed
 		´output_gate_opened´ (delay 0)
 ´toggle_ON_stuff´ ElementToggle 100028
+	elements
+ 		1 ´sequence_trigger_gate_opened´ DISABLED
+		2 ´seq_trigger_padlock´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´sequence_trigger_gate_opened´ DISABLED
-		2 ´seq_trigger_padlock´ DISABLED
 ´player_state_electrocution001´ ElementPlayerState 100030
 	TRIGGER TIMES 1
 	position 1575, 0, 0
 	rotation 0, 0, 0, -1
 	state standard
-	use_instigator true
+	use_instigator True

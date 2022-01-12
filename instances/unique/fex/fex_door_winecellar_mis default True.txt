@@ -79,7 +79,7 @@
 ´randomize_first´ ElementRandom 100035
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´set_first_000´ (delay 0)
 		´set_first_001´ (delay 0)
@@ -102,7 +102,7 @@
 ´randomize_second´ ElementRandom 100040
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´set_second_000´ (delay 0)
 		´set_second_001´ (delay 0)
@@ -121,7 +121,7 @@
 ´randomize_third´ ElementRandom 100043
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´set_third_000´ (delay 0)
 		´set_third_001´ (delay 0)
@@ -144,7 +144,7 @@
 ´randomize_fourth´ ElementRandom 100046
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´set_fourth_000´ (delay 0)
 		´set_fourth_001´ (delay 0)
@@ -173,23 +173,23 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100049
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (65, -100, 0)
 	operation remove
 	position -200, 900, 0
 	rotation 0, 0, 0, -1
+´add_door_blocker´ ElementNavObstacle 100050
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (65, -100, 0)
-´add_door_blocker´ ElementNavObstacle 100050
 	operation add
 	position -100, 800, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (65, -100, 0)
 ´startup´ MissionScriptElement 100052
 	EXECUTE ON STARTUP
 ´delay´ MissionScriptElement 100053
@@ -210,21 +210,21 @@
 	position -50, 0, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´toggle_OFF_stuff´ (delay 0)
 		´output_winecellar_door_found´ (delay 0)
 ´goto_door_WP´ ElementWaypoint 100055
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 25, 0, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -237,22 +237,22 @@
 		´goto_door_WP´ (delay 0)
 		´toggle_ON_trigger´ (delay 0)
 ´toggle_ON_trigger´ ElementToggle 100058
+	elements
+ 		1 ´door_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´door_found´ DISABLED
 ´toggle_OFF_stuff´ ElementToggle 100059
+	elements
+ 		1 ´door_found´ DISABLED
+		2 ´goto_door_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´door_found´ DISABLED
-		2 ´goto_door_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100060
-	operation remove
 	elements
-		1 ´goto_door_WP´
+ 		1 ´goto_door_WP´
+	operation remove
 ´output_winecellar_door_found´ ElementInstanceOutput 100061
 	event winecellar_door_found
 ´input_force_disable_goto_WP´ ElementInstanceInput 100062

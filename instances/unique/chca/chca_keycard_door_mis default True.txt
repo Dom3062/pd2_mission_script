@@ -101,32 +101,32 @@
 		´toggle_OFF_police_called´ (delay 0)
 		´remove_door_blocker´ (delay 0)
 ´toggle_OFF_police_called´ ElementToggle 100016
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´police_called´
+ 		1 ´police_called´
 		2 ´ECM_jammer_on´
 		3 ´ECM_jammer_off´
 		4 ´open_door_3´
+	set_trigger_times -1
+	toggle off
 ´add_door_blocker´ ElementNavObstacle 100006
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100008
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
-´remove_door_blocker´ ElementNavObstacle 100008
-	TRIGGER TIMES 1
 	operation remove
 	position 700, 0, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
 	on_executed
 		´door_open´ (delay 0)
 ´open_door_2´ ElementInstanceInput 100017
@@ -204,16 +204,16 @@
 			notify_unit_sequence interact_enable
 			time 0
 ´disable_ECM_OFF_stealth´ ElementToggle 100029
+	elements
+ 		1 ´ECM_jammer_off´
+		2 ´ECM_jammer_on´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ECM_jammer_off´
-		2 ´ECM_jammer_on´
 ´enable_ECM_ON_loud´ ElementToggle 100030
+	elements
+ 		1 ´ECM_jammer_off´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ECM_jammer_off´
 	on_executed
 		´output_card_reader_enabled´ (delay 0)
 ´input_disable_card_reader´ ElementInstanceInput 100019
@@ -221,7 +221,7 @@
 	on_executed
 		´disable_interaction´ (delay 0)
 ´open_door_3´ ElementInteraction 100025
-	host_only false
+	host_only False
 	override_timer 0,2
 	position -34, 18, 100
 	rotation 0, 0, 0, -1
@@ -230,9 +230,9 @@
 		´point_debug_001´ (delay 0) (alternative interacted)
 		´link_door_open_from_inside´ (delay 0) (alternative interacted)
 ´point_debug_001´ ElementDebug 100026
-	as_subtitle false
+	as_subtitle False
 	debug_string door_open_from_inside
-	show_instigator false
+	show_instigator False
 ´link_door_open_from_inside´ MissionScriptElement 100031
 	on_executed
 		´open_door´ (delay 0)
@@ -248,10 +248,10 @@
 			notify_unit_sequence interact_disable
 			time 0
 ´point_debug_002´ ElementDebug 100040
-	as_subtitle false
+	as_subtitle False
 	debug_string empty
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100041
-	as_subtitle false
+	as_subtitle False
 	debug_string not_empty
-	show_instigator false
+	show_instigator False

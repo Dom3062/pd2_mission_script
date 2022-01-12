@@ -54,30 +54,30 @@
 			notify_unit_sequence open_door_left
 			time 0
 ´enable_helicopter_land´ ElementToggle 100030
+	elements
+ 		1 ´helicopter_land´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´helicopter_land´ DISABLED
 ´helicopter_land´ ElementAreaTrigger 100032
 	DISABLED
 	TRIGGER TIMES 1
 	amount 1
 	depth 1311,82
-	height 1673,88
+	height 1673.88
 	instigator civilians
 	interval 0.1
 	position 6, -25, 125
-	radius 1666,76
+	radius 1666.76
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1222,52
 	rules_element_ids
 		1 ´set_loot_area_person_to_person´
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1222.52
 	on_executed
 		´helicopter_can_now_come_down´ (delay 0)
 		´heli_lands´ (delay 0)
@@ -95,17 +95,17 @@
 	on_executed
 		´disable_helicopter_land´ (delay 2)
 ´disable_helicopter_land´ ElementToggle 100050
+	elements
+ 		1 ´helicopter_land´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´helicopter_land´ DISABLED
 	on_executed
 		´heli_hovers´ (delay 0)
 		´hide_pilot´ (delay 0)
 ´remove_waypoint´ ElementOperator 100051
-	operation remove
 	elements
-		1 ´santa_escape_waypoint´
+ 		1 ´santa_escape_waypoint´
+	operation remove
 ´heli_hovers´ ElementUnitSequence 100052
 	position 2600, -175, 275
 	rotation 0, 0, 0, -1
@@ -142,9 +142,9 @@
 ´helicopter_logic_ends_output´ ElementInstanceOutput 100002
 	event helicopter_logic_ends_output
 ´helicopter_can_now_come_down´ ElementDebug 100005
-	as_subtitle false
+	as_subtitle False
 	debug_string helicopter_can_now_come_down
-	show_instigator false
+	show_instigator False
 ´santa_escaped´ ElementInstanceInput 100009
 	event santa_escaped
 	on_executed
@@ -161,15 +161,15 @@
 	position -171, 25, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100062
+	elements
+ 		1 ´env_effect_play_001´
+		2 ´env_effect_play_002´
+		3 ´env_effect_play_003´
 	operation fade_kill
 	position -275, 25, -100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
-		2 ´env_effect_play_002´
-		3 ´env_effect_play_003´
 ´env_effect_play_002´ ElementPlayEffect 100063
 	base_time 0
 	effect effects/payday2/environment/leaf_winded
@@ -177,7 +177,7 @@
 	position 229, 25, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100064
 	base_time 0
 	effect effects/payday2/environment/leaf_winded
@@ -185,7 +185,7 @@
 	position 4, -525, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´delay_to_play_effects´ MissionScriptElement 100065
 	on_executed
 		´env_effect_play_003´ (delay 0)

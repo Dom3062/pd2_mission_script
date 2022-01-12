@@ -61,9 +61,6 @@
 	on_executed
 		´seq_set_gate_closed´ (delay 0)
 ´nav_remove_gate_blocker´ ElementNavObstacle 100021
-	operation remove
-	position 1000, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -73,13 +70,13 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	operation remove
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
 ´link_open_gate´ MissionScriptElement 100004
 	on_executed
 		´seq_open_gate´ (delay 0)
 ´add_sand_wire_gate_blockers´ ElementNavObstacle 100016
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -89,6 +86,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
 ´link_comment´ MissionScriptElement 100068
 	on_executed
 		´toggle_off´ (delay 1)
@@ -97,26 +97,26 @@
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´teammate_comment_lets_go´ (delay 0)
 		´teammate_comment_time_to_go´ (delay 0)
 ´teammate_comment_lets_go´ ElementTeammateComment 100070
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g13
 	position -475, -75, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_time_to_go´ ElementTeammateComment 100072
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g17
 	position -325, -75, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´police_called´ ElementGlobalEventTrigger 100001
 	TRIGGER TIMES 1
 	global_event police_called
@@ -125,10 +125,10 @@
 	on_executed
 		´counter_2´ (delay 0)
 ´toggle_off´ ElementToggle 100005
+	elements
+ 		1 ´police_called´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´police_called´
 ´counter_2´ ElementCounter 100011
 	counter_target 2
 	on_executed

@@ -127,25 +127,25 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´disable_general_loot´ ElementToggle 100024
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_show_bombs´
+ 		1 ´seq_show_bombs´
 		2 ´link_bomb_disarmed´
 		3 ´seq_show_common_loot´
 		4 ´input_enable_c4´
 		5 ´start_bomb_minigame´
+	set_trigger_times -1
+	toggle off
 ´sound_bomb_ticking´ ElementPlaySound 100025
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 75
 	rotation 0, 0, 0, -1
 	sound_event fertbomb_timer_ticktock
-	use_instigator false
+	use_instigator False
 ´interact_pickup_c4´ ElementInteraction 100027
 	DISABLED
 	TRIGGER TIMES 1
-	host_only false
+	host_only False
 	override_timer -1
 	position -29, 29, 75
 	rotation 0, 0, 1, -1.19209E-07
@@ -153,9 +153,9 @@
 	on_executed
 		´func_equipment_c4_001´ (delay 0) (alternative interacted)
 ´remove_sound_bomb_ticking´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´sound_bomb_ticking´
+ 		1 ´sound_bomb_ticking´
+	operation remove
 	on_executed
 		´stop_bomb_timer_2´ (delay 0)
 ´start_bomb_minigame´ MissionScriptElement 100029
@@ -170,34 +170,34 @@
 ´bomb_timer´ ElementTimer 100031
 	timer 7
 ´start_bomb_timer´ ElementTimerOperator 100032
+	elements
+ 		1 ´bomb_timer´
 	operation start
 	position 1150, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´bomb_timer´
 ´bomb_timer_out´ ElementTimerTrigger 100033
+	elements
+ 		1 ´bomb_timer´
 	position 1150, -125, 0
 	rotation 0, 0, 0, -1
 	time 0,5
-	elements
-		1 ´bomb_timer´
 	on_executed
 		´stop_bomb_timer´ (delay 0)
 		´disable_pickup_C4´ (delay 0)
 ´stop_bomb_timer´ ElementTimerOperator 100034
+	elements
+ 		1 ´bomb_timer´
 	operation pause
 	position 1150, -200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´bomb_timer´
 	on_executed
 		´remove_sound_bomb_ticking_2´ (delay 0)
 ´remove_sound_bomb_ticking_2´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´sound_bomb_ticking´
+ 		1 ´sound_bomb_ticking´
+	operation remove
 	on_executed
 		´disable_disarm_bomb_interaction´ (delay 0)
 ´seq_explode_crate´ ElementUnitSequence 100036
@@ -230,12 +230,12 @@
 	on_executed
 		´remove_sound_bomb_ticking´ (delay 0.1)
 ´stop_bomb_timer_2´ ElementTimerOperator 100038
+	elements
+ 		1 ´bomb_timer´
 	operation pause
 	position 1325, 150, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´bomb_timer´
 	on_executed
 		´seq_enable_c4´ (delay 0.5)
 ´seq_show_bombs´ ElementUnitSequence 100040
@@ -263,10 +263,10 @@
 	on_executed
 		´enable_disarm_bomb_interaction´ (delay 0)
 ´disable_disarm_bomb_interaction´ ElementToggle 100042
+	elements
+ 		1 ´interact_pickup_c4´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_pickup_c4´ DISABLED
 	on_executed
 		´seq_explode_crate´ (delay 0.5)
 ´point_explosion_damage_001´ ElementExplosionDamage 100044
@@ -285,9 +285,9 @@
 	on_executed
 		´output_artifact_collected´ (delay 0)
 ´artifact_collected´ ElementDebug 100046
-	as_subtitle false
+	as_subtitle False
 	debug_string artifact_collected
-	show_instigator false
+	show_instigator False
 ´seq_show_common_loot´ ElementUnitSequence 100047
 	position 975, 150, 0
 	rotation 0, 0, 0, -1
@@ -401,10 +401,10 @@
 	on_executed
 		´enable_interactions_loot´ (delay 0)
 ´toggle_OFF_loot_interaction´ ElementToggle 100118
+	elements
+ 		1 ´link_enable_loot_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_enable_loot_interaction´
 ´c4_enabled_and_triggered´ ElementCounter 100119
 	counter_target 2
 	on_executed
@@ -419,9 +419,9 @@
 	on_executed
 		´point_debug_004´ (delay 0)
 ´point_debug_004´ ElementDebug 100122
-	as_subtitle false
+	as_subtitle False
 	debug_string coke_picked_up
-	show_instigator false
+	show_instigator False
 ´trigger_c4_picked_up´ ElementUnitSequenceTrigger 100123
 	TRIGGER TIMES 1
 	sequence_list
@@ -436,17 +436,17 @@
 	on_executed
 		´point_debug_005´ (delay 0)
 ´point_debug_005´ ElementDebug 100125
-	as_subtitle false
+	as_subtitle False
 	debug_string c4_picked_up
-	show_instigator false
+	show_instigator False
 ´output_crate_exploded´ ElementInstanceOutput 100126
 	event crate_exploded
 	on_executed
 		´point_debug_006´ (delay 0)
 ´point_debug_006´ ElementDebug 100127
-	as_subtitle false
+	as_subtitle False
 	debug_string crate_kaboom_u_big_donkey
-	show_instigator false
+	show_instigator False
 ´show_decal´ ElementEnableUnit 100013
 	position 1050, -425, 2.5
 	rotation 0, 0, -0.382683, -0.92388
@@ -471,8 +471,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´func_equipment_c4_001´ ElementEquipment 100015
 	TRIGGER TIMES 1
 	amount 1
@@ -691,10 +691,10 @@
 	on_executed
 		´link_bomb_disarmed´ (delay 0)
 ´enable_c4_int´ ElementToggle 100142
+	elements
+ 		1 ´interact_pickup_c4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interact_pickup_c4´ DISABLED
 ´seq_hide_C4´ ElementUnitSequence 100143
 	position 1900, 225, 0
 	rotation 0, 0, 0, -1
@@ -731,16 +731,16 @@
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100055
-	as_subtitle false
+	as_subtitle False
 	debug_string crate_open
-	show_instigator false
+	show_instigator False
 ´disable_pickup_C4´ ElementToggle 100056
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_bomb_disarmed´
+ 		1 ´seq_bomb_disarmed´
 		2 ´link_bomb_disarmed´
 		3 ´remove_sound_bomb_ticking´
 		4 ´stop_bomb_timer_2´
 		5 ´seq_enable_c4´
 		6 ´enable_interactions_loot´
+	set_trigger_times -1
+	toggle off

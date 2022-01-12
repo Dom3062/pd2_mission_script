@@ -213,14 +213,14 @@
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100026
-	operation add
-	position -700, 1200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
+	operation add
+	position -700, 1200, 0
+	rotation 0, 0, 0, -1
 ´enable_ammo_2´ ElementEnableUnit 100029
 	position -700, -600, 0
 	rotation 0, 0, 0, -1
@@ -428,31 +428,31 @@
 ´logic_random_001´ ElementRandom 100047
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_briefcase2´ (delay 0)
 		´show_briefcase1´ (delay 0)
 ´toggle_briefcase_waypoint001´ ElementToggle 100048
+	elements
+ 		1 ´briefcase_waypoint001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´briefcase_waypoint001´ DISABLED
 ´toggle_briefcase_waypoint002´ ElementToggle 100049
+	elements
+ 		1 ´briefcase_waypoint002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´briefcase_waypoint002´ DISABLED
 ´briefcase_waypoint001´ ElementWaypoint 100050
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 369, -59, 117
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´briefcase_waypoint002´ ElementWaypoint 100051
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 226, -170, 62
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -470,10 +470,10 @@
 	on_executed
 		´remove_briefcase_waypoint´ (delay 0)
 ´remove_briefcase_waypoint´ ElementOperator 100053
-	operation remove
 	elements
-		1 ´briefcase_waypoint001´ DISABLED
+ 		1 ´briefcase_waypoint001´ DISABLED
 		2 ´briefcase_waypoint002´ DISABLED
+	operation remove
 	on_executed
 		´briefcase_pickedup´ (delay 0)
 ´activate_waypoints´ ElementInstanceInput 100037
@@ -485,7 +485,7 @@
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´briefcase_waypoint002´ (delay 0) DISABLED
 		´briefcase_waypoint001´ (delay 0) DISABLED
@@ -551,26 +551,26 @@
 	on_executed
 		´disable_door_blocker_2´ (delay 0)
 ´disable_door_blocker´ ElementNavObstacle 100059
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
 	operation remove
 	position -700, -100, 0
 	rotation 0, 0, 0, -1
+´disable_door_blocker_2´ ElementNavObstacle 100060
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
-´disable_door_blocker_2´ ElementNavObstacle 100060
 	operation remove
 	position -700, -900, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
 ´drill_waypoint´ ElementWaypoint 100061
 	icon pd2_drill
-	only_in_civilian false
+	only_in_civilian False
 	position -36, 40, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -579,11 +579,11 @@
 	on_executed
 		´drill_waypoint´ (delay 0)
 ´activate_drill_waypoint_link´ ElementToggle 100065
+	elements
+ 		1 ´drill_waypoint_link´ DISABLED
+		2 ´check_if_vault´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_waypoint_link´ DISABLED
-		2 ´check_if_vault´ DISABLED
 ´func_instance_input_001´ ElementInstanceInput 100066
 	TRIGGER TIMES 1
 	event activate_drill_waypoint
@@ -606,38 +606,38 @@
 	position -200, 0, 200
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´vault_found´ (delay 0)
 ´vault_found´ ElementInstanceOutput 100070
 	event vault_found
 ´point_debug_001´ ElementDebug 100071
-	as_subtitle true
+	as_subtitle True
 	debug_string Drill Done
-	show_instigator false
+	show_instigator False
 ´logic_operator_001´ ElementOperator 100072
-	operation remove
 	elements
-		1 ´drill_waypoint´
+ 		1 ´drill_waypoint´
+	operation remove
 ´logic_toggle_001´ ElementToggle 100034
+	elements
+ 		1 ´drill_waypoint´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_waypoint´
 ´logic_link_001´ MissionScriptElement 100036
 	DISABLED
 ´logic_toggle_002´ ElementToggle 100040
+	elements
+ 		1 ´logic_link_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_link_001´ DISABLED
 ´func_sequence_002´ ElementUnitSequence 100042
 	position -1100, 1600, 0
 	rotation 0, 0, 0, -1
@@ -739,26 +739,26 @@
 	position 258, 0, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´func_instance_output_003´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100016
+	elements
+ 		1 ´ammo_bag_placed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ammo_bag_placed´ DISABLED
 ´func_instance_output_003´ ElementInstanceOutput 100089
 	event ammo_bag_placed_inside_ammo_storage
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100090
-	as_subtitle false
+	as_subtitle False
 	debug_string ammo_bag_placed
-	show_instigator false
+	show_instigator False

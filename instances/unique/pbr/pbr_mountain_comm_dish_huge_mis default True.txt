@@ -14,7 +14,7 @@
 	position -131.482, -307, 560.373
 	random_time 0
 	rotation -0.0233623, -0.38197, 0.0564015, -0.922156
-	screen_space false
+	screen_space False
 ´env_effect_play_002´ ElementPlayEffect 100006
 	base_time 0
 	effect effects/particles/dest/apartment_smoke_pillar
@@ -22,7 +22,7 @@
 	position -118.192, -300, 570.083
 	random_time 0
 	rotation -0.150768, -0.316092, 0.403248, -0.845426
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100007
 	base_time 0
 	effect effects/payday2/environment/electric_spark
@@ -30,7 +30,7 @@
 	position -137.299, -297.983, 558.448
 	random_time 0
 	rotation 0.665852, -0.291945, -0.609657, -0.315797
-	screen_space false
+	screen_space False
 ´trigger_area_001´ ElementAreaTrigger 100008
 	DISABLED
 	TRIGGER TIMES 1
@@ -42,14 +42,14 @@
 	position 150, -250, 430.548
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´found_antenna´ (delay 0)
 ´found_antenna´ MissionScriptElement 100009
@@ -117,17 +117,17 @@
 	position -200, -1000, 2.5
 	rotation 0, 0, 0, -1
 ´point_play_sound_001´ ElementPlaySound 100016
-	append_prefix false
+	append_prefix False
 	position -100, -300, 580.548
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False
 ´point_play_sound_002´ ElementPlaySound 100017
-	append_prefix true
+	append_prefix True
 	position -200, -700, 2.5
 	rotation 0, 0, 0, -1
 	sound_event flashbang_explode_sfx_player
-	use_instigator false
+	use_instigator False
 ´startup´ MissionScriptElement 100018
 	EXECUTE ON STARTUP
 	on_executed
@@ -154,10 +154,10 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100023
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´sparks´ MissionScriptElement 100024
 	on_executed
 		´logic_link_002´ (delay 0)
@@ -167,8 +167,8 @@
 	on_executed
 		´sparks´ (delay 2-5)
 ´spark_sound´ ElementPlaySound 100026
-	append_prefix false
+	append_prefix False
 	position -117, -313, 580.548
 	rotation 0, 0, 0, -1
 	sound_event electric_sparks
-	use_instigator false
+	use_instigator False

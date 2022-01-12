@@ -21,13 +21,13 @@
 		´add_door_blocker´ (delay 0)
 ´WP_kill´ ElementWaypoint 100007
 	icon pd2_kill
-	only_in_civilian false
+	only_in_civilian False
 	position -42, -25, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´WP_interact´ ElementWaypoint 100008
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 13, -25, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -43,9 +43,9 @@
 		´enable_interact´ (delay 0)
 		´effect_sparks´ (delay 0)
 ´remove_WP_kill´ ElementOperator 100010
-	operation remove
 	elements
-		1 ´WP_kill´
+ 		1 ´WP_kill´
+	operation remove
 	on_executed
 		´WP_interact´ (delay 0)
 ´enable_interact´ ElementUnitSequence 100011
@@ -108,27 +108,27 @@
 			notify_unit_sequence open
 			time 0
 ´add_door_blocker´ ElementNavObstacle 100018
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
 	operation add
 	position 600, 100, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100019
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
-´remove_door_blocker´ ElementNavObstacle 100019
 	operation remove
 	position 50, -200, 100
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-25, -50, 0)
 ´remove_WP_interact´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´effect_sparks´ ElementPlayEffect 100021
 	base_time 0
 	effect effects/particles/environment/sparkspawn
@@ -136,7 +136,7 @@
 	position -42, -25, 124
 	random_time 0
 	rotation -0.707107, 0, 0, -0.707107
-	screen_space false
+	screen_space False
 ´output_opened_gate´ ElementInstanceOutput 100022
 	event opened_gate
 ´area_player_closeby001´ ElementAreaTrigger 100023
@@ -151,14 +151,14 @@
 	position 21, -413, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 800
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 800
 	on_executed
 		´enable_padlock_WP_and_interaction´ (delay 0)
 ´input_enable_area_player_closeby´ ElementInstanceInput 100024
@@ -166,10 +166,10 @@
 	on_executed
 		´enable_area_player_closeby´ (delay 0)
 ´enable_area_player_closeby´ ElementToggle 100025
+	elements
+ 		1 ´area_player_closeby001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_closeby001´ DISABLED
 ´input_gate_already_open´ ElementInstanceInput 100026
 	event gate_already_open
 	on_executed
@@ -194,21 +194,21 @@
 	position 21, -13, 0
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1100
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1100
 	on_executed
 		´enable_padlock_WP_and_interaction´ (delay 0)
 ´enable_area_both_sides´ ElementToggle 100030
+	elements
+ 		1 ´area_player_closeby002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_closeby002´ DISABLED
 	on_executed
 		´disable_WPs´ (delay 0)
 ´input_enable_silent_interaction´ ElementInstanceInput 100031
@@ -216,11 +216,11 @@
 	on_executed
 		´enable_area_both_sides´ (delay 0)
 ´disable_WPs´ ElementToggle 100032
+	elements
+ 		1 ´WP_kill´
+		2 ´WP_interact´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_kill´
-		2 ´WP_interact´
 	on_executed
 		´remove_WP_interact´ (delay 0)
 		´remove_WP_kill´ (delay 0)

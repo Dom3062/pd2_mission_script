@@ -93,21 +93,21 @@
 	on_executed
 		´drown_anim´ (delay 0)
 ´start_drowning_timer´ ElementTimerOperator 100011
+	elements
+ 		1 ´drown_timer´
 	operation start
 	position 1200, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drown_timer´
 ´toggle_OFF_drown_timer´ ElementToggle 100012
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´start_drowning_timer´
+ 		1 ´start_drowning_timer´
 		2 ´drown_timer´
 		3 ´drown_anim´
 		4 ´shark_death_anim´
 		5 ´input_play_shark_death_anim´
+	set_trigger_times -1
+	toggle off
 ´input_play_shark_death_anim´ ElementInstanceInput 100016
 	event play_shark_death_anim
 	on_executed
@@ -147,29 +147,29 @@
 		´toggle_OFF_outputs_3´ (delay 0)
 		´remove_buluc_in_water_WP´ (delay 2)
 ´toggle_OFF_outputs´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´output_buluc_eaten_by_shark´
+ 		1 ´output_buluc_eaten_by_shark´
 		2 ´output_buluc_has_drowned´
 		3 ´shark_death´
 		4 ´drown_death´
-´toggle_OFF_outputs_2´ ElementToggle 100024
 	set_trigger_times -1
 	toggle off
+´toggle_OFF_outputs_2´ ElementToggle 100024
 	elements
-		1 ´output_buluc_has_drowned´
+ 		1 ´output_buluc_has_drowned´
 		2 ´output_buluc_is_shot´
 		3 ´shot_death´
 		4 ´drown_death´
-´toggle_OFF_outputs_3´ ElementToggle 100025
 	set_trigger_times -1
 	toggle off
+´toggle_OFF_outputs_3´ ElementToggle 100025
 	elements
-		1 ´output_buluc_eaten_by_shark´
+ 		1 ´output_buluc_eaten_by_shark´
 		2 ´output_buluc_is_shot´
 		3 ´shark_death´
 		4 ´shot_death´
+	set_trigger_times -1
+	toggle off
 ´hide_shark´ ElementUnitSequence 100027
 	position 600, 100, 0
 	rotation 0, 0, 0, -1
@@ -187,8 +187,8 @@
 ´buluc_in_water_WP´ ElementWaypoint 100030
 	TRIGGER TIMES 1
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 75, 1775, -1650
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -196,15 +196,15 @@
 	on_executed
 		´buluc_in_water_shoot_WP´ (delay 0)
 ´remove_buluc_in_water_WP´ ElementOperator 100031
-	operation remove
 	elements
-		1 ´buluc_in_water_WP´
+ 		1 ´buluc_in_water_WP´
 		2 ´buluc_in_water_shoot_WP´
+	operation remove
 ´buluc_in_water_shoot_WP´ ElementWaypoint 100032
 	TRIGGER TIMES 1
 	icon pd2_kill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 75, 1775, -1650
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -213,7 +213,7 @@
 		´buluc_in_water_WP´ (delay 0)
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100034
+	elements
+ 		1 ´add_buluc_in_water_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´add_buluc_in_water_WP´

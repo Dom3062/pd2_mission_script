@@ -39,21 +39,21 @@
 		´point_waypoint_001´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100013
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -3, 0, 59
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´explosives_picked_up_output´ (delay 0)
 		´logic_toggle_001´ (delay 0)
 ´explosives_picked_up_output´ ElementInstanceOutput 100015
 	event Explosives picked up
 ´logic_toggle_001´ ElementToggle 100003
+	elements
+ 		1 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_001´

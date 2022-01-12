@@ -151,9 +151,9 @@
 		´point_debug_001´ (delay 0)
 		´delay_2´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string explosion_triggered
-	show_instigator false
+	show_instigator False
 	on_executed
 		´output_c4_placed´ (delay 0)
 ´4´ ElementCounter 100016
@@ -161,9 +161,6 @@
 	on_executed
 		´boom´ (delay 0)
 ´remove_blocker´ ElementNavObstacle 100019
-	operation remove
-	position 1100, -900, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -173,13 +170,13 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (50, -25, 0)
+	operation remove
+	position 1100, -900, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´delay_3´ (delay 0)
 		´output_explosion_done´ (delay 0)
 ´add_blocker´ ElementNavObstacle 100020
-	operation add
-	position 600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -189,6 +186,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (50, -25, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
 ´point_feedback_001´ ElementFeedback 100021
 	above_camera_effect effects/payday2/particles/explosions/sparks/sparks
 	above_camera_effect_distance 0,75
@@ -206,8 +206,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´delay_2´ MissionScriptElement 100022
 	on_executed
 		´seq_break_wall´ (delay 5)
@@ -221,29 +221,29 @@
 ´point_waypoint_001´ ElementWaypoint 100017
 	DISABLED
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 150, -8, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_waypoint_002´ ElementWaypoint 100028
 	DISABLED
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -150, -4, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´point_waypoint_002´ DISABLED
+ 		1 ´point_waypoint_002´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_operator_002´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´point_waypoint_001´ DISABLED
+ 		1 ´point_waypoint_001´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´c4_placed_´ ElementUnitSequenceTrigger 100031
@@ -265,12 +265,12 @@
 	on_executed
 		´all_C4_placed´ (delay 0)
 ´explosion´ ElementPlaySound 100033
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -26, 150
 	rotation 0, 0, 0, -1
 	sound_event chas_explosion
-	use_instigator false
+	use_instigator False
 ´explosion_2´ ElementPlayEffect 100034
 	base_time 0
 	effect effects/payday2/particles/explosions/vehicle_explosion
@@ -278,7 +278,7 @@
 	position 0, 0, 25
 	random_time 0
 	rotation -0.382684, 0, 0, -0.923879
-	screen_space false
+	screen_space False
 ´debrie´ ElementPlayEffect 100035
 	base_time 0
 	effect effects/payday2/environment/environment_smoke_debri
@@ -286,16 +286,16 @@
 	position 0, 50, 125
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100036
-	operation fade_kill
-	position 1200, -1000, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´debrie´
+ 		1 ´debrie´
 		2 ´wooble´
 		3 ´explosion_2´
 		4 ´explosion001´
+	operation fade_kill
+	position 1200, -1000, 0
+	rotation 0, 0, 0, -1
 ´delay_3´ MissionScriptElement 100037
 	on_executed
 		´env_effect_stop_001´ (delay 15)
@@ -333,16 +333,16 @@
 		´turns_off´ (delay 2)
 		´player_damage´ (delay 0)
 ´turns_off´ ElementToggle 100047
+	elements
+ 		1 ´point_blurzone_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_blurzone_001´
 	on_executed
 		´remove´ (delay 0)
 ´remove´ ElementOperator 100048
-	operation remove
 	elements
-		1 ´point_blurzone_001´
+ 		1 ´point_blurzone_001´
+	operation remove
 ´point_explosion_damage_001´ ElementExplosionDamage 100049
 	damage 40
 	position 0, 0, 175
@@ -355,16 +355,16 @@
 ´point_waypoint_003´ ElementWaypoint 100057
 	DISABLED
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 50, -8, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_waypoint_004´ ElementWaypoint 100058
 	DISABLED
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -50, -8, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -378,9 +378,9 @@
 	on_executed
 		´all_C4_placed´ (delay 0)
 ´logic_operator_003´ ElementOperator 100060
-	operation remove
 	elements
-		1 ´point_waypoint_003´ DISABLED
+ 		1 ´point_waypoint_003´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´c4_placed_003´ ElementUnitSequenceTrigger 100061
@@ -393,9 +393,9 @@
 	on_executed
 		´all_C4_placed´ (delay 0)
 ´logic_operator_004´ ElementOperator 100062
-	operation remove
 	elements
-		1 ´point_waypoint_004´ DISABLED
+ 		1 ´point_waypoint_004´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_004´ (delay 0)
 ´wooble´ ElementPlayEffect 100063
@@ -405,7 +405,7 @@
 	position 0, 0, 75
 	random_time 0
 	rotation -0.707108, 0, 0, -0.707106
-	screen_space false
+	screen_space False
 ´explosion001´ ElementPlayEffect 100064
 	base_time 0
 	effect effects/particles/equipment/c4_bank/c4_explosion
@@ -413,7 +413,7 @@
 	position 0, 0, 125
 	random_time 0
 	rotation -0.707107, 0, 0, -0.707106
-	screen_space false
+	screen_space False
 ´give_c4´ ElementEquipment 100065
 	amount 4
 	equipment c4
@@ -425,19 +425,17 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100055
-	as_subtitle false
+	as_subtitle False
 	debug_string vault_wall_all_c4_placed
-	show_instigator false
+	show_instigator False
 ´input_disable_interactions´ ElementInstanceInput 100056
 	event disable_interactions
 	on_executed
 		´disable_everything´ (delay 0)
 ´disable_everything´ ElementToggle 100071
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_c4_interaction´
+ 		1 ´input_enable_c4_interaction´
 		2 ´debug_c4´
 		3 ´c4_placed_´
 		4 ´c4_placed_2´
@@ -453,16 +451,18 @@
 		14 ´point_waypoint_001´ DISABLED
 		15 ´seq_break_wall´
 		16 ´all_C4_placed´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_everything´ (delay 0)
 ´remove_everything´ ElementOperator 100072
 	TRIGGER TIMES 1
-	operation remove
 	elements
-		1 ´point_waypoint_002´ DISABLED
+ 		1 ´point_waypoint_002´ DISABLED
 		2 ´point_waypoint_004´ DISABLED
 		3 ´point_waypoint_003´ DISABLED
 		4 ´point_waypoint_001´ DISABLED
+	operation remove
 	on_executed
 		´seq_disable_everything´ (delay 0)
 ´seq_disable_everything´ ElementUnitSequence 100073
@@ -496,42 +496,42 @@
 			time 0
 ´logic_toggle_001´ ElementToggle 100074
 	TRIGGER TIMES 1
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´point_waypoint_004´ DISABLED
+ 		1 ´point_waypoint_004´ DISABLED
 		2 ´point_waypoint_003´ DISABLED
 		3 ´point_waypoint_001´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´show_WP_001´ (delay 0.5)
 ´logic_toggle_002´ ElementToggle 100075
 	TRIGGER TIMES 1
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´point_waypoint_003´ DISABLED
+ 		1 ´point_waypoint_003´ DISABLED
 		2 ´point_waypoint_004´ DISABLED
 		3 ´point_waypoint_002´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´show_WP_002´ (delay 0.5)
 ´logic_toggle_003´ ElementToggle 100076
 	TRIGGER TIMES 1
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´point_waypoint_001´ DISABLED
+ 		1 ´point_waypoint_001´ DISABLED
 		2 ´point_waypoint_004´ DISABLED
 		3 ´point_waypoint_002´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´show_WP_003´ (delay 0.5)
 ´logic_toggle_004´ ElementToggle 100077
 	TRIGGER TIMES 1
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´point_waypoint_001´ DISABLED
+ 		1 ´point_waypoint_001´ DISABLED
 		2 ´point_waypoint_003´ DISABLED
 		3 ´point_waypoint_002´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´show_WP_004´ (delay 0.5)
 ´show_WP_001´ MissionScriptElement 100078
@@ -559,10 +559,8 @@
 		´point_waypoint_002´ (delay 0) DISABLED
 		´disable_WP_004´ (delay 0)
 ´disable_WP_001´ ElementToggle 100082
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´logic_toggle_002´
+ 		1 ´logic_toggle_002´
 		2 ´logic_toggle_003´
 		3 ´logic_toggle_004´
 		4 ´show_WP_002´
@@ -571,11 +569,11 @@
 		7 ´disable_WP_002´
 		8 ´disable_WP_003´
 		9 ´disable_WP_004´
-´disable_WP_002´ ElementToggle 100083
 	set_trigger_times -1
 	toggle off
+´disable_WP_002´ ElementToggle 100083
 	elements
-		1 ´logic_toggle_001´
+ 		1 ´logic_toggle_001´
 		2 ´show_WP_001´
 		3 ´disable_WP_001´
 		4 ´logic_toggle_003´
@@ -584,11 +582,11 @@
 		7 ´logic_toggle_004´
 		8 ´show_WP_004´
 		9 ´disable_WP_004´
-´disable_WP_003´ ElementToggle 100084
 	set_trigger_times -1
 	toggle off
+´disable_WP_003´ ElementToggle 100084
 	elements
-		1 ´logic_toggle_001´
+ 		1 ´logic_toggle_001´
 		2 ´show_WP_001´
 		3 ´disable_WP_001´
 		4 ´disable_WP_002´
@@ -597,11 +595,11 @@
 		7 ´logic_toggle_004´
 		8 ´show_WP_004´
 		9 ´disable_WP_004´
-´disable_WP_004´ ElementToggle 100085
 	set_trigger_times -1
 	toggle off
+´disable_WP_004´ ElementToggle 100085
 	elements
-		1 ´logic_toggle_003´
+ 		1 ´logic_toggle_003´
 		2 ´show_WP_003´
 		3 ´disable_WP_003´
 		4 ´disable_WP_002´
@@ -610,6 +608,8 @@
 		7 ´logic_toggle_001´
 		8 ´show_WP_001´
 		9 ´disable_WP_001´
+	set_trigger_times -1
+	toggle off
 ´seq_break_wall´ ElementUnitSequence 100087
 	position 1100, -100, 0
 	rotation 0, 0, 0, -1
@@ -626,19 +626,19 @@
 	TRIGGER TIMES 1
 	event break_glass
 ´explosion001_2´ ElementPlaySound 100024
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -350, -26, 100
 	rotation 0, 0, 0, -1
 	sound_event chas_explosion_debris_01
-	use_instigator false
+	use_instigator False
 ´explosion002´ ElementPlaySound 100025
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 300, -26, 100
 	rotation 0, 0, 0, -1
 	sound_event chas_explosion_debris_02
-	use_instigator false
+	use_instigator False
 ´all_C4_placed´ ElementCounter 100026
 	counter_target 4
 	on_executed

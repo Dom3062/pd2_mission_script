@@ -60,15 +60,15 @@
 		´wp_ignite_fireworks_REMOVE´ (delay 0)
 ´wp_drop_fireworks´ ElementWaypoint 100003
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_ignite_fireworks_REMOVE´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´wp_ignite_fireworks´
+ 		1 ´wp_ignite_fireworks´
+	operation remove
 ´trg_fireworks´ ElementAreaTrigger 100015
 	DISABLED
 	TRIGGER TIMES 1
@@ -81,30 +81,30 @@
 	position 0, 0, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dtr_fireworks´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´fireworks_dropped´ (delay 0)
 ´dtr_fireworks´ ElementInstigatorRule 100016
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
 				1 fireworks
 ´trg_fireworks_ON´ ElementToggle 100017
+	elements
+ 		1 ´trg_fireworks´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_fireworks´ DISABLED
 ´fireworks_dropped´ MissionScriptElement 100018
 	on_executed
 		´output_fireworks_dropped´ (delay 0)
@@ -149,15 +149,15 @@
 			time 0
 ´wp_ignite_fireworks´ ElementWaypoint 100021
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_drop_fireworks_REMOVE´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´wp_drop_fireworks´
+ 		1 ´wp_drop_fireworks´
+	operation remove
 ´fireworks_REMOVE´ ElementCarry 100010
 	operation remove
 	type_filter fireworks
@@ -194,14 +194,14 @@
 	on_executed
 		´wp_ignite_fireworks´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100023
-	operation add
-	position 1200, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	operation add
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
 ´delay_loop´ MissionScriptElement 100024
 	TRIGGER TIMES 5
 	on_executed
@@ -225,12 +225,12 @@
 		´delay_loop´ (delay 0)
 ´teammate_comment_yeah´ ElementTeammateComment 100029
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v46
 	position 0, 0, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_comment´ MissionScriptElement 100030
 	BASE DELAY 10
 	TRIGGER TIMES 1

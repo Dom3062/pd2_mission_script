@@ -93,9 +93,9 @@
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100018
-	as_subtitle false
+	as_subtitle False
 	debug_string got_forklift_key
-	show_instigator false
+	show_instigator False
 ´input_enable_outline´ ElementInstanceInput 100007
 	event enable_outline
 	on_executed
@@ -121,15 +121,15 @@
 	position 0, -100, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´enable_outline´ (delay 0)
 ´trigger_area_disable_outline´ ElementAreaTrigger 100019
@@ -143,15 +143,15 @@
 	position 0, -100, 50
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_exit
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´disable_outline´ (delay 0)
 ´enable_outline´ MissionScriptElement 100020
@@ -181,13 +181,13 @@
 			notify_unit_sequence state_disable_outline
 			time 0
 ´disable_outline_triggers´ ElementToggle 100024
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_area_disable_outline´ DISABLED
+ 		1 ´trigger_area_disable_outline´ DISABLED
 		2 ´trigger_area_enable_outline´ DISABLED
 		3 ´enable_outline´
 		4 ´disable_outline´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´disable_outline_2´ (delay 0)
 		´seq_enable_keycard´ (delay 0)
@@ -204,11 +204,11 @@
 	on_executed
 		´enable_area_triggers´ (delay 0)
 ´enable_area_triggers´ ElementToggle 100026
+	elements
+ 		1 ´trigger_area_disable_outline´ DISABLED
+		2 ´trigger_area_enable_outline´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_disable_outline´ DISABLED
-		2 ´trigger_area_enable_outline´ DISABLED
 ´input_enable_WP´ ElementInstanceInput 100011
 	event enable_WP
 	on_executed
@@ -219,22 +219,22 @@
 ´interact_WP´ ElementWaypoint 100028
 	TRIGGER TIMES 1
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -50, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´disable_WP´ (delay 0)
 ´disable_WP´ ElementToggle 100030
+	elements
+ 		1 ´interact_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_WP´
 	on_executed
 		´output_got_key´ (delay 0)
 ´police_called´ ElementGlobalEventTrigger 100008

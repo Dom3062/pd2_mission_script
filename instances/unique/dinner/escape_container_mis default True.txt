@@ -66,9 +66,19 @@
 	on_executed
 		´add_door_blocker´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100003
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+		2
+			guis_id 2
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
 	operation add
 	position -1800, 900, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker001´ ElementNavObstacle 100010
 	obstacle_list
 		1
 			guis_id 1
@@ -78,19 +88,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
-´remove_door_blocker001´ ElementNavObstacle 100010
 	operation remove
 	position -1600, 900, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
-		2
-			guis_id 2
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
 ´open_front_door´ ElementUnitSequence 100012
 	position -1300, 1100, 0
 	rotation 0, 0, 0, -1
@@ -144,44 +144,44 @@
 	on_executed
 		´remove_door_blocker003´ (delay 0)
 ´add_front_door_blocker´ ElementNavObstacle 100023
-	operation add
-	position -1500, 900, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
-´add_back_door_blocker´ ElementNavObstacle 100024
 	operation add
-	position -1400, 900, 0
+	position -1500, 900, 0
 	rotation 0, 0, 0, -1
+´add_back_door_blocker´ ElementNavObstacle 100024
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
-´remove_door_blocker002´ ElementNavObstacle 100025
-	operation remove
-	position -1300, 900, 0
+	operation add
+	position -1400, 900, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker002´ ElementNavObstacle 100025
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -65, -33)
+	operation remove
+	position -1300, 900, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´point_debug_001´ (delay 0)
 		´front_drill_completed´ (delay 0)
 ´remove_door_blocker003´ ElementNavObstacle 100026
-	operation remove
-	position -1200, 900, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+	operation remove
+	position -1200, 900, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´point_debug_001´ (delay 0)
 		´back_drill_completed´ (delay 0)
@@ -217,42 +217,42 @@
 		´remove_door_blocker004´ (delay 0)
 ´start_drill_wp´ ElementWaypoint 100034
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 54, 180.668
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100036
-	operation remove
 	elements
-		1 ´start_drill_wp´
+ 		1 ´start_drill_wp´
+	operation remove
 	on_executed
 		´point_debug_002´ (delay 0)
 ´turn_on_check´ ElementToggle 100037
+	elements
+ 		1 ´start_done´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´start_done´ DISABLED
 ´point_debug_001´ ElementDebug 100038
-	as_subtitle true
+	as_subtitle True
 	debug_string Bain: Drill is done! keep moving forward! Follow the blue containers!
-	show_instigator false
+	show_instigator False
 ´front_drill_completed´ ElementInstanceOutput 100039
 	event Front Drill Completed
 ´back_drill_completed´ ElementInstanceOutput 100040
 	event Back Drill Completed
 ´point_debug_002´ ElementDebug 100041
-	as_subtitle false
+	as_subtitle False
 	debug_string drill_done
-	show_instigator false
+	show_instigator False
 ´remove_door_blocker004´ ElementNavObstacle 100042
-	operation remove
-	position -1600, 600, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, -640, -33)
+	operation remove
+	position -1600, 600, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´activate_front_start_drill´ (delay 0)
 ´turn_on_front_interaction´ ElementUnitSequence 100032

@@ -44,7 +44,7 @@
 			time 0
 ´wp_security_room´ ElementWaypoint 100012
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 75, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -53,9 +53,9 @@
 	on_executed
 		´wp_security_room´ (delay 0)
 ´wp_security_room_REMOVE´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´wp_security_room´
+ 		1 ´wp_security_room´
+	operation remove
 ´output_security_room_door_opened´ ElementInstanceOutput 100015
 	event security_room_door_opened
 ´seq_trg_seucirtyroom_door_DONE_OPENED´ ElementUnitSequenceTrigger 100006
@@ -92,23 +92,23 @@
 		´door_opened´ (delay 0) (alternative interacted)
 		´seq_open´ (delay 0) (alternative interacted)
 ´add_sec_door_obstacle´ ElementNavObstacle 100022
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (227, -44, 6.10877)
 	operation add
 	position 25, -50, 802.5
 	rotation 0, 0, 0, -1
+´renove_sec_door_obstacle´ ElementNavObstacle 100023
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (227, -44, 6.10877)
-´renove_sec_door_obstacle´ ElementNavObstacle 100023
 	operation remove
 	position -25, -50, 802.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (227, -44, 6.10877)
 ´seq_open´ ElementUnitSequence 100000
 	position -125, 50, 802.5
 	rotation 0, 0, 0, -1
@@ -134,7 +134,7 @@
 			notify_unit_sequence remove_attention
 			time 0
 ´interaction_open_door_OFF´ ElementToggle 100011
+	elements
+ 		1 ´interaction_open_door´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interaction_open_door´

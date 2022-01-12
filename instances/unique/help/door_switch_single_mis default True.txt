@@ -5,7 +5,7 @@
 		´disable_w_lid´ (delay 0) DISABLED
 ´pull_switch´ ElementInteraction 100016
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 5
 	position 39, -33, 48
 	rotation 0, 0, 0, -1
@@ -39,7 +39,7 @@
 		´Finished´ (delay 0)
 ´interact´ ElementWaypoint 100008
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 40, -31, 60
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -61,9 +61,9 @@
 		´disable_2´ (delay 0)
 		´disable_w_lid´ (delay 0) DISABLED
 ´remove´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´interact´
+ 		1 ´interact´
+	operation remove
 	on_executed
 		´OFF´ (delay 0)
 ´open´ ElementUnitSequence 100003
@@ -128,56 +128,56 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´OFF´ ElementToggle 100019
+	elements
+ 		1 ´pull_switch´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´pull_switch´ DISABLED
 ´started´ MissionScriptElement 100004
 	on_executed
 		´started_use´ (delay 0)
 ´started_use´ ElementInstanceOutput 100007
 	event started_use
 ´teammate_comment_time_to_go´ ElementTeammateComment 100006
-	close_to_element false
+	close_to_element False
 	comment g17
 	position 100, -150, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_001´ (delay 0)
 		´teammate_comment_lets_go´ (delay 3-5)
 ´point_debug_001´ ElementDebug 100009
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_time_to_go
-	show_instigator false
+	show_instigator False
 ´teammate_comment_lets_go´ ElementTeammateComment 100020
-	close_to_element true
+	close_to_element True
 	comment g13
 	position 0, -150, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_002´ (delay 0)
 		´teammate_comment_get_out´ (delay 20-30)
 ´point_debug_002´ ElementDebug 100021
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_lets_go
-	show_instigator false
+	show_instigator False
 ´teammate_comment_get_out´ ElementTeammateComment 100022
-	close_to_element true
+	close_to_element True
 	comment g13
 	position -100, -150, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_003´ (delay 0)
 ´point_debug_003´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_get_out
-	show_instigator false
+	show_instigator False
 ´key_used´ ElementUnitSequenceTrigger 100025
 	TRIGGER TIMES 1
 	sequence_list
@@ -221,22 +221,22 @@
 	on_executed
 		´OFF_2´ (delay 0)
 ´OFF_2´ ElementToggle 100028
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´disable_2´
+ 		1 ´disable_2´
 		2 ´disable_4´
 		3 ´open´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´ON´ (delay 0)
 ´ON´ ElementToggle 100029
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´pull_switch´ DISABLED
+ 		1 ´pull_switch´ DISABLED
 		2 ´disable_3´ DISABLED
 		3 ´disable_w_lid´ DISABLED
 		4 ´open - lid_2´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´Exit_Level´ (delay 0)
 ´disable_w_lid´ MissionScriptElement 100030
@@ -287,10 +287,10 @@
 	on_executed
 		´ON_2´ (delay 0)
 ´ON_2´ ElementToggle 100035
+	elements
+ 		1 ´pull_switch´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´pull_switch´ DISABLED
 ´Exit_Level´ ElementInstanceOutput 100034
 	event Exit_Level
 ´kill_all´ ElementInstanceInput 100017
@@ -301,9 +301,9 @@
 	on_executed
 		´hide´ (delay 0)
 ´remove_2´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´interact´
+ 		1 ´interact´
+	operation remove
 ´hide´ ElementUnitSequence 100036
 	position -625, 50, 0
 	rotation 0, 0, 0, -1

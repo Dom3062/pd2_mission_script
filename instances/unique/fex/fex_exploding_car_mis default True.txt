@@ -109,12 +109,12 @@
 		´point_play_sound_001´ (delay 26.5)
 		´point_play_sound_003´ (delay 8)
 ´point_play_sound_001´ ElementPlaySound 100027
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -200, -2700, -102.579
 	rotation 0, 0, 0, -1
 	sound_event explosion_fire
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_feedback_001´ (delay 5)
 ´point_feedback_001´ ElementFeedback 100028
@@ -134,22 +134,22 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´output_car_exploded´ (delay 0)
 		´point_explosion_001´ (delay 0)
 ´point_play_sound_002´ ElementPlaySound 100029
-	append_prefix true
-	interrupt true
+	append_prefix True
+	interrupt True
 	position -100, -2600, -102.579
 	rotation 0, 0, 0, -1
 	sound_event run_bruce_crash
-	use_instigator false
+	use_instigator False
 ´point_debug_001´ ElementDebug 100033
-	as_subtitle false
+	as_subtitle False
 	debug_string car_kaboom TURRET GONE!
-	show_instigator false
+	show_instigator False
 ´input_disable_interactions´ ElementInstanceInput 100010
 	event disable_interaction
 	on_executed
@@ -176,8 +176,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´enable_burn_decal´ (delay 0)
 ´enable_burn_decal´ ElementEnableUnit 100043
@@ -192,9 +192,6 @@
 	on_executed
 		´seq_burn_gas_can´ (delay 1.5)
 ´func_nav_obstacle_003´ ElementNavObstacle 100048
-	operation add
-	position 725, 800, -2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -212,6 +209,9 @@
 			guis_id 4
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-157.246, -2575.95, -225)
+	operation add
+	position 725, 800, -2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´remove_blockers_car_path´ (delay 0)
 ´trigger_car_moved´ ElementUnitSequenceTrigger 100052
@@ -270,16 +270,16 @@
 	on_executed
 		´show_WP_trunk´ (delay 1)
 ´point_play_sound_003´ ElementPlaySound 100020
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -125, -2725, -140.748
 	rotation 0, 0, 0, -1
 	sound_event car_hit_gen_01
-	use_instigator false
+	use_instigator False
 ´WP_shoot´ ElementWaypoint 100011
 	icon pd2_kill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 1650, -600, 54.9185
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -288,16 +288,16 @@
 		´WP_shoot´ (delay 1)
 		´output_gas_placed´ (delay 0)
 ´remove_WP´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´WP_shoot´
+ 		1 ´WP_shoot´
+	operation remove
 	on_executed
 		´disable_WP´ (delay 0)
 ´disable_WP´ ElementToggle 100021
+	elements
+ 		1 ´WP_shoot´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_shoot´
 ´show_gas_can´ ElementUnitSequence 100024
 	position 725, 1050, 2.5
 	rotation 0, 0, 0, -1
@@ -380,77 +380,74 @@
 	position 1650, -586, 20.0319
 	random_time 0
 	rotation 0, 0, 0.382683, -0.92388
-	screen_space false
+	screen_space False
 	on_executed
 		´sound_fire_start´ (delay 0)
 ´env_effect_stop_001´ ElementStopEffect 100050
+	elements
+ 		1 ´effect_fire_start´
 	operation kill
 	position 725, 875, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_fire_start´
 	on_executed
 		´add_blockers_car_path´ (delay 0)
 ´sound_fire_start´ ElementPlaySound 100046
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1650, -600, 25.1371
 	rotation 0, 0, 0, -1
 	sound_event tiny_fire_loop
-	use_instigator false
+	use_instigator False
 ´logic_operator_001´ ElementOperator 100049
-	operation remove
 	elements
-		1 ´sound_fire_start´
+ 		1 ´sound_fire_start´
+	operation remove
 ´show_WP_trunk´ MissionScriptElement 100051
 	on_executed
 		´WP_trunk´ (delay 0)
 		´car_enabled_and_gas_can_picked´ (delay 0)
 ´WP_trunk´ ElementWaypoint 100053
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 1934, -325, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_trunk´ ElementOperator 100054
-	operation remove
 	elements
-		1 ´WP_trunk´
+ 		1 ´WP_trunk´
+	operation remove
 	on_executed
 		´disable_WP_trunk´ (delay 0)
 ´disable_WP_trunk´ ElementToggle 100055
+	elements
+ 		1 ´WP_trunk´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_trunk´
 ´add_blockers_car_path´ ElementNavObstacle 100070
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (92.6776, -2107.32, -250)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (1289.64, -960.356, -125)
+		3
+			guis_id 3
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (864.643, -1414.64, -200)
+		4
+			guis_id 4
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (1525, -775, -99.8777)
 	operation add
 	position 800, 875, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 6237774253185985364
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (92.6776, -2107.32, -250)
-		2
-			guis_id 2
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (1289.64, -960.356, -125)
-		3
-			guis_id 3
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (864.643, -1414.64, -200)
-		4
-			guis_id 4
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (1525, -775, -99.8777)
 	on_executed
 		´logic_operator_001´ (delay 1)
 ´remove_blockers_car_path´ ElementNavObstacle 100077
-	operation remove
-	position 800, 800, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -468,6 +465,9 @@
 			guis_id 4
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/005 (1525, -775, -99.8777)
+	operation remove
+	position 800, 800, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´output_car_hit_van´ (delay 0)
 ´output_car_hit_van´ ElementInstanceOutput 100078
@@ -475,11 +475,11 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100079
-	as_subtitle false
+	as_subtitle False
 	debug_string car_hit_van
-	show_instigator false
+	show_instigator False
 ´interaction_open_trunk´ ElementInteraction 100080
-	host_only false
+	host_only False
 	override_timer -1
 	position 1935.86, -316.515, 25
 	rotation 0, 0, -0.382683, -0.92388
@@ -491,12 +491,12 @@
 	on_executed
 		´func_enable_unit_001´ (delay 0)
 ´play_pick_gasoline´ ElementPlaySound 100059
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1934, -325, 0
 	rotation 0, 0, 0, -1
 	sound_event gas_tank_pick_up
-	use_instigator false
+	use_instigator False
 ´gas_can_picked_up´ ElementUnitSequenceTrigger 100058
 	TRIGGER TIMES 1
 	sequence_list
@@ -507,12 +507,12 @@
 	on_executed
 		´play_pick_gasoline´ (delay 0)
 ´sound_gas_can_place´ ElementPlaySound 100060
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1650, -600, 25.1371
 	rotation 0, 0, 0, -1
 	sound_event gas_tank_put_down
-	use_instigator false
+	use_instigator False
 ´gas_can_placed´ ElementUnitSequenceTrigger 100063
 	TRIGGER TIMES 1
 	sequence_list
@@ -523,12 +523,12 @@
 	on_executed
 		´sound_gas_can_place´ (delay 0)
 ´disable_interactions_2´ ElementToggle 100064
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_gas_can_placed´
+ 		1 ´trigger_gas_can_placed´
 		2 ´trigger_shoot´
 		3 ´trigger_car_moved´
+	set_trigger_times -1
+	toggle off
 ´output_gas_placed´ ElementInstanceOutput 100065
 	event gasoline_placed
 	on_executed
@@ -546,15 +546,15 @@
 ´WP_gas_can_place´ ElementWaypoint 100023
 	TRIGGER TIMES 1
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 1650, -600, 54.919
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_gas_can_place´ ElementOperator 100067
-	operation remove
 	elements
-		1 ´WP_gas_can_place´
+ 		1 ´WP_gas_can_place´
+	operation remove
 ´show_WP_place_gas_can´ MissionScriptElement 100068
 	on_executed
 		´WP_gas_can_place´ (delay 0)

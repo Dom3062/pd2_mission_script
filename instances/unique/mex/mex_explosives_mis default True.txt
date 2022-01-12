@@ -89,22 +89,22 @@
 	position 0, -125, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
 		1 ´rule_breaching_charges´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_dropped_off_breaching_charge´ (delay 0)
 		´2´ (delay 0)
 		´remove_breaching_charges´ (delay 0)
 ´rule_breaching_charges´ ElementInstigatorRule 100012
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -184,20 +184,20 @@
 		´sound_bag_drop002´ (delay 0)
 ´WP_drop_off´ ElementWaypoint 100020
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -125, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_area_drop_off´ ElementToggle 100021
+	elements
+ 		1 ´area_drop_off´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_drop_off´ DISABLED
 ´remove_WP_drop_off´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´WP_drop_off´
+ 		1 ´WP_drop_off´
+	operation remove
 ´remove_breaching_charges´ ElementCarry 100023
 	TRIGGER TIMES 2
 	operation remove
@@ -267,40 +267,40 @@
 ´timer´ ElementTimer 100033
 	timer 0
 ´start´ ElementTimerOperator 100034
+	elements
+ 		1 ´timer´
 	operation start
 	position 900, -700, 0
 	rotation 0, 0, 0, -1
 	time 5
-	elements
-		1 ´timer´
 	on_executed
 		´seq_show_timer_green´ (delay 0)
 		´sound_ticking_loop´ (delay 0)
 		´link_start_interrupt´ (delay 0)
 ´set´ ElementTimerOperator 100035
 	TRIGGER TIMES 1
+	elements
+ 		1 ´timer´
 	operation set_time
 	position 600, -800, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer´
 ´10s´ ElementTimerTrigger 100036
+	elements
+ 		1 ´timer´
 	position 900, -900, 0
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´timer´
 	on_executed
 		´sound_ticking_10s´ (delay 0.01)
 		´sound_ticking_loop001´ (delay 0)
 		´teammate_comment_any_second_now´ (delay 1)
 ´0s´ ElementTimerTrigger 100037
+	elements
+ 		1 ´timer´
 	position 1100, -900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´boom_breaching_charge´ (delay 0)
 		´sound_ticking_loop001´ (delay 0)
@@ -325,12 +325,12 @@
 			notify_unit_sequence light_green_on_black
 			time 0
 ´pause´ ElementTimerOperator 100040
+	elements
+ 		1 ´timer´
 	operation pause
 	position 1100, -700, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´seq_show_timer_red´ (delay 0)
 		´sound_ticking_loop001´ (delay 0)
@@ -341,7 +341,7 @@
 	position 0, 0, 100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´boom_breaching_charge´ MissionScriptElement 100042
 	on_executed
 		´effect_breaching_charge´ (delay 0)
@@ -378,15 +378,15 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event no_sound
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´sound_explosion´ ElementPlaySound 100045
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -17, 75
 	rotation 0, 0, 0, -1
 	sound_event blast_door_explosion
-	use_instigator false
+	use_instigator False
 ´output_door_exploded´ ElementInstanceOutput 100046
 	event door_exploded
 ´seq_hide_all_explosives_stuff´ ElementUnitSequence 100047
@@ -431,36 +431,36 @@
 			time 0
 ´WP_detonator´ ElementWaypoint 100048
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -13, 102.658
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_detonator´ ElementOperator 100049
-	operation remove
 	elements
-		1 ´WP_detonator´
+ 		1 ´WP_detonator´
+	operation remove
 ´sound_ticking_10s´ ElementPlaySound 100050
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -34, 75
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_ticking_down_10sec
-	use_instigator false
+	use_instigator False
 ´sound_ticking_loop´ ElementPlaySound 100051
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 11, -34, 75
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop
-	use_instigator false
+	use_instigator False
 ´sound_ticking_loop001´ ElementPlaySound 100052
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1200, -700, 0
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop_stop
-	use_instigator false
+	use_instigator False
 ´output_detonator_placed´ ElementInstanceOutput 100053
 	TRIGGER TIMES 1
 	event detonator_placed
@@ -468,21 +468,22 @@
 	event placed_a_breaching_charge
 ´SO_none´ ElementSpecialObjective 100055
 	TRIGGER TIMES 1
-	SO_access 504
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´SO_interrupt´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
-	interrupt_objective false
+	interrupt_objective False
 	interval 7
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -490,39 +491,38 @@
 	pose none
 	position 25, -200, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 5000
 	search_position 0 -150 0
+	SO_access 504
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_interrupt´
 ´link_start_interrupt´ MissionScriptElement 100056
 	on_executed
 		´enable_once´ (delay 0)
 ´enable_once´ ElementToggle 100057
+	elements
+ 		1 ´SO_none´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´SO_none´
 	on_executed
 		´SO_none´ (delay 0.05)
 ´SO_interrupt´ ElementSpecialObjective 100058
-	SO_access 504
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -530,34 +530,34 @@
 	pose none
 	position 25, -200, 50
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position 0 -150 0
+	SO_access 504
 	so_action e_so_disarm_bomb
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´fail´ ElementSpecialObjectiveTrigger 100059
+	elements
+ 		1 ´SO_none´
+		2 ´SO_interrupt´
 	event fail
 	position -100, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_none´
-		2 ´SO_interrupt´
 	on_executed
 		´link_start_interrupt´ (delay 5)
 ´admin´ ElementSpecialObjectiveTrigger 100060
+	elements
+ 		1 ´SO_none´
 	event administered
 	position -200, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_none´
 ´complete´ ElementSpecialObjectiveTrigger 100061
+	elements
+ 		1 ´SO_interrupt´
 	event complete
 	position -300, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt´
 	on_executed
 		´link_interrupted´ (delay 0)
 ´link_interrupted´ MissionScriptElement 100062
@@ -567,163 +567,163 @@
 		´teammate_comment_swear´ (delay 0.5)
 		´debug_Locke_VO_loud001´ (delay 1.5)
 ´disable_interrupt´ ElementToggle 100063
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_interrupted´
+ 		1 ´link_interrupted´
 		2 ´SO_none´
 		3 ´SO_interrupt´
 		4 ´link_start_interrupt´
 		5 ´enable_once´
+	set_trigger_times -1
+	toggle off
 ´debug_Locke_VO_loud001´ ElementDebug 100066
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: "The detonator stopped! Get it working again!"
-	show_instigator false
+	show_instigator False
 	on_executed
 		´loc_mex_58´ (delay 0)
 ´debug_Locke_VO_loud002´ ElementDebug 100067
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: "And... boom."
-	show_instigator false
+	show_instigator False
 	on_executed
 		´loc_mex_59´ (delay 0)
 ´4s´ ElementTimerTrigger 100068
+	elements
+ 		1 ´timer´
 	position 1000, -900, 0
 	rotation 0, 0, 0, -1
 	time 4
-	elements
-		1 ´timer´
 	on_executed
 		´debug_Locke_VO_loud002´ (delay 0)
 ´loc_mex_58´ ElementDialogue 100029
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_58
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´loc_mex_59´ ElementDialogue 100070
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_59
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´teammate_comment_explosives_applied´ ElementTeammateComment 100064
-	close_to_element true
+	close_to_element True
 	comment v13
 	position 0, -50, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_001´ (delay 0)
 ´teammate_comment_lets_open_it_up´ ElementTeammateComment 100065
-	close_to_element true
+	close_to_element True
 	comment v15
 	position 0, -50, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_that_was_loud´ ElementTeammateComment 100071
-	close_to_element true
+	close_to_element True
 	comment v54
 	position 0, -50, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_003´ (delay 0)
 ´30s´ ElementTimerTrigger 100072
+	elements
+ 		1 ´timer´
 	position 800, -900, 0
 	rotation 0, 0, 0, -1
 	time 30
-	elements
-		1 ´timer´
 	on_executed
 		´teammate_comment_30s´ (delay 0)
 ´teammate_comment_30s´ ElementTeammateComment 100073
-	close_to_element true
+	close_to_element True
 	comment g62
 	position 0, -50, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_004´ (delay 0)
 ´teammate_comment_60s´ ElementTeammateComment 100074
-	close_to_element true
+	close_to_element True
 	comment g63
 	position 0, -50, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_005´ (delay 0)
 ´60s´ ElementTimerTrigger 100075
+	elements
+ 		1 ´timer´
 	position 700, -900, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer´
 	on_executed
 		´teammate_comment_60s´ (delay 0.5)
 ´teammate_comment_any_second_now´ ElementTeammateComment 100076
-	close_to_element true
+	close_to_element True
 	comment p17
 	position 0, -50, 250
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_006´ (delay 0)
 ´sound_bag_drop001´ ElementPlaySound 100077
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -76, -56, 28
 	rotation 0, 0, 0, -1
 	sound_event bag_medium_drop
-	use_instigator false
+	use_instigator False
 ´sound_bag_drop002´ ElementPlaySound 100078
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 94, -56, 28
 	rotation 0, 0, 0, -1
 	sound_event bag_medium_drop
-	use_instigator false
+	use_instigator False
 ´teammate_comment_swear´ ElementTeammateComment 100079
-	close_to_element true
+	close_to_element True
 	comment g29
 	position 0, -50, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_001´ ElementDebug 100080
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_explosives_applied
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100081
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_swear
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100082
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_that_was_loud
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100083
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_30s
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100084
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_60s
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100085
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_any_second_now
-	show_instigator false
+	show_instigator False
 ´input_door_opened_correct_code´ ElementInstanceInput 100086
 	event door_opened_remove_charges
 	on_executed

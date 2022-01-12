@@ -4,13 +4,13 @@
 	enemy units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 100, -1.52588E-05, 0
 	rotation 0, 0, -2.98023E-08, -1
 	spawn_action none
 	team law1
 	voice 0
-	orientation_elements
 ´set_keycards´ ElementInstanceInput 100000
 	BASE DELAY 1,5
 	event set_keycards
@@ -108,14 +108,14 @@
 	position 0, 300, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´found_panic_room´ (delay 0)
 		´vault_found_wp´ (delay 0)
@@ -195,14 +195,14 @@
 	position 0, 250, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´civilian_use_scanner_so´ (delay 0)
 		´point_debug_002´ (delay 0)
@@ -240,23 +240,23 @@
 	on_executed
 		´the_traitor´ (delay 0)
 ´add_door_obstacle´ ElementNavObstacle 100051
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (152, 62, 0)
 	operation add
 	position 400, -300, 102.5
 	rotation 0, 0, 0, -1
+´remove_door_obstacle´ ElementNavObstacle 100052
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (152, 62, 0)
-´remove_door_obstacle´ ElementNavObstacle 100052
 	operation remove
 	position 1100, 700, 102.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (152, 62, 0)
 	on_executed
 		´move_out´ (delay 0.25)
 ´civilian_door_threshold´ ElementCounter 100044
@@ -268,28 +268,28 @@
 	on_executed
 		´civilian_door_threshold´ (delay 0)
 ´enable_scanner´ ElementToggle 100053
+	elements
+ 		1 ´civilian_scanner_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´civilian_scanner_trigger´ DISABLED
 	on_executed
 		´point_debug_001´ (delay 0)
 ´civilian_use_scanner_so´ ElementSpecialObjective 100054
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -297,21 +297,21 @@
 	pose none
 	position -1, 170, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position 450 400 150
+	SO_access 3
 	so_action cm_so_tied_eyescan
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´special_objective_checker´ ElementSpecialObjectiveTrigger 100055
 	TRIGGER TIMES 1
+	elements
+ 		1 ´civilian_use_scanner_so´
+		2 ´civilian_use_scanner_so001´
 	event complete
 	position 1300, 200, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´civilian_use_scanner_so´
-		2 ´civilian_use_scanner_so001´
 	on_executed
 		´civ_opened´ (delay 0)
 		´two_stage_verification´ (delay 0)
@@ -324,13 +324,13 @@
 		´disable_stealth_methods_2´ (delay 0)
 ´traitor_killed_trigger´ ElementEnemyDummyTrigger 100063
 	TRIGGER TIMES 1
+	elements
+ 		1 ´the_traitor´
+		2 ´the_traitor_skull´
+		3 ´the_traitor_black´
 	event death
 	position -150, 300, 150
 	rotation 0, 0, 0, -1
-	elements
-		1 ´the_traitor´
-		2 ´the_traitor_skull´
-		3 ´the_traitor_black´
 	on_executed
 		´traitor_killed´ (delay 0)
 		´killed_traitor_achieve´ (delay 0)
@@ -354,13 +354,13 @@
 		´keypad_complete_001´ (delay 0) DISABLED
 		´keypad_complete_002´ (delay 0) DISABLED
 ´point_debug_001´ ElementDebug 100066
-	as_subtitle false
+	as_subtitle False
 	debug_string scanner enabled
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100067
-	as_subtitle false
+	as_subtitle False
 	debug_string scanner triggered
-	show_instigator false
+	show_instigator False
 ´setup_drop_lance´ ElementInstanceInput 100069
 	event setup_lance_drop
 	on_executed
@@ -404,29 +404,29 @@
 	position 25, 200, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´lance_dropped_off´ (delay 0)
 ´enable_drop_off´ ElementToggle 100075
+	elements
+ 		1 ´setup_drop_off´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_drop_off´ DISABLED
 ´disable_drop_off´ ElementToggle 100076
+	elements
+ 		1 ´setup_drop_off´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´setup_drop_off´ DISABLED
 ´dropoff_waypoint´ ElementWaypoint 100077
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 25, 200, 75
 	rotation 0, 0, -0.707107, -0.707107
 	text_id debug_none
@@ -434,9 +434,9 @@
 	on_executed
 		´dropoff_waypoint´ (delay 0)
 ´remove_waypoint001´ ElementOperator 100079
-	operation remove
 	elements
-		1 ´dropoff_waypoint´
+ 		1 ´dropoff_waypoint´
+	operation remove
 ´lance_dropped_off´ ElementCarry 100080
 	operation remove
 	type_filter lance_bag
@@ -498,10 +498,8 @@
 		´disable_further_pauses´ (delay 0)
 		´end_to_timelock´ (delay 0)
 ´disable_stealth_methods´ ElementToggle 100085
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´keypad_used´
+ 		1 ´keypad_used´
 		2 ´special_objective_checker´
 		3 ´keycard_counter´
 		4 ´civilian_scanner_trigger´ DISABLED
@@ -513,6 +511,8 @@
 		10 ´civilian_scanner_trigger001´ DISABLED
 		11 ´civilian_use_scanner_so001´
 		12 ´civilian_use_scanner_so´
+	set_trigger_times -1
+	toggle off
 ´drill_placed´ ElementInstanceOutput 100057
 	event drill_placed
 	on_executed
@@ -522,18 +522,18 @@
 	event civilian_opened
 ´vault_found_wp´ ElementWaypoint 100087
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 100, 100, 100
 	rotation 0, 0, -0.707107, -0.707107
 	text_id debug_none
 ´remove_on_open_or_drill´ ElementOperator 100088
-	operation remove
 	elements
-		1 ´vault_found_wp´
+ 		1 ´vault_found_wp´
 		2 ´lance_wp´
+	operation remove
 ´lance_wp´ ElementWaypoint 100089
 	icon pd2_drill
-	only_in_civilian false
+	only_in_civilian False
 	position 50, 175, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -542,24 +542,24 @@
 	on_executed
 		´open_door´ (delay 0)
 ´start_timer´ ElementTimerOperator 100092
+	elements
+ 		1 ´open_timelock_timer´
 	operation start
 	position 1300, 400, 102.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´open_timelock_timer´
 	on_executed
 		´hct_002´ (delay 20-30)
 		´hct_001´ (delay 3-7)
 		´first_interrupt´ (delay 0.05) DISABLED
 		´enable_interrupt_resume´ (delay 0.05)
 ´pause_timer´ ElementTimerOperator 100093
+	elements
+ 		1 ´open_timelock_timer´
 	operation pause
 	position 1900, 500, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´open_timelock_timer´
 	on_executed
 		´ecm_jammed_timelock´ (delay 0)
 ´timelock_started´ ElementInstanceOutput 100094
@@ -574,36 +574,36 @@
 	enemy units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 100, -1.52588E-05, 0
 	rotation 0, 0, -2.98023E-08, -1
 	spawn_action none
 	team law1
 	voice 0
-	orientation_elements
 ´the_traitor_black´ ElementSpawnEnemyDummy 100097
 	accessibility any
 	amount 0
 	enemy units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 100, -1.52588E-05, 0
 	rotation 0, 0, -2.98023E-08, -1
 	spawn_action none
 	team law1
 	voice 0
-	orientation_elements
 ´disable_thug´ ElementToggle 100098
+	elements
+ 		1 ´spawn_thug´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spawn_thug´
 ´enable_dozer´ ElementToggle 100099
+	elements
+ 		1 ´spawn_dozer´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´spawn_dozer´ DISABLED
 ´spawn_dozer´ MissionScriptElement 100100
 	DISABLED
 	on_executed
@@ -611,63 +611,63 @@
 		´normal´ (delay 0)
 		´hunt_start´ (delay 0)
 ´hard´ ElementFilter 100101
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 900, 700, 100
 	rotation 0, 0, 0, -1
 	on_executed
 		´the_traitor_skull´ (delay 0)
 ´normal´ ElementFilter 100102
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 900, 800, 100
 	rotation 0, 0, 0, -1
 	on_executed
 		´the_traitor_black´ (delay 0)
 ´move_out´ ElementSpecialObjective 100104
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,65
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -675,29 +675,29 @@
 	pose none
 	position 100, 200, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -100 300 100
+	SO_access 16380
 	so_action none
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´the_traitor´
+	trigger_on none
 ´hunt_start´ ElementSpecialObjective 100105
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -705,16 +705,16 @@
 	pose none
 	position 100, 300, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 100 300 0
+	SO_access 16380
 	so_action AI_hunt
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´the_traitor_black´
 		2 ´the_traitor_skull´
+	trigger_on none
+	use_instigator False
 	on_executed
 		´logic_link_002´ (delay 0)
 		´point_debug_003´ (delay 0)
@@ -739,32 +739,32 @@
 ´current_slot´ ElementCounter 100113
 	counter_target 0
 ´slot001´ ElementCounterFilter 100115
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´current_slot´
 	on_executed
 		´found_code_and_selected001´ (delay 0)
 		´disable001_001´ (delay 0)
 		´show_keypad_001´ (delay 0)
 		´enable_verification_001´ (delay 0)
 ´slot001_2´ ElementCounterFilter 100116
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´current_slot´
 	on_executed
 		´disable001_002´ (delay 0)
 		´show_keycards_001´ (delay 0)
 		´enable_verification_003´ (delay 0)
 ´slot001_3´ ElementCounterFilter 100114
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´current_slot´
 	on_executed
 		´show_fingerprint001´ (delay 0)
 		´scanner_can_be_used´ (delay 0)
@@ -772,32 +772,32 @@
 		´feedback_retina_001´ (delay 0)
 		´enable_verification_005´ (delay 0)
 ´slot002´ ElementCounterFilter 100117
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´current_slot´
 	on_executed
 		´found_code_and_selected002´ (delay 0)
 		´disable002_001´ (delay 0)
 		´show_keypad_002´ (delay 0)
 		´enable_verification_002´ (delay 0)
 ´slot002_2´ ElementCounterFilter 100118
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´current_slot´
 	on_executed
 		´disable002_002´ (delay 0)
 		´show_keycards_002´ (delay 0)
 		´enable_verification_004´ (delay 0)
 ´slot002_3´ ElementCounterFilter 100119
+	elements
+ 		1 ´current_slot´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´current_slot´
 	on_executed
 		´show_fingerprint002´ (delay 0)
 		´scanner_can_be_used001´ (delay 0)
@@ -806,10 +806,10 @@
 		´enable_verification_006´ (delay 0)
 ´add_slot´ ElementCounterOperator 100033
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´current_slot´
+ 		1 ´current_slot´
+	instance_var_names
+	operation add
 ´slot_001_keycards´ MissionScriptElement 100061
 	on_executed
 		´slot001_2´ (delay 0)
@@ -863,35 +863,35 @@
 			notify_unit_sequence interact_enable
 			time 0
 ´disable001_001´ ElementToggle 100136
+	elements
+ 		1 ´setup_disable001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable001´ DISABLED
 ´disable001_002´ ElementToggle 100137
+	elements
+ 		1 ´setup_disable002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable002´ DISABLED
 ´disable001_003´ ElementToggle 100138
+	elements
+ 		1 ´setup_disable003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable003´ DISABLED
 ´disable002_001´ ElementToggle 100139
+	elements
+ 		1 ´setup_disable004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable004´ DISABLED
 ´disable002_002´ ElementToggle 100140
+	elements
+ 		1 ´setup_disable005´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable005´ DISABLED
 ´disable002_003´ ElementToggle 100141
+	elements
+ 		1 ´setup_disable006´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´setup_disable006´ DISABLED
 ´setup_disable001´ MissionScriptElement 100142
 	DISABLED
 	on_executed
@@ -990,29 +990,29 @@
 	on_executed
 		´enable_scanner001´ (delay 0)
 ´enable_scanner001´ ElementToggle 100059
+	elements
+ 		1 ´civilian_scanner_trigger001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´civilian_scanner_trigger001´ DISABLED
 	on_executed
 		´point_debug_001´ (delay 0)
 ´civilian_use_scanner_so001´ ElementSpecialObjective 100060
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	is_navigation_link false
-	needs_pos_rsrv false
+	is_navigation_link False
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -1020,13 +1020,13 @@
 	pose none
 	position -36, 164, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position 450 400 150
+	SO_access 3
 	so_action cm_so_tied_eyescan
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´civilian_scanner_trigger001´ ElementAreaTrigger 100155
 	DISABLED
 	TRIGGER TIMES 1
@@ -1039,23 +1039,23 @@
 	position 0, 250, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´point_debug_002´ (delay 0)
 		´civilian_use_scanner_so001´ (delay 0)
 		´debug_complete´ (delay 0) DISABLED
 ´debug_complete´ ElementDebug 100156
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string debug
-	show_instigator false
+	show_instigator False
 	on_executed
 		´special_objective_checker´ (delay 0)
 ´add_slot_delay´ MissionScriptElement 100157
@@ -1077,10 +1077,10 @@
 	on_executed
 		´enable_open_door´ (delay 0)
 ´enable_open_door´ ElementToggle 100004
+	elements
+ 		1 ´open_door_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´open_door_2´ DISABLED
 	on_executed
 		´door_open_wp´ (delay 0)
 ´scanner_chosen´ ElementInstanceInput 100005
@@ -1103,26 +1103,26 @@
 		´setup_drill_normal´ (delay 0.05)
 		´shorter_drill´ (delay 0)
 ´equal_2´ ElementCounterFilter 100007
+	elements
+ 		1 ´two_stage_verification´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´two_stage_verification´
 	on_executed
 		´setup_drill_normal´ (delay 0)
 ´equal_1´ ElementCounterFilter 100008
+	elements
+ 		1 ´two_stage_verification´
 	check_type less_or_equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´two_stage_verification´
 	on_executed
 		´setup_drill_short´ (delay 0)
 ´enable_short_start´ ElementToggle 100103
+	elements
+ 		1 ´func_sequence_trigger_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_sequence_trigger_001´ DISABLED
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100159
 	DISABLED
 	TRIGGER TIMES 1
@@ -1145,29 +1145,29 @@
 			time 0
 ´door_open_wp´ ElementWaypoint 100161
 	icon pd2_door
-	only_in_civilian false
+	only_in_civilian False
 	position 134, 100, 110
 	rotation 0, 0, -0.707107, -0.707107
 	text_id debug_none
 ´remove_door_wp´ ElementOperator 100162
-	operation remove
 	elements
-		1 ´door_open_wp´
+ 		1 ´door_open_wp´
+	operation remove
 ´point_area_min_police_force_001´ ElementAreaMinPoliceForce 100163
 	amount 2
 	position 0, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 ´remove_min_force´ ElementOperator 100164
-	operation none
 	elements
-		1 ´point_area_min_police_force_001´
+ 		1 ´point_area_min_police_force_001´
+	operation none
 ´point_teammate_comment_001´ ElementTeammateComment 100165
-	close_to_element false
+	close_to_element False
 	comment g14
 	position -95, 200, 201
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´first_step´ ElementCounterTrigger 100166
 	amount 1
 	trigger_type value
@@ -1198,59 +1198,59 @@
 			time 0
 ´shorter_drill´ ElementDialogue 100172
 	dialogue Play_pln_hb3_51
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´hct_001´ ElementPlaySound 100174
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_01
-	use_instigator false
+	use_instigator False
 ´hct_002´ ElementPlaySound 100175
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_02
-	use_instigator false
+	use_instigator False
 ´hct_003´ ElementPlaySound 100176
-	append_prefix false
+	append_prefix False
+	elements
+ 		1 ´the_traitor´
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_03
-	use_instigator false
-	elements
-		1 ´the_traitor´
+	use_instigator False
 ´hct_004´ ElementPlaySound 100177
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_04
-	use_instigator false
+	use_instigator False
 ´hct_005´ ElementPlaySound 100178
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_05
-	use_instigator false
+	use_instigator False
 ´hct_006´ ElementPlaySound 100179
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_06
-	use_instigator false
+	use_instigator False
 ´hct_007´ ElementPlaySound 100180
-	append_prefix false
+	append_prefix False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	sound_event Play_hct_hb3_07
-	use_instigator false
+	use_instigator False
 ´trigger_oh_shit_vo´ ElementEnemyDummyTrigger 100181
+	elements
+ 		1 ´the_traitor´
 	event alerted
 	position 800, 400, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´the_traitor´
 	on_executed
 		´hct_003´ (delay 0)
 ´hct_vo_004´ MissionScriptElement 100009
@@ -1283,14 +1283,14 @@
 		1 units/pd2_mcmansion/props/mcm_prop_hector_vest/mcm_prop_hector_vest/001 (1, -45.9999, 2)
 		2 units/pd2_mcmansion/props/mcm_prop_hector_helmet/mcm_hector_helmet/001 (47.4547, -43.3523, 164.144)
 ´func_nav_obstacle_001´ ElementNavObstacle 100192
-	operation add
-	position 1100, 100, 102.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-75, -43, 2)
+	operation add
+	position 1100, 100, 102.5
+	rotation 0, 0, 0, -1
 ´partially_open_door001´ ElementUnitSequence 100196
 	position 1300, 800, 100
 	rotation 0, 0, 0, -1
@@ -1304,12 +1304,12 @@
 	on_executed
 		´panic_room_can_be_opened´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100198
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´hct_vo_006´
+ 		1 ´hct_vo_006´
 		2 ´hct_vo_005´
 		3 ´hct_vo_004´
+	set_trigger_times -1
+	toggle off
 ´trap´ MissionScriptElement 100199
 	DISABLED
 	on_executed
@@ -1317,69 +1317,69 @@
 		´medium´ (delay 0)
 		´higher´ (delay 0)
 ´can_trap´ ElementToggle 100200
+	elements
+ 		1 ´trap´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trap´ DISABLED
 ´lower´ ElementFilter 100201
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -700, 1700, 100
 	rotation 0, 0, 0, -1
 	on_executed
 		´chance_of_trap001´ (delay 0)
 ´medium´ ElementFilter 100202
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -700, 1600, 100
 	rotation 0, 0, 0, -1
 	on_executed
 		´chance_of_trap002´ (delay 0)
 ´higher´ ElementFilter 100203
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -700, 1500, 100
 	rotation 0, 0, 0, -1
 	on_executed
@@ -1387,15 +1387,15 @@
 ´smoke_nade´ ElementSmokeGrenade 100204
 	duration 25
 	effect_type smoke
-	ignore_control true
-	immediate true
+	ignore_control True
+	immediate True
 	position 106, 52, 2
 	rotation 0, 0, 0, -1
 ´flash_bang´ ElementSmokeGrenade 100205
 	duration 25
 	effect_type flash
-	ignore_control true
-	immediate true
+	ignore_control True
+	immediate True
 	position 137, 102, 2
 	rotation 0, 0, 0, -1
 ´flashbang´ MissionScriptElement 100206
@@ -1404,7 +1404,7 @@
 ´choose_trap_001´ ElementRandom 100208
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´flashbang´ (delay 0)
 		´smoke´ (delay 0)
@@ -1432,7 +1432,7 @@
 ´choose_trap_002´ ElementRandom 100212
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´smoke´ (delay 0)
 		´flashbang´ (delay 0)
@@ -1440,7 +1440,7 @@
 ´choose_trap_003´ ElementRandom 100213
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´flashbang´ (delay 0)
 		´smoke´ (delay 0)
@@ -1518,15 +1518,15 @@
 	on_executed
 		´enable_keycards_002´ (delay 0.05)
 ´feedback_retina_001´ ElementToggle 100021
+	elements
+ 		1 ´retina_green_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´retina_green_001´ DISABLED
 ´feedback_retina_002´ ElementToggle 100022
+	elements
+ 		1 ´retina_green_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´retina_green_002´ DISABLED
 ´retina_green_001´ ElementUnitSequence 100023
 	DISABLED
 	position 100, 1400, 100
@@ -1598,35 +1598,35 @@
 			notify_unit_sequence light_green_right
 			time 0
 ´enable_verification_001´ ElementToggle 100062
+	elements
+ 		1 ´keypad_complete_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keypad_complete_001´ DISABLED
 ´enable_verification_002´ ElementToggle 100065
+	elements
+ 		1 ´keypad_complete_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keypad_complete_002´ DISABLED
 ´enable_verification_003´ ElementToggle 100109
+	elements
+ 		1 ´keycard_complete_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keycard_complete_001´ DISABLED
 ´enable_verification_004´ ElementToggle 100110
+	elements
+ 		1 ´keycard_complete_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´keycard_complete_002´ DISABLED
 ´enable_verification_005´ ElementToggle 100111
+	elements
+ 		1 ´retina_complete_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´retina_complete_001´ DISABLED
 ´enable_verification_006´ ElementToggle 100126
+	elements
+ 		1 ´retina_complete_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´retina_complete_002´ DISABLED
 ´enable_keycards_001´ ElementUnitSequence 100127
 	position 200, 1200, 100
 	rotation 0, 0, 0, -1
@@ -1684,11 +1684,11 @@
 			notify_unit_sequence light_default
 			time 0
 ´disable_stealth_vo´ ElementToggle 100132
+	elements
+ 		1 ´hct_001´
+		2 ´hct_002´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´hct_001´
-		2 ´hct_002´
 ´ecm_jammer_on´ ElementGlobalEventTrigger 100133
 	global_event ecm_jammer_on
 	position 1900, 300, 100
@@ -1706,22 +1706,22 @@
 ´ecm_jammed_timelock´ ElementDialogue 100135
 	TRIGGER TIMES 2
 	dialogue Play_pln_hb3_55
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´enable_interrupt_resume´ ElementToggle 100170
+	elements
+ 		1 ´resume´ DISABLED
+		2 ´interrupt´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´resume´ DISABLED
-		2 ´interrupt´ DISABLED
 ´start_timer_2´ ElementTimerOperator 100171
+	elements
+ 		1 ´open_timelock_timer´
 	operation start
 	position 2000, 500, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´open_timelock_timer´
 ´first_interrupt´ MissionScriptElement 100224
 	DISABLED
 	on_executed
@@ -1735,76 +1735,76 @@
 	on_executed
 		´start_timer_2´ (delay 0)
 ´disable_further_pauses´ ElementToggle 100227
+	elements
+ 		1 ´pause_timer´
+		2 ´start_timer_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´pause_timer´
-		2 ´start_timer_2´
 ´end_to_timelock´ ElementTimerOperator 100228
+	elements
+ 		1 ´open_timelock_timer´
 	operation pause
 	position 1500, 1000, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´open_timelock_timer´
 ´ecm_jammer_first_interrupt´ ElementToggle 100229
+	elements
+ 		1 ´first_interrupt´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´first_interrupt´ DISABLED
 ´ecm_jammer_no_interrupt´ ElementToggle 100230
+	elements
+ 		1 ´first_interrupt´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´first_interrupt´ DISABLED
 ´func_nav_obstacle_002´ ElementNavObstacle 100232
 	DISABLED
-	operation add
-	position 1200, 1700, 100
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (32, 99, 0)
+	operation add
+	position 1200, 1700, 100
+	rotation 0, 0, 0, -1
 ´func_nav_obstacle_003´ ElementNavObstacle 100233
 	DISABLED
-	operation remove
-	position 1200, 500, 100
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (32, 99, 0)
+	operation remove
+	position 1200, 500, 100
+	rotation 0, 0, 0, -1
 ´killed_traitor_achieve´ ElementAwardAchievment 100234
 	achievment payback_3
-	award_instigator false
+	award_instigator False
 	position -200, 300, 200
 	rotation 0, 0, 0, -1
 ´baffled´ ElementTeammateComment 100235
-	close_to_element true
+	close_to_element True
 	comment g29
 	position 100, 200, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´point_teammate_comment_002´ ElementTeammateComment 100236
-	close_to_element true
+	close_to_element True
 	comment g21
 	position 0, 200, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´logic_link_002´ MissionScriptElement 100237
 	on_executed
 		´hunt_start´ (delay 10)
 ´point_debug_003´ ElementDebug 100238
-	as_subtitle false
+	as_subtitle False
 	debug_string hector is hunting!
-	show_instigator false
+	show_instigator False
 ´disable_bain_VO´ ElementToggle 100239
+	elements
+ 		1 ´ecm_jammed_timelock´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ecm_jammed_timelock´

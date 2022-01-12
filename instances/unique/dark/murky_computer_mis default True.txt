@@ -2,7 +2,7 @@
 	EXECUTE ON STARTUP
 	position 0, 200, 0
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´Auto_Start´ MissionScriptElement 100002
 	EXECUTE ON STARTUP
 	on_executed
@@ -119,9 +119,9 @@
 ´Equipment_Found´ ElementInstanceOutput 100029
 	event Equipment_Found
 ´point_debug_001´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string hard drive grabbed
-	show_instigator false
+	show_instigator False
 ´enable_harddrive´ ElementInstanceInput 100031
 	DISABLED
 	event enable_harddrive
@@ -163,15 +163,15 @@
 	position 250, -200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´shape_show_glow´
-	use_shape_element_ids
 	unit_ids
 		1 100023
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_3´ (delay 0) DISABLED (alternative enter)
 ´empty´ ElementAreaReportTrigger 100025
@@ -183,15 +183,15 @@
 	position 300, -200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´shape_show_glow´
-	use_shape_element_ids
 	unit_ids
 		1 100023
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) DISABLED (alternative empty)
 ´link_3´ MissionScriptElement 100026
@@ -235,16 +235,16 @@
 			notify_unit_sequence state_outline_disable
 			time 0
 ´On´ ElementToggle 100037
+	elements
+ 		1 ´link_4´ DISABLED
+		2 ´link_3´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_4´ DISABLED
-		2 ´link_3´ DISABLED
 	on_executed
 		´point_play_sound_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100038
-	append_prefix false
+	append_prefix False
 	position -50, -100, 100
 	rotation 0, 0, 0, -1
 	sound_event server_noise_loop
-	use_instigator false
+	use_instigator False

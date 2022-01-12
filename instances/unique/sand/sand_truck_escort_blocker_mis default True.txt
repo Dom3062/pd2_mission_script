@@ -85,9 +85,6 @@
 		´counter_2´ (delay 2)
 		´toggle_off´ (delay 0)
 ´nav_obst_add´ ElementNavObstacle 100006
-	operation add
-	position 650, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -121,10 +118,10 @@
 			guis_id 8
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/005 (-182.323, -317.677, 0)
-´nav_obst_remove´ ElementNavObstacle 100023
-	operation remove
-	position 1050, 100, 0
+	operation add
+	position 650, 100, 0
 	rotation 0, 0, 0, -1
+´nav_obst_remove´ ElementNavObstacle 100023
 	obstacle_list
 		1
 			guis_id 1
@@ -146,6 +143,9 @@
 			guis_id 5
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/005 (-182.323, -317.677, 0)
+	operation remove
+	position 1050, 100, 0
+	rotation 0, 0, 0, -1
 ´seq_van_move_anim´ ElementUnitSequence 100016
 	position 1250, 100, 0
 	rotation 0, 0, 0, -1
@@ -176,25 +176,25 @@
 		3 units/dev_tools/level_tools/dev_collision_4m_ragdoll/003 (-125, 600, 0)
 ´teammate_comment_letsgo´ ElementTeammateComment 100032
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g13
 	position -150, 300, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_moveit´ ElementTeammateComment 100033
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g18
 	position -150, 250, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´logic_random_001´ ElementRandom 100034
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´teammate_comment_letsgo´ (delay 0)
 		´link_blank´ (delay 0)
@@ -212,7 +212,7 @@
 	on_executed
 		´counter_2´ (delay 0)
 ´toggle_off´ ElementToggle 100038
+	elements
+ 		1 ´trigger_global_loud´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_global_loud´

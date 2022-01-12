@@ -72,7 +72,7 @@
 		´enable_interaction´ (delay 0)
 ´WP_wine´ ElementWaypoint 100011
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -118,9 +118,9 @@
 		´output_took_wine´ (delay 0)
 		´disable_WP_wine´ (delay 0)
 ´remove__WP_wine´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´WP_wine´
+ 		1 ´WP_wine´
+	operation remove
 ´output_took_wine´ ElementInstanceOutput 100016
 	event took_wine
 ´input_enable_wine´ ElementInstanceInput 100017
@@ -128,11 +128,11 @@
 	on_executed
 		´toggle´ (delay 0)
 ´toggle´ ElementToggle 100018
+	elements
+ 		1 ´show_wine´ DISABLED
+		2 ´random_trash´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´show_wine´ DISABLED
-		2 ´random_trash´
 	on_executed
 		´point_debug_001´ (delay 0)
 ´input_disable_interaction´ ElementInstanceInput 100019
@@ -158,14 +158,14 @@
 ´output_found_wine´ ElementInstanceOutput 100021
 	event found_wine
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: input_enable_wine
-	show_instigator false
+	show_instigator False
 ´disable_WP_wine´ ElementToggle 100023
+	elements
+ 		1 ´WP_wine´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_wine´
 ´disabler´ ElementDisableUnit 100024
 	position 800, 100, 0
 	rotation 0, 0, 0, -1
@@ -186,7 +186,7 @@
 ´random_trash´ ElementRandom 100029
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_enable_unit_001´ (delay 0)
 		´func_enable_unit_002´ (delay 0)

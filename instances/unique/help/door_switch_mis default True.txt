@@ -34,7 +34,7 @@
 ´pick_random´ ElementRandom 100011
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´100´ (delay 0)
 		´100_2´ (delay 0)
@@ -101,19 +101,19 @@
 ´counter´ ElementCounter 100002
 	counter_target 0
 ´4 keys used´ ElementCounterFilter 100003
+	elements
+ 		1 ´counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´counter´
 	on_executed
 		´1 key´ (delay 0)
 ´add 1´ ElementCounterOperator 100004
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation add
 	on_executed
 		´On´ (delay 0)
 ´switch_pulled´ MissionScriptElement 100005
@@ -125,19 +125,19 @@
 		´pick_vent´ (delay 0)
 		´5´ (delay 0)
 ´2 keys´ ElementCounterFilter 100008
+	elements
+ 		1 ´counter´
 	check_type less_or_equal
 	needed_to_execute all
 	value 9
-	elements
-		1 ´counter´
 	on_executed
 		´2 keys_2´ (delay 0) DISABLED
 ´3 keys´ ElementCounterFilter 100012
+	elements
+ 		1 ´counter´
 	check_type greater_or_equal
 	needed_to_execute all
 	value 10
-	elements
-		1 ´counter´
 	on_executed
 		´3 keys_2´ (delay 0)
 ´1 key´ ElementInstanceOutput 100013
@@ -163,7 +163,7 @@
 		´point_debug_004´ (delay 0)
 ´pull_switch´ ElementInteraction 100016
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 54, -20, 45
 	rotation 0, 0, 0, -1
@@ -171,31 +171,31 @@
 	on_executed
 		´switch_pulled´ (delay 0) (alternative interacted)
 ´On´ ElementToggle 100017
+	elements
+ 		1 ´pull_switch´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´pull_switch´ DISABLED
 	on_executed
 		´Off´ (delay 0)
 ´timer´ ElementTimer 100021
 	timer 0
 ´start - clock´ ElementTimerOperator 100025
 	BASE DELAY 0,5
+	elements
+ 		1 ´timer´
 	operation start
 	position 1500, 100, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 ´Finished´ MissionScriptElement 100033
 	on_executed
 		´Time_Finished´ (delay 0)
 ´subtract 1´ ElementCounterOperator 100058
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´2 step authentication´
+ 		1 ´2 step authentication´
+	instance_var_names
+	operation subtract
 	on_executed
 		´used_1_time´ (delay 0)
 		´disable_waypoint´ (delay 0.5)
@@ -236,11 +236,11 @@
 	position 725, -250, 0
 	rotation 0, 0, 0, -1
 ´success´ ElementLogicChanceTrigger 100081
+	elements
+ 		1 ´10´
 	outcome success
 	position 725, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´10´
 	on_executed
 		´lucky_1´ (delay 0)
 ´40´ ElementLogicChance 100083
@@ -248,27 +248,27 @@
 	position 775, -250, 0
 	rotation 0, 0, 0, -1
 ´success_2´ ElementLogicChanceTrigger 100084
+	elements
+ 		1 ´40´
 	outcome success
 	position 775, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´40´
 	on_executed
 		´medium_1´ (delay 0)
 ´fail´ ElementLogicChanceTrigger 100089
+	elements
+ 		1 ´10´
 	outcome fail
 	position 775, -200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´10´
 	on_executed
 		´40´ (delay 0)
 ´fail_2´ ElementLogicChanceTrigger 100090
+	elements
+ 		1 ´40´
 	outcome fail
 	position 825, -200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´40´
 	on_executed
 		´normal_1´ (delay 0)
 ´lucky_1´ ElementInstanceOutput 100086
@@ -284,63 +284,63 @@
 	on_executed
 		´Normal´ (delay 0)
 ´Medium´ ElementDebug 100099
-	as_subtitle false
+	as_subtitle False
 	debug_string Medium
-	show_instigator false
+	show_instigator False
 ´Normal´ ElementDebug 100100
-	as_subtitle false
+	as_subtitle False
 	debug_string Normal
-	show_instigator false
+	show_instigator False
 ´reset - 10´ ElementLogicChanceOperator 100102
+	elements
+ 		1 ´10´
 	chance 10
 	operation set_chance
 	position 250, 150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´10´
 	on_executed
 		´reset - 40´ (delay 0)
 ´luck - 50´ ElementLogicChanceOperator 100103
+	elements
+ 		1 ´10´
 	chance 45
 	operation set_chance
 	position 1150, 150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´10´
 	on_executed
 		´medium - 100´ (delay 0)
 ´reset - 40´ ElementLogicChanceOperator 100104
+	elements
+ 		1 ´40´
 	chance 40
 	operation set_chance
 	position 250, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´40´
 	on_executed
 		´ON´ (delay 0)
 ´medium - 100´ ElementLogicChanceOperator 100105
+	elements
+ 		1 ´40´
 	chance 100
 	operation set_chance
 	position 1150, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´40´
 ´luck - 20´ ElementLogicChanceOperator 100106
+	elements
+ 		1 ´10´
 	chance 20
 	operation set_chance
 	position 1075, 150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´10´
 	on_executed
 		´medium - 60´ (delay 0)
 ´medium - 60´ ElementLogicChanceOperator 100107
+	elements
+ 		1 ´40´
 	chance 60
 	operation set_chance
 	position 1075, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´40´
 ´subtract_1´ ElementInstanceOutput 100034
 	event output_subtract_1
 	on_executed
@@ -351,16 +351,16 @@
 ´Time_Finished´ ElementInstanceOutput 100092
 	event Time_Finished
 ´Lucky´ ElementDebug 100067
-	as_subtitle false
+	as_subtitle False
 	debug_string Lucky
-	show_instigator false
+	show_instigator False
 ´60 sec´ ElementTimerOperator 100093
+	elements
+ 		1 ´timer´
 	operation set_time
 	position 1500, 200, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer´
 	on_executed
 		´start - clock´ (delay 0)
 ´60´ MissionScriptElement 100096
@@ -384,116 +384,116 @@
 	position 775, -650, 0
 	rotation 0, 0, 0, -1
 ´yes´ ElementLogicChanceTrigger 100121
+	elements
+ 		1 ´100´
 	outcome success
 	position 625, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100´
 	on_executed
 		´chance´ (delay 0)
 ´yes_2´ ElementLogicChanceTrigger 100122
+	elements
+ 		1 ´100_2´
 	outcome success
 	position 675, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_2´
 	on_executed
 		´chance_2´ (delay 0)
 ´yes_3´ ElementLogicChanceTrigger 100123
+	elements
+ 		1 ´100_3´
 	outcome success
 	position 725, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_3´
 	on_executed
 		´chance_3´ (delay 0)
 ´yes_4´ ElementLogicChanceTrigger 100124
+	elements
+ 		1 ´100_4´
 	outcome success
 	position 775, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_4´
 	on_executed
 		´chance_4´ (delay 0)
 ´fail_3´ ElementLogicChanceTrigger 100125
+	elements
+ 		1 ´100´
 	outcome fail
 	position 625, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100´
 	on_executed
 		´pick_random´ (delay 0)
 ´fail_4´ ElementLogicChanceTrigger 100126
+	elements
+ 		1 ´100_2´
 	outcome fail
 	position 675, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_2´
 	on_executed
 		´pick_random´ (delay 0)
 ´fail_5´ ElementLogicChanceTrigger 100127
+	elements
+ 		1 ´100_3´
 	outcome fail
 	position 725, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_3´
 	on_executed
 		´pick_random´ (delay 0)
 ´fail_6´ ElementLogicChanceTrigger 100128
+	elements
+ 		1 ´100_4´
 	outcome fail
 	position 775, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_4´
 	on_executed
 		´pick_random´ (delay 0)
 ´chance´ ElementLogicChanceOperator 100129
+	elements
+ 		1 ´100´
 	chance 25
 	operation subtract_chance
 	position 625, -750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100´
 	on_executed
 		´door_1´ (delay 0)
 ´chance_2´ ElementLogicChanceOperator 100130
+	elements
+ 		1 ´100_2´
 	chance 25
 	operation subtract_chance
 	position 675, -750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_2´
 	on_executed
 		´door_2´ (delay 0)
 ´chance_3´ ElementLogicChanceOperator 100131
+	elements
+ 		1 ´100_3´
 	chance 25
 	operation subtract_chance
 	position 725, -750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_3´
 	on_executed
 		´door_3´ (delay 0)
 ´chance_4´ ElementLogicChanceOperator 100132
+	elements
+ 		1 ´100_4´
 	chance 25
 	operation subtract_chance
 	position 775, -750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_4´
 	on_executed
 		´door_4´ (delay 0)
 ´set 100´ ElementLogicChanceOperator 100133
-	chance 100
-	operation set_chance
-	position 925, -650, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´100_4´
+ 		1 ´100_4´
 		2 ´100_3´
 		3 ´100_2´
 		4 ´100´
 		5 ´100_5´
+	chance 100
+	operation set_chance
+	position 925, -650, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´point_debug_001´ (delay 0)
 ´12´ ElementCounter 100134
@@ -502,19 +502,19 @@
 		´reset - 12´ (delay 0)
 ´reset - 12´ ElementCounterOperator 100135
 	amount 12
-	operation set
-	instance_var_names
 	elements
-		1 ´12´
+ 		1 ´12´
+	instance_var_names
+	operation set
 	on_executed
 		´set 100´ (delay 0)
 ´point_debug_001´ ElementDebug 100136
-	as_subtitle true
+	as_subtitle True
 	debug_string reset_chance_and_12
-	show_instigator false
+	show_instigator False
 ´waypoint´ ElementWaypoint 100018
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 13, -7, 54
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -526,10 +526,10 @@
 ´+ 1´ ElementCounterOperator 100137
 	BASE DELAY 0,5
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´2 step authentication´
+ 		1 ´2 step authentication´
+	instance_var_names
+	operation add
 	on_executed
 		´enable_waypoint´ (delay 0)
 ´player_out_of_range´ ElementInstanceInput 100138
@@ -540,49 +540,49 @@
 ´- 1´ ElementCounterOperator 100139
 	BASE DELAY 0,5
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´2 step authentication´
+ 		1 ´2 step authentication´
+	instance_var_names
+	operation subtract
 	on_executed
 		´disable_waypoint´ (delay 0)
 ´2 step authentication´ ElementCounter 100140
 	counter_target 0
 ´set 1´ ElementCounterOperator 100019
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´2 step authentication´
+ 		1 ´2 step authentication´
+	instance_var_names
+	operation add
 	on_executed
 		´enable_waypoint´ (delay 0.5)
 		´reset - 10´ (delay 0)
 ´remove_waypoint´ ElementOperator 100142
-	operation remove
 	elements
-		1 ´waypoint´
+ 		1 ´waypoint´
+	operation remove
 ´enable_waypoint´ ElementCounterFilter 100143
+	elements
+ 		1 ´2 step authentication´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´2 step authentication´
 	on_executed
 		´waypoint´ (delay 0)
 ´disable_waypoint´ ElementCounterFilter 100144
+	elements
+ 		1 ´2 step authentication´
 	check_type less_or_equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´2 step authentication´
 	on_executed
 		´waypoint´ (delay 0)
 		´remove_waypoint´ (delay 0)
 ´OFF´ ElementToggle 100141
+	elements
+ 		1 ´pull_switch´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´pull_switch´ DISABLED
 	on_executed
 		´pick_random´ (delay 0)
 ´intro_finished´ ElementInstanceInput 100151
@@ -597,10 +597,8 @@
 	on_executed
 		´OFF_2´ (delay 0)
 ´OFF_2´ ElementToggle 100160
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´1 key´
+ 		1 ´1 key´
 		2 ´2 keys_2´ DISABLED
 		3 ´3 keys_2´
 		4 ´Time_Finished´
@@ -627,54 +625,56 @@
 		25 ´pull_switch´ DISABLED
 		26 ´door_5´
 		27 ´chance_5´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove´ (delay 0)
 ´remove´ ElementOperator 100161
-	operation remove
 	elements
-		1 ´waypoint´
+ 		1 ´waypoint´
+	operation remove
 	on_executed
 		´hide001´ (delay 0)
 ´5´ ElementCounterFilter 100023
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´counter´
 	on_executed
 		´toggle´ (delay 0)
 ´toggle´ ElementToggle 100024
+	elements
+ 		1 ´2 keys_2´ DISABLED
+		2 ´1 key´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´2 keys_2´ DISABLED
-		2 ´1 key´
 	on_executed
 		´60 sec´ (delay 0)
 		´60´ (delay 0)
 		´luck - 20´ (delay 0)
 ´point_debug_002´ ElementDebug 100026
-	as_subtitle false
+	as_subtitle False
 	debug_string less than 4
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100029
-	as_subtitle false
+	as_subtitle False
 	debug_string 5 or more but less than 10
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string 10 or greater
-	show_instigator false
+	show_instigator False
 ´door_5´ ElementInstanceOutput 100031
 	event door_5
 	on_executed
 		´12´ (delay 0)
 ´fail_7´ ElementLogicChanceTrigger 100068
+	elements
+ 		1 ´100_5´
 	outcome fail
 	position 825, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_5´
 	on_executed
 		´pick_random´ (delay 0)
 ´100_5´ ElementLogicChance 100069
@@ -682,20 +682,20 @@
 	position 825, -650, 0
 	rotation 0, 0, 0, -1
 ´yes_5´ ElementLogicChanceTrigger 100070
+	elements
+ 		1 ´100_5´
 	outcome success
 	position 825, -700, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_5´
 	on_executed
 		´chance_5´ (delay 0)
 ´chance_5´ ElementLogicChanceOperator 100071
+	elements
+ 		1 ´100_5´
 	chance 25
 	operation subtract_chance
 	position 825, -750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´100_5´
 	on_executed
 		´door_5´ (delay 0)
 ´open_card´ ElementUnitSequence 100076
@@ -729,14 +729,14 @@
 	on_executed
 		´add 1´ (delay 0)
 ´60_2´ ElementTimerOperator 100042
+	elements
+ 		1 ´timer´
 	operation set_time
 	position -300, 250, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer´
 ´black_on_red´ ElementUnitSequence 100044
-	only_for_local_player false
+	only_for_local_player False
 	position 1550, 0, 0
 	rotation 0, 0, 0, -1
 	trigger_list
@@ -757,18 +757,18 @@
 	on_executed
 		´OFF´ (delay 0)
 ´teammate_comment_used_keycard´ ElementTeammateComment 100000
-	close_to_element false
+	close_to_element False
 	comment p30
 	position 450, 350, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_005´ (delay 0)
 ´point_debug_005´ ElementDebug 100001
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_used_keycard
-	show_instigator false
+	show_instigator False
 ´keycard_inserted´ ElementInstanceOutput 100007
 	event keycard_inserted
 ´hide001´ ElementUnitSequence 100022

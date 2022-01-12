@@ -275,24 +275,24 @@
 			time 0
 ´door_blocker_add´ ElementNavObstacle 100017
 	TRIGGER TIMES 1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (50, -25, 0)
 	operation add
 	position -50, 275, 75
 	rotation 0, 0, 0, -1
+´door_blocker_remove´ ElementNavObstacle 100018
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (50, -25, 0)
-´door_blocker_remove´ ElementNavObstacle 100018
-	TRIGGER TIMES 1
 	operation remove
 	position 75, 275, 75
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (50, -25, 0)
 ´seq_power_off_drill´ ElementUnitSequence 100020
 	DISABLED
 	position -300, 750, 75
@@ -311,10 +311,10 @@
 			notify_unit_sequence power_off
 			time 0
 ´toggle_on´ ElementToggle 100021
+	elements
+ 		1 ´seq_power_off_drill´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_power_off_drill´ DISABLED
 ´seq_enable_door´ ElementUnitSequence 100022
 	position -375, 550, 75
 	rotation 0, 0, 0, -1
@@ -338,39 +338,39 @@
 	position -600, 75, 75
 	rotation 0, 0, 0, -1
 ´logic_chance_trigger_001´ ElementLogicChanceTrigger 100025
+	elements
+ 		1 ´logic_chance_001´
 	outcome success
 	position -600, 175, 75
 	rotation 0, 0, 0, -1
-	elements
-		1 ´logic_chance_001´
 	on_executed
 		´seq_door_open´ (delay 0)
 		´seq_power_off_drill´ (delay 0) DISABLED
 ´logic_chance_trigger_002´ ElementLogicChanceTrigger 100026
+	elements
+ 		1 ´logic_chance_001´
 	outcome fail
 	position -700, 75, 75
 	rotation 0, 0, 0, -1
-	elements
-		1 ´logic_chance_001´
 	on_executed
 		´seq_enable_door´ (delay 0)
 		´logic_chance_operator_001´ (delay 0)
 ´logic_chance_operator_001´ ElementLogicChanceOperator 100027
+	elements
+ 		1 ´logic_chance_001´
 	chance 10
 	operation add_chance
 	position -800, 75, 75
 	rotation 0, 0, 0, -1
-	elements
-		1 ´logic_chance_001´
 ´input_disable_attention´ ElementInstanceInput 100029
 	event disable_drill_attention
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100030
+	elements
+ 		1 ´func_sequence_004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_sequence_004´ DISABLED
 ´func_sequence_004´ ElementUnitSequence 100006
 	DISABLED
 	position -375, 300, 75

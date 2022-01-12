@@ -1,10 +1,10 @@
 ´timer_start´ ElementTimerOperator 100004
+	elements
+ 		1 ´timer´
 	operation start
 	position -500, -1200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´sound_countdown´ (delay 0)
 ´startup´ MissionScriptElement 100005
@@ -71,50 +71,50 @@
 	on_executed
 		´timer_start´ (delay 2)
 ´func_nav_obstacle_001´ ElementNavObstacle 100052
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
 	operation add
 	position -400, -800, 0
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_002´ ElementNavObstacle 100053
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
-´func_nav_obstacle_002´ ElementNavObstacle 100053
 	operation remove
 	position -800, -1100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-50, -100, 0)
 ´sound_countdown´ ElementPlaySound 100001
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 275
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop
-	use_instigator false
+	use_instigator False
 ´sound_countdown_10s´ ElementPlaySound 100002
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 275
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_ticking_down_10sec
-	use_instigator false
+	use_instigator False
 ´sound_countdown_stop´ ElementPlaySound 100013
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -50, 0, 275
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop_stop
-	use_instigator false
+	use_instigator False
 ´10s´ ElementTimerTrigger 100014
+	elements
+ 		1 ´timer´
 	position -700, -1300, 0
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´timer´
 	on_executed
 		´sound_countdown_stop´ (delay 0)
 		´sound_countdown_10s´ (delay 0)
@@ -131,12 +131,12 @@
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´pause_timer´ ElementTimerOperator 100006
+	elements
+ 		1 ´timer´
 	operation pause
 	position -600, -1100, 2.5
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´logic_toggle_001´ (delay 0)
 		´sound_countdown_stop´ (delay 0)
@@ -178,10 +178,8 @@
 	on_executed
 		´pause_timer´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100016
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´player_used_reader_001´
+ 		1 ´player_used_reader_001´
 		2 ´player_used_reader_002´
 		3 ´used_both_readers´
 		4 ´link_start_timer´
@@ -192,11 +190,13 @@
 		9 ´func_nav_obstacle_002´
 		10 ´output_opened_vault´
 		11 ´func_sequence_001´
-´logic_toggle_002´ ElementToggle 100022
 	set_trigger_times -1
 	toggle off
+´logic_toggle_002´ ElementToggle 100022
 	elements
-		1 ´logic_toggle_001´
+ 		1 ´logic_toggle_001´
 		2 ´pause_timer´
 		3 ´police_called´
 		4 ´pause_timer_2´
+	set_trigger_times -1
+	toggle off

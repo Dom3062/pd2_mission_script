@@ -47,7 +47,7 @@
 	position 0, 15, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´FX_chopper_smoke´ ElementPlayEffect 100010
 	base_time 0
 	effect effects/particles/dest/bridge_heli_smoke
@@ -55,12 +55,12 @@
 	position 0, 15, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´WP_flare´ ElementWaypoint 100011
 	DISABLED
 	TRIGGER TIMES 1
 	icon pd2_fire
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 15, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -68,30 +68,30 @@
 	DISABLED
 	TRIGGER TIMES 1
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 15, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´WP_winch_parts´ ElementWaypoint 100013
 	TRIGGER TIMES 1
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 15, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´winch_part_01´ ElementLootBag 100014
 	carry_id winch_part
-	from_respawn false
+	from_respawn False
 	position -59, 2.09808E-05, 1800
 	rotation 0, 0, 0.991445, 0.130526
 ´winch_part_02´ ElementLootBag 100015
 	carry_id winch_part
-	from_respawn false
+	from_respawn False
 	position 69, 50, 1800
 	rotation 0, 0, 1, 2.98023E-08
 ´winch_part_03´ ElementLootBag 100016
 	carry_id winch_part
-	from_respawn false
+	from_respawn False
 	position 0, 100, 1800
 	rotation 0, 0, -0.707107, -0.707107
 ´STARTUP´ MissionScriptElement 100006
@@ -127,9 +127,9 @@
 			notify_unit_sequence state_interaction_disabled
 			time 0
 ´WP_flare_REMOVE´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´WP_flare´ DISABLED
+ 		1 ´WP_flare´ DISABLED
+	operation remove
 ´wait_for_chopper´ MissionScriptElement 100020
 	on_executed
 		´WP_chopper_incoming´ (delay 0) DISABLED
@@ -173,11 +173,11 @@
 		´sound_flare_stop´ (delay 0)
 		´here´ (delay 0)
 ´FX_flare_STOP´ ElementStopEffect 100025
+	elements
+ 		1 ´FX_flare´
 	operation fade_kill
 	position 50, -1025, 802.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_flare´
 ´seq_chopper_OPEN_DOORS´ ElementUnitSequence 100026
 	position -75, -1100, 802.5
 	rotation 0, 0, 0, -1
@@ -212,18 +212,18 @@
 		´pick_up_winch_parts_WP_ON´ (delay 0)
 		´pick_up_winch_parts_WP´ (delay 0.25) DISABLED
 ´WP_chopper_incoming_REMOVE´ ElementOperator 100028
+	elements
+ 		1 ´WP_chopper_incoming´ DISABLED
 	operation remove
-	elements
-		1 ´WP_chopper_incoming´ DISABLED
 ´trg_loot_winch_part´ ElementLootBagTrigger 100029
-	trigger_type load
 	elements
-		1 ´winch_part_01´
+ 		1 ´winch_part_01´
 		2 ´winch_part_02´
 		3 ´winch_part_03´
 		4 ´winch_part_01_e3´ DISABLED
 		5 ´winch_part_02_e3´ DISABLED
 		6 ´winch_part_03_e3´ DISABLED
+	trigger_type load
 	on_executed
 		´winch_part_picked_up´ (delay 0)
 		´pick_up_winch_parts_WP_OFF´ (delay 0)
@@ -232,9 +232,9 @@
 		´output_winch_part_picked_up´ (delay 0)
 		´WP_winch_parts_REMOVE´ (delay 0)
 ´WP_winch_parts_REMOVE´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´WP_winch_parts´
+ 		1 ´WP_winch_parts´
+	operation remove
 ´output_winch_part_picked_up´ ElementInstanceOutput 100037
 	event winch_part_picked_up
 ´seq_chopper_flyout´ ElementUnitSequence 100038
@@ -273,11 +273,11 @@
 			notify_unit_sequence hidden
 			time 0
 ´FX_chopper_smoke_STOP´ ElementStopEffect 100040
+	elements
+ 		1 ´FX_chopper_smoke´
 	operation fade_kill
 	position 50, -1250, 802.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_chopper_smoke´
 ´input_disable_flare´ ElementInstanceInput 100031
 	event disable_flare
 	on_executed
@@ -300,27 +300,27 @@
 			notify_unit_sequence state_interaction_disabled
 			time 0
 ´sound_flare_loop´ ElementPlaySound 100036
-	append_prefix false
+	append_prefix False
 	position 0, 15, 25
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´sound_flare_stop´ ElementPlaySound 100041
-	append_prefix false
+	append_prefix False
 	position 0, 15, 25
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False
 ´delay_30s´ MissionScriptElement 100042
 	DISABLED
 	on_executed
 		´start_chopper_flyin´ (delay 30)
 ´delay_TOGGLE´ ElementToggle 100043
+	elements
+ 		1 ´delay_60s´
+		2 ´delay_30s´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´delay_60s´
-		2 ´delay_30s´ DISABLED
 ´input_ace_pilot´ ElementInstanceInput 100044
 	event ace_pilot
 	on_executed
@@ -345,111 +345,111 @@
 	on_executed
 		´WP_winch_parts´ (delay 0)
 ´WPs_ON´ ElementToggle 100049
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´WP_chopper_incoming´ DISABLED
+ 		1 ´WP_chopper_incoming´ DISABLED
 		2 ´WP_flare´ DISABLED
 		3 ´WP_winch_parts´
+	set_trigger_times -1
+	toggle on
 ´light_flare_WP_ON´ ElementToggle 100050
+	elements
+ 		1 ´light_flare_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´light_flare_WP´ DISABLED
 ´light_flare_WP_OFF´ ElementToggle 100051
+	elements
+ 		1 ´light_flare_WP´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´light_flare_WP´ DISABLED
 ´wait_for_chopper_WP_OFF´ ElementToggle 100052
+	elements
+ 		1 ´wait_for_chopper_WP´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wait_for_chopper_WP´ DISABLED
 ´wait_for_chopper_WP_ON´ ElementToggle 100053
+	elements
+ 		1 ´wait_for_chopper_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´wait_for_chopper_WP´ DISABLED
 ´pick_up_winch_parts_WP_OFF´ ElementToggle 100054
+	elements
+ 		1 ´pick_up_winch_parts_WP´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´pick_up_winch_parts_WP´ DISABLED
 ´pick_up_winch_parts_WP_ON´ ElementToggle 100055
+	elements
+ 		1 ´pick_up_winch_parts_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´pick_up_winch_parts_WP´ DISABLED
 ´input_activate´ ElementInstanceInput 100056
 	event activate
 	on_executed
 		´seq_flare_SHOW_ON´ (delay 0)
 ´seq_flare_SHOW_ON´ ElementToggle 100057
+	elements
+ 		1 ´seq_flare_SHOW´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_flare_SHOW´ DISABLED
 ´input_e3_version´ ElementInstanceInput 100058
 	event chopper_e3_version
 	on_executed
 		´disable_delay_non_e3´ (delay 0)
 		´enable_delay_e3´ (delay 0)
 ´disable_delay_non_e3´ ElementToggle 100059
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_ace_pilot´
+ 		1 ´input_ace_pilot´
 		2 ´delay_60s´
 		3 ´delay_30s´ DISABLED
 		4 ´winch_part_01´
 		5 ´winch_part_02´
 		6 ´winch_part_03´
+	set_trigger_times -1
+	toggle off
 ´delay_e3´ MissionScriptElement 100060
 	DISABLED
 	on_executed
 		´start_chopper_flyin´ (delay 0)
 ´enable_delay_e3´ ElementToggle 100061
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´delay_e3´ DISABLED
+ 		1 ´delay_e3´ DISABLED
 		2 ´winch_part_01_e3´ DISABLED
 		3 ´winch_part_02_e3´ DISABLED
 		4 ´winch_part_03_e3´ DISABLED
+	set_trigger_times 1
+	toggle on
 ´winch_part_01_e3´ ElementLootBag 100062
 	DISABLED
 	carry_id winch_part_e3
-	from_respawn false
+	from_respawn False
 	position -59, 1.52588E-05, 1775
 	rotation 0, 0, 0.991445, -0.130526
 ´winch_part_02_e3´ ElementLootBag 100063
 	DISABLED
 	carry_id winch_part_e3
-	from_respawn false
+	from_respawn False
 	position 69, 50, 1775
 	rotation 0, 0, 0.991445, -0.130526
 ´winch_part_03_e3´ ElementLootBag 100064
 	DISABLED
 	carry_id winch_part_e3
-	from_respawn false
+	from_respawn False
 	position -2.28882E-05, 100, 1775
 	rotation 0, 0, 0.92388, 0.382683
 ´bileSNDbank´ ElementPlaySound 100065
-	append_prefix false
+	append_prefix False
 	position 425, -1375, 800
 	rotation 0, 0, 0, -1
 	sound_event Play_plt_a02
-	use_instigator false
+	use_instigator False
 ´bileHere´ ElementDialogue 100066
 	dialogue Play_plt_a02
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´30secs´ ElementDialogue 100067
 	dialogue Play_plt_a07
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´here´ ElementDialogue 100068
 	dialogue Play_plt_a08
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False

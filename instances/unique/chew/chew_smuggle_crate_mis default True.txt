@@ -81,19 +81,19 @@
 	on_executed
 		´turn_on_open_trigger´ (delay 0)
 ´turn_on_open_trigger´ ElementToggle 100012
+	elements
+ 		1 ´func_sequence_trigger_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_sequence_trigger_001´ DISABLED
 ´func_nav_obstacle_001´ ElementNavObstacle 100013
-	operation add
-	position -100, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15584488448747261418
 			unit_id units/pd2_dlc_chew/props/chw_prop_wooden_crate/chw_prop_wooden_crate/001 (0, 0, 0)
+	operation add
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
 ´show_activate_c4´ ElementInstanceInput 100014
 	BASE DELAY 1
 	event show_activate_c4
@@ -158,8 +158,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´turn_off_explosion_2´ (delay 0)
 		´remove_wp´ (delay 0)
@@ -194,15 +194,15 @@
 		´turn_off_explosion´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100022
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 175.654
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´turn_off_explosion´ ElementToggle 100023
+	elements
+ 		1 ´point_explosion_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_explosion_001´
 	on_executed
 		´remove_wp´ (delay 0)
 ´turn_off_explosion_2´ ElementUnitSequence 100024
@@ -222,14 +222,14 @@
 			notify_unit_sequence hide
 			time 0
 ´remove_wp´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 ´turn_on_c4_input´ ElementToggle 100026
+	elements
+ 		1 ´start_c4_diffuse´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´start_c4_diffuse´ DISABLED
 ´func_sequence_004´ ElementUnitSequence 100007
 	position -200, 200, 0
 	rotation 0, 0, 0, -1
@@ -253,25 +253,25 @@
 	on_executed
 		´fuck´ (delay 1)
 ´fuck´ ElementTeammateComment 100001
-	close_to_element false
+	close_to_element False
 	comment g29
 	position 0, 100, 110.686
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´found_one´ ElementTeammateComment 100028
-	close_to_element false
+	close_to_element False
 	comment v05
 	position -300, -100, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´obstacle_filter´ ElementCounterFilter 100029
+	elements
+ 		1 ´filter_obstacle´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´filter_obstacle´
 	on_executed
 		´func_nav_obstacle_001´ (delay 0)
 ´filter_obstacle´ ElementCounter 100030
@@ -279,12 +279,12 @@
 	instance_var_names
 		counter_target disable_obstacle
 ´func_instance_params_001´ ElementInstanceParams 100031
-	position 300, 100, 0
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value 0
 			type number
 			var_name disable_obstacle
+	position 300, 100, 0
+	rotation 0, 0, 0, -1
 ´crate_destroyed´ ElementInstanceOutput 100032
 	event crate_destroyed

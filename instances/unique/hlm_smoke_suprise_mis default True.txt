@@ -9,14 +9,14 @@
 	position 0, -150, 100
 	radius 250
 	rotation 0, 0, 1, -1.19209E-07
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1500
 	on_executed
 		´start_smoke´ (delay 0)
 ´start_smoke´ MissionScriptElement 100002
@@ -25,7 +25,7 @@
 		´logic_filter_001´ (delay 0)
 ´random_enemies´ ElementRandom 100003
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´swat´ (delay 0)
 		´taser_shieldwall´ (delay 0)
@@ -63,8 +63,8 @@
 ´point_smoke_grenade_001´ ElementSmokeGrenade 100010
 	duration 15
 	effect_type smoke
-	ignore_control true
-	immediate true
+	ignore_control True
+	immediate True
 	position 0, 300, 0
 	rotation 0, 0, 0, -1
 ´enemy_swat001´ ElementSpawnEnemyDummy 100000
@@ -73,45 +73,46 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 0.000244141, 450, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´enemy_swat002´ ElementSpawnEnemyDummy 100011
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 50, 550, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´enemy_swat003´ ElementSpawnEnemyDummy 100012
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -49.9999, 550, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_enemy_group_001´ ElementSpawnEnemyGroup 100013
 	amount 2
-	ignore_disabled false
+	elements
+ 		1 ´enemy_shield002´
+		2 ´enemy_shield001´
+	ignore_disabled False
 	interval 0
-	random false
-	team default
 	preferred_spawn_groups
 		1 CS_shields
 		2 FBI_stealth_a
@@ -134,15 +135,16 @@
 		19 FBI_spoocs
 		20 FBI_defend_b
 		21 CS_heavys
-	elements
-		1 ´enemy_shield002´
-		2 ´enemy_shield001´
+	random False
+	team default
 ´ai_enemy_group_002´ ElementSpawnEnemyGroup 100014
 	amount 3
-	ignore_disabled false
+	elements
+ 		1 ´enemy_cloaker001´
+		2 ´enemy_shield002´
+		3 ´enemy_shield001´
+	ignore_disabled False
 	interval 0
-	random false
-	team default
 	preferred_spawn_groups
 		1 CS_defend_c
 		2 FBI_stealth_a
@@ -166,16 +168,15 @@
 		20 CS_heavys
 		21 single_spooc
 		22 CS_shields
-	elements
-		1 ´enemy_cloaker001´
-		2 ´enemy_shield002´
-		3 ´enemy_shield001´
+	random False
+	team default
 ´ai_enemy_group_003´ ElementSpawnEnemyGroup 100015
 	amount 2
-	ignore_disabled false
+	elements
+ 		1 ´enemy_shield002´
+		2 ´enemy_shield001´
+	ignore_disabled False
 	interval 0
-	random false
-	team default
 	preferred_spawn_groups
 		1 CS_shields
 		2 CS_defend_c
@@ -198,15 +199,17 @@
 		19 FBI_defend_b
 		20 FBI_spoocs
 		21 CS_heavys
-	elements
-		1 ´enemy_shield002´
-		2 ´enemy_shield001´
+	random False
+	team default
 ´ai_enemy_group_004´ ElementSpawnEnemyGroup 100016
 	amount 4
-	ignore_disabled false
+	elements
+ 		1 ´enemy_swat003´
+		2 ´enemy_cloaker001´
+		3 ´enemy_swat002´
+		4 ´enemy_swat001´
+	ignore_disabled False
 	interval 0
-	random false
-	team default
 	preferred_spawn_groups
 		1 CS_shields
 		2 CS_defend_c
@@ -230,17 +233,14 @@
 		20 FBI_defend_b
 		21 CS_heavys
 		22 single_spooc
-	elements
-		1 ´enemy_swat003´
-		2 ´enemy_cloaker001´
-		3 ´enemy_swat002´
-		4 ´enemy_swat001´
+	random False
+	team default
 ´ai_enemy_group_005´ ElementSpawnEnemyGroup 100017
 	amount 1
-	ignore_disabled false
+	elements
+ 		1 ´enemy_cloaker001´
+	ignore_disabled False
 	interval 0
-	random false
-	team default
 	preferred_spawn_groups
 		1 CS_defend_c
 		2 CS_shields
@@ -264,14 +264,16 @@
 		20 FBI_defend_b
 		21 CS_heavys
 		22 single_spooc
-	elements
-		1 ´enemy_cloaker001´
+	random False
+	team default
 ´ai_enemy_group_006´ ElementSpawnEnemyGroup 100018
 	amount 3
-	ignore_disabled false
+	elements
+ 		1 ´enemy_swat003´
+		2 ´enemy_swat002´
+		3 ´enemy_swat001´
+	ignore_disabled False
 	interval 0
-	random true
-	team default
 	preferred_spawn_groups
 		1 CS_shields
 		2 CS_defend_c
@@ -294,73 +296,71 @@
 		19 FBI_swats
 		20 CS_stealth_a
 		21 FBI_defend_c
-	elements
-		1 ´enemy_swat003´
-		2 ´enemy_swat002´
-		3 ´enemy_swat001´
+	random True
+	team default
 ´enemy_shield001´ ElementSpawnEnemyDummy 100019
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_shield_1/ene_shield_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 50, 450, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´enemy_shield002´ ElementSpawnEnemyDummy 100020
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_shield_1/ene_shield_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -49.9999, 450, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´enemy_cloaker001´ ElementSpawnEnemyDummy 100021
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_spook_1/ene_spook_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 0.000244141, 550, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string cloaker
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string cloaker_swat
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100024
-	as_subtitle false
+	as_subtitle False
 	debug_string taser_shieldwall
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100025
-	as_subtitle false
+	as_subtitle False
 	debug_string cloaker_shield
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100026
-	as_subtitle false
+	as_subtitle False
 	debug_string shieldwall
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string swat
-	show_instigator false
+	show_instigator False
 ´chance´ ElementLogicChance 100028
 	chance 75
 	position -250, 0, 100
@@ -369,28 +369,28 @@
 		´random_enemies´ (delay 1)
 		´point_smoke_grenade_001´ (delay 0)
 ´logic_filter_001´ ElementFilter 100031
-	difficulty_easy false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -350, -100, 100
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100032
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´cloaker_swat´ DISABLED
+ 		1 ´cloaker_swat´ DISABLED
 		2 ´cloaker_shield´ DISABLED
 		3 ´cloaker´ DISABLED
+	set_trigger_times -1
+	toggle on

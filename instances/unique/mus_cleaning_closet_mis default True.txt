@@ -81,14 +81,14 @@
 	position 50, 275, 75
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´security_found´ (delay 0)
 ´security_found´ ElementInstanceOutput 100053
@@ -96,26 +96,26 @@
 	on_executed
 		´remove_find_wp´ (delay 0)
 ´allow_override´ ElementToggle 100064
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´found_sec_room´ DISABLED
+ 		1 ´found_sec_room´ DISABLED
 		2 ´set_find_link´ DISABLED
 		3 ´opened_sec_room´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´set_find´ ElementInstanceInput 100065
 	event set_find
 	on_executed
 		´set_find_link´ (delay 0) DISABLED
 ´sec_room_wp001´ ElementWaypoint 100066
 	icon pd2_door
-	only_in_civilian false
+	only_in_civilian False
 	position -99, 30, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_find_wp´ ElementOperator 100067
-	operation remove
 	elements
-		1 ´sec_room_wp001´
+ 		1 ´sec_room_wp001´
+	operation remove
 ´set_find_link´ MissionScriptElement 100068
 	DISABLED
 	on_executed
@@ -145,39 +145,39 @@
 	on_executed
 		´func_sequence_001´ (delay 0.5)
 ´remove_obstacle´ ElementNavObstacle 100041
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-100, 25, 0)
 	operation remove
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
+´add_obstacle´ ElementNavObstacle 100044
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-100, 25, 0)
-´add_obstacle´ ElementNavObstacle 100044
 	operation add
 	position -300, -400, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15631504792197380394
-			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-100, 25, 0)
 ´navlink_open´ ElementSpecialObjective 100045
-	SO_access 13792
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
 	interval 8
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -185,12 +185,12 @@
 	pose none
 	position -111, -119, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -98,0086 196,882 0
+	SO_access 13792
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´open_reinforced´ MissionScriptElement 100046
 	DISABLED
 	on_executed
@@ -200,11 +200,11 @@
 		´open_door001´ (delay 0)
 ´toggle_navlink´ ElementToggle 100049
 	TRIGGER TIMES 1
+	elements
+ 		1 ´open_reinforced´ DISABLED
+		2 ´open_wooden´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´open_reinforced´ DISABLED
-		2 ´open_wooden´
 ´open_door001´ ElementUnitSequence 100050
 	position -100, -800, 0
 	rotation 0, 0, 0, -1
@@ -227,33 +227,33 @@
 			time 0
 ´completed´ ElementSpecialObjectiveTrigger 100052
 	TRIGGER TIMES 1
+	elements
+ 		1 ´navlink_open´
 	event anim_act_04
 	position -100, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´navlink_open´
 	on_executed
 		´open_reinforced´ (delay 0) DISABLED
 		´open_wooden´ (delay 0)
 		´disable_nl´ (delay 0)
 		´remove_nl´ (delay 0)
 ´completed001´ ElementSpecialObjectiveTrigger 100054
+	elements
+ 		1 ´navlink_open´
 	event complete
 	position -100, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´navlink_open´
 	on_executed
 		´completed´ (delay 0)
 ´disable_nl´ ElementToggle 100055
+	elements
+ 		1 ´navlink_open´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´navlink_open´
 ´remove_nl´ ElementOperator 100056
-	operation remove
 	elements
-		1 ´navlink_open´
+ 		1 ´navlink_open´
+	operation remove
 ´opened_sec_room´ ElementUnitSequenceTrigger 100057
 	DISABLED
 	TRIGGER TIMES 1
@@ -278,15 +278,15 @@
 			notify_unit_sequence activate_door
 			time 0
 ´disable_nl_stuff´ ElementToggle 100060
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´completed001´
+ 		1 ´completed001´
 		2 ´completed´
 		3 ´open_wooden´
 		4 ´open_door001´
 		5 ´open_door002´
 		6 ´open_reinforced´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´found_sec_room_2´ ElementAreaTrigger 100061
 	DISABLED
 	TRIGGER TIMES 1
@@ -298,21 +298,21 @@
 	position -100, -150, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´sec_room_wp001´ (delay 0)
 ´enable_sec_room_area´ ElementToggle 100062
+	elements
+ 		1 ´found_sec_room_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_sec_room_2´ DISABLED
 ´activate_door´ ElementUnitSequence 100018
 	position -400, -400, 0
 	rotation 0, 0, 0, -1

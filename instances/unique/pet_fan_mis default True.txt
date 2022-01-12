@@ -37,14 +37,14 @@
 	position 0, 0, -597.5
 	radius 1600
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_2´ (delay 0)
 ´player_close_again´ ElementAreaTrigger 100024
@@ -57,14 +57,14 @@
 	position 0, 0, -572.5
 	radius 1600
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_again_2´ (delay 0)
 ´player_close_2´ MissionScriptElement 100025
@@ -79,29 +79,29 @@
 		´player_close_again_3´ (delay 0)
 		´5s_reenable´ (delay 0)
 ´enable´ ElementToggle 100027
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´player_close´ DISABLED
+ 		1 ´player_close´ DISABLED
 		2 ´vehicle_close´ DISABLED
 		3 ´temp_pickupgoat001´ DISABLED
 		4 ´trigger_team_vo´ DISABLED
-´enable_player_close_again´ ElementToggle 100028
 	set_trigger_times -1
 	toggle on
+´enable_player_close_again´ ElementToggle 100028
 	elements
-		1 ´player_close_again´ DISABLED
+ 		1 ´player_close_again´ DISABLED
 		2 ´vehicle_close_again´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´waypoint_goat´ ElementWaypoint 100029
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 227.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint_goat´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´waypoint_goat´
+ 		1 ´waypoint_goat´
+	operation remove
 ´player_close_3´ ElementInstanceOutput 100031
 	event player_close
 ´player_close_again_3´ ElementInstanceOutput 100032
@@ -116,14 +116,14 @@
 	position 0, 0, -522.5
 	radius 1600
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_again_2´ (delay 0.1)
 ´vehicle_close´ ElementAreaTrigger 100034
@@ -137,28 +137,28 @@
 	position 0, 0, -547.5
 	radius 1600
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_2´ (delay 0.1)
 ´5s_reenable´ ElementToggle 100035
+	elements
+ 		1 ´player_close_again_2´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´player_close_again_2´
 	on_executed
 		´player_close_again_2´ (delay 5)
 ´electrocute´ ElementPlayerState 100036
 	position 300, -125, 2.5
 	rotation 0, 0, 0, -1
 	state electrocution
-	use_instigator true
+	use_instigator True
 ´spark_effect´ ElementPlayEffect 100038
 	base_time 0
 	effect effects/particles/environment/wide_sparks_col
@@ -166,7 +166,7 @@
 	position 0, 0, 252.5
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´random_5s_loop´ MissionScriptElement 100040
 	on_executed
 		´play_effects´ (delay 0-5)
@@ -175,24 +175,24 @@
 		´random_5s_loop´ (delay 0)
 		´spark_effect´ (delay 0)
 ´disable_electro´ ElementToggle 100039
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´temp_pickupgoat001´ DISABLED
+ 		1 ´temp_pickupgoat001´ DISABLED
 		2 ´trigger_team_vo´ DISABLED
 		3 ´reenable_temp_interaction´
+	set_trigger_times -1
+	toggle off
 ´stop_effects´ ElementStopEffect 100042
+	elements
+ 		1 ´spark_effect´
 	operation fade_kill
 	position -1275, -575, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´spark_effect´
 ´disable_effect_loop´ ElementToggle 100043
+	elements
+ 		1 ´random_5s_loop´
+		2 ´play_effects´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´random_5s_loop´
-		2 ´play_effects´
 	on_executed
 		´stop_effects´ (delay 0)
 ´disable_pv_close_again´ ElementInstanceInput 100044
@@ -200,14 +200,14 @@
 	on_executed
 		´disable_close_again_trigger´ (delay 0)
 ´disable_close_again_trigger´ ElementToggle 100045
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´vehicle_close_again´ DISABLED
+ 		1 ´vehicle_close_again´ DISABLED
 		2 ´player_close_again´ DISABLED
 		3 ´enable_player_close_again´
 		4 ´5s_reenable´
 		5 ´player_close_again_2´
+	set_trigger_times -1
+	toggle off
 ´electrocuted´ ElementInstanceOutput 100046
 	event electrocuted
 ´temp_pickupgoat001´ ElementInteraction 100047
@@ -260,14 +260,14 @@
 		´enable_interaction_stop_fan´ (delay 1)
 ´waypoint_goat001´ ElementWaypoint 100000
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 77.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint_goat001´ ElementOperator 100008
-	operation remove
 	elements
-		1 ´waypoint_goat001´
+ 		1 ´waypoint_goat001´
+	operation remove
 ´goat_picked´ ElementUnitSequenceTrigger 100009
 	TRIGGER TIMES 1
 	sequence_list
@@ -287,25 +287,25 @@
 	instigator player
 	interval 0.1
 	position 0, 0, 100
-	radius 349,65
+	radius 349.65
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´stand_back´ (delay 0)
 ´stand_back´ ElementTeammateComment 100015
-	close_to_element true
+	close_to_element True
 	comment v13
 	position 0, -75, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´enable_interaction_stop_fan´ ElementUnitSequence 100003
 	position -1275, -350, 2.5
 	rotation 0, 0, 0, -1
@@ -323,7 +323,7 @@
 			notify_unit_sequence state_stop_animation
 			time 0
 ´reenable_temp_interaction´ ElementToggle 100005
+	elements
+ 		1 ´temp_pickupgoat001´ DISABLED
 	set_trigger_times 0
 	toggle on
-	elements
-		1 ´temp_pickupgoat001´ DISABLED

@@ -113,23 +113,23 @@
 			notify_unit_sequence anim_door_open
 			time 0
 ´nav_remove_door_blocker´ ElementNavObstacle 100026
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (625, 1150, -400)
 	operation remove
 	position 2500, -200, 0
 	rotation 0, 0, 0, -1
+´nav_add_door_blocker´ ElementNavObstacle 100028
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (625, 1150, -400)
-´nav_add_door_blocker´ ElementNavObstacle 100028
 	operation add
 	position 1800, 100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (625, 1150, -400)
 ´output_door_opened´ ElementInstanceOutput 100030
 	event door_opened
 ´input_open_door´ ElementInstanceInput 100031
@@ -148,29 +148,29 @@
 	position 424, 1787, -400
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 425
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 425
 	on_executed
 		´link_all_players_in_area´ (delay 0)
 ´enable_area_player_teleport´ ElementToggle 100033
+	elements
+ 		1 ´area_player_teleport´ DISABLED
+		2 ´area_player_inside´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_teleport´ DISABLED
-		2 ´area_player_inside´ DISABLED
 	on_executed
 		´WP_goto_teleport´ (delay 0)
 		´seq_show_marker´ (delay 0)
 ´WP_goto_teleport´ ElementWaypoint 100034
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 350, 1775, -250
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -183,10 +183,10 @@
 ´output_all_players_in_area´ ElementInstanceOutput 100036
 	event all_players_in_area
 ´remove_WP_goto_teleport´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´WP_goto_teleport´
+ 		1 ´WP_goto_teleport´
 		2 ´WP_loot_dropoff´
+	operation remove
 ´seq_hide_marker´ ElementUnitSequence 100038
 	position 3100, -100, 0
 	rotation 0, 0, 0, -1
@@ -209,10 +209,10 @@
 	on_executed
 		´enable_enable_chosen_one´ (delay 0)
 ´enable_enable_chosen_one´ ElementToggle 100047
+	elements
+ 		1 ´link_chosen_one´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_chosen_one´ DISABLED
 ´seq_explode_door´ ElementUnitSequence 100023
 	position 2800, -200, 0
 	rotation 0, 0, 0, -1
@@ -235,8 +235,8 @@
 		´link_explode_door´ (delay 0)
 ´WP_loot_dropoff´ ElementWaypoint 100057
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 521, 1750, -244
 	rotation 0, 0, -0.707107, -0.707107
 	text_id debug_none
@@ -269,14 +269,14 @@
 	position 500, 1500, -400
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´inside_and_any_loot_discovered´ (delay 0)
 ´area_loot´ ElementAreaTrigger 100088
@@ -290,21 +290,21 @@
 	position 521, 1750, -248
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 230,069
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 230.069
 	on_executed
 		´thrown_in_loot´ (delay 0)
 ´enable_area_loot´ ElementToggle 100089
+	elements
+ 		1 ´area_loot´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_loot´ DISABLED
 ´thrown_in_loot´ MissionScriptElement 100091
 	on_executed
 		´sound_bag_drop´ (delay 0)
@@ -317,50 +317,50 @@
 	counter_target 0
 ´add1´ ElementCounterOperator 100121
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	instance_var_names
+	operation add
 ´bag_secured001´ ElementCounterTrigger 100123
 	amount 1
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag001´ (delay 0)
 ´bag_secured002´ ElementCounterTrigger 100124
 	amount 2
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag002´ (delay 0)
 ´bag_secured003´ ElementCounterTrigger 100125
 	amount 3
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag003´ (delay 0)
 ´bag_secured004´ ElementCounterTrigger 100126
 	amount 4
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag004´ (delay 0)
 ´bag_secured005´ ElementCounterTrigger 100127
 	amount 5
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag005´ (delay 0)
 ´bag_secured006´ ElementCounterTrigger 100128
 	amount 6
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´enable_static_bag006´ (delay 0)
 ´enable_static_bag001´ ElementEnableUnit 100129
@@ -394,32 +394,32 @@
 	unit_ids
 		1 units/pd2_dlc_man/props/man_static_loot_bag/man_static_loot_bag/006 (563, 1834, -302)
 ´disable_areas´ ElementToggle 100135
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´area_loot´ DISABLED
+ 		1 ´area_loot´ DISABLED
 		2 ´area_player_teleport´ DISABLED
 		3 ´pku_meth´
 		4 ´picked_up_any_loot´
+	set_trigger_times -1
+	toggle off
 ´enable_loot_drop_marker´ ElementEnableUnit 100136
 	position 1900, -1200, 0
 	rotation 0, 0, 0, -1
 	unit_ids
 		1 units/payday2/props/gen_prop_square_drop_marker_2x1/gen_prop_square_drop_marker_2x1/loot_drop_marker (524, 1770, -309.594)
 ´sound_bag_drop´ ElementPlaySound 100137
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 525, 1769, -330.688
 	rotation 0, 0, 0, -1
 	sound_event bag_light_drop
-	use_instigator false
+	use_instigator False
 ´carry_remove_loot´ ElementCarry 100138
 	operation remove
 	type_filter none
 ´output_stashed_a_bag´ ElementInstanceOutput 100092
 	event output_stashed_a_bag
 ´interaction_tarp´ ElementInteraction 100001
-	host_only false
+	host_only False
 	override_timer -1
 	position 525, 1175, -250
 	rotation 0, 0, 0, -1
@@ -448,33 +448,33 @@
 	position 420, 950, -300
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 815,4
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 815.4
 	on_executed
 		´WP_interact_tarp´ (delay 0)
 ´WP_interact_tarp´ ElementWaypoint 100012
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 525, 1175, -250
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_interact_tarp´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´WP_interact_tarp´
+ 		1 ´WP_interact_tarp´
+	operation remove
 ´disable_interaction_tarp´ ElementToggle 100010
+	elements
+ 		1 ´interaction_tarp´
+		2 ´WP_interact_tarp´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interaction_tarp´
-		2 ´WP_interact_tarp´
 	on_executed
 		´remove_WP_interact_tarp´ (delay 0)
 ´seq_show_marker´ ElementUnitSequence 100025
@@ -488,26 +488,26 @@
 			notify_unit_sequence show
 			time 0
 ´teammate_comment_over_there´ ElementTeammateComment 100040
-	close_to_element true
+	close_to_element True
 	comment v04
 	position 550, 1100, -400
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100041
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_over_there
-	show_instigator false
+	show_instigator False
 ´4´ ElementCounter 100052
 	counter_target 4
 	on_executed
 		´remove_WP_goto_teleport´ (delay 0)
 ´point_teammate_comment_001´ ElementTeammateComment 100053
-	close_to_element true
+	close_to_element True
 	comment p27
 	position 550, 1475, -400
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

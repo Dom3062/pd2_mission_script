@@ -1,11 +1,11 @@
 ´matt_stage_1´ ElementSpawnCivilian 100001
 	enemy units/pd2_dlc_run/characters/npc_matt/npc_matt_safehouse
 	force_pickup none
+	orientation_elements
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
 	state cm_sp_stand_idle
 	team default
-	orientation_elements
 	on_executed
 		´1 sit´ (delay 0)
 ´AUTO_START´ MissionScriptElement 100002
@@ -18,21 +18,21 @@
 		´matt_stage_2´ (delay 0)
 		´matt_stage_1´ (delay 0)
 ´2-3 sit´ ElementSpecialObjective 100006
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -40,31 +40,31 @@
 	pose none
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -100 -100 0
+	SO_access 1
 	so_action so_hurt_idle
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´matt_stage_2´
+	trigger_on none
 ´2-3 hit´ ElementSpecialObjective 100007
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -72,15 +72,15 @@
 	pose none
 	position -350, 150, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -100 -100 0
+	SO_access 1
 	so_action so_hurt_hit_react
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´matt_stage_2´
+	trigger_on none
+	use_instigator True
 ´hide_box´ ElementUnitSequence 100009
 	position 500, -100, 0
 	rotation 0, 0, 0, -1
@@ -123,15 +123,15 @@
 		´start_vo´ (delay 0) DISABLED
 		´link´ (delay 0)
 ´Matt_Vo´ ElementPlaySound 100011
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´matt_stage_1´
+		2 ´matt_stage_2´
+	interrupt True
 	position -500, 100, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_matt_sfh_cap_hit
-	use_instigator false
-	elements
-		1 ´matt_stage_1´
-		2 ´matt_stage_2´
+	use_instigator False
 ´start_vo´ MissionScriptElement 100014
 	DISABLED
 	on_executed
@@ -178,26 +178,26 @@
 	on_executed
 		´ON´ (delay 0)
 ´ON´ ElementToggle 100013
+	elements
+ 		1 ´start_vo´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´start_vo´ DISABLED
 ´1 sit´ ElementSpecialObjective 100017
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -205,31 +205,31 @@
 	pose none
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -100 -100 0
+	SO_access 1
 	so_action so_sit_hurt_idle
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´matt_stage_1´
+	trigger_on none
 ´1  hit´ ElementSpecialObjective 100018
-	SO_access 1
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -237,15 +237,15 @@
 	pose none
 	position -250, 150, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -100 -100 0
+	SO_access 1
 	so_action so_sit_hurt_hit_react
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´matt_stage_1´
+	trigger_on none
+	use_instigator True
 ´link´ MissionScriptElement 100019
 	on_executed
 		´2-3 hit´ (delay 0)
@@ -264,31 +264,31 @@
 	on_executed
 		´OFF_2´ (delay 0)
 ´OFF´ ElementToggle 100026
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´1 sit´
+ 		1 ´1 sit´
 		2 ´matt_stage_1´
 		3 ´hit 1´
 		4 ´link_4´
 		5 ´1  hit´
-´OFF_2´ ElementToggle 100027
 	set_trigger_times -1
 	toggle off
+´OFF_2´ ElementToggle 100027
 	elements
-		1 ´2-3 sit´
+ 		1 ´2-3 sit´
 		2 ´matt_stage_2´
 		3 ´hit 2-3´
 		4 ´2-3 hit´
 		5 ´link´
+	set_trigger_times -1
+	toggle off
 ´matt_stage_2´ ElementSpawnCivilian 100028
 	enemy units/pd2_dlc_run/characters/npc_matt/npc_matt_safehouse
 	force_pickup none
+	orientation_elements
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
 	state cm_sp_stand_idle
 	team default
-	orientation_elements
 	on_executed
 		´2-3 sit´ (delay 0)
 ´hit 1´ ElementUnitSequenceTrigger 100033

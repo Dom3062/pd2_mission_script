@@ -35,22 +35,22 @@
 	on_executed
 		´start_event´ (delay 3)
 ´enter´ ElementSpecialObjective 100066
-	SO_access 1048575
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste walk
 	path_stance none
 	path_style destination
@@ -58,31 +58,31 @@
 	pose none
 	position -2450, 850, 0
 	rotation 0, 0, -2.68221E-07, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position -25 150 0
+	SO_access 1048575
 	so_action so_des_walk_enter
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_001´
+	trigger_on none
 ´exit´ ElementSpecialObjective 100067
-	SO_access 1023
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste walk
 	path_stance none
 	path_style destination
@@ -90,14 +90,14 @@
 	pose none
 	position -1903, 1187, 13
 	rotation 0, 0, 0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -217,227 633,935 0
+	SO_access 1023
 	so_action so_des_walk_exit
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_001´
+	trigger_on none
 ´close_shutters´ ElementUnitSequence 100068
 	position -1378, 762, 13
 	rotation 0, 0, 0.707107, -0.707107
@@ -123,14 +123,14 @@
 		´close_shutters´ (delay 0)
 		´disable_stuff´ (delay 0)
 ´point_debug_001´ ElementDebug 100072
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: start_event
-	show_instigator false
+	show_instigator False
 ´lookat_spooky_man´ ElementLookAtTrigger 100074
 	DISABLED
 	TRIGGER TIMES 1
 	distance 0
-	in_front false
+	in_front False
 	interval 0.1
 	position -1825, 1261, 175
 	rotation 0, 0, 0.707107, -0.707107
@@ -138,9 +138,9 @@
 	on_executed
 		´looked_at´ (delay 0)
 ´point_debug_002´ ElementDebug 100075
-	as_subtitle false
+	as_subtitle False
 	debug_string looked_at
-	show_instigator false
+	show_instigator False
 ´looked_at´ MissionScriptElement 100076
 	TRIGGER TIMES 1
 	on_executed
@@ -159,15 +159,15 @@
 			notify_unit_sequence state_video_start
 			time 0
 ´enable_area´ ElementToggle 100079
+	elements
+ 		1 ´area_player_infront_of_room´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_infront_of_room´ DISABLED
 ´logic_toggle_002´ ElementToggle 100081
+	elements
+ 		1 ´lookat_spooky_man´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´lookat_spooky_man´ DISABLED
 ´area_player_infront_of_room´ ElementAreaTrigger 100082
 	DISABLED
 	TRIGGER TIMES 1
@@ -180,14 +180,14 @@
 	position -1378, 1312, 13
 	radius 250
 	rotation 0, 0, -3.27826E-07, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´start_leave´ MissionScriptElement 100078
@@ -196,9 +196,9 @@
 		´point_debug_003´ (delay 0)
 		´turn_all_off´ (delay 0)
 ´point_debug_003´ ElementDebug 100080
-	as_subtitle false
+	as_subtitle False
 	debug_string start_leave
-	show_instigator false
+	show_instigator False
 ´disable_stuff´ ElementDisableUnit 100083
 	position -1478, 762, 13
 	rotation 0, 0, 0.707107, -0.707107
@@ -234,18 +234,18 @@
 ´ai_spawn_civilian_001´ ElementSpawnCivilian 100085
 	enemy units/pd2_dlc_des/characters/civ_male_des/civ_male_des
 	force_pickup none
+	orientation_elements
 	position -2450, 850, 0
 	rotation 0, 0, -2.68221E-07, -1
 	state none
 	team criminal1
-	orientation_elements
 ´swear´ ElementTeammateComment 100065
-	close_to_element false
+	close_to_element False
 	comment g29
 	position -1478, 1162, 13
 	radius 0
 	rotation 0, 0, 0.707107, -0.707107
-	use_instigator true
+	use_instigator True
 ´flicker_again´ ElementUnitSequence 100086
 	position -1278, 1162, 13
 	rotation 0, 0, 0.707107, -0.707107
@@ -314,10 +314,10 @@
 	on_executed
 		´enable_area_player_in_snake_tunnel´ (delay 0)
 ´enable_area_player_in_snake_tunnel´ ElementToggle 100092
+	elements
+ 		1 ´area_player_in_snake_tunnel´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_in_snake_tunnel´ DISABLED
 ´area_player_in_snake_tunnel´ ElementAreaTrigger 100093
 	DISABLED
 	TRIGGER TIMES 1
@@ -330,51 +330,51 @@
 	position -1012, 1067, 13
 	radius 250
 	rotation 0, 0, 0.182235, -0.983255
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 3000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 3000
 	on_executed
 		´start_event´ (delay 0)
 ´sound_shutters001´ ElementPlaySound 100094
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1825, 1250, 100
 	rotation 0, 0, 0, -1
 	sound_event des_shutters
-	use_instigator false
+	use_instigator False
 ´sound_shutters002´ ElementPlaySound 100095
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1825, 1550, 100
 	rotation 0, 0, 0, -1
 	sound_event des_shutters
-	use_instigator false
+	use_instigator False
 ´sound_lights_flicker001´ ElementPlaySound 100096
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -2086, 1163, 290
 	rotation 0, 0, 0, -1
 	sound_event des_lights_flicker
-	use_instigator false
+	use_instigator False
 ´sound_lights_flicker002´ ElementPlaySound 100097
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -2086, 1363, 290
 	rotation 0, 0, 0, -1
 	sound_event des_lights_flicker
-	use_instigator false
+	use_instigator False
 ´sound_lights_flicker003´ ElementPlaySound 100098
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -2086, 1563, 290
 	rotation 0, 0, 0, -1
 	sound_event des_lights_flicker
-	use_instigator false
+	use_instigator False
 ´assault_end´ ElementGlobalEventTrigger 100010
 	global_event end_assault
 	position -1500, 1900, 2.28882E-05
@@ -382,21 +382,21 @@
 	on_executed
 		´teammate_comment_get_ready´ (delay 25-30)
 ´teammate_comment_get_ready´ ElementTeammateComment 100099
-	close_to_element true
+	close_to_element True
 	comment g50
 	position -1400, 1900, 2.28882E-05
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_004´ (delay 0)
 ´teammate_comment_they_are_everywhere´ ElementTeammateComment 100100
-	close_to_element true
+	close_to_element True
 	comment g68
 	position -1400, 2000, 2.28882E-05
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´teammate_comment_fight_back´ (delay 15-20)
 		´point_debug_005´ (delay 0)
@@ -407,12 +407,12 @@
 	on_executed
 		´teammate_comment_they_are_everywhere´ (delay 40-50)
 ´teammate_comment_fight_back´ ElementTeammateComment 100102
-	close_to_element true
+	close_to_element True
 	comment g16
 	position -1300, 2000, 2.28882E-05
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_006´ (delay 0)
 ´area_player_spawned´ ElementAreaTrigger 100103
@@ -426,14 +426,14 @@
 	position -1500, 2200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500000
 	on_executed
 		´start_chatter´ (delay 3)
 ´start_chatter´ MissionScriptElement 100104
@@ -441,54 +441,54 @@
 		´teammate_comment_wait´ (delay 0)
 		´teammate_comment_lets_get_it_on´ (delay 6.5)
 ´teammate_comment_wait´ ElementTeammateComment 100105
-	close_to_element true
+	close_to_element True
 	comment g67
 	position -1300, 2200, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_007´ (delay 0)
 ´teammate_comment_lets_get_it_on´ ElementTeammateComment 100106
-	close_to_element true
+	close_to_element True
 	comment p47
 	position -1300, 2300, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_008´ (delay 0)
 ´soundbank_robber´ ElementPlaySound 100107
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1800, 2300, 0
 	rotation 0, 0, 0, -1
 	sound_event f11m_sin
-	use_instigator false
+	use_instigator False
 ´soundbank_robber2´ ElementPlaySound 100108
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1800, 2400, 0
 	rotation 0, 0, 0, -1
 	sound_event p14
-	use_instigator false
+	use_instigator False
 ´point_debug_004´ ElementDebug 100109
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_get_ready
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100110
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_they_are_everywhere
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100111
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_fight_back
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100112
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_wait
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100113
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_lets_get_it_on
-	show_instigator false
+	show_instigator False

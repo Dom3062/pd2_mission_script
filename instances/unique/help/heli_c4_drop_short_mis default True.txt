@@ -59,14 +59,14 @@
 	event bag_taken
 ´c4_waypoint´ ElementWaypoint 100021
 	icon pd2_c4
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´c4_waypoint´
+ 		1 ´c4_waypoint´
+	operation remove
 	on_executed
 		´hide - remove´ (delay 0)
 ´hide - remove´ ElementUnitSequence 100011
@@ -120,9 +120,9 @@
 		´func_sequence_001´ (delay 2.35)
 		´output_C4_bag_falls_down´ (delay 0)
 ´point_debug_001´ ElementDebug 100025
-	as_subtitle false
+	as_subtitle False
 	debug_string LOADED AND TUk
-	show_instigator false
+	show_instigator False
 ´Link - delay´ MissionScriptElement 100000
 	on_executed
 		´Link´ (delay 0)
@@ -189,12 +189,12 @@
 ´output_C4_bag_falls_down´ ElementInstanceOutput 100014
 	event C4_bag_falls_down
 ´point_teammate_comment_found_it´ ElementTeammateComment 100015
-	close_to_element false
+	close_to_element False
 	comment v04
 	position -75, 0, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_002´ (delay 0)
 ´area_player_near_C4´ ElementAreaTrigger 100016
@@ -209,22 +209,22 @@
 	position 0, 0, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´point_teammate_comment_found_it´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100023
+	elements
+ 		1 ´area_player_near_C4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_near_C4´ DISABLED
 ´point_debug_002´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string point_teammate_comment_found_it
-	show_instigator false
+	show_instigator False

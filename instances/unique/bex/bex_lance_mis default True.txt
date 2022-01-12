@@ -10,14 +10,14 @@
 	position 100, 0, 102.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 196,379
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 196.379
 	on_executed
 		´remove_lance_bag´ (delay 0)
 		´output_drill_part_entered´ (delay 0)
@@ -43,15 +43,15 @@
 			time 0
 ´drill_waypoint´ ElementWaypoint 100005
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, 0, 102.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´lootdrop_waypoint´ ElementWaypoint 100006
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, 0, 42.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -73,10 +73,10 @@
 		´lootdrop_waypoint´ (delay 0)
 		´toggle_lootdrop_trigger_on´ (delay 0)
 ´toggle_lootdrop_trigger_on´ ElementToggle 100009
+	elements
+ 		1 ´drill_triger_area´ DISABLED
 	set_trigger_times 3
 	toggle on
-	elements
-		1 ´drill_triger_area´ DISABLED
 	on_executed
 		´add_door_blockers´ (delay 0)
 ´bag_amount_counter´ ElementCounter 100010
@@ -84,9 +84,9 @@
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´logic_operator_001´ ElementOperator 100011
-	operation remove
 	elements
-		1 ´lootdrop_waypoint´
+ 		1 ´lootdrop_waypoint´
+	operation remove
 	on_executed
 		´enable_drill´ (delay 0)
 ´build_lance´ ElementUnitSequence 100012
@@ -162,10 +162,10 @@
 		´enable´ (delay 0.5)
 ´enable´ ElementToggle 100021
 	TRIGGER TIMES 1
+	elements
+ 		1 ´drill_fixed_output´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_fixed_output´ DISABLED
 ´drill_fixed_output´ ElementInstanceOutput 100022
 	DISABLED
 	event drill_fixed
@@ -190,16 +190,16 @@
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100024
+	elements
+ 		1 ´drill_triger_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_triger_area´ DISABLED
 	on_executed
 		´logic_operator_002´ (delay 0)
 ´logic_operator_002´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´drill_waypoint´
+ 		1 ´drill_waypoint´
+	operation remove
 	on_executed
 		´remove_door_blockers´ (delay 0)
 ´drill_started_output´ ElementInstanceOutput 100026
@@ -207,53 +207,53 @@
 	event drill_started
 ´logic_toggle_003´ ElementToggle 100027
 	TRIGGER TIMES 1
+	elements
+ 		1 ´drill_started_output´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_started_output´
 ´output_drill_part_entered´ ElementInstanceOutput 100028
 	event drill_part_added
 ´teammate_comment_drill_running´ ElementTeammateComment 100029
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g21
 	position 225, 25, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_swear´ ElementTeammateComment 100030
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g22
 	position 225, 50, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_drill_done´ ElementTeammateComment 100031
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v23
 	position 225, 0, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´add_door_blockers´ ElementNavObstacle 100034
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (100, -200, 2.5)
 	operation add
 	position 600, -200, 2.5
 	rotation 0, 0, 0, -1
+´remove_door_blockers´ ElementNavObstacle 100035
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (100, -200, 2.5)
-´remove_door_blockers´ ElementNavObstacle 100035
 	operation remove
 	position 700, 200, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (100, -200, 2.5)
 	on_executed
 		´drill_done_output´ (delay 0)

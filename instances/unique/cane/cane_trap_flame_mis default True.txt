@@ -4,32 +4,32 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 200, -1500, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 		´logic_link_001´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100033
-	SO_access 16383
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -37,22 +37,22 @@
 	pose none
 	position 200, 1000, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 130,305 909,305 0
+	SO_access 16383
 	so_action e_so_interact_mid
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´point_debug_001´ ElementDebug 100034
-	as_subtitle false
+	as_subtitle False
 	debug_string enemie inside
-	show_instigator false
+	show_instigator False
 ´ai_remove_001´ ElementAIRemove 100035
 	position 200, 100, 100
 	rotation 0, 0, 0, -1
-	true_death true
-	use_instigator true
+	true_death True
+	use_instigator True
 	on_executed
 		´point_debug_001´ (delay 0)
 ´env_effect_play_005´ ElementPlayEffect 100042
@@ -62,7 +62,7 @@
 	position 375, 5, 50
 	random_time 0
 	rotation 8.88178E-16, 0.707107, -4.44089E-16, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_006´ ElementPlayEffect 100051
 	base_time 0
 	effect effects/payday2/particles/explosions/flamethrower_nosel
@@ -70,7 +70,7 @@
 	position 375, 5, 125
 	random_time 0
 	rotation -7.45058E-09, 0.707107, 3.4669E-09, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_007´ ElementPlayEffect 100052
 	base_time 0
 	effect effects/payday2/particles/explosions/flamethrower_nosel
@@ -78,7 +78,7 @@
 	position 25, 5, 50
 	random_time 0
 	rotation 0, -0.707107, 0, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_008´ ElementPlayEffect 100054
 	base_time 0
 	effect effects/payday2/particles/explosions/flamethrower_nosel
@@ -86,7 +86,7 @@
 	position 25, 5, 125
 	random_time 0
 	rotation 0, -0.707107, 0, -0.707107
-	screen_space false
+	screen_space False
 ´trigger_enemy_kill´ ElementAreaTrigger 100055
 	DISABLED
 	amount 1
@@ -97,29 +97,29 @@
 	position 200, 0, 175
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 375
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 375
 	on_executed
 		´ai_remove_001´ (delay 0)
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100064
+	elements
+ 		1 ´point_special_objective_001´
 	event anim_start
 	position -100, 1000, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´point_special_objective_001´
 	on_executed
 		´ai_remove_002´ (delay 0)
 ´ai_remove_002´ ElementAIRemove 100066
 	position -100, 800, 100
 	rotation 0, 0, 0, -1
-	true_death false
-	use_instigator true
+	true_death False
+	use_instigator True
 ´func_sequence_trigger_002´ ElementUnitSequenceTrigger 100068
 	TRIGGER TIMES 1
 	sequence_list
@@ -184,52 +184,52 @@
 	on_executed
 		´time_flame_cooldown´ (delay 0)
 ´time_flame_cooldown´ ElementTimerOperator 100023
+	elements
+ 		1 ´logic_timer_001´
 	operation set_time
 	position 700, -400, 100
 	rotation 0, 0, 0, -1
 	time 180
-	elements
-		1 ´logic_timer_001´
 	on_executed
 		´logic_timer_operator_004´ (delay 0)
 ´start_trap_timer´ ElementTimerOperator 100022
+	elements
+ 		1 ´logic_timer_001´
 	operation start
 	position 700, 300, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´logic_timer_001´
 ´logic_timer_operator_004´ ElementTimerOperator 100024
+	elements
+ 		1 ´logic_timer_001´
 	operation start
 	position 700, -500, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´logic_timer_001´
 	on_executed
 		´out_cooldown_started´ (delay 0)
 		´disable_checkforenemy_trigger001´ (delay 0)
 ´point_play_sound_002´ ElementPlaySound 100028
-	append_prefix false
+	append_prefix False
 	position 600, 100, 100
 	rotation 0, 0, 0, -1
 	sound_event str_car_fire_stop
-	use_instigator false
+	use_instigator False
 ´env_effect_stop_001´ ElementStopEffect 100029
-	operation fade_kill
-	position 700, 800, 100
-	rotation 0, 0, 0, -1
 	elements
-		1 ´env_effect_play_005´
+ 		1 ´env_effect_play_005´
 		2 ´env_effect_play_006´
 		3 ´env_effect_play_007´
 		4 ´env_effect_play_008´
+	operation fade_kill
+	position 700, 800, 100
+	rotation 0, 0, 0, -1
 ´point_play_sound_003´ ElementPlaySound 100036
-	append_prefix false
+	append_prefix False
 	position 200, 0, 100
 	rotation 0, 0, 0, -1
 	sound_event str_car_fire
-	use_instigator false
+	use_instigator False
 ´disable_trap´ MissionScriptElement 100027
 	TRIGGER TIMES 1
 	on_executed
@@ -240,18 +240,18 @@
 	on_executed
 		´logic_toggle_003´ (delay 1)
 ´logic_toggle_002´ ElementToggle 100038
+	elements
+ 		1 ´enable_activation_trap´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´enable_activation_trap´ DISABLED
 	on_executed
 		´point_play_sound_002´ (delay 0)
 		´func_sequence_003´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100039
+	elements
+ 		1 ´disable_trap´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´disable_trap´
 	on_executed
 		´logic_toggle_004´ (delay 0)
 ´func_sequence_004´ ElementUnitSequence 100040
@@ -280,12 +280,12 @@
 		´timer_flame_active´ (delay 0)
 		´out_cooldown_finished´ (delay 0)
 ´timer_flame_active´ ElementTimerOperator 100043
+	elements
+ 		1 ´logic_timer_001´
 	operation set_time
 	position 1400, 100, 100
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´logic_timer_001´
 ´STARTUP´ MissionScriptElement 100009
 	EXECUTE ON STARTUP
 	on_executed
@@ -295,11 +295,11 @@
 		´timer_flame_active´ (delay 0)
 		´hide_instance´ (delay 0)
 ´logic_toggle_004´ ElementToggle 100045
+	elements
+ 		1 ´flame_effect_loop_002´
+		2 ´flame_effect_loop_001´
 	set_trigger_times 0
 	toggle on
-	elements
-		1 ´flame_effect_loop_002´
-		2 ´flame_effect_loop_001´
 	on_executed
 		´func_sequence_004´ (delay 0)
 ´show_marker´ ElementInstanceInput 100046
@@ -321,15 +321,15 @@
 	position 200, 0, 50
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´out_got_bag´ (delay 0)
 		´func_carry_001´ (delay 0)
@@ -345,7 +345,7 @@
 	event trap_cooldown_finished
 ´data_instigator_rule_001´ ElementInstigatorRule 100061
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -379,36 +379,36 @@
 	position 200, 0, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 375
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 375
 	on_executed
 		´point_explosion_damage_002´ (delay 0)
 		´point_explosion_damage_003´ (delay 0)
 		´point_explosion_damage_001´ (delay 0)
 ´enable_damage_triggers´ ElementToggle 100071
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´trigger_enemy_kill´ DISABLED
+ 		1 ´trigger_enemy_kill´ DISABLED
 		2 ´trigger_player_damage´ DISABLED
 		3 ´flame_effect_loop_002´
 		4 ´flame_effect_loop_001´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´flame_effect_loop_001´ (delay 0.1)
 ´disable_effects_and_triggers´ ElementToggle 100073
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_enemy_kill´ DISABLED
+ 		1 ´trigger_enemy_kill´ DISABLED
 		2 ´trigger_player_damage´ DISABLED
 		3 ´flame_effect_loop_001´
 		4 ´flame_effect_loop_002´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´point_play_sound_002´ (delay 0)
 		´env_effect_stop_001´ (delay 0)
@@ -438,10 +438,10 @@
 		´show_marker´ (delay 0)
 		´point_loot_bag_001´ (delay 0)
 ´On´ ElementToggle 100078
+	elements
+ 		1 ´trigger_trap_bag´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_trap_bag´ DISABLED
 ´func_carry_001´ ElementCarry 100079
 	operation remove
 	type_filter none
@@ -497,36 +497,36 @@
 		´point_play_sound_001´ (delay 0)
 		´Off_2´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100094
-	append_prefix false
+	append_prefix False
 	position 200, 0, 68
 	rotation 0, 0, 0, -1
 	sound_event metalsheet_place
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_play_sound_004´ (delay 0)
 ´point_play_sound_004´ ElementPlaySound 100100
-	append_prefix false
+	append_prefix False
 	position 200, 0, 50
 	rotation 0, 0, 0, -1
 	sound_event bar_crowbar_open_metal_finished
-	use_instigator false
+	use_instigator False
 ´Off´ ElementToggle 100000
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_trap_bag´ DISABLED
+ 		1 ´trigger_trap_bag´ DISABLED
 		2 ´trigger_enemy_kill´ DISABLED
 		3 ´trigger_player_damage´ DISABLED
-´Off_2´ ElementToggle 100001
 	set_trigger_times -1
 	toggle off
+´Off_2´ ElementToggle 100001
 	elements
-		1 ´trigger_trap_bag´ DISABLED
+ 		1 ´trigger_trap_bag´ DISABLED
 		2 ´trigger_enemy_kill´ DISABLED
 		3 ´trigger_player_damage´ DISABLED
 		4 ´Link´
 		5 ´Link_2´
 		6 ´Link_3´
+	set_trigger_times -1
+	toggle off
 ´enemy_close_trigger´ ElementAreaReportTrigger 100005
 	DISABLED
 	amount 1
@@ -537,13 +537,13 @@
 	position 200, 0, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´start_flames´ (delay 0) (alternative enter)
 		´stop_flames´ (delay 0) (alternative empty)
@@ -557,33 +557,33 @@
 		´disable_effects_and_triggers´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´enable_checkforenemy_trigger´ ElementToggle 100010
+	elements
+ 		1 ´enemy_close_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enemy_close_trigger´ DISABLED
 	on_executed
 		´seq_panel_started´ (delay 0)
 ´disable_checkforenemy_trigger001´ ElementToggle 100012
+	elements
+ 		1 ´enemy_close_trigger´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enemy_close_trigger´ DISABLED
 	on_executed
 		´stop_flames´ (delay 0)
 ´point_debug_002´ ElementDebug 100014
-	as_subtitle false
+	as_subtitle False
 	debug_string enemy close to trap
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100016
-	as_subtitle false
+	as_subtitle False
 	debug_string enemy away from trap
-	show_instigator false
+	show_instigator False
 ´logic_link_001´ MissionScriptElement 100018
 	on_executed
 		´ai_spawn_enemy_001´ (delay 2)
 ´point_loot_bag_001´ ElementLootBag 100008
 	carry_id equipment_bag_global_event
-	from_respawn false
+	from_respawn False
 	position -650, 250, 50
 	rotation 0, 0, 0, -1
 ´Link´ MissionScriptElement 100020

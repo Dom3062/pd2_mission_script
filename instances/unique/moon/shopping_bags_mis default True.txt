@@ -94,7 +94,7 @@
 		´enable_interaction_bag´ (delay 0)
 ´WP_tinboy´ ElementWaypoint 100011
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -146,10 +146,10 @@
 		´show_tinboy´ (delay 0.15) DISABLED
 		´random_content´ (delay 0.15)
 ´enable_tinboy´ ElementToggle 100016
+	elements
+ 		1 ´show_tinboy´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_tinboy´ DISABLED
 ´picked_up_tinboy´ ElementUnitSequenceTrigger 100017
 	TRIGGER TIMES 1
 	sequence_list
@@ -172,9 +172,9 @@
 			notify_unit_sequence hide
 			time 0
 ´remove_WP_tinboy´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´WP_tinboy´
+ 		1 ´WP_tinboy´
+	operation remove
 ´output_picked_up_tinboy´ ElementInstanceOutput 100020
 	event picked_up_tinboy
 ´disabler´ ElementDisableUnit 100035
@@ -193,10 +193,10 @@
 		10 units/payday2/props/com_prop_store_wines/com_prop_store_wines_champagne/content3 (-1, 4.76837E-07, 1)
 		11 units/payday2/props/com_prop_store_wines/com_prop_store_wines_champagne/content3 (-20, 2, 1)
 ´disable_trash´ ElementToggle 100037
+	elements
+ 		1 ´random_content´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´random_content´
 ´show_content1´ ElementEnableUnit 100038
 	position 1100, -100, 0
 	rotation 0, 0, 0, -1
@@ -223,7 +223,7 @@
 ´random_content´ ElementRandom 100041
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_content1´ (delay 0)
 		´show_content2´ (delay 0)

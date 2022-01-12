@@ -1,6 +1,6 @@
 ´wp_C4_location_01´ ElementWaypoint 100010
 	icon pd2_c4
-	only_in_civilian false
+	only_in_civilian False
 	position -14, -7, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -142,27 +142,27 @@
 		´seq_weak_spot_SHOW´ (delay 0)
 		´wp_C4_location_REMOVE´ (delay 0)
 ´weak_spot_TOGGLE´ ElementToggle 100022
+	elements
+ 		1 ´weak_spot_found´ DISABLED
+		2 ´weak_spot_not_found´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´weak_spot_found´ DISABLED
-		2 ´weak_spot_not_found´
 ´C4_planted_COUNTER´ ElementCounter 100023
 	counter_target 0
 ´C4_planted_counter_4´ ElementCounterTrigger 100024
 	amount 4
-	trigger_type value
 	elements
-		1 ´C4_planted_COUNTER´
+ 		1 ´C4_planted_COUNTER´
+	trigger_type value
 	on_executed
 		´seq_C4_ACTIVATE_EXPLODE_SEQUENCE´ (delay 0)
 		´wp_C4_location_REMOVE´ (delay 0)
 ´C4_planted_counter_INC´ ElementCounterOperator 100025
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´C4_planted_COUNTER´
+ 		1 ´C4_planted_COUNTER´
+	instance_var_names
+	operation add
 ´seq_trg_C4_location_02_INTERACT´ ElementUnitSequenceTrigger 100026
 	DISABLED
 	TRIGGER TIMES 1
@@ -264,20 +264,20 @@
 		´output_floor_exploded´ (delay 0)
 		´point_explosion_001´ (delay 0)
 ´seq_trg_C4_locations_INTERACT_ON´ ElementToggle 100033
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´seq_trg_C4_location_01_INTERACT´ DISABLED
+ 		1 ´seq_trg_C4_location_01_INTERACT´ DISABLED
 		2 ´seq_trg_C4_location_02_INTERACT´ DISABLED
 		3 ´seq_trg_C4_location_03_INTERACT´ DISABLED
 		4 ´seq_trg_C4_location_04_INTERACT´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´wp_C4_location_REMOVE´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´wp_C4_location_01´
+ 		1 ´wp_C4_location_01´
 		2 ´wp_C4_location_02´
 		3 ´wp_C4_location_04´
 		4 ´wp_C4_location_03´
+	operation remove
 ´weak_spot_not_found´ MissionScriptElement 100038
 	on_executed
 		´output_weak_spot_not_found´ (delay 0)
@@ -350,10 +350,10 @@
 	set_trigger_times -1
 	toggle off
 ´seq_C4_locations_SHOW_INTERACTIVE_OFF´ ElementToggle 100046
+	elements
+ 		1 ´seq_C4_locations_SHOW_INTERACTIVE´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_C4_locations_SHOW_INTERACTIVE´
 ´seq_no_weak_spot_SHOW´ ElementUnitSequence 100003
 	position -1200, -75, 652.5
 	rotation 0, 0, 0, -1
@@ -488,25 +488,25 @@
 		´change material´ (delay 0) DISABLED
 		´change material_3´ (delay 0) DISABLED
 ´toggle on´ ElementToggle 100058
+	elements
+ 		1 ´change material_3´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´change material_3´ DISABLED
 ´toggle on_2´ ElementToggle 100059
+	elements
+ 		1 ´change material´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´change material´ DISABLED
 ´toggle on_3´ ElementToggle 100060
+	elements
+ 		1 ´change material_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´change material_2´ DISABLED
 ´toggle on_4´ ElementToggle 100061
+	elements
+ 		1 ´change material_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´change material_4´ DISABLED
 ´hide wires´ ElementUnitSequence 100062
 	position -850, -200, 0
 	rotation 0, 0, 0, -1
@@ -558,8 +558,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´env_effect_play_001´ (delay 0.4)
 ´env_effect_play_001´ ElementPlayEffect 100000
@@ -569,10 +569,10 @@
 	position -200, -192.143, 79.5523
 	random_time 0
 	rotation 0.207912, 0, 0, -0.978148
-	screen_space false
+	screen_space False
 ´wp_get_into_vault´ ElementWaypoint 100002
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position -191, -192, -200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -587,25 +587,25 @@
 	position -191, -192, -300
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´wp_get_into_vault_REMOVE´ (delay 0)
 ´wp_get_into_vault_REMOVE´ ElementOperator 100064
-	operation remove
 	elements
-		1 ´wp_get_into_vault´
+ 		1 ´wp_get_into_vault´
+	operation remove
 ´trg_get_into_vault´ ElementToggle 100065
+	elements
+ 		1 ´trg_wp_get_into_vault_remove´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_wp_get_into_vault_remove´ DISABLED
 ´func_enable_unit_001´ ElementEnableUnit 100014
 	position -943, -454, 650
 	rotation 0, 0, 0, -1
@@ -618,19 +618,19 @@
 		1 units/pd2_dlc_casino/environment/cas_int/cas_weak_floor_collision/cas_weak_floor_collision/001 (-200, -200, -51)
 ´wp_C4_location_02´ ElementWaypoint 100075
 	icon pd2_c4
-	only_in_civilian false
+	only_in_civilian False
 	position -14, -392, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_C4_location_03´ ElementWaypoint 100076
 	icon pd2_c4
-	only_in_civilian false
+	only_in_civilian False
 	position -391, -392, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_C4_location_04´ ElementWaypoint 100077
 	icon pd2_c4
-	only_in_civilian false
+	only_in_civilian False
 	position -391, -7, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -683,41 +683,41 @@
 		´wp_C4_location_04_REMOVE´ (delay 0)
 		´TOGGLE_3´ (delay 0)
 ´wp_C4_location_01_OFF´ ElementToggle 100082
+	elements
+ 		1 ´wp_C4_location_01´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_C4_location_01´
 ´wp_C4_location_03_OFF´ ElementToggle 100083
+	elements
+ 		1 ´wp_C4_location_03´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_C4_location_03´
 ´wp_C4_location_02_OFF´ ElementToggle 100084
+	elements
+ 		1 ´wp_C4_location_02´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_C4_location_02´
 ´wp_C4_location_04_OFF´ ElementToggle 100085
+	elements
+ 		1 ´wp_C4_location_04´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_C4_location_04´
 ´wp_C4_location_01_REMOVE´ ElementOperator 100086
-	operation remove
 	elements
-		1 ´wp_C4_location_01´
+ 		1 ´wp_C4_location_01´
+	operation remove
 ´wp_C4_location_02_REMOVE´ ElementOperator 100087
-	operation remove
 	elements
-		1 ´wp_C4_location_02´
+ 		1 ´wp_C4_location_02´
+	operation remove
 ´wp_C4_location_03_REMOVE´ ElementOperator 100088
-	operation remove
 	elements
-		1 ´wp_C4_location_03´
+ 		1 ´wp_C4_location_03´
+	operation remove
 ´wp_C4_location_04_REMOVE´ ElementOperator 100089
-	operation remove
 	elements
-		1 ´wp_C4_location_04´
+ 		1 ´wp_C4_location_04´
+	operation remove
 ´wp_C4_location_02_2´ MissionScriptElement 100091
 	on_executed
 		´wp_C4_location_02´ (delay 0)
@@ -737,19 +737,19 @@
 	on_executed
 		´wp_C4_location_04_2´ (delay 0)
 ´TOGGLE´ ElementToggle 100095
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´check_wp_03´ DISABLED
+ 		1 ´check_wp_03´ DISABLED
 		2 ´wp_C4_location_02_2´
+	set_trigger_times -1
+	toggle toggle
 ´TOGGLE_2´ ElementToggle 100096
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´check_wp_04´ DISABLED
+ 		1 ´check_wp_04´ DISABLED
 		2 ´wp_C4_location_03_2´
-´TOGGLE_3´ ElementToggle 100097
 	set_trigger_times -1
 	toggle toggle
+´TOGGLE_3´ ElementToggle 100097
 	elements
-		1 ´wp_C4_location_04_2´
+ 		1 ´wp_C4_location_04_2´
+	set_trigger_times -1
+	toggle toggle

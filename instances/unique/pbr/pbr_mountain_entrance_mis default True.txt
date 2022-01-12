@@ -6,14 +6,14 @@
 	position -25, 300, 0
 	random_time 0
 	rotation 0, 0.325568, 0, -0.945519
-	screen_space false
+	screen_space False
 ´point_play_sound_001´ ElementPlaySound 100110
 	DISABLED
-	append_prefix true
+	append_prefix True
 	position -700, 0, 300
 	rotation 0, 0, 0, -1
 	sound_event wall_explode_crisp
-	use_instigator false
+	use_instigator False
 ´explode´ MissionScriptElement 100111
 	on_executed
 		´breach_explosion´ (delay 0) DISABLED
@@ -40,14 +40,14 @@
 	position 25, 150, 0
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´remove_bomb´ (delay 0)
 		´func_sequence_001´ (delay 0)
@@ -62,8 +62,8 @@
 		´remove_bomb_wp´ (delay 0)
 ´add_part´ ElementCounterOperator 100128
 	amount 1
-	operation add
 	instance_var_names
+	operation add
 	on_executed
 		´bombdrop_one_part´ (delay 0)
 		´number_of_parts´ (delay 0)
@@ -94,27 +94,27 @@
 			notify_unit_sequence light_red_on_black
 			time 0
 ´start_countdown_timer´ ElementTimerOperator 100141
+	elements
+ 		1 ´bomb_timer´
 	operation start
 	position -400, 700, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´bomb_timer´
 	on_executed
 		´regular_countdown´ (delay 0)
 		´start_interrupt´ (delay 0)
 ´enable_start_countdown_button´ ElementToggle 100118
 	DISABLED
+	elements
+ 		1 ´connect_timer_wiring´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´connect_timer_wiring´ DISABLED
 ´final_countdown´ ElementPlaySound 100119
-	append_prefix false
+	append_prefix False
 	position -20, -1, 124
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_ticking_down_10sec
-	use_instigator false
+	use_instigator False
 ´pressed_button´ MissionScriptElement 100120
 	on_executed
 		´start_countdown_timer´ (delay 1)
@@ -124,11 +124,11 @@
 		´rearmed_charge´ (delay 0) DISABLED
 		´func_sequence_004´ (delay 0)
 ´10sec_remaining´ ElementTimerTrigger 100142
+	elements
+ 		1 ´bomb_timer´
 	position -500, 800, 100
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´bomb_timer´
 	on_executed
 		´final_countdown´ (delay 0.01)
 		´regular_countdown_stop´ (delay 0)
@@ -198,23 +198,23 @@
 		´point_explosion_001´ (delay 0)
 		´point_teammate_comment_002´ (delay 6)
 ´regular_countdown´ ElementPlaySound 100144
-	append_prefix false
+	append_prefix False
 	position -20, -1, 156
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop
-	use_instigator false
+	use_instigator False
 ´regular_countdown_stop´ ElementPlaySound 100145
-	append_prefix false
+	append_prefix False
 	position -600, 800, 100
 	rotation 0, 0, 0, -1
 	sound_event alarm_countdown_loop_stop
-	use_instigator false
+	use_instigator False
 ´enable_bomb_area´ ElementToggle 100108
+	elements
+ 		1 ´bomb_area_left´ DISABLED
+		2 ´bomb_area_right´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´bomb_area_left´ DISABLED
-		2 ´bomb_area_right´ DISABLED
 ´startup´ MissionScriptElement 100163
 	EXECUTE ON STARTUP
 	on_executed
@@ -230,16 +230,16 @@
 		´show_area´ (delay 0)
 ´bomb_drop_wp´ ElementWaypoint 100028
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position -100, 0, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´bombdrop_one_part´ ElementInstanceOutput 100030
 	event bombdrop_one_part
 ´remove_bomb_wp´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´bomb_drop_wp´
+ 		1 ´bomb_drop_wp´
+	operation remove
 ´connected_equipment_2´ ElementInstanceOutput 100037
 	event connected_equipment
 ´armed_bomb´ ElementInstanceOutput 100038
@@ -249,7 +249,7 @@
 		´enable_temp_cables´ (delay 0)
 ´rig_bomb_wp´ ElementWaypoint 100039
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -18, 0, 154
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -260,9 +260,9 @@
 	on_executed
 		´rig_bomb_wp´ (delay 0)
 ´remove_bomb_wp001´ ElementOperator 100042
-	operation remove
 	elements
-		1 ´rig_bomb_wp´
+ 		1 ´rig_bomb_wp´
+	operation remove
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´show_area´ ElementUnitSequence 100043
@@ -298,14 +298,14 @@
 	position 25, -150, 0
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´remove_bomb´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -436,20 +436,20 @@
 	unit_ids
 ´disarm_so´ ElementSpecialObjective 100008
 	TRIGGER TIMES 1
-	SO_access 1472
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -457,19 +457,19 @@
 	pose none
 	position -200, -50, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 7500
 	search_position -2926,12 -244,916 0,00400394
+	SO_access 1472
 	so_action e_so_disarm_bomb
 	trigger_on none
-	followup_elements
 ´failed´ ElementSpecialObjectiveTrigger 100009
 	TRIGGER TIMES 1
+	elements
+ 		1 ´disarm_so´
 	event fail
 	position -1500, 0, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´disarm_so´
 	on_executed
 		´enable_interrupt_entities´ (delay 0)
 ´start_interrupt´ MissionScriptElement 100010
@@ -480,37 +480,37 @@
 	on_executed
 		´enable_and_action_so´ (delay 0)
 ´enable_interrupt_entities´ ElementToggle 100012
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´enable_and_action_so´
+ 		1 ´enable_and_action_so´
 		2 ´failed´
 		3 ´success´
 		4 ´disarm_so´
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´try_interrupt´ (delay 3)
 ´enable_and_action_so´ ElementToggle 100013
+	elements
+ 		1 ´disarm_so´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´disarm_so´
 	on_executed
 		´disarm_so´ (delay 0.05)
 ´success´ ElementSpecialObjectiveTrigger 100014
 	TRIGGER TIMES 1
+	elements
+ 		1 ´disarm_so´
 	event complete
 	position -1700, 0, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´disarm_so´
 	on_executed
 		´disarmed´ (delay 0)
 ´administed´ ElementSpecialObjectiveTrigger 100015
+	elements
+ 		1 ´disarm_so´
 	event administered
 	position -1500, -200, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´disarm_so´
 	on_executed
 		´point_debug_001´ (delay 0)
 ´disarmed´ MissionScriptElement 100016
@@ -525,52 +525,52 @@
 		´enable_rearm´ (delay 0)
 		´func_sequence_003´ (delay 0)
 ´disable_interrupt´ ElementToggle 100021
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´success´
+ 		1 ´success´
 		2 ´enable_and_action_so´
 		3 ´failed´
 		4 ´disarm_so´
+	set_trigger_times -1
+	toggle off
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string administered_interrupt
-	show_instigator false
+	show_instigator False
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100023
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -1000, 300, 100
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_002´ ElementDebug 100024
-	as_subtitle false
+	as_subtitle False
 	debug_string they disarmed
-	show_instigator false
+	show_instigator False
 ´pause_countdown´ ElementTimerOperator 100025
+	elements
+ 		1 ´bomb_timer´
 	operation pause
 	position -1800, -100, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´bomb_timer´
 ´enable_detonator_rigging´ ElementToggle 100032
 	DISABLED
+	elements
+ 		1 ´connect_timer_wiring´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´connect_timer_wiring´ DISABLED
 ´stop_interrupting´ ElementToggle 100048
+	elements
+ 		1 ´start_interrupt´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´start_interrupt´
 	on_executed
 		´disable_interrupt´ (delay 0)
 ´disarmed_charge´ ElementInstanceOutput 100049
@@ -579,14 +579,14 @@
 	DISABLED
 	event rearmed_charge
 ´enable_rearm´ ElementToggle 100051
+	elements
+ 		1 ´rearmed_charge´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´rearmed_charge´ DISABLED
 ´point_debug_003´ ElementDebug 100064
-	as_subtitle false
+	as_subtitle False
 	debug_string start_interrupt
-	show_instigator false
+	show_instigator False
 ´10secs_remaining´ ElementInstanceOutput 100071
 	event 10secs_remaining
 ´point_explosion_damage_001´ ElementExplosionDamage 100072
@@ -595,10 +595,10 @@
 	range 500
 	rotation 0, 0, 0, -1
 ´logic_toggle_001´ ElementToggle 100073
+	elements
+ 		1 ´rig_bomb_wp´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´rig_bomb_wp´
 ´enable_detonator´ ElementUnitSequence 100018
 	position -600, 500, 100
 	rotation 0, 0, 0, -1
@@ -686,7 +686,7 @@
 	position -40, 175, 222
 	random_time 0
 	rotation 0, 0, 0.707106, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_002´ ElementPlayEffect 100017
 	base_time 0
 	effect effects/payday2/particles/explosions/breaching_charge_explosion
@@ -694,7 +694,7 @@
 	position -39.9995, -175, 222
 	random_time 0
 	rotation 0, 0, 0.707106, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100033
 	base_time 0
 	effect effects/payday2/particles/explosions/breaching_charge_explosion
@@ -702,7 +702,7 @@
 	position -39.9995, -175, 42
 	random_time 0
 	rotation 0, 0, 0.707106, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_004´ ElementPlayEffect 100034
 	base_time 0
 	effect effects/payday2/particles/explosions/breaching_charge_explosion
@@ -710,13 +710,13 @@
 	position -40, 175, 42
 	random_time 0
 	rotation 0, 0, 0.707106, -0.707107
-	screen_space false
+	screen_space False
 ´point_play_sound_002´ ElementPlaySound 100035
-	append_prefix false
+	append_prefix False
 	position -50, 0, 200
 	rotation 0, 0, 0, -1
 	sound_event blast_door_explosion
-	use_instigator false
+	use_instigator False
 ´point_explosion_001´ ElementExplosion 100036
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -738,22 +738,22 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event no_sound
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´point_teammate_comment_001´ ElementTeammateComment 100066
-	close_to_element true
+	close_to_element True
 	comment v13
 	position -150, 0, 150.004
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´point_teammate_comment_002´ ElementTeammateComment 100067
-	close_to_element true
+	close_to_element True
 	comment v54
 	position -150, 0, 100.004
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´trigger_area_001´ ElementAreaTrigger 100068
 	TRIGGER TIMES 1
 	amount 1
@@ -764,20 +764,20 @@
 	position 400, 0, 0.00402832
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´point_teammate_comment_003´ (delay 0)
 ´point_teammate_comment_003´ ElementTeammateComment 100075
-	close_to_element false
+	close_to_element False
 	comment v03
 	position 250, 50, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True

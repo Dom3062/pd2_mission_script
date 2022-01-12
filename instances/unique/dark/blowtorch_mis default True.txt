@@ -63,11 +63,11 @@
 	on_executed
 		´enable´ (delay 0)
 ´On´ ElementToggle 100027
+	elements
+ 		1 ´link_3´ DISABLED
+		2 ´link_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_3´ DISABLED
-		2 ´link_4´ DISABLED
 	on_executed
 		´add´ (delay 0)
 		´ai_spawn_civilian_001´ (delay 0)
@@ -75,14 +75,14 @@
 	EXECUTE ON STARTUP
 	position 400, -150, 0
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´alerted´ ElementEnemyDummyTrigger 100032
 	TRIGGER TIMES 1
+	elements
+ 		1 ´ai_spawn_civilian_001´
 	event alerted
 	position -300, 200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_civilian_001´
 	on_executed
 		´disable_2´ (delay 0)
 ´disable_2´ ElementDisableUnit 100005
@@ -95,54 +95,54 @@
 		´Off´ (delay 0)
 ´death´ ElementEnemyDummyTrigger 100007
 	TRIGGER TIMES 1
+	elements
+ 		1 ´ai_spawn_civilian_001´
 	event death
 	position -250, 200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_civilian_001´
 	on_executed
 		´disable_2´ (delay 0)
 ´start - blowtorch´ ElementPlaySound 100008
-	append_prefix false
+	append_prefix False
 	position 200, -250, 0
 	rotation 0, 0, 0, -1
 	sound_event blowtorch_guy
-	use_instigator false
+	use_instigator False
 ´Start´ MissionScriptElement 100010
 	on_executed
 		´start - blowtorch´ (delay 0)
 ´Off´ ElementToggle 100024
+	elements
+ 		1 ´Start´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Start´
 	on_executed
 		´stop - blowtorch´ (delay 0)
 ´stop - blowtorch´ ElementPlaySound 100002
 	EXECUTE ON STARTUP
-	append_prefix false
+	append_prefix False
 	position -300, 350, 0
 	rotation 0, 0, 0, -1
 	sound_event blowtorch_guy_end_global
-	use_instigator false
+	use_instigator False
 ´remove´ ElementNavObstacle 100055
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (0, -25, 0)
 	operation remove
 	position 400, -200, 0
 	rotation 0, 0, 0, -1
+´add´ ElementNavObstacle 100056
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (0, -25, 0)
-´add´ ElementNavObstacle 100056
 	operation add
 	position 300, -100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (0, -25, 0)
 ´Alarm´ ElementInstanceInput 100057
 	event Alarm_Sounded
 	on_executed
@@ -156,15 +156,15 @@
 	position 325, 250, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´shape´
-	use_shape_element_ids
 	unit_ids
 		1 100060
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_3´ (delay 0) DISABLED (alternative enter)
 ´enable_2´ ElementUnitSequence 100059
@@ -212,15 +212,15 @@
 	position 275, 250, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´shape´
-	use_shape_element_ids
 	unit_ids
 		1 100060
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) DISABLED (alternative empty)
 ´disable_3´ ElementUnitSequence 100062
@@ -262,10 +262,10 @@
 ´ai_spawn_civilian_001´ ElementSpawnCivilian 100012
 	enemy units/payday2/characters/civ_male_worker_docks_1/civ_male_worker_docks_1
 	force_pickup none
+	orientation_elements
 	position 0.00106812, 50, 0
 	rotation 0, 0, 1, -1.19209E-07
 	state cm_sp_blowtorch_work
 	team default
-	orientation_elements
 	on_executed
 		´Start´ (delay 0)

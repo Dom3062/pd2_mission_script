@@ -50,14 +50,14 @@
 	position 3, -84, 175
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 140,49
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 140.49
 	on_executed
 		´thrown_in_loot´ (delay 0)
 ´thrown_in_loot´ MissionScriptElement 100012
@@ -67,26 +67,26 @@
 		´sound_bag_drop´ (delay 0)
 ´WP_vent´ ElementWaypoint 100013
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -25, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_loot_drop´ ElementToggle 100014
+	elements
+ 		1 ´area_loot´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_loot´ DISABLED
 	on_executed
 		´WP_vent´ (delay 0)
 ´remove_WP_vent´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´WP_vent´
+ 		1 ´WP_vent´
+	operation remove
 ´disable_loot_drop´ ElementToggle 100016
+	elements
+ 		1 ´area_loot´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_loot´ DISABLED
 ´input_disable_lootdrop´ ElementInstanceInput 100017
 	event disable_lootdrop
 	on_executed
@@ -106,12 +106,12 @@
 ´output_secured_a_loot´ ElementInstanceOutput 100021
 	event secured_a_loot
 ´sound_bag_drop´ ElementPlaySound 100022
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -50, 150
 	rotation 0, 0, 0, -1
 	sound_event bag_medium_drop
-	use_instigator false
+	use_instigator False
 ´input_enable_loot_drop´ ElementInstanceInput 100023
 	event enable_loot_drop
 	on_executed

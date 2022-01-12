@@ -185,14 +185,14 @@
 	on_executed
 		´seq_show_coke_004´ (delay 0)
 ´spawn_with_loot´ ElementToggle 100098
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´enable_layout_001_loot´ DISABLED
+ 		1 ´enable_layout_001_loot´ DISABLED
 		2 ´enable_layout_002_loot´ DISABLED
 		3 ´enable_layout_003_loot´ DISABLED
 		4 ´enable_layout_004_loot´ DISABLED
 		5 ´area_coke_seen´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´in_startup´ ElementInstanceInput 100094
 	event coketable_startup
 	on_executed
@@ -211,7 +211,7 @@
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_layout_001´ (delay 0)
 		´enable_layout_002´ (delay 0)
@@ -323,18 +323,18 @@
 	on_executed
 		´disable_show_related_inputs´ (delay 0)
 ´disable_show_related_inputs´ ElementToggle 100011
+	elements
+ 		1 ´in_spawn_layout´
+		2 ´in_enable_loot´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´in_spawn_layout´
-		2 ´in_enable_loot´
 ´out_table_shown´ ElementInstanceOutput 100012
 	event coketable_shown
 ´cant_hide´ ElementToggle 100013
+	elements
+ 		1 ´in_hide_table´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´in_hide_table´
 ´area_coke_seen´ ElementAreaTrigger 100014
 	DISABLED
 	TRIGGER TIMES 1
@@ -347,26 +347,26 @@
 	position 100, -275, 125
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´point_debug_001´ (delay 0)
 		´enable_lookat´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string area_coke_seen
-	show_instigator false
+	show_instigator False
 ´point_lookat_trigger_001´ ElementLookAtTrigger 100016
 	DISABLED
 	TRIGGER TIMES 1
 	distance 200
-	in_front false
+	in_front False
 	interval 0.1
 	position 100, -75, 100
 	rotation 0, 0, 0, -1
@@ -375,34 +375,34 @@
 		´teammate_comment_jackpot´ (delay 0)
 		´instance_output_seen_coke´ (delay 1)
 ´enable_lookat´ ElementToggle 100017
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_lookat_trigger_001´ DISABLED
 ´disable_lookat´ ElementToggle 100018
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
+		2 ´area_coke_seen´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_lookat_trigger_001´ DISABLED
-		2 ´area_coke_seen´ DISABLED
 ´point_debug_002´ ElementDebug 100019
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_jackpot
-	show_instigator false
+	show_instigator False
 ´teammate_comment_jackpot´ ElementTeammateComment 100020
-	close_to_element true
+	close_to_element True
 	comment v21
 	position 100, -75, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_002´ (delay 0)
 ´disable_VO´ ElementToggle 100021
+	elements
+ 		1 ´teammate_comment_jackpot´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´teammate_comment_jackpot´
 ´instance_input_disable_VO´ ElementInstanceInput 100022
 	event disable_VO
 	on_executed

@@ -1,15 +1,6 @@
 ´laser_barrier_trigger´ ElementLaserTrigger 100001
 	TRIGGER TIMES 1
 	color red
-	cycle_active_amount 1
-	cycle_interval 0
-	cycle_random false
-	cycle_type flow
-	flicker_remove true
-	instigator player
-	interval 0.1
-	skip_dummies false
-	visual_only false
 	connections
 		1
 			from 5
@@ -20,6 +11,13 @@
 		3
 			from 1
 			to 2
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random False
+	cycle_type flow
+	flicker_remove True
+	instigator player
+	interval 0.1
 	points
 		1
 			pos -23.5444, -73, 45.5108
@@ -39,6 +37,8 @@
 		6
 			pos -23.3668, 75, 199.774
 			rot 0, 0, 1, -0
+	skip_dummies False
+	visual_only False
 	on_executed
 		´laser_triggered´ (delay 0) (alternative enter)
 ´laser_triggered´ ElementInstanceOutput 100003
@@ -51,11 +51,11 @@
 		´disable_laser´ (delay 0)
 		´func_nav_obstacle_001´ (delay 0)
 ´disable_laser´ ElementToggle 100005
+	elements
+ 		1 ´laser_barrier_trigger´
+		2 ´entered_laser_area´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´laser_barrier_trigger´
-		2 ´entered_laser_area´
 ´entered_laser_area´ ElementAreaTrigger 100002
 	TRIGGER TIMES 1
 	amount 1
@@ -66,28 +66,28 @@
 	position 0, 0, 202.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´entered_laser_area_2´ (delay 0)
 ´entered_laser_area_2´ ElementInstanceOutput 100006
 	event entered_laser_area
 ´func_nav_obstacle_001´ ElementNavObstacle 100008
 	TRIGGER TIMES 1
-	operation remove
-	position 400, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 0, 2.5)
+	operation remove
+	position 400, -100, 2.5
+	rotation 0, 0, 0, -1
 ´setup´ MissionScriptElement 100009
 	EXECUTE ON STARTUP
 	BASE DELAY 3
@@ -95,11 +95,11 @@
 		´func_nav_obstacle_002´ (delay 0)
 ´func_nav_obstacle_002´ ElementNavObstacle 100010
 	TRIGGER TIMES 1
-	operation add
-	position 200, 400, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (0, 0, 2.5)
+	operation add
+	position 200, 400, 2.5
+	rotation 0, 0, 0, -1

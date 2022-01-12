@@ -42,8 +42,8 @@
 	event usb_taken
 ´point_waypoint_001´ ElementWaypoint 100010
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -77,16 +77,16 @@
 	on_executed
 		´toggle_ON_WP´ (delay 0)
 ´toggle_ON_WP´ ElementToggle 100016
+	elements
+ 		1 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_001´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100017
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´output_usb_taken´ (delay 0)
 ´enable_outline´ ElementUnitSequence 100018
@@ -129,17 +129,17 @@
 	on_executed
 		´toggle_OFF_everything´ (delay 0)
 ´toggle_OFF_everything´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
 		2 ´output_usb_taken´
 		3 ´remove_WP´
 		4 ´toggle_ON_WP´
 		5 ´usb_taken´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_2´ (delay 0)
 ´remove_WP_2´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove

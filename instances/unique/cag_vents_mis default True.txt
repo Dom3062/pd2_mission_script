@@ -11,12 +11,12 @@
 	on_executed
 		´disable_vent´ (delay 0.1)
 ´sound_grating´ ElementPlaySound 100034
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -50, 0, 25
 	rotation 0, 0, 0, -1
 	sound_event cage_liftoff
-	use_instigator false
+	use_instigator False
 ´open_right´ ElementUnitSequence 100038
 	position 250, -300, 0
 	rotation 0, 0, 0, -1
@@ -64,15 +64,15 @@
 	position -50, 150, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´vent_shape´
-	use_shape_element_ids
 	unit_ids
 		1 100000
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´inside´ (delay 0) (alternative enter)
 		´outside´ (delay 0) (alternative empty)
@@ -103,14 +103,14 @@
 			notify_unit_sequence interaction_disabled
 			time 0
 ´OFF´ ElementToggle 100030
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´inside´
+ 		1 ´inside´
 		2 ´outside´
 		3 ´in_or_out´
 		4 ´vent_shape´
 		5 ´enable´
 		6 ´disable´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´open_right´ (delay 0)

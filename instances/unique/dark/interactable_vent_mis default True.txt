@@ -47,15 +47,15 @@
 	position -450, -200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´player_in_range´
-	use_shape_element_ids
 	unit_ids
 		1 100006
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link´ (delay 0) (alternative enter)
 ´empty´ ElementAreaReportTrigger 100008
@@ -67,15 +67,15 @@
 	position -350, -200, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´player_in_range´
-	use_shape_element_ids
 	unit_ids
 		1 100006
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_2´ (delay 0) (alternative empty)
 ´link´ MissionScriptElement 100003
@@ -116,11 +116,11 @@
 	on_executed
 		´2´ (delay 0)
 ´off´ ElementToggle 100014
+	elements
+ 		1 ´link_2´
+		2 ´link´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_2´
-		2 ´link´
 	on_executed
 		´enable vent´ (delay 0)
 ´auto_start´ MissionScriptElement 100031
@@ -128,11 +128,11 @@
 	on_executed
 		´disable_vent´ (delay 0)
 ´sound_grating´ ElementPlaySound 100034
-	append_prefix false
+	append_prefix False
 	position -50, 0, 25
 	rotation 0, 0, 0, -1
 	sound_event cage_liftoff
-	use_instigator false
+	use_instigator False
 ´open_left´ ElementUnitSequence 100038
 	position 225, -350, 0
 	rotation 0, 0, 0, -1
@@ -160,7 +160,7 @@
 ´random´ ElementRandom 100002
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´open_left´ (delay 0)
 		´open_right´ (delay 0)
@@ -245,35 +245,33 @@
 	on_executed
 		´off_2´ (delay 0)
 ´off_2´ ElementToggle 100023
+	elements
+ 		1 ´link´
+		2 ´link_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link´
-		2 ´link_2´
 ´dw - lower´ ElementFilter 100010
-	difficulty_easy true
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill true
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -250, 200, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´off_3´ (delay 0)
 ´off_3´ ElementToggle 100026
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´screw_used´
+ 		1 ´screw_used´
 		2 ´2´
 		3 ´unscrew - hide´
 		4 ´off´
@@ -283,6 +281,8 @@
 		8 ´empty´
 		9 ´Off´
 		10 ´On´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´enable vent´ (delay 1)
 		´disable´ (delay 0)

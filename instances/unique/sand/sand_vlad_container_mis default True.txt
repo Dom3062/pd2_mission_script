@@ -326,7 +326,7 @@
 ´randomize_container_color´ ElementRandom 100141
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´container_blue´ (delay 0)
 		´container_green´ (delay 0)
@@ -804,11 +804,11 @@
 		´back_stop_effect´ (delay 0)
 		´toggle_OFF_WP´ (delay 0)
 ´back_stop_effect´ ElementStopEffect 100015
+	elements
+ 		1 ´env_effect_play_007´
 	operation kill
 	position 0, -1050, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_007´
 ´back_interrupt´ MissionScriptElement 100016
 	on_executed
 		´back_stop_effect´ (delay 0)
@@ -819,21 +819,21 @@
 		´env_effect_play_007´ (delay 0)
 ´blowtorch_BACK_WP´ ElementWaypoint 100018
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position 0, -313, 137
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´sound_blowtorch_end003´ ElementPlaySound 100033
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -313, 137
 	rotation 0, 0, 0, -1
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´point_interaction_blowtorch_BACK´ ElementInteraction 100034
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position 0, -313, 137
 	rotation 0, 0, 1, 4.37114E-08
@@ -849,19 +849,19 @@
 	position 0, -311, 135
 	random_time 0
 	rotation -0.382683, 0, 0, -0.92388
-	screen_space false
+	screen_space False
 ´input_enable_blowtorch_interactions´ ElementInstanceInput 100036
 	event enable_blowtorch_interactions
 	on_executed
 		´toggle_ON_back´ (delay 0)
 		´toggle_ON_front´ (delay 0)
 ´toggle_ON_back´ ElementToggle 100037
-	set_trigger_times 0
-	toggle on
 	elements
-		1 ´point_interaction_blowtorch_BACK´ DISABLED
+ 		1 ´point_interaction_blowtorch_BACK´ DISABLED
 		2 ´disable_blowtorch_WP_BACK´ DISABLED
 		3 ´enable_blowtorch_WP_BACK´ DISABLED
+	set_trigger_times 0
+	toggle on
 	on_executed
 		´disable_interaction´ (delay 0) DISABLED
 ´disable_interaction´ ElementUnitSequence 100038
@@ -882,16 +882,16 @@
 			notify_unit_sequence disable_contour
 			time 0
 ´toggle_OFF_WP´ ElementToggle 100121
+	elements
+ 		1 ´blowtorch_BACK_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_BACK_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100122
-	operation remove
 	elements
-		1 ´blowtorch_BACK_WP´
+ 		1 ´blowtorch_BACK_WP´
+	operation remove
 	on_executed
 		´show_broken_lock_BACK´ (delay 0)
 ´show_broken_lock_BACK´ ElementUnitSequence 100123
@@ -1145,9 +1145,9 @@
 			notify_unit_sequence show_2_0
 			time 0
 ´remove_WPs001´ ElementOperator 100132
-	operation remove
 	elements
-		1 ´blowtorch_BACK_WP´
+ 		1 ´blowtorch_BACK_WP´
+	operation remove
 ´enable_blowtorch_WP_BACK´ ElementAreaTrigger 100135
 	DISABLED
 	amount 1
@@ -1159,16 +1159,16 @@
 	position 0, -400, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 250
 	rules_element_ids
 		1 ´data_instigator_rule_blowtorch´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 250
 	on_executed
 		´blowtorch_BACK_WP´ (delay 0)
 		´link_toggle_on_back_interaction´ (delay 0)
@@ -1183,16 +1183,16 @@
 	position 0, -400, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_exit
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
 		1 ´data_instigator_rule_blowtorch´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_exit
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_toggle_off_wp´ (delay 0)
 		´link_toggle_off_back_interaction´ (delay 0)
@@ -1208,16 +1208,16 @@
 	position 0, 400, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_exit
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
 		1 ´data_instigator_rule_blowtorch´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_exit
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_toggle_off_wp_2´ (delay 0)
 		´link_toggle_off_front_interaction´ (delay 0)
@@ -1233,22 +1233,22 @@
 	position 0, 400, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 250
 	rules_element_ids
 		1 ´data_instigator_rule_blowtorch´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 250
 	on_executed
 		´blowtorch_FRONT_WP´ (delay 0)
 		´link_toggle_on_front_interaction´ (delay 0)
 ´point_interaction_blowtorch_FRONT´ ElementInteraction 100133
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position 0, 313, 137
 	rotation 0, 0, -7.54976E-08, -1
@@ -1258,16 +1258,16 @@
 		´back_end001´ (delay 0) (alternative interacted)
 		´back_interrupt001´ (delay 0) (alternative interupt)
 ´sound_blowtorch_end004´ ElementPlaySound 100134
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -2.62261E-05, 313, 137
 	rotation 0, 0, 1, -1.19209E-07
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´blowtorch_FRONT_WP´ ElementWaypoint 100160
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position 0, 313, 137
 	rotation 0, 0, 1, -1.19209E-07
 	text_id debug_none
@@ -1278,7 +1278,7 @@
 	position 0, 313, 137
 	random_time 0
 	rotation 0, 0, 1, -1.19209E-07
-	screen_space false
+	screen_space False
 ´back_interrupt001´ MissionScriptElement 100162
 	on_executed
 		´back_stop_effect001´ (delay 0)
@@ -1292,22 +1292,22 @@
 		´sound_blowtorch_end004´ (delay 0)
 		´env_effect_play_008´ (delay 0)
 ´back_stop_effect001´ ElementStopEffect 100165
+	elements
+ 		1 ´env_effect_play_008´
 	operation kill
 	position -8.39233E-05, 962, 88
 	rotation 0, 0, 1, -1.19209E-07
-	elements
-		1 ´env_effect_play_008´
 ´toggle_OFF_WP001´ ElementToggle 100166
+	elements
+ 		1 ´blowtorch_FRONT_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_FRONT_WP´
 	on_executed
 		´remove_WP001´ (delay 0)
 ´remove_WP001´ ElementOperator 100167
-	operation remove
 	elements
-		1 ´blowtorch_FRONT_WP´
+ 		1 ´blowtorch_FRONT_WP´
+	operation remove
 	on_executed
 		´show_broken_lock_FRONT´ (delay 0)
 ´show_broken_lock_FRONT´ ElementUnitSequence 100168
@@ -1321,16 +1321,16 @@
 			notify_unit_sequence state_lock_broken
 			time 0
 ´remove_WPs002´ ElementOperator 100169
+	elements
+ 		1 ´blowtorch_FRONT_WP´
 	operation remove
-	elements
-		1 ´blowtorch_FRONT_WP´
 ´toggle_ON_front´ ElementToggle 100039
-	set_trigger_times 0
-	toggle on
 	elements
-		1 ´point_interaction_blowtorch_FRONT´ DISABLED
+ 		1 ´point_interaction_blowtorch_FRONT´ DISABLED
 		2 ´enable_blowtorch_WP_FRONT´ DISABLED
 		3 ´disable_blowtorch_WP_FRONT´ DISABLED
+	set_trigger_times 0
+	toggle on
 	on_executed
 		´disable_interaction_2´ (delay 0) DISABLED
 ´disable_interaction_2´ ElementUnitSequence 100170
@@ -1351,27 +1351,27 @@
 			notify_unit_sequence disable_contour
 			time 0
 ´toggle_OFF_blowtorch_interaction´ ElementToggle 100171
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´toggle_ON_back´
+ 		1 ´toggle_ON_back´
 		2 ´disable_blowtorch_WP_BACK´ DISABLED
 		3 ´enable_blowtorch_WP_BACK´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´toggle_OFF_front_triggers´ ElementToggle 100172
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´disable_blowtorch_WP_FRONT´ DISABLED
+ 		1 ´disable_blowtorch_WP_FRONT´ DISABLED
 		2 ´enable_blowtorch_WP_FRONT´ DISABLED
-´toggle_OFF_back_triggers´ ElementToggle 100173
 	set_trigger_times -1
 	toggle off
+´toggle_OFF_back_triggers´ ElementToggle 100173
 	elements
-		1 ´disable_blowtorch_WP_BACK´ DISABLED
+ 		1 ´disable_blowtorch_WP_BACK´ DISABLED
 		2 ´enable_blowtorch_WP_BACK´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´data_instigator_rule_blowtorch´ ElementInstigatorRule 100174
 	instigator player
-	invert false
+	invert False
 	rules
 		player
 			mission_equipment
@@ -1413,29 +1413,29 @@
 	on_executed
 		´toggle_off_wps´ (delay 0)
 ´toggle_off_wps´ ElementToggle 100175
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´toggle_ON_front´
+ 		1 ´toggle_ON_front´
 		2 ´toggle_ON_back´
 		3 ´blowtorch_BACK_WP´
 		4 ´blowtorch_FRONT_WP´
+	set_trigger_times -1
+	toggle off
 ´link_toggle_off_wp´ MissionScriptElement 100176
 	on_executed
 		´toggle_off_wp´ (delay 0) DISABLED
 		´remove_WPs001´ (delay 0)
 ´toggle_off_wp´ ElementToggle 100177
 	DISABLED
+	elements
+ 		1 ´blowtorch_BACK_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_BACK_WP´
 ´toggle_off_wp_2´ ElementToggle 100178
 	DISABLED
+	elements
+ 		1 ´blowtorch_FRONT_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_FRONT_WP´
 ´link_toggle_off_wp_2´ MissionScriptElement 100179
 	on_executed
 		´toggle_off_wp_2´ (delay 0) DISABLED
@@ -1447,15 +1447,15 @@
 	on_executed
 		´toggle_off_interaction´ (delay 0)
 ´toggle_on_interaction´ ElementToggle 100182
+	elements
+ 		1 ´point_interaction_blowtorch_BACK´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_interaction_blowtorch_BACK´ DISABLED
 ´toggle_off_interaction´ ElementToggle 100183
+	elements
+ 		1 ´point_interaction_blowtorch_BACK´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_interaction_blowtorch_BACK´ DISABLED
 ´link_toggle_on_front_interaction´ MissionScriptElement 100184
 	on_executed
 		´toggle_on_interaction_2´ (delay 0)
@@ -1463,55 +1463,55 @@
 	on_executed
 		´toggle_off_interaction_2´ (delay 0)
 ´toggle_on_interaction_2´ ElementToggle 100186
+	elements
+ 		1 ´point_interaction_blowtorch_FRONT´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_interaction_blowtorch_FRONT´ DISABLED
 ´toggle_off_interaction_2´ ElementToggle 100187
+	elements
+ 		1 ´point_interaction_blowtorch_FRONT´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_interaction_blowtorch_FRONT´ DISABLED
 ´remove_front_blocker´ ElementNavObstacle 100189
 	TRIGGER TIMES 1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (49.9998, 350, -25)
 	operation remove
 	position 1200, 200, 2.5
 	rotation 0, 0, 0, -1
+´remove_back_blocker´ ElementNavObstacle 100190
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (49.9998, 350, -25)
-´remove_back_blocker´ ElementNavObstacle 100190
-	TRIGGER TIMES 1
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (50, -250, -25)
 	operation remove
 	position 1300, 200, 2.5
 	rotation 0, 0, 0, -1
+´door_blockers_ADD_FFS´ ElementNavObstacle 100120
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (50, -250, -25)
-´door_blockers_ADD_FFS´ ElementNavObstacle 100120
-	TRIGGER TIMES 1
 	operation add
 	position 550, -100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (50, -250, -25)
 ´GETTING_SICK_OF_THIS_S´ ElementNavObstacle 100144
 	TRIGGER TIMES 1
-	operation add
-	position 650, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/004 (49.9998, 350, -25)
+	operation add
+	position 650, -100, 0
+	rotation 0, 0, 0, -1
 ´func_sequence_001´ ElementUnitSequence 100191
 	position 700, 100, 0
 	rotation 0, 0, 0, -1
@@ -1580,17 +1580,17 @@
 	event correct_vlad_container_opened
 ´point_debug_001´ ElementDebug 100032
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string correct vlad container opened
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100040
-	as_subtitle false
+	as_subtitle False
 	debug_string vlad_found
-	show_instigator false
+	show_instigator False
 ´output_door_opened´ ElementInstanceOutput 100041
 	event doors_opened
 ´toggle_off´ ElementToggle 100042
+	elements
+ 		1 ´output_door_opened´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´output_door_opened´

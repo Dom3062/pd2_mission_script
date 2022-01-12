@@ -46,25 +46,25 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100021
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 44, 0)
 	operation remove
 	position 800, -400, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 44, 0)
 	on_executed
 		´toggle_OFF_stuff´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100025
-	operation add
-	position 600, 0, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 44, 0)
+	operation add
+	position 600, 0, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´disable_nav_blocker´ (delay 0)
 ´env_effect_play_001´ ElementPlayEffect 100013
@@ -74,13 +74,13 @@
 	position 64, -12, 93
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´stop_thermite_vfx´ ElementStopEffect 100031
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position 800, 200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´remove_sound´ (delay 1)
 		´seq_open_door_thermite´ (delay 1)
@@ -95,21 +95,21 @@
 		´stop_thermite_vfx´ (delay 5)
 		´point_play_sound_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100036
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 64, -12, 96
 	rotation 0, 0, 0, -1
 	sound_event thermite_paste_start
-	use_instigator false
+	use_instigator False
 ´remove_sound´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´point_play_sound_001´
+ 		1 ´point_play_sound_001´
+	operation remove
 ´output_door_opened´ ElementInstanceOutput 100043
 	event door_opened
 ´point_interaction_001´ ElementInteraction 100018
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position -68, -12, 35
 	rotation 0, 0, 0, -1
@@ -119,15 +119,15 @@
 		´end001´ (delay 0) (alternative interacted)
 		´interrupt001´ (delay 0) (alternative interupt)
 ´sound_blowtorch_end001´ ElementPlaySound 100019
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -68, -12, 35
 	rotation 0, 0, 0, -1
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´point_interaction_002´ ElementInteraction 100045
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position -59, -12, 176
 	rotation 0, 0, 0, -1
@@ -138,7 +138,7 @@
 		´interrupt002´ (delay 0) (alternative interupt)
 ´point_interaction_003´ ElementInteraction 100046
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position 75, -12, 176
 	rotation 0, 0, 0, -1
@@ -149,7 +149,7 @@
 		´interrupt003´ (delay 0) (alternative interupt)
 ´point_interaction_004´ ElementInteraction 100047
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position 75, -10, 35
 	rotation 0, 0, 0, -1
@@ -159,35 +159,35 @@
 		´end004´ (delay 0) (alternative interacted)
 		´interrupt004´ (delay 0) (alternative interupt)
 ´sound_blowtorch_end002´ ElementPlaySound 100048
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -59, -12, 176
 	rotation 0, 0, 0, -1
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´sound_blowtorch_end003´ ElementPlaySound 100049
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 75, -12, 176
 	rotation 0, 0, 0, -1
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´sound_blowtorch_end004´ ElementPlaySound 100050
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 83, -10, 35
 	rotation 0, 0, 0, -1
 	sound_event bar_blowtorch_end
-	use_instigator false
+	use_instigator False
 ´input_disable_thermite_stuff´ ElementInstanceInput 100051
 	event disable_thermite_stuff
 	on_executed
 		´toggle_OFF_thermite_checks´ (delay 0)
 ´toggle_OFF_thermite_checks´ ElementToggle 100052
+	elements
+ 		1 ´thermite_pasted´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´thermite_pasted´
 	on_executed
 		´disable_thermite´ (delay 0)
 ´disable_thermite´ ElementUnitSequence 100053
@@ -205,40 +205,40 @@
 	on_executed
 		´toggle_ON_blowtorch_stuff´ (delay 0)
 ´toggle_ON_blowtorch_stuff´ ElementToggle 100055
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´point_interaction_004´ DISABLED
+ 		1 ´point_interaction_004´ DISABLED
 		2 ´point_interaction_003´ DISABLED
 		3 ´point_interaction_002´ DISABLED
 		4 ´point_interaction_001´ DISABLED
 		5 ´enable_WPs´ DISABLED
 		6 ´disable_WPs´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´fire_WP001´ ElementWaypoint 100056
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position -64, -12, 35
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fire_WP002´ ElementWaypoint 100057
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position -63, -12, 176
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fire_WP003´ ElementWaypoint 100058
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position 75, -12, 176
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fire_WP004´ ElementWaypoint 100059
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator true
+	only_in_civilian False
+	only_on_instigator True
 	position 83, -10, 35
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -253,50 +253,50 @@
 	position 0, -200, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´fire_WP004´ (delay 0)
 		´fire_WP001´ (delay 0)
 		´fire_WP002´ (delay 0)
 		´fire_WP003´ (delay 0)
 ´stop_effect´ ElementStopEffect 100044
+	elements
+ 		1 ´env_effect_play_005´
 	operation kill
 	position -291, -112, 37
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_005´
 	on_executed
 		´sound_blowtorch_end001´ (delay 0)
 ´stop_effect_2´ ElementStopEffect 100061
+	elements
+ 		1 ´env_effect_play_006´
 	operation kill
 	position -308, -112, 180
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_006´
 	on_executed
 		´sound_blowtorch_end002´ (delay 0)
 ´stop_effect_3´ ElementStopEffect 100062
+	elements
+ 		1 ´env_effect_play_007´
 	operation kill
 	position 317, -112, 180
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_007´
 	on_executed
 		´sound_blowtorch_end003´ (delay 0)
 ´stop_effect_4´ ElementStopEffect 100063
+	elements
+ 		1 ´env_effect_play_008´
 	operation kill
 	position 334, -112, 37
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_008´
 	on_executed
 		´sound_blowtorch_end004´ (delay 0)
 ´env_effect_play_005´ ElementPlayEffect 100064
@@ -306,7 +306,7 @@
 	position -65, -10, 34
 	random_time 0
 	rotation -0.382683, 0, 0, -0.92388
-	screen_space false
+	screen_space False
 ´interrupt003´ MissionScriptElement 100065
 	on_executed
 		´stop_effect_3´ (delay 0)
@@ -327,7 +327,7 @@
 	position -61, -9, 170
 	random_time 0
 	rotation -0.382683, 0, 0, -0.92388
-	screen_space false
+	screen_space False
 ´env_effect_play_007´ ElementPlayEffect 100069
 	base_time 0
 	effect effects/payday2/particles/equipment/welding_effect_blowtorch
@@ -335,7 +335,7 @@
 	position 75, -10, 174
 	random_time 0
 	rotation -0.382683, 0, 0, -0.92388
-	screen_space false
+	screen_space False
 ´env_effect_play_008´ ElementPlayEffect 100070
 	base_time 0
 	effect effects/payday2/particles/equipment/welding_effect_blowtorch
@@ -343,23 +343,23 @@
 	position 75, -7, 34
 	random_time 0
 	rotation -0.382683, 0, 0, -0.92388
-	screen_space false
+	screen_space False
 ´blowtorch_counter´ ElementCounter 100071
 	counter_target 0
 ´add_1_blowtorch´ ElementCounterOperator 100072
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´blowtorch_counter´
+ 		1 ´blowtorch_counter´
+	instance_var_names
+	operation add
 	on_executed
 		´all_blowtorch_interacted´ (delay 0)
 ´all_blowtorch_interacted´ ElementCounterFilter 100073
+	elements
+ 		1 ´blowtorch_counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´blowtorch_counter´
 	on_executed
 		´seq_open_door_blowtorch´ (delay 0)
 ´interrupt002´ MissionScriptElement 100074
@@ -402,31 +402,31 @@
 	on_executed
 		´stop_effect_4´ (delay 0)
 ´remove_WP´ ElementOperator 100083
-	operation remove
 	elements
-		1 ´fire_WP003´
+ 		1 ´fire_WP003´
+	operation remove
 ´remove_WP_2´ ElementOperator 100084
-	operation remove
 	elements
-		1 ´fire_WP002´
+ 		1 ´fire_WP002´
+	operation remove
 ´remove_WP_3´ ElementOperator 100085
-	operation remove
 	elements
-		1 ´fire_WP004´
+ 		1 ´fire_WP004´
+	operation remove
 ´remove_WP_4´ ElementOperator 100086
+	elements
+ 		1 ´fire_WP001´
 	operation remove
-	elements
-		1 ´fire_WP001´
 ´toggle_OFF_stuff´ ElementToggle 100087
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_blowtorch_stuff´
+ 		1 ´input_enable_blowtorch_stuff´
 		2 ´toggle_ON_blowtorch_stuff´
 		3 ´disable_WPs´ DISABLED
 		4 ´enable_WPs´ DISABLED
 		5 ´disable_button´ DISABLED
 		6 ´enable_button´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´output_door_opened´ (delay 0)
 ´input_enable_thermite_stuff´ ElementInstanceInput 100088
@@ -450,19 +450,19 @@
 			notify_unit_sequence state_interaction_thermite
 			time 0
 ´toggle_ON_thermite_checks´ ElementToggle 100020
+	elements
+ 		1 ´thermite_pasted´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´thermite_pasted´
 	on_executed
 		´enable_thermite´ (delay 0)
 ´remove_WPs´ ElementOperator 100091
-	operation remove
 	elements
-		1 ´fire_WP001´
+ 		1 ´fire_WP001´
 		2 ´fire_WP002´
 		3 ´fire_WP003´
 		4 ´fire_WP004´
+	operation remove
 ´disable_WPs´ ElementAreaTrigger 100092
 	DISABLED
 	amount 1
@@ -474,49 +474,49 @@
 	position 0, -200, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_exit
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_exit
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´remove_WPs´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100093
+	elements
+ 		1 ´fire_WP001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fire_WP001´
 	on_executed
 		´remove_WP_4´ (delay 0)
 ´toggle_OFF_WP_2´ ElementToggle 100094
+	elements
+ 		1 ´fire_WP002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fire_WP002´
 	on_executed
 		´remove_WP_2´ (delay 0)
 ´toggle_OFF_WP_3´ ElementToggle 100095
+	elements
+ 		1 ´fire_WP003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fire_WP003´
 	on_executed
 		´remove_WP´ (delay 0)
 ´toggle_OFF_WP_4´ ElementToggle 100096
+	elements
+ 		1 ´fire_WP004´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´fire_WP004´
 	on_executed
 		´remove_WP_3´ (delay 0)
 ´goto_gate_WP´ ElementWaypoint 100027
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -50, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -546,54 +546,54 @@
 	position 0, -200, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´output_winecellar_gate_found´ (delay 0)
 ´toggle_ON_trigger_ONCE´ ElementToggle 100102
 	TRIGGER TIMES 1
+	elements
+ 		1 ´winecellar_gate_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´winecellar_gate_found´ DISABLED
 ´remove_goto_WP´ ElementOperator 100104
-	operation remove
 	elements
-		1 ´goto_gate_WP´
+ 		1 ´goto_gate_WP´
+	operation remove
 	on_executed
 		´toggle_OFF_trigger´ (delay 0)
 ´toggle_OFF_trigger´ ElementToggle 100099
+	elements
+ 		1 ´winecellar_gate_found´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´winecellar_gate_found´ DISABLED
 ´input_disable_blowtorch_WPs´ ElementInstanceInput 100109
 	event disable_blowtorch_WPs
 	on_executed
 		´remove_WPs_2´ (delay 0)
 ´remove_WPs_2´ ElementOperator 100110
-	operation remove
 	elements
-		1 ´fire_WP001´
+ 		1 ´fire_WP001´
 		2 ´fire_WP002´
 		3 ´fire_WP003´
 		4 ´fire_WP004´
+	operation remove
 	on_executed
 		´toggle_OFF_WPs´ (delay 0)
 ´toggle_OFF_WPs´ ElementToggle 100111
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´fire_WP001´
+ 		1 ´fire_WP001´
 		2 ´fire_WP002´
 		3 ´fire_WP003´
 		4 ´fire_WP004´
+	set_trigger_times -1
+	toggle off
 ´disable_button´ ElementAreaTrigger 100112
 	DISABLED
 	amount 1
@@ -605,14 +605,14 @@
 	position 8, 163, 140
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 ´enable_button´ ElementAreaTrigger 100113
 	amount 1
 	depth 400
@@ -623,22 +623,20 @@
 	position 8, 163, 140
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 250
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 250
 ´open_door´ MissionScriptElement 100119
 	on_executed
 		´toggle_OFF_interactions´ (delay 0)
 ´toggle_OFF_interactions´ ElementToggle 100120
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´toggle_ON_blowtorch_stuff´
+ 		1 ´toggle_ON_blowtorch_stuff´
 		2 ´input_enable_blowtorch_stuff´
 		3 ´input_enable_thermite_stuff´
 		4 ´toggle_ON_thermite_checks´
@@ -650,6 +648,8 @@
 		10 ´fire_WP002´
 		11 ´fire_WP003´
 		12 ´fire_WP004´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´disable_thermite_2´ (delay 0)
 ´disable_thermite_2´ ElementUnitSequence 100123
@@ -665,12 +665,12 @@
 	on_executed
 		´remove_WPs_3´ (delay 0)
 ´remove_WPs_3´ ElementOperator 100124
-	operation remove
 	elements
-		1 ´fire_WP001´
+ 		1 ´fire_WP001´
 		2 ´fire_WP002´
 		3 ´fire_WP003´
 		4 ´fire_WP004´
+	operation remove
 	on_executed
 		´open_door_2´ (delay 0)
 ´seq_burn_door_002´ ElementUnitSequence 100009
@@ -740,12 +740,12 @@
 	on_executed
 		´unit_disabler´ (delay 0)
 ´point_play_sound_fall_door´ ElementPlaySound 100012
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 125, 0
 	rotation 0, 0, 0, -1
 	sound_event kick_metal_door
-	use_instigator false
+	use_instigator False
 ´open_door_2´ ElementUnitSequence 100014
 	position 700, -200, 0
 	rotation 0, 0, 0, -1
@@ -760,23 +760,23 @@
 		´unit_disabler´ (delay 0)
 		´enable_nav_blocker´ (delay 0)
 ´disable_nav_blocker´ ElementNavObstacle 100015
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 9872693663759567877
+			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (-78, 19, 0)
 	operation remove
 	position 600, -100, 0
 	rotation 0, 0, 0, -1
+´enable_nav_blocker´ ElementNavObstacle 100016
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 9872693663759567877
 			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (-78, 19, 0)
-´enable_nav_blocker´ ElementNavObstacle 100016
 	operation add
 	position 700, -300, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 9872693663759567877
-			unit_id units/dev_tools/level_tools/dev_nav_blocker/dev_nav_blocker_1x3m/001 (-78, 19, 0)
 	on_executed
 		´env_effect_stop_thermite´ (delay 0)
 ´input_button_pressed´ ElementInstanceInput 100017
@@ -784,27 +784,27 @@
 	on_executed
 		´open_door´ (delay 0)
 ´env_effect_stop_thermite´ ElementStopEffect 100022
+	elements
+ 		1 ´env_effect_play_001´
 	operation kill
 	position 700, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´remove_sopund_thermite´ (delay 0)
 ´remove_sopund_thermite´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´point_play_sound_001´
+ 		1 ´point_play_sound_001´
+	operation remove
 	on_executed
 		´disable_open_door_thermite´ (delay 0)
 ´disable_open_door_thermite´ ElementToggle 100024
+	elements
+ 		1 ´seq_open_door_thermite´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_open_door_thermite´
 ´data_instigator_rule_001´ ElementInstigatorRule 100028
 	instigator player
-	invert false
+	invert False
 	rules
 		player
 			mission_equipment

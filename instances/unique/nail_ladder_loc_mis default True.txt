@@ -8,20 +8,20 @@
 	position -75, 0, 50
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´ladder_bag_filter´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´carry_remove_ladderbag´ (delay 0)
 ´ladder_bag_filter´ ElementInstigatorRule 100004
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -95,21 +95,21 @@
 	on_executed
 		´enable_ladder_prop´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100016
-	SO_access 262140
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 2
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance hos
 	path_style destination
@@ -117,28 +117,28 @@
 	pose none
 	position -100, 0, 6.82777E-12
 	rotation -5.26836E-09, 5.26836E-09, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 97,9349 -0,911236 600
+	SO_access 262140
 	so_action e_nl_cs_up_sewer_ladder
 	trigger_on none
-	followup_elements
 ´inst_disable_ladder_loc´ ElementInstanceInput 100017
 	event ladder_loc_disable
 	on_executed
 		´toggle_ladderbag_trigger´ (delay 0)
 ´toggle_ladderbag_trigger´ ElementToggle 100018
+	elements
+ 		1 ´ladder_bag_trigger´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ladder_bag_trigger´
 	on_executed
 		´inst_ladder_loc_startup´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100019
+	elements
+ 		1 ´inst_ladder_loc_startup´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´inst_ladder_loc_startup´
 	on_executed
 		´inst_received_bag´ (delay 0)
 ´inst_ladder_loc_startup002´ ElementInstanceInput 100020

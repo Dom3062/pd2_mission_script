@@ -87,7 +87,7 @@
 	position 1350, 200, 0
 	rotation 0, 0, 0, -1
 	state mask_off
-	use_instigator true
+	use_instigator True
 	on_executed
 		´seq_enable_bag_and_briefcase´ (delay 0)
 ´seq_enable_bag_and_briefcase´ ElementUnitSequence 100015
@@ -151,36 +151,36 @@
 		´WP_briefcase´ (delay 3)
 		´logic_toggle_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string briefcase_opened
-	show_instigator false
+	show_instigator False
 ´WP_interact´ ElementWaypoint 100011
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -100, 0, 116.024
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100020
 	DISABLED
 	TRIGGER TIMES 1
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
 		2 ´WP_briefcase´
+	operation remove
 ´func_nav_obstacle_001´ ElementNavObstacle 100030
-	operation add
-	position 750, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, -50)
+	operation add
+	position 750, 100, 0
+	rotation 0, 0, 0, -1
 ´WP_briefcase´ ElementWaypoint 100032
 	icon pd2_loot
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 216.024
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -196,15 +196,15 @@
 	position 0, -100, 125
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_switch_WP´ (delay 0) DISABLED
 ´link_switch_WP´ MissionScriptElement 100035
@@ -214,35 +214,35 @@
 		´WP_interact´ (delay 0.5)
 		´logic_operator_002´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100036
+	elements
+ 		1 ´link_switch_WP´ DISABLED
+		2 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_switch_WP´ DISABLED
-		2 ´trigger_area_001´ DISABLED
 ´logic_operator_002´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´WP_briefcase´
+ 		1 ´WP_briefcase´
+	operation remove
 ´input_disable_WP´ ElementInstanceInput 100033
 	TRIGGER TIMES 1
 	event disable_WP
 	on_executed
 		´disable_WP´ (delay 0)
 ´disable_WP´ ElementToggle 100038
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
 		2 ´WP_briefcase´
 		3 ´WP_bag´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´WP_briefcase´
+ 		1 ´WP_briefcase´
 		2 ´WP_interact´
 		3 ´WP_bag´
+	operation remove
 ´input_spawn_keycard_briefcase´ ElementInstanceInput 100016
 	TRIGGER TIMES 1
 	event spawn_keycard_briefcase
@@ -250,10 +250,10 @@
 		´enable_spawn_keycard´ (delay 0)
 ´enable_spawn_keycard´ ElementToggle 100019
 	TRIGGER TIMES 1
+	elements
+ 		1 ´seq_show_contents´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´seq_show_contents´ DISABLED
 ´input_show_cart´ ElementInstanceInput 100027
 	event show_cart
 	on_executed
@@ -301,9 +301,9 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100044
-	as_subtitle false
+	as_subtitle False
 	debug_string got_equipment
-	show_instigator false
+	show_instigator False
 ´input_spawn_keycard_gear´ ElementInstanceInput 100046
 	event spawn_keycard_gear
 	on_executed
@@ -332,8 +332,8 @@
 			time 0
 ´WP_bag´ ElementWaypoint 100048
 	icon pd2_loot
-	only_in_civilian true
-	only_on_instigator false
+	only_in_civilian True
+	only_on_instigator False
 	position 0, 0, 241.024
 	rotation 0, 0, 0, -1
 	text_id debug_none

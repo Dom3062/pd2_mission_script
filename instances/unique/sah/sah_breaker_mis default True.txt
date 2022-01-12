@@ -42,7 +42,7 @@
 		´disable_interaction´ (delay 0)
 ´interaction_open_door´ ElementInteraction 100006
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, -23, 150.004
 	rotation 0, 0, 0, -1
@@ -62,11 +62,11 @@
 	on_executed
 		´enable_breaker´ (delay 0.5)
 ´turn_interaction_point_on´ ElementToggle 100008
+	elements
+ 		1 ´interaction_open_door´ DISABLED
+		2 ´area_player_closeby´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interaction_open_door´ DISABLED
-		2 ´area_player_closeby´ DISABLED
 ´breaker_on_output´ ElementInstanceOutput 100001
 	event breaker_on
 	on_executed
@@ -104,15 +104,15 @@
 		´remove_wp´ (delay 0)
 ´WP_interact´ ElementWaypoint 100015
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -23, 150.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´disable_breaker´ ElementInstanceInput 100017
 	event disable_breaker
 	on_executed
@@ -136,13 +136,13 @@
 		´WP_interact´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´point_debug_001´ ElementDebug 100012
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: breaker_off
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100013
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: breaker_on
-	show_instigator false
+	show_instigator False
 ´2´ ElementCounter 100020
 	counter_target 2
 ´activate_WP_interact(helper)´ MissionScriptElement 100021
@@ -162,14 +162,14 @@
 	position 0, -150, 50.004
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´link_player_closeby´ (delay 0)
 ´seq_enable_glow´ ElementUnitSequence 100024
@@ -184,20 +184,20 @@
 			notify_unit_sequence enable_glow
 			time 0
 ´enable_interaction_2´ ElementToggle 100025
+	elements
+ 		1 ´interaction_open_door´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_open_door´ DISABLED
 ´link_player_closeby´ MissionScriptElement 100026
 	on_executed
 		´enable_interaction_2´ (delay 0)
 		´seq_enable_glow´ (delay 0)
 		´activate_WP_interact(helper)´ (delay 0)
 ´disable_helper_WP_if_gone_loud´ ElementToggle 100022
+	elements
+ 		1 ´activate_WP_interact(helper)´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´activate_WP_interact(helper)´
 ´police_called´ ElementGlobalEventTrigger 100027
 	TRIGGER TIMES 1
 	global_event police_called
@@ -207,9 +207,9 @@
 		´disable_helper_WP_if_gone_loud´ (delay 0)
 		´remove_wp_2´ (delay 0)
 ´remove_wp_2´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 	on_executed
 		´disable_outline´ (delay 0)
 ´disable_outline´ ElementUnitSequence 100029
@@ -229,22 +229,22 @@
 			notify_unit_sequence disable_glow
 			time 0
 ´point_debug_003´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string SUPPLIES!
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100031
-	as_subtitle false
+	as_subtitle False
 	debug_string SUPPLIES INPUT!
-	show_instigator false
+	show_instigator False
 ´logic_operator_001´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´point_debug_005´ ElementDebug 100033
-	as_subtitle false
+	as_subtitle False
 	debug_string breakor_on_trigger
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100034
-	as_subtitle false
+	as_subtitle False
 	debug_string turn_on_auctioneer
-	show_instigator false
+	show_instigator False

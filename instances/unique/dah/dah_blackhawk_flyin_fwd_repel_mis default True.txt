@@ -28,52 +28,52 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -198, 69.0002, 0
 	rotation 0, 0, 0.382683, -0.92388
 	spawn_action e_sp_down_16m_left
 	team default
 	voice 0
-	orientation_elements
 ´prefered_enemy_spawn002´ ElementSpawnEnemyDummy 100024
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -198, -30.9999, 0
 	rotation 0, 0, 0.382683, -0.92388
 	spawn_action e_sp_down_16m_left
 	team default
 	voice 0
-	orientation_elements
 ´prefered_enemy_spawn003´ ElementSpawnEnemyDummy 100025
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 178, -83.0001, 0
 	rotation 0, 0, 0.92388, 0.382683
 	spawn_action e_sp_down_16m_right
 	team default
 	voice 0
-	orientation_elements
 ´prefered_enemy_spawn004´ ElementSpawnEnemyDummy 100026
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 178, 17, 0
 	rotation 0, 0, 0.92388, 0.382683
 	spawn_action e_sp_down_16m_right
 	team default
 	voice 0
-	orientation_elements
 ´open_doors´ ElementUnitSequence 100029
 	position -1200, 526.606, -30.1273
 	rotation 0, 0, 0, -1
@@ -108,10 +108,13 @@
 		´spawn_grenade_chance´ (delay 0)
 ´prefered_group´ ElementSpawnEnemyGroup 100030
 	amount 0
-	ignore_disabled false
+	elements
+ 		1 ´prefered_enemy_spawn001´
+		2 ´prefered_enemy_spawn002´
+		3 ´prefered_enemy_spawn003´
+		4 ´prefered_enemy_spawn004´
+	ignore_disabled False
 	interval 12
-	spawn_type group
-	team default
 	preferred_spawn_groups
 		1 tac_shield_wall_charge
 		2 FBI_spoocs
@@ -121,11 +124,8 @@
 		6 tac_swat_rifle_flank
 		7 tac_bull_rush
 		8 tac_shield_wall_ranged
-	elements
-		1 ´prefered_enemy_spawn001´
-		2 ´prefered_enemy_spawn002´
-		3 ´prefered_enemy_spawn003´
-		4 ´prefered_enemy_spawn004´
+	spawn_type group
+	team default
 ´add_prefered´ ElementEnemyPreferedAdd 100031
 	spawn_groups
 		1 ´prefered_group´
@@ -133,7 +133,7 @@
 		´start_timer´ (delay 0)
 ´remove_prefered´ ElementEnemyPreferedRemove 100032
 	elements
-		1 ´add_prefered´
+ 		1 ´add_prefered´
 	on_executed
 		´close_doors´ (delay 15)
 ´takeoff´ ElementUnitSequence 100036
@@ -173,31 +173,31 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´stop_heli_dust_effect´ ElementStopEffect 100038
+	elements
+ 		1 ´Heli_smoke_play´
 	operation fade_kill
 	position -1300, 326.606, -30.1273
 	rotation 0, 0, 0, -1
-	elements
-		1 ´Heli_smoke_play´
 	on_executed
 		´blackhawk_exit_started_output´ (delay 0)
 ´point_smoke_grenade_001´ ElementSmokeGrenade 100039
 	duration 15
 	effect_type smoke
-	ignore_control true
-	immediate true
+	ignore_control True
+	immediate True
 	position 0, 0, 14
 	rotation 0, 0, 0, -1
 ´enemy_spawn_trigger´ ElementEnemyDummyTrigger 100042
-	event spawn
-	position -1500, 526.606, -30.1273
-	rotation 0, 0, 0, -1
 	elements
-		1 ´prefered_enemy_spawn001´
+ 		1 ´prefered_enemy_spawn001´
 		2 ´prefered_enemy_spawn002´
 		3 ´prefered_enemy_spawn003´
 		4 ´prefered_enemy_spawn004´
+	event spawn
+	position -1500, 526.606, -30.1273
+	rotation 0, 0, 0, -1
 	on_executed
 		´spawn_counter´ (delay 0)
 		´set_timer20_sec´ (delay 0)
@@ -219,19 +219,19 @@
 	on_executed
 		´point_smoke_grenade_001´ (delay 0)
 ´reset_forcespawn´ ElementToggle 100049
+	elements
+ 		1 ´spawn_counter´
+		2 ´force_spawn_group´
 	set_trigger_times 0
 	toggle on
-	elements
-		1 ´spawn_counter´
-		2 ´force_spawn_group´
 	on_executed
 		´reset_spawn_counter´ (delay 0)
 ´reset_spawn_counter´ ElementCounterOperator 100050
 	amount 8
-	operation set
-	instance_var_names
 	elements
-		1 ´spawn_counter´
+ 		1 ´spawn_counter´
+	instance_var_names
+	operation set
 ´blackhawk_hide´ ElementUnitSequence 100041
 	position -1500, 326.606, -30.1273
 	rotation 0, 0, 0, -1
@@ -250,12 +250,12 @@
 		´force_spawn_group´ (delay 0)
 ´set_timer20_sec´ ElementTimerOperator 100000
 	TRIGGER TIMES 1
+	elements
+ 		1 ´20sec_timer´
 	operation set_time
 	position -1400, 1000, 0
 	rotation 0, 0, 0, -1
 	time 20
-	elements
-		1 ´20sec_timer´
 	on_executed
 		´logic_timer_operator_001´ (delay 0)
 ´force_spawn_group´ MissionScriptElement 100002
@@ -263,34 +263,34 @@
 		´prefered_group´ (delay 0)
 		´set_timer20_sec´ (delay 2)
 ´turn_off_forcespawn´ ElementToggle 100045
+	elements
+ 		1 ´spawn_counter´
+		2 ´force_spawn_group´
 	set_trigger_times 0
 	toggle off
-	elements
-		1 ´spawn_counter´
-		2 ´force_spawn_group´
 ´start_timer´ ElementTimerOperator 100004
+	elements
+ 		1 ´20sec_timer´
 	operation start
 	position -1300, 900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´20sec_timer´
 	on_executed
 		´reset´ (delay 0)
 ´logic_timer_operator_001´ ElementTimerOperator 100005
+	elements
+ 		1 ´20sec_timer´
 	operation pause
 	position -1400, 1100, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´20sec_timer´
 	on_executed
 		´start_timer´ (delay 5)
 ´reset´ ElementToggle 100006
+	elements
+ 		1 ´set_timer20_sec´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´set_timer20_sec´
 ´input_change_to_murkywater´ ElementInstanceInput 100007
 	event change_to_murkywater
 	on_executed

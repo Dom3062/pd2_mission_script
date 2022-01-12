@@ -28,14 +28,14 @@
 	on_executed
 		´add_door_blocker´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100008
-	operation add
-	position 400, -400, 100
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, 0, 0)
+	operation add
+	position 400, -400, 100
+	rotation 0, 0, 0, -1
 ´gates_opened´ ElementUnitSequenceTrigger 100009
 	TRIGGER TIMES 1
 	sequence_list
@@ -48,14 +48,14 @@
 		´output_gates_opened´ (delay 0)
 		´disable_bag_blocker´ (delay 0)
 ´remove_door_blockers´ ElementNavObstacle 100010
-	operation remove
-	position 100, -500, 100
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (200, 0, 0)
+	operation remove
+	position 100, -500, 100
+	rotation 0, 0, 0, -1
 ´drill_done´ ElementUnitSequenceTrigger 100011
 	TRIGGER TIMES 1
 	sequence_list
@@ -68,12 +68,12 @@
 		´output_drill_done´ (delay 0)
 		´hide_drill´ (delay 0)
 ´remove_WP_drill´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´WP_drill´
+ 		1 ´WP_drill´
+	operation remove
 ´WP_drill´ ElementWaypoint 100014
 	icon pd2_drill
-	only_in_civilian false
+	only_in_civilian False
 	position 33, -100, 136
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -127,28 +127,28 @@
 	position -4, -90, 0
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 210
 	rules_element_ids
 		1 ´thermal_only´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 210
 	on_executed
 		´hide_marker´ (delay 0)
 		´sound_bag´ (delay 0)
 		´remove_bag´ (delay 0)
 		´activate_drill´ (delay 0)
 ´enable_area_drill´ ElementToggle 100001
+	elements
+ 		1 ´area_drill´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_drill´ DISABLED
 ´thermal_only´ ElementInstigatorRule 100023
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -167,17 +167,17 @@
 			notify_unit_sequence hide
 			time 0
 ´sound_bag´ ElementPlaySound 100026
-	append_prefix false
+	append_prefix False
 	position -4, -90, 50
 	rotation 0, 0, -0.707107, -0.707107
 	sound_event bag_medium_drop
-	use_instigator false
+	use_instigator False
 ´sound_gates_opening´ ElementPlaySound 100027
-	append_prefix false
+	append_prefix False
 	position -4, -90, 150
 	rotation 0, 0, -0.707107, -0.707107
 	sound_event security_door_close
-	use_instigator false
+	use_instigator False
 ´open_gates´ ElementUnitSequence 100029
 	position 0, -400, 100
 	rotation 0, 0, 0, -1
@@ -189,12 +189,12 @@
 			notify_unit_sequence open_door
 			time 0
 ´teammate_comment_drill_running´ ElementTeammateComment 100030
-	close_to_element true
+	close_to_element True
 	comment g21
 	position -4, -90, 100
 	radius 0
 	rotation 0, 0, -0.707107, -0.707107
-	use_instigator false
+	use_instigator False
 ´hide_gate´ ElementDisableUnit 100032
 	position 400, -500, 100
 	rotation 0, 0, 0, -1
@@ -253,7 +253,7 @@
 		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_4x3m/001 (200, 0, 0.00400394)
 ´point_loot_bag_001´ ElementLootBag 100044
 	carry_id lance_bag
-	from_respawn false
+	from_respawn False
 	position 0, -600, 100
 	rotation 0, 0, 0, -1
 	on_executed
@@ -269,117 +269,117 @@
 ´timer_drill´ ElementTimer 100002
 	timer 360
 ´start_timer´ ElementTimerOperator 100019
+	elements
+ 		1 ´timer_drill´
 	operation start
 	position 300, 0, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_drill´
 ´timer_pause´ ElementTimerOperator 100031
+	elements
+ 		1 ´timer_drill´
 	operation pause
 	position 400, -100, 100
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer_drill´
 ´timer_halfway´ ElementTimerTrigger 100040
 	DISABLED
+	elements
+ 		1 ´timer_drill´
 	position 500, 100, 100
 	rotation 0, 0, 0, -1
 	time 180
-	elements
-		1 ´timer_drill´
 	on_executed
 		´teammate_comment_drill_halfway´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´teammate_comment_drill_halfway´ ElementTeammateComment 100041
-	close_to_element true
+	close_to_element True
 	comment t02x_sin
 	position 0, -100, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´timer_120s´ ElementTimerTrigger 100046
 	DISABLED
+	elements
+ 		1 ´timer_drill´
 	position 500, 0, 100
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´timer_drill´
 	on_executed
 		´teammate_comment_drill_2min´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´teammate_comment_drill_2min´ ElementTeammateComment 100047
-	close_to_element true
+	close_to_element True
 	comment g65
 	position 0, -100, 225
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_drill_1min´ ElementTeammateComment 100048
-	close_to_element true
+	close_to_element True
 	comment g63
 	position 0, -100, 250
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´timer_60s´ ElementTimerTrigger 100049
 	DISABLED
+	elements
+ 		1 ´timer_drill´
 	position 500, -100, 100
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´timer_drill´
 	on_executed
 		´teammate_comment_drill_1min´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´teammate_comment_drill_30s´ ElementTeammateComment 100050
-	close_to_element true
+	close_to_element True
 	comment g62
 	position 0, -100, 275
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´timer_30s´ ElementTimerTrigger 100051
 	DISABLED
+	elements
+ 		1 ´timer_drill´
 	position 500, -200, 100
 	rotation 0, 0, 0, -1
 	time 30
-	elements
-		1 ´timer_drill´
 	on_executed
 		´teammate_comment_drill_30s´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´timer_10s´ ElementTimerTrigger 100052
 	DISABLED
+	elements
+ 		1 ´timer_drill´
 	position 600, -100, 100
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´timer_drill´
 	on_executed
 		´teammate_comment_drill_30s001´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´teammate_comment_drill_30s001´ ElementTeammateComment 100053
-	close_to_element true
+	close_to_element True
 	comment p17
 	position 0, -100, 300
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´point_debug_001´ ElementDebug 100054
-	as_subtitle false
+	as_subtitle False
 	debug_string team VO counter
-	show_instigator false
+	show_instigator False
 ´soundbank_robbers001´ ElementPlaySound 100055
-	append_prefix false
+	append_prefix False
 	position 350, 50, 300
 	rotation 0, 0, 0, -1
 	sound_event f13r_sin
-	use_instigator false
+	use_instigator False
 ´soundbank_robbers002´ ElementPlaySound 100056
-	append_prefix false
+	append_prefix False
 	position 450, 50, 300
 	rotation 0, 0, 0, -1
 	sound_event v53
-	use_instigator false
+	use_instigator False

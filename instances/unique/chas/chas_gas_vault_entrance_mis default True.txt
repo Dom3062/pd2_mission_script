@@ -38,10 +38,10 @@
 	on_executed
 		´disable_gas_effect´ (delay 0)
 ´toggle_ON´ ElementToggle 100010
+	elements
+ 		1 ´area_gas_damage_start´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_gas_damage_start´ DISABLED
 	on_executed
 		´activate_gas_effect´ (delay 0)
 ´area_gas_damage_start´ ElementAreaTrigger 100011
@@ -55,17 +55,17 @@
 	position -5050, 2975, -125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on both
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´gas_damage_001´
 		2 ´gas_damage_002´
-	use_shape_element_ids
+	substitute_object 
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´gas_kill_zone´ (delay 0)
 ´gas_kill_zone´ ElementKillZone 100012
@@ -79,7 +79,7 @@
 	position -6825, 3200, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_002´ ElementPlayEffect 100014
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -87,7 +87,7 @@
 	position -6150, 3175, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´activate_gas_effect´ MissionScriptElement 100016
 	on_executed
 		´env_effect_play_002´ (delay 0)
@@ -110,11 +110,8 @@
 		´toggle_OFF´ (delay 0)
 		´env_effect_stop_001´ (delay 0)
 ´env_effect_stop_001´ ElementStopEffect 100018
-	operation fade_kill
-	position -5800, 2500, -400
-	rotation 0, 0, 0, -1
 	elements
-		1 ´env_effect_play_002´
+ 		1 ´env_effect_play_002´
 		2 ´env_effect_play_001´
 		3 ´env_effect_play_003´
 		4 ´env_effect_play_005´
@@ -128,16 +125,17 @@
 		12 ´env_effect_play_012´
 		13 ´env_effect_play_013´
 		14 ´env_effect_play_014´
+	operation fade_kill
+	position -5800, 2500, -400
+	rotation 0, 0, 0, -1
 ´toggle_ON_disable_kill_zone´ ElementToggle 100020
 	set_trigger_times -1
 	toggle on
 	on_executed
 		´output_gas_disabled´ (delay 0)
 ´toggle_OFF´ ElementToggle 100019
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´env_effect_play_002´
+ 		1 ´env_effect_play_002´
 		2 ´env_effect_play_001´
 		3 ´env_effect_play_003´
 		4 ´area_gas_damage_start´ DISABLED
@@ -154,6 +152,8 @@
 		15 ´env_effect_play_014´
 		16 ´env_effect_play_013´
 		17 ´env_effect_play_012´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´toggle_ON_disable_kill_zone´ (delay 0)
 ´env_effect_play_003´ ElementPlayEffect 100021
@@ -163,7 +163,7 @@
 	position -7350, 3175, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´output_gas_disabled´ ElementInstanceOutput 100022
 	event gas_disabled
 ´env_effect_play_004´ ElementPlayEffect 100023
@@ -173,7 +173,7 @@
 	position -5450, 4375, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_005´ ElementPlayEffect 100024
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -181,7 +181,7 @@
 	position -5575, 3750, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´gas_damage_001´ ElementShape 100037
 	depth 1400
 	height 500
@@ -205,7 +205,7 @@
 	position -7350, 2375, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_007´ ElementPlayEffect 100039
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -213,7 +213,7 @@
 	position -6725, 2400, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_008´ ElementPlayEffect 100040
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -221,7 +221,7 @@
 	position -6250, 2375, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_009´ ElementPlayEffect 100041
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -229,7 +229,7 @@
 	position -7350, 2775, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_010´ ElementPlayEffect 100042
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -237,7 +237,7 @@
 	position -6725, 2800, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_011´ ElementPlayEffect 100043
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -245,7 +245,7 @@
 	position -6250, 2775, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_012´ ElementPlayEffect 100044
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -253,7 +253,7 @@
 	position -5500, 3175, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_013´ ElementPlayEffect 100045
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -261,7 +261,7 @@
 	position -5600, 2775, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_014´ ElementPlayEffect 100046
 	base_time 0
 	effect effects/payday2/environment/gas_damage_area
@@ -269,4 +269,4 @@
 	position -5600, 2375, -200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False

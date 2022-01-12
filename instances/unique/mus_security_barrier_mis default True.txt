@@ -59,40 +59,40 @@
 		´cancel_wait´ (delay 0)
 		´cancel_fix´ (delay 0)
 ´pause_timelock´ ElementTimerOperator 100019
+	elements
+ 		1 ´timelock´
 	operation pause
 	position 400, 200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timelock´
 ´start_timelock´ ElementTimerOperator 100017
+	elements
+ 		1 ´timelock´
 	operation start
 	position 400, -200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timelock´
 	on_executed
 		´wait_obj´ (delay 0)
 ´timelock_started_stealth´ ElementInstanceOutput 100022
 	event timelock_started
 ´interrupt_timelock001´ ElementSpecialObjective 100021
 	TRIGGER TIMES 1
-	SO_access 8672
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
-	interrupt_objective false
+	interrupt_objective False
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -100,19 +100,19 @@
 	pose none
 	position 162, 101, 2.5
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 4500
 	search_position 113,987 141,587 2,5
+	SO_access 8672
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
 ´enable_and_action_interrupt´ ElementToggle 100014
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´interrupt_timelock001´
+ 		1 ´interrupt_timelock001´
 		2 ´interrupt_succesful´ DISABLED
 		3 ´failed´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´interrupt_timelock001´ (delay 0.05)
 ´security_overrided´ ElementInstanceInput 100003
@@ -132,11 +132,11 @@
 ´interrupt_succesful´ ElementSpecialObjectiveTrigger 100015
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_timelock001´
 	event complete
 	position 200, 200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_timelock001´
 	on_executed
 		´pause_timelock´ (delay 0)
 		´stop_interrupt´ (delay 0)
@@ -153,103 +153,103 @@
 		´remove_interrupt´ (delay 0)
 		´disable_interrupt´ (delay 0)
 ´remove_interrupt´ ElementOperator 100024
+	elements
+ 		1 ´interrupt_timelock001´
 	operation remove
-	elements
-		1 ´interrupt_timelock001´
 ´disable_interrupt´ ElementToggle 100026
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_timelock001´
+ 		1 ´interrupt_timelock001´
 		2 ´interrupt_succesful´ DISABLED
 		3 ´failed´ DISABLED
-´disable_security_overrided´ ElementToggle 100010
 	set_trigger_times -1
 	toggle off
+´disable_security_overrided´ ElementToggle 100010
 	elements
-		1 ´security_overrided´
+ 		1 ´security_overrided´
+	set_trigger_times -1
+	toggle off
 ´failed´ ElementSpecialObjectiveTrigger 100027
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_timelock001´
 	event fail
 	position -100, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_timelock001´
 	on_executed
 		´enable_and_action_interrupt´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string failed_interrupt
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100029
-	as_subtitle false
+	as_subtitle False
 	debug_string completed_interrupt
-	show_instigator false
+	show_instigator False
 ´setup_timer´ MissionScriptElement 100000
 	EXECUTE ON STARTUP
 	BASE DELAY 1,25
 	on_executed
 		´harder´ (delay 0)
 ´logic_timer_operator_001´ ElementTimerOperator 100001
+	elements
+ 		1 ´timelock´
 	operation add_time
 	position 100, -300, 0
 	rotation 0, 0, 0, -1
 	time 30
-	elements
-		1 ´timelock´
 ´harder´ ElementFilter 100002
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 0, -300, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_timer_operator_001´ (delay 0)
 ´fix_wp´ ElementWaypoint 100033
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position 161, 36, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´defend_wp´ ElementWaypoint 100034
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 161, 36, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_interact_fix_wp´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´fix_wp´
+ 		1 ´fix_wp´
 		2 ´interact_wp´
-´remove_wp´ ElementOperator 100036
 	operation remove
+´remove_wp´ ElementOperator 100036
 	elements
-		1 ´fix_wp´
+ 		1 ´fix_wp´
 		2 ´defend_wp´
 		3 ´interact_wp´
+	operation remove
 ´objective_started´ ElementInstanceInput 100037
 	event objective_started
 	on_executed
 		´obj_started_link´ (delay 0)
 ´interact_wp´ ElementWaypoint 100038
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 161, 36, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -257,14 +257,14 @@
 	on_executed
 		´interact_wp´ (delay 0)
 ´obj_done´ ElementToggle 100040
+	elements
+ 		1 ´obj_started_link´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´obj_started_link´
 ´remove_defend_wp´ ElementOperator 100041
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 ´enable_interaction´ ElementUnitSequence 100007
 	position -100, 300, 0
 	rotation 0, 0, 0, -1
@@ -317,10 +317,10 @@
 			time 0
 ´enable_hack_complete´ ElementToggle 100045
 	TRIGGER TIMES 1
+	elements
+ 		1 ´hack_complete´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´hack_complete´ DISABLED
 ´hack_complete´ MissionScriptElement 100046
 	DISABLED
 	on_executed
@@ -337,97 +337,97 @@
 			time 0
 ´fix_obj´ ElementObjective 100048
 	amount 0
-	countdown false
+	countdown False
+	instance_var_names
 	objective ind_new_5_fix
 	position 0, 200, 0
 	rotation 0, 0, 0, -1
 	state complete_and_activate
 	sub_objective none
-	instance_var_names
 ´wait_obj´ ElementObjective 100050
 	amount 0
-	countdown false
+	countdown False
+	instance_var_names
 	objective ind_new_5_wait
 	position 500, -200, 0
 	rotation 0, 0, 0, -1
 	state complete_and_activate
 	sub_objective none
-	instance_var_names
 ´cancel_wait´ ElementObjective 100051
 	amount 0
-	countdown false
+	countdown False
+	instance_var_names
 	objective ind_new_5_wait
 	position 0, 300, 0
 	rotation 0, 0, 0, -1
 	state remove
 	sub_objective none
-	instance_var_names
 ´cancel_fix´ ElementObjective 100052
 	amount 0
-	countdown false
+	countdown False
+	instance_var_names
 	objective ind_new_5_fix
 	position 500, -400, 0
 	rotation 0, 0, 0, -1
 	state remove
 	sub_objective none
-	instance_var_names
 ´cancel_get_past´ ElementObjective 100053
 	amount 0
-	countdown false
+	countdown False
+	instance_var_names
 	objective ind_new_5
 	position 600, -400, 0
 	rotation 0, 0, 0, -1
 	state remove
 	sub_objective none
-	instance_var_names
 ´alarm_cutoff´ MissionScriptElement 100054
 	on_executed
 		´start_timelock´ (delay 0)
 ´disable_alarm_cutoff´ ElementToggle 100055
+	elements
+ 		1 ´alarm_cutoff´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´alarm_cutoff´
 ´func_dialogue_040´ ElementDialogue 100031
 	TRIGGER TIMES 5
 	dialogue Play_pln_hd1_40
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 	on_executed
 		´func_dialogue_041´ (delay 30)
 ´func_dialogue_041´ ElementDialogue 100032
 	TRIGGER TIMES 3
 	dialogue Play_pln_hd1_41
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´disable_reminder´ ElementToggle 100056
+	elements
+ 		1 ´func_dialogue_041´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_dialogue_041´
 ´func_dialogue_042´ ElementDialogue 100057
 	dialogue Play_pln_hd1_42
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´enable_loud_vo´ ElementToggle 100058
+	elements
+ 		1 ´loud_vo002´ DISABLED
+		2 ´loud_vo001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loud_vo002´ DISABLED
-		2 ´loud_vo001´ DISABLED
 ´disable_interact´ ElementToggle 100059
+	elements
+ 		1 ´interact_wp´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_wp´
 ´enable_interact001´ ElementToggle 100060
+	elements
+ 		1 ´interact_wp´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interact_wp´
 ´loud_vo001´ MissionScriptElement 100061
 	DISABLED
 	on_executed

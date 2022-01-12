@@ -25,7 +25,7 @@
 		´plane_fly_in_anim´ (delay 0)
 ´drop_cage_bag001´ ElementLootBag 100005
 	carry_id cage_bag
-	from_respawn false
+	from_respawn False
 	position -12, 575, 1600
 	push_multiplier 0,5
 	rotation 0.271413, 0.129457, 0.410586, -0.860811
@@ -72,7 +72,7 @@
 		´15s_delay´ (delay 15)
 ´drop_cage_bag002´ ElementLootBag 100012
 	carry_id cage_bag
-	from_respawn false
+	from_respawn False
 	position -12, 525, 1600
 	push_multiplier 0,6
 	rotation 0.845957, 0.266729, -0.13885, -0.440378
@@ -81,7 +81,7 @@
 		´drop_cage_bag003´ (delay 0.05)
 ´drop_cage_bag003´ ElementLootBag 100013
 	carry_id cage_bag
-	from_respawn false
+	from_respawn False
 	position -12, 475, 1600
 	push_multiplier 0,5
 	rotation -0.374709, -0.37471, 0.599661, -0.599661
@@ -97,19 +97,19 @@
 	position -25, -150, 0.00400543
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_to_bags_link´ (delay 0)
 ´bag_waypoint´ ElementWaypoint 100015
 	icon pd2_loot
-	only_in_civilian false
+	only_in_civilian False
 	position -25, -150, 50.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -122,14 +122,14 @@
 		´enable_player_close_to_bags´ (delay 0)
 		´bags_are_in_place´ (delay 0)
 ´remove_bag_waypoint´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´bag_waypoint´
+ 		1 ´bag_waypoint´
+	operation remove
 ´enable_player_close_to_bags´ ElementToggle 100019
+	elements
+ 		1 ´player_close_to_bags´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´player_close_to_bags´ DISABLED
 ´player_close_to_bags_link´ MissionScriptElement 100020
 	on_executed
 		´player_close_to_bags_output´ (delay 0)
@@ -159,37 +159,37 @@
 	on_executed
 		´there_in_3min_debug´ (delay 0)
 ´there_in_3min_debug´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string there in 3min
-	show_instigator false
+	show_instigator False
 ´there_in_2min_debug´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string there in 2min
-	show_instigator false
+	show_instigator False
 ´there_in_2min´ ElementInstanceOutput 100029
 	event there_in_2min
 	on_executed
 		´there_in_2min_debug´ (delay 0)
 ´there_in_1min_debug´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string there in 1min
-	show_instigator false
+	show_instigator False
 ´there_in_1min´ ElementInstanceOutput 100031
 	event there_in_1min
 	on_executed
 		´there_in_1min_debug´ (delay 0)
 ´there_in_30s_debug´ ElementDebug 100032
-	as_subtitle false
+	as_subtitle False
 	debug_string there in 30s
-	show_instigator false
+	show_instigator False
 ´there_in_30s´ ElementInstanceOutput 100033
 	event there_in_30s
 	on_executed
 		´there_in_30s_debug´ (delay 0)
 ´seeing_the_area_debug´ ElementDebug 100034
-	as_subtitle false
+	as_subtitle False
 	debug_string seeing the area
-	show_instigator false
+	show_instigator False
 ´seeing_the_area´ ElementInstanceOutput 100035
 	event seeing_the_area
 	on_executed
@@ -214,9 +214,9 @@
 	event there_in_1min_again
 ´there_in_1min_again_debug´ ElementDebug 100041
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string there in 1min again
-	show_instigator false
+	show_instigator False
 ´temp_startup001´ MissionScriptElement 100042
 	DISABLED
 	EXECUTE ON STARTUP

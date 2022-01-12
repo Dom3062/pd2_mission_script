@@ -53,15 +53,15 @@
 		´link_enable_interaction´ (delay 0)
 ´WP_phone´ ElementWaypoint 100015
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 5, 0, 26
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_phone´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´WP_phone´
+ 		1 ´WP_phone´
+	operation remove
 ´link_interacted_with_phone´ MissionScriptElement 100017
 	on_executed
 		´disable_hint´ (delay 0)
@@ -83,10 +83,10 @@
 	on_executed
 		´func_enable_unit_001´ (delay 1)
 ´disable_hint´ ElementToggle 100028
+	elements
+ 		1 ´func_enable_unit_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_enable_unit_001´
 ´output_started_conversation´ ElementInstanceOutput 100031
 	event started_conversation
 ´seq_enable_interaction´ ElementUnitSequence 100008

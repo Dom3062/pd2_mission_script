@@ -4,65 +4,65 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 45
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -175, -300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100004
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 45
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, -300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100005
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 45
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -25, -300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100006
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 45
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -25, -175, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100007
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 45
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -175, -175, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´trigger_area_001´ ElementAreaTrigger 100008
 	DISABLED
 	TRIGGER TIMES 1
@@ -74,36 +74,36 @@
 	position -100, -204, 107
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 255
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 255
 	on_executed
 		´ai_enemy_prefered_add_001´ (delay 15)
 		´func_sequence_001´ (delay 0)
 		´logic_toggle_001´ (delay 0)
 ´func_nav_obstacle_001´ ElementNavObstacle 100009
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (25, -50, 50)
 	operation add
 	position -200, 100, 0
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_002´ ElementNavObstacle 100010
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (25, -50, 50)
-´func_nav_obstacle_002´ ElementNavObstacle 100010
 	operation remove
 	position 0, 100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15631504792197380394
-			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (25, -50, 50)
 ´func_sequence_001´ ElementUnitSequence 100011
 	position -200, 200, 0
 	rotation 0, 0, 0, -1
@@ -130,10 +130,14 @@
 		´func_nav_obstacle_002´ (delay 0)
 ´ai_enemy_group_001´ ElementSpawnEnemyGroup 100013
 	amount 5
-	ignore_disabled false
+	elements
+ 		1 ´ai_spawn_enemy_005´
+		2 ´ai_spawn_enemy_001´
+		3 ´ai_spawn_enemy_002´
+		4 ´ai_spawn_enemy_003´
+		5 ´ai_spawn_enemy_004´
+	ignore_disabled False
 	interval 45
-	spawn_type random
-	team default
 	preferred_spawn_groups
 		1 FBI_spoocs
 		2 tac_shield_wall_charge
@@ -143,55 +147,51 @@
 		6 tac_shield_wall
 		7 tac_bull_rush
 		8 tac_tazer_charge
-	elements
-		1 ´ai_spawn_enemy_005´
-		2 ´ai_spawn_enemy_001´
-		3 ´ai_spawn_enemy_002´
-		4 ´ai_spawn_enemy_003´
-		5 ´ai_spawn_enemy_004´
+	spawn_type random
+	team default
 ´logic_toggle_001´ ElementToggle 100014
+	elements
+ 		1 ´ai_enemy_trigger_001´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´ai_enemy_trigger_001´
 ´logic_toggle_002´ ElementToggle 100015
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´ai_enemy_prefered_add_001´ ElementEnemyPreferedAdd 100016
 	spawn_groups
 		1 ´ai_enemy_group_001´
 ´ai_enemy_prefered_remove_001´ ElementEnemyPreferedRemove 100017
 	elements
-		1 ´ai_enemy_prefered_add_001´
+ 		1 ´ai_enemy_prefered_add_001´
 ´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100018
 	TRIGGER TIMES 1
+	elements
+ 		1 ´ai_enemy_group_001´
 	event spawn
 	position 0, 400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_enemy_group_001´
 	on_executed
 		´logic_toggle_002´ (delay 0)
 		´ai_enemy_prefered_remove_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100019
-	SO_access 261600
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
 	interval 10
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -199,12 +199,12 @@
 	pose none
 	position -100, -200, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -106,372 154,81 0,00400394
+	SO_access 261600
 	so_action e_nl_fwd_2m
 	trigger_on none
-	followup_elements
 ´func_instance_input_001´ ElementInstanceInput 100020
 	event enable_elevator_spawn
 	on_executed

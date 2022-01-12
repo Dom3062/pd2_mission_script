@@ -1,13 +1,13 @@
 ´point_waypoint_001´ ElementWaypoint 100017
 	icon pd2_loot
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 97, 172
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´removed_safe´ (delay 0)
 ´point_shape_001´ ElementShape 100022
@@ -27,15 +27,15 @@
 	position -1950, 100, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100022
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´found_van´ (delay 0) (alternative enter)
 ´link´ MissionScriptElement 100041
@@ -45,17 +45,15 @@
 	on_executed
 		´off_2´ (delay 0)
 ´off´ ElementToggle 100043
+	elements
+ 		1 ´link_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_2´
 	on_executed
 		´On_13´ (delay 0)
 ´off_2´ ElementToggle 100045
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´Enter´
+ 		1 ´Enter´
 		2 ´saw_retrieved_2´
 		3 ´safe_used_003´
 		4 ´spawn_russians_and_cops´
@@ -63,6 +61,8 @@
 		6 ´spawn_russians´
 		7 ´Found Van First Time´ DISABLED
 		8 ´Link_4´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´hide_ALL´ (delay 0)
 ´hide_ALL´ ElementUnitSequence 100046
@@ -189,7 +189,7 @@
 		´remove_waypoint_2´ (delay 0)
 ´point_waypoint_saw´ ElementWaypoint 100070
 	icon pd2_generic_saw
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 293, 141
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -206,10 +206,10 @@
 		´point_area_min_police_force_001´ (delay 0)
 		´Link_4´ (delay 0)
 ´remove_waypoint_2´ ElementOperator 100072
-	operation remove
 	elements
-		1 ´point_area_min_police_force_001´
+ 		1 ´point_area_min_police_force_001´
 		2 ´point_waypoint_pickup´
+	operation remove
 	on_executed
 		´van_opened´ (delay 0)
 		´point_waypoint_001´ (delay 0)
@@ -233,9 +233,9 @@
 		´remove_waypoint´ (delay 0)
 		´All removed´ (delay 0)
 ´safe_removed´ ElementDebug 100011
-	as_subtitle true
+	as_subtitle True
 	debug_string safe_removed
-	show_instigator false
+	show_instigator False
 ´TEMP´ MissionScriptElement 100013
 	DISABLED
 	on_executed
@@ -325,13 +325,13 @@
 	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -150, 400, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team converted_enemy
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 ´spawn_russians´ MissionScriptElement 100032
@@ -339,20 +339,20 @@
 		´russian003´ (delay 0)
 		´russian004´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100083
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance hos
 	path_style destination
@@ -360,28 +360,28 @@
 	pose crouch
 	position -150.008, 300.873, 0
 	rotation 0, 0, -0.325569, -0.945518
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 400 0
+	SO_access 16380
 	so_action AI_sniper
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´point_special_objective_002´ ElementSpecialObjective 100084
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance hos
 	path_style destination
@@ -389,26 +389,26 @@
 	pose crouch
 	position 150, 300, 0
 	rotation 0, 0, 0.642788, -0.766044
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 400 0
+	SO_access 16380
 	so_action AI_sniper
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´russian004´ ElementSpawnEnemyDummy 100082
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 150, 400, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team converted_enemy
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_002´ (delay 0)
 ´show_saw_pku´ ElementUnitSequence 100033
@@ -449,14 +449,14 @@
 		´show_saw_pku´ (delay 0)
 ´point_waypoint_pickup´ ElementWaypoint 100026
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 293, 141
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint_3´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´point_waypoint_saw´
+ 		1 ´point_waypoint_saw´
+	operation remove
 	on_executed
 		´link_3´ (delay 0)
 ´link_3´ MissionScriptElement 100044
@@ -471,7 +471,7 @@
 	amount 2
 	amount_random 0
 	counter_id 100130
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´pick safe´ (delay 0)
 		´pick safe_4´ (delay 0)
@@ -674,22 +674,22 @@
 	event all_safes_removed
 ´func_dialogue_001´ ElementDialogue 100124
 	dialogue Play_vld_as1_11
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´First truck Unloaded already´ ElementInstanceInput 100125
 	event first_truck_looted
 	on_executed
 		´OFF´ (delay 0)
 ´OFF´ ElementToggle 100126
+	elements
+ 		1 ´All removed´
+		2 ´func_dialogue_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´All removed´
-		2 ´func_dialogue_001´
 ´pick safe´ ElementRandom 100106
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ovk_2´ (delay 0)
 		´norm´ (delay 0)
@@ -708,14 +708,14 @@
 ´pick safe_2´ ElementRandom 100001
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ovk´ (delay 0)
 		´norm_2´ (delay 0)
 ´pick safe_3´ ElementRandom 100002
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´norm_3´ (delay 0)
 		´ovk_10´ (delay 0)
@@ -782,44 +782,44 @@
 ´pick safe_4´ ElementRandom 100108
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´norm_4´ (delay 0)
 		´ovk_11´ (delay 0)
 ´On´ ElementToggle 100038
+	elements
+ 		1 ´safe_3´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe_3´ DISABLED
 ´On_2´ ElementToggle 100066
+	elements
+ 		1 ´ovk_5´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_5´ DISABLED
 ´On_3´ ElementToggle 100109
+	elements
+ 		1 ´safe_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe_4´ DISABLED
 ´pick safe_5´ ElementRandom 100110
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ovk_12´ (delay 0)
 		´norm_6´ (delay 0)
 ´pick safe_6´ ElementRandom 100111
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´norm_5´ (delay 0)
 		´ovk_3´ (delay 0)
 ´On_4´ ElementToggle 100061
+	elements
+ 		1 ´ovk_7´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_7´ DISABLED
 ´norm_5´ ElementUnitSequence 100063
 	position -2175, 1550, 0
 	rotation 0, 0, 0, -1
@@ -857,45 +857,45 @@
 	on_executed
 		´On_8´ (delay 0)
 ´On_5´ ElementToggle 100073
+	elements
+ 		1 ´safe_6´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe_6´ DISABLED
 ´On_6´ ElementToggle 100074
+	elements
+ 		1 ´ovk_6´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_6´ DISABLED
 ´On_7´ ElementToggle 100112
+	elements
+ 		1 ´ovk_9´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_9´ DISABLED
 ´On_8´ ElementToggle 100113
+	elements
+ 		1 ´safe_5´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe_5´ DISABLED
 ´On_9´ ElementToggle 100114
+	elements
+ 		1 ´ovk_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_4´ DISABLED
 ´On_10´ ElementToggle 100115
+	elements
+ 		1 ´safe´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe´ DISABLED
 ´On_11´ ElementToggle 100116
+	elements
+ 		1 ´safe_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´safe_2´ DISABLED
 ´On_12´ ElementToggle 100117
+	elements
+ 		1 ´ovk_8´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ovk_8´ DISABLED
 ´link_4´ MissionScriptElement 100118
 	on_executed
 		´3´ (delay 0)
@@ -912,34 +912,34 @@
 	counter_target 2
 ´3´ ElementCounterOperator 100131
 	amount 3
-	operation set
-	instance_var_names
 	elements
-		1 ´how many safes´
+ 		1 ´how many safes´
+	instance_var_names
+	operation set
 	on_executed
 		´Link_3´ (delay 0)
 ´4´ ElementCounterOperator 100132
 	amount 4
-	operation set
-	instance_var_names
 	elements
-		1 ´how many safes´
+ 		1 ´how many safes´
+	instance_var_names
+	operation set
 	on_executed
 		´Link_3´ (delay 0)
 ´5´ ElementCounterOperator 100133
 	amount 5
-	operation set
-	instance_var_names
 	elements
-		1 ´how many safes´
+ 		1 ´how many safes´
+	instance_var_names
+	operation set
 	on_executed
 		´Link_3´ (delay 0)
 ´6´ ElementCounterOperator 100134
 	amount 6
-	operation set
-	instance_var_names
 	elements
-		1 ´how many safes´
+ 		1 ´how many safes´
+	instance_var_names
+	operation set
 	on_executed
 		´Link_3´ (delay 0)
 ´diff_hard´ ElementInstanceInput 100135
@@ -974,15 +974,15 @@
 		´logic_counter_operator_001´ (delay 0)
 ´logic_counter_operator_001´ ElementCounterOperator 100139
 	amount 2
-	operation set
-	instance_var_names
 	elements
-		1 ´how many safes´
+ 		1 ´how many safes´
+	instance_var_names
+	operation set
 	on_executed
 		´Link_3´ (delay 0)
 ´first time find van´ ElementWaypoint 100140
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 293, 141
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -1005,15 +1005,15 @@
 	position -1600, 100, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_002´
-	use_shape_element_ids
 	unit_ids
 		1 100141
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´first time find van´ (delay 0) (alternative enter)
 ´disable_find_van_waypoint´ ElementInstanceInput 100143
@@ -1021,23 +1021,23 @@
 	on_executed
 		´Link_4´ (delay 0)
 ´logic_operator_001´ ElementOperator 100144
-	operation remove
 	elements
-		1 ´first time find van´
+ 		1 ´first time find van´
+	operation remove
 ´Link_4´ MissionScriptElement 100145
 	on_executed
 		´OFF_2´ (delay 0)
 ´OFF_2´ ElementToggle 100146
+	elements
+ 		1 ´Found Van First Time´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Found Van First Time´ DISABLED
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´On_13´ ElementToggle 100147
+	elements
+ 		1 ´Found Van First Time´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Found Van First Time´ DISABLED
 	on_executed
 		´pick safes´ (delay 0)

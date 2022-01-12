@@ -9,9 +9,6 @@
 	rotation 0, 0, 0, -1
 	trigger_list
 ´add_door_blockers´ ElementNavObstacle 100007
-	operation add
-	position -700, -1000, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -33,10 +30,13 @@
 			guis_id 5
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/005 (-400, -600, 0)
+	operation add
+	position -700, -1000, 0
+	rotation 0, 0, 0, -1
 ´randomize_janitor´ ElementRandom 100011
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´start_spawn´ (delay 0)
 		´janitor_cribbe_2´ (delay 0)
@@ -45,81 +45,81 @@
 	on_executed
 		´janitors´ (delay 0)
 ´OVK_above´ ElementFilter 100018
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -600, -900, 2.5
 	rotation 0, 0, 0, -1
 	on_executed
 		´randomize_janitor´ (delay 0)
 ´janitors´ ElementSpawnCivilianGroup 100015
 	amount 1
-	ignore_disabled true
+	elements
+ 		1 ´janitor_cribbe´
+		2 ´janitor_adde´
+	ignore_disabled True
 	position -400, -1000, 2.5
-	random true
+	random True
 	rotation 0, 0, 0, -1
 	team default
-	elements
-		1 ´janitor_cribbe´
-		2 ´janitor_adde´
 ´janitor_pos´ ElementSpecialObjectiveGroup 100016
 	base_chance 1
-	mode randomizer
-	position -400, -1200, 2.5
-	rotation 0, 0, 0, -1
-	use_instigator true
 	followup_elements
 		1 ´SO_pos´
 		2 ´SO_pos_2´
+	mode randomizer
+	position -400, -1200, 2.5
+	rotation 0, 0, 0, -1
+	use_instigator True
 ´janitor_anims´ ElementSpecialObjectiveGroup 100017
 	base_chance 1
-	mode randomizer
-	position -300, -1200, 2.5
-	rotation 0, 0, 0, -1
-	use_instigator false
 	followup_elements
 		1 ´SO_anim´
 		2 ´SO_anim_2´
+	mode randomizer
+	position -300, -1200, 2.5
+	rotation 0, 0, 0, -1
+	use_instigator False
 ´spawned´ ElementEnemyDummyTrigger 100020
+	elements
+ 		1 ´janitors´
 	event spawn
 	position -400, -1100, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´janitors´
 	on_executed
 		´janitor_pos´ (delay 0)
 ´SO_anim´ ElementSpecialObjective 100021
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -127,28 +127,28 @@
 	pose none
 	position -300, -1400, 2.5
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -1400 2,5
+	SO_access 3
 	so_action cmf_so_smoke
 	trigger_on none
-	followup_elements
 ´SO_anim_2´ ElementSpecialObjective 100022
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -156,28 +156,29 @@
 	pose none
 	position -400, -1400, 2.5
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -1400 2,5
+	SO_access 3
 	so_action cmf_so_look_windows
 	trigger_on none
-	followup_elements
 ´SO_pos´ ElementSpecialObjective 100023
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´janitor_anims´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -185,30 +186,30 @@
 	pose none
 	position -500, -500, 2.5
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position -490,779 -397,215 0
+	SO_access 3
 	so_action none
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´janitor_anims´
+	use_instigator True
 ´SO_pos_2´ ElementSpecialObjective 100026
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´janitor_anims´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -216,43 +217,42 @@
 	pose none
 	position -163.938, -463.938, 2.5
 	rotation 0, 0, 0.923879, -0.382684
-	scan true
+	scan True
 	search_distance 0
 	search_position -270,295 -382,323 0
+	SO_access 3
 	so_action none
 	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´janitor_anims´
+	use_instigator True
 ´janitor_cribbe´ ElementSpawnCivilian 100028
 	enemy units/pd2_dlc_pex/characters/civ_male_janitor_pex_01/civ_male_janitor_pex_01
 	force_pickup none
+	orientation_elements
 	position -200, -300, 0
 	rotation 0, 0, 0, -1
 	state none
 	team default
-	orientation_elements
 ´janitor_cribbe_2´ ElementSpawnCivilian 100029
 	enemy units/pd2_dlc_pex/characters/civ_male_janitor_pex_01/civ_male_janitor_pex_01
 	force_pickup none
+	orientation_elements
 	position -300, -465, 0
 	rotation 0, 0, 1, -1.19209E-07
 	state cm_sp_clean_floor
 	team default
-	orientation_elements
 ´janitor_adde´ ElementSpawnCivilian 100030
 	enemy units/pd2_dlc_pex/characters/civ_male_janitor_pex_02/civ_male_janitor_pex_02
 	force_pickup none
+	orientation_elements
 	position -400, -300, 0
 	rotation 0, 0, 0, -1
 	state none
 	team default
-	orientation_elements
 ´janitor_adde_2´ ElementSpawnCivilian 100031
 	enemy units/pd2_dlc_pex/characters/civ_male_janitor_pex_02/civ_male_janitor_pex_02
 	force_pickup none
+	orientation_elements
 	position -300, -465, 0
 	rotation 0, 0, 1, -1.19209E-07
 	state cm_sp_clean_floor
 	team default
-	orientation_elements

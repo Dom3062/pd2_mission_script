@@ -4,7 +4,7 @@
 	state standard
 ´temp_spawn_bag´ ElementLootBag 100000
 	carry_id ladder_bag
-	from_respawn false
+	from_respawn False
 	position 0, -425, 150.004
 	rotation 0, 0, 0, -1
 ´startup´ MissionScriptElement 100005
@@ -23,20 +23,20 @@
 	position 125, 0, 100.004
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 196,35
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 196.35
 	on_executed
 		´place_bag´ (delay 0)
 ´data_instigator_rule_001´ ElementInstigatorRule 100010
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -114,32 +114,32 @@
 	on_executed
 		´enable001´ (delay 0) DISABLED
 ´play_ladder_sound´ ElementPlaySound 100028
-	append_prefix false
+	append_prefix False
 	position 25, 0, 175.004
 	rotation 0, 0, 0, -1
 	sound_event saw_impact_medium
-	use_instigator false
+	use_instigator False
 ´remove_bag´ ElementCarry 100029
 	operation remove
 	type_filter ladder_bag
 ´enable´ ElementToggle 100007
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´temp_area´ DISABLED
+ 		1 ´temp_area´ DISABLED
 		2 ´show_temp_marker´ DISABLED
 		3 ´hide_temp_marker´ DISABLED
 		4 ´enable001´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´disable_climbing´ ElementInstanceInput 100031
 	event disable_climbing
 	on_executed
 		´disable´ (delay 0)
 ´disable´ ElementToggle 100032
+	elements
+ 		1 ´enable_dev_ladder´
+		2 ´disable_dev_ladder´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_dev_ladder´
-		2 ´disable_dev_ladder´
 ´make_ladder_not_there´ ElementInstanceInput 100006
 	event make_ladder_not_there
 	on_executed
@@ -150,21 +150,21 @@
 		´show_trans_ladder´ (delay 0)
 ´enable001´ ElementToggle 100004
 	DISABLED
+	elements
+ 		1 ´temp_area´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´temp_area´ DISABLED
 ´point_waypoint_001´ ElementWaypoint 100015
 	DISABLED
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 75, 0, 200.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´point_waypoint_001´ DISABLED
+ 		1 ´point_waypoint_001´ DISABLED
+	operation remove
 ´show_waypoint´ ElementInstanceInput 100022
 	event show_waypoint
 	on_executed

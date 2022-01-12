@@ -40,15 +40,15 @@
 			time 0
 ´WP_interact´ ElementWaypoint 100013
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 1, -27, 24
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_interact´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´link_interacted_with_keyboard´ MissionScriptElement 100015
 	on_executed
 		´remove_WP_interact´ (delay 0)
@@ -88,21 +88,21 @@
 	position 25, -100, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_enable_interaction´ (delay 0)
 ´enable_area_player_closeby´ ElementToggle 100021
+	elements
+ 		1 ´area_player_closeby´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_closeby´ DISABLED
 ´output_started_sending´ ElementInstanceOutput 100022
 	event started_sending
 ´input_enable_interaction001´ ElementInstanceInput 100006

@@ -4,31 +4,31 @@
 	enemy units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -94.2651, 204.022, 4
 	rotation 0, 0, -0.608762, -0.793353
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´randomize_idle_SO´ (delay 0)
 ´SO_idle001´ ElementSpecialObjective 100031
-	SO_access 156
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -36,15 +36,15 @@
 	pose none
 	position -311.737, 267.571, 7
 	rotation 0, 0, 0.422618, -0.906308
-	scan true
+	scan True
 	search_distance 0
 	search_position -188,924 236,93 0
+	SO_access 156
 	so_action e_so_sit_student_var4
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´enemy_guard´
+	trigger_on none
+	use_instigator True
 ´start´ MissionScriptElement 100033
 	EXECUTE ON STARTUP
 	on_executed
@@ -58,19 +58,19 @@
 ´output_disable_security_cameras´ ElementInstanceOutput 100036
 	event dealt_with_camera_guard
 ´tied´ ElementEnemyDummyTrigger 100037
+	elements
+ 		1 ´enemy_guard´
 	event tied
 	position 1100, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´enemy_guard´
 	on_executed
 		´guard_away_from_camera´ (delay 0)
 ´death´ ElementEnemyDummyTrigger 100038
+	elements
+ 		1 ´enemy_guard´
 	event death
 	position 1200, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´enemy_guard´
 	on_executed
 		´guard_away_from_camera´ (delay 0)
 ´guard_away_from_camera´ MissionScriptElement 100039
@@ -88,26 +88,26 @@
 		´door_opened´ (delay 5)
 		´enable_security_room´ (delay 0)
 ´whisper_state_ON´ ElementWhisperState 100011
-	disable_hud false
+	disable_hud False
 	position 500, -100, 0
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´SO_idle002´ ElementSpecialObjective 100022
-	SO_access 152
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -115,39 +115,39 @@
 	pose none
 	position -340.389, 291.08, 4
 	rotation 0, 0, 0.258818, -0.965926
-	scan true
+	scan True
 	search_distance 0
 	search_position -208,245 199,155 0
+	SO_access 152
 	so_action e_so_sit_student_var8
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´enemy_guard´
+	trigger_on none
+	use_instigator True
 ´randomize_idle_SO´ ElementRandom 100024
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´SO_idle002´ (delay 0)
 		´SO_idle001´ (delay 0)
 		´SO_idle003´ (delay 0)
 ´SO_idle003´ ElementSpecialObjective 100025
-	SO_access 156
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -155,19 +155,19 @@
 	pose none
 	position -322.864, 268.153, 13
 	rotation 0, 0, 0.422618, -0.906308
-	scan true
+	scan True
 	search_distance 0
 	search_position -228,949 240,023 0
+	SO_access 156
 	so_action e_so_sit_student_var2
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´enemy_guard´
+	trigger_on none
+	use_instigator True
 ´spawn_random_guard´ ElementRandom 100021
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enemy_guard´ (delay 0)
 ´door_opened´ ElementUnitSequenceTrigger 100020
@@ -208,14 +208,14 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100032
-	operation remove
-	position 400, -500, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-121, 60, -100)
+	operation remove
+	position 400, -500, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´enable_card´ (delay 0)
 ´seq_setup´ ElementUnitSequence 100051
@@ -271,14 +271,14 @@
 		´seq_enable_door_metal´ (delay 0) DISABLED
 		´seq_enable_door_wooden´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100048
-	operation add
-	position 400, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-121, 60, -100)
+	operation add
+	position 400, -100, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´ainar_called´ ElementGlobalEventTrigger 100050
@@ -298,21 +298,21 @@
 	on_executed
 		´SO_ready_up´ (delay 0)
 ´SO_ready_up´ ElementSpecialObjective 100057
-	SO_access 152
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -320,15 +320,15 @@
 	pose none
 	position -253.993, 217.229, 3.99999
 	rotation -1.59853E-07, -3.08712E-07, 1, -1.58697E-06
-	scan true
+	scan True
 	search_distance 0
 	search_position -184,521 113,759 0
+	SO_access 152
 	so_action e_so_guard_arms_crossed_draw_gun
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´enemy_guard´
+	trigger_on none
+	use_instigator True
 ´seq_enable_door_metal´ ElementUnitSequence 100062
 	DISABLED
 	position 900, -200, -2.5
@@ -410,8 +410,8 @@
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100065
 	TRIGGER TIMES 1
+	elements
+ 		1 ´seq_enable_door_wooden´
+		2 ´seq_enable_door_metal´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´seq_enable_door_wooden´
-		2 ´seq_enable_door_metal´ DISABLED

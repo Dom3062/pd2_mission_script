@@ -1,21 +1,21 @@
 ´interrupt_so´ ElementSpecialObjective 100001
 	TRIGGER TIMES 1
-	SO_access 9720
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
-	allow_followup_self false
+	align_position True
+	align_rotation True
+	allow_followup_self False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance none
 	path_style destination
@@ -23,12 +23,12 @@
 	pose none
 	position 6, 75, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 4500
 	search_position 0 100 25
+	SO_access 9720
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
 	on_executed
 		´start_interrupting´ (delay 0)
 ´start_interrupt´ ElementInstanceInput 100002
@@ -36,11 +36,11 @@
 	on_executed
 		´enable_interrupt_entities´ (delay 0)
 ´anim_start´ ElementSpecialObjectiveTrigger 100003
+	elements
+ 		1 ´interrupt_so´
 	event anim_start
 	position 100, 100, 0
 	rotation 0, 0, 1, -1.19209E-07
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´open_box_once´ (delay 0)
 ´open_box_once´ ElementUnitSequence 100004
@@ -56,32 +56,32 @@
 			time 0
 ´anim_end´ ElementSpecialObjectiveTrigger 100005
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	event complete
 	position -99.9999, 200, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´interrupted´ (delay 0)
 ´anim_admin´ ElementSpecialObjectiveTrigger 100006
+	elements
+ 		1 ´interrupt_so´
 	event administered
 	position 100, 0, 0
 	rotation 0, 0, 1, -1.19209E-07
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´administered_debug´ (delay 0)
 ´administered_debug´ ElementDebug 100007
-	as_subtitle false
+	as_subtitle False
 	debug_string administered_interrupt
-	show_instigator false
+	show_instigator False
 ´anim_failed´ ElementSpecialObjectiveTrigger 100009
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	event fail
 	position 100, 200, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´failed_debug´ (delay 0)
 		´failed_interrupt´ (delay 0)
@@ -89,20 +89,20 @@
 	on_executed
 		´enable_and_action_so´ (delay 0) DISABLED
 ´enable_interrupt_entities´ ElementToggle 100011
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´enable_and_action_so´ DISABLED
+ 		1 ´enable_and_action_so´ DISABLED
 		2 ´anim_end´ DISABLED
 		3 ´anim_failed´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´attempt_interrupt_so´ (delay 0.05)
 ´enable_and_action_so´ ElementToggle 100008
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´interrupt_so´ (delay 5)
 ´interrupted´ MissionScriptElement 100012
@@ -118,13 +118,13 @@
 		´disable_interrupt_entities´ (delay 0)
 		´remove_defend_wp´ (delay 0)
 ´disable_interrupt_entities´ ElementToggle 100014
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_end´ DISABLED
+ 		1 ´anim_end´ DISABLED
 		2 ´enable_and_action_so´ DISABLED
 		3 ´anim_failed´ DISABLED
 		4 ´interrupt_so´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_so´ (delay 0)
 ´enable_interaction´ ElementUnitSequence 100015
@@ -139,7 +139,7 @@
 			time 0
 ´power_wp001´ ElementWaypoint 100016
 	icon pd2_power
-	only_in_clean false
+	only_in_clean False
 	position 1.52588E-05, 21, 150
 	rotation 0, 0, 1, -1.19209E-07
 	text_id debug_none
@@ -153,27 +153,27 @@
 		´remove_both_wp´ (delay 0)
 		´power_resumed_2´ (delay 0)
 ´remove_both_wp´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´power_wp001´
+ 		1 ´power_wp001´
+	operation remove
 	on_executed
 		´defend_wp001´ (delay 0) DISABLED
 ´power_resumed_2´ ElementInstanceOutput 100019
 	event power_resumed
 ´remove_so´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´interrupt_so´
+ 		1 ´interrupt_so´
+	operation remove
 ´failed_debug´ ElementDebug 100021
-	as_subtitle false
+	as_subtitle False
 	debug_string failed_interrupt
-	show_instigator false
+	show_instigator False
 ´power_interrupted´ ElementInstanceOutput 100022
 	event power_interrupted
 ´start_interrupting´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string start_interrupt
-	show_instigator false
+	show_instigator False
 ´failed_interrupt´ ElementInstanceOutput 100024
 	event failed_interrupt
 ´set_defend´ ElementInstanceInput 100025
@@ -183,11 +183,11 @@
 ´defend_wp001´ ElementWaypoint 100026
 	DISABLED
 	icon pd2_defend
-	only_in_clean false
+	only_in_clean False
 	position 1.52588E-05, 21, 150
 	rotation 0, 0, 1, -1.19209E-07
 	text_id debug_none
 ´remove_defend_wp´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´defend_wp001´ DISABLED
+ 		1 ´defend_wp001´ DISABLED
+	operation remove

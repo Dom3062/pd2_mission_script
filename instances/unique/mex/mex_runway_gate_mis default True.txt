@@ -57,23 +57,23 @@
 	counter_target 0
 ´add1´ ElementCounterOperator 100012
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´amount_of_c4´
+ 		1 ´amount_of_c4´
+	instance_var_names
+	operation add
 ´placed_all_c4´ ElementCounterTrigger 100013
 	amount 3
-	trigger_type value
 	elements
-		1 ´amount_of_c4´
+ 		1 ´amount_of_c4´
+	trigger_type value
 	on_executed
 		´point_debug_001´ (delay 0)
 		´seq_trigger_explosive´ (delay 0)
 		´teammate_comment_stand_back´ (delay 0.5)
 ´point_debug_001´ ElementDebug 100014
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: player placed all c4
-	show_instigator false
+	show_instigator False
 ´seq_trigger_explosive´ ElementUnitSequence 100015
 	BASE DELAY 5
 	position 1800, 300, 0
@@ -120,7 +120,7 @@
 	position 799, 14, 149
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_002´ ElementPlayEffect 100018
 	base_time 0
 	effect effects/particles/equipment/c4_bank/c4_explosion
@@ -128,7 +128,7 @@
 	position 14, 0, 147.091
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100019
 	base_time 0
 	effect effects/particles/equipment/c4_bank/c4_explosion
@@ -136,7 +136,7 @@
 	position -771, 11, 149
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´interacted_c4_002´ ElementUnitSequenceTrigger 100022
 	TRIGGER TIMES 1
 	sequence_list
@@ -171,62 +171,62 @@
 	unit_ids
 ´waypoint_c4_001´ ElementWaypoint 100030
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 799, 14, 149
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_c4_002´ ElementWaypoint 100031
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 14, 6, 149
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_c4_003´ ElementWaypoint 100032
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -771, 11, 149
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint_c4_001´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´waypoint_c4_001´
+ 		1 ´waypoint_c4_001´
+	operation remove
 	on_executed
 		´add1´ (delay 0)
 ´remove_waypoint_c4_002´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´waypoint_c4_003´
+ 		1 ´waypoint_c4_003´
+	operation remove
 	on_executed
 		´add1´ (delay 0)
 ´remove_waypoint_c4_003´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´waypoint_c4_002´
+ 		1 ´waypoint_c4_002´
+	operation remove
 	on_executed
 		´add1´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100036
+	elements
+ 		1 ´waypoint_c4_001´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´waypoint_c4_001´
 	on_executed
 		´remove_waypoint_c4_001´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100037
+	elements
+ 		1 ´waypoint_c4_002´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´waypoint_c4_002´
 	on_executed
 		´remove_waypoint_c4_003´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100038
+	elements
+ 		1 ´waypoint_c4_003´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´waypoint_c4_003´
 	on_executed
 		´remove_waypoint_c4_002´ (delay 0)
 ´input_open_runway´ ElementInstanceInput 100039
@@ -267,12 +267,12 @@
 			time 0
 ´teammate_comment_lets_open_it_up´ ElementTeammateComment 100010
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v16
 	position 50, 250, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´area_player_close_to_gate´ ElementAreaTrigger 100027
 	DISABLED
 	TRIGGER TIMES 1
@@ -285,37 +285,37 @@
 	position 50, 25, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1939,65
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1939.65
 	on_executed
 		´teammate_comment_lets_open_it_up´ (delay 1)
 ´enable´ ElementToggle 100028
+	elements
+ 		1 ´area_player_close_to_gate´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_close_to_gate´ DISABLED
 ´teammate_comment_stand_back´ ElementTeammateComment 100041
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v13
 	position 50, 100, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_that_was_loud´ ElementTeammateComment 100042
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v54
 	position 50, 175, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´env_effect_play_004´ ElementPlayEffect 100046
 	TRIGGER TIMES 1
 	base_time 0
@@ -324,25 +324,25 @@
 	position 14, 6, 99
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´point_play_sound_001´ ElementPlaySound 100047
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 799, 14, 149
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False
 ´point_play_sound_002´ ElementPlaySound 100048
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 14, 6, 149
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False
 ´point_play_sound_003´ ElementPlaySound 100049
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -771, 11, 149
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False

@@ -4,58 +4,61 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, -25, 0
 	rotation 0, 0, 1, -4.37114E-08
 	spawn_action e_sp_over_1m_dwn_12m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100005
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, -25, 0
 	rotation 0, 0, 1, -4.37114E-08
 	spawn_action e_sp_over_1m_dwn_12m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100006
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -250, -25, 0
 	rotation 0, 0, 1, -4.37114E-08
 	spawn_action e_sp_over_1m_dwn_12m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100007
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 250, -25, 0
 	rotation 0, 0, 1, -1.31134E-07
 	spawn_action e_sp_over_1m_dwn_12m
 	team default
 	voice 0
-	orientation_elements
 ´group_01´ ElementSpawnEnemyGroup 100008
 	amount 0
-	ignore_disabled true
+	elements
+ 		1 ´ai_spawn_enemy_004´
+		2 ´ai_spawn_enemy_001´
+		3 ´ai_spawn_enemy_002´
+		4 ´ai_spawn_enemy_003´
+	ignore_disabled True
 	interval 0
-	spawn_type group
-	team default
 	preferred_spawn_groups
 		1 tac_shield_wall_charge
 		2 FBI_spoocs
@@ -65,19 +68,13 @@
 		6 tac_swat_rifle_flank
 		7 tac_shield_wall_ranged
 		8 tac_bull_rush
-	elements
-		1 ´ai_spawn_enemy_004´
-		2 ´ai_spawn_enemy_001´
-		3 ´ai_spawn_enemy_002´
-		4 ´ai_spawn_enemy_003´
+	spawn_type group
+	team default
 	on_executed
 		´point_debug_001´ (delay 0)
 ´spawned´ ElementEnemyDummyTrigger 100009
-	event spawn
-	position 100, 100, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´ai_spawn_enemy_002´
+ 		1 ´ai_spawn_enemy_002´
 		2 ´ai_spawn_enemy_003´
 		3 ´ai_spawn_enemy_001´
 		4 ´ai_spawn_enemy_004´
@@ -85,15 +82,15 @@
 		6 ´ai_spawn_enemy_005´
 		7 ´ai_spawn_enemy_006´
 		8 ´ai_spawn_enemy_007´
+	event spawn
+	position 100, 100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´add 1´ (delay 0)
 		´test filter´ (delay 0)
 ´died´ ElementEnemyDummyTrigger 100010
-	event death
-	position -100, 100, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´ai_spawn_enemy_002´
+ 		1 ´ai_spawn_enemy_002´
 		2 ´ai_spawn_enemy_003´
 		3 ´ai_spawn_enemy_001´
 		4 ´ai_spawn_enemy_004´
@@ -101,6 +98,9 @@
 		6 ´ai_spawn_enemy_006´
 		7 ´ai_spawn_enemy_005´
 		8 ´ai_spawn_enemy_008´
+	event death
+	position -100, 100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´subtract 1´ (delay 0)
 		´test filter´ (delay 0)
@@ -108,25 +108,25 @@
 	counter_target 0
 ´subtract 1´ ElementCounterOperator 100012
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´number alive´
+ 		1 ´number alive´
+	instance_var_names
+	operation subtract
 ´add 1´ ElementCounterOperator 100013
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´number alive´
+ 		1 ´number alive´
+	instance_var_names
+	operation add
 ´test filter´ MissionScriptElement 100014
 	on_executed
 		´none alive´ (delay 0)
 ´none alive´ ElementCounterFilter 100015
+	elements
+ 		1 ´number alive´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´number alive´
 	on_executed
 		´spawn new group - delayed´ (delay 0)
 ´spawn new group - delayed´ MissionScriptElement 100016
@@ -157,44 +157,44 @@
 	on_executed
 		´Off_2´ (delay 0)
 ´Off´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´spawn new group - delayed´
+ 		1 ´spawn new group - delayed´
 		2 ´group_01´
 		3 ´group_02´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´on´ (delay 0)
 ´On´ ElementToggle 100024
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´group_01´
+ 		1 ´group_01´
 		2 ´spawn new group - delayed´
 		3 ´group_02´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´spawn new group - delayed´ (delay 0.25)
 ´Off_2´ ElementToggle 100025
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_2´
+ 		1 ´link_2´
 		2 ´link´
 		3 ´spawn new group - delayed´
 		4 ´group_01´
 		5 ´test filter´
 		6 ´none alive´
 		7 ´group_02´
-´on´ ElementToggle 100026
 	set_trigger_times -1
 	toggle on
+´on´ ElementToggle 100026
 	elements
-		1 ´link´
+ 		1 ´link´
+	set_trigger_times -1
+	toggle on
 ´Off_3´ ElementToggle 100028
+	elements
+ 		1 ´link´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link´
 	on_executed
 		´On´ (delay 0)
 ´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100029
@@ -203,58 +203,61 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 50, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_over_3m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100030
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -50, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_over_3m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_007´ ElementSpawnEnemyDummy 100031
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -150, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_over_3m
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_008´ ElementSpawnEnemyDummy 100032
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 150, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_over_3m
 	team default
 	voice 0
-	orientation_elements
 ´group_02´ ElementSpawnEnemyGroup 100033
 	amount 0
-	ignore_disabled true
+	elements
+ 		1 ´ai_spawn_enemy_007´
+		2 ´ai_spawn_enemy_006´
+		3 ´ai_spawn_enemy_005´
+		4 ´ai_spawn_enemy_008´
+	ignore_disabled True
 	interval 0
-	spawn_type group
-	team default
 	preferred_spawn_groups
 		1 tac_shield_wall_charge
 		2 FBI_spoocs
@@ -264,11 +267,8 @@
 		6 tac_swat_rifle_flank
 		7 tac_shield_wall_ranged
 		8 tac_bull_rush
-	elements
-		1 ´ai_spawn_enemy_007´
-		2 ´ai_spawn_enemy_006´
-		3 ´ai_spawn_enemy_005´
-		4 ´ai_spawn_enemy_008´
+	spawn_type group
+	team default
 	on_executed
 		´point_debug_001´ (delay 0)
 ´off_highway´ MissionScriptElement 100034
@@ -286,10 +286,10 @@
 	on_executed
 		´On_2´ (delay 0)
 ´On_2´ ElementToggle 100038
+	elements
+ 		1 ´over_wall´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´over_wall´ DISABLED
 	on_executed
 		´Off_4´ (delay 0)
 ´func_disable_unit_001´ ElementDisableUnit 100003
@@ -298,11 +298,11 @@
 	rotation 0, 0, 0, -1
 	unit_ids
 ´Off_4´ ElementToggle 100042
+	elements
+ 		1 ´off_highway´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´off_highway´
 ´point_debug_001´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string spawned_group
-	show_instigator false
+	show_instigator False

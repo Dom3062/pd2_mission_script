@@ -2,25 +2,25 @@
 	event scythe_taken
 ´point_waypoint_001´ ElementWaypoint 100004
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_scythe_WP´ ElementOperator 100005
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´toggle_OFF_scythe_WP´ (delay 0)
 ´toggle_OFF_scythe_WP´ ElementToggle 100006
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
 		2 ´relay´
 		3 ´input_enable_scythe_WP´
 		4 ´remove_scythe_WP´
+	set_trigger_times -1
+	toggle off
 ´relay´ MissionScriptElement 100007
 	on_executed
 		´point_waypoint_001´ (delay 0)
@@ -103,9 +103,9 @@
 		´remove_scythe_WP´ (delay 0)
 		´toggle_OFF_scythe_WP´ (delay 0)
 ´scythe_taken_SFX´ ElementPlaySound 100015
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, 0, 25
 	rotation 0, 0, 0, -1
 	sound_event scythe_pick_up
-	use_instigator false
+	use_instigator False

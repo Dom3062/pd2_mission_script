@@ -61,23 +61,23 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´navlink001´ ElementSpecialObjective 100013
-	SO_access 262112
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,5
-	interrupt_objective true
+	interrupt_objective True
 	interval 3
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance cbt
 	path_style destination
@@ -85,30 +85,30 @@
 	pose none
 	position 25.9902, -91, 0
 	rotation 0, 0, 0.182236, -0.983255
-	scan true
+	scan True
 	search_distance 0
 	search_position 53,9665 65,0255 0
+	SO_access 262112
 	so_action e_nl_over_1m_jump_window
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´navlink002´ ElementSpecialObjective 100015
-	SO_access 262112
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,5
-	interrupt_objective true
+	interrupt_objective True
 	interval 3
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance cbt
 	path_style destination
@@ -116,13 +116,13 @@
 	pose none
 	position -27.0098, 86.9998, 0
 	rotation 0, 0, 0.994522, 0.104528
-	scan true
+	scan True
 	search_distance 0
 	search_position -40,6842 -79,0088 0
+	SO_access 262112
 	so_action e_nl_over_1m_jump_window
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´broke_window´ ElementUnitSequenceTrigger 100017
 	TRIGGER TIMES 1
 	sequence_list
@@ -166,24 +166,24 @@
 	on_executed
 		´disable_navlinks_forever´ (delay 0)
 ´disable_navlinks_forever´ ElementToggle 100033
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´navlink001´
+ 		1 ´navlink001´
 		2 ´navlink002´
 		3 ´broke_window´
 		4 ´added_planks´
 		5 ´destroyed_planks´
+	set_trigger_times -1
+	toggle off
 ´output_planked_window´ ElementInstanceOutput 100034
 	event planked_window
 ´output_destroyed_planks´ ElementInstanceOutput 100035
 	event destroyed_planks
 ´disable_navlinks´ ElementToggle 100018
+	elements
+ 		1 ´navlink001´
+		2 ´navlink002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´navlink001´
-		2 ´navlink002´
 ´activate_navlinks´ MissionScriptElement 100029
 	on_executed
 		´navlink001´ (delay 0)
@@ -196,10 +196,10 @@
 		´remove´ (delay 0)
 		´disable_navlinks´ (delay 0)
 ´remove´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´navlink001´
+ 		1 ´navlink001´
 		2 ´navlink002´
+	operation remove
 ´check_if_both_window_and_planks_broken´ ElementCounter 100024
 	counter_target 2
 	on_executed
@@ -210,12 +210,12 @@
 		´navlink002´ (delay 0)
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100028
 	TRIGGER TIMES 1
+	elements
+ 		1 ´navlink001´
+		2 ´navlink002´
 	event anim_act_04
 	position 200, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´navlink001´
-		2 ´navlink002´
 	on_executed
 		´lemme_smash´ (delay 0)
 ´lemme_smash´ ElementUnitSequence 100030
@@ -229,10 +229,10 @@
 			notify_unit_sequence break_window
 			time 0
 ´disable_smash´ ElementToggle 100031
+	elements
+ 		1 ´lemme_smash´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´lemme_smash´
 ´destroy_window´ ElementInstanceInput 100036
 	event destroy_window
 	on_executed

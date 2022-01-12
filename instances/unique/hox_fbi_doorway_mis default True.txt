@@ -56,14 +56,14 @@
 	position 13, 0, 139
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´area_empty´ (delay 0)
 ´set_doorway_only´ ElementInstanceInput 100027
@@ -84,21 +84,21 @@
 	event allow_graph
 ´team_ai_so001´ ElementSpecialObjective 100032
 	TRIGGER TIMES 1
-	SO_access 245760
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 3
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -106,29 +106,29 @@
 	pose none
 	position -199, -34, 2.5
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 233,454 -33,6525 2,5
+	SO_access 245760
 	so_action e_nl_button_slide_under
 	trigger_on none
-	followup_elements
 ´team_ai_so002´ ElementSpecialObjective 100033
 	TRIGGER TIMES 1
-	SO_access 245760
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 3
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -136,12 +136,12 @@
 	pose none
 	position 227, 32, 2.5
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -197,851 20,2382 2,5
+	SO_access 245760
 	so_action e_nl_button_slide_under
 	trigger_on none
-	followup_elements
 ´set_standby´ MissionScriptElement 100036
 	on_executed
 		´set_standby_seq´ (delay 0)
@@ -242,10 +242,10 @@
 		´set_standby_countdown´ (delay 0)
 		´door_was_just_closed´ (delay 0)
 ´enable_area´ ElementToggle 100046
+	elements
+ 		1 ´ai_close_on_empty´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´ai_close_on_empty´ DISABLED
 ´set_standby_countdown´ MissionScriptElement 100047
 	on_executed
 		´set_standby_seq´ (delay 0)
@@ -365,36 +365,36 @@
 		´door_close´ (delay 0)
 		´keycarded_barrier´ (delay 0)
 ´cooldown´ ElementToggle 100060
+	elements
+ 		1 ´door_interacted´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´door_interacted´
 ´enable_close_int´ ElementToggle 100003
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´door_close´
+ 		1 ´door_close´
 		2 ´set_player_interaction_close´
-´enable_open_int´ ElementToggle 100005
 	set_trigger_times -1
 	toggle on
+´enable_open_int´ ElementToggle 100005
 	elements
-		1 ´set_player_interaction_open´ DISABLED
+ 		1 ´set_player_interaction_open´ DISABLED
 		2 ´door_open´ DISABLED
 		3 ´partial_open´
+	set_trigger_times -1
+	toggle on
 ´disable_close_int´ ElementToggle 100006
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´set_player_interaction_close´
+ 		1 ´set_player_interaction_close´
 		2 ´door_close´
-´disable_open_int´ ElementToggle 100007
 	set_trigger_times -1
 	toggle off
+´disable_open_int´ ElementToggle 100007
 	elements
-		1 ´door_open´ DISABLED
+ 		1 ´door_open´ DISABLED
 		2 ´set_player_interaction_open´ DISABLED
 		3 ´partial_open´
+	set_trigger_times -1
+	toggle off
 ´door_was_just_closed´ MissionScriptElement 100008
 	BASE DELAY 0,05
 	on_executed
@@ -415,33 +415,33 @@
 		´remove_navlinks_2´ (delay 0)
 		´disable_navlinks´ (delay 0)
 ´remove_navlinks_2´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´team_ai_so002´
+ 		1 ´team_ai_so002´
 		2 ´team_ai_so001´
+	operation remove
 ´disable_navlinks´ ElementToggle 100023
+	elements
+ 		1 ´team_ai_so002´
+		2 ´team_ai_so001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´team_ai_so002´
-		2 ´team_ai_so001´
 ´enable_and_action_navlinks´ ElementToggle 100024
 	BASE DELAY 0,01
+	elements
+ 		1 ´team_ai_so002´
+		2 ´team_ai_so001´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´team_ai_so002´
-		2 ´team_ai_so001´
 	on_executed
 		´team_ai_so002´ (delay 0)
 		´team_ai_so001´ (delay 0)
 ´partial_open´ ElementSpecialObjectiveTrigger 100025
+	elements
+ 		1 ´team_ai_so001´
+		2 ´team_ai_so002´
 	event anim_act_04
 	position 100, 800, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´team_ai_so001´
-		2 ´team_ai_so002´
 	on_executed
 		´door_partial_open´ (delay 0)
 		´set_standby_countdown´ (delay 0)
@@ -457,17 +457,17 @@
 			notify_unit_sequence anim_close_door_last_segment
 			time 0
 ´open_sound´ ElementPlaySound 100002
-	append_prefix false
+	append_prefix False
 	position 19, 137, 113
 	rotation 0, 0, 0, -1
 	sound_event Play_sys_hb2_04
-	use_instigator false
+	use_instigator False
 ´close_sound´ ElementPlaySound 100004
-	append_prefix false
+	append_prefix False
 	position 19, 137, 113
 	rotation 0, 0, 0, -1
 	sound_event Play_sys_hb2_03
-	use_instigator false
+	use_instigator False
 ´keycarded_barrier´ ElementInstanceOutput 100029
 	event keycarded_barrier
 ´used_keycard´ ElementUnitSequenceTrigger 100030

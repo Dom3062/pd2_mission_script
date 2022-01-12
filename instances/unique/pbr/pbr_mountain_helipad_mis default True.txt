@@ -45,11 +45,11 @@
 			notify_unit_sequence open_door_left
 			time 0
 ´point_play_sound_001´ ElementPlaySound 100007
-	append_prefix false
+	append_prefix False
 	position 72, -133, 149
 	rotation 0, 0, 1, -1.19209E-07
 	sound_event vault_container_open
-	use_instigator false
+	use_instigator False
 ´point_spawn_player_001´ ElementPlayerSpawner 100008
 	DISABLED
 	EXECUTE ON STARTUP
@@ -60,11 +60,11 @@
 		´escape_is_objective´ (delay 3)
 		´ai_spawn_enemy_001´ (delay 0)
 ´point_play_sound_002´ ElementPlaySound 100009
-	append_prefix false
+	append_prefix False
 	position 97, 142, 149
 	rotation 0, 0, -2.68221E-07, -1
 	sound_event vault_container_open
-	use_instigator false
+	use_instigator False
 ´trigger_area_001´ ElementAreaTrigger 100010
 	amount 1
 	depth 200
@@ -74,14 +74,14 @@
 	position 24, -6, 148
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´func_carry_001´ (delay 0)
 ´opened_any_door´ MissionScriptElement 100011
@@ -90,14 +90,14 @@
 		´enable_loot_area´ (delay 0)
 		´wp´ (delay 0)
 ´enable_loot_area´ ElementToggle 100012
+	elements
+ 		1 ´trigger_area_001´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´
 ´lootdrop_wp´ ElementWaypoint 100013
 	TRIGGER TIMES 1
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position -1, -6, 148
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -111,11 +111,11 @@
 		´wp´ (delay 0)
 ´rotor_sound´ ElementPlaySound 100016
 	DISABLED
-	append_prefix false
+	append_prefix False
 	position -11, 0, 305.745
 	rotation 0, 0, 0, -1
 	sound_event heli_start_loop
-	use_instigator false
+	use_instigator False
 ´escape_area001´ ElementAreaTrigger 100019
 	DISABLED
 	TRIGGER TIMES 1
@@ -127,14 +127,14 @@
 	position -400, 0, 149
 	radius 350
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´escaped´ (delay 0)
 ´escaped´ MissionScriptElement 100020
@@ -166,7 +166,7 @@
 			time 0
 ´escape_wp´ ElementWaypoint 100024
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 99
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -175,10 +175,10 @@
 		´escape_wp´ (delay 0)
 ´enable_escape_area´ ElementToggle 100026
 	DISABLED
+	elements
+ 		1 ´escape_area001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´escape_area001´ DISABLED
 ´hose_interaction´ ElementInteraction 100028
 	DISABLED
 	override_timer -1
@@ -193,13 +193,13 @@
 		´enable_connect_hose´ (delay 0)
 		´connect_hose_wp´ (delay 0)
 ´enable_connect_hose´ ElementToggle 100030
+	elements
+ 		1 ´hose_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´hose_interaction´ DISABLED
 ´connect_hose_wp´ ElementWaypoint 100031
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position -453, 136, 84
 	rotation 0, 0, 0.707107, -0.707107
 	text_id debug_none
@@ -212,9 +212,9 @@
 		´heli_smoke´ (delay 55)
 		´func_sequence_001´ (delay 0)
 ´remove_connect_hose_wp´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´connect_hose_wp´
+ 		1 ´connect_hose_wp´
+	operation remove
 ´func_carry_001´ ElementCarry 100034
 	operation secure
 	type_filter none
@@ -251,12 +251,12 @@
 	on_executed
 		´refueled_helicopter´ (delay 0)
 ´logic_timer_operator_001´ ElementTimerOperator 100050
+	elements
+ 		1 ´refuel_timer´
 	operation start
 	position -100, -1800, 200
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´refuel_timer´
 ´enable_pump´ ElementInteraction 100051
 	DISABLED
 	override_timer -1
@@ -267,15 +267,15 @@
 		´started_pump´ (delay 0) (alternative interacted)
 ´logic_toggle_001´ ElementToggle 100052
 	DISABLED
+	elements
+ 		1 ´enable_pump´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_pump´ DISABLED
 	on_executed
 		´pump_wp´ (delay 0)
 ´pump_wp´ ElementWaypoint 100053
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 350, -638, 147.279
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -285,9 +285,9 @@
 		´logic_toggle_002´ (delay 0)
 		´started_pump_2´ (delay 0)
 ´remove_pump_wp´ ElementOperator 100055
-	operation remove
 	elements
-		1 ´pump_wp´
+ 		1 ´pump_wp´
+	operation remove
 	on_executed
 		´logic_timer_operator_001´ (delay 0)
 ´refuel_is_objective´ ElementInstanceInput 100056
@@ -298,15 +298,15 @@
 		´enable_refuel´ (delay 0)
 ´get_hose_wp´ ElementWaypoint 100057
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 427, -513, 59.3301
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´already_started´ ElementToggle 100058
+	elements
+ 		1 ´refuel_is_objective´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´refuel_is_objective´
 ´refueled_helicopter´ ElementInstanceOutput 100059
 	event refueled_helicopter
 	on_executed
@@ -314,42 +314,42 @@
 ´refuel_obj´ ElementWaypoint 100060
 	DISABLED
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 293, -590, 136.33
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_toggle_002´ ElementToggle 100061
+	elements
+ 		1 ´refuel_obj´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´refuel_obj´ DISABLED
 ´logic_toggle_003´ ElementToggle 100062
+	elements
+ 		1 ´refuel_obj´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´refuel_obj´ DISABLED
 ´secured_loot´ ElementInstanceOutput 100063
 	event secured_loot
 ´logic_operator_001´ ElementOperator 100064
-	operation remove
 	elements
-		1 ´get_hose_wp´
+ 		1 ´get_hose_wp´
+	operation remove
 ´point_special_objective_001´ ElementSpecialObjective 100065
-	SO_access 262140
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style none
@@ -357,19 +357,19 @@
 	pose stand
 	position 8, -175, 0.000617981
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -300 0,000488281
+	SO_access 262140
 	so_action e_so_enter_hawk
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100067
+	elements
+ 		1 ´point_special_objective_001´
 	event complete
 	position -400, -200, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´point_special_objective_001´
 	on_executed
 		´ai_remove_001´ (delay 0)
 		´point_debug_001´ (delay 0)
@@ -377,12 +377,12 @@
 ´ai_remove_001´ ElementAIRemove 100068
 	position -400, -300, 100
 	rotation 0, 0, 0, -1
-	true_death false
-	use_instigator true
+	true_death False
+	use_instigator True
 ´point_debug_001´ ElementDebug 100069
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: Okay, I am in the chopper, getitng it ready.
-	show_instigator false
+	show_instigator False
 ´run_to_chopper´ ElementInstanceInput 100070
 	event run_to_chopper
 	on_executed
@@ -398,27 +398,27 @@
 	position 0, 0, 600
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 2500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 2500
 	on_executed
 		´close_to_helipad_2´ (delay 0)
 ´close_to_helipad_2´ ElementInstanceOutput 100072
 	event close_to_helipad
 ´point_debug_002´ ElementDebug 100066
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: Okay, I am moving to the helicopter!
-	show_instigator false
+	show_instigator False
 ´enable_refuel´ ElementToggle 100027
+	elements
+ 		1 ´get_hose_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´get_hose_interaction´ DISABLED
 ´heli_smoke´ ElementPlayEffect 100073
 	base_time 0
 	effect effects/particles/dest/bridge_heli_smoke
@@ -426,7 +426,7 @@
 	position 0, 0, 0.000625849
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´started_pump_2´ ElementInstanceOutput 100017
 	event started_pump
 ´func_sequence_001´ ElementUnitSequence 100075
@@ -476,12 +476,12 @@
 			notify_unit_sequence state_vis_icon_entry_enabled
 			time 0
 ´point_teammate_comment_001´ ElementTeammateComment 100037
-	close_to_element true
+	close_to_element True
 	comment v25
 	position -100, -200, -1
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´func_sequence_002´ ElementUnitSequence 100041
 	position -500, -600, 0
 	rotation 0, 0, 0, -1
@@ -494,11 +494,11 @@
 			time 1
 ´vehicle_operator_001´ ElementVehicleOperator 100043
 	damage 0
+	elements
+ 		1 100074
 	operation deactivate
 	position -500, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 100074
 ´vehicle_trigger_001´ ElementVehicleTrigger 100044
 	DISABLED
 	TRIGGER TIMES 1
@@ -514,10 +514,10 @@
 		´func_overlay_effect_002´ (delay 9)
 		´logic_operator_002´ (delay 0)
 ´can_fly´ ElementToggle 100042
+	elements
+ 		1 ´vehicle_trigger_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´vehicle_trigger_001´ DISABLED
 ´func_sequence_003´ ElementUnitSequence 100045
 	position -400, -1700, 200
 	rotation 0, 0, 0, -1
@@ -545,26 +545,26 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 5000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 5000
 	on_executed
 		´func_modify_player_001´ (delay 0)
 ´func_modify_player_001´ ElementModifyPlayer 100048
-	damage_fall_disabled false
-	invulnerable true
+	damage_fall_disabled False
+	invulnerable True
 	position -600, -500, 0
 	rotation 0, 0, 0, -1
 ´logic_toggle_004´ ElementToggle 100078
+	elements
+ 		1 ´invuln_trigger´ DISABLED
 	set_trigger_times 500
 	toggle on
-	elements
-		1 ´invuln_trigger´ DISABLED
 ´func_carry_003´ ElementCarry 100079
 	operation filter_only
 	type_filter prototype
@@ -591,7 +591,7 @@
 		´secured_loot´ (delay 0)
 ´func_award_achievement_001´ ElementAwardAchievment 100084
 	achievment berry_2
-	award_instigator false
+	award_instigator False
 	position 1000, -1400, 200
 	rotation 0, 0, 0, -1
 ´logic_counter_001´ ElementCounter 100085
@@ -599,18 +599,18 @@
 	on_executed
 		´func_award_achievement_001´ (delay 0)
 ´point_teammate_comment_002´ ElementTeammateComment 100086
-	close_to_element true
+	close_to_element True
 	comment p17
 	position 0, -100, 0.000602722
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´logic_timer_trigger_001´ ElementTimerTrigger 100087
+	elements
+ 		1 ´refuel_timer´
 	position -200, -1600, 202.5
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´refuel_timer´
 	on_executed
 		´point_teammate_comment_002´ (delay 0)
 ´escape_triggered´ ElementInstanceOutput 100088
@@ -625,10 +625,10 @@
 	on_executed
 		´func_mission_end_001´ (delay 4)
 ´logic_operator_002´ ElementOperator 100091
-	operation remove
 	elements
-		1 ´escape_wp´
+ 		1 ´escape_wp´
 		2 ´lootdrop_wp´
+	operation remove
 ´trigger_area_002´ ElementAreaTrigger 100092
 	TRIGGER TIMES 1
 	amount 1
@@ -639,14 +639,14 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1600
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1600
 	on_executed
 		´lootdrop_wp´ (delay 0)
 ´func_sequence_004´ ElementUnitSequence 100089
@@ -665,13 +665,13 @@
 	enemy units/pd2_dlc_berry/characters/npc_locke/npc_locke
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, -500, 100
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 ´func_experience_001´ ElementExperience 100094

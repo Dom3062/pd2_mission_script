@@ -19,11 +19,11 @@
 	on_executed
 		´toggle_ON_point_interaction´ (delay 0)
 ´toggle_ON_point_interaction´ ElementToggle 100015
+	elements
+ 		1 ´point_interaction_001´ DISABLED
+		2 ´toggle_ON_interact_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_interaction_001´ DISABLED
-		2 ´toggle_ON_interact_WP´ DISABLED
 ´interacted´ ElementUnitSequenceTrigger 100016
 	TRIGGER TIMES 1
 	sequence_list
@@ -82,9 +82,6 @@
 	on_executed
 		´add_door_blockers´ (delay 0)
 ´add_door_blockers´ ElementNavObstacle 100024
-	operation add
-	position 700, 1200, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -110,15 +107,18 @@
 			guis_id 6
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (1.35899E-05, 81, 0)
-´remove_door_blocker´ ElementNavObstacle 100025
-	operation remove
-	position 700, 1500, 2.5
+	operation add
+	position 700, 1200, 2.5
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100025
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/003 (244, 439, 0)
+	operation remove
+	position 700, 1500, 2.5
+	rotation 0, 0, 0, -1
 ´door_opened´ ElementUnitSequenceTrigger 100026
 	TRIGGER TIMES 1
 	sequence_list
@@ -141,12 +141,12 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´point_debug_001´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string box_opened
-	show_instigator false
+	show_instigator False
 ´point_interaction_001´ ElementInteraction 100009
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 339, 226, 129
 	rotation 0, 0, -0.707107, -0.707107
@@ -167,15 +167,15 @@
 ´interact_wp´ ElementWaypoint 100030
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 333, 226, 161
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´question_mark_wp´ ElementWaypoint 100031
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 200, 246, 161
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -190,38 +190,38 @@
 	position 200, 238, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 245
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 245
 	on_executed
 		´interact_wp´ (delay 0) DISABLED
 		´remove_question_WP´ (delay 0)
 ´remove_question_WP´ ElementOperator 100033
+	elements
+ 		1 ´question_mark_wp´
 	operation remove
-	elements
-		1 ´question_mark_wp´
 ´toggle_OFF_interact_area´ ElementToggle 100034
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_area_001´
+ 		1 ´trigger_area_001´
 		2 ´point_debug_001´
 		3 ´remove_question_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_waypoints´ (delay 0)
 ´remove_waypoints´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´question_mark_wp´
+ 		1 ´question_mark_wp´
 		2 ´interact_wp´ DISABLED
+	operation remove
 ´toggle_ON_interact_WP´ ElementToggle 100036
 	DISABLED
+	elements
+ 		1 ´interact_wp´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interact_wp´ DISABLED

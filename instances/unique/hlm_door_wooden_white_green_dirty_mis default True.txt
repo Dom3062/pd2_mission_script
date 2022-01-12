@@ -4,14 +4,14 @@
 		´disable_tripmine´ (delay 0)
 ´door_block_add´ ElementNavObstacle 100004
 	TRIGGER TIMES 1
-	operation add
-	position -300, 0, 300
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+	operation add
+	position -300, 0, 300
+	rotation 0, 0, 0, -1
 ´door_close´ ElementUnitSequence 100005
 	position -300, -100, 300
 	rotation 0, 0, 0, -1
@@ -36,33 +36,33 @@
 		´remove_navlinks´ (delay 0)
 ´door_unblock´ ElementNavObstacle 100007
 	TRIGGER TIMES 1
-	operation remove
-	position -600, 200, 300
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+	operation remove
+	position -600, 200, 300
+	rotation 0, 0, 0, -1
 ´door_opened_output´ ElementInstanceOutput 100008
 	event door_opened
 ´breach_door001´ ElementSpecialObjective 100009
 	TRIGGER TIMES 1
-	SO_access 13792
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -70,29 +70,29 @@
 	pose none
 	position -75, -143, 2.5
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 1000
 	search_position -43,9917 104,933 2,5
+	SO_access 13792
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´breach_door002´ ElementSpecialObjective 100001
 	TRIGGER TIMES 1
-	SO_access 13792
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -100,38 +100,38 @@
 	pose none
 	position -75, 143, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 1000
 	search_position -49,2291 -107,969 2,5
+	SO_access 13792
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´door_navlinked_open´ ElementSpecialObjectiveTrigger 100010
 	TRIGGER TIMES 1
+	elements
+ 		1 ´breach_door002´
+		2 ´breach_door001´
 	event anim_act_04
 	position 100, -100, 300
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´breach_door002´
-		2 ´breach_door001´
 	on_executed
 		´temp´ (delay 0)
 		´open_door´ (delay 0)
 ´remove_breach_navlinks´ ElementOperator 100011
 	TRIGGER TIMES 1
-	operation remove
 	elements
-		1 ´breach_door002´
+ 		1 ´breach_door002´
 		2 ´breach_door001´
+	operation remove
 ´disable_breach_navlinks´ ElementToggle 100012
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´breach_door002´
+ 		1 ´breach_door002´
 		2 ´breach_door001´
 		3 ´door_navlinked_open´
 		4 ´open_door´
+	set_trigger_times -1
+	toggle off
 ´open_door´ ElementUnitSequence 100013
 	TRIGGER TIMES 1
 	position 200, -100, 300
@@ -151,7 +151,7 @@
 		´nav´ (delay 0.5)
 ´closed_or_open´ ElementRandom 100016
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´close´ (delay 0)
 		´open´ (delay 0)
@@ -175,14 +175,14 @@
 		´door_block_remove´ (delay 0)
 ´door_block_remove´ ElementNavObstacle 100019
 	TRIGGER TIMES 1
-	operation remove
-	position -300, -350, 300
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-63, 0, 0)
+	operation remove
+	position -300, -350, 300
+	rotation 0, 0, 0, -1
 ´open´ MissionScriptElement 100020
 	on_executed
 		´door_open´ (delay 0)
@@ -197,18 +197,16 @@
 	DISABLED
 	TRIGGER TIMES 1
 	color red
-	cycle_active_amount 1
-	cycle_interval 0
-	cycle_random false
-	cycle_type flow
-	instigator player
-	interval 0.1
-	skip_dummies false
-	visual_only false
 	connections
 		1
 			from 3
 			to 2
+	cycle_active_amount 1
+	cycle_interval 0
+	cycle_random False
+	cycle_type flow
+	instigator player
+	interval 0.1
 	points
 		1
 			pos 9.50001, 9.69632, 50.1381
@@ -216,14 +214,16 @@
 		2
 			pos -133.5, 8.08805, 48.9128
 			rot 0, 0, 0.707107, -0.707107
+	skip_dummies False
+	visual_only False
 	on_executed
 		´func_instance_output_001´ (delay 0) (alternative enter)
 		´trigger_explosion´ (delay 0) (alternative enter)
 ´enable_laser´ ElementToggle 100025
+	elements
+ 		1 ´laser_player´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´laser_player´ DISABLED
 ´chance_laser´ ElementLogicChance 100026
 	chance 35
 	position -100, -100, 300
@@ -250,8 +250,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´trigger_explosion´ MissionScriptElement 100028
 	TRIGGER TIMES 1
 	on_executed
@@ -260,10 +260,10 @@
 		´temp´ (delay 0)
 		´make_way´ (delay 0)
 ´disable_other_lasers´ ElementToggle 100029
+	elements
+ 		1 ´laser_player´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´laser_player´ DISABLED
 	on_executed
 		´disable_tripmine´ (delay 0)
 ´disable_tripmine´ ElementDisableUnit 100030
@@ -278,15 +278,15 @@
 	unit_ids
 		1 units/pd2_dlc2/props/gen_prop_swat_tripmine_shootable/gen_prop_swat_tripmine_shootable/001 (-9, 12, 41)
 ´remove_laser´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´laser_player´ DISABLED
+ 		1 ´laser_player´ DISABLED
+	operation remove
 ´no_laser´ ElementLogicChanceTrigger 100034
+	elements
+ 		1 ´chance_laser´
 	outcome fail
 	position -100, -300, 300
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance_laser´
 	on_executed
 		´remove_laser´ (delay 0)
 		´make_way´ (delay 0)
@@ -312,10 +312,10 @@
 	on_executed
 		´no_laser_2´ (delay 0) DISABLED
 ´make_way´ ElementToggle 100043
+	elements
+ 		1 ´no_laser_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´no_laser_2´ DISABLED
 ´done_exploded´ ElementUnitSequenceTrigger 100035
 	TRIGGER TIMES 1
 	sequence_list

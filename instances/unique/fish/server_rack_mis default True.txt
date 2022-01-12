@@ -182,16 +182,16 @@
 ´pick_random_button´ ElementRandom 100023
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´1_3´ (delay 0)
 		´2_3´ (delay 0)
 		´3_3´ (delay 0)
 		´4_3´ (delay 0)
 ´point_debug_001´ ElementDebug 100025
-	as_subtitle true
+	as_subtitle True
 	debug_string Button_used
-	show_instigator false
+	show_instigator False
 ´4´ ElementUnitSequence 100052
 	position -525, 0, 0
 	rotation 0, 0, 0, -1
@@ -224,7 +224,7 @@
 		´OFF_6´ (delay 0)
 ´click´ ElementWaypoint 100000
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -234,9 +234,9 @@
 		´pick_random_button´ (delay 0)
 		´On´ (delay 0)
 ´remove´ ElementOperator 100002
-	operation remove
 	elements
-		1 ´click´
+ 		1 ´click´
+	operation remove
 	on_executed
 		´used_output´ (delay 0)
 ´link_2´ MissionScriptElement 100078
@@ -284,12 +284,12 @@
 ´timer´ ElementTimer 100012
 	timer 0
 ´start´ ElementTimerOperator 100014
+	elements
+ 		1 ´timer´
 	operation add_time
 	position 300, 275, 0
 	rotation 0, 0, 0, -1
 	time 1
-	elements
-		1 ´timer´
 ´red´ ElementUnitSequence 100035
 	position 525, 250, 0
 	rotation 0, 0, 0, -1
@@ -352,11 +352,11 @@
 		´30´ (delay 0)
 		´20´ (delay 0)
 ´Off´ ElementToggle 100041
+	elements
+ 		1 ´1 sec loop´
+		2 ´link_3´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´1 sec loop´
-		2 ´link_3´
 ´10´ ElementCounter 100042
 	counter_target 10
 	on_executed
@@ -377,7 +377,7 @@
 	position 0, 0, -161.193
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´enter´ ElementAreaReportTrigger 100026
 	DISABLED
 	amount 1
@@ -389,15 +389,15 @@
 	position -850, 100, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100061
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) (alternative enter)
 ´exit´ ElementAreaReportTrigger 100028
@@ -411,15 +411,15 @@
 	position -850, -75, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100061
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_5´ (delay 0) (alternative empty)
 ´link_4´ MissionScriptElement 100029
@@ -431,71 +431,71 @@
 ´counter´ ElementCounter 100031
 	counter_target 0
 ´1_2´ ElementCounterFilter 100034
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´counter´
 	on_executed
 		´1´ (delay 0.1)
 		´reshow_waypoint´ (delay 0)
 ´2_2´ ElementCounterFilter 100036
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´counter´
 	on_executed
 		´2´ (delay 0.1)
 		´reshow_waypoint´ (delay 0)
 ´3_2´ ElementCounterFilter 100038
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´counter´
 	on_executed
 		´3´ (delay 0.1)
 		´reshow_waypoint´ (delay 0)
 ´4_2´ ElementCounterFilter 100039
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´counter´
 	on_executed
 		´4´ (delay 0.1)
 		´reshow_waypoint´ (delay 0)
 ´1_3´ ElementCounterOperator 100043
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation set
 	on_executed
 		´link_6´ (delay 0.25)
 ´2_3´ ElementCounterOperator 100044
 	amount 2
-	operation set
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation set
 	on_executed
 		´link_6´ (delay 0.25)
 ´3_3´ ElementCounterOperator 100045
 	amount 3
-	operation set
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation set
 	on_executed
 		´link_6´ (delay 0.25)
 ´4_3´ ElementCounterOperator 100046
 	amount 4
-	operation set
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation set
 	on_executed
 		´link_6´ (delay 0.25)
 ´link_6´ MissionScriptElement 100047
@@ -505,10 +505,8 @@
 		´3_2´ (delay 0)
 		´4_2´ (delay 0)
 ´OFF´ ElementToggle 100048
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_5´
+ 		1 ´link_5´
 		2 ´link_4´
 		3 ´exit´ DISABLED
 		4 ´enter´ DISABLED
@@ -520,14 +518,16 @@
 		10 ´3´
 		11 ´4´
 		12 ´4_2´
-´On´ ElementToggle 100049
 	set_trigger_times -1
-	toggle on
+	toggle off
+´On´ ElementToggle 100049
 	elements
-		1 ´link_4´
+ 		1 ´link_4´
 		2 ´link_5´
 		3 ´enter´ DISABLED
 		4 ´exit´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´disable_all_2´ ElementUnitSequence 100050
 	position -600, -75, 0
 	rotation 0, 0, 0, -1
@@ -560,28 +560,28 @@
 	depth 500
 	height 275
 	position 0, 0, 125
-	radius 288,805
+	radius 288.805
 	rotation 0, 0, 0, -1
 	shape_type cylinder
 	width 500
 ´OFF_2´ ElementToggle 100003
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_6´
+ 		1 ´link_6´
 		2 ´exit´ DISABLED
 		3 ´enter´ DISABLED
 		4 ´link_7´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´link_5´ (delay 0)
 		´blue´ (delay 0)
 ´On_2´ ElementToggle 100063
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´link_6´
+ 		1 ´link_6´
 		2 ´exit´ DISABLED
 		3 ´enter´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´0´ (delay 0)
 		´over_0´ (delay 0)
@@ -601,10 +601,10 @@
 		´On_3´ (delay 0)
 ´set 0´ ElementCounterOperator 100066
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation set
 	on_executed
 		´remove´ (delay 0)
 ´overheated´ ElementInstanceOutput 100056
@@ -932,20 +932,20 @@
 			notify_unit_sequence state_static_red
 			time 0
 ´remove_2´ ElementOperator 100098
-	operation remove
 	elements
-		1 ´click´
+ 		1 ´click´
+	operation remove
 ´reshow_waypoint´ MissionScriptElement 100099
 	TRIGGER TIMES 1
 	on_executed
 		´click´ (delay 0)
 		´red_2´ (delay 0)
 ´0´ ElementCounterFilter 100100
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´counter´
 	on_executed
 		´blue_static´ (delay 0.1)
 ´blue_static´ ElementUnitSequence 100101
@@ -1001,19 +1001,19 @@
 			notify_unit_sequence state_static_blue
 			time 0
 ´over_0´ ElementCounterFilter 100102
+	elements
+ 		1 ´counter´
 	check_type greater_than
 	needed_to_execute all
 	value 0
-	elements
-		1 ´counter´
 	on_executed
 		´red_static´ (delay 0.1)
 		´link_6´ (delay 0)
 ´1 on´ ElementToggle 100103
+	elements
+ 		1 ´reshow_waypoint´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´reshow_waypoint´
 ´red_2´ ElementUnitSequence 100104
 	position -400, 0, 0
 	rotation 0, 0, 0, -1
@@ -1078,58 +1078,58 @@
 			notify_unit_sequence play_sound_cooling_system_off
 			time 0
 ´OFF_3´ ElementToggle 100067
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´2´
+ 		1 ´2´
 		2 ´2_2´
 		3 ´3_2´
 		4 ´3´
 		5 ´4´
 		6 ´4_2´
-´OFF_4´ ElementToggle 100107
 	set_trigger_times -1
 	toggle off
+´OFF_4´ ElementToggle 100107
 	elements
-		1 ´1´
+ 		1 ´1´
 		2 ´1_2´
 		3 ´3_2´
 		4 ´3´
 		5 ´4´
 		6 ´4_2´
-´OFF_5´ ElementToggle 100108
 	set_trigger_times -1
 	toggle off
+´OFF_5´ ElementToggle 100108
 	elements
-		1 ´2´
+ 		1 ´2´
 		2 ´2_2´
 		3 ´1_2´
 		4 ´1´
 		5 ´4´
 		6 ´4_2´
-´OFF_6´ ElementToggle 100109
 	set_trigger_times -1
 	toggle off
+´OFF_6´ ElementToggle 100109
 	elements
-		1 ´3´
+ 		1 ´3´
 		2 ´3_2´
 		3 ´2_2´
 		4 ´2´
 		5 ´1´
 		6 ´1_2´
+	set_trigger_times -1
+	toggle off
 ´5 sec delay´ MissionScriptElement 100105
 	BASE DELAY 5
 	on_executed
 		´link_7´ (delay 0)
 ´point_debug_002´ ElementDebug 100106
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_off
-	show_instigator false
+	show_instigator False
 ´On_3´ ElementToggle 100112
+	elements
+ 		1 ´link_7´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_7´
 ´link_7´ MissionScriptElement 100114
 	on_executed
 		´On_2´ (delay 0)

@@ -58,21 +58,21 @@
 	position 0, 0, 48.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´secure_cf_money´ (delay 0)
 ´turn_on_loot_trigger´ ElementToggle 100010
+	elements
+ 		1 ´loot_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loot_trigger´ DISABLED
 	on_executed
 		´start_leave´ (delay 0)
 		´cage_wp´ (delay 1)
@@ -118,10 +118,10 @@
 		´remove_wp´ (delay 0)
 		´func_dialogue_001´ (delay 0)
 ´turn_off_loot_trigger´ ElementToggle 100015
+	elements
+ 		1 ´loot_trigger´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´loot_trigger´ DISABLED
 	on_executed
 		´hide_flopper_2´ (delay 90)
 ´hide_flopper_2´ ElementUnitSequence 100016
@@ -152,20 +152,20 @@
 	event Flopper left
 ´cage_wp´ ElementWaypoint 100019
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 152.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´cage_wp´
+ 		1 ´cage_wp´
+	operation remove
 ´flopper_arrived_output´ ElementInstanceOutput 100009
 	event Flopper arrived
 ´func_experience_001´ ElementExperience 100021
 	amount 1000
 ´func_dialogue_001´ ElementDialogue 100022
 	dialogue Play_plt_a60
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False

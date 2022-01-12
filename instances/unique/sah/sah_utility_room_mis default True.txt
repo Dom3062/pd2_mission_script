@@ -77,33 +77,33 @@
 	EXECUTE ON STARTUP
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_blowtorch_001´ (delay 0) DISABLED
 		´show_blowtorch_002´ (delay 0) DISABLED
 		´show_blowtorch_003´ (delay 0)
 		´show_blowtorch_004´ (delay 0) DISABLED
 ´toggle_blowtorch_on_001´ ElementToggle 100018
+	elements
+ 		1 ´enable_blowtorch_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_blowtorch_001´ DISABLED
 ´toggle_blowtorch_on_002´ ElementToggle 100019
+	elements
+ 		1 ´enable_blowtorch_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_blowtorch_002´ DISABLED
 ´toggle_blowtorch_on_003´ ElementToggle 100020
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´enable_blowtorch_003´ DISABLED
+ 		1 ´enable_blowtorch_003´ DISABLED
 		2 ´link_show_WP_interact(helper)003´ DISABLED
-´toggle_blowtorch_on_004´ ElementToggle 100021
 	set_trigger_times -1
 	toggle on
+´toggle_blowtorch_on_004´ ElementToggle 100021
 	elements
-		1 ´enable_blowtorch_004´ DISABLED
+ 		1 ´enable_blowtorch_004´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´hide_blowtorches´ ElementUnitSequence 100022
 	EXECUTE ON STARTUP
 	position 100, 200, 0.00400543
@@ -225,8 +225,8 @@
 		´remove_WP_interact´ (delay 0)
 ´WP_interact´ ElementWaypoint 100028
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -59, 56, 95
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -241,27 +241,27 @@
 		´link_show_WP_interact(helper)003´ (delay 0) DISABLED
 		´point_debug_002´ (delay 0)
 ´disable´ ElementToggle 100032
+	elements
+ 		1 ´link_if_blowtorch_not_found_yet´
+		2 ´WP_interact´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_if_blowtorch_not_found_yet´
-		2 ´WP_interact´
 ´remove_WP_interact´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´point_debug_001´ ElementDebug 100034
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: enable_blowtorch_input
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100035
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: link_if_blowtorch_not_found_yet
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100036
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: link_show_WP_interact(helper)003
-	show_instigator false
+	show_instigator False
 ´input_activate_wp´ ElementInstanceInput 100037
 	event activate_wp
 	on_executed
@@ -278,21 +278,21 @@
 	position 0, 175, 50
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´WP_interact´ (delay 0)
 ´enable_area´ ElementToggle 100039
+	elements
+ 		1 ´area_player_close_to_tool´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_close_to_tool´ DISABLED
 ´area_player_close_to_tool_default_interaction´ ElementAreaTrigger 100040
 	TRIGGER TIMES 1
 	amount 1
@@ -304,17 +304,17 @@
 	position 0, 175, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´enable_blowtorch_003´ (delay 0) DISABLED
 ´point_debug_004´ ElementDebug 100002
-	as_subtitle false
+	as_subtitle False
 	debug_string yessss
-	show_instigator false
+	show_instigator False

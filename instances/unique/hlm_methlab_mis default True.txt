@@ -385,7 +385,7 @@
 ´timer´ ElementRandom 100119
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´5s´ (delay 5)
 		´25s´ (delay 25)
@@ -617,43 +617,43 @@
 	position -300, -150, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 844,668
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 844.668
 	on_executed
 		´player_sees_methlab´ (delay 0)
 		´WP_methlab´ (delay 0)
 		´start_cooking´ (delay 0)
 		´methlab_seen´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100143
+	elements
+ 		1 ´area_methlab´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_methlab´ DISABLED
 ´player_sees_methlab´ MissionScriptElement 100144
 	on_executed
 		´func_dialogue_001´ (delay 0)
 		´disable_VO´ (delay 0)
 ´func_dialogue_001´ ElementDialogue 100145
 	dialogue Play_pln_hm1_12
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´VO_methlab_not_discovered_yet´ ElementDialogue 100146
 	dialogue Play_pln_hm1_11
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´disable_VO´ ElementToggle 100147
+	elements
+ 		1 ´VO_methlab_not_discovered_yet´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´VO_methlab_not_discovered_yet´
 ´methlab_not_discovered_yet´ MissionScriptElement 100148
 	on_executed
 		´VO_methlab_not_discovered_yet´ (delay 0)
@@ -743,7 +743,7 @@
 		´func_experience_001´ (delay 0)
 ´WP_meth´ ElementWaypoint 100161
 	icon wp_bag
-	only_in_civilian false
+	only_in_civilian False
 	position -222, -474, 86
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -758,9 +758,9 @@
 		´start_cooking´ (delay 0)
 		´VO_secure´ (delay 0) DISABLED
 ´remove_WP_meth´ ElementOperator 100164
-	operation remove
 	elements
-		1 ´WP_meth´
+ 		1 ´WP_meth´
+	operation remove
 ´show_endproduct´ ElementUnitSequence 100165
 	position -800, -2200, 0
 	rotation 0, 0, 0, -1
@@ -788,7 +788,7 @@
 ´timer_to_next´ ElementRandom 100168
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´25s_2´ (delay 25)
 		´35s´ (delay 35)
@@ -850,34 +850,34 @@
 			notify_unit_sequence interaction_disable
 			time 0
 ´off´ ElementToggle 100181
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interacted_with_soda´ DISABLED
+ 		1 ´interacted_with_soda´ DISABLED
 		2 ´interacted_with_chloride´ DISABLED
 		3 ´interacted_with_acid_second_time(wrong)´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´back_to_normal´ MissionScriptElement 100182
 	on_executed
 		´off´ (delay 0)
 		´on´ (delay 0)
 ´on´ ElementToggle 100183
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interacted_with_acid´
+ 		1 ´interacted_with_acid´
 		2 ´interacted_with_soda_second_time(wrong)´
 		3 ´interacted_with_chloride_again(wrong)´
+	set_trigger_times -1
+	toggle on
 ´start_cooking_again´ MissionScriptElement 100184
 	on_executed
 		´show_interactions´ (delay 0)
 ´point_debug_004´ ElementDebug 100186
-	as_subtitle false
+	as_subtitle False
 	debug_string start cooking now
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100187
-	as_subtitle false
+	as_subtitle False
 	debug_string ONE JOB
-	show_instigator false
+	show_instigator False
 ´enable_endproduct´ ElementEnableUnit 100178
 	position -900, -2200, 0
 	rotation 0, 0, 0, -1
@@ -890,7 +890,7 @@
 	position -343, -691, 163
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´smoke002´ ElementPlayEffect 100188
 	base_time 0
 	effect effects/payday2/environment/smoke_alex_must_die_1
@@ -898,7 +898,7 @@
 	position -193, -260, 121
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´bubble001´ ElementPlayEffect 100189
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -906,7 +906,7 @@
 	position -196, -754, 108
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´bubble002´ ElementPlayEffect 100190
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -914,28 +914,28 @@
 	position -207, -699, 108
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´stop_effects´ ElementStopEffect 100191
-	operation fade_kill
-	position -900, -2400, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´smoke002´
+ 		1 ´smoke002´
 		2 ´smoke001´
 		3 ´bubble002´
 		4 ´bubble001´
 		5 ´bubble003´
 		6 ´smoke003´
+	operation fade_kill
+	position -900, -2400, 0
+	rotation 0, 0, 0, -1
 ´WP_methlab´ ElementWaypoint 100192
 	icon pd2_methlab
-	only_in_civilian false
+	only_in_civilian False
 	position -320, -712, 134
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_methlab_WP´ ElementOperator 100193
-	operation remove
 	elements
-		1 ´WP_methlab´
+ 		1 ´WP_methlab´
+	operation remove
 ´start_fire001´ ElementPlayEffect 100194
 	base_time 0
 	effect effects/payday2/environment/starting_fire_alex_must_die_1
@@ -943,7 +943,7 @@
 	position -345, -730, 82
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´start_fire002´ ElementPlayEffect 100195
 	base_time 0
 	effect effects/payday2/environment/starting_fire_alex_must_die_1
@@ -951,35 +951,35 @@
 	position -255, -372, 74
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´sound_add_ingredient001´ ElementPlaySound 100197
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -251, -373, 100
 	rotation 0, 0, 0, -1
 	sound_event add_meth_ingredients
-	use_instigator false
+	use_instigator False
 ´sound_cook_meth´ ElementPlaySound 100198
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -325, -739, 100
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth
-	use_instigator false
+	use_instigator False
 ´sound_stop´ ElementPlaySound 100199
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -250, -600, 100
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth_stop
-	use_instigator false
+	use_instigator False
 ´sound_add_ingredient002´ ElementPlaySound 100196
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -298, -739, 100
 	rotation 0, 0, 0, -1
 	sound_event add_meth_ingredients
-	use_instigator false
+	use_instigator False
 ´blurzone_generic´ ElementBlurZone 100200
 	height 200
 	mode 1
@@ -1007,8 +1007,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 	on_executed
 		´blurzone001´ (delay 0)
 		´enable_area_hurt´ (delay 0)
@@ -1024,14 +1024,14 @@
 	position -450, -575, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 570
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 570
 	on_executed
 		´kill_zone_fire´ (delay 0)
 ´blurzone001´ ElementBlurZone 100203
@@ -1055,7 +1055,7 @@
 	position -385, -463, -25
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´kill_zone_fire´ ElementKillZone 100206
 	position -500, -475, -25
 	rotation 0, 0, 0, -1
@@ -1071,14 +1071,14 @@
 	position -450, -550, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 590
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 590
 	on_executed
 		´kill_loot´ (delay 0)
 		´remove_loot001´ (delay 0)
@@ -1101,11 +1101,11 @@
 	operation remove
 	type_filter meth
 ´enable_area_hurt´ ElementToggle 100213
+	elements
+ 		1 ´area_hurt_player´ DISABLED
+		2 ´area_hurt_loot´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_hurt_player´ DISABLED
-		2 ´area_hurt_loot´ DISABLED
 ´smoke003´ ElementPlayEffect 100214
 	base_time 0
 	effect effects/payday2/environment/smoke_alex_must_die_1
@@ -1113,7 +1113,7 @@
 	position -422, -684, 163
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´bubble003´ ElementPlayEffect 100215
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -1121,18 +1121,15 @@
 	position -256, -765, 90
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´sound_burn_start´ ElementPlaySound 100216
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -390, -735, 100
 	rotation 0, 0, 0, -1
 	sound_event explosion_fire
-	use_instigator false
+	use_instigator False
 ´func_nav_obstacle_001´ ElementNavObstacle 100259
-	operation add
-	position 100, -2500, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -1162,10 +1159,10 @@
 			guis_id 7
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/bed002 (-400, -375, -25)
-´func_nav_obstacle_002´ ElementNavObstacle 100260
-	operation remove
-	position 100, -2000, 0
+	operation add
+	position 100, -2500, 0
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_002´ ElementNavObstacle 100260
 	obstacle_list
 		1
 			guis_id 1
@@ -1175,6 +1172,9 @@
 			guis_id 2
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/002 (-417, -150, -25)
+	operation remove
+	position 100, -2000, 0
+	rotation 0, 0, 0, -1
 ´double_wall´ ElementUnitSequence 100261
 	position 0, -2500, 0
 	rotation 0, 0, 0, -1
@@ -1196,94 +1196,94 @@
 ´VO_blew_up001´ ElementDialogue 100092
 	DISABLED
 	dialogue pln_rat_stage1_26
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 	on_executed
 		´VO_blew_up002´ (delay 5)
 ´VO_blew_up002´ ElementDialogue 100109
 	dialogue pln_rat_stage1_27
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´VO_done´ ElementDialogue 100113
 	dialogue pln_rat_stage1_28
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´VO_secure´ ElementDialogue 100114
 	DISABLED
 	dialogue pln_rat_stage1_29
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´VO_good´ ElementDialogue 100115
 	DISABLED
 	dialogue pln_rt1_12
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´methlab_seen´ ElementInstanceOutput 100163
 	event methlab_seen
 ´norm´ ElementFilter 100262
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 0, -1400, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´chance_for_3´ (delay 0)
 ´hards´ ElementFilter 100263
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 0, -1500, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´chance_for_3_2´ (delay 0)
 ´dw/ovk´ ElementFilter 100264
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 0, -1600, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -1295,11 +1295,11 @@
 	on_executed
 		´3pairs´ (delay 0)
 ´logic_chance_trigger_001´ ElementLogicChanceTrigger 100265
+	elements
+ 		1 ´chance_for_3´
 	outcome fail
 	position -150, -1400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance_for_3´
 	on_executed
 		´logic_random_001´ (delay 0)
 ´chance_for_3_2´ ElementLogicChance 100266
@@ -1309,11 +1309,11 @@
 	on_executed
 		´3pairs´ (delay 0)
 ´logic_chance_trigger_002´ ElementLogicChanceTrigger 100267
+	elements
+ 		1 ´chance_for_3_2´
 	outcome fail
 	position -150, -1500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance_for_3_2´
 	on_executed
 		´logic_random_002´ (delay 0)
 ´chance_for_3_3´ ElementLogicChance 100268
@@ -1323,46 +1323,46 @@
 	on_executed
 		´3pairs´ (delay 0)
 ´logic_chance_trigger_003´ ElementLogicChanceTrigger 100269
+	elements
+ 		1 ´chance_for_3_3´
 	outcome fail
 	position -150, -1600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´chance_for_3_3´
 	on_executed
 		´logic_random_003´ (delay 0)
 ´logic_random_001´ ElementRandom 100270
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´1pair´ (delay 0)
 		´2pairs´ (delay 0)
 ´logic_random_002´ ElementRandom 100271
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´1pair´ (delay 0)
 		´2pairs´ (delay 0)
 ´logic_random_003´ ElementRandom 100272
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´1pair´ (delay 0)
 		´2pairs´ (delay 0)
 ´point_debug_001´ ElementDebug 100072
-	as_subtitle false
+	as_subtitle False
 	debug_string is good 1
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100185
-	as_subtitle false
+	as_subtitle False
 	debug_string is good 2
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100273
-	as_subtitle false
+	as_subtitle False
 	debug_string is good 3
-	show_instigator false
+	show_instigator False
 ´interacted_with_acid_second_time(wrong)´ ElementUnitSequenceTrigger 100274
 	DISABLED
 	sequence_list
@@ -1374,43 +1374,43 @@
 		´YOU_HAD_ONE_JOB´ (delay 0)
 		´point_debug_007´ (delay 0)
 ´enable_stuff001´ ElementToggle 100275
+	elements
+ 		1 ´interacted_with_acid_second_time(wrong)´ DISABLED
+		2 ´interacted_with_soda´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interacted_with_acid_second_time(wrong)´ DISABLED
-		2 ´interacted_with_soda´ DISABLED
 ´disable_stuff001´ ElementToggle 100276
+	elements
+ 		1 ´interacted_with_soda_second_time(wrong)´
+		2 ´interacted_with_acid´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interacted_with_soda_second_time(wrong)´
-		2 ´interacted_with_acid´
 ´enable_stuff002´ ElementToggle 100154
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interacted_with_acid_second_time(wrong)´ DISABLED
+ 		1 ´interacted_with_acid_second_time(wrong)´ DISABLED
 		2 ´interacted_with_soda_second_time(wrong)´
 		3 ´interacted_with_chloride´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´disable_stuff002´ ElementToggle 100277
+	elements
+ 		1 ´interacted_with_soda´ DISABLED
+		2 ´interacted_with_chloride_again(wrong)´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interacted_with_soda´ DISABLED
-		2 ´interacted_with_chloride_again(wrong)´
 ´point_debug_006´ ElementDebug 100155
-	as_subtitle false
+	as_subtitle False
 	debug_string wrong 2
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100278
-	as_subtitle false
+	as_subtitle False
 	debug_string wrong1
-	show_instigator false
+	show_instigator False
 ´func_experience_001´ ElementExperience 100283
 	amount 500
 	on_executed
 		´point_debug_008´ (delay 0)
 ´point_debug_008´ ElementDebug 100284
-	as_subtitle false
+	as_subtitle False
 	debug_string + 500
-	show_instigator false
+	show_instigator False

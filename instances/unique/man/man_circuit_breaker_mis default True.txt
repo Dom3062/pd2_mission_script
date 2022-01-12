@@ -32,22 +32,23 @@
 		´setup_chosen_one´ (delay 0)
 ´SO_none´ ElementSpecialObjective 100014
 	TRIGGER TIMES 1
-	SO_access 480
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´SO_interrupt´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -55,22 +56,21 @@
 	pose none
 	position 6, -76, -100
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 3000
 	search_position 28,2112 -23,3923 -100
+	SO_access 480
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_interrupt´
 	on_executed
 		´point_debug_002´ (delay 0)
 ´anim_start´ ElementSpecialObjectiveTrigger 100016
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_interrupt´
 	event anim_start
 	position 100, -100, -100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt´
 	on_executed
 		´open_box´ (delay 0)
 ´open_box´ ElementUnitSequence 100017
@@ -84,11 +84,11 @@
 			notify_unit_sequence open_box
 			time 0
 ´anim_complete´ ElementSpecialObjectiveTrigger 100018
+	elements
+ 		1 ´SO_interrupt´
 	event complete
 	position 100, -200, -100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt´
 	on_executed
 		´interrupted´ (delay 0)
 ´interrupted´ MissionScriptElement 100019
@@ -99,19 +99,19 @@
 		´enable_interaction_turn_off_box´ (delay 0)
 ´WP_power´ ElementWaypoint 100020
 	icon pd2_power
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -37, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´output_interrupted´ ElementInstanceOutput 100021
 	event interrupted
 ´anim_fail´ ElementSpecialObjectiveTrigger 100001
+	elements
+ 		1 ´SO_none´
+		2 ´SO_interrupt´
 	event fail
 	position 100, -300, -100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_none´
-		2 ´SO_interrupt´
 	on_executed
 		´failed´ (delay 0)
 		´point_debug_001´ (delay 0)
@@ -125,27 +125,27 @@
 		´SO_none´ (delay 5-10)
 		´enable_SO´ (delay 0)
 ´disable_SO´ ElementToggle 100005
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_none´
+ 		1 ´SO_none´
 		2 ´anim_complete´
 		3 ´anim_start´
 		4 ´anim_fail´
 		5 ´activate_again´
 		6 ´SO_interrupt´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_SO´ (delay 0)
 ´remove_SO´ ElementOperator 100006
-	operation remove
 	elements
-		1 ´SO_none´
+ 		1 ´SO_none´
+	operation remove
 ´enable_SO´ ElementToggle 100007
+	elements
+ 		1 ´SO_none´
+		2 ´SO_interrupt´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´SO_none´
-		2 ´SO_interrupt´
 ´interrupt_now´ MissionScriptElement 100008
 	on_executed
 		´SO_none´ (delay 10)
@@ -184,9 +184,9 @@
 ´output_box_fixed´ ElementInstanceOutput 100024
 	event box_fixed
 ´remove_WP_power´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´WP_power´
+ 		1 ´WP_power´
+	operation remove
 ´turn_on_box´ ElementUnitSequence 100026
 	position 0, 400, 0
 	rotation 0, 0, 0, -1
@@ -202,41 +202,41 @@
 	on_executed
 		´disable_SO´ (delay 0)
 ´enable_SO_interrupt_once´ ElementToggle 100029
+	elements
+ 		1 ´SO_none´
+		2 ´SO_interrupt´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´SO_none´
-		2 ´SO_interrupt´
 ´enable_activate_again´ ElementToggle 100033
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´anim_complete´
+ 		1 ´anim_complete´
 		2 ´anim_start´
 		3 ´anim_fail´
 		4 ´activate_again´
+	set_trigger_times -1
+	toggle on
 ´point_debug_001´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string circuit box: anim_fail
-	show_instigator false
+	show_instigator False
 ´SO_interrupt´ ElementSpecialObjective 100032
 	TRIGGER TIMES 1
-	SO_access 480
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -244,25 +244,25 @@
 	pose none
 	position 6, -76, -25
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 3,98469 -25,8183 -100
+	SO_access 480
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100030
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 200, 400, -100
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_spawn_player_001´ ElementPlayerSpawner 100031
 	position 0, -250, -100
 	rotation 0, 0, 0, -1
@@ -276,6 +276,6 @@
 		´input_interrupt_now´ (delay 4)
 		´input_hide_startup´ (delay 3)
 ´point_debug_002´ ElementDebug 100035
-	as_subtitle false
+	as_subtitle False
 	debug_string SO_none
-	show_instigator false
+	show_instigator False

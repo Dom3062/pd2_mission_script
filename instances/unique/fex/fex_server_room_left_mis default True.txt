@@ -19,8 +19,8 @@
 ´test_delay´ MissionScriptElement 100004
 ´?_WP´ ElementWaypoint 100006
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -600, 300, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -36,14 +36,14 @@
 	position -575, 325, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´toggle_OFF_WP´ (delay 0)
 ´enable_server_trigger´ ElementInstanceInput 100008
@@ -51,23 +51,23 @@
 	on_executed
 		´toggle_ON_trigger_area´ (delay 0)
 ´toggle_ON_trigger_area´ ElementToggle 100009
+	elements
+ 		1 ´server_room_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´server_room_found´ DISABLED
 ´toggle_OFF_WP´ ElementToggle 100010
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´?_WP´
+ 		1 ´?_WP´
 		2 ´enable_?_WP´
 		3 ´input_enable_?_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100011
-	operation remove
 	elements
-		1 ´?_WP´
+ 		1 ´?_WP´
+	operation remove
 	on_executed
 		´output_server_room_found´ (delay 0)
 ´output_server_room_found´ ElementInstanceOutput 100012
@@ -125,14 +125,14 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100092
-	operation remove
-	position 1700, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-176, 60, 0)
+	operation remove
+	position 1700, -100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_OFF_SOs_3´ (delay 0)
 ´door_opened_2´ ElementUnitSequenceTrigger 100093
@@ -181,20 +181,17 @@
 	on_executed
 		´remove_door_blocker_2´ (delay 0)
 ´remove_door_blocker_2´ ElementNavObstacle 100094
-	operation remove
-	position 1000, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-975, 600, 0)
+	operation remove
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_OFF´ (delay 0)
 ´add_door_blockers´ ElementNavObstacle 100013
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -204,10 +201,10 @@
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-975, 600, 0)
-´add_remaining_door_blockers´ ElementNavObstacle 100071
 	operation add
-	position 700, 0, 0
+	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´add_remaining_door_blockers´ ElementNavObstacle 100071
 	obstacle_list
 		1
 			guis_id 1
@@ -245,24 +242,27 @@
 			guis_id 9
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/006 (-37.1591, 279.749, 0)
+	operation add
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
 ´so_open_door001´ ElementSpecialObjective 100084
-	SO_access 23078396
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv false
+	is_navigation_link True
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -270,29 +270,30 @@
 	pose none
 	position -215, -118, 0
 	rotation 0, 0, -2.38418E-07, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -219,671 -187,615 2,5
+	SO_access 23078396
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´initiate_open_door001´ ElementSpecialObjective 100085
-	SO_access 23078396
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´so_open_door001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -300,51 +301,50 @@
 	pose none
 	position -215, -118, 0
 	rotation 0, 0, -2.38418E-07, -1
-	scan true
+	scan True
 	search_distance 1000
 	search_position -213,424 66,1877 0
+	SO_access 23078396
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´so_open_door001´
 ´toggle_ON_kick_SO´ ElementToggle 100086
+	elements
+ 		1 ´so_open_door001´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´so_open_door001´
 	on_executed
 		´toggle_ON_initial_SO´ (delay 0)
 ´toggle_ON_initial_SO´ ElementToggle 100099
+	elements
+ 		1 ´initiate_open_door001´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´initiate_open_door001´
 	on_executed
 		´initiate_open_door001´ (delay 0.2)
 ´toggle_OFF_SOs´ ElementToggle 100100
+	elements
+ 		1 ´so_open_door001´
+		2 ´initiate_open_door001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´so_open_door001´
-		2 ´initiate_open_door001´
 	on_executed
 		´toggle_ON_kick_SO´ (delay 5-8)
 ´fail´ ElementSpecialObjectiveTrigger 100101
+	elements
+ 		1 ´so_open_door001´
+		2 ´initiate_open_door001´
 	event fail
 	position 1900, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_open_door001´
-		2 ´initiate_open_door001´
 	on_executed
 		´toggle_OFF_SOs´ (delay 0)
 ´success´ ElementSpecialObjectiveTrigger 100102
+	elements
+ 		1 ´so_open_door001´
+		2 ´initiate_open_door001´
 	event anim_start
 	position 1800, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_open_door001´
-		2 ´initiate_open_door001´
 	on_executed
 		´open_door´ (delay 0.5)
 		´toggle_OFF_SOs_3´ (delay 0)
@@ -359,22 +359,22 @@
 			notify_unit_sequence open_door
 			time 0
 ´success_2´ ElementSpecialObjectiveTrigger 100104
+	elements
+ 		1 ´so_open_door002´
+		2 ´initiate_open_door002´
 	event anim_start
 	position 1100, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_open_door002´
-		2 ´initiate_open_door002´
 	on_executed
 		´open_door_2´ (delay 0.5)
 		´toggle_OFF´ (delay 0)
 ´fail_2´ ElementSpecialObjectiveTrigger 100105
+	elements
+ 		1 ´so_open_door002´
+		2 ´initiate_open_door002´
 	event fail
 	position 1200, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_open_door002´
-		2 ´initiate_open_door002´
 	on_executed
 		´toggle_OFF_SOs_2´ (delay 0)
 ´open_door_2´ ElementUnitSequence 100106
@@ -388,62 +388,63 @@
 			notify_unit_sequence open_door
 			time 0
 ´toggle_ON_open_SO´ ElementToggle 100107
+	elements
+ 		1 ´so_open_door002´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´so_open_door002´
 	on_executed
 		´toggle_ON_initial_SO_2´ (delay 0)
 ´toggle_OFF_SOs_2´ ElementToggle 100108
+	elements
+ 		1 ´so_open_door002´
+		2 ´initiate_open_door002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´so_open_door002´
-		2 ´initiate_open_door002´
 	on_executed
 		´toggle_ON_open_SO´ (delay 5-8)
 ´toggle_OFF´ ElementToggle 100109
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´success_2´
+ 		1 ´success_2´
 		2 ´fail_2´
 		3 ´toggle_OFF_SOs_2´
 		4 ´toggle_ON_initial_SO_2´
 		5 ´toggle_ON_open_SO´
 		6 ´so_open_door002´
 		7 ´initiate_open_door002´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_SOs´ (delay 0)
 ´toggle_ON_initial_SO_2´ ElementToggle 100110
+	elements
+ 		1 ´initiate_open_door002´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´initiate_open_door002´
 	on_executed
 		´initiate_open_door002´ (delay 0.2)
 ´remove_SOs´ ElementOperator 100111
-	operation remove
 	elements
-		1 ´so_open_door002´
+ 		1 ´so_open_door002´
 		2 ´initiate_open_door002´
+	operation remove
 ´initiate_open_door002´ ElementSpecialObjective 100113
-	SO_access 23078396
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´so_open_door002´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -451,31 +452,30 @@
 	pose none
 	position -915, 771.999, 0
 	rotation 0, 0, 1, -3.8743E-07
-	scan true
+	scan True
 	search_distance 1000
 	search_position -913,922 828,841 2,5
+	SO_access 23078396
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´so_open_door002´
 ´so_open_door002´ ElementSpecialObjective 100114
-	SO_access 23078396
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv false
+	is_navigation_link True
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -483,30 +483,30 @@
 	pose none
 	position -915, 771.999, 0
 	rotation 0, 0, 1, -3.8743E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position -904,084 837,213 2,5
+	SO_access 23078396
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´toggle_OFF_SOs_3´ ElementToggle 100081
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´success´
+ 		1 ´success´
 		2 ´fail´
 		3 ´toggle_ON_initial_SO´
 		4 ´toggle_ON_kick_SO´
 		5 ´toggle_OFF_SOs´
 		6 ´so_open_door001´
 		7 ´initiate_open_door001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_SOs_2´ (delay 0)
 ´remove_SOs_2´ ElementOperator 100082
-	operation remove
 	elements
-		1 ´initiate_open_door001´
+ 		1 ´initiate_open_door001´
 		2 ´so_open_door001´
+	operation remove
 ´input_enable_door_SOs´ ElementInstanceInput 100083
 	event enable_door_SOs
 	on_executed

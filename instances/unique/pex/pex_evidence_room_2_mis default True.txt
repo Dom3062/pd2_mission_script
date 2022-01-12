@@ -147,14 +147,14 @@
 			notify_unit_sequence activate_door
 			time 0
 ´remove_door_blocker´ ElementNavObstacle 100010
-	operation remove
-	position 700, -500, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/evidence_room_2_blocker (121, -27, 0)
+	operation remove
+	position 700, -500, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´disable_tag_reader´ (delay 0)
 ´smoke_link´ MissionScriptElement 100000
@@ -210,7 +210,7 @@
 	position 525, 275, 200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_002´ ElementPlayEffect 100055
 	base_time 5
 	effect effects/particles/explosions/smoke_grenade_smoke
@@ -218,7 +218,7 @@
 	position 325, 650, 200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100056
 	base_time 5
 	effect effects/particles/explosions/smoke_grenade_smoke
@@ -226,56 +226,53 @@
 	position 475, 650, 200
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´point_play_sound_002´ ElementPlaySound 100006
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 525, 275, 250
 	rotation 0, 0, 0, -1
 	sound_event air_flow_loop
-	use_instigator false
+	use_instigator False
 ´point_play_sound_003´ ElementPlaySound 100016
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 200, 425, 250
 	rotation 0, 0, 0, -1
 	sound_event air_flow_loop
-	use_instigator false
+	use_instigator False
 ´point_play_sound_004´ ElementPlaySound 100017
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 625, 425, 250
 	rotation 0, 0, 0, -1
 	sound_event air_flow_loop
-	use_instigator false
+	use_instigator False
 ´delay_30s´ MissionScriptElement 100018
 	BASE DELAY 30
 	on_executed
 		´stop_smoke_effect´ (delay 0)
 ´stop_smoke_effect´ ElementStopEffect 100022
+	elements
+ 		1 ´env_effect_play_001´
+		2 ´env_effect_play_002´
+		3 ´env_effect_play_003´
 	operation fade_kill
 	position 600, -700, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
-		2 ´env_effect_play_002´
-		3 ´env_effect_play_003´
 	on_executed
 		´turn off sound´ (delay 0)
 ´turn off sound´ ElementToggle 100058
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_play_sound_002´
+ 		1 ´point_play_sound_002´
 		2 ´point_play_sound_003´
 		3 ´point_play_sound_004´
 		4 ´env_effect_play_001´
 		5 ´env_effect_play_003´
 		6 ´env_effect_play_002´
+	set_trigger_times -1
+	toggle off
 ´add_door_blockers´ ElementNavObstacle 100019
-	operation add
-	position 100, -500, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -353,6 +350,9 @@
 			guis_id 19
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/evidence_room_2_blocker (712, -0.000172257, 0)
+	operation add
+	position 100, -500, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´enable_real_bookshelf´ (delay 0)
 ´output_door_open´ ElementInstanceOutput 100044
@@ -435,10 +435,10 @@
 	on_executed
 		´toggle_OFF_repair_WP´ (delay 0)
 ´toggle_OFF_repair_WP´ ElementToggle 100070
+	elements
+ 		1 ´drill_repair_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_repair_WP´
 	on_executed
 		´remove_repair_WP´ (delay 0)
 ´link_repair_WP´ MissionScriptElement 100071
@@ -447,35 +447,35 @@
 		´toggle_OFF_defend_WP_2´ (delay 0)
 ´drill_repair_WP´ ElementWaypoint 100072
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 138, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_repair_WP´ ElementOperator 100069
-	operation remove
 	elements
-		1 ´drill_repair_WP´
+ 		1 ´drill_repair_WP´
+	operation remove
 	on_executed
 		´toggle_ON_defend_WP_2´ (delay 0)
 ´toggle_ON_repair_WP´ ElementToggle 100073
+	elements
+ 		1 ´drill_repair_WP´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_repair_WP´
 	on_executed
 		´link_repair_WP´ (delay 0)
 ´toggle_OFF_defend_WP´ ElementToggle 100074
+	elements
+ 		1 ´drill_defend_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_defend_WP´
 	on_executed
 		´remove_defend_WP´ (delay 0)
 ´remove_defend_WP´ ElementOperator 100075
-	operation remove
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
+	operation remove
 	on_executed
 		´output_drill_completed´ (delay 0)
 ´trigger_drill_placed´ ElementUnitSequenceTrigger 100076
@@ -488,10 +488,10 @@
 	on_executed
 		´toggle_ON_defend_WP´ (delay 0)
 ´toggle_ON_defend_WP´ ElementToggle 100077
+	elements
+ 		1 ´drill_defend_WP´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_defend_WP´
 	on_executed
 		´link_defend_WP´ (delay 0)
 ´link_defend_WP´ MissionScriptElement 100078
@@ -499,29 +499,29 @@
 		´drill_defend_WP´ (delay 0)
 ´drill_defend_WP´ ElementWaypoint 100079
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 138, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´toggle_OFF_defend_WP_2´ ElementToggle 100080
+	elements
+ 		1 ´drill_defend_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_defend_WP´
 	on_executed
 		´remove_defend_WP_2´ (delay 0)
 ´remove_defend_WP_2´ ElementOperator 100081
-	operation remove
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
+	operation remove
 	on_executed
 		´drill_jammed´ (delay 0)
 ´toggle_ON_defend_WP_2´ ElementToggle 100082
+	elements
+ 		1 ´drill_defend_WP´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_defend_WP´
 	on_executed
 		´link_defend_WP_2´ (delay 0)
 ´link_defend_WP_2´ MissionScriptElement 100083
@@ -529,7 +529,7 @@
 		´drill_defend_WP´ (delay 0)
 		´drill_resumed´ (delay 0)
 ´text_asking_for_a_tag´ ElementInteraction 100085
-	host_only false
+	host_only False
 	override_timer -1
 	position 100, -10, 509.257
 	rotation 0, 0, 0, -1
@@ -567,10 +567,10 @@
 	on_executed
 		´toggle_OFF_ALL_WPs´ (delay 0)
 ´toggle_OFF_tag_text´ ElementToggle 100089
+	elements
+ 		1 ´text_asking_for_a_tag´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´text_asking_for_a_tag´
 	on_executed
 		´enable_tag_reader´ (delay 0)
 ´enable_tag_reader´ ElementUnitSequence 100090
@@ -603,35 +603,35 @@
 	on_executed
 		´toggle off fake001´ (delay 0)
 ´toggle off fake001´ ElementToggle 100092
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´text_asking_for_a_tag´
+ 		1 ´text_asking_for_a_tag´
 		2 ´use_RFID_tag´ DISABLED
-´toggle_OFF_ALL_WPs´ ElementToggle 100063
 	set_trigger_times -1
 	toggle off
+´toggle_OFF_ALL_WPs´ ElementToggle 100063
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
 		2 ´drill_repair_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_ALL_WPs´ (delay 0)
 ´remove_ALL_WPs´ ElementOperator 100064
-	operation remove
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
 		2 ´drill_repair_WP´
+	operation remove
 	on_executed
 		´toggle_OFF_interaction´ (delay 0)
 		´toggle_OFF_tag_text_2´ (delay 0)
 ´toggle_ON_interaction´ ElementToggle 100065
+	elements
+ 		1 ´use_RFID_tag´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´use_RFID_tag´ DISABLED
 ´use_RFID_tag´ ElementInteraction 100093
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 100, -10, 509.257
 	rotation 0, 0, 0, -1
@@ -640,10 +640,10 @@
 		´input_open_door´ (delay 0) (alternative interacted)
 		´remove_door_blocker´ (delay 0) (alternative interacted)
 ´toggle_OFF_tag_text_2´ ElementToggle 100084
+	elements
+ 		1 ´text_asking_for_a_tag´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´text_asking_for_a_tag´
 ´drill started´ ElementInstanceOutput 100094
 	event drill_placed
 	on_executed
@@ -680,33 +680,33 @@
 	on_executed
 		´force_toggle_OFF_ALL_WPs´ (delay 0)
 ´force_toggle_OFF_ALL_WPs´ ElementToggle 100002
+	elements
+ 		1 ´drill_defend_WP´
+		2 ´drill_repair_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_defend_WP´
-		2 ´drill_repair_WP´
 	on_executed
 		´force_remove_ALL_WPs´ (delay 0)
 ´force_remove_ALL_WPs´ ElementOperator 100059
-	operation remove
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
 		2 ´drill_repair_WP´
+	operation remove
 	on_executed
 		´output_door_open´ (delay 0)
 ´force_toggle_OFF_ALL_WPs_2´ ElementToggle 100060
+	elements
+ 		1 ´drill_defend_WP´
+		2 ´drill_repair_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´drill_defend_WP´
-		2 ´drill_repair_WP´
 	on_executed
 		´force_remove_ALL_WPs_2´ (delay 0)
 ´force_remove_ALL_WPs_2´ ElementOperator 100095
-	operation remove
 	elements
-		1 ´drill_defend_WP´
+ 		1 ´drill_defend_WP´
 		2 ´drill_repair_WP´
+	operation remove
 	on_executed
 		´disable_tag_reader_3´ (delay 0)
 ´C4_placed´ ElementUnitSequenceTrigger 100100
@@ -724,7 +724,7 @@
 ´randomize_real_bookshelf´ ElementRandom 100116
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´real_bookshelf_001´ (delay 0)
 		´real_bookshelf_002´ (delay 0)
@@ -1100,9 +1100,9 @@
 ´output_evidence_found´ ElementInstanceOutput 100157
 	event evidence_found
 ´point_debug_001´ ElementDebug 100158
-	as_subtitle false
+	as_subtitle False
 	debug_string evidence room 2 found
-	show_instigator false
+	show_instigator False
 ´func_equipment_give_evidence´ ElementEquipment 100057
 	amount 1
 	equipment evidence
@@ -1234,37 +1234,37 @@
 	on_executed
 		´door_exploded_comment´ (delay 1-3)
 ´door_exploded_comment´ ElementTeammateComment 100198
-	close_to_element false
+	close_to_element False
 	comment v54
 	position 1800, -500, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´evidence_found_comment´ ElementTeammateComment 100199
-	close_to_element false
+	close_to_element False
 	comment v04
 	position 1200, -2100, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´C4_placed_comment´ ElementTeammateComment 100200
-	close_to_element false
+	close_to_element False
 	comment v13
 	position 1700, -800, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´drill_placed_comment´ ElementTeammateComment 100201
-	close_to_element false
+	close_to_element False
 	comment g21
 	position 1600, -600, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´drill_completed_comment´ ElementTeammateComment 100202
-	close_to_element false
+	close_to_element False
 	comment v23
 	position 800, -900, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

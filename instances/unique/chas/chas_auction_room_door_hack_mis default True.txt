@@ -52,8 +52,8 @@
 ´interact_WP´ ElementWaypoint 100017
 	TRIGGER TIMES 1
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -77,9 +77,9 @@
 		´link_disable_interaction´ (delay 0)
 		´disable_everything´ (delay 0.1)
 ´point_debug_001´ ElementDebug 100012
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done
-	show_instigator false
+	show_instigator False
 ´seq_hack_done´ ElementUnitSequence 100014
 	position 1200, 200, 0
 	rotation 0, 0, 0, -1
@@ -103,15 +103,15 @@
 	position 0, -150, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_enable_interaction´ (delay 0)
 ´area_disable_interaction´ ElementAreaTrigger 100016
@@ -125,15 +125,15 @@
 	position 0, -150, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_exit
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_disable_interaction´ (delay 0)
 ´link_enable_interaction´ MissionScriptElement 100019
@@ -159,10 +159,8 @@
 			notify_unit_sequence not_interactive
 			time 0
 ´disable_everything´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´area_disable_interaction´ DISABLED
+ 		1 ´area_disable_interaction´ DISABLED
 		2 ´area_enable_interaction´ DISABLED
 		3 ´interact_WP´
 		4 ´defend_WP´ DISABLED
@@ -174,6 +172,8 @@
 		10 ´SO_interrupt_position´
 		11 ´SO_interrupt_position001´
 		12 ´fix_hack_WP´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP´ (delay 0)
 ´input_enable_interactions´ ElementInstanceInput 100018
@@ -185,11 +185,11 @@
 		´enable_area_triggers´ (delay 0)
 		´link_enable_interaction´ (delay 0)
 ´remove_WP´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
 		2 ´defend_WP´ DISABLED
 		3 ´fix_hack_WP´ DISABLED
+	operation remove
 ´ecm_ON´ ElementGlobalEventTrigger 100027
 	DISABLED
 	global_event ecm_jammer_on
@@ -209,22 +209,22 @@
 		´enable_area_triggers´ (delay 0)
 		´seq_unjam_hack´ (delay 0)
 ´disable_area_triggers´ ElementToggle 100029
+	elements
+ 		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_disable_interaction´ DISABLED
-		2 ´area_enable_interaction´ DISABLED
 ´enable_area_triggers´ ElementToggle 100030
+	elements
+ 		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_disable_interaction´ DISABLED
-		2 ´area_enable_interaction´ DISABLED
 ´defend_WP´ ElementWaypoint 100031
 	DISABLED
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -237,22 +237,23 @@
 		´link_enable_defend_WP´ (delay 0)
 ´SO_interrupt_position´ ElementSpecialObjective 100035
 	TRIGGER TIMES 1
-	SO_access 9724
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´SO_interrupt_position001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 4
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -260,32 +261,31 @@
 	pose none
 	position 0, -75, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 1500
 	search_position 0 -100 0
+	SO_access 9724
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´SO_interrupt_position001´
+	use_instigator False
 ´SO_interrupt_position001´ ElementSpecialObjective 100039
 	TRIGGER TIMES 1
-	SO_access 9724
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -293,93 +293,93 @@
 	pose none
 	position 0, -75, 125
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 0 -100 0
+	SO_access 9724
 	so_action e_so_pull_lever
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´activate_SOs´ MissionScriptElement 100040
 	on_executed
 		´SO_interrupt_position´ (delay 0)
 ´SO_failed´ ElementSpecialObjectiveTrigger 100041
 	DISABLED
+	elements
+ 		1 ´SO_interrupt_position´
+		2 ´SO_interrupt_position001´
 	event fail
 	position -100, -150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt_position´
-		2 ´SO_interrupt_position001´
 	on_executed
 		´point_debug_002´ (delay 0)
 		´enable_SOs´ (delay 0)
 ´point_debug_002´ ElementDebug 100042
-	as_subtitle false
+	as_subtitle False
 	debug_string interrupt_failed
-	show_instigator false
+	show_instigator False
 ´SO_success´ ElementSpecialObjectiveTrigger 100043
 	DISABLED
+	elements
+ 		1 ´SO_interrupt_position001´
 	event complete
 	position 100, -150, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt_position001´
 	on_executed
 		´point_debug_003´ (delay 0)
 		´stop_interrupt´ (delay 0)
 		´output_hack_interrupted´ (delay 0)
 ´point_debug_003´ ElementDebug 100044
-	as_subtitle false
+	as_subtitle False
 	debug_string komrat_kat_wants_U_to resume_the hack
-	show_instigator false
+	show_instigator False
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100045
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 250, 275, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100046
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 25, 275, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100047
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -225, 275, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´enable_SOs´ ElementToggle 100048
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´SO_success´ DISABLED
+ 		1 ´SO_success´ DISABLED
 		2 ´SO_failed´ DISABLED
 		3 ´SO_interrupt_position´
 		4 ´SO_interrupt_position001´
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´activate_SOs´ (delay 0)
 ´stop_interrupt´ MissionScriptElement 100049
@@ -388,19 +388,19 @@
 		´remove_SOs´ (delay 0)
 		´seq_enable_hack_resume´ (delay 0)
 ´remove_SOs´ ElementOperator 100050
-	operation remove
 	elements
-		1 ´SO_interrupt_position´
+ 		1 ´SO_interrupt_position´
 		2 ´SO_interrupt_position001´
 		3 ´defend_WP´ DISABLED
+	operation remove
 ´disable_SOs´ ElementToggle 100051
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_interrupt_position´
+ 		1 ´SO_interrupt_position´
 		2 ´SO_success´ DISABLED
 		3 ´SO_failed´ DISABLED
 		4 ´SO_interrupt_position001´
+	set_trigger_times -1
+	toggle off
 ´seq_enable_hack_resume´ ElementUnitSequence 100052
 	position 100, -300, 0
 	rotation 0, 0, 0, -1
@@ -431,25 +431,25 @@
 ´fix_hack_WP´ ElementWaypoint 100056
 	DISABLED
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_2´ ElementOperator 100057
-	operation remove
 	elements
-		1 ´fix_hack_WP´ DISABLED
+ 		1 ´fix_hack_WP´ DISABLED
 		2 ´interact_WP´
+	operation remove
 ´disable_trigger_areas´ ElementToggle 100061
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_enable_interaction´
+ 		1 ´link_enable_interaction´
 		2 ´link_disable_interaction´
 		3 ´seq_disable_interaction´
 		4 ´area_disable_interaction´ DISABLED
 		5 ´area_enable_interaction´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´enable_hack´ (delay 1.5)
 ´input_enable_waypoint´ ElementInstanceInput 100065
@@ -481,10 +481,10 @@
 		´disable_SOs´ (delay 0)
 		´remove_SOs´ (delay 0)
 ´enable_resume_hack´ ElementToggle 100069
+	elements
+ 		1 ´trigger_hacking_resumed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_hacking_resumed´ DISABLED
 ´seq_jam_hack´ ElementUnitSequence 100072
 	position 2150, 150, 2.5
 	rotation 0, 0, 0, -1
@@ -514,9 +514,9 @@
 ´output_hack_interrupted´ ElementInstanceOutput 100009
 	event hack_stopped
 ´point_debug_005´ ElementDebug 100010
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_resumed
-	show_instigator false
+	show_instigator False
 ´output_hack_resumed´ ElementInstanceOutput 100011
 	event hack_resumed
 	on_executed
@@ -526,26 +526,26 @@
 	on_executed
 		´toggle_disable_WP´ (delay 0)
 ´toggle_disable_WP´ ElementToggle 100054
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´defend_WP´ DISABLED
+ 		1 ´defend_WP´ DISABLED
 		2 ´fix_hack_WP´ DISABLED
 		3 ´interact_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_3´ (delay 0)
 ´remove_WP_3´ ElementOperator 100059
-	operation remove
 	elements
-		1 ´defend_WP´ DISABLED
+ 		1 ´defend_WP´ DISABLED
 		2 ´fix_hack_WP´ DISABLED
 		3 ´interact_WP´
+	operation remove
 ´enable_ECM_jammers´ ElementToggle 100060
+	elements
+ 		1 ´ecm_ON´ DISABLED
+		2 ´ecm_OFF´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ecm_ON´ DISABLED
-		2 ´ecm_OFF´ DISABLED
 	on_executed
 		´removes_waypoint´ (delay 0)
 ´enable_interactions´ ElementUnitSequence 100063
@@ -572,21 +572,21 @@
 	on_executed
 		´enable_hack_WP´ (delay 0)
 ´enable_hack_WP´ ElementToggle 100037
+	elements
+ 		1 ´defend_WP´ DISABLED
+		2 ´fix_hack_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´defend_WP´ DISABLED
-		2 ´fix_hack_WP´ DISABLED
 ´turns_off_waypoint´ ElementToggle 100066
+	elements
+ 		1 ´interact_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_WP´
 	on_executed
 		´output_hack_has_started´ (delay 0)
 ´removes_waypoint´ ElementOperator 100070
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´turns_off_waypoint´ (delay 0)

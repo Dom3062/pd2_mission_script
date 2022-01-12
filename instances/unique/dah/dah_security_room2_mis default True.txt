@@ -4,13 +4,13 @@
 	enemy units/payday2/characters/ene_secret_service_1/ene_secret_service_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -247, -201, 0
 	rotation 0, 0, 0.92388, 0.382683
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´guard_killed_output´ ElementInstanceOutput 100029
 	event guard_killed
 ´activate_door´ ElementUnitSequence 100030
@@ -39,11 +39,11 @@
 ´func_instance_output_001´ ElementInstanceOutput 100033
 	event door_opened
 ´guard_killed´ ElementEnemyDummyTrigger 100041
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event death
 	position 150, -250, 50
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´guard_killed_output´ (delay 0)
 		´enable_console´ (delay 0)
@@ -53,9 +53,6 @@
 		´ai_spawn_enemy_001´ (delay 0)
 		´activate_door´ (delay 0)
 ´func_nav_obstacle_002´ ElementNavObstacle 100052
-	operation add
-	position 350, -150, 50
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -81,32 +78,35 @@
 			guis_id 6
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-225, 161, 0)
-´func_nav_obstacle_001´ ElementNavObstacle 100040
-	operation remove
-	position 250, -50, 50
+	operation add
+	position 350, -150, 50
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_001´ ElementNavObstacle 100040
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-75, 150, 0)
+	operation remove
+	position 250, -50, 50
+	rotation 0, 0, 0, -1
 	on_executed
 		´func_instance_output_001´ (delay 0)
 ´guard_tied´ ElementEnemyDummyTrigger 100161
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event tied
 	position 150, -300, 50
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´guard_killed_output´ (delay 0)
 		´enable_console´ (delay 0)
 ´guard_panicked´ ElementEnemyDummyTrigger 100173
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event panic
 	position 150, -350, 50
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´guard_killed_output´ (delay 0)
 		´enable_console´ (delay 0)

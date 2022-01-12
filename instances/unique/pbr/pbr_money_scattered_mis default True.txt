@@ -46,60 +46,60 @@
 	TRIGGER TIMES 1
 	amount 1
 	depth 500
-	height 2341,86
+	height 2341.86
 	instigator player
 	interval 0.1
 	position 0, 0, 202.5
-	radius 885,96
+	radius 885.96
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´found_first´ (delay 0)
 		´pick_1´ (delay 0)
 		´enable_interaction´ (delay 0)
 ´found_one´ ElementTeammateComment 100008
-	close_to_element true
+	close_to_element True
 	comment v05
 	position 0, 0, 102.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´found_another´ ElementTeammateComment 100009
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v06
 	position 0, 0, 127.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´enable_found_other´ ElementInstanceInput 100010
 	event enable_found_other
 	on_executed
 		´enable´ (delay 0)
 ´enable´ ElementToggle 100011
+	elements
+ 		1 ´found_another´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_another´ DISABLED
 ´pick_1´ ElementRandom 100013
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´found_another´ (delay 0) DISABLED
 		´found_one´ (delay 0)
 ´enable001´ ElementToggle 100012
+	elements
+ 		1 ´on_player_enter´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´on_player_enter´ DISABLED
 ´enable_interaction´ ElementUnitSequence 100005
 	position 175, -200, 0
 	rotation 0, 0, 0, -1

@@ -30,9 +30,9 @@
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100011
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 ´enable_2nd_interaction´ ElementUnitSequence 100006
 	position -500, -25, 50
 	rotation 0, 0, 0, -1
@@ -46,15 +46,15 @@
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100014
+	elements
+ 		1 ´first_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´first_interaction´ DISABLED
 ´logic_toggle_002´ ElementToggle 100015
+	elements
+ 		1 ´wire_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´wire_interaction´ DISABLED
 ´wire_interaction´ ElementUnitSequenceTrigger 100016
 	DISABLED
 	sequence_list
@@ -65,10 +65,10 @@
 	on_executed
 		´close_box´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100017
+	elements
+ 		1 ´first_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´first_interaction´ DISABLED
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´close_box´ ElementUnitSequence 100018
@@ -94,15 +94,15 @@
 	on_executed
 		´was_busy´ (delay 0)
 ´in_use_toggle´ ElementToggle 100021
+	elements
+ 		1 ´fuse_popped´
+		2 ´in_use´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´fuse_popped´
-		2 ´in_use´ DISABLED
 ´debug_in_use´ ElementDebug 100022
-	as_subtitle true
+	as_subtitle True
 	debug_string This Box is currently being USED try another
-	show_instigator false
+	show_instigator False
 ´was_busy´ ElementInstanceOutput 100023
 	event currently_being_used
 	on_executed
@@ -115,11 +115,11 @@
 		´alarm_disable´ (delay 0)
 		´disable_box´ (delay 0)
 ´alarm_disable´ ElementToggle 100002
+	elements
+ 		1 ´first_interaction´ DISABLED
+		2 ´wire_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´first_interaction´ DISABLED
-		2 ´wire_interaction´ DISABLED
 ´disable_box´ ElementUnitSequence 100005
 	position -850, -225, 50
 	rotation 0, 0, 0, -1

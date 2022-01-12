@@ -44,14 +44,14 @@
 	position -19, 25, 75
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´you_got_5_seconds´ (delay 0)
 ´you_got_5_seconds´ MissionScriptElement 100024
@@ -71,15 +71,15 @@
 			notify_unit_sequence state_enable_interaction
 			time 0
 ´point_debug_001´ ElementDebug 100031
-	as_subtitle false
+	as_subtitle False
 	debug_string you_got_5_seconds
-	show_instigator false
+	show_instigator False
 ´sound_beeping´ ElementPlaySound 100032
-	append_prefix false
+	append_prefix False
 	position -25, 0, 100
 	rotation 0, 0, 0, -1
 	sound_event window_c4_plant
-	use_instigator false
+	use_instigator False
 ´explosion´ ElementExplosion 100033
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -101,8 +101,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´disabled_bomb´ ElementUnitSequenceTrigger 100034
 	TRIGGER TIMES 1
 	sequence_list
@@ -115,11 +115,11 @@
 		´award_achievement_defuse_bomb´ (delay 0)
 		´func_experience_001´ (delay 0)
 ´disable_bomb´ ElementToggle 100035
+	elements
+ 		1 ´BOOM´
+		2 ´sound_beeping´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´BOOM´
-		2 ´sound_beeping´
 ´BOOM´ MissionScriptElement 100036
 	TRIGGER TIMES 1
 	on_executed
@@ -198,11 +198,11 @@
 		´logic_toggle_001´ (delay 0)
 ´disable_money_spawns´ ElementToggle 100038
 	TRIGGER TIMES 1
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+		2 ´you_got_5_seconds´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
-		2 ´you_got_5_seconds´
 ´disable_money´ ElementDisableUnit 100029
 	TRIGGER TIMES 1
 	position -200, -50, 0
@@ -215,7 +215,7 @@
 ´random_amount_of_money´ ElementRandom 100007
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´logic_random_002´ (delay 0)
 		´logic_random_003´ (delay 0)
@@ -224,7 +224,7 @@
 ´logic_random_002´ ElementRandom 100008
 	amount 3
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -233,7 +233,7 @@
 ´logic_random_003´ ElementRandom 100009
 	amount 2
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -242,7 +242,7 @@
 ´logic_random_004´ ElementRandom 100010
 	amount 4
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -289,17 +289,17 @@
 			notify_unit_sequence show_and_enable_interaction
 			time 0
 ´point_debug_002´ ElementDebug 100020
-	as_subtitle false
+	as_subtitle False
 	debug_string boom
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100016
-	as_subtitle false
+	as_subtitle False
 	debug_string guy exploded
-	show_instigator false
+	show_instigator False
 ´logic_random_005´ ElementRandom 100017
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -326,40 +326,40 @@
 	unit_ids
 		1 units/payday2/props/hlm_prop_bombstrapped/hlm_prop_bombstrapped/001 (-25, 25, 0)
 ´enable_bomb_area´ ElementToggle 100026
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´award_achievement_defuse_bomb´ ElementAwardAchievment 100027
 	achievment pig_7
-	award_instigator false
+	award_instigator False
 	position -100, -350, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´point_debug_004´ (delay 0)
 ´point_debug_004´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string well that was easy.
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string hide bombguy
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100040
-	as_subtitle false
+	as_subtitle False
 	debug_string spawn bombguy
-	show_instigator false
+	show_instigator False
 ´logic_toggle_001´ ElementToggle 100015
+	elements
+ 		1 ´BOOM´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´BOOM´
 ´func_experience_001´ ElementExperience 100041
 	TRIGGER TIMES 1
 	amount 2000
 	on_executed
 		´point_debug_007´ (delay 0)
 ´point_debug_007´ ElementDebug 100042
-	as_subtitle false
+	as_subtitle False
 	debug_string + 2000
-	show_instigator false
+	show_instigator False

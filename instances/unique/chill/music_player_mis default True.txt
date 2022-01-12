@@ -1,5 +1,5 @@
 ´play´ ElementInteraction 100001
-	host_only false
+	host_only False
 	override_timer -1
 	position 31, -50, 100
 	rotation 0, 0, 0, -1
@@ -12,20 +12,20 @@
 		´point_play_sound_coin´ (delay 0)
 		´On´ (delay 1)
 ´play_music´ ElementPlaySound 100003
-	append_prefix false
+	append_prefix False
 	position 0, -45, 27
 	rotation -0.707107, 1.00486E-14, 1.00486E-14, -0.707107
 	sound_event jukebox_safehouse_play
-	use_instigator false
+	use_instigator False
 ´point_play_sound_coin´ ElementPlaySound 100004
-	append_prefix false
+	append_prefix False
 	position 31, -50, 95
 	rotation 0, 0, 0, -1
 	sound_event slot_machine_coin_drop_end
-	use_instigator false
+	use_instigator False
 ´stop´ ElementInteraction 100005
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -29, -50, 100
 	rotation 0, 0, 0, -1
@@ -33,32 +33,32 @@
 	on_executed
 		´link001´ (delay 0) (alternative interacted)
 ´stop_2´ ElementPlaySound 100006
-	append_prefix false
+	append_prefix False
 	position 0, -50, 150
 	rotation 0, 0, 0, -1
 	sound_event jukebox_safehouse_stop
-	use_instigator false
+	use_instigator False
 ´link001´ MissionScriptElement 100007
 	on_executed
 		´stop_2´ (delay 0)
 		´On_2´ (delay 0)
 ´On´ ElementToggle 100008
+	elements
+ 		1 ´play´
+		2 ´stop´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´play´
-		2 ´stop´ DISABLED
 ´On_2´ ElementToggle 100009
+	elements
+ 		1 ´stop´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´stop´ DISABLED
 ´func_instance_input_001´ ElementInstanceInput 100010
 	event disable_interaction
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100011
+	elements
+ 		1 ´play´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´play´

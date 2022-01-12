@@ -80,9 +80,6 @@
 	on_executed
 		´seq_set_gate_closed´ (delay 0)
 ´nav_remove_gate_blocker´ ElementNavObstacle 100021
-	operation remove
-	position 1100, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 3
@@ -92,15 +89,18 @@
 			guis_id 4
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	operation remove
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´disable_stuff´ (delay 0)
 ´disable_stuff´ ElementToggle 100025
 	BASE DELAY 1
+	elements
+ 		1 ´link_close_in´
+		2 ´link_close_out´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_close_in´
-		2 ´link_close_out´
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´link_open_gate´ MissionScriptElement 100004
@@ -176,9 +176,6 @@
 		´seq_hide_lock´ (delay 0.5) DISABLED
 		´func_disable_unit_002´ (delay 0)
 ´nav_add_gate_blocker´ ElementNavObstacle 100043
-	operation add
-	position 1850, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -188,6 +185,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	operation add
+	position 1850, -100, 0
+	rotation 0, 0, 0, -1
 ´input_disable_interaction´ ElementInstanceInput 100020
 	event deactivate_interactions
 	on_executed
@@ -207,10 +207,10 @@
 			time 0
 ´nav_add_blocker_out´ ElementNavObstacle 100029
 	TRIGGER TIMES 1
+	obstacle_list
 	operation add
 	position 1300, -100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
 ´link_open_out_2´ MissionScriptElement 100030
 	on_executed
 		´nav_add_blocker_out´ (delay 0)
@@ -221,9 +221,6 @@
 		´nav_add_blocker_in´ (delay 0)
 		´toggle_on_close_in´ (delay 0)
 ´nav_add_blocker_in´ ElementNavObstacle 100034
-	operation add
-	position 900, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -233,6 +230,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-768.001, -143.001, 0)
+	operation add
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
 ´link_close_in´ MissionScriptElement 100049
 	on_executed
 		´nav_remove_blocker_in´ (delay 0)
@@ -240,9 +240,6 @@
 	on_executed
 		´nav_remove_blocker_out´ (delay 0)
 ´nav_remove_blocker_in´ ElementNavObstacle 100051
-	operation remove
-	position 1600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -252,11 +249,14 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-768.001, -143.001, 0)
+	operation remove
+	position 1600, -100, 0
+	rotation 0, 0, 0, -1
 ´nav_remove_blocker_out´ ElementNavObstacle 100052
+	obstacle_list
 	operation remove
 	position 2000, -100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
 ´seq_trigger_padlock´ ElementUnitSequenceTrigger 100001
 	TRIGGER TIMES 1
 	sequence_list
@@ -272,17 +272,17 @@
 		´link_open_out´ (delay 0)
 		´func_enable_unit_002´ (delay 0)
 ´toggle_on_close_in´ ElementToggle 100031
+	elements
+ 		1 ´link_close_in´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_close_in´
 	on_executed
 		´func_enable_unit_003´ (delay 0)
 ´toggle_on_close_out´ ElementToggle 100032
+	elements
+ 		1 ´link_close_out´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_close_out´
 ´input_enable_interaction´ ElementInstanceInput 100053
 	event activate_interaction
 	on_executed
@@ -301,9 +301,6 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´add_sand_wire_gate_blockers´ ElementNavObstacle 100016
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -313,6 +310,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-425, -50, 0)
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 		´func_enable_unit_001´ (delay 0)
@@ -393,34 +393,34 @@
 	TRIGGER TIMES 1
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´link_blank´ (delay 0)
 		´teammate_comment_lets_go´ (delay 0)
 		´teammate_comment_time_to_go´ (delay 0)
 ´teammate_comment_lets_go´ ElementTeammateComment 100070
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g13
 	position -475, -75, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_time_to_go´ ElementTeammateComment 100072
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment g17
 	position -325, -75, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_blank´ MissionScriptElement 100073
 ´toggle_off´ ElementToggle 100071
+	elements
+ 		1 ´link_comment´
+		2 ´randomize_VO_comment´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_comment´
-		2 ´randomize_VO_comment´
 ´input_hide_padlock´ ElementInstanceInput 100074
 	event hide_padlock
 	on_executed
@@ -446,12 +446,12 @@
 	on_executed
 		´counter_2´ (delay 0)
 ´toggle_off_2´ ElementToggle 100078
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´teammate_comment_time_to_go´
+ 		1 ´teammate_comment_time_to_go´
 		2 ´teammate_comment_lets_go´
 		3 ´police_called´
+	set_trigger_times -1
+	toggle off
 ´counter_2´ ElementCounter 100079
 	TRIGGER TIMES 1
 	counter_target 2

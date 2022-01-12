@@ -15,8 +15,6 @@
 		´func_objective_005´ (delay 0)
 		´logic_counter_operator_001´ (delay 0)
 ´func_instance_params_001´ ElementInstanceParams 100015
-	position 0, -300, 0
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value heist_objective_not_set
@@ -26,51 +24,53 @@
 			default_value 1
 			type number
 			var_name var_amount
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
 ´func_objective_004´ ElementObjective 100017
 	TRIGGER TIMES 1
 	amount 0
+	instance_var_names
+		amount var_amount
+		objective var_objective
 	objective none
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
 	state complete_and_activate
 	sub_objective none
-	instance_var_names
-		amount var_amount
-		objective var_objective
 	on_executed
 		´logic_toggle_001´ (delay 0)
 		´func_instance_output_003´ (delay 0)
 ´logic_toggle_005´ ElementToggle 100018
 	TRIGGER TIMES 1
+	elements
+ 		1 ´func_objective_004´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_objective_004´
 ´logic_counter_001´ ElementCounter 100019
 	counter_target 1
 	instance_var_names
 		counter_target var_amount
 ´func_objective_005´ ElementObjective 100020
 	amount 0
+	instance_var_names
+		amount var_amount
+		objective var_objective
 	objective none
 	position 100, 300, 0
 	rotation 0, 0, 0, -1
 	state complete
 	sub_objective none
-	instance_var_names
-		amount var_amount
-		objective var_objective
 ´logic_toggle_006´ ElementToggle 100016
 	TRIGGER TIMES 1
+	elements
+ 		1 ´func_instance_output_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_instance_output_002´ DISABLED
 ´logic_toggle_001´ ElementToggle 100000
+	elements
+ 		1 ´func_instance_output_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_instance_output_001´ DISABLED
 ´func_instance_output_003´ ElementInstanceOutput 100001
 	event objective_started
 ´bypass´ ElementInstanceInput 100002
@@ -79,12 +79,12 @@
 		´logic_toggle_005´ (delay 0)
 		´logic_toggle_006´ (delay 0)
 ´enable_obj´ ElementToggle 100004
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´func_objective_004´
+ 		1 ´func_objective_004´
 		2 ´logic_toggle_006´
 		3 ´logic_toggle_005´
+	set_trigger_times 1
+	toggle on
 ´restart´ ElementInstanceInput 100003
 	event restart_objective
 	on_executed
@@ -92,28 +92,28 @@
 		´disable_completed´ (delay 0)
 		´logic_counter_operator_002´ (delay 0)
 ´disable_completed´ ElementToggle 100005
+	elements
+ 		1 ´func_instance_output_002´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´func_instance_output_002´ DISABLED
 ´logic_counter_trigger_001´ ElementCounterTrigger 100010
 	amount 0
-	trigger_type value
 	elements
-		1 ´logic_counter_001´
+ 		1 ´logic_counter_001´
+	trigger_type value
 	on_executed
 		´logic_toggle_005´ (delay 0)
 		´logic_toggle_006´ (delay 0)
 		´func_instance_output_001´ (delay 0) DISABLED
 ´logic_counter_operator_001´ ElementCounterOperator 100011
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´logic_counter_001´
+ 		1 ´logic_counter_001´
+	instance_var_names
+	operation subtract
 ´logic_counter_operator_002´ ElementCounterOperator 100012
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´logic_counter_001´
+ 		1 ´logic_counter_001´
+	instance_var_names
+	operation set

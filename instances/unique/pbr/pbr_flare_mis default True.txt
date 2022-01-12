@@ -5,25 +5,25 @@
 	position 0, 20, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´play_flare_sound´ ElementPlaySound 100003
-	append_prefix false
+	append_prefix False
 	position 0, 13, 18
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´stop_flare_effect´ ElementStopEffect 100004
+	elements
+ 		1 ´play_flare_effect´
 	operation fade_kill
 	position -900, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´play_flare_effect´
 ´stop_flare_sound´ ElementPlaySound 100005
-	append_prefix false
+	append_prefix False
 	position -800, 0, 0
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False
 ´flare_disabled_on_startup´ ElementUnitSequence 100006
 	EXECUTE ON STARTUP
 	position -100, -100, 0
@@ -128,47 +128,47 @@
 		1 units/payday2/props/gen_prop_roadflare/gen_prop_roadflare/002 (0, 0, 0)
 ´flare_wp´ ElementWaypoint 100017
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -2, 17, 0
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´flare_wp´
+ 		1 ´flare_wp´
+	operation remove
 ´set_active_flare´ ElementInstanceInput 100019
 	event set_active_flare
 	on_executed
 		´enable_inputs´ (delay 0)
 ´enable_inputs´ ElementToggle 100020
+	elements
+ 		1 ´enable_flare_2´ DISABLED
+		2 ´kill_flare´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_flare_2´ DISABLED
-		2 ´kill_flare´ DISABLED
 ´disable_inputs´ ElementToggle 100022
+	elements
+ 		1 ´kill_flare´ DISABLED
+		2 ´enable_flare_2´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´kill_flare´ DISABLED
-		2 ´enable_flare_2´ DISABLED
 ´waiting_time´ ElementTimer 100023
 	timer 60
 	on_executed
 		´wait_end´ (delay 0)
 ´start_wait´ ElementTimerOperator 100024
+	elements
+ 		1 ´waiting_time´
 	operation start
 	position -200, -100, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´waiting_time´
 ´time_for_chopper´ ElementTimerTrigger 100025
+	elements
+ 		1 ´waiting_time´
 	position -300, -300, 0
 	rotation 0, 0, 0, -1
 	time 27
-	elements
-		1 ´waiting_time´
 	on_executed
 		´send_heli´ (delay 0)
 		´stop_interrupting´ (delay 0)
@@ -187,28 +187,28 @@
 	position 0, 20, 0
 	rotation 0, 0, 0, -1
 ´remove_min_force´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´min_force´
+ 		1 ´min_force´
+	operation remove
 ´start_interruption´ MissionScriptElement 100029
 	on_executed
 		´enable_interrupt_entities´ (delay 0)
 ´interrupt_flare_so´ ElementSpecialObjective 100030
 	TRIGGER TIMES 1
-	SO_access 9696
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style destination
@@ -216,67 +216,67 @@
 	pose none
 	position 0, 100, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 4500
 	search_position 0 100 0
+	SO_access 9696
 	so_action e_so_plant_c4_floor
 	trigger_on none
-	followup_elements
 	on_executed
 		´point_debug_002´ (delay 0)
 ´anim_end´ ElementSpecialObjectiveTrigger 100031
 	DISABLED
+	elements
+ 		1 ´interrupt_flare_so´
 	event complete
 	position 600, -200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_flare_so´
 	on_executed
 		´interrupted_flare´ (delay 0)
 		´flare_died´ (delay 0)
 ´anim_failed´ ElementSpecialObjectiveTrigger 100032
 	DISABLED
+	elements
+ 		1 ´interrupt_flare_so´
 	event fail
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_flare_so´
 	on_executed
 		´loop_back´ (delay 0)
 ´enable_and_action_so´ ElementToggle 100033
 	DISABLED
+	elements
+ 		1 ´interrupt_flare_so´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_flare_so´
 	on_executed
 		´interrupt_flare_so´ (delay 5)
 ´attempt_interrupt_so´ MissionScriptElement 100036
 	on_executed
 		´enable_and_action_so´ (delay 0) DISABLED
 ´disable_interrupt_entities´ ElementToggle 100037
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_failed´ DISABLED
+ 		1 ´anim_failed´ DISABLED
 		2 ´enable_and_action_so´ DISABLED
 		3 ´interrupt_flare_so´
 		4 ´anim_end´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´remove_interrupt_so´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´interrupt_flare_so´
+ 		1 ´interrupt_flare_so´
+	operation remove
 ´stop_interrupting´ MissionScriptElement 100039
 	on_executed
 		´remove_interrupt_so´ (delay 0)
 		´disable_interrupt_entities´ (delay 0)
 ´enable_interrupt_entities´ ElementToggle 100040
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´anim_failed´ DISABLED
+ 		1 ´anim_failed´ DISABLED
 		2 ´enable_and_action_so´ DISABLED
 		3 ´anim_end´ DISABLED
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´attempt_interrupt_so´ (delay 0.05)
 ´loop_back´ MissionScriptElement 100041
@@ -291,16 +291,16 @@
 	DISABLED
 	event flare_is_reignited
 ´second_time_and_beyond´ ElementToggle 100035
+	elements
+ 		1 ´flare_is_reignited´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´flare_is_reignited´ DISABLED
 ´disable_further_interrupts´ ElementToggle 100044
+	elements
+ 		1 ´start_interruption´
+		2 ´interrupted_flare´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´start_interruption´
-		2 ´interrupted_flare´
 ´flare_interrupted´ ElementInstanceOutput 100045
 	event flare_interrupted
 	on_executed
@@ -308,9 +308,9 @@
 		´enable_flare_interaction´ (delay 0)
 		´pause´ (delay 0)
 ´point_debug_002´ ElementDebug 100046
-	as_subtitle false
+	as_subtitle False
 	debug_string interrupt_so_triggered
-	show_instigator false
+	show_instigator False
 ´enable_flare_3´ ElementUnitSequence 100047
 	position 700, 0, 0
 	rotation 0, 0, 0, -1
@@ -331,27 +331,27 @@
 		´when_interacted´ (delay 0) (alternative interacted)
 		´point_debug_003´ (delay 0) (alternative interacted)
 ´enable_flare_interaction´ ElementToggle 100049
+	elements
+ 		1 ´reignite_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´reignite_interaction´ DISABLED
 ´pause´ ElementTimerOperator 100050
+	elements
+ 		1 ´waiting_time´
 	operation pause
 	position 800, -300, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´waiting_time´
 ´point_debug_003´ ElementDebug 100051
-	as_subtitle false
+	as_subtitle False
 	debug_string reignited_flare
-	show_instigator false
+	show_instigator False
 ´allow_flare_disappear´ ElementToggle 100053
+	elements
+ 		1 ´anim_end´ DISABLED
+		2 ´flare_died´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´anim_end´ DISABLED
-		2 ´flare_died´
 ´level_designer_disable_reignition´ MissionScriptElement 100043
 	EXECUTE ON STARTUP
 	on_executed

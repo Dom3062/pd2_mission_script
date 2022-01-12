@@ -46,22 +46,23 @@
 ´SO_turn_ON_power´ ElementSpecialObjective 100009
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 8252
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´SO_turn_ON_power_anim´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste walk
 	path_stance ntl
 	path_style destination
@@ -69,53 +70,52 @@
 	pose none
 	position 0, -70, 0
 	rotation 0, 0, -2.38418E-07, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 251,304 -296,75 0
+	SO_access 8252
 	so_action none
-	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´SO_turn_ON_power_anim´
 	spawn_instigator_ids
 		1 ´ai_spawn_enemy_003´
+	trigger_on none
+	use_instigator True
 ´turn_ON_power_failed´ ElementSpecialObjectiveTrigger 100010
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_turn_ON_power_anim´
+		2 ´SO_turn_ON_power´ DISABLED
 	event fail
 	position 128, -164, 3
 	rotation 0, 0, -2.38418E-07, -1
-	elements
-		1 ´SO_turn_ON_power_anim´
-		2 ´SO_turn_ON_power´ DISABLED
 	on_executed
 		´enable_and_action_turn_ON_power´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100011
-	as_subtitle false
+	as_subtitle False
 	debug_string failed_turn_ON_power
-	show_instigator false
+	show_instigator False
 ´turn_ON_power_succesful´ ElementSpecialObjectiveTrigger 100012
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_turn_ON_power_anim´
 	event complete
 	position -72, -164, 3
 	rotation 0, 0, -2.38418E-07, -1
-	elements
-		1 ´SO_turn_ON_power_anim´
 	on_executed
 		´stop_turn_ON_power´ (delay 0)
 		´point_debug_002´ (delay 0)
 		´enable_stuff_back´ (delay 0)
 ´disable_turn_ON_power´ ElementToggle 100013
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_turn_ON_power´ DISABLED
+ 		1 ´SO_turn_ON_power´ DISABLED
 		2 ´turn_ON_power_succesful´ DISABLED
 		3 ´turn_ON_power_failed´ DISABLED
 		4 ´enable_interaction´
 		5 ´SO_turn_ON_power_anim´
+	set_trigger_times -1
+	toggle off
 ´stop_turn_ON_power´ MissionScriptElement 100014
 	on_executed
 		´remove_turn_ON_power_SO´ (delay 0)
@@ -123,18 +123,18 @@
 		´output_interrupt_successful´ (delay 0)
 		´enable_interaction´ (delay 0)
 ´remove_turn_ON_power_SO´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´SO_turn_ON_power´ DISABLED
+ 		1 ´SO_turn_ON_power´ DISABLED
 		2 ´SO_turn_ON_power_anim´
+	operation remove
 ´point_debug_002´ ElementDebug 100016
-	as_subtitle false
+	as_subtitle False
 	debug_string completed_turn_ON_power
-	show_instigator false
+	show_instigator False
 ´interact_WP´ ElementWaypoint 100017
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -145,20 +145,20 @@
 		´remove_interact_WP´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´enable_and_action_turn_ON_power´ ElementToggle 100021
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´SO_turn_ON_power´ DISABLED
+ 		1 ´SO_turn_ON_power´ DISABLED
 		2 ´turn_ON_power_succesful´ DISABLED
 		3 ´turn_ON_power_failed´ DISABLED
 		4 ´enable_interaction´
 		5 ´SO_turn_ON_power_anim´
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´SO_turn_ON_power´ (delay 0.05) DISABLED
 ´remove_interact_WP´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´enable_and_action_turn_ON_power´ (delay 0)
 ´disable_everything´ MissionScriptElement 100025
@@ -166,10 +166,8 @@
 		´toggle_OFF_everything´ (delay 0.05)
 		´remove_turn_ON_power_SO´ (delay 0)
 ´toggle_OFF_everything´ ElementToggle 100026
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
 		2 ´turn_ON_power_failed´ DISABLED
 		3 ´SO_turn_ON_power´ DISABLED
 		4 ´turn_ON_power_succesful´ DISABLED
@@ -180,6 +178,8 @@
 		9 ´point_debug_001´
 		10 ´enable_interaction´
 		11 ´SO_turn_ON_power_anim´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WPs´ (delay 0)
 ´enable_interaction´ ElementUnitSequence 100027
@@ -205,29 +205,30 @@
 	on_executed
 		´disable_everything´ (delay 0)
 ´remove_WPs´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´seq_disable_interactions´ (delay 0)
 ´SO_turn_ON_power_anim´ ElementSpecialObjective 100034
 	TRIGGER TIMES 1
-	SO_access 8252
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste walk
 	path_stance ntl
 	path_style destination
@@ -235,13 +236,12 @@
 	pose none
 	position 0, -70, 100
 	rotation 0, 0, -2.38418E-07, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -78,9314 -155,722 0
+	SO_access 8252
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
-		1 ´ai_so_group_001´
 ´seq_power_OFF´ ElementUnitSequenceTrigger 100007
 	sequence_list
 		1
@@ -254,22 +254,22 @@
 		´output_power_OFF´ (delay 0)
 		´lever_pulled´ (delay 0)
 ´point_debug_003´ ElementDebug 100035
-	as_subtitle false
+	as_subtitle False
 	debug_string AI_coming_to_power_on
-	show_instigator false
+	show_instigator False
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100039
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_security_1/ene_security_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 1100, -500, 0
 	rotation 0, 0, -0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´SO_guard_pos_003´ (delay 0)
 ´seq_disable_interactions´ ElementUnitSequence 100018
@@ -299,31 +299,32 @@
 	on_executed
 		´interact_WP´ (delay 0)
 ´func_whisper_state_001´ ElementWhisperState 100037
-	disable_hud false
+	disable_hud False
 	position 3575, 300, 2.5
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´enable_switch_wp´ ElementInstanceInput 100055
 	event enable_switch_wp
 	on_executed
 		´link_enable_WP´ (delay 0)
 ´SO_guard_pos_001´ ElementSpecialObjective 100036
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -331,20 +332,15 @@
 	pose none
 	position 1200, -1450, 0
 	rotation 0, 0, 0.92388, 0.382683
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_001´
+	use_instigator False
 ´ai_so_group_001´ ElementSpecialObjectiveGroup 100038
 	base_chance 1
-	mode randomizer
-	position 825, -550, 0
-	rotation 0, 0, 0, -1
-	use_instigator false
 	followup_elements
 		1 ´SO_guard_pos_002´
 		2 ´SO_guard_pos_003´
@@ -352,23 +348,28 @@
 		4 ´SO_guard_pos_001´
 		5 ´SO_turn_ON_power´ DISABLED
 		6 ´SO_guard_pos_005´
+	mode randomizer
+	position 825, -550, 0
+	rotation 0, 0, 0, -1
+	use_instigator False
 ´SO_guard_pos_002´ ElementSpecialObjective 100059
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -376,31 +377,31 @@
 	pose none
 	position 1350, -500, 0
 	rotation 0, 0, -0.707107, -0.707106
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_001´
+	use_instigator False
 ´SO_guard_pos_003´ ElementSpecialObjective 100060
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -408,33 +409,33 @@
 	pose none
 	position 625.001, -650, 0
 	rotation 0, 0, -2.68221E-07, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
-	trigger_on none
-	use_instigator true
-	followup_elements
-		1 ´ai_so_group_001´
 	spawn_instigator_ids
 		1 ´ai_spawn_enemy_003´
+	trigger_on none
+	use_instigator True
 ´SO_guard_pos_004´ ElementSpecialObjective 100061
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -442,48 +443,47 @@
 	pose none
 	position 800, -99.9924, 0
 	rotation 0, 0, 0.382683, -0.92388
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_001´
+	use_instigator False
 ´enable_stuff´ ElementToggle 100065
+	elements
+ 		1 ´SO_turn_ON_power´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´SO_turn_ON_power´ DISABLED
 	on_executed
 		´SO_turn_ON_power´ (delay 1) DISABLED
 ´disable_stuff´ ElementToggle 100066
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_guard_pos_001´
+ 		1 ´SO_guard_pos_001´
 		2 ´SO_guard_pos_002´
 		3 ´SO_guard_pos_003´
 		4 ´SO_guard_pos_004´
 		5 ´SO_guard_pos_005´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´enable_stuff´ (delay 0)
 ´enable_stuff_back´ ElementToggle 100067
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´SO_guard_pos_001´
+ 		1 ´SO_guard_pos_001´
 		2 ´SO_guard_pos_002´
 		3 ´SO_guard_pos_003´
 		4 ´SO_guard_pos_004´
 		5 ´SO_guard_pos_005´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´disable_stuff_back´ (delay 0)
 ´disable_stuff_back´ ElementToggle 100068
+	elements
+ 		1 ´SO_turn_ON_power´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´SO_turn_ON_power´ DISABLED
 	on_executed
 		´SO_guard_pos_003´ (delay 1)
 ´toggle_enable_open_box_interaction´ ElementToggle 100069
@@ -492,22 +492,23 @@
 	on_executed
 		´seq_enable_lever_interactions´ (delay 0)
 ´SO_guard_pos_005´ ElementSpecialObjective 100079
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -515,14 +516,13 @@
 	pose none
 	position 1200, -1050, 0
 	rotation 0, 0, 0.92388, 0.382682
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_001´
+	use_instigator False
 ´input_force_back_to_patrol_path´ ElementInstanceInput 100073
 	event return_to_patrol_path
 	on_executed
@@ -535,16 +535,16 @@
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100076
-	operation none
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation none
 	on_executed
 		´disable_WP´ (delay 0)
 ´disable_WP´ ElementToggle 100077
+	elements
+ 		1 ´interact_WP´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interact_WP´
 ´seq_enable_lever_interactions´ ElementUnitSequence 100080
 	position 1900, 100, 0
 	rotation 0, 0, 0, -1
@@ -562,25 +562,25 @@
 			notify_unit_sequence state_interaction_enable
 			time 0
 ´filter_2nd_guard´ ElementFilter 100028
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 2600, 300, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -594,32 +594,33 @@
 	enemy units/payday2/characters/ene_security_2/ene_security_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -700, -800, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´SO_guard_2_pos_001´ (delay 0)
 ´SO_guard_2_pos_001´ ElementSpecialObjective 100040
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_002´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -627,33 +628,33 @@
 	pose none
 	position -25, -650, 0
 	rotation 0, 0, -6.55651E-07, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
-	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_002´
 	spawn_instigator_ids
 		1 ´ai_spawn_enemy_004´
+	trigger_on none
+	use_instigator False
 ´SO_guard_2_pos_002´ ElementSpecialObjective 100041
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_002´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -661,31 +662,31 @@
 	pose none
 	position -650, -925, 0
 	rotation 0, 0, 0.92388, 0.382683
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_002´
+	use_instigator False
 ´SO_guard_2_pos_003´ ElementSpecialObjective 100042
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_002´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -693,31 +694,31 @@
 	pose none
 	position 100, -1725, 0
 	rotation 0, 0, 0.92388, 0.382683
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_002´
+	use_instigator False
 ´SO_guard_2_pos_004´ ElementSpecialObjective 100043
-	SO_access 8
 	action_duration_max 5
 	action_duration_min 5
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´ai_so_group_002´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -725,25 +726,24 @@
 	pose none
 	position -600, -325, 0
 	rotation 0, 0, -0.382684, -0.923879
-	scan true
+	scan True
 	search_distance 0
 	search_position -200 900 0
+	SO_access 8
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´ai_so_group_002´
+	use_instigator False
 ´ai_so_group_002´ ElementSpecialObjectiveGroup 100044
 	base_chance 1
-	mode randomizer
-	position -300, -850, 0
-	rotation 0, 0, 0, -1
-	use_instigator false
 	followup_elements
 		1 ´SO_guard_2_pos_001´
 		2 ´SO_guard_2_pos_002´
 		3 ´SO_guard_2_pos_003´
 		4 ´SO_guard_2_pos_004´
+	mode randomizer
+	position -300, -850, 0
+	rotation 0, 0, 0, -1
+	use_instigator False
 ´input_force_back_to_patrol_path_002´ ElementInstanceInput 100045
 	event return_to_patrol_path_guard_2
 	on_executed
@@ -752,9 +752,9 @@
 	on_executed
 		´SO_guard_2_pos_001´ (delay 0)
 ´lever_pulled´ ElementPlaySound 100047
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 0, -19, 125
 	rotation 0, 0, 0, -1
 	sound_event pull_metal_lever
-	use_instigator false
+	use_instigator False

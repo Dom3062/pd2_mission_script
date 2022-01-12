@@ -7,23 +7,23 @@
 	on_executed
 		´disable_interaction´ (delay 0)
 ´interrupt_SO´ ElementSpecialObjective 100006
-	SO_access 6301180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv false
+	is_navigation_link True
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -31,30 +31,31 @@
 	pose none
 	position 26, 77, 75
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position 0 100 0
+	SO_access 6301180
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
 ´initiate_SO´ ElementSpecialObjective 100007
-	SO_access 6301180
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´interrupt_SO´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -62,19 +63,16 @@
 	pose none
 	position 26, 77, -25
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 2000
 	search_position 23,1041 230,54 2,5
+	SO_access 6301180
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interrupt_SO´
+	use_instigator False
 ´toggle_ON_SOs_WP´ ElementToggle 100008
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´interrupt_SO´
+ 		1 ´interrupt_SO´
 		2 ´initiate_SO´
 		3 ´success´
 		4 ´fail´
@@ -85,47 +83,49 @@
 		9 ´enable_valve´
 		10 ´output_turn_ON_water_vfx´
 		11 ´toggle_OFF_SOs_3´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´set_power_off´ (delay 0)
 		´execute_initiate_SO´ (delay 15)
 		´start_defend_WP´ (delay 0) DISABLED
 ´fail´ ElementSpecialObjectiveTrigger 100009
+	elements
+ 		1 ´interrupt_SO´
+		2 ´initiate_SO´
 	event fail
 	position -100, 100, 0
 	rotation 0, 0, -8.74228E-08, -1
-	elements
-		1 ´interrupt_SO´
-		2 ´initiate_SO´
 	on_executed
 		´toggle_OFF_SOs´ (delay 0)
 ´success´ ElementSpecialObjectiveTrigger 100010
+	elements
+ 		1 ´interrupt_SO´
 	event complete
 	position -100, 200, 0
 	rotation 0, 0, -8.74228E-08, -1
-	elements
-		1 ´interrupt_SO´
 	on_executed
 		´toggle_OFF_SOs_3´ (delay 0)
 ´toggle_OFF_SOs´ ElementToggle 100011
+	elements
+ 		1 ´initiate_SO´
+		2 ´interrupt_SO´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´initiate_SO´
-		2 ´interrupt_SO´
 	on_executed
 		´toggle_ON_initiate_SO´ (delay 15)
 ´toggle_ON_initiate_SO´ ElementToggle 100012
+	elements
+ 		1 ´initiate_SO´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´initiate_SO´
 	on_executed
 		´toggle_ON_SOs_execute_initiate´ (delay 0)
 ´toggle_ON_SOs_execute_initiate´ ElementToggle 100013
+	elements
+ 		1 ´interrupt_SO´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interrupt_SO´
 	on_executed
 		´initiate_SO´ (delay 0)
 ´enable_valve´ ElementUnitSequence 100015
@@ -171,10 +171,8 @@
 	on_executed
 		´toggle_OFF_everything´ (delay 0)
 ´toggle_OFF_everything´ ElementToggle 100019
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´startup´
+ 		1 ´startup´
 		2 ´input_fire_started´
 		3 ´toggle_ON_SOs_WP´
 		4 ´interrupt_SO´
@@ -191,6 +189,8 @@
 		15 ´input_pause_interrupts´
 		16 ´input_resume_interrupts´
 		17 ´remove_WPs_2´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´if_power_on´ (delay 0)
 		´remove_SOs´ (delay 0)
@@ -199,65 +199,65 @@
 	counter_target 0
 ´set_power_off´ ElementCounterOperator 100021
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´on_or_off´
+ 		1 ´on_or_off´
+	instance_var_names
+	operation set
 ´set_power_on´ ElementCounterOperator 100022
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´on_or_off´
+ 		1 ´on_or_off´
+	instance_var_names
+	operation set
 ´if_power_on´ ElementCounterFilter 100023
+	elements
+ 		1 ´on_or_off´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´on_or_off´
 	on_executed
 		´logic_toggle_008´ (delay 0)
 ´logic_toggle_008´ ElementToggle 100025
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´disable_valve´
+ 		1 ´disable_valve´
 		2 ´output_turn_OFF_water_vfx´
 		3 ´remove_interact_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WPs´ (delay 0)
 ´remove_SOs´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´interrupt_SO´
+ 		1 ´interrupt_SO´
 		2 ´initiate_SO´
+	operation remove
 ´defend_wp´ ElementWaypoint 100026
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 29, 158
 	rotation 0, 0, -8.74228E-08, -1
 	text_id debug_none
 ´interact_wp´ ElementWaypoint 100027
 	icon pd2_water_tap
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 29, 158
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_defend_WP_execute_interact_WP´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 	on_executed
 		´enable_valve´ (delay 0)
 		´interact_wp´ (delay 0)
 ´if_power_off´ ElementCounterFilter 100029
+	elements
+ 		1 ´on_or_off´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´on_or_off´
 	on_executed
 		´logic_toggle_009´ (delay 0)
 ´logic_toggle_009´ ElementToggle 100030
@@ -266,16 +266,16 @@
 	on_executed
 		´remove_WPs´ (delay 0)
 ´remove_interact_WP´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´interact_wp´
+ 		1 ´interact_wp´
+	operation remove
 	on_executed
 		´disable_valve´ (delay 0)
 ´remove_WPs´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
 		2 ´interact_wp´
+	operation remove
 ´point_spawn_player_001´ ElementPlayerSpawner 100036
 	DISABLED
 	position 300, -200, 0
@@ -286,10 +286,8 @@
 	on_executed
 		´toggle_OFF_SOs_2´ (delay 0)
 ´toggle_OFF_SOs_2´ ElementToggle 100038
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_SO´
+ 		1 ´interrupt_SO´
 		2 ´initiate_SO´
 		3 ´remove_defend_WP_execute_interact_WP´
 		4 ´enable_valve´
@@ -300,15 +298,17 @@
 		9 ´toggle_ON_initiate_SO´
 		10 ´toggle_ON_SOs_execute_initiate´
 		11 ´toggle_OFF_SOs_3´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WPs_2´ (delay 0)
 ´remove_WPs_2´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´initiate_SO´
+ 		1 ´initiate_SO´
 		2 ´interrupt_SO´
 		3 ´interact_wp´
 		4 ´defend_wp´
+	operation remove
 ´input_resume_interrupts´ ElementInstanceInput 100040
 	event resume_interrupts_input
 	on_executed
@@ -332,11 +332,11 @@
 	on_executed
 		´remove_interact_WP´ (delay 0)
 ´toggle_OFF_SOs_3´ ElementToggle 100000
+	elements
+ 		1 ´initiate_SO´
+		2 ´interrupt_SO´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´initiate_SO´
-		2 ´interrupt_SO´
 	on_executed
 		´remove_defend_WP_execute_interact_WP´ (delay 0)
 		´remove_SOs´ (delay 0)
@@ -354,9 +354,9 @@
 		´enable_valve´ (delay 3)
 		´remove_defend_WP´ (delay 3)
 ´remove_defend_WP´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 	on_executed
 		´toggle_ON_defend_WP_execution´ (delay 0)
 ´execute_initiate_SO´ MissionScriptElement 100043
@@ -367,7 +367,7 @@
 	on_executed
 		´defend_wp´ (delay 0)
 ´toggle_ON_defend_WP_execution´ ElementToggle 100031
+	elements
+ 		1 ´start_defend_WP´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´start_defend_WP´ DISABLED

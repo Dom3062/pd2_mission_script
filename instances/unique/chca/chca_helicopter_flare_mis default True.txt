@@ -62,31 +62,31 @@
 		´remove_WP´ (delay 0)
 ´interact_wp´ ElementWaypoint 100012
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 35, 10.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´interact_wp´
+ 		1 ´interact_wp´
+	operation remove
 	on_executed
 		´toggle_OFF_WP´ (delay 0)
 ´sound_start´ ElementPlaySound 100015
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 10, 10.5
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´sound_stop´ ElementPlaySound 100016
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 10, 10.5
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False
 ´flare_effect´ ElementPlayEffect 100009
 	base_time 0
 	effect effects/particles/fire/flare
@@ -94,13 +94,13 @@
 	position 0, 20, 3
 	random_time 0
 	rotation 0.199368, 0, 0, -0.979925
-	screen_space false
+	screen_space False
 ´env_effect_stop´ ElementStopEffect 100010
+	elements
+ 		1 ´flare_effect´
 	operation fade_kill
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´flare_effect´
 	on_executed
 		´sound_stop´ (delay 0)
 ´kill_it´ MissionScriptElement 100007
@@ -115,12 +115,12 @@
 	on_executed
 		´interact_wp´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100018
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_WP´
+ 		1 ´enable_WP´
 		2 ´input_enable_WP´
 		3 ´interact_wp´
+	set_trigger_times -1
+	toggle off
 ´flae_highlight_interacted_with´ ElementUnitSequenceTrigger 100019
 	TRIGGER TIMES 1
 	sequence_list

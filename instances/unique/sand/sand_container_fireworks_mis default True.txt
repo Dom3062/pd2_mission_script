@@ -176,9 +176,6 @@
 	on_executed
 		´show_fireworks´ (delay 0)
 ´nav_add_door_blocker´ ElementNavObstacle 100044
-	operation add
-	position 600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -188,24 +185,27 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/rear1 (100, -375, 0)
-´nav_remove_door_blockers´ ElementNavObstacle 100045
-	operation remove
-	position 1600, 100, 0
+	operation add
+	position 600, -100, 0
 	rotation 0, 0, 0, -1
+´nav_remove_door_blockers´ ElementNavObstacle 100045
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/front1 (100, 275, 0)
-´nav_remove_door_blockers_2´ ElementNavObstacle 100046
 	operation remove
-	position 1700, 100, 0
+	position 1600, 100, 0
 	rotation 0, 0, 0, -1
+´nav_remove_door_blockers_2´ ElementNavObstacle 100046
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/rear1 (100, -375, 0)
+	operation remove
+	position 1700, 100, 0
+	rotation 0, 0, 0, -1
 ´output_fireworks_collected´ ElementInstanceOutput 100039
 	event fireworks_collected
 ´show_fireworks´ ElementUnitSequence 100048
@@ -270,7 +270,7 @@
 ´randomize_container_color´ ElementRandom 100038
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´seq_set_color_white001´ (delay 0)
 		´seq_set_color_green´ (delay 0)
@@ -304,22 +304,22 @@
 		´toggle_off_wp´ (delay 0)
 ´point_waypoint_fireworks´ ElementWaypoint 100055
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -50, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´toggle_off_wp´ ElementToggle 100056
+	elements
+ 		1 ´point_waypoint_fireworks´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_fireworks´
 	on_executed
 		´operator_remove_wp´ (delay 0)
 ´operator_remove_wp´ ElementOperator 100057
-	operation remove
 	elements
-		1 ´point_waypoint_fireworks´
+ 		1 ´point_waypoint_fireworks´
+	operation remove
 ´police_called´ ElementGlobalEventTrigger 100004
 	TRIGGER TIMES 1
 	global_event police_called
@@ -345,13 +345,13 @@
 	enemy units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -49.9999, 0, 25
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´dozer_spawn_chance´ ElementLogicChance 100015
 	TRIGGER TIMES 1
 	chance 20
@@ -368,141 +368,141 @@
 	enemy units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -49.9999, 0, 25
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´dozer_2´ ElementSpawnEnemyDummy 100023
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -49.9999, -1.52588E-05, 25
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´dozer_1´ ElementSpawnEnemyDummy 100024
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -49.9999, -1.52588E-05, 25
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´filter_diff_wish´ ElementFilter 100025
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 900, -300, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_link_003´ (delay 0)
 ´filter_diff_ds´ ElementFilter 100028
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1000, -300, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_link_004´ (delay 0)
 ´filter_diff_vhard_overkill´ ElementFilter 100029
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 700, -300, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_link_002´ (delay 0)
 ´filter_diff_hard´ ElementFilter 100030
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_pc_only false
-	platform_ps3 true
-	platform_ps4_only false
-	platform_win32 true
-	platform_xb1_only false
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 600, -300, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´logic_link_001´ (delay 0)
 ´toggle_OFF_dozer_spawning´ ElementToggle 100031
+	elements
+ 		1 ´dozer_spawn_chance´
+		2 ´loud_and_door_opened´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´dozer_spawn_chance´
-		2 ´loud_and_door_opened´
 	on_executed
 		´randomize_container_company´ (delay 0)
 ´logic_link_001´ MissionScriptElement 100032
@@ -518,9 +518,9 @@
 	on_executed
 		´zeal_dozer´ (delay 0)
 ´point_debug_001´ ElementDebug 100050
-	as_subtitle false
+	as_subtitle False
 	debug_string door_opened
-	show_instigator false
+	show_instigator False
 ´loud_and_door_opened´ ElementCounter 100058
 	counter_target 2
 	on_executed
@@ -528,7 +528,7 @@
 ´randomize_container_company´ ElementRandom 100009
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_sequence_001´ (delay 0)
 		´func_sequence_002´ (delay 0)
@@ -568,9 +568,9 @@
 	on_executed
 		´toggle_OFF_fireworks_interaction´ (delay 0)
 ´toggle_OFF_fireworks_interaction´ ElementToggle 100064
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´police_called´
+ 		1 ´police_called´
 		2 ´loud_AND_fireworks_spawned´
 		3 ´enable_interaction´
+	set_trigger_times -1
+	toggle off

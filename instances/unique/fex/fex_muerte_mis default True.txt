@@ -16,12 +16,12 @@
 	on_executed
 		´show_globe´ (delay 0)
 ´move_statue_SFX_start´ ElementPlaySound 100103
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 81, 200, 200
 	rotation 0, 0, 0, -1
 	sound_event muerte_door_slide_down_start
-	use_instigator false
+	use_instigator False
 	on_executed
 		´remove_moving_sound´ (delay 8)
 ´point_feedback_001´ ElementFeedback 100104
@@ -41,8 +41,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´counter´ ElementCounter 100105
 	counter_target 2
 	on_executed
@@ -68,23 +68,23 @@
 	on_executed
 		´toggle_OFF_interactions´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100111
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-25, 100, 2.5)
 	operation add
 	position 600, -300, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100112
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-25, 100, 2.5)
-´remove_door_blocker´ ElementNavObstacle 100112
 	operation remove
 	position 800, 600, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-25, 100, 2.5)
 	on_executed
 		´disable_button´ (delay 0)
 ´disable_units´ ElementDisableUnit 100114
@@ -100,10 +100,10 @@
 		´move_statue_SFX_start´ (delay 0)
 		´destroy_door´ (delay 0)
 ´toggle_OFF_interactions´ ElementToggle 100115
+	elements
+ 		1 ´move_statue_SFX_start´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´move_statue_SFX_start´
 	on_executed
 		´disable_units´ (delay 0)
 ´enable_backside_button´ ElementUnitSequence 100116
@@ -118,14 +118,14 @@
 			notify_unit_sequence state_enabled
 			time 0
 ´toggle_OFF_button_functionality´ ElementToggle 100119
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_backside_button´ DISABLED
+ 		1 ´enable_backside_button´ DISABLED
 		2 ´disable_button´
 		3 ´button_pressed´
 		4 ´enable_globe´
 		5 ´enable_scythe´
+	set_trigger_times -1
+	toggle off
 ´button_pressed´ ElementUnitSequenceTrigger 100120
 	TRIGGER TIMES 1
 	sequence_list
@@ -159,10 +159,8 @@
 		´logic_toggle_002´ (delay 0)
 		´disable_interaction´ (delay 0)
 ´toggle_OFF_items´ ElementToggle 100122
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´counter´
+ 		1 ´counter´
 		2 ´disable_stuff´
 		3 ´globe_returned´
 		4 ´scythe_returned´
@@ -171,6 +169,8 @@
 		7 ´WP_return_items´ DISABLED
 		8 ´enable_globe´
 		9 ´enable_scythe´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´disable_interactions´ (delay 0)
 		´remove_WP_return_items´ (delay 0)
@@ -317,22 +317,22 @@
 	on_executed
 		´enable_stuff´ (delay 0)
 ´enable_stuff´ ElementToggle 100130
+	elements
+ 		1 ´WP_return_items´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´WP_return_items´ DISABLED
 ´WP_return_items´ ElementWaypoint 100131
 	DISABLED
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, 200, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_return_items´ ElementOperator 100132
-	operation remove
 	elements
-		1 ´WP_return_items´ DISABLED
+ 		1 ´WP_return_items´ DISABLED
+	operation remove
 	on_executed
 		´logic_toggle_003´ (delay 0)
 ´input_disable_santa_muerte_WP´ ElementInstanceInput 100133
@@ -349,10 +349,10 @@
 	on_executed
 		´remove_WP_return_items´ (delay 0)
 ´disable_stuff_2´ ElementToggle 100137
+	elements
+ 		1 ´WP_return_items´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_return_items´ DISABLED
 ´disable_backside_button´ ElementUnitSequence 100085
 	position 600, 0, 2.5
 	rotation 0, 0, 0, -1
@@ -364,23 +364,23 @@
 			notify_unit_sequence state_disabled
 			time 0
 ´toggle_OFF_scythe_interaction´ ElementToggle 100109
+	elements
+ 		1 ´enable_scythe´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_scythe´
 ´toggle_OFF_globe_interaction´ ElementToggle 100139
+	elements
+ 		1 ´enable_globe´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_globe´
 ´logic_toggle_003´ ElementToggle 100140
 	set_trigger_times -1
 	toggle off
 ´logic_toggle_004´ ElementToggle 100141
+	elements
+ 		1 ´disable_interactions´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´disable_interactions´
 ´muerte_open_output´ ElementInstanceOutput 100146
 	event muerte_open
 ´open_door_input´ ElementInstanceInput 100090
@@ -418,10 +418,8 @@
 	on_executed
 		´toggle_OFF_EVERYTHING´ (delay 0)
 ´toggle_OFF_EVERYTHING´ ElementToggle 100094
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_disable_santa_muerte_WP´
+ 		1 ´input_disable_santa_muerte_WP´
 		2 ´input_return_items_objective_activated´
 		3 ´enable_stuff´
 		4 ´add_door_blocker´
@@ -462,23 +460,25 @@
 		39 ´disable_interactions´
 		40 ´logic_toggle_004´
 		41 ´WP_return_items´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_door_blocker_2´ (delay 0)
 ´remove_WP´ ElementOperator 100096
-	operation remove
 	elements
-		1 ´WP_return_items´ DISABLED
+ 		1 ´WP_return_items´ DISABLED
+	operation remove
 	on_executed
 		´disable_stuff__and_open_door´ (delay 0)
 ´remove_door_blocker_2´ ElementNavObstacle 100108
-	operation remove
-	position 900, -600, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-25, 100, 2.5)
+	operation remove
+	position 900, -600, 0
+	rotation 0, 0, 0, -1
 ´show_corridor_details´ ElementInstanceInput 100002
 	event show_corridor_details
 	on_executed
@@ -508,32 +508,32 @@
 			notify_unit_sequence show_living_room_details
 			time 0
 ´scythe_placed_SFX´ ElementPlaySound 100006
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 55, 174, 186
 	rotation 0, 0, 0, -1
 	sound_event scythe_put_down
-	use_instigator false
+	use_instigator False
 ´globe_placed_SFX´ ElementPlaySound 100007
-	append_prefix false
-	interrupt false
+	append_prefix False
+	interrupt False
 	position 55, 202, 175
 	rotation 0, 0, 0, -1
 	sound_event globe_put_down
-	use_instigator false
+	use_instigator False
 ´remove_moving_sound´ ElementOperator 100008
-	operation remove
 	elements
-		1 ´move_statue_SFX_start´
+ 		1 ´move_statue_SFX_start´
+	operation remove
 	on_executed
 		´move_statue_SFX_end´ (delay 0)
 ´move_statue_SFX_end´ ElementPlaySound 100009
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 81, 200, 200
 	rotation 0, 0, 0, -1
 	sound_event muerte_door_slide_down_end
-	use_instigator false
+	use_instigator False
 ´trigger_global_event_ecm_on´ ElementGlobalEventTrigger 100010
 	global_event ecm_jammer_on
 	position 500, -1100, 0
@@ -584,12 +584,12 @@
 			notify_unit_sequence enable_interactions
 			time 0
 ´logic_toggle_001´ ElementToggle 100013
+	elements
+ 		1 ´enable_scythe_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_scythe_interaction´
 ´logic_toggle_002´ ElementToggle 100016
+	elements
+ 		1 ´enable_globe_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_globe_interaction´

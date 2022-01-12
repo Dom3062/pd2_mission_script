@@ -91,7 +91,7 @@
 ´output_device_attached´ ElementInstanceOutput 100008
 	event device attached
 ´interaction_attach_device´ ElementInteraction 100010
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, 0, 150
 	rotation 0, 0, 0, -1
@@ -207,15 +207,15 @@
 	position 0, -200, 150
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 780
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 780
 	on_executed
 		´link_player_in_room´ (delay 0)
 ´link_player_in_room´ MissionScriptElement 100027
@@ -227,10 +227,8 @@
 		´link_hide_server_wp´ (delay 0)
 		´toggle_off_wp_2´ (delay 0)
 ´toggle_off_door_close´ ElementToggle 100029
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_close_shutters´
+ 		1 ´seq_close_shutters´
 		2 ´link_room_lockdown´
 		3 ´point_waypoint_side_drill´
 		4 ´point_waypoint_front_drill´
@@ -240,6 +238,8 @@
 		8 ´link_drill_wp_side´
 		9 ´trigger_area_drill_front001´
 		10 ´trigger_area_drill_front´
+	set_trigger_times -1
+	toggle off
 ´link_room_lockdown´ MissionScriptElement 100030
 	on_executed
 		´seq_close_shutters´ (delay 0)
@@ -408,23 +408,23 @@
 	on_executed
 		´seq_open_side_door´ (delay 2)
 ´func_nav_blocker_remove´ ElementNavObstacle 100046
-	operation remove
-	position 2075, -1200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -560, 0)
-´func_nav_blocker_remove_2´ ElementNavObstacle 100047
 	operation remove
-	position 2425, -1200, 0
+	position 2075, -1200, 0
 	rotation 0, 0, 0, -1
+´func_nav_blocker_remove_2´ ElementNavObstacle 100047
 	obstacle_list
 		1
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (359, -350, 0)
+	operation remove
+	position 2425, -1200, 0
+	rotation 0, 0, 0, -1
 ´link_door_open´ MissionScriptElement 100048
 	on_executed
 		´func_nav_blocker_remove´ (delay 0)
@@ -461,41 +461,41 @@
 	on_executed
 		´link_door_open_2´ (delay 0)
 ´toggle_off_door_so´ ElementToggle 100051
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´so_kick_open_door´ DISABLED
+ 		1 ´so_kick_open_door´ DISABLED
 		2 ´link_drill_completed´
 		3 ´seq_drill_completed´
 		4 ´seq_open_front_door´
 		5 ´trigger_front_door_opened´
-´toggle_off_door_so_2´ ElementToggle 100052
 	set_trigger_times -1
-	toggle off
+	toggle on
+´toggle_off_door_so_2´ ElementToggle 100052
 	elements
-		1 ´so_kick_open_door001´ DISABLED
+ 		1 ´so_kick_open_door001´ DISABLED
 		2 ´seq_drill_completed_2´
 		3 ´seq_open_side_door´
 		4 ´trigger_side_door_opened´
+	set_trigger_times -1
+	toggle off
 ´so_kick_open_door´ ElementSpecialObjective 100053
 	DISABLED
-	SO_access 23080444
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -503,31 +503,31 @@
 	pose none
 	position 0, -600, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 2,69351 -350,15 0
+	SO_access 23080444
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´so_kick_open_door001´ ElementSpecialObjective 100054
 	DISABLED
-	SO_access 23080444
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -535,25 +535,25 @@
 	pose none
 	position 500, -300, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 249,167 -297,689 0
+	SO_access 23080444
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´waypoint_it_room´ ElementWaypoint 100055
 	DISABLED
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -200, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_it_room_server´ ElementWaypoint 100056
 	DISABLED
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -570,13 +570,13 @@
 	on_executed
 		´link_show_server_wp´ (delay 0)
 ´op_remove_it_wp´ ElementOperator 100062
-	operation remove
 	elements
-		1 ´waypoint_it_room´ DISABLED
+ 		1 ´waypoint_it_room´ DISABLED
+	operation remove
 ´op_remove_server_wp´ ElementOperator 100064
-	operation remove
 	elements
-		1 ´waypoint_it_room_server´ DISABLED
+ 		1 ´waypoint_it_room_server´ DISABLED
+	operation remove
 ´link_show_it_wp´ MissionScriptElement 100065
 	on_executed
 		´waypoint_it_room´ (delay 0.5) DISABLED
@@ -674,27 +674,27 @@
 			notify_unit_sequence set_hack_time_120s
 			time 0
 ´toggle_on_room_wp´ ElementToggle 100041
+	elements
+ 		1 ´waypoint_it_room´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´waypoint_it_room´ DISABLED
 ´toggle_off_room_wp´ ElementToggle 100060
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´waypoint_it_room´ DISABLED
+ 		1 ´waypoint_it_room´ DISABLED
 		2 ´link_show_it_wp´
 		3 ´toggle_on_room_wp´
-´toggle_on_server_wp´ ElementToggle 100061
-	set_trigger_times -1
-	toggle on
-	elements
-		1 ´waypoint_it_room_server´ DISABLED
-´toggle_off_server_wp´ ElementToggle 100063
 	set_trigger_times -1
 	toggle off
+´toggle_on_server_wp´ ElementToggle 100061
 	elements
-		1 ´waypoint_it_room_server´ DISABLED
+ 		1 ´waypoint_it_room_server´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_off_server_wp´ ElementToggle 100063
+	elements
+ 		1 ´waypoint_it_room_server´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´seq_open_side_door´ ElementUnitSequence 100017
 	BASE DELAY 0,5
 	TRIGGER TIMES 1
@@ -726,22 +726,23 @@
 		´logic_toggle_001´ (delay 0)
 		´link_drill_completed_2´ (delay 0)
 ´so_drill_nav´ ElementSpecialObjective 100084
-	SO_access 8700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´so_drill_anim´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -749,30 +750,29 @@
 	pose none
 	position 25, -650, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 2000
 	search_position -75,4071 -598,654 0
+	SO_access 8700
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´so_drill_anim´
 ´so_drill_anim´ ElementSpecialObjective 100085
-	SO_access 8700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -780,29 +780,30 @@
 	pose none
 	position 25, -650, 100
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 75,715 -599,541 0
+	SO_access 8700
 	so_action e_so_push_button
 	trigger_on none
-	followup_elements
 ´so_drill_nav001´ ElementSpecialObjective 100086
-	SO_access 8700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´so_drill_anim001´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -810,30 +811,29 @@
 	pose none
 	position 550, -275, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 2000
 	search_position 500,579 -373,611 0
+	SO_access 8700
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´so_drill_anim001´
 ´so_drill_anim001´ ElementSpecialObjective 100087
-	SO_access 8700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -841,12 +841,12 @@
 	pose none
 	position 550, -275, 100
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 502,262 -198,978 0
+	SO_access 8700
 	so_action e_so_push_button
 	trigger_on none
-	followup_elements
 ´trigger_front_door_drill_active´ ElementUnitSequenceTrigger 100088
 	TRIGGER TIMES 1
 	sequence_list
@@ -874,20 +874,20 @@
 		´so_drill_nav001´ (delay 0)
 		´toggle_off_3´ (delay 0)
 ´trigger_so_success´ ElementSpecialObjectiveTrigger 100092
+	elements
+ 		1 ´so_drill_anim´
 	event complete
 	position -750, -1200, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_drill_anim´
 	on_executed
 		´link_drill_jammed´ (delay 0)
 ´trigger_so_fail´ ElementSpecialObjectiveTrigger 100093
+	elements
+ 		1 ´so_drill_nav´
+		2 ´so_drill_anim´
 	event fail
 	position -400, -1200, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_drill_nav´
-		2 ´so_drill_anim´
 	on_executed
 		´link_drill_not_jammed´ (delay 0)
 ´link_drill_jammed´ MissionScriptElement 100094
@@ -900,29 +900,29 @@
 		´toggle_on´ (delay 0)
 		´point_debug_002´ (delay 0)
 ´point_debug_001´ ElementDebug 100096
-	as_subtitle false
+	as_subtitle False
 	debug_string Drill front disable success
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100097
-	as_subtitle false
+	as_subtitle False
 	debug_string Drill front disable failed
-	show_instigator false
+	show_instigator False
 ´toggle_disable_interupt´ ElementToggle 100098
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_drill_nav´
+ 		1 ´so_drill_nav´
 		2 ´so_drill_anim´
 		3 ´trigger_so_success´
 		4 ´trigger_so_fail´
-´toggle_on´ ElementToggle 100099
 	set_trigger_times -1
-	toggle on
+	toggle off
+´toggle_on´ ElementToggle 100099
 	elements
-		1 ´trigger_so_fail´
+ 		1 ´trigger_so_fail´
 		2 ´trigger_so_success´
 		3 ´so_drill_nav´
 		4 ´so_drill_anim´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´link_rest´ (delay 0)
 ´seq_drill_jammed´ ElementUnitSequence 100100
@@ -936,27 +936,27 @@
 			notify_unit_sequence set_jammed
 			time 0
 ´toggle_on_2´ ElementToggle 100101
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´trigger_so_fail001´
+ 		1 ´trigger_so_fail001´
 		2 ´trigger_so_success001´
 		3 ´so_drill_nav001´
 		4 ´so_drill_anim001´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´link_reset´ (delay 0)
 ´point_debug_003´ ElementDebug 100102
-	as_subtitle false
+	as_subtitle False
 	debug_string Drill side disable failed
-	show_instigator false
+	show_instigator False
 ´toggle_disable_interupt_2´ ElementToggle 100103
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_drill_nav001´
+ 		1 ´so_drill_nav001´
 		2 ´so_drill_anim001´
 		3 ´trigger_so_success001´
 		4 ´trigger_so_fail001´
+	set_trigger_times -1
+	toggle off
 ´seq_drill_jammed_2´ ElementUnitSequence 100104
 	position 400, -1400, 25
 	rotation 0, 0, 0, -1
@@ -968,9 +968,9 @@
 			notify_unit_sequence set_jammed
 			time 0
 ´point_debug_004´ ElementDebug 100105
-	as_subtitle false
+	as_subtitle False
 	debug_string Drill side disable success
-	show_instigator false
+	show_instigator False
 ´link_drill_not_jammed_2´ MissionScriptElement 100106
 	on_executed
 		´point_debug_003´ (delay 0)
@@ -981,20 +981,20 @@
 		´toggle_disable_interupt_2´ (delay 0)
 		´seq_drill_jammed_2´ (delay 0)
 ´trigger_so_fail001´ ElementSpecialObjectiveTrigger 100108
+	elements
+ 		1 ´so_drill_nav001´
+		2 ´so_drill_anim001´
 	event fail
 	position 650, -1200, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_drill_nav001´
-		2 ´so_drill_anim001´
 	on_executed
 		´link_drill_not_jammed_2´ (delay 0)
 ´trigger_so_success001´ ElementSpecialObjectiveTrigger 100109
+	elements
+ 		1 ´so_drill_anim001´
 	event complete
 	position 300, -1200, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_drill_anim001´
 	on_executed
 		´link_drill_jammed_2´ (delay 0)
 ´link_rest´ MissionScriptElement 100110
@@ -1004,10 +1004,8 @@
 	on_executed
 		´link_side_drill´ (delay 0)
 ´toggle_off´ ElementToggle 100080
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_drill_nav´
+ 		1 ´so_drill_nav´
 		2 ´so_drill_anim´
 		3 ´trigger_so_fail´
 		4 ´trigger_so_success´
@@ -1022,11 +1020,11 @@
 		13 ´link_front_drill´
 		14 ´trigger_front_door_drill_active´
 		15 ´logic_counter_2´
-´toggle_off_2´ ElementToggle 100081
 	set_trigger_times -1
 	toggle off
+´toggle_off_2´ ElementToggle 100081
 	elements
-		1 ´so_drill_anim001´
+ 		1 ´so_drill_anim001´
 		2 ´so_drill_nav001´
 		3 ´trigger_so_success001´
 		4 ´link_drill_jammed_2´
@@ -1042,27 +1040,29 @@
 		14 ´link_side_drill´
 		15 ´teammate_comment_drill_done001´
 		16 ´logic_counter_2´
+	set_trigger_times -1
+	toggle off
 ´operator_remove_so_points´ ElementOperator 100112
-	operation remove
 	elements
-		1 ´so_drill_nav´
+ 		1 ´so_drill_nav´
 		2 ´so_drill_anim´
-´operator_remove_so_points_2´ ElementOperator 100113
 	operation remove
+´operator_remove_so_points_2´ ElementOperator 100113
 	elements
-		1 ´so_drill_nav001´
+ 		1 ´so_drill_nav001´
 		2 ´so_drill_anim001´
+	operation remove
 ´attach_device_WP´ ElementWaypoint 100116
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_device_WP´ ElementOperator 100117
-	operation remove
 	elements
-		1 ´attach_device_WP´
+ 		1 ´attach_device_WP´
+	operation remove
 	on_executed
 		´output_device_attached´ (delay 0)
 ´input_kitchen_walls´ ElementInstanceInput 100115
@@ -1111,32 +1111,32 @@
 		´teammate_comment_there_he_is´ (delay 0) DISABLED
 ´teammate_comment_there_he_is´ ElementTeammateComment 100134
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v30
 	position 0, -25, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_waypoint´ MissionScriptElement 100133
 	TRIGGER TIMES 1
 	on_executed
 		´toggle_off_4´ (delay 0)
 ´toggle_ON_team_comment´ ElementToggle 100136
+	elements
+ 		1 ´teammate_comment_there_he_is´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´teammate_comment_there_he_is´ DISABLED
 ´point_waypoint_front_drill´ ElementWaypoint 100141
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 25, -525, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_waypoint_side_drill´ ElementWaypoint 100147
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 425, -275, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -1154,15 +1154,15 @@
 	position 0, -700, 150
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´counter_front_loud_triggerarea´ (delay 0)
 ´counter_front_loud_triggerarea´ ElementCounter 100150
@@ -1185,84 +1185,81 @@
 	position 600, -300, 150
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´counter_side_loud_triggerarea´ (delay 0)
 ´link_drill_wp_side´ MissionScriptElement 100153
 	on_executed
 		´point_waypoint_side_drill´ (delay 0)
 ´toggle_off_wp´ ElementToggle 100154
+	elements
+ 		1 ´point_waypoint_front_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_front_drill´
 	on_executed
 		´operator_remove_wp´ (delay 0)
 ´operator_remove_wp´ ElementOperator 100155
-	operation remove
 	elements
-		1 ´point_waypoint_front_drill´
+ 		1 ´point_waypoint_front_drill´
+	operation remove
 ´operator_remove´ ElementOperator 100156
-	operation remove
 	elements
-		1 ´point_waypoint_side_drill´
+ 		1 ´point_waypoint_side_drill´
+	operation remove
 ´toggle_off_3´ ElementToggle 100157
+	elements
+ 		1 ´point_waypoint_side_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_side_drill´
 	on_executed
 		´operator_remove´ (delay 0)
 ´toggle_off_4´ ElementToggle 100079
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_waypoint_side_drill´
+ 		1 ´point_waypoint_side_drill´
 		2 ´point_waypoint_front_drill´
 		3 ´link_room_lockdown´
 		4 ´seq_close_shutters´
 		5 ´teammate_comment_drill_done001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´operator_remove_2´ (delay 0)
 ´operator_remove_2´ ElementOperator 100172
 	TRIGGER TIMES 1
-	operation remove
 	elements
-		1 ´point_waypoint_side_drill´
+ 		1 ´point_waypoint_side_drill´
 		2 ´point_waypoint_front_drill´
+	operation remove
 ´teammate_comment_drill_done001´ ElementTeammateComment 100173
 	TRIGGER TIMES 1
-	close_to_element true
+	close_to_element True
 	comment v23
 	position 200, -350, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´toggle_off_wp_2´ ElementToggle 100175
+	elements
+ 		1 ´waypoint_it_room_server´ DISABLED
+		2 ´waypoint_it_room´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´waypoint_it_room_server´ DISABLED
-		2 ´waypoint_it_room´ DISABLED
 ´toggle_on_trigger_area´ ElementToggle 100174
 	TRIGGER TIMES 1
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´func_nav_obstacle_001´ ElementNavObstacle 100076
-	operation add
-	position 1300, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -1296,29 +1293,32 @@
 			guis_id 8
 			obj_name 7692370639133479206
 			unit_id units/payday2/props/off_prop_officehigh_drawer/off_prop_officehigh_drawer_dark_large_shelves_2_long/001 (247, -500, 0)
+	operation add
+	position 1300, 100, 0
+	rotation 0, 0, 0, -1
 ´sfx_hack_placed´ ElementPlaySound 100176
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 150
 	rotation 0, 0, 0, -1
 	sound_event hacking_device_place
-	use_instigator false
+	use_instigator False
 ´logic_toggle_001´ ElementToggle 100140
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´link_door_open_2´
+ 		1 ´link_door_open_2´
 		2 ´link_drill_completed´
 		3 ´seq_open_front_door´
 		4 ´seq_drill_completed´
-´logic_toggle_002´ ElementToggle 100178
 	set_trigger_times -1
 	toggle off
+´logic_toggle_002´ ElementToggle 100178
 	elements
-		1 ´link_drill_completed_2´
+ 		1 ´link_drill_completed_2´
 		2 ´link_door_open´
 		3 ´seq_drill_completed_2´
 		4 ´seq_open_side_door´
+	set_trigger_times -1
+	toggle off
 ´trigger_global_loud´ ElementGlobalEventTrigger 100179
 	TRIGGER TIMES 1
 	global_event police_called

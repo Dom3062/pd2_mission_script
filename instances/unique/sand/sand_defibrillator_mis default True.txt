@@ -70,8 +70,8 @@
 		´enable_cable_interaction´ (delay 0)
 ´interact_WP´ ElementWaypoint 100014
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 117
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -86,28 +86,28 @@
 		´point_play_sound_charging_end´ (delay 0)
 ´start_timer´ ElementTimerOperator 100020
 	DISABLED
+	elements
+ 		1 ´charge_timer´
 	operation start
 	position 600, -900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´charge_timer´
 ´pause_timer´ ElementTimerOperator 100021
 	DISABLED
+	elements
+ 		1 ´charge_timer´
 	operation pause
 	position 700, -900, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´charge_timer´
 ´set_timer´ ElementTimerOperator 100022
 	DISABLED
+	elements
+ 		1 ´charge_timer´
 	operation set_time
 	position 800, -900, 0
 	rotation 0, 0, 0, -1
 	time 10
-	elements
-		1 ´charge_timer´
 ´start_timer_2´ MissionScriptElement 100023
 	on_executed
 		´start_timer´ (delay 0) DISABLED
@@ -121,12 +121,12 @@
 	on_executed
 		´set_timer´ (delay 0) DISABLED
 ´toggle_ON_cable_interaction´ ElementToggle 100029
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´start_timer´ DISABLED
+ 		1 ´start_timer´ DISABLED
 		2 ´pause_timer´ DISABLED
 		3 ´set_timer´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´input_test_paddle_chance´ ElementInstanceInput 100044
 	event test_paddle_chance
 	on_executed
@@ -144,31 +144,31 @@
 	on_executed
 		´revive_success_chance´ (delay 0)
 ´remove_interact_WP´ ElementOperator 100050
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 ´defend_charge_WP´ ElementWaypoint 100051
 	icon pd2_power
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 117
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_charge_WP´ ElementOperator 100052
-	operation remove
 	elements
-		1 ´defend_charge_WP´
+ 		1 ´defend_charge_WP´
+	operation remove
 ´start_WP´ ElementWaypoint 100053
 	icon pd2_power
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 117
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_start_WP´ ElementOperator 100054
-	operation remove
 	elements
-		1 ´start_WP´
+ 		1 ´start_WP´
+	operation remove
 ´output_paddles_taken´ ElementInstanceOutput 100055
 	event paddles_taken
 ´revive_success_chance´ ElementLogicChance 100056
@@ -176,43 +176,43 @@
 	position 2100, 100, 0
 	rotation 0, 0, 0, -1
 ´add_paddle_chance´ ElementLogicChanceOperator 100057
+	elements
+ 		1 ´revive_success_chance´
 	chance 33
 	operation add_chance
 	position 2000, -200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´revive_success_chance´
 	on_executed
 		´set_timer_2´ (delay 0)
 		´enable_place_paddles´ (delay 0)
 ´paddle_fail´ ElementLogicChanceTrigger 100058
+	elements
+ 		1 ´revive_success_chance´
 	outcome fail
 	position 2000, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´revive_success_chance´
 	on_executed
 		´enable_place_interaction´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´paddle_success´ ElementLogicChanceTrigger 100059
+	elements
+ 		1 ´revive_success_chance´
 	outcome success
 	position 2200, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´revive_success_chance´
 	on_executed
 		´point_debug_002´ (delay 0)
 		´func_sequence_001´ (delay 0)
 ´output_paddle_success´ ElementInstanceOutput 100042
 	event paddle_success
 ´point_debug_001´ ElementDebug 100008
-	as_subtitle false
+	as_subtitle False
 	debug_string revive_failure - adding_extra_chance
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100039
-	as_subtitle false
+	as_subtitle False
 	debug_string revive_successful
-	show_instigator false
+	show_instigator False
 ´enable_paddle_interaction´ ElementUnitSequence 100026
 	position 700, -1100, 2.5
 	rotation 0, 0, 0, -1
@@ -354,15 +354,15 @@
 		´remove_start_WP´ (delay 0)
 		´start_timer_2´ (delay 0)
 ´toggle_OFF_trigger´ ElementToggle 100070
+	elements
+ 		1 ´paddles_placed´ DISABLED
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´paddles_placed´ DISABLED
 ´toggle_ON_trigger´ ElementToggle 100071
+	elements
+ 		1 ´paddles_placed´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´paddles_placed´ DISABLED
 	on_executed
 		´output_paddles_failed´ (delay 0)
 ´func_sequence_001´ ElementUnitSequence 100004
@@ -378,17 +378,17 @@
 	on_executed
 		´output_paddle_success´ (delay 0)
 ´teammate_comment_its_done´ ElementTeammateComment 100011
-	close_to_element true
+	close_to_element True
 	comment v07
 	position 0, -50, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´no_comment´ MissionScriptElement 100013
 ´logic_random_001´ ElementRandom 100015
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´teammate_comment_its_done´ (delay 0)
 		´no_comment´ (delay 0)
@@ -397,16 +397,16 @@
 ´output_paddles_ready´ ElementInstanceOutput 100017
 	event paddles_ready
 ´point_play_sound_charging_end´ ElementPlaySound 100018
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -25, 117
 	rotation 0, 0, 0, -1
 	sound_event defib_charge_loop_end
-	use_instigator false
+	use_instigator False
 ´point_play_sound_charging_start´ ElementPlaySound 100028
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -25, 117
 	rotation 0, 0, 0, -1
 	sound_event defib_charge_loop_start
-	use_instigator false
+	use_instigator False

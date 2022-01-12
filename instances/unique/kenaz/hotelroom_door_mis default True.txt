@@ -112,10 +112,10 @@
 	on_executed
 		´disable explosives placement´ (delay 0)
 ´disable explosives placement´ ElementToggle 100014
+	elements
+ 		1 ´show_explosive_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_explosive_interaction´
 ´keycard inserted´ ElementUnitSequenceTrigger 100015
 	TRIGGER TIMES 1
 	sequence_list
@@ -161,24 +161,24 @@
 		´door_blocker_ADD´ (delay 0) DISABLED
 ´door_blocker_ADD´ ElementNavObstacle 100022
 	DISABLED
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
 	operation add
 	position 642, -625, 100
 	rotation 0, 0, 0, -1
+´door_blocker_REMOVE´ ElementNavObstacle 100023
+	DISABLED
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
-´door_blocker_REMOVE´ ElementNavObstacle 100023
-	DISABLED
 	operation remove
 	position 642, 42, 100
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
 ´door_opened_2´ MissionScriptElement 100024
 	on_executed
 		´door_blocker_REMOVE´ (delay 0) DISABLED
@@ -203,5 +203,5 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True

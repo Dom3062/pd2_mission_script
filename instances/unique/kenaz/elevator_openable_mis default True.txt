@@ -22,13 +22,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -90, -225, 1
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_4m_var1
 	team default
 	voice 0
-	orientation_elements
 ´input_combat_on´ ElementInstanceInput 100011
 	event combat_on
 	on_executed
@@ -38,10 +38,10 @@
 		1 ´SWAT´
 ´SWAT´ ElementSpawnEnemyGroup 100013
 	amount 0
-	ignore_disabled false
+	elements
+ 		1 ´enemy_001´
+	ignore_disabled False
 	interval 0
-	spawn_type ordered
-	team default
 	preferred_spawn_groups
 		1 tac_shield_wall_charge
 		2 FBI_spoocs
@@ -51,20 +51,20 @@
 		6 tac_swat_rifle_flank
 		7 tac_shield_wall_ranged
 		8 tac_bull_rush
-	elements
-		1 ´enemy_001´
+	spawn_type ordered
+	team default
 ´ele_rightdown_done_ON´ ElementToggle 100014
+	elements
+ 		1 ´seq_trg_elevator_door_done_door_animation´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_trg_elevator_door_done_door_animation´ DISABLED
 ´trg_enemy_spawn´ ElementEnemyDummyTrigger 100015
 	TRIGGER TIMES 1
+	elements
+ 		1 ´enemy_001´
 	event spawn
 	position -1125, -887, 400
 	rotation 0, 0, 0, -1
-	elements
-		1 ´enemy_001´
 	on_executed
 		´seq_elevator_switch_disable_interaction´ (delay 0)
 		´elevator_OFF´ (delay 0.2)
@@ -88,10 +88,8 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´elevator_OFF´ ElementToggle 100018
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´ele_rightdown_done_ON´
+ 		1 ´ele_rightdown_done_ON´
 		2 ´elevator_door_close´
 		3 ´elevator_door_open´
 		4 ´elevator_door_toggle´
@@ -100,6 +98,8 @@
 		7 ´seq_elevator_switch_enable_interaction´
 		8 ´elevator_door_open_link´
 		9 ´elevator_door_close_link´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´seq_elevator_vent_release´ ElementUnitSequence 100019
 	TRIGGER TIMES 1
 	position -1125, -675, 400
@@ -118,22 +118,22 @@
 			notify_unit_sequence state_bagblock_on
 			time 0
 ´nl_fwd_2m´ ElementSpecialObjective 100022
-	SO_access 15864
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 1
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance none
 	path_style none
@@ -141,12 +141,12 @@
 	pose none
 	position -90, -75, 1
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -72,177 262,758 28,5
+	SO_access 15864
 	so_action e_nl_fwd_2m
 	trigger_on none
-	followup_elements
 ´elevator_door_close´ ElementUnitSequence 100038
 	position -5, -655, 400
 	rotation 0, 0, 0, -1
@@ -174,29 +174,29 @@
 		´nav_blocker_remove´ (delay 1)
 		´logic_toggle_002´ (delay 0)
 ´nav_blocker_add´ ElementNavObstacle 100002
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -25, -20.0287)
 	operation add
 	position 95, -655, 400
 	rotation 0, 0, 0, -1
+´nav_blocker_remove´ ElementNavObstacle 100017
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -25, -20.0287)
-´nav_blocker_remove´ ElementNavObstacle 100017
 	operation remove
 	position 95, -730, 400
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (0, -25, -20.0287)
 ´elevator_door_toggle´ ElementToggle 100029
+	elements
+ 		1 ´elevator_door_open_link´
+		2 ´elevator_door_close_link´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´elevator_door_open_link´
-		2 ´elevator_door_close_link´ DISABLED
 ´seq_trg_elevator_door_done_door_animation´ ElementUnitSequenceTrigger 100036
 	DISABLED
 	sequence_list
@@ -248,11 +248,11 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100045
+	elements
+ 		1 ´input_combat_on´
+		2 ´elevator_enemies´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_combat_on´
-		2 ´elevator_enemies´
 ´police_called´ ElementGlobalEventTrigger 100027
 	TRIGGER TIMES 1
 	global_event police_called
@@ -276,12 +276,12 @@
 	on_executed
 		´nav_blocker_remove´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100046
+	elements
+ 		1 ´open´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´open´ DISABLED
 ´logic_toggle_003´ ElementToggle 100047
+	elements
+ 		1 ´seq_elevator_switch_enable_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_elevator_switch_enable_interaction´

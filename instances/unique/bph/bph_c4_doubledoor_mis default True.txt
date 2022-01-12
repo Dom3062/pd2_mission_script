@@ -43,14 +43,14 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´show_c4´ (delay 0)
 ´give_c4´ ElementEquipment 100013
@@ -107,21 +107,21 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´c4_exploded´ ElementInstanceOutput 100025
 	event c4_exploded
 ´waypoint_c4_001´ ElementWaypoint 100002
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 3, 5, 114
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_c4_waypoint_001´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´waypoint_c4_001´
+ 		1 ´waypoint_c4_001´
+	operation remove
 ´show_waypoints´ MissionScriptElement 100029
 	on_executed
 		´waypoint_c4_001´ (delay 0)
@@ -140,25 +140,25 @@
 	on_executed
 		´remove_door_blocker´ (delay 0)
 ´add_door_obstacle´ ElementNavObstacle 100010
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
 	operation add
 	position 500, 0, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
 	on_executed
 		´close_the_door´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100015
-	operation remove
-	position 800, -600, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, -50, 0)
+	operation remove
+	position 800, -600, 0
+	rotation 0, 0, 0, -1
 ´show_interaction´ ElementInstanceInput 100016
 	event show_interaction
 	on_executed
@@ -169,7 +169,7 @@
 		´interact_waypoint´ (delay 0)
 ´interact_normal´ ElementInteraction 100018
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 3, 0, 115.016
 	rotation 0, 0, 0, -1
@@ -177,14 +177,14 @@
 	on_executed
 		´open_the_door´ (delay 0) (alternative interacted)
 ´toggle_on´ ElementToggle 100020
+	elements
+ 		1 ´interact_normal´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interact_normal´ DISABLED
 ´interact_waypoint´ ElementWaypoint 100023
 	icon pd2_door
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 3, 0, 115.38
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -202,9 +202,9 @@
 		´remove_interact_waypoint´ (delay 0)
 		´play_door_open_sound´ (delay 0)
 ´remove_interact_waypoint´ ElementOperator 100026
-	operation remove
 	elements
-		1 ´interact_waypoint´
+ 		1 ´interact_waypoint´
+	operation remove
 	on_executed
 		´door_opened´ (delay 0)
 ´show_interaction_no_wp´ ElementInstanceInput 100027
@@ -212,19 +212,19 @@
 	on_executed
 		´toggle_on´ (delay 0)
 ´soundbank_effects´ ElementPlaySound 100030
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 400, -700, 0
 	rotation 0, 0, 0, -1
 	sound_event server_fan_big_muffled_01
-	use_instigator false
+	use_instigator False
 ´play_door_open_sound´ ElementPlaySound 100031
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1100, -300, 0
 	rotation 0, 0, 0, -1
 	sound_event generic_door_metal_open
-	use_instigator false
+	use_instigator False
 ´close_the_door´ ElementUnitSequence 100033
 	position 500, -100, 0
 	rotation 0, 0, 0, -1

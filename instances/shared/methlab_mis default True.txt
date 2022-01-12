@@ -124,15 +124,15 @@
 		´show_meth´ (delay 0)
 ´WP_meth´ ElementWaypoint 100067
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 271, -63, 147
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´WP_methlab´ ElementWaypoint 100068
 	icon pd2_methlab
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 56, -63, 147
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -147,14 +147,14 @@
 	position 52, -230, 125
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´methlab_found´ (delay 0)
 		´teammate_comment_methlab_found´ (delay 1)
@@ -166,9 +166,9 @@
 		´effect005´ (delay 0)
 		´effect006´ (delay 0)
 ´remove_WP_methlab´ ElementOperator 100071
-	operation remove
 	elements
-		1 ´WP_methlab´
+ 		1 ´WP_methlab´
+	operation remove
 ´instance_output_methlab_found´ ElementInstanceOutput 100072
 	event methlab_found
 ´instance_input_wrong´ ElementInstanceInput 100073
@@ -202,9 +202,9 @@
 		´blurzone_start_cooking´ (delay 0)
 		´WP_methlab´ (delay 0)
 ´remove_WP_meth´ ElementOperator 100079
-	operation remove
 	elements
-		1 ´WP_meth´
+ 		1 ´WP_meth´
+	operation remove
 ´enable_interaction_methlab´ ElementUnitSequence 100080
 	position -350, -450, 100
 	rotation 0, 0, 0, -1
@@ -234,7 +234,7 @@
 	position -161, -41, 142
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect002´ ElementPlayEffect 100082
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -242,7 +242,7 @@
 	position -114, -26, 207
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect003´ ElementPlayEffect 100083
 	base_time 0
 	effect effects/payday2/environment/smoke_alex_must_die_1
@@ -250,7 +250,7 @@
 	position -35, -26, 207
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect004´ ElementPlayEffect 100084
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -258,7 +258,7 @@
 	position -35, -36, 132
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect005´ ElementPlayEffect 100085
 	base_time 0
 	effect effects/payday2/environment/smoke_alex_must_die_1
@@ -266,7 +266,7 @@
 	position -79, -54, 165
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´effect006´ ElementPlayEffect 100086
 	base_time 0
 	effect effects/payday2/environment/bubble_alex_must_die_1
@@ -274,29 +274,29 @@
 	position 44, -24, 136
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´sound_methlab´ ElementPlaySound 100087
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 25, -75, 125
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth
-	use_instigator false
+	use_instigator False
 ´sound_methlab_stop´ ElementPlaySound 100088
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 75, -75, 125
 	rotation 0, 0, 0, -1
 	sound_event cooking_meth_stop
-	use_instigator false
+	use_instigator False
 ´effect_stop´ ElementStopEffect 100089
+	elements
+ 		1 ´effect002´
+		2 ´effect003´
+		3 ´effect001´
 	operation fade_kill
 	position -250, -350, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect002´
-		2 ´effect003´
-		3 ´effect001´
 ´effect_fire´ ElementPlayEffect 100090
 	base_time 0
 	effect effects/payday2/environment/fire_alex_must_die_1
@@ -304,14 +304,14 @@
 	position 169, -93, 38
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´teammate_comment_swear´ ElementTeammateComment 100091
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 52, -155, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´explode´ MissionScriptElement 100092
 	on_executed
 		´effect_fire´ (delay 0)
@@ -326,12 +326,12 @@
 	radius 850
 	rotation 0, 0, 0, -1
 ´sound_add_ingredient´ ElementPlaySound 100094
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -25, -75, 125
 	rotation 0, 0, 0, -1
 	sound_event add_meth_ingredients
-	use_instigator false
+	use_instigator False
 ´destroy_methlab´ ElementUnitSequence 100095
 	position -150, -550, 100
 	rotation 0, 0, 0, -1
@@ -385,12 +385,12 @@
 	radius 300
 	rotation 0, 0, 0, -1
 ´sound_explosion´ ElementPlaySound 100098
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 125, -75, 125
 	rotation 0, 0, 0, -1
 	sound_event explosion_fire
-	use_instigator false
+	use_instigator False
 ´disable_interaction_methlab´ ElementUnitSequence 100000
 	position -650, -50, 100
 	rotation 0, 0, 0, -1
@@ -429,21 +429,21 @@
 	position 10, -100, 125
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 900
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 900
 	on_executed
 		´kill_zone_fire´ (delay 0)
 ´enable_area_damage´ ElementToggle 100006
+	elements
+ 		1 ´area_fire_damage´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_fire_damage´ DISABLED
 ´kill_zone_fire´ ElementKillZone 100007
 	position 50, -550, 100
 	rotation 0, 0, 0, -1
@@ -459,14 +459,14 @@
 	position 9, -100, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 900
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 900
 	on_executed
 		´destroy_meth´ (delay 0) DISABLED
 ´destroy_meth´ ElementCarry 100110
@@ -476,19 +476,19 @@
 ´cook001´ ElementSpawnCivilian 100101
 	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
 	force_pickup none
+	orientation_elements
 	position 112, -162, 0
 	rotation 0, 0, -0.382683, -0.92388
 	state cf_sp_stand_look_up
 	team default
-	orientation_elements
 ´cook002´ ElementSpawnCivilian 100100
 	enemy units/payday2/characters/civ_male_meth_cook_1/civ_male_meth_cook_1
 	force_pickup none
+	orientation_elements
 	position -138, -137, 0
 	rotation 0, 0, 0.382683, -0.92388
 	state cf_sp_stand_look_up
 	team default
-	orientation_elements
 ´instance_input_spawn_civis´ ElementInstanceInput 100102
 	event spawn_cooks
 	on_executed
@@ -505,14 +505,14 @@
 	on_executed
 		´ai_remove_001´ (delay 0)
 ´ai_remove_001´ ElementAIRemove 100112
-	force_ragdoll false
+	elements
+ 		1 ´cook002´
+		2 ´cook001´
+	force_ragdoll False
 	position -350, -850, 100
 	rotation 0, 0, 0, -1
-	true_death true
-	use_instigator false
-	elements
-		1 ´cook002´
-		2 ´cook001´
+	true_death True
+	use_instigator False
 ´effect_starting_fire´ ElementPlayEffect 100001
 	base_time 0
 	effect effects/payday2/environment/starting_fire_alex_must_die_1
@@ -520,11 +520,11 @@
 	position 20, -36, 132
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´teammate_comment_methlab_found´ ElementTeammateComment 100002
-	close_to_element true
+	close_to_element True
 	comment g14
 	position 0, -200, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

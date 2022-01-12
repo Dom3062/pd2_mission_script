@@ -5,7 +5,7 @@
 	position 0, -7.62939E-06, 67.8441
 	random_time 0
 	rotation -1.42109E-13, 5.96046E-08, 1, -4.17233E-07
-	screen_space false
+	screen_space False
 ´activate_gas_intake´ ElementInstanceInput 100003
 	event Activate gas intake
 	on_executed
@@ -18,11 +18,11 @@
 	on_executed
 		´env_effect_stop_001´ (delay 0)
 ´env_effect_stop_001´ ElementStopEffect 100008
+	elements
+ 		1 ´gas_effect´
 	operation fade_kill
 	position 0, 1200, 66.8
 	rotation 0, 0, 0, -1
-	elements
-		1 ´gas_effect´
 	on_executed
 		´turned_off_gas´ (delay 0)
 		´logic_operator_001´ (delay 0)
@@ -43,27 +43,27 @@
 	position 25, 160, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´point_waypoint_001´ (delay 0)
 		´teammate_comment_smell´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100014
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 20, 181
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´turn_on_wp_trigger_input´ ElementInstanceInput 100016
@@ -71,42 +71,42 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100017
+	elements
+ 		1 ´area_player_near_gas´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_near_gas´ DISABLED
 ´logic_toggle_002´ ElementToggle 100018
+	elements
+ 		1 ´logic_toggle_001´
+		2 ´turn_on_wp_trigger_input´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´logic_toggle_001´
-		2 ´turn_on_wp_trigger_input´
 ´teammate_comment_smell´ ElementTeammateComment 100000
-	close_to_element false
+	close_to_element False
 	comment v53
 	position 25, 260, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_002´ (delay 0)
 ´teammate_comment_done´ ElementTeammateComment 100020
-	close_to_element false
+	close_to_element False
 	comment v08
 	position 0, 100, 97.4712
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100021
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_done
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_smell
-	show_instigator false
+	show_instigator False
 ´func_sequence_001´ ElementUnitSequence 100023
 	position 0, 1000, 66.8
 	rotation 0, 0, 0, -1

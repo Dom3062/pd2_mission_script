@@ -47,9 +47,6 @@
 			notify_unit_sequence open_door
 			time 0
 ´disable_graph´ ElementNavObstacle 100147
-	operation add
-	position -1175, -1075, 1052.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -59,6 +56,9 @@
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-75, -1450, 0.00406057)
+	operation add
+	position -1175, -1075, 1052.5
+	rotation 0, 0, 0, -1
 ´startup´ MissionScriptElement 100148
 	EXECUTE ON STARTUP
 	on_executed
@@ -66,23 +66,23 @@
 		´hide_cards´ (delay 0)
 		´1s_delay´ (delay 1)
 ´enable_graph_k´ ElementNavObstacle 100149
-	operation remove
-	position -2100, -600, 1052.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (450, -1250, 0.00406057)
-´enable_graph_h´ ElementNavObstacle 100153
 	operation remove
-	position -2100, -825, 1052.5
+	position -2100, -600, 1052.5
 	rotation 0, 0, 0, -1
+´enable_graph_h´ ElementNavObstacle 100153
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-75, -1450, 0.00406057)
+	operation remove
+	position -2100, -825, 1052.5
+	rotation 0, 0, 0, -1
 ´break_roof_n´ ElementInstanceInput 100156
 	event break_roof_n
 	on_executed
@@ -155,15 +155,15 @@
 	position -2000, -1225, 1052.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_002´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_to_door_tt1´ (delay 0)
 		´card_waypoint_001´ (delay 0) DISABLED
@@ -174,7 +174,7 @@
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 211,6
+	width 211.6
 ´point_shape_002´ ElementShape 100169
 	depth 215,488
 	height 500
@@ -182,26 +182,26 @@
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 143,888
+	width 143.888
 ´card_waypoint_001´ ElementWaypoint 100170
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -42, -1472, 110.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´card_waypoint_002´ ElementWaypoint 100172
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 433, -1170, 115.872
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoints´ ElementOperator 100173
-	operation remove
 	elements
-		1 ´card_waypoint_001´ DISABLED
+ 		1 ´card_waypoint_001´ DISABLED
 		2 ´card_waypoint_002´ DISABLED
+	operation remove
 ´playe_close_to_door_k´ ElementAreaTrigger 100171
 	TRIGGER TIMES 1
 	amount 1
@@ -212,15 +212,15 @@
 	position -2000, -1150, 1052.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_to_door_tt1´ (delay 0)
 		´card_waypoint_002´ (delay 0) DISABLED
@@ -239,27 +239,27 @@
 	TRIGGER TIMES 1
 	amount 1
 	depth 3039,3
-	height 821,6
+	height 821.6
 	instigator player
 	interval 0.1
 	position -25, -850, -24.996
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 3435,1
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 3435.1
 	on_executed
 		´diner_found´ (delay 0)
 ´enable_player_close_to_diner´ ElementToggle 100177
+	elements
+ 		1 ´player_close_to_diner´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´player_close_to_diner´ DISABLED
 ´drop_on_roof´ ElementInstanceInput 100178
 	event drop_on_roof
 	on_executed
@@ -282,22 +282,22 @@
 	position 0, -700, 700.004
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1140
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1140
 	on_executed
 		´landed_on_roof_link´ (delay 0)
 ´disable_all_triggers´ ElementToggle 100182
+	elements
+ 		1 ´player_close_to_diner´ DISABLED
+		2 ´enable_player_close_to_diner´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´player_close_to_diner´ DISABLED
-		2 ´enable_player_close_to_diner´
 ´landed_on_roof_link´ MissionScriptElement 100183
 	on_executed
 		´disable_all_triggers´ (delay 0)
@@ -305,14 +305,14 @@
 ´roof_waypoint´ ElementWaypoint 100184
 	DISABLED
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -725, 675.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_roof_waypoint´ ElementOperator 100185
-	operation remove
 	elements
-		1 ´roof_waypoint´ DISABLED
+ 		1 ´roof_waypoint´ DISABLED
+	operation remove
 ´hide_cards´ ElementUnitSequence 100186
 	position -1175, -1175, 1052.5
 	rotation 0, 0, 0, -1
@@ -383,7 +383,7 @@
 ´pick_1´ ElementRandom 100188
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´show_card001´ (delay 0)
 		´show_card002´ (delay 0)
@@ -475,18 +475,18 @@
 ´door_opened´ ElementInstanceOutput 100195
 	event door_opened
 ´disable_triggers´ ElementToggle 100480
+	elements
+ 		1 ´playe_close_to_door_k´
+		2 ´playe_close_to_door_h´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´playe_close_to_door_k´
-		2 ´playe_close_to_door_h´
 ´found_key_card´ ElementTeammateComment 100481
-	close_to_element true
+	close_to_element True
 	comment v10
 	position -75, -850, 150.004
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´picked_up_card´ ElementUnitSequenceTrigger 100482
 	TRIGGER TIMES 1
 	sequence_list

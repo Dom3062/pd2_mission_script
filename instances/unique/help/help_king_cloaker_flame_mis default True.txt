@@ -19,10 +19,10 @@
 		´enter_anim´ (delay 0)
 		´spawn_local_wall_of_flame´ (delay 0)
 ´enable_exit´ ElementToggle 100004
+	elements
+ 		1 ´if_entered´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´if_entered´ DISABLED
 ´enter_anim´ ElementUnitSequence 100006
 	position 4000, 0, 0
 	rotation 0, 0, 0, -1
@@ -36,10 +36,10 @@
 	on_executed
 		´point_play_sound_001´ (delay 2)
 ´enable_enter´ ElementToggle 100028
+	elements
+ 		1 ´if_entered_2´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´if_entered_2´
 ´play_burn_anim´ ElementUnitSequence 100034
 	position 4000, -200, 0
 	rotation 0, 0, 0, -1
@@ -56,10 +56,10 @@
 ´is_flamin´ ElementInstanceOutput 100036
 	event is_flamin
 ´enable_enter001´ ElementToggle 100026
+	elements
+ 		1 ´if_entered´ DISABLED
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´if_entered´ DISABLED
 ´delay´ MissionScriptElement 100005
 	BASE DELAY 1
 	on_executed
@@ -95,12 +95,12 @@
 ´kill_local_wall_of_flame´ ElementInstanceOutput 100011
 	event kill_local_wall_of_flame
 ´point_play_sound_001´ ElementPlaySound 100007
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -25, 2000, 2000
 	rotation 0, 0, 1, -4.37114E-08
 	sound_event Play_big_clk_help_01
-	use_instigator false
+	use_instigator False
 ´point_blurzone_001´ ElementBlurZone 100008
 	height 200
 	mode 2
@@ -108,11 +108,11 @@
 	radius 500
 	rotation 0, 0, 0, -1
 ´remove_blur´ ElementOperator 100010
-	operation remove
 	elements
-		1 ´point_blurzone_001´
+ 		1 ´point_blurzone_001´
 		2 ´point_blurzone_003´
 		3 ´point_blurzone_002´
+	operation remove
 ´point_blurzone_002´ ElementBlurZone 100015
 	height 200
 	mode 2
@@ -132,17 +132,17 @@
 		´point_blurzone_003´ (delay 0)
 		´point_blurzone_002´ (delay 0)
 ´blur_loop_OFF´ ElementToggle 100018
+	elements
+ 		1 ´blur_loop´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blur_loop´
 	on_executed
 		´remove_blur´ (delay 2)
 ´blur_loop_ON´ ElementToggle 100019
+	elements
+ 		1 ´blur_loop´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´blur_loop´
 ´play_exit_anim´ ElementUnitSequence 100009
 	position 4100, -300, 0
 	rotation 0, 0, 0, -1

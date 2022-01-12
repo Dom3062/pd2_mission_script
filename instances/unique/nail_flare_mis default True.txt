@@ -5,10 +5,10 @@
 	position 0, 25, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´waypoint_interact´ ElementWaypoint 100003
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -66,9 +66,9 @@
 		´waypoint_defend´ (delay 0)
 		´enable_flare_mesh´ (delay 0)
 ´remove_interact_waypoint´ ElementOperator 100009
-	operation remove
 	elements
-		1 ´waypoint_interact´
+ 		1 ´waypoint_interact´
+	operation remove
 ´remove_flare_interact_waypoint´ ElementInstanceInput 100010
 	event waypoint_interact_remove
 	on_executed
@@ -100,18 +100,18 @@
 		´flare_sound´ (delay 0)
 		´remove_interact_waypoint´ (delay 0)
 ´flare_sound´ ElementPlaySound 100016
-	append_prefix false
+	append_prefix False
 	position 0, 25, 25
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´point_debug_001´ ElementDebug 100019
-	as_subtitle false
+	as_subtitle False
 	debug_string flare lit
-	show_instigator false
+	show_instigator False
 ´waypoint_defend´ ElementWaypoint 100004
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -120,20 +120,20 @@
 	on_executed
 		´remove_defend_waypoint´ (delay 0)
 ´remove_defend_waypoint´ ElementOperator 100018
-	operation remove
 	elements
-		1 ´waypoint_defend´
+ 		1 ´waypoint_defend´
+	operation remove
 ´env_effect_stop_001´ ElementStopEffect 100020
+	elements
+ 		1 ´play_flare_effect´
 	operation fade_kill
 	position 500, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´play_flare_effect´
 	on_executed
 		´point_play_sound_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100021
-	append_prefix false
+	append_prefix False
 	position 0, 25, 50
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False

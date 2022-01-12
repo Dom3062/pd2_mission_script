@@ -34,8 +34,8 @@
 ´interact_WP´ ElementWaypoint 100017
 	TRIGGER TIMES 1
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -75,15 +75,15 @@
 	position 0, -100, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_enable_interaction´ (delay 0)
 ´area_disable_interaction´ ElementAreaTrigger 100016
@@ -97,15 +97,15 @@
 	position 0, -100, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_exit
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_disable_interaction´ (delay 0)
 ´link_enable_interaction´ MissionScriptElement 100019
@@ -143,38 +143,38 @@
 			notify_unit_sequence hide_outline
 			time 0
 ´disable_everything´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´area_disable_interaction´ DISABLED
+ 		1 ´area_disable_interaction´ DISABLED
 		2 ´area_enable_interaction´ DISABLED
 		3 ´interact_WP´
 		4 ´hit_WP´
 		5 ´link_enable_interaction´
 		6 ´hack_box_opened´
 		7 ´hack_box_hit´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP´ (delay 0)
 ´enable_interact_WP´ MissionScriptElement 100024
 	on_executed
 		´interact_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
 		2 ´hit_WP´
+	operation remove
 	on_executed
 		´seq_disable_outline´ (delay 0)
 ´enable_area_triggers´ ElementToggle 100030
+	elements
+ 		1 ´area_disable_interaction´ DISABLED
+		2 ´area_enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_disable_interaction´ DISABLED
-		2 ´area_enable_interaction´ DISABLED
 ´hit_WP´ ElementWaypoint 100031
 	icon pd2_melee
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -182,9 +182,9 @@
 	on_executed
 		´hit_WP´ (delay 0)
 ´remove_interact_WP´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
+	operation remove
 	on_executed
 		´link_enable_link_WP´ (delay 0.5)
 		´disable_interactions_box´ (delay 0)
@@ -201,14 +201,14 @@
 		´env_effect_play_001´ (delay 0)
 ´point_debug_002´ ElementDebug 100046
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string TAkE THAT SUCkER!!! - Alarm gone.
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100009
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string You can hit me now!
-	show_instigator false
+	show_instigator False
 ´env_effect_play_001´ ElementPlayEffect 100010
 	base_time 0
 	effect effects/payday2/particles/electric/electric_sparks_small
@@ -216,16 +216,16 @@
 	position 0, 0, 100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 	on_executed
 		´point_play_sound_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100011
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 76.4465
 	rotation 0, 0, 0, -1
 	sound_event electric_sparks
-	use_instigator false
+	use_instigator False
 ´seq_disable_outline´ ElementUnitSequence 100012
 	position 1500, 0, 0
 	rotation 0, 0, 0, -1
@@ -237,11 +237,11 @@
 			notify_unit_sequence hide_outline
 			time 0
 ´disable_interactions_box´ ElementToggle 100013
+	elements
+ 		1 ´seq_enable_interaction´
+		2 ´interact_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_enable_interaction´
-		2 ´interact_WP´
 	on_executed
 		´link_enable_link_WP´ (delay 0.5)
 ´seq_enable_interaction´ ElementUnitSequence 100014
@@ -265,18 +265,18 @@
 	on_executed
 		´enable_interact_WP´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100029
+	elements
+ 		1 ´interact_WP´
+		2 ´hit_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´interact_WP´
-		2 ´hit_WP´
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´logic_operator_001´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´interact_WP´
+ 		1 ´interact_WP´
 		2 ´hit_WP´
+	operation remove
 ´disable_waypoint´ ElementInstanceInput 100028
 	event hide_waypoint
 	on_executed
@@ -285,11 +285,11 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´nav_add_blocker´ ElementNavObstacle 100047
-	operation add
-	position 600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -25, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1

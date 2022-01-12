@@ -51,23 +51,23 @@
 	position 300, 5500, 200
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 450
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 450
 	on_executed
 		´output_all_players_in_escape_zone´ (delay 0)
 ´output_all_players_in_escape_zone´ ElementInstanceOutput 100011
 	event all_players_in_escape_zone
 ´toggle_ON_escape_trigger´ ElementToggle 100012
+	elements
+ 		1 ´escape_zone_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´escape_zone_trigger´ DISABLED
 	on_executed
 		´enable_goal_marker´ (delay 0)
 ´enable_goal_marker´ ElementEnableUnit 100013
@@ -107,12 +107,12 @@
 ´extraction_timer´ ElementTimer 100015
 	timer 180
 ´start_timer´ ElementTimerOperator 100016
+	elements
+ 		1 ´extraction_timer´
 	operation start
 	position 700, 200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´extraction_timer´
 ´input_start_extraction´ ElementInstanceInput 100008
 	event start_extraction
 	on_executed
@@ -120,16 +120,16 @@
 		´defend_WP´ (delay 0)
 ´escape_WP´ ElementWaypoint 100020
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 300, 5500, 350
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´lootdrop_WP´ ElementWaypoint 100021
 	DISABLED
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 48, 5850, 332
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -137,15 +137,15 @@
 	event heli_has_arrived
 ´defend_WP´ ElementWaypoint 100023
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 5500, 350
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
+	operation remove
 ´env_effect_play_001´ ElementPlayEffect 100018
 	base_time 0
 	effect effects/particles/dest/bridge_heli_smoke
@@ -153,29 +153,29 @@
 	position 0, 5850, 175
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´60s´ ElementTimerTrigger 100024
+	elements
+ 		1 ´extraction_timer´
 	position 1100, -300, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´output_60s´ (delay 0)
 ´25s´ ElementTimerTrigger 100030
+	elements
+ 		1 ´extraction_timer´
 	position 1300, -300, 0
 	rotation 0, 0, 0, -1
 	time 25
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´output_25s´ (delay 0)
 ´0s´ ElementTimerTrigger 100031
+	elements
+ 		1 ´extraction_timer´
 	position 1400, -300, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´output_0s´ (delay 0)
 		´toggle_ON_escape_trigger´ (delay 2)
@@ -187,19 +187,19 @@
 ´output_60s´ ElementInstanceOutput 100034
 	event 60_secs
 ´38s´ ElementTimerTrigger 100035
+	elements
+ 		1 ´extraction_timer´
 	position 1200, -300, 0
 	rotation 0, 0, 0, -1
 	time 38
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´120s´ ElementTimerTrigger 100036
+	elements
+ 		1 ´extraction_timer´
 	position 1000, -300, 0
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´output_120s´ (delay 0)
 ´output_120s´ ElementInstanceOutput 100037

@@ -359,11 +359,11 @@
 ´full tanks counter´ ElementCounter 100024
 	counter_target 2
 ´are two tanks empty´ ElementCounterFilter 100027
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´is the drill running´ (delay 0)
 ´tank01 full´ ElementCounter 100028
@@ -372,50 +372,50 @@
 	counter_target 1
 ´tank01 remove one´ ElementCounterOperator 100030
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank01 full´
+ 		1 ´tank01 full´
 		2 ´full tanks counter´
+	instance_var_names
+	operation subtract
 ´tank02 remove one´ ElementCounterOperator 100031
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank02 full´
+ 		1 ´tank02 full´
 		2 ´full tanks counter´
+	instance_var_names
+	operation subtract
 ´tank01 add one´ ElementCounterOperator 100032
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank01 full´
+ 		1 ´tank01 full´
 		2 ´full tanks counter´
+	instance_var_names
+	operation add
 	on_executed
 		´add trigger´ (delay 0.5)
 ´tank02 add one´ ElementCounterOperator 100033
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank02 full´
+ 		1 ´tank02 full´
 		2 ´full tanks counter´
+	instance_var_names
+	operation add
 	on_executed
 		´add trigger_2´ (delay 0.5)
 ´is tank01 full´ ElementCounterFilter 100025
+	elements
+ 		1 ´tank01 full´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´tank01 full´
 	on_executed
 		´is drill runing´ (delay 0)
 ´is tank02 full´ ElementCounterFilter 100026
+	elements
+ 		1 ´tank02 full´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´tank02 full´
 	on_executed
 		´is drill running´ (delay 0)
 ´drill running´ ElementCounter 100040
@@ -424,20 +424,20 @@
 		´resume laser animation´ (delay 0)
 ´add one´ ElementCounterOperator 100041
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´drill running´
+ 		1 ´drill running´
+	instance_var_names
+	operation add
 ´will the drill break´ ElementLogicChance 100047
 	chance 20
 	position 2300, -75, 25
 	rotation 0, 0, 0, -1
 ´did the drill break´ ElementLogicChanceTrigger 100048
+	elements
+ 		1 ´will the drill break´
 	outcome success
 	position 2400, -75, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´will the drill break´
 	on_executed
 		´toggle timmers (disable active)´ (delay 0)
 		´are tanks still empty´ (delay 0)
@@ -484,42 +484,42 @@
 		´drill stopped´ (delay 0)
 ´remove one´ ElementCounterOperator 100051
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´drill running´
+ 		1 ´drill running´
+	instance_var_names
+	operation subtract
 	on_executed
 		´is bore intact´ (delay 0)
 ´is the drill running´ ElementCounterFilter 100052
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´drill warning enable drill stop´ (delay 0)
 ´is drill runing´ ElementCounterFilter 100053
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´disable drill interaction´ (delay 0)
 		´start tank01 drain´ (delay 0)
 ´is drill running´ ElementCounterFilter 100054
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´disable drill interaction´ (delay 0)
 		´start drain tank02´ (delay 0)
 ´start any tank´ ElementRandom 100012
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´is tank02 full´ (delay 0)
 		´is tank01 full´ (delay 0)
@@ -558,51 +558,51 @@
 	on_executed
 		´is only one tank removed´ (delay 0)
 ´is tank01 empty´ ElementCounterFilter 100063
+	elements
+ 		1 ´tank01 full´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´tank01 full´
 	on_executed
 		´is drill running_2´ (delay 0)
 ´is drill running_2´ ElementCounterFilter 100064
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´start tank02 drain´ (delay 0)
 ´is tank02 empty´ ElementCounterFilter 100066
+	elements
+ 		1 ´tank02 full´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´tank02 full´
 	on_executed
 		´is drill running_3´ (delay 0)
 ´is drill running_3´ ElementCounterFilter 100067
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´start drain tank01´ (delay 0)
 ´broken drill output´ ElementDebug 100055
-	as_subtitle false
+	as_subtitle False
 	debug_string broken drill
-	show_instigator false
+	show_instigator False
 	on_executed
 		´remove one_3´ (delay 0)
 ´on´ ElementDebug 100056
-	as_subtitle false
+	as_subtitle False
 	debug_string drill started
-	show_instigator false
+	show_instigator False
 ´off´ ElementDebug 100069
-	as_subtitle false
+	as_subtitle False
 	debug_string drill stopped
-	show_instigator false
+	show_instigator False
 ´stop_alarm´ ElementUnitSequence 100057
 	position 2000, -250, 25
 	rotation 0, 0, 0, -1
@@ -614,25 +614,25 @@
 			notify_unit_sequence stop_alarm
 			time 0
 ´timer 21 ex´ ElementDebug 100058
-	as_subtitle false
+	as_subtitle False
 	debug_string  at 21
-	show_instigator false
+	show_instigator False
 ´timer 16´ ElementDebug 100059
-	as_subtitle false
+	as_subtitle False
 	debug_string  at 16
-	show_instigator false
+	show_instigator False
 ´timer 11´ ElementDebug 100074
-	as_subtitle false
+	as_subtitle False
 	debug_string at 11
-	show_instigator false
+	show_instigator False
 ´timer 6´ ElementDebug 100075
-	as_subtitle false
+	as_subtitle False
 	debug_string  at 6
-	show_instigator false
+	show_instigator False
 ´timer 1´ ElementDebug 100076
-	as_subtitle false
+	as_subtitle False
 	debug_string at 1
-	show_instigator false
+	show_instigator False
 ´20 sec´ MissionScriptElement 100042
 	on_executed
 		´will the drill break´ (delay 0)
@@ -662,10 +662,8 @@
 	on_executed
 		´20 sec´ (delay 5)
 ´toggle timmers (disable active)´ ElementToggle 100077
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´20 sec´
+ 		1 ´20 sec´
 		2 ´15´
 		3 ´10´
 		4 ´5´
@@ -677,26 +675,28 @@
 		10 ´at 0´ DISABLED
 		11 ´25 sec´
 		12 ´at 25´ DISABLED
+	set_trigger_times -1
+	toggle toggle
 ´drill overheating´ ElementCounter 100070
 	counter_target 0
 ´add one_2´ ElementCounterOperator 100080
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´drill overheating´
+ 		1 ´drill overheating´
+	instance_var_names
+	operation add
 ´remove one_2´ ElementCounterOperator 100081
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´drill overheating´
+ 		1 ´drill overheating´
+	instance_var_names
+	operation subtract
 ´is bore intact´ ElementCounterFilter 100038
+	elements
+ 		1 ´is bore intact_2´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´is bore intact_2´
 	on_executed
 		´is pair connected´ (delay 0.1) DISABLED
 		´are all 4 sockets connected´ (delay 0.1)
@@ -733,35 +733,35 @@
 	counter_target 1
 ´remove one_3´ ElementCounterOperator 100037
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´is bore intact_2´
+ 		1 ´is bore intact_2´
+	instance_var_names
+	operation subtract
 	on_executed
 		´is tank 01 empty´ (delay 0)
 		´is tank 02 empty´ (delay 0)
 ´add one_3´ ElementCounterOperator 100092
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´is bore intact_2´
+ 		1 ´is bore intact_2´
+	instance_var_names
+	operation add
 	on_executed
 		´remove bore fix WP´ (delay 0)
 ´are both tanks full´ ElementCounterFilter 100093
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´neither tank is half full´ (delay 0)
 ´is any tank full´ ElementCounterFilter 100094
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´is tank02 empty´ (delay 0)
 		´is tank01 empty´ (delay 0)
@@ -790,25 +790,25 @@
 ´drilling time´ ElementTimer 100095
 	timer 420
 ´timer start´ ElementTimerOperator 100096
+	elements
+ 		1 ´drilling time´
 	operation start
 	position 2025, 400, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drilling time´
 ´timer pause´ ElementTimerOperator 100097
+	elements
+ 		1 ´drilling time´
 	operation pause
 	position 2025, 300, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drilling time´
 ´is_bore_intact´ ElementCounterFilter 100098
+	elements
+ 		1 ´is bore intact_2´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´is bore intact_2´
 	on_executed
 		´timer start´ (delay 0)
 ´stop drilling disable interaction´ ElementUnitSequence 100099
@@ -866,11 +866,11 @@
 	on_executed
 		´remove waypoints´ (delay 0)
 ´is time done´ ElementTimerTrigger 100100
+	elements
+ 		1 ´drilling time´
 	position 2250, 400, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drilling time´
 	on_executed
 		´turn everything off´ (delay 0.1)
 		´stop_alarm´ (delay 0)
@@ -881,10 +881,8 @@
 		´stop_disabling_drill´ (delay 0)
 		´ene_stoped_the_drill_OFF´ (delay 0)
 ´turn everything off´ ElementToggle 100102
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´hide_units´
+ 		1 ´hide_units´
 		2 ´show_units´
 		3 ´off´
 		4 ´is drill stopped´
@@ -1028,6 +1026,8 @@
 		142 ´remove_other´
 		143 ´disable socket interaction´
 		144 ´loot trigger´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´stop drilling disable interaction´ (delay 0)
 		´drill_collision_DISABLE´ (delay 0)
@@ -1042,11 +1042,11 @@
 		´stop_disabling_drill´ (delay 0)
 		´is drill not running´ (delay 0)
 ´is drill running_4´ ElementCounterFilter 100105
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´stop the drill´ (delay 0)
 ´stop the drill´ ElementUnitSequence 100106
@@ -1116,22 +1116,22 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´is bore intact_3´ ElementCounterFilter 100114
+	elements
+ 		1 ´is bore intact_2´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´is bore intact_2´
 	on_executed
 		´enable drill interaction_2´ (delay 0)
 ´connected sockets ´ ElementCounter 100009
 	counter_target 0
 ´left add one´ ElementCounterOperator 100116
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´connected sockets ´
+ 		1 ´connected sockets ´
 		2 ´left sockets´
+	instance_var_names
+	operation add
 	on_executed
 		´are all 4 sockets connected´ (delay 0.01)
 		´is pair connected´ (delay 0.01) DISABLED
@@ -1140,11 +1140,11 @@
 	on_executed
 		´left add one´ (delay 0)
 ´are all 4 sockets connected´ ElementCounterFilter 100117
+	elements
+ 		1 ´connected sockets ´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´connected sockets ´
 	on_executed
 		´enable drill interaction´ (delay 0)
 		´turn display on´ (delay 0) DISABLED
@@ -1152,32 +1152,32 @@
 	counter_target 0
 ´add one_4´ ElementCounterOperator 100120
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´half drained´
+ 		1 ´half drained´
+	instance_var_names
+	operation add
 ´remove one_4´ ElementCounterOperator 100121
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´half drained´
+ 		1 ´half drained´
+	instance_var_names
+	operation subtract
 ´neither tank is half full´ ElementCounterFilter 100122
+	elements
+ 		1 ´half drained´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´half drained´
 	on_executed
 		´start any tank´ (delay 0)
 ´remove waypoint´ ElementOperator 100125
 	operation remove
 ´is neither tank half full´ ElementCounterFilter 100127
+	elements
+ 		1 ´half drained´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´half drained´
 	on_executed
 		´is any tank full´ (delay 0)
 ´lower_drill´ ElementInstanceInput 100082
@@ -1323,11 +1323,11 @@
 	on_executed
 		´start timer´ (delay 0)
 ´is drill running_5´ ElementCounterFilter 100109
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´disable drill usage´ (delay 0)
 ´drill in place´ ElementInstanceOutput 100140
@@ -1343,11 +1343,11 @@
 ´drain_timer_02´ ElementTimer 100143
 	timer 60
 ´tank 02 empty´ ElementTimerTrigger 100144
+	elements
+ 		1 ´drain_timer_02´
 	position 1400, -75, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_02´
 	on_executed
 		´remove one_4´ (delay 0)
 		´is tank01 full´ (delay 0.1)
@@ -1360,11 +1360,11 @@
 		´are two tanks empty_2´ (delay 0)
 		´is one tank empty´ (delay 0)
 ´tank 01 empty´ ElementTimerTrigger 100145
+	elements
+ 		1 ´drain_timer_01´
 	position 1400, -225, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_01´
 	on_executed
 		´tank01 enable interaction´ (delay 0)
 		´remove one_4´ (delay 0)
@@ -1377,78 +1377,78 @@
 		´are two tanks empty_2´ (delay 0)
 		´is one tank empty´ (delay 0)
 ´add trigger´ ElementOperator 100019
-	operation add
 	elements
-		1 ´tank 01 empty´
+ 		1 ´tank 01 empty´
+	operation add
 	on_executed
 		´remove 1´ (delay 0)
 ´add trigger_2´ ElementOperator 100013
-	operation add
 	elements
-		1 ´tank 02 empty´
+ 		1 ´tank 02 empty´
+	operation add
 	on_executed
 		´remove 1_2´ (delay 0)
 ´pause timer 01´ ElementTimerOperator 100146
+	elements
+ 		1 ´drain_timer_01´
 	operation pause
 	position 500, -50, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_01´
 	on_executed
 		´watertank meter 01 pause´ (delay 0)
 ´pause timer 02´ ElementTimerOperator 100147
+	elements
+ 		1 ´drain_timer_02´
 	operation pause
 	position 500, 50, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_02´
 	on_executed
 		´watertank meter 02 pause´ (delay 0)
 ´start timer 01´ ElementTimerOperator 100148
+	elements
+ 		1 ´drain_timer_01´
 	operation start
 	position 425, -50, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_01´
 ´start timer 02´ ElementTimerOperator 100149
+	elements
+ 		1 ´drain_timer_02´
 	operation start
 	position 425, 50, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´drain_timer_02´
 ´set time 01´ ElementTimerOperator 100150
+	elements
+ 		1 ´drain_timer_01´
 	operation set_time
 	position 575, -50, 25
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´drain_timer_01´
 ´set time 02´ ElementTimerOperator 100151
+	elements
+ 		1 ´drain_timer_02´
 	operation set_time
 	position 575, 50, 25
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´drain_timer_02´
 ´is tank 01 half full´ ElementCounterFilter 100154
+	elements
+ 		1 ´tank 01 half full´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´tank 01 half full´
 	on_executed
 		´start timer 01´ (delay 0)
 		´watertank meter 01 resume´ (delay 0)
 ´is tank 02 half full´ ElementCounterFilter 100155
+	elements
+ 		1 ´tank 02 half full´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´tank 02 half full´
 	on_executed
 		´start timer 02´ (delay 0)
 		´watertank meter 02 resume´ (delay 0)
@@ -1458,44 +1458,44 @@
 	counter_target 0
 ´remove´ ElementCounterOperator 100159
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank 01 half full´
+ 		1 ´tank 01 half full´
+	instance_var_names
+	operation subtract
 ´add´ ElementCounterOperator 100160
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank 02 half full´
+ 		1 ´tank 02 half full´
+	instance_var_names
+	operation add
 ´add_2´ ElementCounterOperator 100161
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank 01 half full´
+ 		1 ´tank 01 half full´
+	instance_var_names
+	operation add
 ´remove_2´ ElementCounterOperator 100162
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank 02 half full´
+ 		1 ´tank 02 half full´
+	instance_var_names
+	operation subtract
 ´transition anim timer´ ElementTimer 100165
 	timer 60
 ´start timer´ ElementTimerOperator 100166
+	elements
+ 		1 ´transition anim timer´
 	operation start
 	position -275, -1775, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´transition anim timer´
 ´pause timer´ ElementTimerOperator 100167
+	elements
+ 		1 ´transition anim timer´
 	operation pause
 	position -175, -1775, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´transition anim timer´
 ´pause transition animation´ ElementInstanceInput 100168
 	event pause transition animation
 	on_executed
@@ -1613,11 +1613,11 @@
 	on_executed
 		´start timer´ (delay 0)
 ´transition done´ ElementTimerTrigger 100139
+	elements
+ 		1 ´transition anim timer´
 	position -75, -1700, 25
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´transition anim timer´
 	on_executed
 		´enable right socket interaction´ (delay 0)
 		´drill in place´ (delay 0)
@@ -1633,55 +1633,55 @@
 	on_executed
 		´drill break toggle off´ (delay 0)
 ´drill break toggle off´ ElementToggle 100173
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´will the drill break´
+ 		1 ´will the drill break´
 		2 ´did the drill break´
 		3 ´break the drill´
 		4 ´drill warning enable drill stop´
+	set_trigger_times -1
+	toggle off
 ´drill fixed´ ElementInstanceOutput 100174
 	event drill fixed
 ´wp_start_drill´ ElementWaypoint 100175
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -303, -130, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_hook´ ElementWaypoint 100176
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 125, 469, 799
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_right_socket´ ElementWaypoint 100177
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -301, -78, 109
 	rotation 0, 0, 0.707107, -0.707107
 	text_id debug_none
 ´wp_left_socket´ ElementWaypoint 100178
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -301, -60, 109
 	rotation 0, 0, 0.707107, -0.707107
 	text_id debug_none
 ´wp_hook_REMOVE´ ElementOperator 100179
-	operation remove
 	elements
-		1 ´wp_hook´
+ 		1 ´wp_hook´
+	operation remove
 ´wp_left_socket_REMOVE´ ElementOperator 100180
-	operation remove
 	elements
-		1 ´wp_left_socket´
+ 		1 ´wp_left_socket´
+	operation remove
 ´wp_right_socket_REMOVE´ ElementOperator 100181
-	operation remove
 	elements
-		1 ´wp_right_socket´
+ 		1 ´wp_right_socket´
+	operation remove
 ´wp_start_drill_REMOVE´ ElementOperator 100182
-	operation remove
 	elements
-		1 ´wp_start_drill´
+ 		1 ´wp_start_drill´
+	operation remove
 ´output_left_socket_connected´ ElementInstanceOutput 100183
 	event left_socket_connected
 ´output_right_socket_connected´ ElementInstanceOutput 100184
@@ -1787,12 +1787,12 @@
 	on_executed
 		´set time 6´ (delay 0)
 ´set time 6´ ElementTimerOperator 100200
+	elements
+ 		1 ´drilling time´
 	operation set_time
 	position -200, -3875, 25
 	rotation 0, 0, 0, -1
 	time 360
-	elements
-		1 ´drilling time´
 	on_executed
 		´increase chance to break ´ (delay 0)
 ´5 min to drill´ ElementInstanceInput 100201
@@ -1800,30 +1800,30 @@
 	on_executed
 		´set time 5´ (delay 0)
 ´set time 5´ ElementTimerOperator 100202
+	elements
+ 		1 ´drilling time´
 	operation set_time
 	position -200, -3750, 25
 	rotation 0, 0, 0, -1
 	time 300
-	elements
-		1 ´drilling time´
 	on_executed
 		´increase chance to break _2´ (delay 0)
 ´increase chance to break ´ ElementLogicChanceOperator 100203
+	elements
+ 		1 ´will the drill break´
 	chance 11
 	operation add_chance
 	position -100, -3875, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´will the drill break´
 	on_executed
 		´set 9 min´ (delay 0)
 ´increase chance to break _2´ ElementLogicChanceOperator 100204
+	elements
+ 		1 ´will the drill break´
 	chance 15
 	operation add_chance
 	position -100, -3750, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´will the drill break´
 	on_executed
 		´set 7 min´ (delay 0)
 ´Tougher Bore´ ElementInstanceInput 100205
@@ -1831,12 +1831,12 @@
 	on_executed
 		´decrease chance to break´ (delay 0)
 ´decrease chance to break´ ElementLogicChanceOperator 100206
+	elements
+ 		1 ´will the drill break´
 	chance 15
 	operation subtract_chance
 	position -200, -3625, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´will the drill break´
 	on_executed
 		´show laser upgrade´ (delay 0)
 ´One Power Socket´ ElementInstanceInput 100207
@@ -1885,11 +1885,11 @@
 		´toggle on_7´ (delay 0)
 ´right add one´ ElementCounterOperator 100217
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´connected sockets ´
+ 		1 ´connected sockets ´
 		2 ´right sockets´
+	instance_var_names
+	operation add
 	on_executed
 		´are all 4 sockets connected´ (delay 0.01)
 		´is pair connected´ (delay 0.01) DISABLED
@@ -1899,32 +1899,32 @@
 	counter_target 0
 ´is pair connected´ ElementCounterFilter 100221
 	DISABLED
+	elements
+ 		1 ´left sockets´
+		2 ´right sockets´
 	check_type equal
 	needed_to_execute any
 	value 2
-	elements
-		1 ´left sockets´
-		2 ´right sockets´
 	on_executed
 		´enable drill interaction´ (delay 0)
 		´remove_other´ (delay 0)
 		´turn display on´ (delay 0) DISABLED
 ´toggle socket filter´ ElementToggle 100222
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´are all 4 sockets connected´
+ 		1 ´are all 4 sockets connected´
 		2 ´is pair connected´ DISABLED
 		3 ´less than 2´ DISABLED
 		4 ´less than 4´
+	set_trigger_times -1
+	toggle toggle
 	on_executed
 		´show battery´ (delay 0)
 ´remove_other´ ElementOperator 100208
-	operation remove
 	elements
-		1 ´wp_left_socket´
+ 		1 ´wp_left_socket´
 		2 ´wp_right_socket´
+	operation remove
 	on_executed
 		´disable socket interaction´ (delay 0)
 ´disable socket interaction´ ElementUnitSequence 100223
@@ -1936,40 +1936,40 @@
 	on_executed
 		´increase_watertanks_time´ (delay 0)
 ´increase_watertanks_time´ ElementTimerOperator 100228
+	elements
+ 		1 ´drain_timer_01´
+		2 ´drain_timer_02´
 	operation set_time
 	position 225, -4000, 25
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´drain_timer_01´
-		2 ´drain_timer_02´
 	on_executed
 		´toggle set time´ (delay 0)
 ´pp_set_time_01´ ElementTimerOperator 100229
 	DISABLED
+	elements
+ 		1 ´drain_timer_01´
 	operation set_time
 	position 575, -150, 25
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´drain_timer_01´
 ´pp_set_time_02´ ElementTimerOperator 100230
 	DISABLED
+	elements
+ 		1 ´drain_timer_02´
 	operation set_time
 	position 575, 150, 25
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´drain_timer_02´
 ´toggle set time´ ElementToggle 100231
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´pp_set_time_01´ DISABLED
+ 		1 ´pp_set_time_01´ DISABLED
 		2 ´pp_set_time_02´ DISABLED
 		3 ´set time 01´
 		4 ´set time 02´
+	set_trigger_times -1
+	toggle toggle
 	on_executed
 		´show bigger tanks´ (delay 0)
 ´First Aid Kit´ ElementInstanceInput 100196
@@ -1977,10 +1977,10 @@
 	on_executed
 		´toggle sequence´ (delay 0)
 ´toggle sequence´ ElementToggle 100224
+	elements
+ 		1 ´show first aid kit´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show first aid kit´ DISABLED
 ´show first aid kit´ ElementUnitSequence 100225
 	DISABLED
 	position 325, -3875, 25
@@ -2003,11 +2003,11 @@
 	on_executed
 		´toggle sequence_2´ (delay 0)
 ´toggle sequence_2´ ElementToggle 100260
+	elements
+ 		1 ´show tools and enable int´ DISABLED
+		2 ´wp_tools´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show tools and enable int´ DISABLED
-		2 ´wp_tools´ DISABLED
 ´show tools and enable int´ ElementUnitSequence 100261
 	DISABLED
 	position 325, -3750, 27.5
@@ -2059,11 +2059,11 @@
 		´less than 2´ (delay 0.01) DISABLED
 ´right remove one´ ElementCounterOperator 100266
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´right sockets´
+ 		1 ´right sockets´
 		2 ´connected sockets ´
+	instance_var_names
+	operation subtract
 ´right socket disconnected´ ElementInstanceInput 100267
 	event right socket disconnected
 	on_executed
@@ -2072,39 +2072,39 @@
 		´less than 2´ (delay 0.01) DISABLED
 ´left remove one´ ElementCounterOperator 100268
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´left sockets´
+ 		1 ´left sockets´
 		2 ´connected sockets ´
+	instance_var_names
+	operation subtract
 ´less than 4´ ElementCounterFilter 100128
+	elements
+ 		1 ´connected sockets ´
 	check_type less_than
 	needed_to_execute all
 	value 4
-	elements
-		1 ´connected sockets ´
 	on_executed
 		´stop_the_drill´ (delay 0)
 		´turn display off´ (delay 0) DISABLED
 ´less than 2´ ElementCounterFilter 100269
 	DISABLED
+	elements
+ 		1 ´right sockets´
+		2 ´left sockets´
 	check_type less_than
 	needed_to_execute all
 	value 2
-	elements
-		1 ´right sockets´
-		2 ´left sockets´
 	on_executed
 		´stop_the_drill´ (delay 0)
 		´turn display off´ (delay 0) DISABLED
 ´enable hook interaction_2´ ElementToggle 100108
+	elements
+ 		1 ´hook interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´hook interaction´ DISABLED
 ´hook interaction´ ElementInteraction 100133
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 125, 469, 774
 	rotation 0, 0, 0, -1
@@ -2112,13 +2112,13 @@
 	on_executed
 		´winch connected´ (delay 0) (alternative interacted)
 ´enable toolbox interaction´ ElementToggle 100134
+	elements
+ 		1 ´toolbox interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´toolbox interaction´ DISABLED
 ´toolbox interaction´ ElementInteraction 100135
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 306, -102, 118.609
 	rotation 0, 0, 0, -1
@@ -2193,7 +2193,7 @@
 		´toggle off_2´ (delay 0)
 ´laser jammed interaction´ ElementInteraction 100232
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -284, -132, 114
 	rotation 0, 0, 0, -1
@@ -2201,10 +2201,10 @@
 	on_executed
 		´bore fixed´ (delay 0) (alternative interacted)
 ´turn on drill fix interaction´ ElementToggle 100233
+	elements
+ 		1 ´laser jammed interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´laser jammed interaction´ DISABLED
 	on_executed
 		´broken drill output´ (delay 0)
 ´bore fixed´ MissionScriptElement 100072
@@ -2214,14 +2214,14 @@
 		´are both tanks full_2´ (delay 0)
 		´is any tank empty´ (delay 0)
 ´remove bore fix WP´ ElementOperator 100234
-	operation remove
 	elements
-		1 ´wp fix the bore´
+ 		1 ´wp fix the bore´
+	operation remove
 	on_executed
 		´remove waypoint´ (delay 0)
 ´wp fix the bore´ ElementWaypoint 100235
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -297, -129, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -2311,9 +2311,9 @@
 			notify_unit_sequence pause_cutting_animation
 			time 0
 ´drilling done_2´ ElementDebug 100153
-	as_subtitle false
+	as_subtitle False
 	debug_string DRILL DONE
-	show_instigator false
+	show_instigator False
 ´turn display on´ ElementUnitSequence 100271
 	DISABLED
 	position -675, -275, 25
@@ -2337,18 +2337,18 @@
 			notify_unit_sequence hide_digital_display
 			time 0
 ´toggle on´ ElementToggle 100273
+	elements
+ 		1 ´turn display off´ DISABLED
+		2 ´turn display on´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´turn display off´ DISABLED
-		2 ´turn display on´ DISABLED
 ´remove waypoints´ ElementOperator 100164
-	operation remove
 	elements
-		1 ´wp_left_socket´
+ 		1 ´wp_left_socket´
 		2 ´wp_right_socket´
 		3 ´wp fix the bore´
 		4 ´wp_start_drill´
+	operation remove
 	on_executed
 		´drilling done_2´ (delay 0)
 ´loot trigger´ ElementAreaTrigger 100023
@@ -2363,14 +2363,14 @@
 	position 425, 100, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´full tank check´ (delay 0)
 		´logic_toggle_001´ (delay 0.1)
@@ -2421,15 +2421,15 @@
 	on_executed
 		´enable area trigger´ (delay 0)
 ´enable area trigger´ ElementToggle 100277
+	elements
+ 		1 ´loot trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loot trigger´ DISABLED
 ´disable area trigger´ ElementToggle 100278
+	elements
+ 		1 ´loot trigger´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´loot trigger´ DISABLED
 ´is tank02 replaced´ MissionScriptElement 100279
 	DISABLED
 	TRIGGER TIMES 1
@@ -2451,53 +2451,53 @@
 	counter_target 0
 ´remove one_5´ ElementCounterOperator 100281
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´removed tanks´
+ 		1 ´removed tanks´
+	instance_var_names
+	operation subtract
 ´add one_5´ ElementCounterOperator 100282
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´removed tanks´
+ 		1 ´removed tanks´
+	instance_var_names
+	operation add
 ´is only one tank removed´ ElementCounterFilter 100021
+	elements
+ 		1 ´removed tanks´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´removed tanks´
 	on_executed
 		´hide watertank marker´ (delay 0)
 ´turn on´ ElementToggle 100283
+	elements
+ 		1 ´is tank02 replaced´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´is tank02 replaced´ DISABLED
 	on_executed
 		´add 1_2´ (delay 0)
 ´turn on_2´ ElementToggle 100284
+	elements
+ 		1 ´is tank01 replaced´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´is tank01 replaced´ DISABLED
 	on_executed
 		´add 1´ (delay 0)
 ´choose random tank to replace´ ElementRandom 100287
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´is tank02 replaced´ (delay 0) DISABLED
 		´is tank01 replaced´ (delay 0) DISABLED
 ´first tank replaced´ ElementDebug 100288
-	as_subtitle false
+	as_subtitle False
 	debug_string first tank replaced
-	show_instigator false
+	show_instigator False
 ´second tak replaced´ ElementDebug 100289
-	as_subtitle false
+	as_subtitle False
 	debug_string second tak replaced
-	show_instigator false
+	show_instigator False
 ´tank removed´ ElementInstanceOutput 100290
 	event watertank removed
 ´show watertank marker´ ElementInstanceInput 100291
@@ -2505,47 +2505,47 @@
 	on_executed
 		´show watertank maker´ (delay 0)
 ´is tank 01 empty´ ElementCounterFilter 100292
-	check_type equal
-	needed_to_execute all
-	value 0
 	elements
-		1 ´tank01 full´
+ 		1 ´tank01 full´
 		2 ´tank 01 removed´
-´is tank 02 empty´ ElementCounterFilter 100293
 	check_type equal
 	needed_to_execute all
 	value 0
+´is tank 02 empty´ ElementCounterFilter 100293
 	elements
-		1 ´tank02 full´
+ 		1 ´tank02 full´
 		2 ´tank 02 removed´
+	check_type equal
+	needed_to_execute all
+	value 0
 ´tank 02 removed´ ElementCounter 100294
 	counter_target 0
 ´tank 01 removed´ ElementCounter 100295
 	counter_target 0
 ´add 1´ ElementCounterOperator 100296
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank 01 removed´
+ 		1 ´tank 01 removed´
+	instance_var_names
+	operation add
 ´add 1_2´ ElementCounterOperator 100297
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´tank 02 removed´
+ 		1 ´tank 02 removed´
+	instance_var_names
+	operation add
 ´remove 1´ ElementCounterOperator 100298
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank 01 removed´
+ 		1 ´tank 01 removed´
+	instance_var_names
+	operation subtract
 ´remove 1_2´ ElementCounterOperator 100299
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´tank 02 removed´
+ 		1 ´tank 02 removed´
+	instance_var_names
+	operation subtract
 ´show broken drill WP´ ElementInstanceInput 100073
 	event show broken drill WP
 	on_executed
@@ -2561,22 +2561,22 @@
 ´stop the drill_2´ ElementSpecialObjective 100302
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 15608
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
-	interrupt_objective false
+	interrupt_objective False
 	interval 1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style none
@@ -2584,33 +2584,33 @@
 	pose none
 	position -336, -62, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 5000
 	search_position -272,809 -68,4788 114,226
+	SO_access 15608
 	so_action e_so_pull_lever
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´toggle on_2´ ElementToggle 100303
+	elements
+ 		1 ´stop the drill_2´ DISABLED
+		2 ´so complete´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´stop the drill_2´ DISABLED
-		2 ´so complete´
 	on_executed
 		´is drill running_6´ (delay 15)
 ´toggle off´ ElementToggle 100304
+	elements
+ 		1 ´stop the drill_2´ DISABLED
+		2 ´so complete´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´stop the drill_2´ DISABLED
-		2 ´so complete´
 ´so complete´ ElementSpecialObjectiveTrigger 100305
+	elements
+ 		1 ´stop the drill_2´ DISABLED
 	event complete
 	position 325, -3350, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´stop the drill_2´ DISABLED
 	on_executed
 		´stop_the_drill´ (delay 0)
 		´enemy stopped the drill´ (delay 0)
@@ -2618,48 +2618,48 @@
 		´so_defend´ (delay 0)
 		´ene_stoped_the_drill´ (delay 0)
 ´so fail´ ElementSpecialObjectiveTrigger 100306
+	elements
+ 		1 ´stop the drill_2´ DISABLED
 	event fail
 	position 325, -3200, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´stop the drill_2´ DISABLED
 	on_executed
 		´point_debug_002´ (delay 0)
 		´toggle on_2´ (delay 0)
 ´is drill running_6´ ElementCounterFilter 100307
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´drill running´
 	on_executed
 		´stop the drill_2´ (delay 0) DISABLED
 ´remove so´ ElementOperator 100309
-	operation remove
 	elements
-		1 ´stop the drill_2´ DISABLED
+ 		1 ´stop the drill_2´ DISABLED
+	operation remove
 ´enemy stopped the drill´ ElementInstanceOutput 100310
 	event enemy stopped the drill
 ´point_debug_002´ ElementDebug 100311
-	as_subtitle false
+	as_subtitle False
 	debug_string drill_SO_failed
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100312
-	as_subtitle false
+	as_subtitle False
 	debug_string drill_SO_complete
-	show_instigator false
+	show_instigator False
 ´so_administered´ ElementSpecialObjectiveTrigger 100313
+	elements
+ 		1 ´stop the drill_2´ DISABLED
 	event administered
 	position 325, -3275, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´stop the drill_2´ DISABLED
 	on_executed
 		´point_debug_004´ (delay 0)
 ´point_debug_004´ ElementDebug 100314
-	as_subtitle false
+	as_subtitle False
 	debug_string drill_SO_administered
-	show_instigator false
+	show_instigator False
 ´stop_disabling_drill´ MissionScriptElement 100308
 	on_executed
 		´toggle off´ (delay 0)
@@ -2681,15 +2681,15 @@
 	position 125, -112, 542
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´canvas instigator´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´add canvas´ (delay 0)
 		´secure_all´ (delay 0)
@@ -2705,24 +2705,24 @@
 	position -116, 0, 542
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 240
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 240
 	on_executed
 		´escape´ (delay 0)
 		´drill rise and hide markers´ (delay 0)
 ´trg_loot_drop_ON´ ElementToggle 100320
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´trg_loot_all´ DISABLED
+ 		1 ´trg_loot_all´ DISABLED
 		2 ´trg_loot_mandatory´ DISABLED
 		3 ´trg_loot_painting´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´seq_drop_marker_show´ ElementUnitSequence 100321
 	position 2625, 1225, 25
 	rotation 0, 0, 0, -1
@@ -2735,7 +2735,7 @@
 			time 0
 ´wp_loot_drop´ ElementWaypoint 100322
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 600
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -2755,10 +2755,10 @@
 			notify_unit_sequence show
 			time 0
 ´trg_escape_ON´ ElementToggle 100329
+	elements
+ 		1 ´trg_escape´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_escape´ DISABLED
 ´escape´ MissionScriptElement 100330
 	on_executed
 		´mission_end_success´ (delay 2)
@@ -2770,15 +2770,15 @@
 	rotation 0, 0, 0, -1
 	state success
 ´point_debug_001´ ElementDebug 100332
-	as_subtitle false
+	as_subtitle False
 	debug_string MISSION END
-	show_instigator false
+	show_instigator False
 ´output_mandatory_loot_secured´ ElementInstanceOutput 100333
 	event mandatory_loot_secured
 ´wp_loot_drop_REMOVE´ ElementOperator 100334
-	operation remove
 	elements
-		1 ´wp_loot_drop´
+ 		1 ´wp_loot_drop´
+	operation remove
 ´escape_available´ MissionScriptElement 100335
 	on_executed
 		´trg_escape_ON´ (delay 0)
@@ -2786,14 +2786,14 @@
 		´wp_escape´ (delay 0)
 ´wp_escape´ ElementWaypoint 100336
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 600
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_escape_REMOVE´ ElementOperator 100337
-	operation remove
 	elements
-		1 ´wp_escape´
+ 		1 ´wp_escape´
+	operation remove
 ´secure_all´ ElementCarry 100344
 	operation secure
 	type_filter none
@@ -2803,21 +2803,21 @@
 	operation remove
 	type_filter none
 ´so_defend´ ElementSpecialObjective 100346
-	SO_access 15868
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude avoid
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -2825,23 +2825,23 @@
 	pose none
 	position -336, -62, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -425 -25 0
+	SO_access 15868
 	so_action AI_defend
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´wp_defend_drill´ ElementWaypoint 100347
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position -303, -129, 124
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_defend_drill_REMOVE´ ElementOperator 100348
-	operation remove
 	elements
-		1 ´wp_defend_drill´
+ 		1 ´wp_defend_drill´
+	operation remove
 ´watertank meter 01 start´ ElementUnitSequence 100219
 	position -175, 1525, 25
 	rotation 0, 0, 0, -1
@@ -2955,11 +2955,11 @@
 			notify_unit_sequence water_level_meter_reset
 			time 0
 ´toggle off_2´ ElementToggle 100245
+	elements
+ 		1 ´wp_left_socket´
+		2 ´enable left socket interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_left_socket´
-		2 ´enable left socket interaction´
 ´enable left socket interaction´ ElementUnitSequence 100246
 	position -175, -1075, 25
 	rotation 0, 0, 0, -1
@@ -3001,21 +3001,21 @@
 	position 125, -112, 542
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´loot instigator´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´add bag´ (delay 0)
 		´secure_all´ (delay 0)
 ´canvas instigator´ ElementInstigatorRule 100253
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -3023,7 +3023,7 @@
 				2 painting
 ´loot instigator´ ElementInstigatorRule 100254
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -3110,21 +3110,21 @@
 		´set_fly_in_e3´ (delay 0)
 		´watertanks_interaction_OFF´ (delay 0)
 ´set time 3´ ElementTimerOperator 100264
+	elements
+ 		1 ´drilling time´
 	operation set_time
 	position -200, -4125, 25
 	rotation 0, 0, 0, -1
 	time 180
-	elements
-		1 ´drilling time´
 	on_executed
 		´increase chance to break´ (delay 0)
 ´increase chance to break´ ElementLogicChanceOperator 100270
+	elements
+ 		1 ´will the drill break´
 	chance 11
 	operation add_chance
 	position -100, -4125, 25
 	rotation 0, 0, 0, -1
-	elements
-		1 ´will the drill break´
 	on_executed
 		´set 5 min´ (delay 0)
 ´set 5 min´ ElementUnitSequence 100315
@@ -3194,7 +3194,7 @@
 ´wp_tools´ ElementWaypoint 100349
 	DISABLED
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position 306, -102, 118.609
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -3207,31 +3207,31 @@
 	on_executed
 		´wp_tools_REMOVE´ (delay 0)
 ´wp_tools_REMOVE´ ElementOperator 100352
-	operation remove
 	elements
-		1 ´wp_tools´ DISABLED
+ 		1 ´wp_tools´ DISABLED
+	operation remove
 ´set tranistion timer´ ElementTimerOperator 100353
+	elements
+ 		1 ´transition anim timer´
 	operation set_time
 	position 125, -4125, 25
 	rotation 0, 0, 0, -1
 	time 30
-	elements
-		1 ´transition anim timer´
 ´are both tanks full_2´ ElementCounterFilter 100163
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´are all 4 sockets connected´ (delay 0)
 		´is pair connected´ (delay 0) DISABLED
 ´is any tank empty´ ElementCounterFilter 100354
+	elements
+ 		1 ´full tanks counter´
 	check_type less_than
 	needed_to_execute any
 	value 2
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´toggle on_3´ (delay 0)
 		´disable interaction´ (delay 0)
@@ -3239,28 +3239,28 @@
 	DISABLED
 	TRIGGER TIMES 1
 	amount 2
-	trigger_type value
 	elements
-		1 ´full tanks counter´
+ 		1 ´full tanks counter´
+	trigger_type value
 	on_executed
 		´is pair connected´ (delay 0.01) DISABLED
 		´are all 4 sockets connected´ (delay 0.01)
 		´enable interaction´ (delay 0)
 ´toggle on_3´ ElementToggle 100356
+	elements
+ 		1 ´both tanks are full´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´both tanks are full´ DISABLED
 ´input_faster_blimp´ ElementInstanceInput 100358
 	event faster_blimp
 	on_executed
 		´set_fly_in_e3´ (delay 0)
 		´set tranistion timer´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100359
+	elements
+ 		1 ´loot trigger´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´loot trigger´ DISABLED
 ´trg_loot_mandatory´ ElementAreaTrigger 100323
 	DISABLED
 	amount 1
@@ -3272,22 +3272,22 @@
 	position 125, -112, 542
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dir_unkwnown´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´secure_all´ (delay 0)
 		´add bag´ (delay 0)
 		´mandatory_loot_secured´ (delay 0)
 ´dir_unkwnown´ ElementInstigatorRule 100324
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -3369,64 +3369,64 @@
 	on_executed
 		´point_debug_007´ (delay 0)
 ´toggle on_4´ ElementToggle 100338
+	elements
+ 		1 ´activate_sentry_gun_01´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´activate_sentry_gun_01´ DISABLED
 ´toggle on_5´ ElementToggle 100339
+	elements
+ 		1 ´activate_sentry_gun_02´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´activate_sentry_gun_02´ DISABLED
 ´toggle on_6´ ElementToggle 100340
+	elements
+ 		1 ´activate_sentry_gun_03´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´activate_sentry_gun_03´ DISABLED
 ´toggle on_7´ ElementToggle 100341
+	elements
+ 		1 ´activate_sentry_gun_04´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´activate_sentry_gun_04´ DISABLED
 ´zep_pilot_intro´ ElementDialogue 100342
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_zep_ca1_04
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´point_play_sound_001´ ElementPlaySound 100343
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -525, -1325, 25
 	rotation 0, 0, 0, -1
 	sound_event Play_zep_ca1_04
-	use_instigator false
+	use_instigator False
 ´zep_see_firework´ ElementDialogue 100360
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_zep_ca1_03
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 	on_executed
 		´zep_generic´ (delay 15)
 ´zep_drop_drill´ ElementDialogue 100361
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_zep_ca1_05
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´zep_close_with_drill´ ElementDialogue 100362
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_zep_ca1_02
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´zep_generic´ ElementDialogue 100363
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_zep_ca1_01
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´drill_collision_DISABLE´ ElementDisableUnit 100365
 	position -175, -625, 25
 	rotation 0, 0, 0, -1
@@ -3438,20 +3438,20 @@
 	unit_ids
 		1 units/pd2_dlc_casino/props/cas_drill_collision/cas_drill_collision/drill_collision (0, 0, 0)
 ´show watertank maker_OFF´ ElementToggle 100367
+	elements
+ 		1 ´show watertank maker´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show watertank maker´
 ´wp_refill_water´ ElementWaypoint 100123
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 425, 114, 137
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_refill_water_REMOVE´ ElementOperator 100124
-	operation remove
 	elements
-		1 ´wp_refill_water´
+ 		1 ´wp_refill_water´
+	operation remove
 ´input_watertanks_drop_wp´ ElementInstanceInput 100126
 	event watertanks_drop_wp
 	on_executed
@@ -3461,11 +3461,11 @@
 	on_executed
 		´wp_refill_water_REMOVE´ (delay 0)
 ´watertanks_interaction_OFF´ ElementToggle 100369
+	elements
+ 		1 ´tank01 enable interaction´
+		2 ´enable interaction tank02´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´tank01 enable interaction´
-		2 ´enable interaction tank02´
 ´output_mission_end´ ElementInstanceOutput 100370
 	event mission_end
 ´enable_hanging_ladder´ ElementUnitSequence 100372
@@ -3479,31 +3479,31 @@
 			notify_unit_sequence state_ladder_enable
 			time 0
 ´disable interaction´ ElementToggle 100357
+	elements
+ 		1 ´enable drill interaction_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable drill interaction_2´
 ´enable interaction´ ElementToggle 100373
+	elements
+ 		1 ´enable drill interaction_2´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable drill interaction_2´
 ´are tanks still empty´ ElementCounterFilter 100374
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´break the drill´ (delay 0)
 ´drill stopped´ ElementInstanceOutput 100375
 	event drill stopped
 ´is drill not running´ ElementCounterFilter 100376
+	elements
+ 		1 ´drill running´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´drill running´
 	on_executed
 		´disable drill interaction_2´ (delay 0)
 ´disable drill interaction_2´ ElementUnitSequence 100377
@@ -3517,70 +3517,70 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´ene_stoped_the_drill´ ElementDialogue 100378
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_60
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´wat_first_tank_empty´ ElementDialogue 100379
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_114
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´wat_second_tank_empty´ ElementDialogue 100380
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_115
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´is one tank empty´ ElementCounterFilter 100381
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´wat_first_tank_empty´ (delay 0)
 ´are two tanks empty_2´ ElementCounterFilter 100382
+	elements
+ 		1 ´full tanks counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´full tanks counter´
 	on_executed
 		´wat_second_tank_empty´ (delay 0)
 ´ene_stoped_the_drill_OFF´ ElementToggle 100383
+	elements
+ 		1 ´ene_stoped_the_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ene_stoped_the_drill´
 ´toggle on_8´ ElementToggle 100384
+	elements
+ 		1 ´stop_the_drill´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´stop_the_drill´
 ´dialogue_power_socket´ ElementDialogue 100385
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_ca1_56
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 	on_executed
 		´point_debug_005´ (delay 1)
 ´point_debug_005´ ElementDebug 100386
-	as_subtitle false
+	as_subtitle False
 	debug_string dialogue_power_socket
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100387
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: transition done
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100388
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: activate and spawn turret
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100389
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: turn everything off
-	show_instigator false
+	show_instigator False

@@ -9,21 +9,21 @@
 	position -498, 2598, 352.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
 		1 ´dtr_loot_watertank_right_01_empty´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´watertank_right_01_placed´ (delay 0)
 		´watertank_empty_remove´ (delay 0)
 ´dtr_loot_watertank_right_01_empty´ ElementInstigatorRule 100138
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -160,21 +160,21 @@
 	position -598, -1577, 352.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
 		1 ´dtr_loot_watertank_left_01_empty´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´watertank_left_01_placed´ (delay 0)
 		´watertank_empty_remove´ (delay 0)
 ´dtr_loot_watertank_left_01_empty´ ElementInstigatorRule 100168
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -190,10 +190,10 @@
 			notify_unit_sequence show
 			time 0
 ´trg_watertank_left_01_drop_ON´ ElementToggle 100170
+	elements
+ 		1 ´trg_watertank_left_01_drop´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_watertank_left_01_drop´ DISABLED
 ´watertank_left_01_placed´ MissionScriptElement 100171
 	on_executed
 		´seq_watertank_left_01_SHOW´ (delay 0)
@@ -242,13 +242,13 @@
 			notify_unit_sequence hide
 			time 0
 ´trg_watertank_drop_OFF´ ElementToggle 100175
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trg_watertank_left_01_drop´ DISABLED
+ 		1 ´trg_watertank_left_01_drop´ DISABLED
 		2 ´trg_watertank_right_01_drop´ DISABLED
 		3 ´trg_watertank_left_02_drop´ DISABLED
 		4 ´trg_watertank_right_02_drop´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´seq_watertank_left_01_SHOW´ ElementUnitSequence 100176
 	position -300, 175, 1600
 	rotation 0, 0, 0, -1
@@ -426,20 +426,20 @@
 ´output_full_watertank_taken´ ElementInstanceOutput 100242
 	event full_watertank_taken
 ´trg_watertank_left_01_drop_ON_ON´ ElementToggle 100243
-	set_trigger_times 0
-	toggle on
 	elements
-		1 ´trg_watertank_left_01_drop´ DISABLED
+ 		1 ´trg_watertank_left_01_drop´ DISABLED
 		2 ´seq_drop_markers_left_01_SHOW´
 		3 ´trg_watertank_left_01_drop_ON´
 		4 ´wp_toilet_left´
-´trg_watertank_right_01_drop_ON_ON´ ElementToggle 100244
 	set_trigger_times 0
 	toggle on
+´trg_watertank_right_01_drop_ON_ON´ ElementToggle 100244
 	elements
-		1 ´trg_watertank_right_01_drop´ DISABLED
+ 		1 ´trg_watertank_right_01_drop´ DISABLED
 		2 ´seq_drop_markers_right_01_SHOW´
 		3 ´trg_watertank_right_01_drop_ON´
+	set_trigger_times 0
+	toggle on
 ´FX_hose_leak_left_01´ ElementPlayEffect 100251
 	base_time 0
 	effect effects/particles/environment/suburbia_hose_leak
@@ -447,7 +447,7 @@
 	position -630, -1577, 394.5
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´FX_hose_leak_right_01´ ElementPlayEffect 100252
 	base_time 0
 	effect effects/particles/environment/suburbia_hose_leak
@@ -455,26 +455,26 @@
 	position -507, 2625, 394.5
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´FX_hose_leak_left_01_STOP´ ElementStopEffect 100253
+	elements
+ 		1 ´FX_hose_leak_left_01´
+		2 ´FX_hose_leak_left_01_bigger´ DISABLED
 	operation kill
 	position 400, 175, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_hose_leak_left_01´
-		2 ´FX_hose_leak_left_01_bigger´ DISABLED
 ´FX_hose_leak_right_01_STOP´ ElementStopEffect 100254
+	elements
+ 		1 ´FX_hose_leak_right_01´
+		2 ´FX_hose_leak_right_01_bigger´ DISABLED
 	operation kill
 	position 400, 325, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_hose_leak_right_01´
-		2 ´FX_hose_leak_right_01_bigger´ DISABLED
 ´trg_watertank_right_01_drop_ON´ ElementToggle 100255
+	elements
+ 		1 ´trg_watertank_right_01_drop´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_watertank_right_01_drop´ DISABLED
 ´seq_drop_markers_right_01_SHOW´ ElementUnitSequence 100256
 	position -325, -175, 1600
 	rotation 0, 0, 0, -1
@@ -486,17 +486,17 @@
 			notify_unit_sequence show
 			time 0
 ´seq_drop_markers_left_01_SHOW_OFF´ ElementToggle 100257
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_drop_markers_left_01_SHOW´
+ 		1 ´seq_drop_markers_left_01_SHOW´
 		2 ´trg_watertank_left_01_drop_ON´
-´seq_drop_markers_right_01_SHOW_OFF´ ElementToggle 100258
 	set_trigger_times -1
 	toggle off
+´seq_drop_markers_right_01_SHOW_OFF´ ElementToggle 100258
 	elements
-		1 ´seq_drop_markers_right_01_SHOW´
+ 		1 ´seq_drop_markers_right_01_SHOW´
 		2 ´trg_watertank_right_01_drop_ON´
+	set_trigger_times -1
+	toggle off
 ´seq_watertank_left_01_bigger_SHOW´ ElementUnitSequence 100039
 	DISABLED
 	position -250, 175, 1602.5
@@ -572,10 +572,8 @@
 	on_executed
 		´bigger_tank_TOGGLE´ (delay 0)
 ´bigger_tank_TOGGLE´ ElementToggle 100210
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´seq_watertank_left_01_SHOW´
+ 		1 ´seq_watertank_left_01_SHOW´
 		2 ´seq_watertank_left_01_bigger_SHOW´ DISABLED
 		3 ´seq_watertank_right_01_SHOW´
 		4 ´seq_watertank_right_01_bigger_SHOW´ DISABLED
@@ -591,6 +589,8 @@
 		14 ´FX_hose_leak_left_02_bigger´ DISABLED
 		15 ´FX_hose_leak_right_01_STOP´
 		16 ´FX_hose_leak_right_02´
+	set_trigger_times -1
+	toggle toggle
 ´FX_hose_leak_left_01_bigger´ ElementPlayEffect 100223
 	DISABLED
 	base_time 0
@@ -599,7 +599,7 @@
 	position -630, -1577, 455.5
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´FX_hose_leak_right_01_bigger´ ElementPlayEffect 100224
 	DISABLED
 	base_time 0
@@ -608,23 +608,23 @@
 	position -507, 2625, 455
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´trg_watertank_left_01_drop_ON_OFF´ ElementToggle 100262
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trg_watertank_left_01_drop_ON´
+ 		1 ´trg_watertank_left_01_drop_ON´
 		2 ´wp_toilet_left´
 		3 ´trg_watertank_left_01_drop´ DISABLED
-´trg_watertank_right_01_drop_OFF´ ElementToggle 100263
 	set_trigger_times -1
 	toggle off
+´trg_watertank_right_01_drop_OFF´ ElementToggle 100263
 	elements
-		1 ´trg_watertank_right_01_drop_ON´
+ 		1 ´trg_watertank_right_01_drop_ON´
 		2 ´trg_watertank_right_01_drop´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´wp_toilet_left´ ElementWaypoint 100265
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position -375, -1575, 400
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -639,21 +639,21 @@
 	position -498, 2873, 352.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
 		1 ´dtr_loot_watertank_right_02_empty´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´watertank_empty_remove´ (delay 0)
 		´watertank_right_02_placed´ (delay 0)
 ´dtr_loot_watertank_right_02_empty´ ElementInstigatorRule 100276
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -666,7 +666,7 @@
 	position -507, 2825, 455
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´FX_hose_leak_right_02´ ElementPlayEffect 100278
 	base_time 0
 	effect effects/particles/environment/suburbia_hose_leak
@@ -674,7 +674,7 @@
 	position -507, 2825, 394.5
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´trg_watertank_left_02_drop´ ElementAreaTrigger 100279
 	DISABLED
 	amount 1
@@ -686,21 +686,21 @@
 	position -400, -1352, 352.5
 	radius 250
 	rotation 0, 0, 0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
 		1 ´dtr_loot_watertank_left_02_empty´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´watertank_empty_remove´ (delay 0)
 		´watertank_left_02_placed´ (delay 0)
 ´dtr_loot_watertank_left_02_empty´ ElementInstigatorRule 100281
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -713,7 +713,7 @@
 	position -404, -1327, 455.5
 	random_time 0
 	rotation 0, 0, 1, -1.19209E-07
-	screen_space false
+	screen_space False
 ´FX_hose_leak_left_02´ ElementPlayEffect 100283
 	base_time 0
 	effect effects/particles/environment/suburbia_hose_leak
@@ -721,36 +721,36 @@
 	position -404, -1327, 394.5
 	random_time 0
 	rotation 0, 0, 1, -1.19209E-07
-	screen_space false
+	screen_space False
 ´FX_hose_leak_left_02_STOP´ ElementStopEffect 100284
+	elements
+ 		1 ´FX_hose_leak_left_02_bigger´ DISABLED
+		2 ´FX_hose_leak_left_02´
 	operation kill
 	position 400, 450, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_hose_leak_left_02_bigger´ DISABLED
-		2 ´FX_hose_leak_left_02´
 ´FX_hose_leak_right_02_STOP´ ElementStopEffect 100285
+	elements
+ 		1 ´FX_hose_leak_right_02_bigger´ DISABLED
+		2 ´FX_hose_leak_right_02´
 	operation kill
 	position 400, 600, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´FX_hose_leak_right_02_bigger´ DISABLED
-		2 ´FX_hose_leak_right_02´
 ´trg_watertank_left_02_drop_ON_ON´ ElementToggle 100289
-	set_trigger_times 0
-	toggle on
 	elements
-		1 ´trg_watertank_left_01_drop´ DISABLED
+ 		1 ´trg_watertank_left_01_drop´ DISABLED
 		2 ´seq_drop_markers_left_02_SHOW´
 		3 ´trg_watertank_left_02_drop_ON´
-´trg_watertank_right_02_drop_ON_ON´ ElementToggle 100290
 	set_trigger_times 0
 	toggle on
+´trg_watertank_right_02_drop_ON_ON´ ElementToggle 100290
 	elements
-		1 ´seq_drop_markers_right_02_SHOW´
+ 		1 ´seq_drop_markers_right_02_SHOW´
 		2 ´trg_watertank_right_02_drop_ON´
 		3 ´wp_toilet_right´
 		4 ´trg_watertank_right_02_drop´ DISABLED
+	set_trigger_times 0
+	toggle on
 ´seq_drop_marker_left_02_SHOW´ ElementUnitSequence 100291
 	position 175, 450, 1600
 	rotation 0, 0, 0, -1
@@ -855,18 +855,18 @@
 	on_executed
 		´water_right_02_filled´ (delay 30)
 ´trg_watertank_left_02_drop_ON_OFF´ ElementToggle 100301
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trg_watertank_left_02_drop_ON´
+ 		1 ´trg_watertank_left_02_drop_ON´
 		2 ´trg_watertank_left_02_drop´ DISABLED
-´trg_watertank_right_02_drop_OFF´ ElementToggle 100302
 	set_trigger_times -1
 	toggle off
+´trg_watertank_right_02_drop_OFF´ ElementToggle 100302
 	elements
-		1 ´trg_watertank_right_02_drop_ON´
+ 		1 ´trg_watertank_right_02_drop_ON´
 		2 ´wp_toilet_right´
 		3 ´trg_watertank_right_02_drop´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´seq_watertank_left_02_bigger_SHOW´ ElementUnitSequence 100303
 	DISABLED
 	position -250, 450, 1602.5
@@ -1020,15 +1020,15 @@
 		´trg_watertank_right_02_drop_OFF´ (delay 0)
 		´start_filling_water_right_02´ (delay 0)
 ´trg_watertank_left_02_drop_ON´ ElementToggle 100288
+	elements
+ 		1 ´trg_watertank_left_02_drop´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_watertank_left_02_drop´ DISABLED
 ´trg_watertank_right_02_drop_ON´ ElementToggle 100311
+	elements
+ 		1 ´trg_watertank_right_02_drop´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_watertank_right_02_drop´ DISABLED
 ´seq_drop_markers_right_02_SHOW´ ElementUnitSequence 100312
 	position -275, -175, 1600
 	rotation 0, 0, 0, -1
@@ -1050,20 +1050,20 @@
 			notify_unit_sequence show
 			time 0
 ´seq_drop_markers_left_02_SHOW_OFF´ ElementToggle 100314
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_drop_markers_left_02_SHOW´
+ 		1 ´seq_drop_markers_left_02_SHOW´
 		2 ´trg_watertank_left_02_drop_ON´
-´seq_drop_markers_right_02_SHOW_OFF´ ElementToggle 100315
 	set_trigger_times -1
 	toggle off
+´seq_drop_markers_right_02_SHOW_OFF´ ElementToggle 100315
 	elements
-		1 ´trg_watertank_right_02_drop_ON´
+ 		1 ´trg_watertank_right_02_drop_ON´
 		2 ´seq_drop_markers_right_02_SHOW´
+	set_trigger_times -1
+	toggle off
 ´wp_toilet_right´ ElementWaypoint 100308
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position -275, 2775, 400
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -1108,22 +1108,22 @@
 	position -342, -1856, 334.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 267,75
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 267.75
 	on_executed
 		´func_sequence_009´ (delay 0)
 ´off_doors002´ ElementToggle 100003
+	elements
+ 		1 ´trigger_area_009´ DISABLED
+		2 ´trigger_area_010´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_009´ DISABLED
-		2 ´trigger_area_010´ DISABLED
 ´func_sequence_007´ ElementUnitSequence 100004
 	TRIGGER TIMES 1
 	position -552, -1837, 334.5
@@ -1154,11 +1154,11 @@
 			notify_unit_sequence disable
 			time 1
 ´on_doors002´ ElementToggle 100005
+	elements
+ 		1 ´trigger_area_009´ DISABLED
+		2 ´trigger_area_010´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_009´ DISABLED
-		2 ´trigger_area_010´ DISABLED
 ´trigger_area_010´ ElementAreaTrigger 100006
 	DISABLED
 	TRIGGER TIMES 1
@@ -1171,14 +1171,14 @@
 	position -602, -1862, 334.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 245
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 245
 	on_executed
 		´func_sequence_007´ (delay 0)
 ´trigger_area_013´ ElementAreaTrigger 100007
@@ -1191,14 +1191,14 @@
 	position -465, -2106, 302.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 524,79
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 524.79
 	on_executed
 		´on_doors002´ (delay 0)
 ´trigger_area_014´ ElementAreaTrigger 100008
@@ -1211,14 +1211,14 @@
 	position -465, -2106, 352.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 536
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 536
 ´trigger_area_015´ ElementAreaTrigger 100009
 	amount 1
 	depth 165
@@ -1229,14 +1229,14 @@
 	position -465, -2087, 352.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on on_exit
-	use_disabled_shapes false
-	width 536
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_exit
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 536
 	on_executed
 		´off_doors002´ (delay 0)
 ´trigger_area_016´ ElementAreaTrigger 100010
@@ -1249,14 +1249,14 @@
 	position -465, -2087, 302.5
 	radius 250
 	rotation 0, 0, 1, -0
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 535,5
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 535.5
 ´func_sequence_005´ ElementUnitSequence 100011
 	TRIGGER TIMES 1
 	position -6, 3061, 334.5
@@ -1298,28 +1298,28 @@
 	position -81, 3111, 334.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 292,04
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 292.04
 	on_executed
 		´func_sequence_005´ (delay 0)
 ´on_doors001´ ElementToggle 100013
+	elements
+ 		1 ´trigger_area_007´ DISABLED
+		2 ´trigger_area_011´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_007´ DISABLED
-		2 ´trigger_area_011´ DISABLED
 ´off_doors001´ ElementToggle 100015
+	elements
+ 		1 ´trigger_area_011´ DISABLED
+		2 ´trigger_area_007´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_011´ DISABLED
-		2 ´trigger_area_007´ DISABLED
 ´trigger_area_005´ ElementAreaTrigger 100016
 	amount 1
 	depth 191,4
@@ -1330,14 +1330,14 @@
 	position -221, 3367, 377.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 536
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 536
 	on_executed
 		´off_doors001´ (delay 0)
 ´trigger_area_008´ ElementAreaTrigger 100021
@@ -1350,14 +1350,14 @@
 	position -221, 3357, 302.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 535,5
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 535.5
 	on_executed
 		´on_doors001´ (delay 0)
 ´trigger_area_011´ ElementAreaTrigger 100023
@@ -1372,14 +1372,14 @@
 	position -351, 3096, 334.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 285,209
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 285.209
 	on_executed
 		´func_sequence_002´ (delay 0)
 ´func_sequence_002´ ElementUnitSequence 100026
@@ -1421,15 +1421,13 @@
 	on_executed
 		´input_remove_wps_2´ (delay 0)
 ´input_remove_wps_2´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´wp_toilet_left´
+ 		1 ´wp_toilet_left´
 		2 ´wp_toilet_right´
+	operation remove
 ´disable_everything´ ElementToggle 100030
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´seq_watertank_right_02_ENABLE_INTERACTION´
+ 		1 ´seq_watertank_right_02_ENABLE_INTERACTION´
 		2 ´seq_watertank_left_02_ENABLE_INTERACTION´
 		3 ´seq_watertank_right_01_ENABLE_INTERACTION´
 		4 ´seq_watertank_left_01_ENABLE_INTERACTION´
@@ -1441,6 +1439,8 @@
 		10 ´water_left_02_filled´
 		11 ´water_right_01_filled´
 		12 ´water_left_01_filled´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´input_remove_wps_2´ (delay 0)
 		´func_sequence_001´ (delay 0)

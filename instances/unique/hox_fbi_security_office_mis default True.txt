@@ -1,12 +1,12 @@
 ´hack_sec_comp_wp´ ElementWaypoint 100019
 	icon pd2_computer
-	only_in_civilian false
+	only_in_civilian False
 	position 200, 360, 103.501
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´pickup_drive_wp´ ElementWaypoint 100020
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 137, 318, 78.5011
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -38,14 +38,14 @@
 	position 200, 225, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´accessed_sec_office´ (delay 0)
 ´enable_access_objective´ ElementInstanceInput 100025
@@ -55,20 +55,20 @@
 		´enable_triggers´ (delay 0)
 ´sec_office_door_wp´ ElementWaypoint 100026
 	icon pd2_door
-	only_in_civilian false
+	only_in_civilian False
 	position 135, -1, 103.501
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_triggers´ ElementToggle 100027
+	elements
+ 		1 ´opened_door´ DISABLED
+		2 ´accessed_sec_office_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´opened_door´ DISABLED
-		2 ´accessed_sec_office_2´ DISABLED
 ´remove_door_wp´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´sec_office_door_wp´
+ 		1 ´sec_office_door_wp´
+	operation remove
 ´enable_hack_objective´ ElementInstanceInput 100029
 	event enable_hack_objective
 	on_executed
@@ -96,9 +96,9 @@
 		´hacked_computer_2´ (delay 0)
 		´end_dl´ (delay 0)
 ´remove_hack_wp´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´hack_sec_comp_wp´
+ 		1 ´hack_sec_comp_wp´
+	operation remove
 ´hack_started´ ElementUnitSequenceTrigger 100033
 	sequence_list
 		1
@@ -144,9 +144,9 @@
 ´drive_picked_up_2´ ElementInstanceOutput 100039
 	event drive_picked_up
 ´logic_operator_001´ ElementOperator 100040
-	operation remove
 	elements
-		1 ´pickup_drive_wp´
+ 		1 ´pickup_drive_wp´
+	operation remove
 ´opened_door_graph´ ElementUnitSequenceTrigger 100044
 	TRIGGER TIMES 1
 	sequence_list
@@ -189,9 +189,9 @@
 			notify_unit_sequence state_device_jammed
 			time 0
 ´point_debug_001´ ElementDebug 100049
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_started
-	show_instigator false
+	show_instigator False
 ´power_resumed´ ElementInstanceInput 100050
 	event power_resumed
 	on_executed
@@ -208,7 +208,7 @@
 ´timer_chance´ ElementRandom 100015
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´time001´ (delay 30)
 		´time002´ (delay 20)
@@ -233,13 +233,13 @@
 	position 200, 200, 100
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´remove_gas´ ElementStopEffect 100057
+	elements
+ 		1 ´gas_effect´
 	operation fade_kill
 	position 700, -600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´gas_effect´
 ´gas_area´ ElementAreaTrigger 100058
 	DISABLED
 	amount 1
@@ -250,14 +250,14 @@
 	position 200, 225, 50
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´func_kill_zone_001´ (delay 0)
 ´func_kill_zone_001´ ElementKillZone 100059
@@ -265,14 +265,14 @@
 	rotation 0, 0, 0, -1
 	type gas
 ´enable_damage_area´ ElementToggle 100060
+	elements
+ 		1 ´gas_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´gas_area´ DISABLED
 ´random_dissolve_time´ ElementRandom 100061
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´dissolve001´ (delay 45)
 		´dissolve002´ (delay 55)
@@ -291,30 +291,30 @@
 		´remove_gas´ (delay 0)
 		´disable_damage_area´ (delay 1)
 ´disable_damage_area´ ElementToggle 100066
+	elements
+ 		1 ´gas_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´gas_area´ DISABLED
 ´point_debug_002´ ElementDebug 100067
-	as_subtitle true
+	as_subtitle True
 	debug_string BAIN: GAS, GAS!!! WATCH OUT, wait until it clears!
-	show_instigator false
+	show_instigator False
 ´gas_first_chance´ MissionScriptElement 100011
 	TRIGGER TIMES 1
 	on_executed
 		´gas_chance´ (delay 0)
 ´start_dl´ ElementPlaySound 100010
-	append_prefix false
+	append_prefix False
 	position 200, 350, 100
 	rotation 0, 0, 0, -1
 	sound_event Play_sys_hb2_12
-	use_instigator false
+	use_instigator False
 ´end_dl´ ElementPlaySound 100012
-	append_prefix false
+	append_prefix False
 	position 200, 350, 100
 	rotation 0, 0, 0, -1
 	sound_event Play_sys_hb2_13
-	use_instigator false
+	use_instigator False
 ´activate_door´ ElementInstanceInput 100069
 	event activate_door
 	on_executed
@@ -331,9 +331,9 @@
 			time 0
 ´func_dialogue_001´ ElementDialogue 100071
 	dialogue Play_pln_hb2_18
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´enable_light´ ElementUnitSequence 100082
 	TRIGGER TIMES 1
 	position 200, -300, 2.5
@@ -377,9 +377,9 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100088
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´gas_chance´
+ 		1 ´gas_chance´
 		2 ´gas_first_chance´
 		3 ´gas_omg´
+	set_trigger_times -1
+	toggle off

@@ -91,8 +91,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´kill_trigger´ ElementAreaTrigger 100020
 	DISABLED
 	amount 1
@@ -104,35 +104,35 @@
 	position 500, 214, 75
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 800
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 800
 	on_executed
 		´kill_hostiles´ (delay 0)
 ´kill_hostiles´ ElementAIRemove 100022
 	backup_so 100029
-	force_ragdoll false
+	force_ragdoll False
 	position 400, -300, 0
 	rotation 0, 0, 0, -1
-	true_death true
-	use_instigator true
+	true_death True
+	use_instigator True
 ´enable_kill_volume´ ElementToggle 100021
+	elements
+ 		1 ´kill_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´kill_trigger´ DISABLED
 	on_executed
 		´disable_kill_volume´ (delay 0.4)
 ´disable_kill_volume´ ElementToggle 100023
+	elements
+ 		1 ´kill_trigger´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´kill_trigger´ DISABLED
 ´disable_graph´ ElementInstanceOutput 100016
 	TRIGGER TIMES 1
 	event disable_graph
@@ -147,14 +147,14 @@
 	position 350, 200, 99.9999
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´on_enter´ (delay 0)
 ´close_area´ ElementAreaTrigger 100005
@@ -169,14 +169,14 @@
 	position 350, 200, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´on_empty´ (delay 0)
 ´on_enter´ MissionScriptElement 100006
@@ -188,15 +188,15 @@
 		´enable_enter_volume´ (delay 0.05)
 		´func_sequence_002´ (delay 0)
 ´enable_exit_volume´ ElementToggle 100024
+	elements
+ 		1 ´close_area´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´close_area´ DISABLED
 ´enable_enter_volume´ ElementToggle 100025
+	elements
+ 		1 ´open_area´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´open_area´
 ´func_sequence_001´ ElementUnitSequence 100026
 	position 600, -400, 0
 	rotation 0, 0, 0, -1
@@ -218,28 +218,28 @@
 			notify_unit_sequence anim_close_door
 			time 0
 ´func_dialogue_001´ ElementDialogue 100028
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_hb2_16
-	execute_on_executed_when_done false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	use_instigator False
+	use_position False
 ´point_special_objective_001´ ElementSpecialObjective 100029
-	SO_access 0
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
+	needs_pos_rsrv False
 	path_haste none
 	path_stance none
 	path_style warp
@@ -247,10 +247,10 @@
 	pose none
 	position 0, 200, 0
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 100 200 0
+	SO_access 0
 	so_action e_so_sup_fumble_inplace
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True

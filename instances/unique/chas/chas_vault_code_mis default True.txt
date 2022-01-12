@@ -164,8 +164,8 @@
 		´logic_counter_037´ (delay 0)
 ´code_WP´ ElementWaypoint 100125
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 162.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -181,25 +181,25 @@
 	on_executed
 		´toggle_OFF_WP´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100133
+	elements
+ 		1 ´code_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´code_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100134
-	operation remove
 	elements
-		1 ´code_WP´
+ 		1 ´code_WP´
+	operation remove
 ´input_enable_code_interaction´ ElementInstanceInput 100136
 	event enable_code_interaction
 	on_executed
 		´toggle_ON_interaction´ (delay 0)
 ´toggle_ON_interaction´ ElementToggle 100137
+	elements
+ 		1 ´code_interact´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´code_interact´ DISABLED
 ´disable_numbers´ ElementUnitSequence 100141
 	position 600, -400, 0
 	rotation 0, 0, 0, -1
@@ -618,7 +618,7 @@
 			time 0
 ´code_interact´ ElementInteraction 100121
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, 0, 103.824
 	rotation 0, 0, 0, -1
@@ -699,10 +699,10 @@
 	on_executed
 		´disable_interactions´ (delay 0)
 ´disable_interactions´ ElementToggle 100130
+	elements
+ 		1 ´code_interact´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´code_interact´ DISABLED
 ´input_set_code_001´ ElementInstanceInput 100131
 	event set_code_001
 	on_executed
@@ -947,9 +947,9 @@
 			time 0
 ´point_play_sound_001´ ElementPlaySound 100142
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, -50, 0
 	rotation 0, 0, 0, -1
 	sound_event chalk_scratch
-	use_instigator false
+	use_instigator False

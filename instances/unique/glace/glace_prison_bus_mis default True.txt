@@ -86,10 +86,10 @@
 		´spawn_correct_prisoner´ (delay 0)
 		´spawn_incorrect_prisoners´ (delay 0)
 ´enable_correct_prisoner_001´ ElementToggle 100021
+	elements
+ 		1 ´spawn_correct_prisoner´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´spawn_correct_prisoner´
 	on_executed
 		´enable_correct_prisoner_002´ (delay 0)
 ´spawn_incorrect_prisoners´ MissionScriptElement 100022
@@ -98,22 +98,22 @@
 		´correct_prisoner_ready001´ (delay 0)
 		´logic_random_001´ (delay 0)
 ´disable_correct_prisoner_001´ ElementToggle 100023
+	elements
+ 		1 ´spawn_incorrect_prisoners´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´spawn_incorrect_prisoners´
 	on_executed
 		´disable_correct_prisoner_002´ (delay 0)
 ´disable_correct_prisoner_002´ ElementToggle 100024
+	elements
+ 		1 ´spawn_correct_prisoner´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spawn_correct_prisoner´
 ´enable_correct_prisoner_002´ ElementToggle 100025
+	elements
+ 		1 ´spawn_incorrect_prisoners´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´spawn_incorrect_prisoners´
 ´inst_in_activate_correct_prisoner´ ElementInstanceInput 100026
 	event bus_activate_correct_prisoner
 	on_executed
@@ -127,21 +127,21 @@
 ´ai_spawn_civilian_002´ ElementSpawnCivilian 100016
 	enemy units/pd2_dlc_glace/characters/npc_prisoner_4/npc_prisoner_4
 	force_pickup none
+	orientation_elements
 	position -6, -950, 0
 	rotation 0, 0, 0.970296, 0.241922
 	state cm_sp_stand_idle
 	team default
-	orientation_elements
 	on_executed
 		´point_special_objective_002´ (delay 0)
 ´ai_spawn_civilian_003´ ElementSpawnCivilian 100029
 	enemy units/pd2_dlc_glace/characters/npc_prisoner_2/npc_prisoner_2
 	force_pickup none
+	orientation_elements
 	position -25, -575, 0
 	rotation 0, 0, 0.965926, 0.258819
 	state cm_sp_stand_idle
 	team default
-	orientation_elements
 	on_executed
 		´func_dialogue_001´ (delay 0)
 		´point_special_objective_001´ (delay 0)
@@ -165,58 +165,58 @@
 ´point_waypoint_saw´ ElementWaypoint 100013
 	DISABLED
 	icon pd2_generic_saw
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -500, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_saw_waypoint_001´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´point_waypoint_saw´ DISABLED
+ 		1 ´point_waypoint_saw´ DISABLED
+	operation remove
 	on_executed
 		´inst_out_saw_started´ (delay 0)
 ´remove_saw_waypoint_002´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´point_waypoint_saw´ DISABLED
+ 		1 ´point_waypoint_saw´ DISABLED
+	operation remove
 ´remove_saw_waypoint_003´ ElementOperator 100031
-	operation remove
 	elements
-		1 ´point_waypoint_saw´ DISABLED
+ 		1 ´point_waypoint_saw´ DISABLED
+	operation remove
 	on_executed
 		´inst_out_saw_done´ (delay 0)
 ´correct_prisoner_ready001´ ElementInstanceOutput 100032
 	event bus_incorrect_prisoner_spawn
 ´point_debug_001´ ElementDebug 100033
-	as_subtitle false
+	as_subtitle False
 	debug_string saw timer done
-	show_instigator false
+	show_instigator False
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100034
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -200, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100035
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 200, 0, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´inst_in_spawn_cops´ ElementInstanceInput 100036
 	event bus_spawn_cops
 	on_executed
@@ -254,20 +254,20 @@
 ´deactivate_C4_doors´ ElementInstanceInput 100049
 	event deactivate_C4_doors
 ´point_play_sound_001´ ElementPlaySound 100050
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -400, -1000, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_geo_glc_03
-	use_instigator false
+	use_instigator False
 ´func_dialogue_001´ ElementDialogue 100051
 	TRIGGER TIMES 1
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_prisoners_glc_01
-	execute_on_executed_when_done false
+	execute_on_executed_when_done False
 	position 0, -500, 172
-	use_instigator false
-	use_position true
+	use_instigator False
+	use_position True
 ´disable_c4_interaction´ ElementUnitSequence 100052
 	position 300, -600, 0
 	rotation 0, 0, 0, -1
@@ -289,22 +289,22 @@
 			notify_unit_sequence deactivate_door
 			time 0
 ´point_special_objective_001´ ElementSpecialObjective 100054
-	SO_access 3
 	action_duration_max 12
 	action_duration_min 12
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -312,33 +312,33 @@
 	pose none
 	position -24.9841, -575, 0
 	rotation 0, 0, 0.965926, 0.258819
-	scan true
+	scan True
 	search_distance 0
 	search_position -226,63 -375,328 0
+	SO_access 3
 	so_action so_spawn_prisonvan_var4
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_003´
 		2 ´ai_spawn_civilian_004´
+	trigger_on none
+	use_instigator True
 ´point_special_objective_002´ ElementSpecialObjective 100056
-	SO_access 3
 	action_duration_max 6
 	action_duration_min 6
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -346,40 +346,40 @@
 	pose none
 	position -6, -950, 0
 	rotation 0, 0, 0.970296, 0.241922
-	scan true
+	scan True
 	search_distance 0
 	search_position 0 -700 0
+	SO_access 3
 	so_action so_spawn_prisonvan_var1
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_002´
+	trigger_on none
+	use_instigator True
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100057
+	elements
+ 		1 ´point_special_objective_001´
 	event anim_start
 	position -300, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´point_special_objective_001´
 	on_executed
 		´interrupt_so_001´ (delay 12)
 ´interrupt_so_001´ ElementSpecialObjective 100058
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -387,41 +387,41 @@
 	pose none
 	position -300, -300, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -400 0
+	SO_access 3
 	so_action none
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_003´
 		2 ´ai_spawn_civilian_004´
+	trigger_on none
+	use_instigator True
 ´trigger_special_objective_002´ ElementSpecialObjectiveTrigger 100059
+	elements
+ 		1 ´point_special_objective_002´
 	event anim_start
 	position -400, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´point_special_objective_002´
 	on_executed
 		´interrupt_so_002´ (delay 7)
 ´interrupt_so_002´ ElementSpecialObjective 100060
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -429,32 +429,32 @@
 	pose none
 	position -400, -300, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -400 0
+	SO_access 3
 	so_action none
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_civilian_002´
+	trigger_on none
+	use_instigator True
 ´interrupt_so_003´ ElementSpecialObjective 100061
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -462,30 +462,30 @@
 	pose none
 	position -500, -300, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -400 0
+	SO_access 3
 	so_action none
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´interrupt_so_004´ ElementSpecialObjective 100062
-	SO_access 3
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -493,28 +493,28 @@
 	pose none
 	position -600, -300, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position -300 -400 0
+	SO_access 3
 	so_action none
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´ai_spawn_civilian_004´ ElementSpawnCivilian 100044
 	enemy units/pd2_dlc_glace/characters/npc_prisoner_6/npc_prisoner_6
 	force_pickup none
+	orientation_elements
 	position -25, -575, 0
 	rotation 0, 0, 0.965926, 0.258819
 	state cm_sp_stand_idle
 	team default
-	orientation_elements
 	on_executed
 		´func_dialogue_001´ (delay 0)
 		´point_special_objective_001´ (delay 0)
 ´logic_random_001´ ElementRandom 100045
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´ai_spawn_civilian_004´ (delay 0)
 		´ai_spawn_civilian_003´ (delay 0)
@@ -557,11 +557,11 @@
 	on_executed
 		´seq_interrupt_saw´ (delay 0)
 ´trigger_special_objective_003´ ElementSpecialObjectiveTrigger 100046
+	elements
+ 		1 ´point_special_objective_001´
 	event admin_fail
 	position -300, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´point_special_objective_001´
 	on_executed
 		´interrupt_so_001´ (delay 0)
 ´func_instance_output_001´ ElementInstanceOutput 100064
@@ -569,16 +569,16 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 ´ai_enemy_trigger_001´ ElementEnemyDummyTrigger 100065
+	elements
+ 		1 ´ai_spawn_civilian_002´
+		2 ´ai_spawn_civilian_004´
+		3 ´ai_spawn_civilian_003´
 	event tied
 	position 500, -1000, 0
 	rotation 0, 0, -2.68221E-07, -1
-	elements
-		1 ´ai_spawn_civilian_002´
-		2 ´ai_spawn_civilian_004´
-		3 ´ai_spawn_civilian_003´
 	on_executed
 		´func_instance_output_001´ (delay 0)
 ´point_debug_002´ ElementDebug 100066
-	as_subtitle false
+	as_subtitle False
 	debug_string PRISONER TIED
-	show_instigator false
+	show_instigator False

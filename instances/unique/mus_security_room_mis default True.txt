@@ -34,25 +34,25 @@
 ´override_complete_2´ ElementInstanceOutput 100052
 	event override_complete
 ´remove_waypoint_and_so´ ElementOperator 100054
-	operation remove
 	elements
-		1 ´hack_wp´
+ 		1 ´hack_wp´
 		2 ´interrupt_hack_so´
+	operation remove
 ´interrupt_hack_so´ ElementSpecialObjective 100046
-	SO_access 9696
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -60,12 +60,12 @@
 	pose none
 	position 176, -153, 0
 	rotation 0, 0, -5.03435E-08, -1
-	scan true
+	scan True
 	search_distance 4500
 	search_position -37,2666 2,50001 1,13163
+	SO_access 9696
 	so_action e_so_push_button
 	trigger_on none
-	followup_elements
 ´started_hacking´ ElementUnitSequenceTrigger 100055
 	sequence_list
 		1
@@ -77,30 +77,30 @@
 		´setup_interrupt´ (delay 0.5)
 		´started_override´ (delay 0)
 ´interrupt_local´ ElementToggle 100057
+	elements
+ 		1 ´interrupt_hack_so´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_hack_so´
 	on_executed
 		´interrupt_hack_so´ (delay 0.05)
 		´local_interrupt´ (delay 0)
 ´interrupt_succesful´ ElementSpecialObjectiveTrigger 100058
 	DISABLED
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_hack_so´
 	event complete
 	position 300, -1000, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_hack_so´
 	on_executed
 		´interrupt_succesful_3´ (delay 0) DISABLED
 ´interrupt_fail´ ElementSpecialObjectiveTrigger 100059
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_hack_so´
 	event fail
 	position 400, -800, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_hack_so´
 	on_executed
 		´interrupt_failed_2´ (delay 0) DISABLED
 ´power_off´ ElementUnitSequence 100060
@@ -114,19 +114,19 @@
 			notify_unit_sequence power_off
 			time 0
 ´disable_interrupt´ ElementToggle 100061
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_succesful_3´ DISABLED
+ 		1 ´interrupt_succesful_3´ DISABLED
 		2 ´interrupt_power_succesful´ DISABLED
 		3 ´interrupt_failed_2´ DISABLED
 		4 ´enable_interrupt_consequences´
 		5 ´setup_interrupt´
 		6 ´power_resumed´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´point_debug_001´ ElementDebug 100063
-	as_subtitle false
+	as_subtitle False
 	debug_string started_override
-	show_instigator false
+	show_instigator False
 ´set_correct_time_state´ MissionScriptElement 100071
 	on_executed
 		´000´ (delay 0)
@@ -138,44 +138,44 @@
 	counter_target 0
 ´add_rewired_box´ ElementCounterOperator 100073
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´number_of_rewired_boxes´
+ 		1 ´number_of_rewired_boxes´
+	instance_var_names
+	operation add
 ´add_rewired_box_2´ ElementInstanceInput 100074
 	event add_rewired_box
 	on_executed
 		´add_rewired_box´ (delay 0)
 ´001´ ElementCounterFilter 100075
+	elements
+ 		1 ´number_of_rewired_boxes´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´number_of_rewired_boxes´
 	on_executed
 		´timestate_001´ (delay 0)
 ´000´ ElementCounterFilter 100076
+	elements
+ 		1 ´number_of_rewired_boxes´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´number_of_rewired_boxes´
 	on_executed
 		´timestate_000´ (delay 0)
 ´002´ ElementCounterFilter 100077
+	elements
+ 		1 ´number_of_rewired_boxes´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´number_of_rewired_boxes´
 	on_executed
 		´timestate_002´ (delay 0)
 ´003´ ElementCounterFilter 100078
+	elements
+ 		1 ´number_of_rewired_boxes´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´number_of_rewired_boxes´
 	on_executed
 		´timestate_003´ (delay 0)
 ´timestate_000´ ElementUnitSequence 100080
@@ -232,7 +232,7 @@
 		´set_wp´ (delay 0)
 ´select_interrupt´ ElementRandom 100079
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´interrupt_external´ (delay 0)
 		´interrupt_local´ (delay 0)
@@ -258,15 +258,15 @@
 		´select_interrupt´ (delay 0)
 		´enable_interrupt_consequences´ (delay 0)
 ´enable_interrupt_consequences´ ElementToggle 100002
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´interrupt_failed_2´ DISABLED
+ 		1 ´interrupt_failed_2´ DISABLED
 		2 ´interrupt_succesful_3´ DISABLED
 		3 ´interrupt_power_succesful´ DISABLED
 		4 ´power_resumed´ DISABLED
 		5 ´interrupt_fail´
 		6 ´interrupt_succesful´ DISABLED
+	set_trigger_times 1
+	toggle on
 ´interrupt_succesful_3´ MissionScriptElement 100003
 	DISABLED
 	TRIGGER TIMES 1
@@ -323,26 +323,26 @@
 	TRIGGER TIMES 1
 	event started_override
 ´local_interrupt´ ElementDebug 100011
-	as_subtitle false
+	as_subtitle False
 	debug_string local interrupt
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100012
-	as_subtitle false
+	as_subtitle False
 	debug_string external_interrupt
-	show_instigator false
+	show_instigator False
 ´camera_guard´ ElementSpawnEnemyDummy 100017
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_security_1/ene_security_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 125, -200, 2.5
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 ´both´ ElementCounter 100018
@@ -351,11 +351,11 @@
 		´cameras_disabled´ (delay 0)
 ´on_weapons_hot´ ElementEnemyDummyTrigger 100019
 	TRIGGER TIMES 1
+	elements
+ 		1 ´camera_guard´
 	event weapons_hot
 	position -300, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´camera_guard´
 	on_executed
 		´both´ (delay 0)
 ´cameras_disabled´ ElementInstanceOutput 100020
@@ -369,20 +369,20 @@
 	on_executed
 		´camera_guard´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100023
-	SO_access 24
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 7
 	interrupt_dmg 0
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -390,19 +390,19 @@
 	pose none
 	position 122, -150, 2.5
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 200 -450 2,5
+	SO_access 24
 	so_action e_so_ntl_idle_tired
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´004_or_more´ ElementCounterFilter 100024
+	elements
+ 		1 ´number_of_rewired_boxes´
 	check_type greater_or_equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´number_of_rewired_boxes´
 	on_executed
 		´timestate_004´ (delay 0)
 ´timestate_004´ ElementUnitSequence 100025
@@ -418,28 +418,28 @@
 	on_executed
 		´time_set_enable_int´ (delay 0)
 ´on_death´ ElementEnemyDummyTrigger 100026
+	elements
+ 		1 ´camera_guard´
 	event death
 	position -200, -500, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´camera_guard´
 	on_executed
 		´on_weapons_hot´ (delay 0)
 ´func_dialogue_044´ ElementDialogue 100029
 	dialogue Play_pln_hd1_44
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´startup´ MissionScriptElement 100031
 	EXECUTE ON STARTUP
 	BASE DELAY 6
 	on_executed
 		´func_nav_obstacle_001´ (delay 0)
 ´func_nav_obstacle_001´ ElementNavObstacle 100032
-	operation add
-	position -300, -900, 100
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-7.62939E-06, -49, 50)
+	operation add
+	position -300, -900, 100
+	rotation 0, 0, 0, -1

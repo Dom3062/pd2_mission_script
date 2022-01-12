@@ -23,19 +23,19 @@
 	on_executed
 		´seq_trash_container_enable_interaction´ (delay 1)
 ´seq_trg_trash_container_interact_ON´ ElementToggle 100004
+	elements
+ 		1 ´seq_trg_trash_container_interact´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_trg_trash_container_interact´ DISABLED
 ´input_enable_loot_drop_off´ ElementInstanceInput 100005
 	event enable_loot_drop_off
 	on_executed
 		´trg_loot_drop_off_ON´ (delay 0)
 ´trg_loot_drop_off_ON´ ElementToggle 100006
+	elements
+ 		1 ´trg_loot_drop_off´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_loot_drop_off´ DISABLED
 ´trg_loot_drop_off´ ElementAreaTrigger 100007
 	DISABLED
 	amount 1
@@ -47,15 +47,15 @@
 	position 0, 0, 60
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 180
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 180
 	on_executed
 		´loot_secure´ (delay 0)
 ´loot_secure´ ElementCarry 100008
@@ -68,8 +68,8 @@
 	type_filter none
 ´wp_loot_drop´ ElementWaypoint 100010
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -82,9 +82,9 @@
 	on_executed
 		´logic_link_002´ (delay 0)
 ´wp_lootdrop_REMOVE´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´wp_loot_drop´
+ 		1 ´wp_loot_drop´
+	operation remove
 ´disable_mullplans´ ElementDisableUnit 100018
 	position 1550, 150, -2.5
 	rotation 0, 0, 0, -1
@@ -123,12 +123,12 @@
 	on_executed
 		´disable_mullplans´ (delay 0)
 ´toggle_off´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_mullplanes´
+ 		1 ´input_enable_mullplanes´
 		2 ´input_remove_wp´
 		3 ´input_enable_interaction´
+	set_trigger_times -1
+	toggle off
 ´disable_unit_dumpster´ ElementDisableUnit 100024
 	position 1075, -375, 0
 	rotation 0, 0, 0, -1

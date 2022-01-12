@@ -39,7 +39,7 @@
 		´point_debug_003´ (delay 0)
 ´interact_call_tram´ ElementInteraction 100015
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -2981, -919, 150
 	rotation 0, 0, -5.96046E-08, -1
@@ -49,33 +49,33 @@
 		´bring_down_tram´ (delay 5) (alternative interacted)
 		´link_phone_interacted´ (delay 0) (alternative interacted)
 ´point_debug_001´ ElementDebug 100016
-	as_subtitle true
+	as_subtitle True
 	debug_string Okay boys, thermal drill is on the way. you'll know when it gets there. Just hang on!
-	show_instigator false
+	show_instigator False
 ´bring_down_tram´ MissionScriptElement 100017
 	TRIGGER TIMES 1
 	on_executed
 		´tram_gets_activated´ (delay 0)
 		´starts_tram_animation´ (delay 30)
 ´point_debug_002´ ElementDebug 100025
-	as_subtitle false
+	as_subtitle False
 	debug_string tram is coming
-	show_instigator false
+	show_instigator False
 ´phone_WP´ ElementWaypoint 100033
 	DISABLED
 	TRIGGER TIMES 1
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -2981, -925, 159
 	rotation 0, 0, -0.707107, -0.707107
 	text_id debug_none
 ´enable_phone_and_WP´ ElementToggle 100035
+	elements
+ 		1 ´phone_WP´ DISABLED
+		2 ´interact_call_tram´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´phone_WP´ DISABLED
-		2 ´interact_call_tram´ DISABLED
 	on_executed
 		´add_phone_WP´ (delay 0)
 ´add_phone_WP´ MissionScriptElement 100036
@@ -85,9 +85,9 @@
 	on_executed
 		´remove_phone_WP´ (delay 0)
 ´remove_phone_WP´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´phone_WP´ DISABLED
+ 		1 ´phone_WP´ DISABLED
+	operation remove
 	on_executed
 		´add_observe_WP´ (delay 0)
 ´add_observe_WP´ MissionScriptElement 100039
@@ -95,15 +95,15 @@
 		´observe_WP´ (delay 1)
 ´observe_WP´ ElementWaypoint 100040
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -1575, -275, 400
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_observe_WP´ ElementOperator 100041
-	operation remove
 	elements
-		1 ´observe_WP´
+ 		1 ´observe_WP´
+	operation remove
 	on_executed
 		´env_effect_stop_001´ (delay 30)
 ´link_enable_thermal_dill´ MissionScriptElement 100042
@@ -111,8 +111,8 @@
 		´add_drill_WP´ (delay 0)
 ´drill_WP´ ElementWaypoint 100044
 	icon pd2_loot
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -1025, -475, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -121,27 +121,27 @@
 		´drill_WP´ (delay 0.5)
 		´drill_can_be_picked_up´ (delay 0)
 ´remove_drill_WP´ ElementOperator 100048
-	operation remove
 	elements
-		1 ´drill_WP´
+ 		1 ´drill_WP´
+	operation remove
 	on_executed
 		´output_thermal_drill_picked´ (delay 0)
 ´point_debug_003´ ElementDebug 100049
-	as_subtitle false
+	as_subtitle False
 	debug_string got_thermal_drill
-	show_instigator false
+	show_instigator False
 ´link_start_fire_effect´ MissionScriptElement 100051
 	on_executed
 		´effect_fire´ (delay 2)
 		´link_enable_thermal_dill´ (delay 0)
 		´remove_observe_WP´ (delay 0)
 ´env_effect_stop_001´ ElementStopEffect 100052
+	elements
+ 		1 ´effect_fire´
+		2 ´effect_fire001´
 	operation fade_kill
 	position 1625, -175, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_fire´
-		2 ´effect_fire001´
 	on_executed
 		´remove_fire_sound´ (delay 0)
 ´effect_fire´ ElementPlayEffect 100050
@@ -151,34 +151,34 @@
 	position -1580.68, 267.607, 45
 	random_time 0
 	rotation 0, 0, -0.67559, -0.737278
-	screen_space false
+	screen_space False
 	on_executed
 		´sound_fire´ (delay 0)
 		´effect_fire001´ (delay 0)
 ´sound_crash´ ElementPlaySound 100053
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1600, -700, 0
 	rotation 0, 0, 0, -1
 	sound_event car_crash_chew_anim_02
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_feedback_001´ (delay 0.5)
 ´sound_fire´ ElementPlaySound 100054
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -1600, -100, 0
 	rotation 0, 0, 0, -1
 	sound_event large_fire
-	use_instigator false
+	use_instigator False
 ´remove_fire_sound´ ElementOperator 100055
-	operation remove
 	elements
-		1 ´sound_fire´
+ 		1 ´sound_fire´
+	operation remove
 ´remove_skid_sound´ ElementOperator 100057
-	operation remove
 	elements
-		1 ´observe_WP´
+ 		1 ´observe_WP´
+	operation remove
 	on_executed
 		´link_enable_thermal_dill´ (delay 1)
 ´drill_can_be_picked_up´ ElementInstanceOutput 100046
@@ -210,10 +210,10 @@
 		´enable_trigger_area´ (delay 0)
 ´enable_trigger_area´ ElementToggle 100010
 	TRIGGER TIMES 1
+	elements
+ 		1 ´area_player_waiting´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_waiting´ DISABLED
 	on_executed
 		´add_waiting_WP´ (delay 0)
 ´add_waiting_WP´ MissionScriptElement 100011
@@ -231,75 +231,75 @@
 	position -1600, -1666.86, 272.277
 	radius 250
 	rotation 0.052336, 0, 0, -0.99863
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 2000
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 2000
 	on_executed
 		´bring_down_tram´ (delay 0)
 ´adds_nav_blocker´ ElementNavObstacle 100023
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (-1443.24, 506.197, -24.9998)
+		2
+			guis_id 2
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/002 (-1542.69, 516.649, -24.9998)
+		3
+			guis_id 3
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/003 (-1642.14, 527.102, -24.9998)
+		4
+			guis_id 4
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/004 (-1716.73, 534.941, -24.9998)
+		5
+			guis_id 5
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-1531.03, -414.574, -24.9998)
+		6
+			guis_id 6
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-1520.14, -315.171, -24.9998)
 	operation add
 	position 1700, 200, 2.5
 	rotation 0, 0, 0, -1
+´func_nav_obstacle_001´ ElementNavObstacle 100024
 	obstacle_list
 		1
 			guis_id 1
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (-1443.24, 506.197, -24.9998)
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-1531.03, -414.574, -24.9998)
 		2
 			guis_id 2
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/002 (-1542.69, 516.649, -24.9998)
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-1520.14, -315.171, -24.9998)
 		3
 			guis_id 3
 			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/003 (-1642.14, 527.102, -24.9998)
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/004 (-1716.73, 534.941, -24.9998)
 		4
 			guis_id 4
 			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/004 (-1716.73, 534.941, -24.9998)
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/003 (-1642.14, 527.102, -24.9998)
 		5
 			guis_id 5
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-1531.03, -414.574, -24.9998)
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/002 (-1542.69, 516.649, -24.9998)
 		6
 			guis_id 6
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-1520.14, -315.171, -24.9998)
-´func_nav_obstacle_001´ ElementNavObstacle 100024
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (-1443.24, 506.197, -24.9998)
 	operation remove
 	position 1400, -100, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-1531.03, -414.574, -24.9998)
-		2
-			guis_id 2
-			obj_name 15953514984309589828
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-1520.14, -315.171, -24.9998)
-		3
-			guis_id 3
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/004 (-1716.73, 534.941, -24.9998)
-		4
-			guis_id 4
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/003 (-1642.14, 527.102, -24.9998)
-		5
-			guis_id 5
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/002 (-1542.69, 516.649, -24.9998)
-		6
-			guis_id 6
-			obj_name 6454096881371725503
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (-1443.24, 506.197, -24.9998)
 ´point_feedback_001´ ElementFeedback 100026
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -317,8 +317,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble false
+	use_camera_shake True
+	use_rumble False
 ´effect_fire001´ ElementPlayEffect 100028
 	base_time 0
 	effect effects/particles/environment/fire_smoke_plane_crash
@@ -326,7 +326,7 @@
 	position -1606.83, -31.2512, 45
 	random_time 0
 	rotation 0, 0, -0.67559, -0.737278
-	screen_space false
+	screen_space False
 ´point_feedback_002´ ElementFeedback 100027
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -344,18 +344,18 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´spawn_lance_bag´ ElementLootBag 100014
 	carry_id lance_bag
-	from_respawn false
+	from_respawn False
 	position -1825, -925, 75
 	push_multiplier 1
 	rotation 0, 0, 0, -1
 	spawn_dir 0,813275 0,532371 0,234869
 ´trigger_loot_bag_001´ ElementLootBagTrigger 100029
-	trigger_type load
 	elements
-		1 ´spawn_lance_bag´
+ 		1 ´spawn_lance_bag´
+	trigger_type load
 	on_executed
 		´remove_drill_WP´ (delay 0)

@@ -4,34 +4,34 @@
 	enemy units/pd2_dlc_wwh/characters/ene_captain/ene_captain
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 0, 200, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team neutral1
 	voice 0
-	orientation_elements
 	on_executed
 		´sit´ (delay 0)
 		´func_invulnerable_001´ (delay 0)
 		´logic_link_001´ (delay 0) DISABLED
 ´sit´ ElementSpecialObjective 100001
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style warp
@@ -39,30 +39,30 @@
 	pose none
 	position 0, 81, -2
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 0 200 0
+	SO_access 16380
 	so_action e_so_tied_to_chair_loop
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´sit_exit´ ElementSpecialObjective 100003
-	SO_access 16380
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation true
+	align_position False
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -70,18 +70,18 @@
 	pose none
 	position -100, 78, 0
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position 0 200 0
+	SO_access 16380
 	so_action e_so_tied_to_chair_exit
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´the_captain´
+	trigger_on none
+	use_instigator True
 ´untie_interaction´ ElementInteraction 100004
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 5
 	position 0, -63, 68
 	rotation 0, 0, 0, -1
@@ -92,7 +92,7 @@
 		´logic_toggle_002´ (delay 0) (alternative interacted)
 ´point_waypoint_001´ ElementWaypoint 100005
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -63, 118
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -110,10 +110,10 @@
 		´turn_on_interaction´ (delay 0)
 		´point_play_sound_001´ (delay 0)
 ´turn_on_interaction´ ElementToggle 100009
+	elements
+ 		1 ´untie_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´untie_interaction´ DISABLED
 	on_executed
 		´activate_wp´ (delay 0)
 ´activate_wp´ MissionScriptElement 100010
@@ -128,9 +128,9 @@
 	on_executed
 		´remove_waypoint´ (delay 0)
 ´remove_waypoint´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´temp_remove_captain´ (delay 4) DISABLED
 		´logic_toggle_001´ (delay 0)
@@ -145,23 +145,23 @@
 		´input_activate_untie´ (delay 1)
 ´temp_remove_captain´ ElementAIRemove 100015
 	DISABLED
-	force_ragdoll false
+	elements
+ 		1 ´the_captain´
+	force_ragdoll False
 	position 0, 1100, 0
 	rotation 0, 0, 0, -1
-	true_death false
-	use_instigator false
-	elements
-		1 ´the_captain´
+	true_death False
+	use_instigator False
 ´func_invulnerable_001´ ElementInvulnerable 100016
-	immortal false
-	invulnerable true
+	elements
+ 		1 ´the_captain´
+	immortal False
+	invulnerable True
 	position -100, 600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´the_captain´
 ´data_instigator_rule_001´ ElementInstigatorRule 100018
 	instigator enemies
-	invert false
+	invert False
 	rules
 		enemies
 			enemy_names
@@ -169,10 +169,10 @@
 ´instigator_output´ ElementInstanceOutput 100019
 	event Instigator output
 ´logic_toggle_001´ ElementToggle 100020
+	elements
+ 		1 ´captain_output_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´captain_output_trigger´ DISABLED
 ´captain_output_trigger´ ElementAreaTrigger 100017
 	DISABLED
 	TRIGGER TIMES 1
@@ -185,15 +185,15 @@
 	position 0, 100, 200
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1000
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1000
 	on_executed
 		´instigator_output´ (delay 0)
 ´logic_link_001´ MissionScriptElement 100002
@@ -211,53 +211,53 @@
 		´sit_exit´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100024
+	elements
+ 		1 ´logic_link_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´logic_link_003´ DISABLED
 ´logic_toggle_003´ ElementToggle 100025
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´logic_link_001´ DISABLED
+ 		1 ´logic_link_001´ DISABLED
 		2 ´logic_link_002´
 		3 ´logic_link_003´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´point_debug_001´ ElementDebug 100026
-	as_subtitle false
+	as_subtitle False
 	debug_string release
-	show_instigator false
+	show_instigator False
 ´point_play_sound_001´ ElementPlaySound 100027
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´the_captain´
+	interrupt True
 	position -200, 300, 0.00400543
 	rotation 0, 0, 0, -1
 	sound_event Play_cpt_wwh_01
-	use_instigator false
-	elements
-		1 ´the_captain´
+	use_instigator False
 ´point_play_sound_002´ ElementPlaySound 100028
-	append_prefix false
-	interrupt true
+	append_prefix False
+	elements
+ 		1 ´the_captain´
+	interrupt True
 	position -200, 500, 0.00400543
 	rotation 0, 0, 0, -1
 	sound_event Play_cpt_wwh_02
-	use_instigator false
-	elements
-		1 ´the_captain´
+	use_instigator False
 ´teammate_comment_there_he_is´ ElementTeammateComment 100029
-	close_to_element false
+	close_to_element False
 	comment v30
 	position 0, 50, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_002´ (delay 0)
 ´lookat_captain´ ElementLookAtTrigger 100030
 	DISABLED
 	TRIGGER TIMES 1
 	distance 350
-	in_front false
+	in_front False
 	interval 0.1
 	position 0, -25, 100
 	rotation 0, 0, 0, -1
@@ -265,11 +265,11 @@
 	on_executed
 		´teammate_comment_there_he_is´ (delay 0)
 ´enable_lookat_captain´ ElementToggle 100031
+	elements
+ 		1 ´lookat_captain´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´lookat_captain´ DISABLED
 ´point_debug_002´ ElementDebug 100032
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: teammate_comment_there_he_is
-	show_instigator false
+	show_instigator False

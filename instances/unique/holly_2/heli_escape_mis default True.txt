@@ -49,12 +49,12 @@
 		´wp_escape´ (delay 0)
 		´enable_truck´ (delay 0)
 ´done´ ElementDebug 100011
-	as_subtitle true
+	as_subtitle True
 	debug_string SUCCESS
-	show_instigator false
+	show_instigator False
 ´wp_goto´ ElementWaypoint 100012
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 3.8147E-06, 0, 150
 	rotation 0, 0, -0.866025, -0.5
 	text_id debug_none
@@ -91,26 +91,26 @@
 		´wp_escape_REMOVE´ (delay 0)
 		´pln_as1_15´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string lifting the car
-	show_instigator false
+	show_instigator False
 ´fade_to_black_001´ ElementFadeToBlack 100017
 	position -200, -850, 2.5
 	rotation 5.6577E-13, -2.12719E-13, -6.64746E-15, -1
-	state false
+	state False
 ´output_escape_success´ ElementInstanceOutput 100021
 	TRIGGER TIMES 1
 	event escape_success
 ´wp_escape_REMOVE´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´wp_escape´
+ 		1 ´wp_escape´
+	operation remove
 ´point_play_sound_001´ ElementPlaySound 100025
-	append_prefix false
+	append_prefix False
 	position 0, 0, 250
 	rotation 0, 0, 0, -1
 	sound_event container_drop
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_feedback_001´ (delay 5)
 ´point_feedback_001´ ElementFeedback 100027
@@ -130,33 +130,33 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble false
+	use_camera_shake True
+	use_rumble False
 	on_executed
 		´point_play_sound_002´ (delay 0)
 		´point_feedback_002´ (delay 0)
 ´point_play_sound_002´ ElementPlaySound 100028
-	append_prefix false
+	append_prefix False
 	position 0, 200, 250
 	rotation 0, 0, 0, -1
 	sound_event inside_container
-	use_instigator false
+	use_instigator False
 ´wp_clear´ ElementWaypoint 100026
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 150
 	rotation 0, 0, -0.866025, -0.5
 	text_id debug_none
 ´wp_escape´ ElementWaypoint 100029
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 150
 	rotation 0, 0, -0.866025, -0.5
 	text_id debug_none
 ´wp_clear_REMOVE´ ElementOperator 100031
-	operation remove
 	elements
-		1 ´wp_clear´
+ 		1 ´wp_clear´
+	operation remove
 	on_executed
 		´show escape marker´ (delay 0)
 ´TEMP_AUTOSTART´ MissionScriptElement 100033
@@ -190,14 +190,14 @@
 			time 0
 ´waypoint_flare´ ElementWaypoint 100038
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 500, -3.8147E-06, 60
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´waypoint_flare´
+ 		1 ´waypoint_flare´
+	operation remove
 	on_executed
 		´point_play_sound_flare´ (delay 0)
 		´start_wait_time´ (delay 0)
@@ -219,27 +219,27 @@
 	position 513.364, -15.364, 11
 	random_time 0
 	rotation 0, 0, -0.382683, -0.92388
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100043
+	elements
+ 		1 ´env_effect_play_flare_001´
 	operation fade_kill
 	position 50, 950, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_flare_001´
 	on_executed
 		´point_stop_sound_flare´ (delay 0)
 ´point_play_sound_flare´ ElementPlaySound 100044
-	append_prefix false
+	append_prefix False
 	position 500, -3.8147E-06, 10
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´point_stop_sound_flare´ ElementPlaySound 100045
-	append_prefix false
+	append_prefix False
 	position 0, 950, 0
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False
 	on_executed
 		´wp_clear_REMOVE´ (delay 0)
 ´start_wait_time´ MissionScriptElement 100046
@@ -292,9 +292,9 @@
 	on_executed
 		´flare_used_2´ (delay 0)
 ´point_debug_005´ ElementDebug 100058
-	as_subtitle true
+	as_subtitle True
 	debug_string ILL BE THERE IN 20 Seconds
-	show_instigator false
+	show_instigator False
 ´flare_used_2´ ElementInstanceOutput 100059
 	event flare_used
 ´deactivate_part_1´ ElementVehicleOperator 100060
@@ -302,7 +302,7 @@
 	operation block
 	position 275, 2300, 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´hide zone´ (delay 0)
 ´trigger_deactivate_part_1´ ElementAreaTrigger 100062
@@ -316,15 +316,15 @@
 	position 0, 50, 200
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 209,04
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 209.04
 	on_executed
 		´deactivate_part_1´ (delay 0)
 ´hide zone´ ElementUnitSequence 100063
@@ -360,10 +360,10 @@
 		´show zone´ (delay 0)
 		´wp_goto´ (delay 0)
 ´volume on´ ElementToggle 100067
+	elements
+ 		1 ´trigger_deactivate_part_1´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_deactivate_part_1´ DISABLED
 ´part 1 finished´ MissionScriptElement 100068
 	on_executed
 		´link´ (delay 0)
@@ -372,9 +372,9 @@
 ´disable repairs´ ElementInstanceOutput 100069
 	event disable_repairs
 ´remove waypoint´ ElementOperator 100061
-	operation remove
 	elements
-		1 ´wp_goto´
+ 		1 ´wp_goto´
+	operation remove
 	on_executed
 		´disable repairs´ (delay 0)
 ´point_shape_001´ ElementShape 100018
@@ -392,7 +392,7 @@
 	position 0, 0, 50
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´point_feedback_002´ ElementFeedback 100030
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -410,73 +410,73 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 4
-	use_camera_shake true
-	use_rumble false
+	use_camera_shake True
+	use_rumble False
 ´vld_as1_015´ ElementDialogue 100019
 	dialogue Play_vld_as1_15
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 	on_executed
 		´pln_as1_013´ (delay 0.25)
 ´vld_as1_016´ ElementDialogue 100032
 	dialogue Play_vld_as1_16
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´pln_as1_15´ ElementDialogue 100071
 	dialogue Play_pln_as1_15
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 ´pln_as1_014´ ElementDialogue 100070
 	dialogue Play_pln_as1_14
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 	on_executed
 		´vld_as1_016´ (delay 0.25)
 ´bank´ ElementPlaySound 100072
-	append_prefix false
+	append_prefix False
 	position -150, 2375, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_pln_as1_04
-	use_instigator false
+	use_instigator False
 ´pln_as1_013´ ElementDialogue 100073
 	dialogue Play_pln_as1_13
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 	on_executed
 		´2 step authentication´ (delay 1)
 ´plt_as1_01´ ElementDialogue 100075
 	dialogue Play_plt_as1_01
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 	on_executed
 		´plt_as1_02´ (delay 60)
 ´plt_as1_02´ ElementDialogue 100076
 	dialogue Play_plt_as1_02
-	execute_on_executed_when_done true
-	use_position false
+	execute_on_executed_when_done True
+	use_position False
 	on_executed
 		´plt_as1_04´ (delay 60)
 ´plt_as1_03´ ElementDialogue 100077
 	dialogue Play_plt_as1_03
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 ´plt_as1_04´ ElementDialogue 100078
 	dialogue Play_plt_as1_04
-	execute_on_executed_when_done false
-	use_position false
+	execute_on_executed_when_done False
+	use_position False
 	on_executed
 		´bring_in_heli´ (delay 60)
 ´On´ ElementToggle 100006
+	elements
+ 		1 ´Link´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Link´ DISABLED
 	on_executed
 		´Link´ (delay 0.1) DISABLED
 ´point_debug_002´ ElementDebug 100020
-	as_subtitle true
+	as_subtitle True
 	debug_string All players in vehicle
-	show_instigator false
+	show_instigator False
 ´TEMP TEMP TEMP´ MissionScriptElement 100022
 	on_executed
 		´bring_in_heli´ (delay 3)
@@ -494,16 +494,16 @@
 	counter_target 0
 ´set true´ ElementCounterOperator 100080
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´true or false´
+ 		1 ´true or false´
+	instance_var_names
+	operation set
 ´set false´ ElementCounterOperator 100081
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´true or false´
+ 		1 ´true or false´
+	instance_var_names
+	operation set
 ´on exit´ ElementVehicleTrigger 100082
 	event on_exit
 	position 200, -750, 2.5
@@ -511,11 +511,11 @@
 	on_executed
 		´set false´ (delay 0)
 ´equal 1´ ElementCounterFilter 100083
+	elements
+ 		1 ´true or false´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´true or false´
 	on_executed
 		´point_debug_002´ (delay 0)
 		´output_escape_success´ (delay 0)
@@ -533,8 +533,8 @@
 	on_executed
 		´On´ (delay 0)
 ´func_modify_player_god_mode_on´ ElementModifyPlayer 100004
-	damage_fall_disabled false
-	invulnerable true
+	damage_fall_disabled False
+	invulnerable True
 	position -400, -450, 2.5
 	rotation 0, 0, 0, -1
 ´point_shape_god_mode´ ElementShape 100016
@@ -544,7 +544,7 @@
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
 	shape_type box
-	width 1993,56
+	width 1993.56
 ´trigger_area_report_god_mode´ ElementAreaReportTrigger 100049
 	DISABLED
 	amount 1
@@ -555,22 +555,22 @@
 	position -300, -450, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_god_mode´
-	use_shape_element_ids
 	unit_ids
 		1 100016
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´func_modify_player_god_mode_on´ (delay 0) (alternative enter)
 ´On_2´ ElementToggle 100074
+	elements
+ 		1 ´trigger_area_report_god_mode´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_report_god_mode´ DISABLED
 ´func_instance_input_001´ ElementInstanceInput 100085
 	event dev_qa_dmg_test
 	on_executed

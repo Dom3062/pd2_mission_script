@@ -59,14 +59,14 @@
 		´point_debug_005´ (delay 0)
 		´if_loud_and_started_time_lock´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100011
-	operation add
-	position 600, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, 0, 0)
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
 ´seq_open_door´ ElementUnitSequence 100012
 	position 1900, -100, 0
 	rotation 0, 0, 0, -1
@@ -81,14 +81,14 @@
 		´remove_door_blocker´ (delay 0)
 		´output_door_open´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100013
-	operation remove
-	position 1900, -200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, 0, 0)
+	operation remove
+	position 1900, -200, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´only_open_once´ (delay 0)
 ´input_got_thermal_drill´ ElementInstanceInput 100015
@@ -119,8 +119,8 @@
 		´enable_drill_drop_area´ (delay 0)
 ´drill_WP´ ElementWaypoint 100020
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -100, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -135,9 +135,9 @@
 			notify_unit_sequence show
 			time 0
 ´point_debug_002´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string start_drillin_boyz
-	show_instigator false
+	show_instigator False
 ´area_throw_drill´ ElementAreaTrigger 100024
 	DISABLED
 	TRIGGER TIMES 1
@@ -150,21 +150,21 @@
 	position 0, -100, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´remove_thermal_drill´ (delay 0)
 ´data_instigator_rule_001´ ElementInstigatorRule 100025
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -198,15 +198,15 @@
 			time 0
 ´defend_WP´ ElementWaypoint 100029
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -100, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´fix_WP´ ElementWaypoint 100030
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -100, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -238,11 +238,11 @@
 	on_executed
 		´remove_defend_drill_WP´ (delay 0)
 ´remove_defend_drill_WP´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
 		2 ´fix_WP´
 		3 ´drill_WP´
+	operation remove
 	on_executed
 		´disable_all´ (delay 0)
 ´Trigger_assemble_drill´ ElementUnitSequenceTrigger 100034
@@ -256,31 +256,31 @@
 		´remove_drill_WP´ (delay 0)
 		´output_drill_placed´ (delay 0)
 ´remove_drill_WP´ ElementOperator 100035
-	operation remove
 	elements
-		1 ´drill_WP´
+ 		1 ´drill_WP´
+	operation remove
 	on_executed
 		´defend_WP´ (delay 0)
 ´enable_drill_drop_area´ ElementToggle 100039
+	elements
+ 		1 ´area_throw_drill´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´area_throw_drill´ DISABLED
 	on_executed
 		´seq_show_marker´ (delay 0)
 ´disable_all´ ElementToggle 100040
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
 		2 ´drill_WP´
 		3 ´fix_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´seq_open_door´ (delay 0)
 ´remove_defend_WP´ ElementOperator 100042
-	operation remove
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
+	operation remove
 	on_executed
 		´add_fix_WP´ (delay 0)
 ´add_fix_WP´ MissionScriptElement 100043
@@ -298,104 +298,104 @@
 		´remove_fix_WP´ (delay 0)
 		´output_drill_fixed´ (delay 0)
 ´remove_fix_WP´ ElementOperator 100046
-	operation remove
 	elements
-		1 ´fix_WP´
+ 		1 ´fix_WP´
+	operation remove
 	on_executed
 		´disable_fix_drill´ (delay 0)
 		´defend_WP´ (delay 0)
 ´enable_fix_drill´ ElementToggle 100047
+	elements
+ 		1 ´trigger_drill_fixed´ DISABLED
 	set_trigger_times 0
 	toggle on
-	elements
-		1 ´trigger_drill_fixed´ DISABLED
 	on_executed
 		´disable_assemble_drill´ (delay 0)
 ´disable_assemble_drill´ ElementToggle 100048
+	elements
+ 		1 ´Trigger_assemble_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Trigger_assemble_drill´
 	on_executed
 		´output_drill_stopped´ (delay 0)
 ´disable_fix_drill´ ElementToggle 100049
+	elements
+ 		1 ´trigger_drill_fixed´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_drill_fixed´ DISABLED
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100059
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, 300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100060
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, 300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100061
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, 300, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´start_time_lock´ ElementTimerOperator 100062
+	elements
+ 		1 ´time_lock´
 	operation start
 	position 1900, 150, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_lock´
 ´time_lock´ ElementTimer 100063
 	timer 0
 ´time_lock_done´ ElementTimerTrigger 100064
+	elements
+ 		1 ´time_lock´
 	position 1900, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_lock´
 	on_executed
 		´seq_open_door´ (delay 0)
 		´stop_time_lock_2´ (delay 0)
 ´stop_time_lock´ ElementTimerOperator 100066
+	elements
+ 		1 ´time_lock´
 	operation pause
 	position 2275, 225, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_lock´
 	on_executed
 		´seq_stop_timer´ (delay 0)
 ´stop_time_lock_2´ ElementTimerOperator 100067
+	elements
+ 		1 ´time_lock´
 	operation pause
 	position 1950, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´time_lock´
 ´seq_stop_timer´ ElementUnitSequence 100068
 	position 2275, 125, 0
 	rotation 0, 0, 0, -1
@@ -409,50 +409,50 @@
 	on_executed
 		´disable_time_lock´ (delay 0)
 ´set_time_lock´ ElementTimerOperator 100069
+	elements
+ 		1 ´time_lock´
 	operation set_time
 	position 1900, 225, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´time_lock´
 	on_executed
 		´start_time_lock´ (delay 0)
 ´disable_time_lock´ ElementToggle 100070
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_open_door_stealth´
+ 		1 ´input_open_door_stealth´
 		2 ´set_time_lock´
 		3 ´start_time_lock´
 		4 ´time_lock´
 		5 ´time_lock_done´
 		6 ´stop_time_lock_2´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´if_loud_and_started_time_lock´ (delay 0)
 ´output_drill_placed´ ElementInstanceOutput 100071
 	event drill_placed
 ´point_debug_005´ ElementDebug 100072
-	as_subtitle false
+	as_subtitle False
 	debug_string time_lock_activeted_pls_wait
-	show_instigator false
+	show_instigator False
 ´input_door_open_loud´ ElementInstanceInput 100073
 	event open_door_loud
 	on_executed
 		´seq_open_door´ (delay 1)
 ´only_open_once´ ElementToggle 100074
+	elements
+ 		1 ´input_open_door_stealth´
+		2 ´input_door_open_loud´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_open_door_stealth´
-		2 ´input_door_open_loud´
 ´output_door_open´ ElementInstanceOutput 100075
 	event door_open
 	on_executed
 		´point_debug_006´ (delay 0)
 ´point_debug_006´ ElementDebug 100076
-	as_subtitle false
+	as_subtitle False
 	debug_string door_open
-	show_instigator false
+	show_instigator False
 ´trigger_drill_stopped´ ElementUnitSequenceTrigger 100077
 	sequence_list
 		1
@@ -463,9 +463,9 @@
 		´point_debug_007´ (delay 0)
 		´remove_defend_WP´ (delay 0)
 ´point_debug_007´ ElementDebug 100078
-	as_subtitle false
+	as_subtitle False
 	debug_string komrat_kat_wants_U_to_resume_drill
-	show_instigator false
+	show_instigator False
 ´output_drill_stopped´ ElementInstanceOutput 100079
 	event drill_stopped
 ´output_drill_fixed´ ElementInstanceOutput 100008
@@ -473,9 +473,9 @@
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100014
-	as_subtitle false
+	as_subtitle False
 	debug_string drill_fixed
-	show_instigator false
+	show_instigator False
 ´output_loud_during_timelock´ ElementInstanceOutput 100009
 	event went_loud_during_timelock
 	on_executed
@@ -485,6 +485,6 @@
 	on_executed
 		´output_loud_during_timelock´ (delay 0)
 ´point_debug_008´ ElementDebug 100082
-	as_subtitle false
+	as_subtitle False
 	debug_string went_loud_during_timelock
-	show_instigator false
+	show_instigator False

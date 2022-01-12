@@ -68,15 +68,15 @@
 		´logic_operator_001´ (delay 0)
 ´interact_wp´ ElementWaypoint 100012
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 10, 10.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´interact_wp´
+ 		1 ´interact_wp´
+	operation remove
 ´point_spawn_player_001´ ElementPlayerSpawner 100000
 	DISABLED
 	EXECUTE ON STARTUP
@@ -87,19 +87,19 @@
 		´enable_interaction_input´ (delay 2)
 		´kill_it´ (delay 15)
 ´sound_start´ ElementPlaySound 100015
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 10, 10.5
 	rotation 0, 0, 0, -1
 	sound_event flare_start_loop
-	use_instigator false
+	use_instigator False
 ´sound_stop´ ElementPlaySound 100016
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 10, 10.5
 	rotation 0, 0, 0, -1
 	sound_event flare_end
-	use_instigator false
+	use_instigator False
 ´env_effect_play_001´ ElementPlayEffect 100009
 	base_time 0
 	effect effects/particles/explosions/smoke_grenade_signal_green
@@ -107,13 +107,13 @@
 	position 2, 19, 1
 	random_time 0
 	rotation 0.707107, 0, 0, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100010
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position -100, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 ´kill_it´ MissionScriptElement 100007
 	on_executed
 		´stop_sound´ (delay 0)
@@ -121,6 +121,6 @@
 		´point_debug_001´ (delay 0)
 		´sound_stop´ (delay 0)
 ´point_debug_001´ ElementDebug 100017
-	as_subtitle false
+	as_subtitle False
 	debug_string kill_it
-	show_instigator false
+	show_instigator False

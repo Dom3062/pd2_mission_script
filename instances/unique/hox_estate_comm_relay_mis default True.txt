@@ -7,10 +7,10 @@
 	on_executed
 		´enable_relay_2´ (delay 0) (alternative interacted)
 ´enable_open_interaction´ ElementToggle 100003
+	elements
+ 		1 ´open_relay´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´open_relay´ DISABLED
 	on_executed
 		´point_waypoint_001_relay´ (delay 0)
 ´enable_phone´ ElementUnitSequence 100005
@@ -84,18 +84,18 @@
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´point_waypoint_001_relay´
+ 		1 ´point_waypoint_001_relay´
+	operation remove
 ´point_waypoint_001_phone001´ ElementWaypoint 100004
 	icon pd2_phone
 	position 30, -17, 1153.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp001´ ElementOperator 100017
-	operation remove
 	elements
-		1 ´point_waypoint_001_phone001´
+ 		1 ´point_waypoint_001_phone001´
+	operation remove
 ´found_pole´ ElementAreaTrigger 100020
 	DISABLED
 	TRIGGER TIMES 1
@@ -107,14 +107,14 @@
 	position 0, 0, 302.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´found_the_pole´ (delay 0)
 ´found_the_pole´ ElementInstanceOutput 100021
@@ -130,14 +130,14 @@
 	position 0, -50, 1002.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´climbed_2´ (delay 0)
 ´enable_climb´ ElementInstanceInput 100023
@@ -146,10 +146,10 @@
 		´logic_toggle_001´ (delay 0)
 		´point_waypoint_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100024
+	elements
+ 		1 ´climbed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´climbed´ DISABLED
 ´point_waypoint_001´ ElementWaypoint 100025
 	icon pd2_goto
 	position 0, -50, 1052.5
@@ -160,9 +160,9 @@
 	on_executed
 		´remove_climb´ (delay 0)
 ´remove_climb´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 ´disable_visblock_and_prepare_loud´ ElementInstanceInput 100042
 	event disable_visblock
 	on_executed
@@ -195,10 +195,10 @@
 	on_executed
 		´enable_pole_trigger_2´ (delay 0)
 ´enable_pole_trigger_2´ ElementToggle 100045
+	elements
+ 		1 ´found_pole´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_pole´ DISABLED
 ´func_sequence_001´ ElementUnitSequence 100012
 	position 200, -400, 0
 	rotation 0, 0, 0, -1
@@ -222,10 +222,8 @@
 			notify_unit_sequence display_off
 			time 0
 ´logic_toggle_002´ ElementToggle 100046
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´used_phone´
+ 		1 ´used_phone´
 		2 ´enable_phone_2´
 		3 ´used_phone_2´
 		4 ´enable_phone´
@@ -250,3 +248,5 @@
 		23 ´point_waypoint_001_phone001´
 		24 ´point_waypoint_001_relay´
 		25 ´climbed´ DISABLED
+	set_trigger_times -1
+	toggle off

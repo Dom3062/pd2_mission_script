@@ -45,8 +45,8 @@
 			time 0
 ´WP_interact_device´ ElementWaypoint 100008
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -156, -18, 144
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -65,9 +65,9 @@
 			notify_unit_sequence state_1_hacking
 			time 0
 ´remove_WP_interact_device´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´WP_interact_device´
+ 		1 ´WP_interact_device´
+	operation remove
 ´placed_device´ MissionScriptElement 100017
 	on_executed
 		´seq_state_hacking´ (delay 0)
@@ -94,7 +94,7 @@
 		´seq_stuff´ (delay 0)
 ´interaction_place_device´ ElementInteraction 100020
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -156, -18, 144
 	rotation 0, 0, 0, -1
@@ -102,99 +102,99 @@
 	on_executed
 		´placed_device´ (delay 0) (alternative interacted)
 ´enable´ ElementToggle 100021
+	elements
+ 		1 ´interaction_place_device´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_place_device´ DISABLED
 ´SO_interrupt_none´ ElementSpecialObjective 100009
-	SO_access 12792
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
+		1 ´SO_interrupt´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
 	patrol_path none
 	pose none
 	position -150, -80, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 3000
 	search_position -100 -100 0
+	SO_access 12792
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_interrupt´
 ´SO_interrupt´ ElementSpecialObjective 100013
-	SO_access 12792
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude engage
 	base_chance 1
+	followup_elements
+	forced False
 	chance_inc 0
-	forced false
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
-	no_arrest true
+	needs_pos_rsrv False
+	no_arrest True
 	path_haste run
 	path_stance cbt
 	path_style destination
 	patrol_path none
 	pose none
 	position -150, -80, 75
-	repeatable false
+	repeatable False
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position -100 -100 0
+	SO_access 12792
 	so_action e_so_push_button
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´start_interrupt´ MissionScriptElement 100014
 	on_executed
 		´SO_interrupt_none´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´fail´ ElementSpecialObjectiveTrigger 100022
+	elements
+ 		1 ´SO_interrupt_none´
+		2 ´SO_interrupt´
 	event fail
 	position 800, -400, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt_none´
-		2 ´SO_interrupt´
 	on_executed
 		´start_interrupt´ (delay 10)
 		´point_debug_004´ (delay 0)
 ´point_debug_001´ ElementDebug 100023
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: start_interrupt
-	show_instigator false
+	show_instigator False
 ´complete´ ElementSpecialObjectiveTrigger 100024
+	elements
+ 		1 ´SO_interrupt´
 	event complete
 	position 1000, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_interrupt´
 	on_executed
 		´interrupted´ (delay 0)
 ´interrupted´ MissionScriptElement 100025
@@ -216,19 +216,19 @@
 			notify_unit_sequence state_2_stopped
 			time 0
 ´point_debug_002´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: interrupted
-	show_instigator false
+	show_instigator False
 ´WP_fix´ ElementWaypoint 100028
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -156, -18, 144
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´interaction_fix´ ElementInteraction 100029
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -156, -18, 144
 	rotation 0, 0, 0, -1
@@ -243,10 +243,10 @@
 		´start_interrupt´ (delay 10)
 		´WP_defend´ (delay 1)
 ´enable_2´ ElementToggle 100031
+	elements
+ 		1 ´interaction_fix´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_fix´ DISABLED
 ´seq_set_hack´ ElementUnitSequence 100032
 	position 1100, -300, 0
 	rotation 0, 0, 0, -1
@@ -260,19 +260,19 @@
 ´timer´ ElementTimer 100033
 	timer 60
 ´start´ ElementTimerOperator 100034
+	elements
+ 		1 ´timer´
 	operation start
 	position 1100, -400, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 ´pause´ ElementTimerOperator 100035
+	elements
+ 		1 ´timer´
 	operation pause
 	position 1000, -400, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 ´seq_set_done´ ElementUnitSequence 100036
 	position 1200, -500, 0
 	rotation 0, 0, 0, -1
@@ -284,11 +284,11 @@
 			notify_unit_sequence state_3_done
 			time 0
 ´timer_done´ ElementTimerTrigger 100037
+	elements
+ 		1 ´timer´
 	position 1200, -400, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 	on_executed
 		´seq_set_done´ (delay 0)
 ´hacking_device_done´ ElementUnitSequenceTrigger 100038
@@ -312,82 +312,82 @@
 			notify_unit_sequence anim_open_door
 			time 0
 ´add_door_blocker´ ElementNavObstacle 100041
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 75, 0)
 	operation add
 	position 800, 200, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100042
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 75, 0)
-´remove_door_blocker´ ElementNavObstacle 100042
 	operation remove
 	position 1300, -400, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 1899710181486966882
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 75, 0)
 ´disable´ ElementToggle 100043
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´SO_interrupt_none´
+ 		1 ´SO_interrupt_none´
 		2 ´SO_interrupt´
 		3 ´start_interrupt´
 		4 ´interrupted´
+	set_trigger_times -1
+	toggle off
 ´point_debug_003´ ElementDebug 100044
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: done
-	show_instigator false
+	show_instigator False
 ´remove_WP_fix´ ElementOperator 100045
-	operation remove
 	elements
-		1 ´WP_fix´
+ 		1 ´WP_fix´
+	operation remove
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100046
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -300, -200, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100047
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -300, -100, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100048
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position -300, 0, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_004´ ElementDebug 100051
-	as_subtitle false
+	as_subtitle False
 	debug_string fail
-	show_instigator false
+	show_instigator False
 ´instance_output_gate_opened´ ElementInstanceOutput 100052
 	event gate_opened
 ´instance_input_start_placing_device´ ElementInstanceInput 100053
@@ -403,13 +403,13 @@
 		´WP_interact_device´ (delay 0)
 		´enable_interaction_open_gate_manually´ (delay 0)
 ´enable_interaction_open_gate_manually´ ElementToggle 100054
+	elements
+ 		1 ´interaction_open_gate_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_open_gate_interaction´ DISABLED
 ´interaction_open_gate_interaction´ ElementInteraction 100055
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -156, -18, 144
 	rotation 0, 0, 1, -1.19209E-07
@@ -431,33 +431,33 @@
 		´remove_WPs´ (delay 0)
 ´WP_defend´ ElementWaypoint 100061
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -156, -18, 144
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_defend´ ElementOperator 100062
-	operation remove
 	elements
-		1 ´WP_defend´
+ 		1 ´WP_defend´
+	operation remove
 ´remove_WPs´ ElementOperator 100063
-	operation remove
 	elements
-		1 ´WP_defend´
+ 		1 ´WP_defend´
 		2 ´WP_fix´
 		3 ´WP_interact_device´
+	operation remove
 ´start001´ ElementTimerOperator 100064
 	TRIGGER TIMES 1
+	elements
+ 		1 ´timer´
 	operation start
 	position 900, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´timer´
 ´teammate_comment_inside´ ElementTeammateComment 100065
-	close_to_element true
+	close_to_element True
 	comment g08
 	position -4, 0, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

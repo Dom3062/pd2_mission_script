@@ -3,15 +3,15 @@
 	on_executed
 		´Found_All_C4´ (delay 0)
 ´point_debug_001´ ElementDebug 100041
-	as_subtitle true
+	as_subtitle True
 	debug_string c4 found
-	show_instigator false
+	show_instigator False
 ´output_found_C4´ ElementInstanceOutput 100042
 	event Found C4
 ´pick_2_shelfs´ ElementRandom 100078
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´logic_toggle_002´ (delay 0)
 		´logic_toggle_001´ (delay 0)
@@ -59,30 +59,30 @@
 	on_executed
 		´found´ (delay 0) DISABLED
 ´logic_toggle_001´ ElementToggle 100089
+	elements
+ 		1 ´found_5´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_5´ DISABLED
 ´logic_toggle_002´ ElementToggle 100090
+	elements
+ 		1 ´found_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_4´ DISABLED
 ´logic_toggle_003´ ElementToggle 100091
+	elements
+ 		1 ´found_3´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_3´ DISABLED
 ´logic_toggle_004´ ElementToggle 100092
+	elements
+ 		1 ´found_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found_2´ DISABLED
 ´logic_toggle_005´ ElementToggle 100093
+	elements
+ 		1 ´found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´found´ DISABLED
 ´func_sequence_trigger_003´ ElementUnitSequenceTrigger 100081
 	TRIGGER TIMES 1
 	sequence_list
@@ -248,21 +248,21 @@
 	EXECUTE ON STARTUP
 	amount 1
 	depth 295
-	height 96,6
+	height 96.6
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position 100, -400, 375.056
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 85
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 85
 	on_executed
 		´secure´ (delay 0)
 		´remove_leftovers´ (delay 0) DISABLED
@@ -277,7 +277,7 @@
 	type_filter money
 ´point_interaction_001´ ElementInteraction 100012
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 1
 	position 100, -300, 288.056
 	rotation 0.707107, 0, 0, -0.707107
@@ -300,15 +300,13 @@
 	on_executed
 		´bag_enable´ (delay 0)
 ´bag_enable´ ElementToggle 100019
+	elements
+ 		1 ´bag_secure_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´bag_secure_area´ DISABLED
 ´alarm_toggle´ ElementToggle 100021
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´point_interaction_001´ DISABLED
+ 		1 ´point_interaction_001´ DISABLED
 		2 ´enable_vent_stash´
 		3 ´enable_costume_change´
 		4 ´Trigger_Costume_Change´
@@ -321,6 +319,8 @@
 		11 ´enable costume´ DISABLED
 		12 ´off_2´
 		13 ´on_5´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_secure´ (delay 0)
 		´remove_costume´ (delay 0)
@@ -334,37 +334,37 @@
 		´Show_Costume_Zone´ (delay 0)
 ´waypoint_goto´ ElementWaypoint 100035
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, -300, 275
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_goto´ ElementOperator 100036
-	operation remove
 	elements
-		1 ´waypoint_goto´
+ 		1 ´waypoint_goto´
+	operation remove
 ´waypoint_secure´ ElementWaypoint 100037
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, -300, 375
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_secure´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´waypoint_secure´
+ 		1 ´waypoint_secure´
+	operation remove
 ´waypoint_costume´ ElementWaypoint 100049
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, -400, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_costume´ ElementOperator 100050
-	operation remove
 	elements
-		1 ´waypoint_costume´
+ 		1 ´waypoint_costume´
+	operation remove
 ´Vent_was_opened´ MissionScriptElement 100051
 	on_executed
 		´open_vent´ (delay 0)
@@ -380,11 +380,11 @@
 	on_executed
 		´on´ (delay 0)
 ´on´ ElementToggle 100054
+	elements
+ 		1 ´point_interaction_001´ DISABLED
+		2 ´enable costume´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_interaction_001´ DISABLED
-		2 ´enable costume´ DISABLED
 	on_executed
 		´waypoint_goto´ (delay 0)
 ´Show_Costume_Zone´ ElementUnitSequence 100058
@@ -411,21 +411,21 @@
 	position 100, -325, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 140
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 140
 	on_executed
 		´Trigger_Costume_Change´ (delay 0)
 ´on_2´ ElementToggle 100060
+	elements
+ 		1 ´trigger_costume´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_costume´ DISABLED
 	on_executed
 		´phone_answered´ (delay 0)
 ´Trigger_Costume_Change´ MissionScriptElement 100061
@@ -436,22 +436,22 @@
 	position -1475, -1350, -0.508179
 	rotation 0, 0, 0, -1
 	state mask_off
-	use_instigator false
+	use_instigator False
 	on_executed
 		´ready_for_exit´ (delay 0)
 		´Close_door´ (delay 0)
 		´Vo - Bain´ (delay 0)
 ´func_whisper_turn_on´ ElementWhisperState 100065
 	DISABLED
-	disable_hud false
+	disable_hud False
 	position -1475, -1150, -0.508179
 	rotation 0, 0, 0, -1
-	state true
+	state True
 ´on_3´ ElementToggle 100066
+	elements
+ 		1 ´func_whisper_turn_on´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´func_whisper_turn_on´ DISABLED
 	on_executed
 		´fade_out´ (delay 0)
 ´fade_out´ ElementOverlayEffect 100067
@@ -523,10 +523,10 @@
 		´ready_for_exit´ (delay 0)
 		´logic_toggle_006´ (delay 0)
 ´logic_toggle_006´ ElementToggle 100102
+	elements
+ 		1 ´Open_Door´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Open_Door´ DISABLED
 ´enable_vent_bagblock´ ElementUnitSequence 100105
 	position 1050, -1375, -0.452148
 	rotation 0, 0, 0, -1
@@ -549,15 +549,15 @@
 	on_executed
 		´point_loot_bag_001´ (delay 0)
 ´On´ ElementToggle 100107
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´remove_leftovers´ DISABLED
+ 		1 ´remove_leftovers´ DISABLED
 		2 ´Security_Removed´ DISABLED
 		3 ´off_3´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´point_loot_bag_001´ ElementLootBag 100114
 	carry_id money
-	from_respawn false
+	from_respawn False
 	position 100, -300, 225
 	rotation 0, 0, 0, -1
 ´Bag Secured´ ElementInstanceOutput 100022
@@ -584,22 +584,22 @@
 			notify_unit_sequence state_screen_enabled
 			time 0
 ´toggle´ ElementToggle 100033
+	elements
+ 		1 ´Door panel´
+		2 ´remove_security - door´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Door panel´
-		2 ´remove_security - door´
 ´toggle_2´ ElementToggle 100115
+	elements
+ 		1 ´Alarm´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Alarm´ DISABLED
 	on_executed
 		´enable_door_p1´ (delay 0)
 ´waypoint_loot closet´ ElementWaypoint 100119
 	icon pd2_loot
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 100, -275, 99.9999
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -608,14 +608,14 @@
 	on_executed
 		´waypoint_loot closet´ (delay 0)
 ´toggle - waypoint´ ElementToggle 100121
+	elements
+ 		1 ´Waypoint enable - Find all c4 in room´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Waypoint enable - Find all c4 in room´ DISABLED
 ´remove waypoint´ ElementOperator 100125
-	operation remove
 	elements
-		1 ´waypoint_loot closet´
+ 		1 ´waypoint_loot closet´
+	operation remove
 ´found´ MissionScriptElement 100005
 	DISABLED
 	on_executed
@@ -702,12 +702,12 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 ´enable_loot_closet_opened´ ElementToggle 100032
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´trigger_found_closet´ DISABLED
+ 		1 ´trigger_found_closet´ DISABLED
 		2 ´enable_buttons´ DISABLED
 		3 ´link´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´enable call´ ElementUnitSequence 100045
 	position -1200, -1500, 0
 	rotation 0, 0, 0, -1
@@ -736,21 +736,21 @@
 	on_executed
 		´on_4´ (delay 0)
 ´on_4´ ElementToggle 100048
+	elements
+ 		1 ´Enable_Silent_Escape´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Enable_Silent_Escape´ DISABLED
 ´call´ ElementWaypoint 100056
 	icon pd2_phone
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 180, -17, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_001´ ElementOperator 100057
-	operation remove
 	elements
-		1 ´call´
+ 		1 ´call´
+	operation remove
 ´give_cutter´ ElementEquipment 100069
 	amount 1
 	equipment circle_cutter
@@ -759,10 +759,10 @@
 	on_executed
 		´output_found_cutter´ (delay 0)
 ´off´ ElementToggle 100068
+	elements
+ 		1 ´give_cutter´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´give_cutter´
 ´Disable Cutters´ ElementInstanceInput 100074
 	event disable_cutters
 	on_executed
@@ -770,12 +770,12 @@
 ´about_to_fade_in´ ElementInstanceOutput 100043
 	event about_to_fade_in
 ´Vo - Bain´ ElementDialogue 100044
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_pln_al1_08
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´output_found_cutter´ ElementInstanceOutput 100077
 	event Found Cutter
 ´green´ ElementUnitSequence 100080
@@ -873,26 +873,26 @@
 	position 100, 125, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´VO Team - Found Closet´ (delay 0)
 		´found_closet_output´ (delay 0)
 ´remove_door_waypoint´ ElementOperator 100151
 	operation remove
 ´VO Team - Found Closet´ ElementTeammateComment 100153
-	close_to_element true
+	close_to_element True
 	comment g14
 	position 100, -25, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´found_closet_output´ ElementInstanceOutput 100154
 	event found_closet
 ´remove_security - door´ ElementUnitSequence 100150
@@ -915,9 +915,9 @@
 	on_executed
 		´output_loot_closet_opened´ (delay 0)
 ´point_debug_002´ ElementDebug 100156
-	as_subtitle false
+	as_subtitle False
 	debug_string opened_closet_output
-	show_instigator false
+	show_instigator False
 ´phone_answered´ ElementInstanceOutput 100157
 	TRIGGER TIMES 1
 	event phone_answered

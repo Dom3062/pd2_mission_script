@@ -56,15 +56,15 @@
 	position 0, 200, 75
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´output_all_players_in_escape_zone´ (delay 0)
 ´output_all_players_in_escape_zone´ ElementInstanceOutput 100011
@@ -73,12 +73,12 @@
 		´all_in_escape´ (delay 0)
 		´comment_escape_cheer´ (delay 0)
 ´toggle_ON_escape_trigger´ ElementToggle 100012
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´escape_zone_trigger´ DISABLED
+ 		1 ´escape_zone_trigger´ DISABLED
 		2 ´trigger_loot´ DISABLED
 		3 ´lootdrop_WP´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´enable_goal_marker´ (delay 0)
 ´enable_goal_marker´ ElementEnableUnit 100013
@@ -125,28 +125,28 @@
 ´extraction_timer´ ElementTimer 100015
 	timer 180
 ´start_timer´ ElementTimerOperator 100016
+	elements
+ 		1 ´extraction_timer´
 	operation start
 	position 1000, 200, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´extraction_timer´
 ´input_start_extraction´ ElementInstanceInput 100008
 	event start_extraction_no_delay
 	on_executed
 		´5_sec_delay´ (delay 0)
 ´escape_WP´ ElementWaypoint 100020
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 200, 225
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´lootdrop_WP´ ElementWaypoint 100021
 	DISABLED
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -52, 550, 207
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -154,15 +154,15 @@
 	event heli_has_arrived
 ´defend_WP´ ElementWaypoint 100023
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 200, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP´ ElementOperator 100025
-	operation remove
 	elements
-		1 ´defend_WP´
+ 		1 ´defend_WP´
+	operation remove
 	on_executed
 		´output_heli_has_arrived´ (delay 0)
 ´env_effect_play_001´ ElementPlayEffect 100018
@@ -172,50 +172,50 @@
 	position -100, 550, 50
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´60s´ ElementTimerTrigger 100024
 	DISABLED
+	elements
+ 		1 ´extraction_timer´
 	position 1100, -300, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´25s´ ElementTimerTrigger 100030
 	DISABLED
+	elements
+ 		1 ´extraction_timer´
 	position 1300, -300, 0
 	rotation 0, 0, 0, -1
 	time 25
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´0s´ ElementTimerTrigger 100031
 	DISABLED
+	elements
+ 		1 ´extraction_timer´
 	position 1400, -300, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´38s´ ElementTimerTrigger 100035
 	DISABLED
+	elements
+ 		1 ´extraction_timer´
 	position 1200, -300, 0
 	rotation 0, 0, 0, -1
 	time 38
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´120s´ ElementTimerTrigger 100036
 	DISABLED
+	elements
+ 		1 ´extraction_timer´
 	position 1000, -300, 0
 	rotation 0, 0, 0, -1
 	time 120
-	elements
-		1 ´extraction_timer´
 	on_executed
 		´heli_fly_in´ (delay 0)
 ´trigger_loot´ ElementAreaTrigger 100017
@@ -229,15 +229,15 @@
 	position -50, 525, 225
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´func_secure_bag´ (delay 0)
 ´add_bag´ ElementUnitSequence 100026
@@ -272,16 +272,16 @@
 	on_executed
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100047
-	as_subtitle false
+	as_subtitle False
 	debug_string mission_completed
-	show_instigator false
+	show_instigator False
 ´comment_escape_cheer´ ElementTeammateComment 100048
-	close_to_element false
+	close_to_element False
 	comment g24
 	position 700, -300, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´set_time_very_hard´ ElementInstanceInput 100043
 	BASE DELAY 3
 	TRIGGER TIMES 1
@@ -289,20 +289,20 @@
 	on_executed
 		´off_defualt_time´ (delay 0)
 ´on_new_time´ ElementToggle 100044
+	elements
+ 		1 ´25s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´25s´ DISABLED
 ´defualt_time´ ElementToggle 100049
+	elements
+ 		1 ´0s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´0s´ DISABLED
 ´off_defualt_time´ ElementToggle 100050
+	elements
+ 		1 ´0s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´0s´ DISABLED
 	on_executed
 		´on_new_time´ (delay 0)
 ´set_time_overkill´ ElementInstanceInput 100051
@@ -312,27 +312,27 @@
 	on_executed
 		´off_defualt_time001´ (delay 0)
 ´off_defualt_time001´ ElementToggle 100052
+	elements
+ 		1 ´0s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´0s´ DISABLED
 	on_executed
 		´on_new_time001´ (delay 0)
 ´on_new_time001´ ElementToggle 100053
+	elements
+ 		1 ´38s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´38s´ DISABLED
 ´on_new_time002´ ElementToggle 100032
+	elements
+ 		1 ´60s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´60s´ DISABLED
 ´off_defualt_time002´ ElementToggle 100033
+	elements
+ 		1 ´0s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´0s´ DISABLED
 	on_executed
 		´on_new_time002´ (delay 0)
 ´set_time_mayeam´ ElementInstanceInput 100034
@@ -342,15 +342,15 @@
 	on_executed
 		´off_defualt_time002´ (delay 0)
 ´on_new_time003´ ElementToggle 100037
+	elements
+ 		1 ´120s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´120s´ DISABLED
 ´off_defualt_time003´ ElementToggle 100054
+	elements
+ 		1 ´0s´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´0s´ DISABLED
 	on_executed
 		´on_new_time003´ (delay 0)
 ´set_time_deathwish´ ElementInstanceInput 100055

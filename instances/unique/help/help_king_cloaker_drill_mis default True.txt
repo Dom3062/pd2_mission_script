@@ -22,10 +22,10 @@
 		´4´ (delay 0)
 		´ON´ (delay 0)
 ´enable_exit - ON´ ElementToggle 100004
+	elements
+ 		1 ´if_entered´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´if_entered´ DISABLED
 ´Close_enter´ ElementUnitSequence 100006
 	position 4100, -200, 0
 	rotation 0, 0, 0, -1
@@ -47,14 +47,14 @@
 	position 350, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´exit´ (delay 0)
 ´enter_trigger´ ElementAreaTrigger 100009
@@ -68,14 +68,14 @@
 	position -350, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´enter´ (delay 0)
 ´player_start´ ElementPlayerSpawner 100010
@@ -90,17 +90,17 @@
 		´player_start´ (delay 0) DISABLED
 		´enable_debug_areas´ (delay 0)
 ´enable_enter - ON´ ElementToggle 100028
+	elements
+ 		1 ´if_entered_2´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´if_entered_2´
 ´enable_debug_areas´ ElementToggle 100030
-	set_trigger_times 5
-	toggle on
 	elements
-		1 ´exit_trigger´ DISABLED
+ 		1 ´exit_trigger´ DISABLED
 		2 ´enter_trigger´ DISABLED
 		3 ´if_entered_2´
+	set_trigger_times 5
+	toggle on
 ´deal_dmg´ MissionScriptElement 100037
 	on_executed
 		´enable_dmg_trigger´ (delay 0)
@@ -108,10 +108,10 @@
 		´Shake_loop_Start´ (delay 0)
 		´heli_smoke´ (delay 0)
 ´enable_dmg_trigger´ ElementToggle 100038
+	elements
+ 		1 ´drill_dmg_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_dmg_area´ DISABLED
 ´drill_dmg_area´ ElementAreaTrigger 100040
 	DISABLED
 	amount 1
@@ -123,34 +123,34 @@
 	position 0, 0, 400
 	radius 420
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on both
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´func_kill_zone_001´ (delay 0)
 ´disable_dmg_zone´ ElementToggle 100073
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´drill_dmg_area´ DISABLED
+ 		1 ´drill_dmg_area´ DISABLED
 		2 ´shake_loop 2 second´
 		3 ´Shake_loop_Start´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´Stop_Drill_FX´ (delay 0)
 ´enable_enter - OFF´ ElementToggle 100026
+	elements
+ 		1 ´if_entered´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´if_entered´ DISABLED
 ´point_debug_001´ ElementDebug 100013
-	as_subtitle true
+	as_subtitle True
 	debug_string Drill_Attack
-	show_instigator false
+	show_instigator False
 ´Intro_Finished´ ElementUnitSequenceTrigger 100005
 	sequence_list
 		1
@@ -190,36 +190,36 @@
 	on_executed
 		´1_2´ (delay 0)
 ´1´ ElementCounterFilter 100024
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´set_attack´
 	on_executed
 		´Close_Attack´ (delay 0)
 ´2´ ElementCounterFilter 100025
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´set_attack´
 	on_executed
 		´Medium_Attack´ (delay 0)
 ´3´ ElementCounterFilter 100027
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´set_attack´
 	on_executed
 		´Far_Attack´ (delay 0)
 ´1_2´ ElementCounterOperator 100031
 	amount 1
-	operation set
+	elements
+ 		1 ´set_attack´
 	instance_var_names
 		amount var_cloaker_attack
-	elements
-		1 ´set_attack´
+	operation set
 ´set_attack´ ElementCounter 100036
 	counter_target 1
 ´pick_attack´ MissionScriptElement 100041
@@ -255,27 +255,27 @@
 		´point_play_sound_001´ (delay 0)
 		´Far_exit´ (delay 12-17)
 ´1_3´ ElementCounterFilter 100047
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´set_attack´
 	on_executed
 		´Close_enter´ (delay 0)
 ´2_2´ ElementCounterFilter 100048
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´set_attack´
 	on_executed
 		´Medium_enter´ (delay 0)
 ´3_2´ ElementCounterFilter 100049
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´set_attack´
 	on_executed
 		´Far_enter´ (delay 0)
 ´Medium_enter´ ElementUnitSequence 100032
@@ -335,13 +335,13 @@
 	on_executed
 		´disable_dmg_zone´ (delay 0)
 ´Set_Cloaker_Attack´ ElementInstanceParams 100016
-	position 4250, 250, 0
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value 1
 			type number
 			var_name var_cloaker_attack
+	position 4250, 250, 0
+	rotation 0, 0, 0, -1
 ´drills_big´ ElementPlayEffect 100007
 	base_time 0
 	effect effects/payday2/environment/drills_big
@@ -349,14 +349,14 @@
 	position 0, 0, 75
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´Stop_Drill_FX´ ElementStopEffect 100018
+	elements
+ 		1 ´drills_big´
+		2 ´heli_smoke´
 	operation kill
 	position 4250, -1200, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´drills_big´
-		2 ´heli_smoke´
 	on_executed
 		´delay´ (delay 0)
 ´Attack_HIT´ ElementUnitSequenceTrigger 100017
@@ -396,8 +396,8 @@
 	rumble_peak 1
 	rumble_release 1
 	rumble_sustain 1
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´shake_medium´ ElementFeedback 100022
 	above_camera_effect effects/payday2/particles/impacts/dirt_explosion_impact_pd2
 	above_camera_effect_distance 0,5
@@ -415,8 +415,8 @@
 	rumble_peak 1
 	rumble_release 1
 	rumble_sustain 1
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´shake_small´ ElementFeedback 100033
 	above_camera_effect none
 	above_camera_effect_distance 1
@@ -434,8 +434,8 @@
 	rumble_peak 1
 	rumble_release 1
 	rumble_sustain 1
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´shake_loop 2 second´ MissionScriptElement 100034
 	on_executed
 		´Shake_loop_Start´ (delay 1)
@@ -447,12 +447,12 @@
 	on_executed
 		´shake_loop 2 second´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100052
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 1800
 	rotation 0.707107, 0, 0, -0.707107
 	sound_event Play_big_clk_help_03
-	use_instigator false
+	use_instigator False
 ´hide´ ElementUnitSequence 100053
 	position 4250, -1400, 0
 	rotation 0, 0, 0, -1
@@ -476,11 +476,11 @@
 			notify_unit_sequence state_vis_hide
 			time 0
 ´4´ ElementCounterFilter 100055
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´set_attack´
 	on_executed
 		´single_enter´ (delay 0)
 ´single_enter´ ElementUnitSequence 100056
@@ -494,11 +494,11 @@
 			notify_unit_sequence anim_enter_drills_enabled
 			time 0
 ´4_2´ ElementCounterFilter 100057
+	elements
+ 		1 ´set_attack´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´set_attack´
 	on_executed
 		´single_attack´ (delay 0)
 ´single_attack´ ElementUnitSequence 100058
@@ -533,7 +533,7 @@
 	position 0, 0, 75
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´func_kill_zone_001´ ElementKillZone 100019
 	position 0, 0, 200
 	rotation 0, 0, 0, -1
@@ -542,11 +542,11 @@
 	on_executed
 		´hide´ (delay 6)
 ´ON´ ElementToggle 100015
+	elements
+ 		1 ´shake_loop 2 second´
+		2 ´Shake_loop_Start´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´shake_loop 2 second´
-		2 ´Shake_loop_Start´
 ´drill_damage´ ElementExplosionDamage 100039
 	damage 50
 	position 0, 0, 125

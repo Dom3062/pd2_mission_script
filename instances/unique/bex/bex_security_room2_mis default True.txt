@@ -4,31 +4,31 @@
 	enemy units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 171, 206, 0
 	rotation 0, 0, -0.382683, -0.92388
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100030
-	SO_access 8
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -36,13 +36,13 @@
 	pose none
 	position 125, 275, 0
 	rotation 0, 0, -0.382683, -0.92388
-	scan true
+	scan True
 	search_distance 0
 	search_position 94,5896 303,269 0
+	SO_access 8
 	so_action e_so_guard_idle
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´start´ MissionScriptElement 100031
 	EXECUTE ON STARTUP
 	on_executed
@@ -55,9 +55,6 @@
 		´ai_spawn_enemy_001´ (delay 0)
 		´point_special_objective_001´ (delay 0)
 ´add_blockers´ ElementNavObstacle 100033
-	operation add
-	position 300, 700, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -107,6 +104,9 @@
 			guis_id 12
 			obj_name 13423968277995808125
 			unit_id units/payday2/props/gen_prop_security_servers/gen_prop_security_server_rack/001 (568, 84, 0)
+	operation add
+	position 300, 700, 0
+	rotation 0, 0, 0, -1
 ´close_door´ ElementUnitSequence 100034
 	position 300, 900, 0
 	rotation 0, 0, 0, -1
@@ -126,19 +126,19 @@
 	on_executed
 		´add_door_blocker´ (delay 0)
 ´tied´ ElementEnemyDummyTrigger 100039
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event tied
 	position 300, 1300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´logic_link_001´ (delay 0)
 ´death´ ElementEnemyDummyTrigger 100040
+	elements
+ 		1 ´ai_spawn_enemy_001´
 	event death
 	position 300, 1200, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´ai_spawn_enemy_001´
 	on_executed
 		´logic_link_001´ (delay 0)
 ´logic_link_001´ MissionScriptElement 100041
@@ -147,23 +147,23 @@
 ´func_instance_output_001´ ElementInstanceOutput 100042
 	event disable_cameras
 ´add_door_blocker´ ElementNavObstacle 100036
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (391, -63, 0)
 	operation add
 	position 400, 900, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100035
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (391, -63, 0)
-´remove_door_blocker´ ElementNavObstacle 100035
 	operation remove
 	position 400, 1000, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (391, -63, 0)
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100038
 	TRIGGER TIMES 1
 	sequence_list

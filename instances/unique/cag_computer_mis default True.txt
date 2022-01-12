@@ -84,15 +84,15 @@
 		´pick_random_on_monitor_for_a´ (delay 0)
 		´pick_random_on_monitor_for_b´ (delay 0)
 ´enable timer done correct´ ElementToggle 100009
+	elements
+ 		1 ´timer_done_correct´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´timer_done_correct´ DISABLED
 ´disable timer done wrong´ ElementToggle 100010
+	elements
+ 		1 ´timer_done_wrong´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´timer_done_wrong´
 ´correct_computer´ ElementInstanceInput 100011
 	event correct_computer_taken
 	on_executed
@@ -229,7 +229,7 @@
 ´pick_random_on_monitor_for_a´ ElementRandom 100108
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´monitor_a_background_001´ (delay 0)
 		´monitor_a_background_002´ (delay 0)
@@ -239,7 +239,7 @@
 ´pick_random_on_monitor_for_b´ ElementRandom 100109
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´monitor_b_background_001´ (delay 0)
 		´monitor_b_background_002´ (delay 0)
@@ -247,36 +247,36 @@
 		´monitor_b_background_004´ (delay 0)
 ´hacking_in_progress_waypoint´ ElementWaypoint 100012
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 27.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_waypoint´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´hacking_in_progress_waypoint´
+ 		1 ´hacking_in_progress_waypoint´
+	operation remove
 ´1_5minute´ ElementTeammateComment 100014
-	close_to_element true
+	close_to_element True
 	comment g64
 	position 0, -75, 27.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´1min´ ElementTeammateComment 100015
-	close_to_element true
+	close_to_element True
 	comment g63
 	position 50, -75, 27.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´30sec´ ElementTeammateComment 100016
-	close_to_element true
+	close_to_element True
 	comment g62
 	position 100, -75, 27.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´ecm_ON´ ElementGlobalEventTrigger 100017
 	global_event ecm_jammer_on
 	position 100, 350, 2.5
@@ -329,24 +329,24 @@
 	counter_target 0
 ´set 1´ ElementCounterOperator 100028
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´keyboard´
+ 		1 ´keyboard´
+	instance_var_names
+	operation set
 ´used´ ElementCounterFilter 100029
+	elements
+ 		1 ´keyboard´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´keyboard´
 	on_executed
 		´link_3´ (delay 0)
 ´not used´ ElementCounterFilter 100030
+	elements
+ 		1 ´keyboard´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´keyboard´
 	on_executed
 		´link_2´ (delay 0)
 		´off´ (delay 0)
@@ -361,17 +361,17 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´OFF´ ElementToggle 100032
+	elements
+ 		1 ´link_2´
+		2 ´link_4´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_2´
-		2 ´link_4´ DISABLED
 ´ON´ ElementToggle 100033
+	elements
+ 		1 ´link_2´
+		2 ´link_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_2´
-		2 ´link_4´ DISABLED
 	on_executed
 		´show_outlines_sequence´ (delay 0)
 ´link_2´ MissionScriptElement 100034
@@ -381,21 +381,21 @@
 	on_executed
 		´jam´ (delay 0)
 ´not used_2´ ElementCounterFilter 100025
+	elements
+ 		1 ´keyboard´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´keyboard´
 	on_executed
 		´link_4´ (delay 0) DISABLED
 		´pick_random_on_monitor_for_a´ (delay 0)
 		´pick_random_on_monitor_for_b´ (delay 0)
 ´used_2´ ElementCounterFilter 100035
+	elements
+ 		1 ´keyboard´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´keyboard´
 	on_executed
 		´link_5´ (delay 0)
 ´link_4´ MissionScriptElement 100036
@@ -432,28 +432,28 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´toggle_outlines_off´ ElementToggle 100040
+	elements
+ 		1 ´show_outlines_sequence´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´show_outlines_sequence´
 ´point_debug_002´ ElementDebug 100041
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_OFF
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100042
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_ON
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100043
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: show_outlines
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100044
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: hide_outlines
-	show_instigator false
+	show_instigator False
 ´toggle_outlines_on´ ElementToggle 100023
+	elements
+ 		1 ´show_outlines_sequence´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_outlines_sequence´

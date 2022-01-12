@@ -44,23 +44,23 @@
 		´enable_thermite_interaction´ (delay 0)
 		´disable_2´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100010
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-64, -50, 0)
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100011
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-64, -50, 0)
-´remove_door_blocker´ ElementNavObstacle 100011
 	operation remove
 	position 1000, 100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-64, -50, 0)
 ´door_opened_regular_way´ MissionScriptElement 100012
 	on_executed
 		´remove_door_blocker´ (delay 0)
@@ -162,20 +162,20 @@
 	position 900, 300, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500000
 	rules_element_ids
 		1 ´rule_thermite_paste´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500000
 	on_executed
 		´input_make_thermite_interactable´ (delay 1)
 ´rule_thermite_paste´ ElementInstigatorRule 100025
 	instigator player
-	invert false
+	invert False
 	rules
 		player
 			mission_equipment
@@ -203,43 +203,43 @@
 	position -13, -14, 100
 	random_time 0
 	rotation -0.469472, 0, 0, -0.882948
-	screen_space false
+	screen_space False
 ´WP_use_thermite´ ElementWaypoint 100029
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -15, -14, 100
 	rotation -0.707107, 0, 0, -0.707107
 	text_id debug_none
 ´remove_WP_use_thermite´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´WP_use_thermite´
+ 		1 ´WP_use_thermite´
+	operation remove
 ´delay_thermite´ MissionScriptElement 100031
 	on_executed
 		´link_thermite_done´ (delay 55-60) DISABLED
 		´remove_stuff´ (delay 60)
 ´env_effect_stop_001´ ElementStopEffect 100032
 	DISABLED
+	elements
+ 		1 ´effect_thermite_burning´
 	operation fade_kill
 	position 1400, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´effect_thermite_burning´
 ´sound_thermite_start´ ElementPlaySound 100033
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -15, -14, 100
 	rotation -0.707107, 0, 0, -0.707107
 	sound_event thermite_paste_start
-	use_instigator false
+	use_instigator False
 ´sound_thermite_done´ ElementPlaySound 100034
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -15, -14, 100
 	rotation -0.707107, 0, 0, -0.707107
 	sound_event thermite_paste_finish
-	use_instigator false
+	use_instigator False
 ´point_blurzone_001´ ElementBlurZone 100035
 	height 200
 	mode 1
@@ -254,14 +254,14 @@
 	rotation -0.707107, 0, 0, -0.707107
 ´point_debug_002´ ElementDebug 100037
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string link_thermite_done
-	show_instigator false
+	show_instigator False
 ´remove_stuff´ ElementOperator 100038
-	operation remove
 	elements
-		1 ´point_blurzone_001´
+ 		1 ´point_blurzone_001´
 		2 ´sound_thermite_start´
+	operation remove
 	on_executed
 		´output_thermite_done´ (delay 0)
 		´enable_lockpick´ (delay 5)
@@ -283,33 +283,33 @@
 	position 0, -150, 0
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´output_seen_door´ (delay 0)
 ´output_seen_door´ ElementInstanceOutput 100043
 	event seen_door
 ´disable´ ElementToggle 100044
+	elements
+ 		1 ´input_make_thermite_interactable´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_make_thermite_interactable´
 ´enable´ ElementToggle 100045
+	elements
+ 		1 ´area_player_close_to_door´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_close_to_door´ DISABLED
 ´disable_2´ ElementToggle 100046
+	elements
+ 		1 ´area_player_close_to_door´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_player_close_to_door´ DISABLED
 ´enable_lockpick´ ElementUnitSequence 100008
 	position 1500, -100, 0
 	rotation 0, 0, 0, -1

@@ -72,7 +72,7 @@
 ´loot_bag_meth002´ ElementLootBag 100169
 	TRIGGER TIMES 1
 	carry_id meth
-	from_respawn false
+	from_respawn False
 	position -481, 70, -256
 	rotation 0, 0, 0, -1
 	on_executed
@@ -80,7 +80,7 @@
 ´loot_bag_meth003´ ElementLootBag 100170
 	TRIGGER TIMES 1
 	carry_id meth
-	from_respawn false
+	from_respawn False
 	position -482, 126, -256
 	rotation 0, 0, 0, -1
 	on_executed
@@ -88,7 +88,7 @@
 ´loot_bag_meth004´ ElementLootBag 100171
 	TRIGGER TIMES 1
 	carry_id meth
-	from_respawn false
+	from_respawn False
 	position -434, 126, -256
 	rotation 0, 0, 0, -1
 	on_executed
@@ -96,7 +96,7 @@
 ´loot_bag_meth001´ ElementLootBag 100168
 	TRIGGER TIMES 1
 	carry_id meth
-	from_respawn false
+	from_respawn False
 	position -434, 70, -256
 	rotation 0, 0, 0, -1
 	on_executed
@@ -105,7 +105,7 @@
 	amount 1
 	amount_random 0
 	counter_id 100180
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´loot_bag_meth001´ (delay 0)
 		´loot_bag_meth002´ (delay 0)
@@ -117,10 +117,10 @@
 		´add1´ (delay 0)
 ´add1´ ElementCounterOperator 100178
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_coke´
+ 		1 ´counter_coke´
+	instance_var_names
+	operation add
 ´counter_coke´ ElementCounter 100180
 	counter_target 0
 ´area_player_spawn´ ElementAreaTrigger 100182
@@ -135,44 +135,44 @@
 	position -478, 50, -375
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 800
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 800
 	on_executed
 		´rrrandom_meth´ (delay 0)
 ´enable_area_player_spawn´ ElementToggle 100183
+	elements
+ 		1 ´area_player_spawn´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_spawn´ DISABLED
 ´point_debug_003´ ElementDebug 100003
-	as_subtitle false
+	as_subtitle False
 	debug_string spawned bag
-	show_instigator false
+	show_instigator False
 ´meth_secure_area´ ElementAreaTrigger 100005
 	DISABLED
 	amount 1
 	depth 136
-	height 179,95
+	height 179.95
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position -504, 100, -195
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 201,83
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 201.83
 	on_executed
 		´remove_meth´ (delay 0)
 ´remove_meth´ ElementCarry 100006
@@ -187,10 +187,10 @@
 		´relay´ (delay 0)
 ´toggle_secure_area_on´ ElementToggle 100008
 	TRIGGER TIMES 1
+	elements
+ 		1 ´meth_secure_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´meth_secure_area´ DISABLED
 	on_executed
 		´secure_wp´ (delay 0)
 		´func_enable_unit_001´ (delay 0)
@@ -287,10 +287,10 @@
 		´toggle_lootbag_off_013´ (delay 0)
 ´add001´ ElementCounterOperator 100036
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_meth´
+ 		1 ´counter_meth´
+	instance_var_names
+	operation add
 	on_executed
 		´if_less_than_6´ (delay 0)
 		´if_less_than_10´ (delay 0)
@@ -303,7 +303,7 @@
 ´rrrandom_meth_001´ ElementRandom 100038
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_lootbag_001´ (delay 0)
 		´enable_lootbag_002´ (delay 0)
@@ -312,67 +312,67 @@
 		´enable_lootbag_005´ (delay 0)
 		´enable_lootbag_006´ (delay 0)
 ´if_less_than_6´ ElementCounterFilter 100039
+	elements
+ 		1 ´counter_meth´
 	check_type less_or_equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´counter_meth´
 	on_executed
 		´rrrandom_meth_001´ (delay 0)
 ´rrrandom_meth_002´ ElementRandom 100040
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_lootbag_011´ (delay 0)
 		´enable_lootbag_012´ (delay 0)
 ´rrrandom_meth_004´ ElementRandom 100042
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_lootbag_007´ (delay 0)
 		´enable_lootbag_008´ (delay 0)
 		´enable_lootbag_009´ (delay 0)
 		´enable_lootbag_010´ (delay 0)
 ´if_less_than_10´ ElementCounterFilter 100043
+	elements
+ 		1 ´counter_meth´
 	check_type less_or_equal
 	needed_to_execute all
 	value 10
-	elements
-		1 ´counter_meth´
 	on_executed
 		´if_more_than_6´ (delay 0)
 ´if_more_than_6´ ElementCounterFilter 100044
+	elements
+ 		1 ´counter_meth´
 	check_type greater_than
 	needed_to_execute all
 	value 6
-	elements
-		1 ´counter_meth´
 	on_executed
 		´rrrandom_meth_004´ (delay 0)
 ´if_less_than_12´ ElementCounterFilter 100045
+	elements
+ 		1 ´counter_meth´
 	check_type less_or_equal
 	needed_to_execute all
 	value 12
-	elements
-		1 ´counter_meth´
 	on_executed
 		´if_more_than_10´ (delay 0)
 ´if_more_than_10´ ElementCounterFilter 100046
+	elements
+ 		1 ´counter_meth´
 	check_type greater_than
 	needed_to_execute all
 	value 10
-	elements
-		1 ´counter_meth´
 	on_executed
 		´rrrandom_meth_002´ (delay 0)
 ´if_less_than_013´ ElementCounterFilter 100049
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 13
-	elements
-		1 ´counter_meth´
 	on_executed
 		´enable_lootbag_013´ (delay 0)
 ´secure_meth´ ElementCarry 100050
@@ -381,70 +381,68 @@
 	on_executed
 		´add001´ (delay 0)
 ´toggle_lootbag_off_001´ ElementToggle 100051
+	elements
+ 		1 ´enable_lootbag_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_001´
 ´toggle_lootbag_off_002´ ElementToggle 100052
+	elements
+ 		1 ´enable_lootbag_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_002´
 ´toggle_lootbag_off_003´ ElementToggle 100053
+	elements
+ 		1 ´enable_lootbag_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_003´
 ´toggle_lootbag_off_004´ ElementToggle 100054
+	elements
+ 		1 ´enable_lootbag_004´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_004´
 ´toggle_lootbag_off_005´ ElementToggle 100055
+	elements
+ 		1 ´enable_lootbag_005´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_005´
 ´toggle_lootbag_off_006´ ElementToggle 100056
+	elements
+ 		1 ´enable_lootbag_006´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_006´
 ´toggle_lootbag_off_007´ ElementToggle 100057
+	elements
+ 		1 ´enable_lootbag_007´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_007´
 ´toggle_lootbag_off_008´ ElementToggle 100058
+	elements
+ 		1 ´enable_lootbag_008´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_008´
 ´toggle_lootbag_off_009´ ElementToggle 100059
+	elements
+ 		1 ´enable_lootbag_009´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_009´
 ´toggle_lootbag_off_010´ ElementToggle 100060
+	elements
+ 		1 ´enable_lootbag_010´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_010´
 ´toggle_lootbag_off_011´ ElementToggle 100061
+	elements
+ 		1 ´enable_lootbag_011´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_011´
 ´toggle_lootbag_off_012´ ElementToggle 100062
+	elements
+ 		1 ´enable_lootbag_012´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_lootbag_012´
 ´toggle_lootbag_off_013´ ElementToggle 100063
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_lootbag_013´
+ 		1 ´enable_lootbag_013´
 		2 ´if_less_than_013´
 		3 ´rrrandom_meth_002´
 		4 ´if_more_than_10´
@@ -454,6 +452,8 @@
 		8 ´if_less_than_10´
 		9 ´rrrandom_meth_001´
 		10 ´if_less_than_6´
+	set_trigger_times -1
+	toggle off
 ´meth_escape_area´ ElementAreaTrigger 100048
 	DISABLED
 	TRIGGER TIMES 1
@@ -466,14 +466,14 @@
 	position -872, 29, -278
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150,964
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150.964
 	on_executed
 		´all_in_escape_zone_output´ (delay 2)
 ´meth_secured_output´ ElementInstanceOutput 100065
@@ -495,10 +495,10 @@
 	on_executed
 		´toggle_escape_on´ (delay 0)
 ´toggle_escape_on´ ElementToggle 100068
+	elements
+ 		1 ´meth_escape_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´meth_escape_area´ DISABLED
 	on_executed
 		´enable_escape_marker´ (delay 0)
 ´enable_escape_marker´ ElementUnitSequence 100069
@@ -519,209 +519,209 @@
 		´award_achievement´ (delay 0) DISABLED
 ´secure_wp´ ElementWaypoint 100072
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -504, 100, -195
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´escape_wp´ ElementWaypoint 100073
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -872, 29, -278
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´func_award_achievement_mex2_9´ ElementAwardAchievment 100075
 	achievment mex2_9
-	award_instigator false
+	award_instigator False
 	position 800, 1900, 0
 	rotation 0, 0, 0, -1
 ´point_debug_001´ ElementDebug 100076
-	as_subtitle false
+	as_subtitle False
 	debug_string Achievement MEX2_9 Unlocked!
-	show_instigator false
+	show_instigator False
 ´func_experience_bag_secured´ ElementExperience 100077
 	amount 6000
 ´logic_filter_001´ ElementFilter 100078
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 500, 1900, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´enable´ (delay 0)
 ´play_loc_count_gen_001´ ElementDialogue 100080
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_01
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´bags_secured_001´ ElementCounterFilter 100083
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_001´ (delay 0)
 ´bags_secured_002´ ElementCounterFilter 100084
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_002´ (delay 0) DISABLED
 		´play_loc_count_gen_010´ (delay 0)
 ´bags_secured_003´ ElementCounterFilter 100085
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_003´ (delay 0) DISABLED
 		´play_loc_mex_cook_16´ (delay 0)
 ´bags_secured_004´ ElementCounterFilter 100086
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_004´ (delay 0)
 ´bags_secured_005´ ElementCounterFilter 100087
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_005´ (delay 0)
 ´bags_secured_006´ ElementCounterFilter 100088
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_006´ (delay 0)
 ´bags_secured_007´ ElementCounterFilter 100089
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 7
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_007´ (delay 0)
 ´bags_secured_008´ ElementCounterFilter 100090
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 8
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_008´ (delay 0)
 ´play_loc_count_gen_002´ ElementDialogue 100091
 	DISABLED
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_02
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_003´ ElementDialogue 100092
 	DISABLED
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_03
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_004´ ElementDialogue 100093
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_04
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_005´ ElementDialogue 100094
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_05
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_006´ ElementDialogue 100095
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_06
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_007´ ElementDialogue 100096
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_07
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_008´ ElementDialogue 100097
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_08
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_009´ ElementDialogue 100081
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_09
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_010´ ElementDialogue 100098
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_10
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_011´ ElementDialogue 100099
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_11
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_count_gen_012´ ElementDialogue 100100
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_count_gen_12
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´play_loc_mex_cook_16´ ElementDialogue 100101
-	can_not_be_muted false
+	can_not_be_muted False
 	dialogue Play_loc_mex_cook_16
-	execute_on_executed_when_done false
-	play_on_player_instigator_only false
-	use_instigator false
-	use_position false
+	execute_on_executed_when_done False
+	play_on_player_instigator_only False
+	use_instigator False
+	use_position False
 ´route´ MissionScriptElement 100102
 	on_executed
 		´bags_secured_001´ (delay 0)
@@ -735,27 +735,27 @@
 		´bags_secured_more_than_008´ (delay 0)
 		´bags_secured_more_than_009´ (delay 0)
 ´bags_secured_more_than_008´ ElementCounterFilter 100105
+	elements
+ 		1 ´counter_meth´
 	check_type greater_than
 	needed_to_execute all
 	value 8
-	elements
-		1 ´counter_meth´
 	on_executed
 		´bags_secured_less_than_50´ (delay 0)
 ´bags_secured_less_than_50´ ElementCounterFilter 100106
+	elements
+ 		1 ´counter_meth´
 	check_type less_than
 	needed_to_execute all
 	value 50
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_011´ (delay 0)
 ´bags_secured_more_than_009´ ElementCounterFilter 100107
+	elements
+ 		1 ´counter_meth´
 	check_type equal
 	needed_to_execute all
 	value 50
-	elements
-		1 ´counter_meth´
 	on_executed
 		´play_loc_count_gen_012´ (delay 0)
 ´award_achievement´ MissionScriptElement 100079
@@ -764,60 +764,60 @@
 		´func_award_achievement_mex2_9´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´enable´ ElementToggle 100064
+	elements
+ 		1 ´award_achievement´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´award_achievement´ DISABLED
 ´point_debug_002´ ElementDebug 100103
-	as_subtitle false
+	as_subtitle False
 	debug_string secured 25 bags
-	show_instigator false
+	show_instigator False
 ´logic_counter_trigger_50´ ElementCounterTrigger 100074
 	amount 25
-	trigger_type value
 	elements
-		1 ´counter_meth´
+ 		1 ´counter_meth´
+	trigger_type value
 	on_executed
 		´logic_filter_001´ (delay 0)
 		´point_debug_002´ (delay 0)
 ´point_debug_006´ ElementDebug 100114
-	as_subtitle false
+	as_subtitle False
 	debug_string from exit instance: input_picked_up_meth
-	show_instigator false
+	show_instigator False
 ´add1_2´ ElementCounterOperator 100115
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_bags_picked_up´
+ 		1 ´counter_bags_picked_up´
+	instance_var_names
+	operation add
 	on_executed
 		´greater_than_0´ (delay 0.01)
 ´counter_bags_picked_up´ ElementCounter 100116
 	counter_target 0
 ´greater_than_0´ ElementCounterFilter 100117
+	elements
+ 		1 ´counter_bags_picked_up´
 	check_type greater_than
 	needed_to_execute all
 	value 0
-	elements
-		1 ´counter_bags_picked_up´
 	on_executed
 		´toggle_secure_area_on´ (delay 0)
 		´point_debug_008´ (delay 0)
 ´equal_0´ ElementCounterFilter 100118
+	elements
+ 		1 ´counter_bags_picked_up´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´counter_bags_picked_up´
 	on_executed
 		´toggle_secure_area_on001´ (delay 0)
 		´point_debug_007´ (delay 0)
 ´sub1´ ElementCounterOperator 100119
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´counter_bags_picked_up´
+ 		1 ´counter_bags_picked_up´
+	instance_var_names
+	operation subtract
 	on_executed
 		´equal_0´ (delay 0)
 ´func_enable_unit_001´ ElementEnableUnit 100022
@@ -831,31 +831,31 @@
 	unit_ids
 		1 units/payday2/props/gen_prop_square_drop_marker_2x1/gen_prop_square_drop_marker_2x1/001 (-507.871, 118.648, -281.789)
 ´toggle_secure_area_on001´ ElementToggle 100121
+	elements
+ 		1 ´meth_secure_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´meth_secure_area´ DISABLED
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 		´remove_secure_wp´ (delay 0)
 		´enable_once_again´ (delay 0)
 ´remove_secure_wp´ ElementOperator 100122
-	operation remove
 	elements
-		1 ´secure_wp´
+ 		1 ´secure_wp´
+	operation remove
 ´enable_once_again´ ElementToggle 100123
+	elements
+ 		1 ´toggle_secure_area_on´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´toggle_secure_area_on´
 ´point_debug_007´ ElementDebug 100124
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: equal_0
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100125
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: greater_than_0
-	show_instigator false
+	show_instigator False
 ´relay´ MissionScriptElement 100112
 	on_executed
 		´add1_2´ (delay 0)

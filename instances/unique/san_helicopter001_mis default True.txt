@@ -73,25 +73,25 @@
 		´time_till_helicopter_leaves´ (delay 0)
 ´loot_waypoint´ ElementWaypoint 100028
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´escape_waypoint´ ElementWaypoint 100029
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 350, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_loot_area´ ElementToggle 100030
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´loot_area_coke´ DISABLED
+ 		1 ´loot_area_coke´ DISABLED
 		2 ´loot_area_coke001´ DISABLED
 		3 ´loot_area_sandwich´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´escape_area´ ElementAreaTrigger 100031
 	DISABLED
 	TRIGGER TIMES 1
@@ -104,14 +104,14 @@
 	position 0, 352, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400,197
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400.197
 	on_executed
 		´end_mission´ (delay 2)
 		´Loud Basic´ (delay 0)
@@ -138,10 +138,10 @@
 		´close_heli_doors´ (delay 80)
 		´loot_waypoint´ (delay 0)
 ´enable_escape_area´ ElementToggle 100043
+	elements
+ 		1 ´escape_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´escape_area´ DISABLED
 	on_executed
 		´escape_waypoint´ (delay 0)
 		´show_escape´ (delay 0)
@@ -162,9 +162,9 @@
 	on_executed
 		´mission_ended´ (delay 0)
 ´mission_ended´ ElementDebug 100048
-	as_subtitle false
+	as_subtitle False
 	debug_string mission_ended
-	show_instigator false
+	show_instigator False
 ´close_heli_doors´ ElementUnitSequence 100049
 	position 2400, -175, 275
 	rotation 0, 0, 0, -1
@@ -190,21 +190,21 @@
 	on_executed
 		´disable_loot_and_escape´ (delay 2)
 ´disable_loot_and_escape´ ElementToggle 100050
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´escape_area´ DISABLED
+ 		1 ´escape_area´ DISABLED
 		2 ´loot_area_coke´ DISABLED
 		3 ´loot_area_coke001´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_waypoints´ (delay 0)
 		´heli_hovers´ (delay 0)
 		´next_objective´ (delay 0)
 ´remove_waypoints´ ElementOperator 100051
-	operation remove
 	elements
-		1 ´loot_waypoint´
+ 		1 ´loot_waypoint´
 		2 ´escape_waypoint´
+	operation remove
 ´heli_hovers´ ElementUnitSequence 100052
 	position 2600, -175, 275
 	rotation 0, 0, 0, -1
@@ -251,15 +251,15 @@
 	position 6, -25, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 131
 	rules_element_ids
 		1 ´only_coke´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 131
 	on_executed
 		´secure_loot´ (delay 0)
 		´add_loot_bags´ (delay 0)
@@ -272,15 +272,15 @@
 	position -171, 25, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_stop_001´ ElementStopEffect 100062
+	elements
+ 		1 ´env_effect_play_001´
+		2 ´env_effect_play_002´
+		3 ´env_effect_play_003´
 	operation fade_kill
 	position -275, 25, -100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
-		2 ´env_effect_play_002´
-		3 ´env_effect_play_003´
 ´env_effect_play_002´ ElementPlayEffect 100063
 	base_time 0
 	effect effects/payday2/environment/leaf_winded
@@ -288,7 +288,7 @@
 	position 229, 25, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´env_effect_play_003´ ElementPlayEffect 100064
 	base_time 0
 	effect effects/payday2/environment/leaf_winded
@@ -296,7 +296,7 @@
 	position 4, -525, -100
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´delay_to_play_effects´ MissionScriptElement 100065
 	on_executed
 		´env_effect_play_003´ (delay 0)
@@ -316,21 +316,21 @@
 	DISABLED
 	amount 1
 	depth 190
-	height 24,3962
+	height 24.3962
 	instigator loot
 	instigator_name 
 	interval 0.1
 	position 3, -66, 322
 	radius 580
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 131
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 131
 	on_executed
 		´remove_loot´ (delay 0)
 		´env_effect_play_004´ (delay 0)
@@ -342,47 +342,47 @@
 	position 3, -66, 272
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´oh_fuck´ ElementTeammateComment 100008
-	close_to_element true
+	close_to_element True
 	comment g29
 	position 0, 350, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´oh_fuck001´ ElementTeammateComment 100010
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 0, 350, 250
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´choose_1_fuck´ ElementRandom 100011
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´oh_fuck001´ (delay 0)
 		´oh_fuck´ (delay 0)
 ´bag_secured´ ElementTeammateComment 100012
-	close_to_element true
+	close_to_element True
 	comment p27
 	position 0, 350, 300
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´func_award_achievement_001´ ElementAwardAchievment 100013
 	achievment deer_7
-	award_instigator false
+	award_instigator False
 	position 1100, -475, 275
 	rotation 0, 0, 0, -1
 ´YOU_HAVE_GOTTEN_THE_ACHIEVEMENT!!!!!!!!´ ElementDebug 100014
-	as_subtitle false
+	as_subtitle False
 	debug_string YOU_HAVE_GOTTEN_THE_ACHIEVEMENT!!!!!!!!
-	show_instigator false
+	show_instigator False
 ´only_coke´ ElementInstigatorRule 100015
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -398,15 +398,15 @@
 	position 6, -25, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 131
 	rules_element_ids
 		1 ´only_sandwich´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 131
 	on_executed
 		´secure_loot´ (delay 0)
 		´bag_secured´ (delay 0)
@@ -414,7 +414,7 @@
 		´YOU_HAVE_GOTTEN_THE_ACHIEVEMENT!!!!!!!!´ (delay 0)
 ´only_sandwich´ ElementInstigatorRule 100017
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids

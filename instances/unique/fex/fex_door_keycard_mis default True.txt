@@ -29,25 +29,25 @@
 	on_executed
 		´add_door_blocker´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100014
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -34, 0)
 	operation remove
 	position 900, 100, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -34, 0)
 	on_executed
 		´toggle_OFF_trigger_area´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100015
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -34, 0)
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
 ´open_door´ ElementUnitSequence 100016
 	position 900, 200, 0
 	rotation 0, 0, 0, -1
@@ -158,48 +158,48 @@
 	position 0, 150, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´enable_button´ (delay 0) DISABLED
 ´toggle_OFF_trigger_area´ ElementToggle 100032
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_button_2´ DISABLED
+ 		1 ´enable_button_2´ DISABLED
 		2 ´activate_WP_if_got_keycard_and_obj_active´
 		3 ´WP_cardreader´
 		4 ´disable_button_2´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_cardreader´ (delay 0)
 		´door_opened´ (delay 0)
 ´WP_cardreader´ ElementWaypoint 100008
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -75, -25, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_cardreader´ ElementOperator 100030
+	elements
+ 		1 ´WP_cardreader´
 	operation remove
-	elements
-		1 ´WP_cardreader´
 ´disable_stuff_2´ ElementToggle 100031
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_cardreader´
+ 		1 ´WP_cardreader´
 		2 ´activate_WP_if_got_keycard_and_obj_active´
 		3 ´disable_reader´
 		4 ´enable_reader´
 		5 ´ECM_OFF´
 		6 ´ECM_ON´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_cardreader´ (delay 0)
 ´input_objective_get_keycard_active´ ElementInstanceInput 100033
@@ -229,26 +229,26 @@
 	position 0, 150, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´disable_button´ (delay 0)
 ´toggle_ON_trigger´ ElementToggle 100007
+	elements
+ 		1 ´disable_button_2´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´disable_button_2´ DISABLED
 ´toggle_OFF_trigger´ ElementToggle 100024
+	elements
+ 		1 ´disable_button_2´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´disable_button_2´ DISABLED
 ´input_show_livingroom_details´ ElementInstanceInput 100006
 	event show_livingroom_details
 	on_executed

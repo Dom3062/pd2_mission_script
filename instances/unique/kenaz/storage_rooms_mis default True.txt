@@ -10,9 +10,6 @@
 		´seq_markers_hide´ (delay 0)
 ´func_nav_obstacle_storage_rooms_ADD´ ElementNavObstacle 100056
 	TRIGGER TIMES 1
-	operation add
-	position 545, -891, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -162,9 +159,12 @@
 			guis_id 37
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/040 (150.001, -74.9969, 0.00457764)
+	operation add
+	position 545, -891, 0
+	rotation 0, 0, 0, -1
 ´wp_drill_parts´ ElementWaypoint 100220
 	icon pd2_fix
-	only_in_civilian false
+	only_in_civilian False
 	position -711, -67, 68.4701
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -177,9 +177,9 @@
 	on_executed
 		´wp_drill_parts_REMOVE´ (delay 0)
 ´wp_drill_parts_REMOVE´ ElementOperator 100223
-	operation remove
 	elements
-		1 ´wp_drill_parts´
+ 		1 ´wp_drill_parts´
+	operation remove
 ´input_close_garage_door´ ElementInstanceInput 100105
 	event close_garage_door
 	on_executed
@@ -216,10 +216,10 @@
 			notify_unit_sequence open_doors
 			time 0
 ´seq_gagrage_door_open_OFF´ ElementToggle 100023
+	elements
+ 		1 ´seq_garage_door_open´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_garage_door_open´
 ´input_enable_lootdrop´ ElementInstanceInput 100027
 	event enable_lootdrop
 	on_executed
@@ -258,20 +258,20 @@
 	position 17, -1011, 145.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dir_valid_loot´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´loot_secure´ (delay 0)
 ´dir_valid_loot´ ElementInstigatorRule 100037
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -319,12 +319,12 @@
 				42 weapon
 				43 weapons
 ´trg_loot_drop_OFF´ ElementToggle 100054
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trg_invalid_loot´
+ 		1 ´trg_invalid_loot´
 		2 ´trg_loot_drop´
 		3 ´trg_mandatory_loot´
+	set_trigger_times -1
+	toggle off
 ´loot_secure´ ElementCarry 100055
 	operation secure
 	type_filter none
@@ -354,15 +354,15 @@
 	position 17, -1011, 145.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dir_unknown_loot´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´loot_secure´ (delay 0)
 		´seq_escape_marker_show´ (delay 0)
@@ -378,21 +378,21 @@
 	position -384, -413, 96.4821
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´end_mission´ (delay 0)
 ´trg_escape_ON´ ElementToggle 100061
+	elements
+ 		1 ´trg_escape´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_escape´ DISABLED
 ´end_mission´ MissionScriptElement 100062
 	on_executed
 		´mission_end´ (delay 2)
@@ -403,14 +403,14 @@
 	state success
 ´dir_unknown_loot´ ElementInstigatorRule 100066
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
 				1 unknown
 ´dir_invalid_loot´ ElementInstigatorRule 100070
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -429,15 +429,15 @@
 	position 17, -1011, 145.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dir_invalid_loot´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´respawn_fireworks´ (delay 0)
 		´respawn_winch_part´ (delay 0)
@@ -449,10 +449,10 @@
 	on_executed
 		´seq_close_garage_door_OFF´ (delay 0)
 ´seq_close_garage_door_OFF´ ElementToggle 100079
+	elements
+ 		1 ´seq_close_garage_door´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´seq_close_garage_door´
 ´respawn_fireworks´ ElementCarry 100082
 	operation add_to_respawn
 	type_filter fireworks
@@ -460,38 +460,38 @@
 		´fireworks´ (delay 0)
 ´fireworks´ ElementLootBag 100083
 	carry_id fireworks
-	from_respawn false
+	from_respawn False
 	position 77, -573, 17.4821
 	rotation 0, 0, 0, -1
 ´winch_part´ ElementLootBag 100087
 	carry_id winch_part
-	from_respawn false
+	from_respawn False
 	position -35, -573, 17.4821
 	rotation 0, 0, 0, -1
 ´winch_part_e3´ ElementLootBag 100089
 	carry_id winch_part_e3
-	from_respawn false
+	from_respawn False
 	position 80, -646, 17.4821
 	rotation 0, 0, 0, -1
 ´watertank_full´ ElementLootBag 100090
 	carry_id watertank_full
-	from_respawn false
+	from_respawn False
 	position 80, -717, 17.4821
 	rotation 0, 0, 0, -1
 ´watertank_empty´ ElementLootBag 100092
 	carry_id watertank_empty
-	from_respawn false
+	from_respawn False
 	position -35, -646, 17.4821
 	rotation 0, 0, 0, -1
 ´wp_lootdrop´ ElementWaypoint 100093
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 3, -836, 114.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_escape´ ElementWaypoint 100094
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position -359, -413, 144.482
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -518,8 +518,8 @@
 ´output_mandatory_loot_secured´ ElementInstanceOutput 100100
 	event mandatory_loot_secured
 ´wp_lootdrop_REMOVE´ ElementOperator 100179
-	operation remove
 	elements
-		1 ´wp_lootdrop´
+ 		1 ´wp_lootdrop´
+	operation remove
 ´output_mission_end´ ElementInstanceOutput 100176
 	event mission_end

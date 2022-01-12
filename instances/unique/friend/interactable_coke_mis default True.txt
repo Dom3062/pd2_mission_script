@@ -26,10 +26,10 @@
 	on_executed
 		´turn_on_close_trigger´ (delay 0)
 ´turn_on_close_trigger´ ElementToggle 100007
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´func_sequence_001´ (delay 0)
 ´trigger_area_001´ ElementAreaTrigger 100008
@@ -44,14 +44,14 @@
 	position 0, 0, 62
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´point_waypoint_001´ (delay 0)
 ´set_correct´ ElementInstanceInput 100011
@@ -59,10 +59,10 @@
 	on_executed
 		´turn_on_mic_drop´ (delay 0)
 ´turn_on_mic_drop´ ElementToggle 100012
+	elements
+ 		1 ´show_mic´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´show_mic´ DISABLED
 	on_executed
 		´turn_off_wp_removal´ (delay 0)
 ´show_mic´ ElementEnableUnit 100014
@@ -88,23 +88,23 @@
 	on_executed
 		´turn_off´ (delay 0)
 ´turn_off´ ElementToggle 100019
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+		2 ´enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_area_001´ DISABLED
-		2 ´enable_interaction´ DISABLED
 	on_executed
 		´remove_wp´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100020
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 34.6684
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp´ ElementOperator 100021
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´disable_coke_interaction´ (delay 0)
 ´turn_off_wp_removal´ ElementToggle 100022
@@ -112,7 +112,7 @@
 	toggle off
 ´press_to_interact´ ElementInteraction 100023
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 0,5
 	position 0, 0, 19
 	rotation 0, 0, 0, -1
@@ -128,23 +128,23 @@
 		´remove_wp´ (delay 0)
 		´func_disable_unit_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100027
+	elements
+ 		1 ´enable_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_interaction´ DISABLED
 	on_executed
 		´func_sequence_003´ (delay 0)
 ´logic_operator_001´ ElementOperator 100028
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100029
+	elements
+ 		1 ´press_to_interact´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´press_to_interact´ DISABLED
 	on_executed
 		´found_it´ (delay 0)
 ´func_disable_unit_001´ ElementDisableUnit 100030

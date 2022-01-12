@@ -25,8 +25,8 @@
 	unit_ids
 ´documents_WP´ ElementWaypoint 100011
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -42,20 +42,17 @@
 	on_executed
 		´documents_WP´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100015
+	elements
+ 		1 ´documents_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´documents_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´documents_WP´
+ 		1 ´documents_WP´
+	operation remove
 ´nav_obstacle_add _blockers´ ElementNavObstacle 100017
-	operation add
-	position 800, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -77,3 +74,6 @@
 			guis_id 6
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (-300, 100, 0)
+	operation add
+	position 800, 100, 0
+	rotation 0, 0, 0, -1

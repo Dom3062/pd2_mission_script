@@ -1,12 +1,12 @@
 ´vent´ ElementShape 100001
 	DISABLED
 	depth 156,101
-	height 175,842
+	height 175.842
 	position -100, -86, 200
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 125,4
+	width 125.4
 ´loot_touched´ ElementAreaTrigger 100004
 	amount 1
 	depth 500
@@ -17,15 +17,15 @@
 	position -300, -50, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´vent´ DISABLED
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link´ (delay 0)
 		´teammate_comment_1_bag_in´ (delay 0.5)
@@ -48,21 +48,21 @@
 	on_executed
 		´Start´ (delay 0)
 ´On´ ElementToggle 100010
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´vent´ DISABLED
+ 		1 ´vent´ DISABLED
 		2 ´Finished´ DISABLED
 		3 ´close001´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´open´ (delay 0)
 		´waypoint_secure´ (delay 0)
 ´Off´ ElementToggle 100011
+	elements
+ 		1 ´Finished´ DISABLED
+		2 ´close001´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´Finished´ DISABLED
-		2 ´close001´ DISABLED
 	on_executed
 		´close´ (delay 0)
 ´open´ ElementUnitSequence 100013
@@ -90,19 +90,19 @@
 	on_executed
 		´remove_2´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string secured
-	show_instigator false
+	show_instigator False
 ´waypoint_secure´ ElementWaypoint 100016
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position -100, 6, 182
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_2´ ElementOperator 100017
-	operation remove
 	elements
-		1 ´waypoint_secure´
+ 		1 ´waypoint_secure´
+	operation remove
 	on_executed
 		´timer_finished´ (delay 0)
 ´output_secured´ ElementInstanceOutput 100027
@@ -137,10 +137,8 @@
 	on_executed
 		´Off_2´ (delay 0)
 ´Off_2´ ElementToggle 100023
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_vent´
+ 		1 ´enable_vent´
 		2 ´disable_vent´
 		3 ´Finished´ DISABLED
 		4 ´Start´
@@ -158,12 +156,14 @@
 		16 ´point_debug_001´
 		17 ´output_secured´
 		18 ´vent´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_3´ (delay 0)
 ´remove_3´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´waypoint_secure´
+ 		1 ´waypoint_secure´
+	operation remove
 	on_executed
 		´close001´ (delay 0) DISABLED
 ´close001´ ElementUnitSequence 100018
@@ -178,22 +178,22 @@
 			notify_unit_sequence close_vent_down
 			time 0
 ´Off001´ ElementToggle 100019
+	elements
+ 		1 ´vent´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´vent´ DISABLED
 ´850´ ElementExperience 100025
 	amount 850
 ´teammate_comment_1_bag_in´ ElementTeammateComment 100029
-	close_to_element true
+	close_to_element True
 	comment p27
 	position -100, 6, 132
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100030
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_1_bag_in
-	show_instigator false
+	show_instigator False

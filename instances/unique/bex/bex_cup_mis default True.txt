@@ -1,6 +1,6 @@
 ´take_cup´ ElementInteraction 100001
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, 5, 11
 	rotation 0, 0, 0, -1
@@ -15,10 +15,10 @@
 		´enable_interaction´ (delay 0)
 		´enable_interaction_directional´ (delay 0) DISABLED
 ´logic_toggle_001´ ElementToggle 100005
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´logic_link_001´ (delay 0)
 ´disable_interaction´ ElementInstanceInput 100006
@@ -68,22 +68,22 @@
 	position 0, 0, 2.5
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´play_vlad_vo´ (delay 0)
 ´play_vlad_vo´ ElementInstanceOutput 100010
 	event play_vlad_vo
 ´point_waypoint_001´ ElementWaypoint 100011
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 5, 28.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -91,17 +91,17 @@
 	on_executed
 		´point_waypoint_001´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100013
+	elements
+ 		1 ´logic_link_001´
+		2 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´logic_link_001´
-		2 ´point_waypoint_001´
 	on_executed
 		´logic_operator_001´ (delay 0)
 ´logic_operator_001´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 ´enable_wp´ ElementInstanceInput 100015
 	event enable_wp
 	on_executed
@@ -122,14 +122,14 @@
 			notify_unit_sequence state_interaction_enabled_directional
 			time 0
 ´toggle_on_special_interaction´ ElementToggle 100018
+	elements
+ 		1 ´enable_interaction_directional´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enable_interaction_directional´ DISABLED
 	on_executed
 		´toggle_off_default_interaction´ (delay 0)
 ´toggle_off_default_interaction´ ElementToggle 100019
+	elements
+ 		1 ´enable_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_interaction´

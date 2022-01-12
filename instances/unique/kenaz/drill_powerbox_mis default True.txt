@@ -42,7 +42,7 @@
 ´wp_powerbox´ ElementWaypoint 100005
 	DISABLED
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 40, 0, 151
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -83,40 +83,40 @@
 	on_executed
 		´wp_powersocket_REMOVE´ (delay 0)
 ´wp_powerbox_REMOVE´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´wp_powerbox´ DISABLED
+ 		1 ´wp_powerbox´ DISABLED
+	operation remove
 ´wp_powersocket´ ElementWaypoint 100013
 	DISABLED
 	icon pd2_power
-	only_in_civilian false
+	only_in_civilian False
 	position 15, 0, 139
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_powersocket_REMOVE´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´wp_powersocket´ DISABLED
+ 		1 ´wp_powersocket´ DISABLED
+	operation remove
 	on_executed
 		´power light on´ (delay 0)
 ´so_interrupt_power´ ElementSpecialObjective 100015
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 15864
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
-	allow_followup_self true
+	align_position True
+	align_rotation True
+	allow_followup_self True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -124,12 +124,12 @@
 	pose none
 	position 76, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 5000
 	search_position 126,358 46,1883 2,5
+	SO_access 15864
 	so_action e_so_pull_lever
 	trigger_on none
-	followup_elements
 ´input_start_interrupting´ ElementInstanceInput 100016
 	event start_interrupting
 	on_executed
@@ -147,26 +147,26 @@
 	on_executed
 		´so_interrupt_power_ON´ (delay 0)
 ´so_interrupt_power_ON´ ElementToggle 100020
+	elements
+ 		1 ´so_interrupt_power´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´so_interrupt_power´ DISABLED
 	on_executed
 		´so_interrupt_power´ (delay 0.5) DISABLED
 ´so_trg_interrupt_power_FAIL´ ElementSpecialObjectiveTrigger 100021
+	elements
+ 		1 ´so_interrupt_power´ DISABLED
 	event fail
 	position 275, 700, 800
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt_power´ DISABLED
 	on_executed
 		´interrupt_loop´ (delay 0)
 ´so_trg_interrupt_power_COMPLETE´ ElementSpecialObjectiveTrigger 100022
+	elements
+ 		1 ´so_interrupt_power´ DISABLED
 	event complete
 	position 275, 875, 800
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt_power´ DISABLED
 	on_executed
 		´interrupt_loop´ (delay 0)
 		´power_socket_disconnected´ (delay 0) DISABLED
@@ -208,45 +208,45 @@
 		´loop_and_triggers_OFF´ (delay 0)
 		´wp_powersocket_defend_REMOVE´ (delay 0)
 ´so_interrupt_power_OFF´ ElementToggle 100032
+	elements
+ 		1 ´so_interrupt_power´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´so_interrupt_power´ DISABLED
 ´so_interrupt_power_REMOVE´ ElementOperator 100033
+	elements
+ 		1 ´so_interrupt_power´ DISABLED
 	operation remove
-	elements
-		1 ´so_interrupt_power´ DISABLED
 ´loop_and_triggers_OFF´ ElementToggle 100034
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_trg_interrupt_power_COMPLETE´
+ 		1 ´so_trg_interrupt_power_COMPLETE´
 		2 ´so_trg_interrupt_power_FAIL´
 		3 ´start_interrupting´ DISABLED
 		4 ´interrupt_loop´
 		5 ´try_interrupt´
 		6 ´so_interrupt_power_ON´
+	set_trigger_times -1
+	toggle off
 ´loop_and_triggers_ON´ ElementToggle 100001
 	DISABLED
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´so_trg_interrupt_power_COMPLETE´
+ 		1 ´so_trg_interrupt_power_COMPLETE´
 		2 ´so_trg_interrupt_power_FAIL´
 		3 ´start_interrupting´ DISABLED
 		4 ´interrupt_loop´
 		5 ´try_interrupt´
 		6 ´so_interrupt_power_ON´
+	set_trigger_times -1
+	toggle on
 ´input_open_powerbox´ ElementInstanceInput 100006
 	event open_powerbox
 	on_executed
 		´powerbox_not_opened_yet´ (delay 0)
 		´powerbox_already_opened´ (delay 0) DISABLED
 ´wp_powerbox_OFF´ ElementToggle 100007
+	elements
+ 		1 ´wp_powerbox´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_powerbox´ DISABLED
 ´powerbox_not_opened_yet´ MissionScriptElement 100026
 	on_executed
 		´wp_powerbox´ (delay 0) DISABLED
@@ -257,11 +257,11 @@
 		´use_power_socket´ (delay 0)
 ´powerbox_opened_TOGGLE´ ElementToggle 100028
 	TRIGGER TIMES 1
+	elements
+ 		1 ´powerbox_not_opened_yet´
+		2 ´powerbox_already_opened´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´powerbox_not_opened_yet´
-		2 ´powerbox_already_opened´ DISABLED
 ´use_power_socket´ MissionScriptElement 100029
 	on_executed
 		´seq_power_socket_ENABLE´ (delay 0)
@@ -274,26 +274,26 @@
 		´use_power_socket´ (delay 0)
 ´powerbox_opened_bo_ao´ ElementToggle 100038
 	TRIGGER TIMES 1
+	elements
+ 		1 ´powerbox_opened_bo´
+		2 ´powerbox_opened_ao´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´powerbox_opened_bo´
-		2 ´powerbox_opened_ao´ DISABLED
 ´so_defend´ ElementSpecialObjective 100039
-	SO_access 15868
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude avoid
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -301,24 +301,24 @@
 	pose none
 	position 76, 0, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -150 125 0
+	SO_access 15868
 	so_action AI_defend
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´wp_powersocket_defend´ ElementWaypoint 100040
 	DISABLED
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 15, 0, 139
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_powersocket_defend_REMOVE´ ElementOperator 100041
-	operation remove
 	elements
-		1 ´wp_powersocket_defend´ DISABLED
+ 		1 ´wp_powersocket_defend´ DISABLED
+	operation remove
 ´power light on´ ElementUnitSequence 100042
 	position 525, 375, 800
 	rotation 0, 0, 0, -1
@@ -335,10 +335,8 @@
 		´stop_interrupting´ (delay 0) DISABLED
 		´disable_powershutting_cops´ (delay 0.5)
 ´disable_powershutting_cops´ ElementToggle 100044
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´output_power_socket_disconnected´
+ 		1 ´output_power_socket_disconnected´
 		2 ´so_trg_interrupt_power_COMPLETE´
 		3 ´so_trg_interrupt_power_FAIL´
 		4 ´start_interrupting´ DISABLED
@@ -347,6 +345,8 @@
 		7 ´try_interrupt´
 		8 ´so_interrupt_power_ON´
 		9 ´wp_powersocket_defend´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´wp_powersocket_defend_REMOVE´ (delay 0)
 ´input_hide_powerbox´ ElementInstanceInput 100045
@@ -383,24 +383,24 @@
 			notify_unit_sequence disable_interaction
 			time 0
 ´wps_OFF´ ElementToggle 100047
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´wp_powerbox´ DISABLED
+ 		1 ´wp_powerbox´ DISABLED
 		2 ´wp_powersocket´ DISABLED
 		3 ´wp_powersocket_defend´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´input_show´ ElementInstanceInput 100048
 	event show
 	on_executed
 		´seq_SHOW´ (delay 0)
 ´ON´ ElementToggle 100049
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´wp_powerbox´ DISABLED
+ 		1 ´wp_powerbox´ DISABLED
 		2 ´wp_powersocket´ DISABLED
 		3 ´wp_powersocket_defend´ DISABLED
 		4 ´start_interrupting´ DISABLED
 		5 ´stop_interrupting´ DISABLED
 		6 ´loop_and_triggers_ON´ DISABLED
 		7 ´power_socket_disconnected´ DISABLED
+	set_trigger_times -1
+	toggle on

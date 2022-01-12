@@ -19,24 +19,24 @@
 			notify_unit_sequence activate_door
 			time 0
 ´add_obstacle´ ElementNavObstacle 100011
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15631504792197380394
+			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-60, 7, 0)
 	operation add
 	position -100, -100, 100
 	rotation 0, 0, 0, -1
+´remove_obstacle´ ElementNavObstacle 100012
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 15631504792197380394
 			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-60, 7, 0)
-´remove_obstacle´ ElementNavObstacle 100012
-	TRIGGER TIMES 1
 	operation remove
 	position 0, -100, 100
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 15631504792197380394
-			unit_id units/dev_tools/level_tools/door_blocker/door_blocker/001 (-60, 7, 0)
 	on_executed
 		´disable_swear´ (delay 0)
 ´done_opened´ ElementUnitSequenceTrigger 100013
@@ -51,20 +51,20 @@
 		´disable_SO´ (delay 0)
 		´teammate_comment_hurry´ (delay 0)
 ´SO_gate´ ElementSpecialObjective 100014
-	SO_access 15864
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude engage
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 25
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance hos
 	path_style destination
@@ -72,12 +72,12 @@
 	pose none
 	position -84, -97, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 3000
 	search_position -25 -100 0
+	SO_access 15864
 	so_action e_so_plant_c4_hi
 	trigger_on none
-	followup_elements
 ´set_up_c4´ MissionScriptElement 100016
 	on_executed
 		´hide_c4´ (delay 0)
@@ -95,11 +95,11 @@
 			notify_unit_sequence hide
 			time 0
 ´complete_SO_gate´ ElementSpecialObjectiveTrigger 100020
+	elements
+ 		1 ´SO_gate´
 	event complete
 	position 300, -200, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_gate´
 	on_executed
 		´start_opening´ (delay 0)
 ´start_opening´ MissionScriptElement 100023
@@ -140,14 +140,14 @@
 		´effect_explosion´ (delay 5)
 ´disable_SO´ ElementToggle 100025
 	TRIGGER TIMES 1
+	elements
+ 		1 ´SO_gate´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´SO_gate´
 ´remove_SO´ ElementOperator 100026
-	operation remove
 	elements
-		1 ´SO_gate´
+ 		1 ´SO_gate´
+	operation remove
 ´area_player´ ElementAreaTrigger 100027
 	TRIGGER TIMES 1
 	amount 1
@@ -158,39 +158,39 @@
 	position -25, -250, 125
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´start_swear´ (delay 0)
 ´start_swear´ MissionScriptElement 100028
 	on_executed
 		´teammate_comment_swear´ (delay 0)
 ´teammate_comment_swear´ ElementTeammateComment 100029
-	close_to_element true
+	close_to_element True
 	comment g29
 	position 75, -350, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 	on_executed
 		´teammate_comment_hurry´ (delay 8)
 ´disable_swear´ ElementToggle 100030
+	elements
+ 		1 ´area_player´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_player´
 ´sound_gate_explode´ ElementPlaySound 100031
-	append_prefix false
+	append_prefix False
 	position -82, -42, 187
 	rotation 0, 0, 0, -1
 	sound_event c4_explode_metal
-	use_instigator false
+	use_instigator False
 ´effect_explosion´ ElementPlayEffect 100032
 	base_time 0
 	effect effects/payday2/particles/explosions/shapecharger_explosion
@@ -198,7 +198,7 @@
 	position -81, -42, 147
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´door_already_in_use´ ElementUnitSequenceTrigger 100000
 	TRIGGER TIMES 1
 	sequence_list
@@ -223,9 +223,9 @@
 	on_executed
 		´activate_SO_gate´ (delay 0)
 ´teammate_comment_hurry´ ElementTeammateComment 100021
-	close_to_element true
+	close_to_element True
 	comment g09
 	position 75, -450, 125
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

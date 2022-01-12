@@ -5,7 +5,7 @@
 		´activate_wp´ (delay 0)
 ´interaction_connect_hose´ ElementInteraction 100001
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 5
 	position -14, 81, 64.568
 	rotation 0, 0, 0.707107, -0.707107
@@ -14,14 +14,14 @@
 		´connected_pump´ (delay 0) (alternative interacted)
 ´turn_on_interaction´ ElementToggle 100002
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interaction_connect_hose´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_connect_hose´ DISABLED
 ´WP_connect_hose´ ElementWaypoint 100003
 	icon pd2_water_tap
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 81, 96.568
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -38,9 +38,9 @@
 ´output_connected_hose´ ElementInstanceOutput 100006
 	event connected_hose
 ´remove_WP_hose_interaction´ ElementOperator 100007
-	operation remove
 	elements
-		1 ´WP_connect_hose´
+ 		1 ´WP_connect_hose´
+	operation remove
 ´point_spawn_player_(disabled_by_default)´ ElementPlayerSpawner 100010
 	DISABLED
 	EXECUTE ON STARTUP
@@ -67,21 +67,22 @@
 			time 0
 ´interrupt_none´ ElementSpecialObjective 100016
 	DISABLED
-	SO_access 9700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´interrupt_so´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -89,25 +90,24 @@
 	pose none
 	position 200, 0, 0.00400543
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 2000
 	search_position 200 0 0,00400543
+	SO_access 9700
 	so_action none
 	trigger_on none
-	use_instigator false
-	followup_elements
-		1 ´interrupt_so´
+	use_instigator False
 ´start_interrupt´ MissionScriptElement 100017
 	on_executed
 		´turn_on_interrupt_entities´ (delay 5)
 		´WP_defend´ (delay 1)
 ´turn_on_interrupt_entities´ ElementToggle 100018
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´anim_fail´ DISABLED
+ 		1 ´anim_fail´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_done´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´loop´ (delay 0.5)
 ´loop´ MissionScriptElement 100019
@@ -115,19 +115,19 @@
 		´turn_on_execute_so´ (delay 0) DISABLED
 ´turn_on_execute_so´ ElementToggle 100020
 	DISABLED
+	elements
+ 		1 ´interrupt_none´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_none´ DISABLED
 	on_executed
 		´interrupt_none´ (delay 1) DISABLED
 ´anim_done´ ElementSpecialObjectiveTrigger 100021
 	DISABLED
+	elements
+ 		1 ´interrupt_so´
 	event complete
 	position 400, 1700, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´interrupted´ (delay 0)
 		´seq_enable_interaction´ (delay 0)
@@ -136,38 +136,38 @@
 		´remove_so´ (delay 0)
 ´anim_fail´ ElementSpecialObjectiveTrigger 100022
 	DISABLED
+	elements
+ 		1 ´interrupt_none´ DISABLED
+		2 ´interrupt_so´
 	event fail
 	position 400, 1900, 0
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 ´interrupt_none´ DISABLED
-		2 ´interrupt_so´
 	on_executed
 		´loop´ (delay 5)
 ´remove_so´ ElementOperator 100023
+	elements
+ 		1 ´interrupt_none´ DISABLED
 	operation remove
-	elements
-		1 ´interrupt_none´ DISABLED
 ´turn_off_enteties´ ElementToggle 100024
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_done´ DISABLED
+ 		1 ´anim_done´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_fail´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100025
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 200, -400, 0.0039978
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´trigger_area_001´ ElementAreaTrigger 100026
 	DISABLED
 	TRIGGER TIMES 1
@@ -180,14 +180,14 @@
 	position 200, -250, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 854
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 854
 	on_executed
 		´ai_spawn_enemy_001´ (delay 0)
 		´ai_spawn_enemy_002´ (delay 0)
@@ -204,9 +204,9 @@
 		´WP_fix_generator´ (delay 0)
 		´sound_pump_deactivate´ (delay 0)
 ´point_debug_001´ ElementDebug 100031
-	as_subtitle true
+	as_subtitle True
 	debug_string Locke: "Blerrie! They shut off the generator. Fix it!"
-	show_instigator false
+	show_instigator False
 ´output_pump_interrupted´ ElementInstanceOutput 100033
 	event pump_interrupted
 ´output_fixed_pump´ ElementInstanceOutput 100035
@@ -222,19 +222,19 @@
 		´remove_defend_wp´ (delay 0)
 ´WP_defend´ ElementWaypoint 100038
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 7, 165.568
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_defend_wp´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´WP_defend´
+ 		1 ´WP_defend´
+	operation remove
 ´remove_WP_fix´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´WP_fix_generator´
+ 		1 ´WP_fix_generator´
+	operation remove
 ´input_resume´ ElementInstanceInput 100037
 	event Resume
 	on_executed
@@ -258,14 +258,14 @@
 	on_executed
 		´link_start_pump´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100050
-	operation add
-	position -300, 1100, 0
-	rotation 0, 0, -0.707107, -0.707107
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (-50, -100, 0)
+	operation add
+	position -300, 1100, 0
+	rotation 0, 0, -0.707107, -0.707107
 ´seq_enable_interaction_start_pump´ ElementUnitSequence 100008
 	position -400, 1700, 0
 	rotation 0, 0, -0.707107, -0.707107
@@ -305,40 +305,40 @@
 	rotation 0, 0, -0.707107, -0.707107
 	trigger_list
 ´sound_pump_activate´ ElementPlaySound 100063
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 125
 	rotation 0, 0, 0, -1
 	sound_event water_pump_on
-	use_instigator false
+	use_instigator False
 ´sound_pump_deactivate´ ElementPlaySound 100064
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 50, 125
 	rotation 0, 0, 0, -1
 	sound_event water_pump_off
-	use_instigator false
+	use_instigator False
 ´delay´ MissionScriptElement 100065
 	on_executed
 		´seq_setup´ (delay 0)
 		´func_disable_unit_001´ (delay 0)
 		´seq_stop_da_sound´ (delay 0)
 ´interrupt_so´ ElementSpecialObjective 100057
-	SO_access 9700
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -346,39 +346,39 @@
 	pose none
 	position 200, 0, 100.004
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position 200 0 0,00400543
+	SO_access 9700
 	so_action e_so_container_kick
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100066
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, -400, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100067
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 0, -400, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´link_fixed´ MissionScriptElement 100027
 	on_executed
 		´output_fixed_pump´ (delay 0)
@@ -389,35 +389,35 @@
 		´seq_enable_interaction_start_pump´ (delay 0)
 ´WP_fix_generator´ ElementWaypoint 100029
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 14, 7, 140.568
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_sound_pump_active´ ElementOperator 100052
-	operation remove
 	elements
-		1 ´sound_pump_activate´
+ 		1 ´sound_pump_activate´
+	operation remove
 ´logic_toggle_001´ ElementToggle 100056
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 ´input_enemies_can_interrupt_now´ ElementInstanceInput 100058
 	event enemies_can_interrupt_now
 	on_executed
 		´start_interrupt´ (delay 0)
 		´sound_pump_activate´ (delay 0)
 ´disable_everything´ ElementToggle 100059
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´loop´
+ 		1 ´loop´
 		2 ´anim_fail´ DISABLED
 		3 ´turn_on_execute_so´ DISABLED
 		4 ´anim_done´ DISABLED
 		5 ´seq_enable_interaction´
 		6 ´link_fixed´
+	set_trigger_times -1
+	toggle off
 ´input_show_pump´ ElementInstanceInput 100061
 	event show_pump
 	on_executed
@@ -434,10 +434,10 @@
 	unit_ids
 		1 units/pd2_dlc_cro/ind_ext_water_pump_generator/ind_ext_water_pump_generator/001 (0, 0, 0)
 ´disable_activate_wp´ ElementToggle 100070
+	elements
+ 		1 ´activate_wp´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´activate_wp´
 ´input_activate_waypoint´ ElementInstanceInput 100071
 	event activate_waypoint
 	on_executed
@@ -445,7 +445,7 @@
 		´turn_on_interaction´ (delay 0)
 ´interaction_refill_gasoline´ ElementInteraction 100075
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 3
 	position 23, -25, 100
 	rotation 0, 0, 0.707107, -0.707107
@@ -458,10 +458,10 @@
 		´output_refilled_with_gasoline´ (delay 0)
 		´sound_pump_activate´ (delay 0)
 ´enable_interaction_refill_gasoline´ ElementToggle 100077
+	elements
+ 		1 ´interaction_refill_gasoline´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_refill_gasoline´ DISABLED
 ´input_enable_interaction_gasoline´ ElementInstanceInput 100078
 	event enable_interaction_gasoline
 	on_executed
@@ -474,15 +474,15 @@
 		´seq_sound_stop_2´ (delay 0)
 ´WP_interact_gasoline´ ElementWaypoint 100080
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 50, -25, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_interact_gasoline´ ElementOperator 100081
-	operation remove
 	elements
-		1 ´WP_interact_gasoline´
+ 		1 ´WP_interact_gasoline´
+	operation remove
 ´output_refilled_with_gasoline´ ElementInstanceOutput 100082
 	event refilled_with_gasoline
 ´seq_sound_stop_2´ ElementUnitSequence 100083
@@ -493,13 +493,13 @@
 		´sound_pump_deactivate´ (delay 0)
 		´remove_sound_pump_active´ (delay 0)
 ´point_debug_007´ ElementDebug 100072
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: input_enable_interaction_gasoline
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100073
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: input_resume
-	show_instigator false
+	show_instigator False
 ´input_disable_enemy_interruption´ ElementInstanceInput 100015
 	event disable_enemy_interruption
 	on_executed

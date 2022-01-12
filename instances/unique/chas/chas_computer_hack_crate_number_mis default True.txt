@@ -72,13 +72,13 @@
 		´remove_hack_WP´ (delay 0)
 		´output_hack_done´ (delay 0)
 ´point_debug_001´ ElementDebug 100012
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done
-	show_instigator false
+	show_instigator False
 ´remove_hack_WP´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´hack_WP´
+ 		1 ´hack_WP´
+	operation remove
 	on_executed
 		´seq_power_off´ (delay 0)
 ´add_hack_WP´ MissionScriptElement 100014
@@ -86,8 +86,8 @@
 		´hack_WP´ (delay 0)
 ´hack_WP´ ElementWaypoint 100015
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -50, 75
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -298,9 +298,9 @@
 	on_executed
 		´power_off´ (delay 0)
 ´remove_wp´ ElementOperator 100101
-	operation remove
 	elements
-		1 ´hack_WP´
+ 		1 ´hack_WP´
+	operation remove
 	on_executed
 		´turn_off_wp´ (delay 0)
 ´power_off´ ElementUnitSequence 100102
@@ -322,14 +322,14 @@
 	on_executed
 		´remove_wp´ (delay 0)
 ´turn_off_wp´ ElementToggle 100104
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´hack_WP´
+ 		1 ´hack_WP´
 		2 ´trigger_outline_ON´ DISABLED
 		3 ´ECM_on´ DISABLED
 		4 ´ECM_off´ DISABLED
 		5 ´trigger_outline_OFF´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´enable_pc_wp´ ElementInstanceInput 100105
 	event enable_pc_wp
 	on_executed
@@ -345,33 +345,33 @@
 	position 0, -150, 50
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_enable_outline´ (delay 0)
 ´turns_off´ ElementToggle 100110
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trigger_outline_ON´ DISABLED
+ 		1 ´trigger_outline_ON´ DISABLED
 		2 ´trigger_outline_OFF´ DISABLED
 		3 ´seq_pause_hack´
 		4 ´seq_resume_hack´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´seq_show_main´ (delay 0)
 ´enable_trigger´ ElementToggle 100111
+	elements
+ 		1 ´trigger_outline_ON´ DISABLED
+		2 ´trigger_outline_OFF´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_outline_ON´ DISABLED
-		2 ´trigger_outline_OFF´ DISABLED
 ´hack_started´ ElementUnitSequenceTrigger 100113
 	TRIGGER TIMES 1
 	sequence_list
@@ -443,11 +443,11 @@
 			notify_unit_sequence state_device_resumed
 			time 0
 ´toggle_ECM_jam_on´ ElementToggle 100119
+	elements
+ 		1 ´ECM_on´ DISABLED
+		2 ´ECM_off´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ECM_on´ DISABLED
-		2 ´ECM_off´ DISABLED
 	on_executed
 		´disable_outline_areas´ (delay 0)
 ´link_enable_outline´ MissionScriptElement 100112
@@ -487,21 +487,21 @@
 	position 0, -150, 50
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_exit
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´link_disable_outline´ (delay 0)
 ´point_debug_002´ ElementDebug 100123
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_started
-	show_instigator false
+	show_instigator False
 ´police_called´ ElementGlobalEventTrigger 100009
 	TRIGGER TIMES 1
 	global_event police_called
@@ -511,16 +511,16 @@
 		´toggle_off_interactions´ (delay 0)
 		´power_off´ (delay 0)
 ´toggle_off_interactions´ ElementToggle 100124
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_enable_hack´
+ 		1 ´input_enable_hack´
 		2 ´enable_pc_wp´
 		3 ´link_enable_outline´
 		4 ´link_disable_outline´
 		5 ´hack_started´
 		6 ´trigger_hack_done´
 		7 ´output_hack_done´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´seq_show_blocked_screen´ (delay 0)
 ´hack_finished´ ElementCounter 100125
@@ -553,156 +553,156 @@
 		´seq_show_1st_003´ (delay 0) DISABLED
 ´set_counter_to_1´ ElementCounterOperator 100128
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´hack_finished´
+ 		1 ´hack_finished´
+	instance_var_names
+	operation set
 ´enable_show_number_1st_000´ ElementToggle 100129
+	elements
+ 		1 ´seq_show_1st_000´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_000´ DISABLED
 	on_executed
 		´seq_show_1st_000´ (delay 0) DISABLED
 ´enable_show_number_1st_001´ ElementToggle 100130
+	elements
+ 		1 ´seq_show_1st_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_001´ DISABLED
 	on_executed
 		´seq_show_1st_001´ (delay 0) DISABLED
 ´enable_show_number_1st_002´ ElementToggle 100131
+	elements
+ 		1 ´seq_show_1st_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_002´ DISABLED
 	on_executed
 		´seq_show_1st_002´ (delay 0) DISABLED
 ´enable_show_number_1st_003´ ElementToggle 100132
+	elements
+ 		1 ´seq_show_1st_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_003´ DISABLED
 	on_executed
 		´seq_show_1st_003´ (delay 0) DISABLED
 ´enable_show_number_1st_004´ ElementToggle 100133
+	elements
+ 		1 ´seq_show_1st_004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_004´ DISABLED
 	on_executed
 		´seq_show_1st_004´ (delay 0) DISABLED
 ´enable_show_number_1st_005´ ElementToggle 100134
+	elements
+ 		1 ´seq_show_1st_005´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_005´ DISABLED
 	on_executed
 		´seq_show_1st_005´ (delay 0) DISABLED
 ´enable_show_number_1st_006´ ElementToggle 100135
+	elements
+ 		1 ´seq_show_1st_006´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_006´ DISABLED
 	on_executed
 		´seq_show_1st_006´ (delay 0) DISABLED
 ´enable_show_number_1st_007´ ElementToggle 100136
+	elements
+ 		1 ´seq_show_1st_007´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_007´ DISABLED
 	on_executed
 		´seq_show_1st_007´ (delay 0) DISABLED
 ´enable_show_number_1st_008´ ElementToggle 100137
+	elements
+ 		1 ´seq_show_1st_008´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_008´ DISABLED
 	on_executed
 		´seq_show_1st_008´ (delay 0) DISABLED
 ´enable_show_number_1st_009´ ElementToggle 100138
+	elements
+ 		1 ´seq_show_1st_009´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_1st_009´ DISABLED
 	on_executed
 		´seq_show_1st_009´ (delay 0) DISABLED
 ´enable_show_number_2nd_000´ ElementToggle 100139
+	elements
+ 		1 ´seq_show_2nd_000´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_000´ DISABLED
 	on_executed
 		´seq_show_2nd_000´ (delay 0) DISABLED
 ´enable_show_number_2nd_001´ ElementToggle 100140
+	elements
+ 		1 ´seq_show_2nd_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_001´ DISABLED
 	on_executed
 		´seq_show_2nd_001´ (delay 0) DISABLED
 ´enable_show_number_2nd_002´ ElementToggle 100141
+	elements
+ 		1 ´seq_show_2nd_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_002´ DISABLED
 	on_executed
 		´seq_show_2nd_002´ (delay 0) DISABLED
 ´enable_show_number_2nd_003´ ElementToggle 100142
+	elements
+ 		1 ´seq_show_2nd_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_003´ DISABLED
 	on_executed
 		´seq_show_2nd_003´ (delay 0) DISABLED
 ´enable_show_number_2nd_004´ ElementToggle 100143
+	elements
+ 		1 ´seq_show_2nd_004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_004´ DISABLED
 	on_executed
 		´seq_show_2nd_004´ (delay 0) DISABLED
 ´enable_show_number_2nd_005´ ElementToggle 100144
+	elements
+ 		1 ´seq_show_2nd_005´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_005´ DISABLED
 	on_executed
 		´seq_show_2nd_005´ (delay 0) DISABLED
 ´enable_show_number_2nd_006´ ElementToggle 100145
+	elements
+ 		1 ´seq_show_2nd_006´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_006´ DISABLED
 	on_executed
 		´seq_show_2nd_006´ (delay 0) DISABLED
 ´enable_show_number_2nd_007´ ElementToggle 100146
+	elements
+ 		1 ´seq_show_2nd_007´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_007´ DISABLED
 	on_executed
 		´seq_show_2nd_007´ (delay 0) DISABLED
 ´enable_show_number_2nd_008´ ElementToggle 100147
+	elements
+ 		1 ´seq_show_2nd_008´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_008´ DISABLED
 	on_executed
 		´seq_show_2nd_008´ (delay 0) DISABLED
 ´enable_show_number_2nd_009´ ElementToggle 100148
+	elements
+ 		1 ´seq_show_2nd_009´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_2nd_009´ DISABLED
 	on_executed
 		´seq_show_2nd_009´ (delay 0) DISABLED
 ´set_counter_to_001´ ElementCounterOperator 100149
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´hack_finished_2´
+ 		1 ´hack_finished_2´
+	instance_var_names
+	operation set
 ´seq_show_blocked_screen´ ElementUnitSequence 100152
 	position 2200, 100, 0
 	rotation 0, 0, 0, -1
@@ -994,8 +994,8 @@
 	on_executed
 		´set_counter_to_001´ (delay 0)
 ´disable_outline_areas´ ElementToggle 100016
+	elements
+ 		1 ´trigger_outline_OFF´ DISABLED
+		2 ´trigger_outline_ON´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_outline_OFF´ DISABLED
-		2 ´trigger_outline_ON´ DISABLED

@@ -68,22 +68,22 @@
 	counter_target 0
 ´operator_hack_on´ ElementCounterOperator 100015
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´b_comp_hack_on´
+ 		1 ´b_comp_hack_on´
+	instance_var_names
+	operation set
 ´operator_hack_off´ ElementCounterOperator 100016
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´b_comp_hack_on´
+ 		1 ´b_comp_hack_on´
+	instance_var_names
+	operation set
 ´filter_is_hacking´ ElementCounterFilter 100017
+	elements
+ 		1 ´b_comp_hack_on´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´b_comp_hack_on´
 	on_executed
 		´seq_pause_hack´ (delay 0)
 ´seq_pause_hack´ ElementUnitSequence 100019
@@ -100,18 +100,18 @@
 	counter_target 0
 ´operator_ecm_on´ ElementCounterOperator 100021
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´b_ecm_on´
+ 		1 ´b_ecm_on´
+	instance_var_names
+	operation set
 	on_executed
 		´filter_is_hacking´ (delay 0)
 ´operator_ecm_off´ ElementCounterOperator 100022
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´b_ecm_on´
+ 		1 ´b_ecm_on´
+	instance_var_names
+	operation set
 	on_executed
 		´filter_is_not_hacking´ (delay 0)
 ´instance_start_60s_hack´ ElementInstanceInput 100001
@@ -185,59 +185,59 @@
 ´instance_hack_done´ ElementInstanceOutput 100029
 	event hack_done
 ´filter_ecm_on´ ElementCounterFilter 100030
+	elements
+ 		1 ´b_ecm_on´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´b_ecm_on´
 	on_executed
 		´seq_pause_hack´ (delay 0)
 ´point_debug_001´ ElementDebug 100031
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_jammer_on
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100032
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string ecm_jammer_off
-	show_instigator false
+	show_instigator False
 ´filter_is_not_hacking´ ElementCounterFilter 100035
+	elements
+ 		1 ´b_comp_hack_on´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´b_comp_hack_on´
 	on_executed
 		´seq_enable_interact´ (delay 0)
 ´point_debug_003´ ElementDebug 100036
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_started
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100037
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_restarted
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100038
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_paused
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100039
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done
-	show_instigator false
+	show_instigator False
 ´instance_activate_waypoint´ ElementInstanceInput 100033
 	event enable_waypoint
 	on_executed
 		´computer_WP´ (delay 0)
 ´computer_WP´ ElementWaypoint 100034
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 7.62939E-06, -19, 125
 	rotation 0, 0, 1, -1.19209E-07
 	text_id debug_none
@@ -246,9 +246,9 @@
 	on_executed
 		´link_remove_waypoint´ (delay 0)
 ´remove_waypoint´ ElementOperator 100041
-	operation remove
 	elements
-		1 ´computer_WP´
+ 		1 ´computer_WP´
+	operation remove
 ´link_start_up´ MissionScriptElement 100045
 	EXECUTE ON STARTUP
 	on_executed
@@ -299,12 +299,12 @@
 ´logic_timer´ ElementTimer 100078
 	timer 0
 ´timer_start´ ElementTimerOperator 100079
+	elements
+ 		1 ´logic_timer´
 	operation start
 	position 2900, 0, 0
 	rotation 0, 0, 0, -1
 	time 0
-	elements
-		1 ´logic_timer´
 ´link_time_loop_start´ MissionScriptElement 100067
 	on_executed
 		´point_debug_010´ (delay 0) DISABLED
@@ -317,67 +317,67 @@
 		´add1´ (delay 0)
 ´point_debug_010´ ElementDebug 100069
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string time_loop_started
-	show_instigator false
+	show_instigator False
 ´point_debug_011´ ElementDebug 100081
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string timer_triggered
-	show_instigator false
+	show_instigator False
 ´timer_set_time´ ElementTimerOperator 100082
+	elements
+ 		1 ´logic_timer´
 	operation set_time
 	position 2900, 100, 0
 	rotation 0, 0, 0, -1
 	time 60
-	elements
-		1 ´logic_timer´
 	on_executed
 		´timer_start´ (delay 0)
 ´code_counter´ ElementCounter 100083
 	counter_target 0
 ´code0´ ElementCounterTrigger 100085
 	amount 0
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_001´ (delay 0)
 ´add0´ ElementCounterOperator 100087
 	amount 0
-	operation add
-	instance_var_names
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	instance_var_names
+	operation add
 ´point_debug_012´ ElementDebug 100088
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 0
-	show_instigator false
+	show_instigator False
 ´code1´ ElementCounterTrigger 100089
 	amount 1
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_002´ (delay 0)
 ´point_debug_013´ ElementDebug 100090
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 1
-	show_instigator false
+	show_instigator False
 ´code2´ ElementCounterTrigger 100091
 	amount 2
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_003´ (delay 0)
 ´point_debug_014´ ElementDebug 100092
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 2
-	show_instigator false
+	show_instigator False
 ´link_set_0´ MissionScriptElement 100093
 	on_executed
 		´reset_counter_to_0´ (delay 60)
@@ -388,92 +388,92 @@
 		´link_loop´ (delay 0)
 ´reset_counter_to_0´ ElementCounterOperator 100080
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	instance_var_names
+	operation set
 ´code3´ ElementCounterTrigger 100086
 	amount 3
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_004´ (delay 0)
 ´point_debug_015´ ElementDebug 100095
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 3
-	show_instigator false
+	show_instigator False
 ´code4´ ElementCounterTrigger 100096
 	amount 4
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_005´ (delay 0)
 ´point_debug_016´ ElementDebug 100097
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 4
-	show_instigator false
+	show_instigator False
 ´code5´ ElementCounterTrigger 100098
 	amount 5
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_006´ (delay 0)
 ´point_debug_017´ ElementDebug 100099
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 5
-	show_instigator false
+	show_instigator False
 ´code6´ ElementCounterTrigger 100100
 	amount 6
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_007´ (delay 0)
 ´point_debug_018´ ElementDebug 100101
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 6
-	show_instigator false
+	show_instigator False
 ´code7´ ElementCounterTrigger 100102
 	amount 7
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_008´ (delay 0)
 ´point_debug_019´ ElementDebug 100103
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 7
-	show_instigator false
+	show_instigator False
 ´point_debug_020´ ElementDebug 100104
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 8
-	show_instigator false
+	show_instigator False
 ´code8´ ElementCounterTrigger 100105
 	amount 8
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_counter_009´ (delay 0)
 ´point_debug_021´ ElementDebug 100106
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string counter = 9
-	show_instigator false
+	show_instigator False
 ´code9´ ElementCounterTrigger 100107
 	amount 9
-	trigger_type value
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	trigger_type value
 	on_executed
 		´link_set_0´ (delay 0)
 		´link_counter_010´ (delay 0)
@@ -592,25 +592,23 @@
 			time 0
 ´add1´ ElementCounterOperator 100137
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´code_counter´
+ 		1 ´code_counter´
+	instance_var_names
+	operation add
 ´toggle_OFF_add´ ElementToggle 100138
+	elements
+ 		1 ´add1´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´add1´
 ´toggle_ON_add´ ElementToggle 100139
+	elements
+ 		1 ´add1´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´add1´
 ´toggle_ON_sequences´ ElementToggle 100140
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´func_sequence_001´ DISABLED
+ 		1 ´func_sequence_001´ DISABLED
 		2 ´func_sequence_002´ DISABLED
 		3 ´func_sequence_003´ DISABLED
 		4 ´func_sequence_004´ DISABLED
@@ -620,62 +618,64 @@
 		8 ´func_sequence_007´ DISABLED
 		9 ´func_sequence_008´ DISABLED
 		10 ´func_sequence_009´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´display_current_code´ (delay 0)
 ´logic_counter_filter_000´ ElementCounterFilter 100156
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_000´ (delay 0) DISABLED
 ´logic_counter_filter_001´ ElementCounterFilter 100157
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_001´ (delay 0) DISABLED
 ´logic_counter_filter_002´ ElementCounterFilter 100158
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 2
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_002´ (delay 0) DISABLED
 ´logic_counter_filter_003´ ElementCounterFilter 100159
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 3
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_003´ (delay 0) DISABLED
 ´logic_counter_filter_004´ ElementCounterFilter 100160
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 4
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_004´ (delay 0) DISABLED
 ´logic_counter_filter_007´ ElementCounterFilter 100161
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 7
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_007´ (delay 0) DISABLED
 ´logic_counter_filter_006´ ElementCounterFilter 100162
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 6
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_006´ (delay 0) DISABLED
 ´display_current_code´ MissionScriptElement 100141
@@ -719,15 +719,15 @@
 	position 0, -100, 150
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´seq_enable_interaction´ (delay 0)
 ´exit_area´ ElementAreaTrigger 100144
@@ -741,56 +741,56 @@
 	position 0, -100, 150
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_exit
-	use_disabled_shapes false
-	width 400
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´seq_disable_interaction_2´ (delay 0)
 ´toggle_OFF_triggers´ ElementToggle 100146
+	elements
+ 		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enter_area´ DISABLED
-		2 ´exit_area´ DISABLED
 ´input_start_code_loop´ ElementInstanceInput 100145
 	event start_code_loop
 	on_executed
 		´link_first_trigger´ (delay 0)
 ´logic_counter_filter_005´ ElementCounterFilter 100147
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_005´ (delay 0) DISABLED
 ´logic_counter_filter_009´ ElementCounterFilter 100148
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 9
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_009´ (delay 0) DISABLED
 ´logic_counter_filter_008´ ElementCounterFilter 100149
+	elements
+ 		1 ´code_counter´
 	check_type equal
 	needed_to_execute all
 	value 8
-	elements
-		1 ´code_counter´
 	on_executed
 		´func_sequence_008´ (delay 0) DISABLED
 ´point_debug_007´ ElementDebug 100151
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string hack_done
-	show_instigator false
+	show_instigator False
 ´func_sequence_001´ ElementUnitSequence 100002
 	DISABLED
 	position 4300, -300, 0
@@ -862,11 +862,11 @@
 			notify_unit_sequence state_show_timer
 			time 0
 ´toggle_OFF_trigger_areas´ ElementToggle 100070
+	elements
+ 		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enter_area´ DISABLED
-		2 ´exit_area´ DISABLED
 ´func_sequence_000´ ElementUnitSequence 100042
 	DISABLED
 	position 4200, -300, 0
@@ -951,14 +951,14 @@
 	on_executed
 		´toggle_OFF_trigger_areas´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100074
+	elements
+ 		1 ´instance_activate_waypoint´
+		2 ´computer_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´instance_activate_waypoint´
-		2 ´computer_WP´
 ´toggle_ON_trigger_areas´ ElementToggle 100075
+	elements
+ 		1 ´enter_area´ DISABLED
+		2 ´exit_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´enter_area´ DISABLED
-		2 ´exit_area´ DISABLED

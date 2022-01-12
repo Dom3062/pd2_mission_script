@@ -9,9 +9,6 @@
 	on_executed
 		´start_explosion´ (delay 0)
 ´func_nav_obstacle_001´ ElementNavObstacle 100008
-	operation remove
-	position 200, -2800, 681.813
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -21,15 +18,15 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (400, 3.57628E-05, -1.23954)
+	operation remove
+	position 200, -2800, 681.813
+	rotation 0, 0, 0, -1
 ´start´ MissionScriptElement 100009
 	EXECUTE ON STARTUP
 	BASE DELAY 3
 	on_executed
 		´func_nav_obstacle_002´ (delay 0)
 ´func_nav_obstacle_002´ ElementNavObstacle 100010
-	operation add
-	position 0, -2700, 681.813
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -39,6 +36,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (400, 3.57628E-05, -1.23954)
+	operation add
+	position 0, -2700, 681.813
+	rotation 0, 0, 0, -1
 ´func_sequence_001´ ElementUnitSequence 100000
 	position 200, -2700, 681.813
 	rotation 0, 0, 0, -1
@@ -58,7 +58,7 @@
 	position 400, 0, 157.546
 	random_time 0
 	rotation 0, 0, 0.707107, -0.707107
-	screen_space false
+	screen_space False
 	on_executed
 		´enable´ (delay 0)
 ´area_player_near_exploded_wall´ ElementAreaTrigger 100002
@@ -72,48 +72,48 @@
 	position 400, 0, 150
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 1200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 1200
 	on_executed
 		´teammate_comment_right_there´ (delay 0)
 ´enable´ ElementToggle 100005
+	elements
+ 		1 ´area_player_near_exploded_wall´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_near_exploded_wall´ DISABLED
 ´teammate_comment_come_on´ ElementTeammateComment 100013
-	close_to_element false
+	close_to_element False
 	comment g13
 	position 400, -300, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_002´ (delay 0)
 ´teammate_comment_right_there´ ElementTeammateComment 100014
-	close_to_element false
+	close_to_element False
 	comment g15
 	position 400, -200, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´teammate_comment_come_on´ (delay 5)
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100012
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_right_there
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string teammate_comment_come_on
-	show_instigator false
+	show_instigator False
 ´point_feedback_001´ ElementFeedback 100016
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -131,8 +131,8 @@
 	rumble_peak 1
 	rumble_release 2,1
 	rumble_sustain 0,3
-	use_camera_shake true
-	use_rumble false
+	use_camera_shake True
+	use_rumble False
 ´point_explosion_damage_001´ ElementExplosionDamage 100017
 	damage 100
 	position 400, 0, 119.546

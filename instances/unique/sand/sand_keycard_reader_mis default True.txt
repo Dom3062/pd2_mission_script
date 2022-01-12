@@ -35,22 +35,22 @@
 		´toggle_OFF_WP´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100007
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´toggle_OFF_WP´ ElementToggle 100011
+	elements
+ 		1 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_001´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100012
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´output_keycard_used´ (delay 0)
 ´input_enable_goto_WP´ ElementInstanceInput 100013

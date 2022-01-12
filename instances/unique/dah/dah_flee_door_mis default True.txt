@@ -8,15 +8,15 @@
 	position 100, 500, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 5
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100001
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 5
 	on_executed
 		´if_closed´ (delay 0) (alternative enter)
 		´if_open_and_empty´ (delay 0.5) (alternative leave)
@@ -29,22 +29,22 @@
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 222,65
+	width 222.65
 ´if_closed´ ElementCounterFilter 100003
+	elements
+ 		1 ´closed_bool´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´closed_bool´
 	on_executed
 		´open_door´ (delay 0)
 ´if_open_and_empty´ ElementCounterFilter 100004
+	elements
+ 		1 ´closed_bool´
+		2 ´dudes_in_trigger´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´closed_bool´
-		2 ´dudes_in_trigger´
 	on_executed
 		´close_door´ (delay 0)
 ´close_door´ ElementUnitSequence 100005
@@ -73,34 +73,34 @@
 		´set_false´ (delay 0.05)
 ´set_false´ ElementCounterOperator 100007
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´closed_bool´
+ 		1 ´closed_bool´
+	instance_var_names
+	operation set
 ´closed_bool´ ElementCounter 100008
 	counter_target 1
 ´set_true´ ElementCounterOperator 100009
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´closed_bool´
+ 		1 ´closed_bool´
+	instance_var_names
+	operation set
 ´add_1´ ElementCounterOperator 100010
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´dudes_in_trigger´
+ 		1 ´dudes_in_trigger´
+	instance_var_names
+	operation add
 	on_executed
 		´point_debug_001´ (delay 0)
 ´dudes_in_trigger´ ElementCounter 100011
 	counter_target 0
 ´reduce_1´ ElementCounterOperator 100012
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´dudes_in_trigger´
+ 		1 ´dudes_in_trigger´
+	instance_var_names
+	operation subtract
 	on_executed
 		´point_debug_002´ (delay 0)
 ´trigger_area_report_002´ ElementAreaReportTrigger 100013
@@ -113,15 +113,15 @@
 	position 200, 500, 100
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 5
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
 	unit_ids
 		1 100001
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 5
 	on_executed
 		´if_closed´ (delay 0) (alternative enter)
 		´if_open_and_empty´ (delay 0.5) (alternative leave)
@@ -131,10 +131,10 @@
 	DISABLED
 	EXECUTE ON STARTUP
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string add1
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100016
-	as_subtitle false
+	as_subtitle False
 	debug_string reduce1
-	show_instigator false
+	show_instigator False

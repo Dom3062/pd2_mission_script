@@ -9,15 +9,15 @@
 	position 0, -900, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on both
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´func_kill_zone_002´ (delay 0)
 ´env_effect_play_001´ ElementPlayEffect 100001
@@ -27,7 +27,7 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´start_fire´ ElementInstanceInput 100002
 	event start_fire
 	on_executed
@@ -41,36 +41,36 @@
 		´45sec_delay´ (delay 0)
 		´green_fire´ (delay 0)
 ´activate_dmg_trigger_area´ ElementToggle 100005
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´dmg_area´ DISABLED
+ 		1 ´dmg_area´ DISABLED
 		2 ´dmg_area_enter´ DISABLED
 		3 ´loop´
 		4 ´1sec´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´loop´ (delay 0.2)
 ´env_effect_stop_001´ ElementStopEffect 100007
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position 0, -1300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´deactivate_dmg_trigger_area´ (delay 1)
 ´deactivate_dmg_trigger_area´ ElementToggle 100008
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´dmg_area´ DISABLED
+ 		1 ´dmg_area´ DISABLED
 		2 ´dmg_area_enter´ DISABLED
 		3 ´loop´
 		4 ´1sec´
+	set_trigger_times -1
+	toggle off
 ´point_shape_001´ ElementShape 100012
 	depth 700
-	height 225,261
+	height 225.261
 	position 0, 0, 100
-	radius 317,5
+	radius 317.5
 	rotation 0, 0, 0, -1
 	shape_type cylinder
 	width 700
@@ -80,19 +80,19 @@
 		´env_effect_stop_001´ (delay 0)
 		´green_fire_stop´ (delay 0)
 ´green_fire´ ElementPlaySound 100010
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 75
 	rotation 0, 0, 0, -1
 	sound_event hlp_green_fire
-	use_instigator false
+	use_instigator False
 ´green_fire_stop´ ElementPlaySound 100011
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 0, 75
 	rotation 0, 0, 0, -1
 	sound_event hlp_green_fire_stop
-	use_instigator false
+	use_instigator False
 ´func_kill_zone_002´ ElementKillZone 100014
 	position 0, -1000, 0
 	rotation 0, 0, 0, -1
@@ -113,15 +113,15 @@
 	position -75, -900, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 ´loop´ MissionScriptElement 100015
 	on_executed
 		´1sec´ (delay 0)

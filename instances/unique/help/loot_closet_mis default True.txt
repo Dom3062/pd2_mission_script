@@ -5,18 +5,18 @@
 	position 125, 2.84124E-05, 120
 	random_time 0
 	rotation 0, 0, -1.06581E-14, -1
-	screen_space false
+	screen_space False
 ´stop_fx´ ElementStopEffect 100003
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position -200, 450, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´close_2´ (delay 0)
 ´coke_001´ ElementLootBag 100006
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 75, 0, 100
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -108,10 +108,8 @@
 	on_executed
 		´hide´ (delay 0.5)
 ´ON´ ElementToggle 100034
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´close´ DISABLED
+ 		1 ´close´ DISABLED
 		2 ´link_3´ DISABLED
 		3 ´spawn_loot_1´
 		4 ´spawn_1_bag´
@@ -120,13 +118,13 @@
 		7 ´spawn_1_loot_bag´
 		8 ´pick_bag´
 		9 ´close_3´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´open_2´ (delay 0)
 ´OFF´ ElementToggle 100035
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´close´ DISABLED
+ 		1 ´close´ DISABLED
 		2 ´link_3´ DISABLED
 		3 ´link_4´ DISABLED
 		4 ´spawn_1_bag´
@@ -136,6 +134,8 @@
 		8 ´add 1´
 		9 ´pick_bag´
 		10 ´close_3´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´stop_fx´ (delay 0)
 ´show001´ ElementEnableUnit 100037
@@ -155,7 +155,7 @@
 		´ON_2´ (delay 0)
 ´coke_002´ ElementLootBag 100038
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 75, 0, 125
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -164,7 +164,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_003´ ElementLootBag 100041
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 75, 0, 150
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -173,7 +173,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_004´ ElementLootBag 100042
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 75, 0, 175
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -182,7 +182,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_005´ ElementLootBag 100043
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 75, 0, 75
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -191,7 +191,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_006´ ElementLootBag 100044
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 0, 75
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -200,7 +200,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_007´ ElementLootBag 100045
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 0, 100
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -209,7 +209,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_008´ ElementLootBag 100046
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 0, 125
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -218,7 +218,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_009´ ElementLootBag 100047
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 0, 150
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -227,7 +227,7 @@
 		´something_spawns_from_door´ (delay 0)
 ´coke_010´ ElementLootBag 100048
 	carry_id cloaker_gold
-	from_respawn false
+	from_respawn False
 	position 100, 0, 175
 	push_multiplier 1
 	rotation 0, 0, 0, -1
@@ -235,18 +235,18 @@
 	on_executed
 		´something_spawns_from_door´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100049
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -25, 0, 125
 	rotation 0, 0, 0, -1
 	sound_event bell_ring
-	use_instigator false
+	use_instigator False
 ´spawn_loot_1´ ElementCounterFilter 100000
+	elements
+ 		1 ´how_man_bags_alive´
 	check_type equal
 	needed_to_execute all
 	value 5
-	elements
-		1 ´how_man_bags_alive´
 	on_executed
 		´spawn_1_bag´ (delay 0)
 ´how_man_bags_alive´ ElementCounter 100082
@@ -256,10 +256,10 @@
 		´5´ (delay 0)
 ´5´ ElementCounterOperator 100088
 	amount 5
-	operation set
-	instance_var_names
 	elements
-		1 ´how_man_bags_alive´
+ 		1 ´how_man_bags_alive´
+	instance_var_names
+	operation set
 ´Start_Loot´ MissionScriptElement 100092
 	BASE DELAY 1
 	on_executed
@@ -272,25 +272,25 @@
 	on_executed
 		´open_3´ (delay 0)
 ´OFF_2´ ElementToggle 100094
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´Start_Loot´
+ 		1 ´Start_Loot´
 		2 ´env_effect_play_001´
 		3 ´ghost_start´
 		4 ´ghost_stop´
 		5 ´show_waypoint´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´ON_3´ (delay 0)
 ´ON_2´ ElementToggle 100095
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´Start_Loot´
+ 		1 ´Start_Loot´
 		2 ´env_effect_play_001´
 		3 ´ghost_start´
 		4 ´ghost_stop´
 		5 ´show_waypoint´
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´set 0´ (delay 0)
 ´something_spawns_from_door´ MissionScriptElement 100050
@@ -298,12 +298,12 @@
 		´point_play_sound_001´ (delay 0)
 ´delete_bag001´ ElementShape 100072
 	depth 105,823
-	height 39,3772
+	height 39.3772
 	position 100, 0, 7
 	radius 250
 	rotation 0, 0, 0, -1
 	shape_type box
-	width 169,725
+	width 169.725
 ´bag_removal´ ElementAreaReportTrigger 100073
 	amount 1
 	depth 500
@@ -314,15 +314,15 @@
 	position 50, 350, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´delete_bag001´
-	use_shape_element_ids
 	unit_ids
 		1 100072
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´func_carry_001´ (delay 0) (alternative enter)
 ´func_carry_001´ ElementCarry 100074
@@ -339,10 +339,8 @@
 	on_executed
 		´OFF_3´ (delay 0)
 ´OFF_3´ ElementToggle 100077
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´door_closed´
+ 		1 ´door_closed´
 		2 ´door_opened´
 		3 ´open_door´
 		4 ´close_door´
@@ -376,6 +374,8 @@
 		32 ´coke_010´
 		33 ´set 0´
 		34 ´ghost_start´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´close_3´ (delay 0) DISABLED
 		´stop_fx001´ (delay 0)
@@ -397,11 +397,11 @@
 			notify_unit_sequence 2_disable_interaction
 			time 0
 ´stop_fx001´ ElementStopEffect 100097
+	elements
+ 		1 ´env_effect_play_001´
 	operation fade_kill
 	position -200, 750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´env_effect_play_001´
 	on_executed
 		´glow´ (delay 1.15)
 ´glow´ ElementDisableUnit 100098
@@ -414,20 +414,20 @@
 		´remove_3´ (delay 0)
 ´add 1´ ElementCounterOperator 100100
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´bags_in_level´
+ 		1 ´bags_in_level´
+	instance_var_names
+	operation add
 	on_executed
 		´spawn_1_loot_bag´ (delay 0)
 ´bags_in_level´ ElementCounter 100103
 	counter_target 0
 ´subtract 1´ ElementCounterOperator 100104
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´bags_in_level´
+ 		1 ´bags_in_level´
+	instance_var_names
+	operation subtract
 	on_executed
 		´Start_Loot´ (delay 0.25)
 ´loot_secured´ ElementInstanceInput 100105
@@ -435,11 +435,11 @@
 	on_executed
 		´link_3´ (delay 0) DISABLED
 ´5_2´ ElementCounterFilter 100107
+	elements
+ 		1 ´bags_in_level´
 	check_type less_than
 	needed_to_execute all
 	value 5
-	elements
-		1 ´bags_in_level´
 	on_executed
 		´add 1´ (delay 0)
 ´spawn_1_loot_bag´ MissionScriptElement 100099
@@ -449,7 +449,7 @@
 ´pick_bag´ ElementRandom 100101
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´coke_004´ (delay 0)
 		´coke_010´ (delay 0)
@@ -463,10 +463,10 @@
 		´coke_006´ (delay 0)
 ´set 0´ ElementCounterOperator 100012
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´bags_in_level´
+ 		1 ´bags_in_level´
+	instance_var_names
+	operation set
 	on_executed
 		´remove_2´ (delay 0)
 ´link_3´ MissionScriptElement 100051
@@ -478,40 +478,40 @@
 	on_executed
 		´bag_accidentally_removed´ (delay 0)
 ´ON_3´ ElementToggle 100053
+	elements
+ 		1 ´link_4´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_4´ DISABLED
 ´bag_accidentally_removed´ ElementInstanceOutput 100054
 	event bag_accidentally_removed
 ´ghost_start´ ElementPlaySound 100055
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -25, 0, 125
 	rotation 0, 0, 0, -1
 	sound_event hlp_bag_door_loop_start
-	use_instigator false
+	use_instigator False
 ´ghost_stop´ ElementPlaySound 100056
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -25, 0, 125
 	rotation 0, 0, 0, -1
 	sound_event hlp_bag_door_loop_stop
-	use_instigator false
+	use_instigator False
 ´remove´ ElementWaypoint 100004
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position -25, 0, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_2´ ElementOperator 100005
-	operation remove
 	elements
-		1 ´remove´
+ 		1 ´remove´
+	operation remove
 ´remove_3´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´remove´
+ 		1 ´remove´
+	operation remove
 ´show_waypoint´ MissionScriptElement 100016
 	on_executed
 		´remove´ (delay 0)

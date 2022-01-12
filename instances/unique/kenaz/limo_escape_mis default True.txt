@@ -43,13 +43,13 @@
 		´point_debug_001´ (delay 0)
 ´wp_silent_escape´ ElementWaypoint 100006
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 1606.59, 5116.74, 225
 	rotation 0, 0, 0.382683, -0.92388
 	text_id debug_none
 ´wp_silent_lootdrop´ ElementWaypoint 100007
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 1323.74, 4833.9, 125
 	rotation 0, 0, 0.382683, -0.92388
 	text_id debug_none
@@ -65,14 +65,14 @@
 	position 1606.59, 5116.74, 0
 	radius 250
 	rotation 0, 0, 0.382683, -0.92388
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´escape´ (delay 0)
 ´trg_silent_lootdrop´ ElementAreaTrigger 100009
@@ -85,15 +85,15 @@
 	position 1330.11, 4840.26, 78
 	radius 250
 	rotation 0, 0, 0.382683, -0.92388
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 125
 	rules_element_ids
 		1 ´data_instigator_rule_002´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 125
 	on_executed
 		´secure_loot´ (delay 0)
 ´input_enable_lootdrop´ ElementInstanceInput 100010
@@ -109,11 +109,11 @@
 		´seq_limo_silent_ENABLE_INTERACTION´ (delay 0)
 		´logic_link_003´ (delay 0) DISABLED
 ´trg_silent_lootdrop_ON´ ElementToggle 100012
+	elements
+ 		1 ´trg_silent_lootdrop´
+		2 ´trg_silent_mandatory_lootdrop´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_silent_lootdrop´
-		2 ´trg_silent_mandatory_lootdrop´
 ´secure_loot´ MissionScriptElement 100014
 	on_executed
 		´secure_all´ (delay 0.1)
@@ -139,17 +139,17 @@
 		´seq_loud_limo_open_doors_and_show_escape_marker´ (delay 1) DISABLED
 		´seq_silent_limo_open_doors_and_show_escape_marker´ (delay 1) DISABLED
 ´wp_lootdrop_REMOVE´ ElementOperator 100024
-	operation remove
 	elements
-		1 ´wp_silent_lootdrop´
+ 		1 ´wp_silent_lootdrop´
+	operation remove
 ´output_mandatory_loot_secured´ ElementInstanceOutput 100025
 	event mandatory_loot_secured
 ´trg_silent_escape_ON´ ElementToggle 100026
+	elements
+ 		1 ´trg_silent_escape´ DISABLED
+		2 ´seq_silent_limo_open_doors_and_show_escape_marker´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_silent_escape´ DISABLED
-		2 ´seq_silent_limo_open_doors_and_show_escape_marker´ DISABLED
 ´seq_silent_limo_open_doors_and_show_escape_marker´ ElementUnitSequence 100027
 	DISABLED
 	position -25, 275, 800
@@ -196,9 +196,9 @@
 	rotation 0, 0, 0, -1
 	state success
 ´pd_mission_end´ ElementDebug 100030
-	as_subtitle true
+	as_subtitle True
 	debug_string MISSION END
-	show_instigator false
+	show_instigator False
 ´seq_limo_close_trunk´ ElementUnitSequence 100031
 	position 175, 325, 800
 	rotation 0, 0, 0, -1
@@ -324,29 +324,27 @@
 	position 1207.41, 3821.81, 78
 	radius 250
 	rotation 0, 0, 0.965926, -0.258819
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 125
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 125
 	on_executed
 		´secure_loot´ (delay 0)
 ´trg_loud_lootdrop_ON´ ElementToggle 100042
+	elements
+ 		1 ´trg_loud_lootdrop´
+		2 ´trg_loud_mandatory_lootdrop´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_loud_lootdrop´
-		2 ´trg_loud_mandatory_lootdrop´
 ´silent_loud_TOGGLE´ ElementToggle 100043
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle toggle
 	elements
-		1 ´trg_silent_lootdrop_ON´
+ 		1 ´trg_silent_lootdrop_ON´
 		2 ´wp_loud_escape´ DISABLED
 		3 ´wp_loud_lootdrop´ DISABLED
 		4 ´wp_silent_escape´
@@ -358,17 +356,19 @@
 		10 ´logic_link_002´
 		11 ´logic_link_001´ DISABLED
 		12 ´logic_link_003´ DISABLED
+	set_trigger_times -1
+	toggle toggle
 ´wp_loud_lootdrop´ ElementWaypoint 100044
 	DISABLED
 	icon pd2_lootdrop
-	only_in_civilian false
+	only_in_civilian False
 	position 1174.99, 3831.96, 128
 	rotation 0, 0, 0.965926, -0.258819
 	text_id debug_none
 ´wp_loud_escape´ ElementWaypoint 100045
 	DISABLED
 	icon pd2_escape
-	only_in_civilian false
+	only_in_civilian False
 	position 1348.49, 3531.45, 221
 	rotation 0, 0, 0.965926, -0.258819
 	text_id debug_none
@@ -396,11 +396,11 @@
 			notify_unit_sequence anim_door_front_right_open
 			time 0
 ´trg_loud_escape_ON´ ElementToggle 100048
+	elements
+ 		1 ´trg_loud_escape´ DISABLED
+		2 ´seq_loud_limo_open_doors_and_show_escape_marker´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_loud_escape´ DISABLED
-		2 ´seq_loud_limo_open_doors_and_show_escape_marker´ DISABLED
 ´trg_loud_escape´ ElementAreaTrigger 100049
 	DISABLED
 	TRIGGER TIMES 1
@@ -413,14 +413,14 @@
 	position 1375.26, 3493.41, 100
 	radius 250
 	rotation 0, 0, 0.965926, -0.258819
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´escape´ (delay 0)
 ´input_loud_entry_with_c4´ ElementInstanceInput 100054
@@ -467,13 +467,13 @@
 			time 0
 ´wp_c4_bag_01´ ElementWaypoint 100058
 	icon pd2_loot
-	only_in_civilian false
+	only_in_civilian False
 	position 1429.15, 3320.74, 106
 	rotation 0, 0, 0.965926, 0.258819
 	text_id debug_none
 ´wp_c4_bag_02´ ElementWaypoint 100059
 	icon pd2_loot
-	only_in_civilian false
+	only_in_civilian False
 	position 1447, 3289.65, 106
 	rotation 0, 0, 0.965926, 0.258819
 	text_id debug_none
@@ -507,13 +507,13 @@
 ´output_c4_taken´ ElementInstanceOutput 100064
 	event C4_taken
 ´wp_c4_bag_01_REMOVE´ ElementOperator 100065
-	operation remove
 	elements
-		1 ´wp_c4_bag_01´
+ 		1 ´wp_c4_bag_01´
+	operation remove
 ´wp_c4_bag_02_REMOVE´ ElementOperator 100066
-	operation remove
 	elements
-		1 ´wp_c4_bag_02´
+ 		1 ´wp_c4_bag_02´
+	operation remove
 ´logic_operator_001´ ElementOperator 100067
 	operation none
 ´input_remove_WP´ ElementInstanceInput 100069
@@ -523,11 +523,11 @@
 		´wp_c4_bag_02_REMOVE´ (delay 0)
 		´wp_c4_bags_OFF´ (delay 0)
 ´wp_c4_bags_OFF´ ElementToggle 100070
+	elements
+ 		1 ´wp_c4_bag_01´
+		2 ´wp_c4_bag_02´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´wp_c4_bag_01´
-		2 ´wp_c4_bag_02´
 ´trg_silent_mandatory_lootdrop´ ElementAreaTrigger 100016
 	TRIGGER TIMES 1
 	amount 1
@@ -539,15 +539,15 @@
 	position 1330.11, 4840.26, 78
 	radius 250
 	rotation 0, 0, 0.382683, -0.92388
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 125
 	rules_element_ids
 		1 ´dtr_loot_unknown´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 125
 	on_executed
 		´mandatory_loot_secured´ (delay 0)
 ´trg_loud_mandatory_lootdrop´ ElementAreaTrigger 100017
@@ -561,35 +561,35 @@
 	position 1204.81, 3820.31, 78
 	radius 250
 	rotation 0, 0, 0.965926, -0.258819
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 125
 	rules_element_ids
 		1 ´dtr_loot_unknown_2´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 125
 	on_executed
 		´mandatory_loot_secured´ (delay 0)
 ´dtr_loot_unknown´ ElementInstigatorRule 100019
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
 				1 unknown
 ´dtr_loot_unknown_2´ ElementInstigatorRule 100020
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
 				1 unknown
 ´pd_mandatory_loot_secured´ ElementDebug 100021
-	as_subtitle false
+	as_subtitle False
 	debug_string mandatory_loot_secured
-	show_instigator false
+	show_instigator False
 ´seq_limo_add_lootbag´ ElementUnitSequence 100051
 	position 175, 100, 802.5
 	rotation 0, 0, 0, -1
@@ -608,7 +608,7 @@
 			time 0
 ´data_instigator_rule_001´ ElementInstigatorRule 100052
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -658,7 +658,7 @@
 				44 weapons
 ´data_instigator_rule_002´ ElementInstigatorRule 100053
 	instigator loot
-	invert false
+	invert False
 	rules
 		loot
 			carry_ids
@@ -778,15 +778,15 @@
 	on_executed
 		´toggle_trg_dropoff´ (delay 10)
 ´toggle_trg_dropoff´ ElementToggle 100089
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´trg_loud_lootdrop´
+ 		1 ´trg_loud_lootdrop´
 		2 ´trg_loud_mandatory_lootdrop´
 		3 ´trg_silent_lootdrop´
 		4 ´trg_silent_mandatory_lootdrop´
 		5 ´enable_lootdrop´
+	set_trigger_times -1
+	toggle off
 ´point_debug_001´ ElementDebug 100087
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: HIDE LIMO
-	show_instigator false
+	show_instigator False

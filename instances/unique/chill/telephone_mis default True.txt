@@ -1,15 +1,15 @@
 ´point_play_vo´ ElementPlaySound 100001
-	append_prefix true
+	append_prefix True
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	sound_event play_answering_machine
-	use_instigator false
+	use_instigator False
 ´link´ MissionScriptElement 100002
 	on_executed
 		´equal to 0´ (delay 0)
 		´greater than 0´ (delay 0)
 ´point_interaction_001´ ElementInteraction 100003
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, 0, 23
 	rotation 0, 0, 0, -1
@@ -26,32 +26,32 @@
 ´2´ ElementCounter 100005
 	counter_target 2
 ´greater than 0´ ElementCounterFilter 100008
+	elements
+ 		1 ´2´
 	check_type greater_than
 	needed_to_execute all
 	value 0
-	elements
-		1 ´2´
 	on_executed
 		´point_play_vo´ (delay 0)
 		´On´ (delay 3)
 		´sub 1´ (delay 0)
 ´sub 1´ ElementCounterOperator 100009
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´2´
+ 		1 ´2´
+	instance_var_names
+	operation subtract
 ´On´ ElementToggle 100010
+	elements
+ 		1 ´point_interaction_001´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´point_interaction_001´
 ´equal to 0´ ElementCounterFilter 100011
+	elements
+ 		1 ´2´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´2´
 	on_executed
 		´disable_glow´ (delay 0)
 		´point_play_vo´ (delay 0)
@@ -60,9 +60,9 @@
 	on_executed
 		´logic_toggle_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100013
+	elements
+ 		1 ´point_interaction_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_interaction_001´
 	on_executed
 		´disable_glow´ (delay 0)

@@ -164,8 +164,8 @@
 		´show_first_009_2´ (delay 0)
 ´code_WP´ ElementWaypoint 100125
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 25, 0, 62.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -181,15 +181,15 @@
 	position 150, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´toggle_OFF_WP´ (delay 0)
 ´input_enable_code_WP´ ElementInstanceInput 100127
@@ -200,38 +200,38 @@
 	on_executed
 		´code_WP´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100129
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´code_WP´
+ 		1 ´code_WP´
 		2 ´code_found´ DISABLED
 		3 ´input_enable_code_WP´
 		4 ´enable_code_WP´
 		5 ´toggle_ON_trigger´
 		6 ´input_enable_code_trigger´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´output_code_found´ (delay 0)
 ´remove_WP´ ElementOperator 100130
 	DISABLED
-	operation remove
 	elements
-		1 ´code_WP´
+ 		1 ´code_WP´
+	operation remove
 ´input_force_disable_WP´ ElementInstanceInput 100132
 	event force_disable_WP
 	on_executed
 		´toggle_OFF_WP_2´ (delay 0)
 ´toggle_OFF_WP_2´ ElementToggle 100133
+	elements
+ 		1 ´code_WP´
+		2 ´code_found´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´code_WP´
-		2 ´code_found´ DISABLED
 	on_executed
 		´remove_WP_2´ (delay 0)
 ´remove_WP_2´ ElementOperator 100134
-	operation remove
 	elements
-		1 ´code_WP´
+ 		1 ´code_WP´
+	operation remove
 ´output_code_found´ ElementInstanceOutput 100135
 	event code_found
 ´input_enable_code_trigger´ ElementInstanceInput 100136
@@ -239,10 +239,10 @@
 	on_executed
 		´toggle_ON_trigger´ (delay 0)
 ´toggle_ON_trigger´ ElementToggle 100137
+	elements
+ 		1 ´code_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´code_found´ DISABLED
 ´input_enable_cellar_WP´ ElementInstanceInput 100138
 	event enable_cellar_WP
 	on_executed

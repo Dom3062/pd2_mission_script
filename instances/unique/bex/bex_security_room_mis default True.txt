@@ -4,31 +4,31 @@
 	enemy units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01
 	force_pickup none
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 225, -451, 0
 	rotation 0, 0, 0.991445, 0.130527
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 	on_executed
 		´point_special_objective_001´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100031
-	SO_access 24
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis -1
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -36,15 +36,15 @@
 	pose none
 	position 175, -480, 0
 	rotation 0, 0, 0.965926, -0.258819
-	scan true
+	scan True
 	search_distance 0
 	search_position 211,469 -525,477 0
+	SO_access 24
 	so_action e_so_guard_idle
-	trigger_on none
-	use_instigator true
-	followup_elements
 	spawn_instigator_ids
 		1 ´enemy_guard´
+	trigger_on none
+	use_instigator True
 ´start´ MissionScriptElement 100033
 	EXECUTE ON STARTUP
 	on_executed
@@ -59,28 +59,25 @@
 ´func_instance_output_disable_security_cameras´ ElementInstanceOutput 100036
 	event disable_security_cameras
 ´tied´ ElementEnemyDummyTrigger 100037
+	elements
+ 		1 ´enemy_guard´
 	event tied
 	position 1000, -100, 300
 	rotation 0, 0, 0, -1
-	elements
-		1 ´enemy_guard´
 	on_executed
 		´guard_away_from_camera´ (delay 0)
 ´death´ ElementEnemyDummyTrigger 100038
+	elements
+ 		1 ´enemy_guard´
 	event death
 	position 1100, -100, 300
 	rotation 0, 0, 0, -1
-	elements
-		1 ´enemy_guard´
 	on_executed
 		´guard_away_from_camera´ (delay 0)
 ´guard_away_from_camera´ MissionScriptElement 100039
 	on_executed
 		´func_instance_output_disable_security_cameras´ (delay 0)
 ´func_nav_add_obstacle´ ElementNavObstacle 100040
-	operation add
-	position 500, -300, 300
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -110,6 +107,9 @@
 			guis_id 10
 			obj_name 18332870947882135288
 			unit_id units/world/props/office/coathanger/coathanger/001 (360, -356, 0)
+	operation add
+	position 500, -300, 300
+	rotation 0, 0, 0, -1
 ´func_close_door´ ElementUnitSequence 100041
 	position 700, -300, 300
 	rotation 0, 0, 0, -1
@@ -142,20 +142,20 @@
 	on_executed
 		´door_blocker1´ (delay 0)
 ´door_blocker´ ElementNavObstacle 100007
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -250, 0)
 	operation add
 	position 700, -400, 300
 	rotation 0, 0, 0, -1
+´door_blocker1´ ElementNavObstacle 100020
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -250, 0)
-´door_blocker1´ ElementNavObstacle 100020
 	operation remove
 	position 800, -400, 300
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -250, 0)

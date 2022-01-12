@@ -52,36 +52,36 @@
 		´instance_output_opened_box´ (delay 0)
 ´wp_interact´ ElementWaypoint 100006
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 25, 125.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_defend´ ElementWaypoint 100007
 	icon pd2_defend
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 25, 125.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_fix´ ElementWaypoint 100008
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 25, 125.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_interact_wp´ ElementOperator 100009
-	operation remove
 	elements
-		1 ´wp_interact´
+ 		1 ´wp_interact´
 		2 ´wp_fix´
+	operation remove
 	on_executed
 		´toggle_interrupt_kick_on´ (delay 0)
 ´remove_defend_wp´ ElementOperator 100010
-	operation remove
 	elements
-		1 ´wp_defend´
+ 		1 ´wp_defend´
+	operation remove
 ´on_jam´ ElementUnitSequenceTrigger 100011
 	sequence_list
 		1
@@ -93,21 +93,22 @@
 		´remove_defend_wp´ (delay 0)
 ´interrupt_action´ ElementSpecialObjective 100012
 	DISABLED
-	SO_access 65012220
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´interrupt_kick´ DISABLED
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -115,31 +116,30 @@
 	pose none
 	position 25, 189, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 1000
 	search_position 25 175 25
+	SO_access 65012220
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´interrupt_kick´ DISABLED
 ´interrupt_kick´ ElementSpecialObjective 100017
 	DISABLED
 	TRIGGER TIMES 2
-	SO_access 65012220
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -147,42 +147,42 @@
 	pose none
 	position 25, 189, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position 25 175 25
+	SO_access 65012220
 	so_action e_so_container_kick
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´toggle_interrupt_kick_on´ ElementToggle 100018
+	elements
+ 		1 ´interrupt_kick´ DISABLED
 	set_trigger_times 2
 	toggle on
-	elements
-		1 ´interrupt_kick´ DISABLED
 	on_executed
 		´interrupt_kick´ (delay 0.1) DISABLED
 		´toggle_interrupt_action_on´ (delay 0.2)
 ´toggle_interrupt_action_on´ ElementToggle 100019
+	elements
+ 		1 ´interrupt_action´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interrupt_action´ DISABLED
 	on_executed
 		´interrupt_action´ (delay 0.1) DISABLED
 ´fail_kick´ ElementSpecialObjectiveTrigger 100020
+	elements
+ 		1 ´interrupt_kick´ DISABLED
 	event admin_fail
 	position 0, 750, 25.004
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_kick´ DISABLED
 	on_executed
 		´toggle_interrupt_kick_on´ (delay 0)
 ´complete_kick´ ElementSpecialObjectiveTrigger 100021
+	elements
+ 		1 ´interrupt_kick´ DISABLED
 	event complete
 	position -200, 350, 25.004
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_kick´ DISABLED
 	on_executed
 		´jam_powerbox´ (delay 0)
 		´generic_swear´ (delay 1)
@@ -207,13 +207,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -200, 150, 0
 	rotation 0, 0, 0.707107, -0.707107
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_spawn_player_001´ ElementPlayerSpawner 100024
 	DISABLED
 	EXECUTE ON STARTUP
@@ -223,41 +223,41 @@
 	on_executed
 		´enable_powerbox_input´ (delay 1)
 ´point_debug_001´ ElementDebug 100025
-	as_subtitle false
+	as_subtitle False
 	debug_string jam
-	show_instigator false
+	show_instigator False
 ´toggle_interrupt_off´ ElementToggle 100026
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´interrupt_action´ DISABLED
+ 		1 ´interrupt_action´ DISABLED
 		2 ´interrupt_kick´ DISABLED
 		3 ´complete_kick´
 		4 ´jam_powerbox´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_all´ (delay 0)
 ´remove_all´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´wp_defend´
+ 		1 ´wp_defend´
 		2 ´wp_fix´
 		3 ´wp_interact´
 		4 ´interrupt_action´ DISABLED
 		5 ´interrupt_kick´ DISABLED
-´disable_kick´ ElementOperator 100028
 	operation remove
+´disable_kick´ ElementOperator 100028
 	elements
-		1 ´interrupt_action´ DISABLED
+ 		1 ´interrupt_action´ DISABLED
 		2 ´interrupt_kick´ DISABLED
+	operation remove
 ´jam_hackbox´ ElementInstanceOutput 100013
 	event jam_hackbox
 ´generic_swear´ ElementTeammateComment 100016
-	close_to_element true
+	close_to_element True
 	comment d05
 	position 0, 50, 50.004
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´instance_output_opened_box´ ElementInstanceOutput 100014
 	TRIGGER TIMES 1
 	event opened_box

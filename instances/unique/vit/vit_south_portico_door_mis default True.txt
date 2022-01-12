@@ -46,26 +46,26 @@
 			time 0
 ´add_door_blocker´ ElementNavObstacle 100011
 	TRIGGER TIMES 1
-	operation add
-	position 1200, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-125, -50, 0)
+	operation add
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_door_kicking_on´ (delay 0)
 ´remove_door_blocker´ ElementNavObstacle 100012
 	TRIGGER TIMES 1
-	operation remove
-	position 1300, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-125, -50, 0)
+	operation remove
+	position 1300, 100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_door_kicking_off´ (delay 0)
 ´seq_door_opened´ ElementUnitSequenceTrigger 100013
@@ -91,23 +91,24 @@
 ´kick_door_navlink_none´ ElementSpecialObjective 100006
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 6301688
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´kick_door_navlink´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 15
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -115,33 +116,33 @@
 	pose none
 	position -75, -141, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 400
 	search_position -14,7052 -397,117 0
+	SO_access 6301688
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´kick_door_navlink´
 ´kick_door_navlink_none_2´ ElementSpecialObjective 100017
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 6301688
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´kick_door_navlink_2´
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 15
-	is_navigation_link false
-	needs_pos_rsrv true
+	is_navigation_link False
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -149,19 +150,18 @@
 	pose none
 	position -87, 97, 0
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 400
 	search_position 11,6589 417,097 0
+	SO_access 6301688
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´kick_door_navlink_2´
 ´activate_enable_navlinks´ ElementToggle 100018
+	elements
+ 		1 ´kick_door_navlink_none_2´ DISABLED
+		2 ´kick_door_navlink_none´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´kick_door_navlink_none_2´ DISABLED
-		2 ´kick_door_navlink_none´ DISABLED
 	on_executed
 		´kick_door_navlink_none_2´ (delay 10-45) DISABLED
 		´kick_door_navlink_none´ (delay 10-35) DISABLED
@@ -176,10 +176,8 @@
 		´activate_enable_navlinks´ (delay 0)
 ´disable´ ElementToggle 100020
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´kick_door_navlink_none´ DISABLED
+ 		1 ´kick_door_navlink_none´ DISABLED
 		2 ´kick_door_navlink_none_2´ DISABLED
 		3 ´logic_toggle_003´
 		4 ´fail´
@@ -187,13 +185,15 @@
 		6 ´logic_toggle_005´
 		7 ´logic_operator_002´
 		8 ´activate_enable_navlinks´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove´ (delay 0)
 ´remove´ ElementOperator 100022
-	operation remove
 	elements
-		1 ´kick_door_navlink_none_2´ DISABLED
+ 		1 ´kick_door_navlink_none_2´ DISABLED
 		2 ´kick_door_navlink_none´ DISABLED
+	operation remove
 ´open_door´ ElementUnitSequence 100023
 	TRIGGER TIMES 1
 	position 600, -200, 0
@@ -208,16 +208,16 @@
 	on_executed
 		´disable´ (delay 0)
 ´toggle_door_kicking_on´ ElementToggle 100024
+	elements
+ 		1 ´police_called´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´police_called´ DISABLED
 ´toggle_door_kicking_off´ ElementToggle 100025
+	elements
+ 		1 ´police_called´ DISABLED
+		2 ´activate_enable_navlinks´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´police_called´ DISABLED
-		2 ´activate_enable_navlinks´
 	on_executed
 		´point_debug_002´ (delay 0)
 		´disable´ (delay 0)
@@ -228,100 +228,100 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 0.00234985, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_002´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: door_kick_off
-	show_instigator false
+	show_instigator False
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100030
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -199.999, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´fail´ ElementSpecialObjectiveTrigger 100031
-	event fail
-	position 900, -100, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´kick_door_navlink_none_2´ DISABLED
+ 		1 ´kick_door_navlink_none_2´ DISABLED
 		2 ´kick_door_navlink_none´ DISABLED
 		3 ´kick_door_navlink´
 		4 ´kick_door_navlink_2´
+	event fail
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´logic_toggle_004´ (delay 0)
 ´logic_toggle_003´ ElementToggle 100033
+	elements
+ 		1 ´kick_door_navlink_none´ DISABLED
+		2 ´kick_door_navlink_none_2´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´kick_door_navlink_none´ DISABLED
-		2 ´kick_door_navlink_none_2´ DISABLED
 	on_executed
 		´kick_door_navlink_none_2´ (delay 0.1) DISABLED
 		´kick_door_navlink_none´ (delay 0.1) DISABLED
 		´logic_toggle_005´ (delay 0)
 ´logic_toggle_004´ ElementToggle 100034
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´disable´
+ 		1 ´disable´
 		2 ´remove´
 		3 ´open_door´
 		4 ´kick_door_navlink_none´ DISABLED
 		5 ´kick_door_navlink_none_2´ DISABLED
 		6 ´open_door001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´logic_toggle_003´ (delay 3)
 		´logic_operator_002´ (delay 0)
 ´logic_toggle_005´ ElementToggle 100035
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´disable´
+ 		1 ´disable´
 		2 ´remove´
 		3 ´open_door´
 		4 ´open_door001´
+	set_trigger_times -1
+	toggle on
 ´logic_operator_002´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´kick_door_navlink_none_2´ DISABLED
+ 		1 ´kick_door_navlink_none_2´ DISABLED
 		2 ´kick_door_navlink_none´ DISABLED
+	operation remove
 ´point_debug_006´ ElementDebug 100027
-	as_subtitle false
+	as_subtitle False
 	debug_string from instance: activate_enable_navlinks
-	show_instigator false
+	show_instigator False
 ´kick_door_navlink´ ElementSpecialObjective 100029
 	TRIGGER TIMES 1
-	SO_access 6301688
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv false
+	is_navigation_link True
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -329,31 +329,31 @@
 	pose none
 	position -75, -141, 75
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 47,1727 276,83 0
+	SO_access 6301688
 	so_action e_nl_kick_enter
 	trigger_on none
-	followup_elements
 ´kick_door_navlink_2´ ElementSpecialObjective 100032
 	TRIGGER TIMES 1
-	SO_access 6301688
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	is_navigation_link true
-	needs_pos_rsrv false
+	is_navigation_link True
+	needs_pos_rsrv False
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -361,36 +361,36 @@
 	pose none
 	position -87, 97, 75
 	rotation 0, 0, 1, -1.19209E-07
-	scan true
+	scan True
 	search_distance 0
 	search_position 49,7231 -196,973 0
+	SO_access 6301688
 	so_action e_nl_open_door
 	trigger_on none
-	followup_elements
 ´complete´ ElementSpecialObjectiveTrigger 100036
+	elements
+ 		1 ´kick_door_navlink´
+		2 ´kick_door_navlink_2´
 	event complete
 	position 775, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´kick_door_navlink´
-		2 ´kick_door_navlink_2´
 	on_executed
 		´disable´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´point_debug_001´ ElementDebug 100038
-	as_subtitle false
+	as_subtitle False
 	debug_string anim_start
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100039
-	as_subtitle false
+	as_subtitle False
 	debug_string complete
-	show_instigator false
+	show_instigator False
 ´anim_start´ ElementSpecialObjectiveTrigger 100040
+	elements
+ 		1 ´kick_door_navlink´
 	event anim_start
 	position 600, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´kick_door_navlink´
 	on_executed
 		´open_door´ (delay 1.5)
 		´point_debug_001´ (delay 0)
@@ -400,26 +400,26 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 150, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100041
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, 300, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´open_door001´ ElementUnitSequence 100008
 	TRIGGER TIMES 1
 	position 675, -200, 0
@@ -434,11 +434,11 @@
 	on_executed
 		´disable´ (delay 0)
 ´anim_start001´ ElementSpecialObjectiveTrigger 100043
+	elements
+ 		1 ´kick_door_navlink_2´
 	event anim_start
 	position 675, -100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´kick_door_navlink_2´
 	on_executed
 		´open_door001´ (delay 0.3)
 ´disable_interaction´ ElementUnitSequence 100016

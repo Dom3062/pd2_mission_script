@@ -255,14 +255,14 @@
 		´seq_show_enable_necklace´ (delay 0) DISABLED
 		´seq_enable_money´ (delay 0) DISABLED
 ´nav_obst_add´ ElementNavObstacle 100006
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -50, 0)
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
 ´link_necklace´ MissionScriptElement 100027
 	BASE DELAY 2
 	on_executed
@@ -469,22 +469,22 @@
 			notify_unit_sequence enable_interact
 			time 0
 ´toggle_off_necklace´ ElementToggle 100037
+	elements
+ 		1 ´seq_show_enable_necklace´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_enable_necklace´ DISABLED
 ´toggle_off_tablets´ ElementToggle 100036
+	elements
+ 		1 ´seq_show_enable_tablets´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_show_enable_tablets´ DISABLED
 ´link_tablets´ MissionScriptElement 100038
 	on_executed
 		´toggle_off_necklace´ (delay 0)
 ´logic_random_001´ ElementRandom 100007
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´link_necklace´ (delay 0)
 		´link_tablets´ (delay 0)
@@ -498,10 +498,10 @@
 		´toggle_off´ (delay 0)
 		´seq_open´ (delay 1) DISABLED
 ´toggle_on_gold_bars´ ElementToggle 100039
+	elements
+ 		1 ´seq_enable_money´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_enable_money´ DISABLED
 ´seq_enable_money´ ElementUnitSequence 100041
 	DISABLED
 	position 1050, -200, 0
@@ -628,10 +628,10 @@
 			notify_unit_sequence interact_enable
 			time 0
 ´toggle_off´ ElementToggle 100040
+	elements
+ 		1 ´seq_open´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´seq_open´ DISABLED
 ´seq_disable_money´ ElementUnitSequence 100042
 	position 650, 0, 0
 	rotation 0, 0, 0, -1

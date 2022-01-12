@@ -76,7 +76,7 @@
 		´point_debug_001´ (delay 0)
 ´interaction_cut_wire´ ElementInteraction 100016
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 109.994, -149.651, 11.5
 	rotation -0.706999, -0.0123406, -0.0123408, -0.706999
@@ -84,11 +84,11 @@
 	on_executed
 		´link_wires_cut_001´ (delay 0) (alternative interacted)
 ´enable_interaction´ ElementToggle 100017
+	elements
+ 		1 ´interaction_cut_wire´ DISABLED
+		2 ´trigger_area_wires_found´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´interaction_cut_wire´ DISABLED
-		2 ´trigger_area_wires_found´ DISABLED
 ´link_wires_cut_001´ MissionScriptElement 100018
 	on_executed
 		´seq_cut_wires´ (delay 0)
@@ -114,21 +114,21 @@
 	position 125, -150, 4.50003
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 	on_executed
 		´point_play_sound_001´ (delay 0)
 ´point_play_sound_001´ ElementPlaySound 100021
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 125, -150, 29.5
 	rotation 0, 0, 0, -1
 	sound_event electric_sparks
-	use_instigator false
+	use_instigator False
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string wire_cut
-	show_instigator false
+	show_instigator False
 ´input_show_WP´ ElementInstanceInput 100023
 	event show_helper_WP
 	on_executed
@@ -138,15 +138,15 @@
 		´WP_helper_´ (delay 0)
 ´WP_helper_´ ElementWaypoint 100025
 	icon pd2_question
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´WP_cut_wires_001´ ElementWaypoint 100026
 	icon pd2_wirecutter
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 125, -150, 54.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -162,15 +162,15 @@
 	position 0, -100, 0
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 600
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 600
 	on_executed
 		´link_wires_found´ (delay 0)
 ´link_wires_found´ MissionScriptElement 100028
@@ -179,16 +179,16 @@
 		´WP_cut_wires_001´ (delay 0.5)
 		´WP_cut_wires_002´ (delay 0.5)
 ´remove_WP´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´WP_helper_´
+ 		1 ´WP_helper_´
+	operation remove
 	on_executed
 		´output_wires_found´ (delay 0)
 ´remove_WP_2´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´WP_cut_wires_001´
+ 		1 ´WP_cut_wires_001´
 		2 ´WP_helper_´
+	operation remove
 ´police_called´ ElementGlobalEventTrigger 100031
 	TRIGGER TIMES 1
 	global_event police_called
@@ -198,10 +198,8 @@
 		´disable_stuff´ (delay 0)
 ´disable_stuff´ ElementToggle 100032
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_helper_´
+ 		1 ´WP_helper_´
 		2 ´trigger_area_wires_found´ DISABLED
 		3 ´WP_cut_wires_001´
 		4 ´interaction_cut_wire´ DISABLED
@@ -209,6 +207,8 @@
 		6 ´link_wires_cut_001´
 		7 ´link_wires_cut_002´
 		8 ´WP_cut_wires_002´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_WP_2´ (delay 0)
 		´remove_WP001´ (delay 0)
@@ -216,7 +216,7 @@
 	event wires_found
 ´interaction_cut_wire001´ ElementInteraction 100037
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position -76.8922, -156.177, 11.5
 	rotation -0.0123407, 0.706999, 0.706999, -0.0123407
@@ -231,34 +231,34 @@
 	position -100, -150, 4.50003
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 	on_executed
 		´point_play_sound_002´ (delay 0)
 ´WP_cut_wires_002´ ElementWaypoint 100039
 	icon pd2_wirecutter
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -75, -150, 54.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_play_sound_002´ ElementPlaySound 100040
 	TRIGGER TIMES 1
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -100, -150, 29.5
 	rotation 0, 0, 0, -1
 	sound_event electric_sparks
-	use_instigator false
+	use_instigator False
 ´input_enable_interactions_002´ ElementInstanceInput 100041
 	event enable_interactions_002
 	on_executed
 		´enable_interaction001´ (delay 0)
 ´enable_interaction001´ ElementToggle 100042
+	elements
+ 		1 ´trigger_area_wires_found´ DISABLED
+		2 ´interaction_cut_wire001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_wires_found´ DISABLED
-		2 ´interaction_cut_wire001´ DISABLED
 ´input_pick_wires_001´ ElementInstanceInput 100043
 	TRIGGER TIMES 1
 	event pick_wires_001
@@ -294,10 +294,10 @@
 	on_executed
 		´logic_toggle_002´ (delay 0)
 ´remove_WP001´ ElementOperator 100047
-	operation remove
 	elements
-		1 ´WP_helper_´
+ 		1 ´WP_helper_´
 		2 ´WP_cut_wires_002´
+	operation remove
 ´seq_cut_wires001´ ElementUnitSequence 100048
 	position 1200, 200, 2.5
 	rotation 0, 0, 0, -1
@@ -316,21 +316,21 @@
 		´output_wire_cut´ (delay 0)
 		´seq_cut_wires001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100050
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_cut_wires_002´
+ 		1 ´WP_cut_wires_002´
 		2 ´input_enable_interactions_002´
 		3 ´link_wires_cut_002´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´func_sequence_001´ (delay 0)
 ´logic_toggle_002´ ElementToggle 100051
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_cut_wires_001´
+ 		1 ´WP_cut_wires_001´
 		2 ´input_enable_interactions_001´
 		3 ´link_wires_cut_001´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´func_sequence_002´ (delay 0)
 ´func_sequence_001´ ElementUnitSequence 100052

@@ -53,23 +53,23 @@
 	unit_ids
 ´operator_block_forklift´ ElementVehicleOperator 100016
 	damage 0
+	elements
+ 		1 100024
 	operation lock
 	position 725, 225, -25
 	rotation 0, 0, -0.707107, -0.707107
-	elements
-		1 100024
 	on_executed
 		´point_debug_002´ (delay 0)
 		´enable_breach_door´ (delay 0)
 ´point_debug_002´ ElementDebug 100017
-	as_subtitle false
+	as_subtitle False
 	debug_string you_blocked. Get out!
-	show_instigator false
+	show_instigator False
 ´enable_breach_door´ ElementToggle 100020
+	elements
+ 		1 ´Vehicle_trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´Vehicle_trigger´ DISABLED
 	on_executed
 		´func_vehicle_boarding_001´ (delay 1)
 ´Vehicle_trigger´ ElementVehicleTrigger 100021
@@ -89,14 +89,14 @@
 		´forklift_enabled_and_loud´ (delay 0)
 		´enable_unlock_forklift_interaction´ (delay 0)
 ´point_debug_003´ ElementDebug 100028
-	as_subtitle false
+	as_subtitle False
 	debug_string you_can_drive_now_PEW_PEW
-	show_instigator false
+	show_instigator False
 ´WP_drive_forklift´ ElementWaypoint 100029
 	TRIGGER TIMES 1
 	icon pd2_generic_look
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 75, 200
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -118,9 +118,9 @@
 	on_executed
 		´WP_drive_forklift´ (delay 0)
 ´remove_WP001´ ElementOperator 100036
-	operation remove
 	elements
-		1 ´WP_drive_forklift´
+ 		1 ´WP_drive_forklift´
+	operation remove
 	on_executed
 		´disable_WP_forklift´ (delay 0)
 ´enable_forklift´ ElementUnitSequence 100055
@@ -146,10 +146,10 @@
 	on_executed
 		´operator_block_forklift´ (delay 0)
 ´disable_WP_forklift´ ElementToggle 100048
+	elements
+ 		1 ´WP_drive_forklift´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_drive_forklift´
 ´block_forklift´ ElementUnitSequence 100007
 	position 725, -125, -25
 	rotation 0, 0, 0, -1
@@ -192,7 +192,7 @@
 	counter_target 2
 ´point_interaction_001´ ElementInteraction 100012
 	DISABLED
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, -100, 125
 	rotation 0, 0, 0, -1
@@ -200,22 +200,22 @@
 	on_executed
 		´link_forklift_unlocked´ (delay 0) (alternative interacted)
 ´enable_unlock_forklift_interaction´ ElementToggle 100013
+	elements
+ 		1 ´point_interaction_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_interaction_001´ DISABLED
 ´link_forklift_unlocked´ MissionScriptElement 100014
 	on_executed
 		´enable_forklift´ (delay 0)
 ´func_nav_obstacle_001´ ElementNavObstacle 100018
-	operation add
-	position 1550, 200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 2
 			obj_name 14269766135928687537
 			unit_id units/pd2_dlc_chas/vehicles/fps_vehicle_forklift_chas/fps_vehicle_forklift_chas/001 (0, -100, 0)
+	operation add
+	position 1550, 200, 0
+	rotation 0, 0, 0, -1
 ´input_enable_forklift_blocker´ ElementInstanceInput 100022
 	event enable_forklift_nav_blocker
 	on_executed
@@ -254,7 +254,7 @@
 			time 0
 ´func_vehicle_boarding_001´ ElementVehicleBoarding 100011
 	operation disembark
-	vehicle 100024
 	seats_order
 		1 driver
 		2 passenger_front
+	vehicle 100024

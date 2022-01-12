@@ -49,10 +49,10 @@
 			notify_unit_sequence interact_disabled
 			time 0
 ´disable_interact_2´ ElementToggle 100008
+	elements
+ 		1 ´open_interaction001´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´open_interaction001´ DISABLED
 ´set_circuit_box´ ElementInstanceInput 100009
 	BASE DELAY 2
 	event set_circuit_box
@@ -70,10 +70,10 @@
 			notify_unit_sequence state_show
 			time 0
 ´enable_interact´ ElementToggle 100011
+	elements
+ 		1 ´open_interaction001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´open_interaction001´ DISABLED
 ´setup_hide´ MissionScriptElement 100012
 	EXECUTE ON STARTUP
 	BASE DELAY 0,75
@@ -94,11 +94,11 @@
 	on_executed
 		´enable_computer_inputs´ (delay 0)
 ´enable_computer_inputs´ ElementToggle 100016
+	elements
+ 		1 ´start_interrupt_link´ DISABLED
+		2 ´set_defend_link´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´start_interrupt_link´ DISABLED
-		2 ´set_defend_link´ DISABLED
 ´start_interrupt_link´ MissionScriptElement 100017
 	DISABLED
 	on_executed
@@ -113,20 +113,20 @@
 	event sucessful_interrupt
 ´interrupt_so´ ElementSpecialObjective 100020
 	TRIGGER TIMES 1
-	SO_access 8416
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 5
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -134,39 +134,39 @@
 	pose none
 	position -50.6211, -88.8374, 0
 	rotation 0, 0, 0.173648, -0.984808
-	scan true
+	scan True
 	search_distance 4500
 	search_position 0 -200 100
+	SO_access 8416
 	so_action e_so_interact_mid
 	trigger_on none
-	followup_elements
 ´completed_interrupt´ ElementSpecialObjectiveTrigger 100021
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_so´
 	event complete
 	position 0, 300, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´succesful_interrupt´ (delay 0)
 		´enable_breaker_interaction_and_wp´ (delay 0)
 		´remove_defend_wp´ (delay 0)
 ´failed_interrupt_2´ ElementSpecialObjectiveTrigger 100022
 	TRIGGER TIMES 1
+	elements
+ 		1 ´interrupt_so´
 	event fail
 	position 100, 300, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´failed_interrupt´ (delay 0)
 		´point_debug_002´ (delay 0)
 ´open_door_if_not_open´ ElementSpecialObjectiveTrigger 100023
+	elements
+ 		1 ´interrupt_so´
 	event anim_start
 	position 100, 0, 100
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´
 	on_executed
 		´open_box´ (delay 0)
 ´power_resumed´ ElementInstanceOutput 100024
@@ -182,37 +182,37 @@
 	on_executed
 		´power_resumed´ (delay 0) (alternative interacted)
 ´enable_breaker_interaction_and_wp´ ElementToggle 100026
+	elements
+ 		1 ´power_resume_interaction001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´power_resume_interaction001´ DISABLED
 	on_executed
 		´power_wp´ (delay 0)
 ´remove_power_wp´ ElementOperator 100027
-	operation remove
 	elements
-		1 ´power_wp´
+ 		1 ´power_wp´
+	operation remove
 	on_executed
 		´defend_wp´ (delay 0)
 ´power_wp´ ElementWaypoint 100028
 	icon pd2_power
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -29, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_and_action_so´ ElementToggle 100029
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´interrupt_so´
+ 		1 ´interrupt_so´
 		2 ´failed_interrupt_2´
 		3 ´completed_interrupt´
+	set_trigger_times 1
+	toggle on
 	on_executed
 		´interrupt_so´ (delay 0.05)
 		´point_debug_001´ (delay 0)
 ´defend_wp´ ElementWaypoint 100030
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 0, -29, 100
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -221,41 +221,41 @@
 	on_executed
 		´set_defend_link´ (delay 0) DISABLED
 ´remove_defend_wp´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 ´disable_interrupting´ ElementInstanceInput 100033
 	event disable_interrupting
 	on_executed
 		´remove_so_and_wp´ (delay 0)
 		´disable_interrupt´ (delay 0)
 ´remove_so_and_wp´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´interrupt_so´
+ 		1 ´interrupt_so´
 		2 ´defend_wp´
 		3 ´power_wp´
+	operation remove
 ´disable_interrupt´ ElementToggle 100035
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´completed_interrupt´
+ 		1 ´completed_interrupt´
 		2 ´failed_interrupt_2´
 		3 ´start_interrupt_link´ DISABLED
 		4 ´enable_and_action_so´
 		5 ´interrupt_so´
+	set_trigger_times -1
+	toggle off
 ´set_defend_link´ MissionScriptElement 100036
 	DISABLED
 	on_executed
 		´defend_wp´ (delay 0)
 ´point_debug_001´ ElementDebug 100037
-	as_subtitle false
+	as_subtitle False
 	debug_string started_interrupt_at_power_box
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100038
-	as_subtitle false
+	as_subtitle False
 	debug_string failed_at_power_box
-	show_instigator false
+	show_instigator False
 ´interact_enabled´ ElementUnitSequence 100039
 	TRIGGER TIMES 1
 	position 100, -200, 100

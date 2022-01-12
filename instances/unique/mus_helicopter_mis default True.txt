@@ -62,12 +62,12 @@
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´enable_trigger_volumes´ ElementToggle 100030
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´loot_area_coke´ DISABLED
+ 		1 ´loot_area_coke´ DISABLED
 		2 ´loot_area_coke001´ DISABLED
 		3 ´attempt_escape_insta´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´secure_artifact´ ElementCarry 100033
 	operation secure
 	type_filter mus_artifact
@@ -105,20 +105,20 @@
 			notify_unit_sequence close_door_right
 			time 0
 ´disable_trigger_volumes´ ElementToggle 100050
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´loot_area_coke´ DISABLED
+ 		1 ´loot_area_coke´ DISABLED
 		2 ´loot_area_coke001´ DISABLED
 		3 ´escape_area´ DISABLED
 		4 ´attempt_escape_insta´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´heli_hovers´ (delay 0)
 ´remove_waypoints´ ElementOperator 100051
-	operation remove
 	elements
-		1 ´loot_waypoint´
+ 		1 ´loot_waypoint´
 		2 ´escape_waypoint´
+	operation remove
 ´heli_flies_away´ ElementUnitSequence 100053
 	position 2450, -175, 275
 	rotation 0, 0, 0, -1
@@ -145,20 +145,20 @@
 	DISABLED
 	amount 1
 	depth 190
-	height 118,5
+	height 118.5
 	instigator loot
 	interval 0.1
 	position 6, 69, 337
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 131
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 131
 	on_executed
 		´secure_artifact´ (delay 0)
 		´add_loot_bags´ (delay 0) DISABLED
@@ -166,11 +166,11 @@
 		´secure_diamond´ (delay 0)
 		´secure_artifact_paint´ (delay 0)
 ´stop_heli_smoke_effects´ ElementStopEffect 100062
+	elements
+ 		1 ´heli_smoke_effect´
 	operation fade_kill
 	position -150, 0, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´heli_smoke_effect´
 ´heli_smoke_effect´ ElementPlayEffect 100063
 	base_time 0
 	effect effects/particles/dest/bridge_heli_smoke
@@ -178,7 +178,7 @@
 	position 0, 0, 0
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´4_sec_delay_to_play_effects´ MissionScriptElement 100065
 	on_executed
 		´heli_smoke_effect´ (delay 0)
@@ -189,20 +189,20 @@
 	DISABLED
 	amount 1
 	depth 190
-	height 97,5848
+	height 97.5848
 	instigator loot
 	interval 0.1
 	position 3, 11, 536
 	radius 580
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 131
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 131
 	on_executed
 		´remove_loot´ (delay 0)
 		´bag_destroy_effect´ (delay 0.1)
@@ -218,34 +218,34 @@
 	position -172, 11, 554
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´oh_fuck´ ElementTeammateComment 100008
-	close_to_element true
+	close_to_element True
 	comment g29
 	position 3, -65, 433
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´oh_fuck001´ ElementTeammateComment 100010
-	close_to_element true
+	close_to_element True
 	comment g60
 	position 3, -65, 483
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´choose_1_fuck´ ElementRandom 100011
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´oh_fuck001´ (delay 0)
 		´oh_fuck´ (delay 0)
 ´bag_secured´ ElementTeammateComment 100012
-	close_to_element true
+	close_to_element True
 	comment p27
 	position 3, -65, 533
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´bag_destroy_effect001´ ElementPlayEffect 100000
 	base_time 0
 	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
@@ -253,7 +253,7 @@
 	position 337, 11, 554
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´bag_destroy_effect003´ ElementPlayEffect 100009
 	base_time 0
 	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
@@ -261,7 +261,7 @@
 	position -147, 361, 554
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´bag_destroy_effect004´ ElementPlayEffect 100013
 	base_time 0
 	effect effects/payday2/particles/impacts/concrete_explosion_impact_pd2
@@ -269,7 +269,7 @@
 	position 53, -289, 554
 	random_time 0
 	rotation 0, 0, 0, -1
-	screen_space false
+	screen_space False
 ´heli_lands´ ElementUnitSequence 100003
 	position 1400, -175, 275
 	rotation 0, 0, 0, -1
@@ -315,20 +315,20 @@
 	DISABLED
 	amount all
 	depth 299,307
-	height 445,56
+	height 445.56
 	instigator player
 	interval 0.1
 	position 1, 304, 162
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 403,927
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 403.927
 	on_executed
 		´players_escaped´ (delay 2)
 ´players_escaped´ ElementInstanceOutput 100017
@@ -351,10 +351,10 @@
 		´bag_secured_2´ (delay 0)
 		´remove_loot001´ (delay 0)
 ´enable_escape´ ElementToggle 100027
+	elements
+ 		1 ´escape_area´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´escape_area´ DISABLED
 	on_executed
 		´escape_waypoint´ (delay 0)
 ´escape_link´ MissionScriptElement 100029
@@ -368,10 +368,10 @@
 		´allow_escape´ (delay 0)
 		´attempt_escape_insta´ (delay 0.05) DISABLED
 ´allow_escape´ ElementToggle 100032
+	elements
+ 		1 ´escape_link´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´escape_link´ DISABLED
 ´attempt_escape_insta´ MissionScriptElement 100035
 	DISABLED
 	on_executed
@@ -396,10 +396,10 @@
 		´make_helicopter_leave´ (delay 0)
 ´set_4´ ElementCounterOperator 100040
 	amount 4
-	operation set
-	instance_var_names
 	elements
-		1 ´bag_counter´
+ 		1 ´bag_counter´
+	instance_var_names
+	operation set
 ´fully_loaded´ ElementInstanceOutput 100041
 	event fully_loaded
 ´bag_secured_2´ MissionScriptElement 100042

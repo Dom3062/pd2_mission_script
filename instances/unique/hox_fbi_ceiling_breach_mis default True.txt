@@ -4,58 +4,61 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 102, 286, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_8m
 	team law1
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100011
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 107, 125, 0
 	rotation 0, 0, 1, -5.96046E-08
 	spawn_action e_sp_down_8m
 	team law1
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100013
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 297, 116, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action e_sp_down_8m
 	team law1
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100010
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 276, 283, 0
 	rotation 0, 0, -2.68221E-07, -1
 	spawn_action e_sp_down_8m
 	team law1
 	voice 0
-	orientation_elements
 ´ceiling_breach_group´ ElementSpawnEnemyGroup 100012
 	amount 4
-	ignore_disabled true
+	elements
+ 		1 ´ai_spawn_enemy_003´
+		2 ´ai_spawn_enemy_002´
+		3 ´ai_spawn_enemy_001´
+		4 ´ai_spawn_enemy_004´
+	ignore_disabled True
 	interval 0
-	spawn_type random
-	team default
 	preferred_spawn_groups
 		1 FBI_spoocs
 		2 tac_shield_wall
@@ -65,11 +68,8 @@
 		6 tac_swat_rifle_flank
 		7 tac_shield_wall_ranged
 		8 tac_tazer_flanking
-	elements
-		1 ´ai_spawn_enemy_003´
-		2 ´ai_spawn_enemy_002´
-		3 ´ai_spawn_enemy_001´
-		4 ´ai_spawn_enemy_004´
+	spawn_type random
+	team default
 ´ceiling_breach_group_add´ ElementEnemyPreferedAdd 100014
 	spawn_groups
 		1 ´ceiling_breach_group´
@@ -81,15 +81,15 @@
 		´enable_toggles´ (delay 0)
 ´ceiling_breach´ ElementEnemyDummyTrigger 100016
 	TRIGGER TIMES 1
-	event spawn
-	position 100, 200, 50
-	rotation 0, 0, 0, -1
 	elements
-		1 ´ai_spawn_enemy_001´
+ 		1 ´ai_spawn_enemy_001´
 		2 ´ai_spawn_enemy_004´
 		3 ´ai_spawn_enemy_002´
 		4 ´ai_spawn_enemy_003´
 		5 ´ceiling_breach_group´
+	event spawn
+	position 100, 200, 50
+	rotation 0, 0, 0, -1
 	on_executed
 		´point_explosion_001´ (delay 0)
 		´func_sequence_001´ (delay 0)
@@ -114,8 +114,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´func_sequence_001´ ElementUnitSequence 100000
 	position 0, 200, 50
 	rotation 0, 0, 0, -1
@@ -129,11 +129,11 @@
 	on_executed
 		´func_disable_unit_001´ (delay 0)
 ´enable_toggles´ ElementToggle 100001
+	elements
+ 		1 ´players_entered_defence´ DISABLED
+		2 ´players_left_defence´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´players_entered_defence´ DISABLED
-		2 ´players_left_defence´ DISABLED
 ´players_left_defence´ ElementInstanceInput 100003
 	DISABLED
 	event players_left_defence
@@ -142,7 +142,7 @@
 		´point_debug_002´ (delay 0)
 ´remove_preferred´ ElementEnemyPreferedRemove 100004
 	elements
-		1 ´ceiling_breach_group_add´
+ 		1 ´ceiling_breach_group_add´
 ´players_entered_defence´ ElementInstanceInput 100005
 	DISABLED
 	event players_entered_defence
@@ -150,13 +150,13 @@
 		´ceiling_breach_group_add´ (delay 0)
 		´point_debug_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100006
-	as_subtitle false
+	as_subtitle False
 	debug_string ceiling_breach_activated
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100007
-	as_subtitle false
+	as_subtitle False
 	debug_string ceiling_breach_deactivated
-	show_instigator false
+	show_instigator False
 ´func_disable_unit_001´ ElementDisableUnit 100009
 	position 0, 100, 50
 	rotation 0, 0, 0, -1

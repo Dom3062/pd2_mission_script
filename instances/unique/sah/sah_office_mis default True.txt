@@ -121,15 +121,15 @@
 ´WP_interact´ ElementWaypoint 100040
 	TRIGGER TIMES 1
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -6, -80, 129
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_wp_interact´ ElementOperator 100044
-	operation remove
 	elements
-		1 ´WP_interact´
+ 		1 ´WP_interact´
+	operation remove
 ´enable_door_wp´ ElementInstanceInput 100045
 	event enable_door_wp
 	on_executed
@@ -140,21 +140,21 @@
 		´remove_wp_interact´ (delay 0)
 ´point_special_objective_001´ ElementSpecialObjective 100043
 	DISABLED
-	SO_access 132136928
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 0
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -162,29 +162,30 @@
 	pose none
 	position 490.08, -0.213196, 50
 	rotation 0, 0, 0.989016, 0.147809
-	scan false
+	scan False
 	search_distance 0
 	search_position 475 225 0
+	SO_access 132136928
 	so_action e_so_interact_mid
 	trigger_on none
-	followup_elements
 ´point_special_objective_002´ ElementSpecialObjective 100046
 	DISABLED
-	SO_access 132136928
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´point_special_objective_001´ DISABLED
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -192,25 +193,24 @@
 	pose none
 	position 490.08, -0.213196, 0
 	rotation 0, 0, 0.989016, 0.147809
-	scan true
+	scan True
 	search_distance 750
 	search_position 450,813 -4,68371 0,00400394
+	SO_access 132136928
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´point_special_objective_001´ DISABLED
 ´toggle_interrupt_on´ ElementToggle 100047
+	elements
+ 		1 ´point_special_objective_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´point_special_objective_002´ DISABLED
 	on_executed
 		´toggle_keyboarding_on´ (delay 0)
 ´toggle_keyboarding_on´ ElementToggle 100048
+	elements
+ 		1 ´point_special_objective_001´ DISABLED
 	set_trigger_times 2
 	toggle on
-	elements
-		1 ´point_special_objective_001´ DISABLED
 	on_executed
 		´point_special_objective_002´ (delay 0.5) DISABLED
 		´point_special_objective_001´ (delay 0.5) DISABLED
@@ -222,29 +222,29 @@
 	on_executed
 		´if_loud_and_hacking´ (delay 0)
 ´interrupt_completed´ ElementSpecialObjectiveTrigger 100050
+	elements
+ 		1 ´point_special_objective_001´ DISABLED
 	event complete
 	position -800, -500, 0.00400543
 	rotation 0, 0, 1, -1.19209E-07
-	elements
-		1 ´point_special_objective_001´ DISABLED
 	on_executed
 		´interrupt_hacking´ (delay 0)
 		´WP_fix´ (delay 0.5)
 		´remove_WP_computer´ (delay 0)
 ´interrupt_failed´ ElementSpecialObjectiveTrigger 100051
+	elements
+ 		1 ´point_special_objective_001´ DISABLED
 	event admin_fail
 	position -800, -600, 0.00402832
 	rotation 0, 0, 1, -1.19209E-07
-	elements
-		1 ´point_special_objective_001´ DISABLED
 	on_executed
 		´logic_operator_001´ (delay 0)
 		´toggle_interrupt_on´ (delay 0)
 ´logic_operator_001´ ElementOperator 100052
-	operation remove
 	elements
-		1 ´point_special_objective_002´ DISABLED
+ 		1 ´point_special_objective_002´ DISABLED
 		2 ´point_special_objective_001´ DISABLED
+	operation remove
 	on_executed
 		´toggle_interrupt_on´ (delay 1)
 ´interrupt_hacking´ ElementUnitSequence 100053
@@ -271,10 +271,10 @@
 		´if_loud_and_hacking´ (delay 0)
 		´hacking_started´ (delay 0)
 ´enable´ ElementToggle 100055
+	elements
+ 		1 ´computer_resumed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´computer_resumed´ DISABLED
 ´computer_resumed´ ElementUnitSequenceTrigger 100056
 	DISABLED
 	sequence_list
@@ -316,20 +316,20 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 175, 500, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´logic_operator_002´ ElementOperator 100060
-	operation remove
 	elements
-		1 ´point_special_objective_002´ DISABLED
+ 		1 ´point_special_objective_002´ DISABLED
 		2 ´point_special_objective_001´ DISABLED
 		3 ´WP_computer´
 		4 ´WP_fix´
+	operation remove
 ´if_loud_and_hacking´ ElementCounter 100061
 	counter_target 2
 	on_executed
@@ -358,8 +358,8 @@
 	DISABLED
 	TRIGGER TIMES 1
 	icon pd2_drill
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -35, -81, 147.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -408,14 +408,14 @@
 	position -150, 0, 100
 	radius 250
 	rotation 0, 0, -0.707107, -0.707107
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_player_closeby´ (delay 0)
 		´remove_WP_goto´ (delay 0)
@@ -428,10 +428,10 @@
 		´relay lol´ (delay 0) DISABLED
 		´WP_drill´ (delay 0) DISABLED
 ´enable_area_player_closeby´ ElementToggle 100073
+	elements
+ 		1 ´area_player_closeby´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_closeby´ DISABLED
 ´enable_area_player_closeby_2´ ElementInstanceInput 100074
 	event enable_area_player_closeby
 	on_executed
@@ -451,26 +451,26 @@
 		´drill_placed_but_keycard_used´ (delay 0)
 ´WP_goto´ ElementWaypoint 100076
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -125, 0, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_goto´ ElementOperator 100077
-	operation remove
 	elements
-		1 ´WP_goto´
+ 		1 ´WP_goto´
+	operation remove
 ´input_event_enable_helper´ ElementInstanceInput 100078
 	event enable_helper
 	on_executed
 		´WP_goto´ (delay 0)
 ´toggle´ ElementToggle 100079
 	TRIGGER TIMES 1
+	elements
+ 		1 ´relay lol´ DISABLED
+		2 ´WP_interact´
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´relay lol´ DISABLED
-		2 ´WP_interact´
 ´startup´ MissionScriptElement 100081
 	EXECUTE ON STARTUP
 	on_executed
@@ -482,37 +482,37 @@
 		´func_nav_obstacle_001´ (delay 0)
 ´WP_computer´ ElementWaypoint 100084
 	icon pd2_computer
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 471, -68, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_computer´ ElementOperator 100085
-	operation remove
 	elements
-		1 ´WP_computer´
+ 		1 ´WP_computer´
+	operation remove
 ´WP_fix´ ElementWaypoint 100087
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 471, -68, 120
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_fix´ ElementOperator 100090
+	elements
+ 		1 ´WP_fix´
 	operation remove
-	elements
-		1 ´WP_fix´
 ´disable_all´ ElementToggle 100088
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´WP_fix´
+ 		1 ´WP_fix´
 		2 ´WP_computer´
 		3 ´toggle_interrupt_on´
 		4 ´point_special_objective_002´ DISABLED
 		5 ´point_special_objective_001´ DISABLED
 		6 ´interrupt_completed´
 		7 ´interrupt_failed´
+	set_trigger_times -1
+	toggle off
 ´seq_hider´ ElementUnitSequence 100001
 	position -1100, 1000, 0
 	rotation 0, 0, 0, -1
@@ -581,7 +581,7 @@
 ´logic_random_001´ ElementRandom 100005
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_instance_output_001´ (delay 0)
 		´func_instance_output_002´ (delay 0)
@@ -666,7 +666,7 @@
 ´logic_random_002´ ElementRandom 100100
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_instance_output_014´ (delay 0)
 		´func_instance_output_012´ (delay 0)
@@ -731,7 +731,7 @@
 ´logic_random_003´ ElementRandom 100111
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_instance_output_024´ (delay 0)
 		´func_instance_output_022´ (delay 0)
@@ -796,7 +796,7 @@
 ´logic_random_004´ ElementRandom 100122
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´func_instance_output_034´ (delay 0)
 		´func_instance_output_032´ (delay 0)
@@ -834,165 +834,165 @@
 		´point_debug_040´ (delay 0)
 		´func_sequence_040´ (delay 0)
 ´point_debug_001´ ElementDebug 100128
-	as_subtitle false
+	as_subtitle False
 	debug_string first 1
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100129
-	as_subtitle false
+	as_subtitle False
 	debug_string first 2
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100130
-	as_subtitle false
+	as_subtitle False
 	debug_string first 3
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100131
-	as_subtitle false
+	as_subtitle False
 	debug_string first 4
-	show_instigator false
+	show_instigator False
 ´point_debug_005´ ElementDebug 100132
-	as_subtitle false
+	as_subtitle False
 	debug_string first 5
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100133
-	as_subtitle false
+	as_subtitle False
 	debug_string first 6
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100134
-	as_subtitle false
+	as_subtitle False
 	debug_string first 7
-	show_instigator false
+	show_instigator False
 ´point_debug_008´ ElementDebug 100135
-	as_subtitle false
+	as_subtitle False
 	debug_string first 8
-	show_instigator false
+	show_instigator False
 ´point_debug_009´ ElementDebug 100136
-	as_subtitle false
+	as_subtitle False
 	debug_string first 9
-	show_instigator false
+	show_instigator False
 ´point_debug_010´ ElementDebug 100137
-	as_subtitle false
+	as_subtitle False
 	debug_string first 0
-	show_instigator false
+	show_instigator False
 ´point_debug_011´ ElementDebug 100138
-	as_subtitle false
+	as_subtitle False
 	debug_string second 1
-	show_instigator false
+	show_instigator False
 ´point_debug_012´ ElementDebug 100139
-	as_subtitle false
+	as_subtitle False
 	debug_string second 2
-	show_instigator false
+	show_instigator False
 ´point_debug_013´ ElementDebug 100140
-	as_subtitle false
+	as_subtitle False
 	debug_string second 3
-	show_instigator false
+	show_instigator False
 ´point_debug_014´ ElementDebug 100141
-	as_subtitle false
+	as_subtitle False
 	debug_string second 4
-	show_instigator false
+	show_instigator False
 ´point_debug_015´ ElementDebug 100142
-	as_subtitle false
+	as_subtitle False
 	debug_string second 5
-	show_instigator false
+	show_instigator False
 ´point_debug_016´ ElementDebug 100143
-	as_subtitle false
+	as_subtitle False
 	debug_string second 6
-	show_instigator false
+	show_instigator False
 ´point_debug_017´ ElementDebug 100144
-	as_subtitle false
+	as_subtitle False
 	debug_string second 7
-	show_instigator false
+	show_instigator False
 ´point_debug_018´ ElementDebug 100145
-	as_subtitle false
+	as_subtitle False
 	debug_string second 8
-	show_instigator false
+	show_instigator False
 ´point_debug_019´ ElementDebug 100146
-	as_subtitle false
+	as_subtitle False
 	debug_string second 9
-	show_instigator false
+	show_instigator False
 ´point_debug_020´ ElementDebug 100147
-	as_subtitle false
+	as_subtitle False
 	debug_string second 0
-	show_instigator false
+	show_instigator False
 ´point_debug_021´ ElementDebug 100148
-	as_subtitle false
+	as_subtitle False
 	debug_string third 1
-	show_instigator false
+	show_instigator False
 ´point_debug_022´ ElementDebug 100149
-	as_subtitle false
+	as_subtitle False
 	debug_string third 2
-	show_instigator false
+	show_instigator False
 ´point_debug_023´ ElementDebug 100150
-	as_subtitle false
+	as_subtitle False
 	debug_string third 3
-	show_instigator false
+	show_instigator False
 ´point_debug_024´ ElementDebug 100151
-	as_subtitle false
+	as_subtitle False
 	debug_string third 4
-	show_instigator false
+	show_instigator False
 ´point_debug_025´ ElementDebug 100152
-	as_subtitle false
+	as_subtitle False
 	debug_string third 5
-	show_instigator false
+	show_instigator False
 ´point_debug_026´ ElementDebug 100153
-	as_subtitle false
+	as_subtitle False
 	debug_string third 6
-	show_instigator false
+	show_instigator False
 ´point_debug_027´ ElementDebug 100154
-	as_subtitle false
+	as_subtitle False
 	debug_string third 7
-	show_instigator false
+	show_instigator False
 ´point_debug_028´ ElementDebug 100155
-	as_subtitle false
+	as_subtitle False
 	debug_string third 8
-	show_instigator false
+	show_instigator False
 ´point_debug_029´ ElementDebug 100156
-	as_subtitle false
+	as_subtitle False
 	debug_string third 9
-	show_instigator false
+	show_instigator False
 ´point_debug_030´ ElementDebug 100157
-	as_subtitle false
+	as_subtitle False
 	debug_string third 0
-	show_instigator false
+	show_instigator False
 ´point_debug_031´ ElementDebug 100158
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 1
-	show_instigator false
+	show_instigator False
 ´point_debug_032´ ElementDebug 100159
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 2
-	show_instigator false
+	show_instigator False
 ´point_debug_033´ ElementDebug 100160
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 3
-	show_instigator false
+	show_instigator False
 ´point_debug_034´ ElementDebug 100161
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 4
-	show_instigator false
+	show_instigator False
 ´point_debug_035´ ElementDebug 100162
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 5
-	show_instigator false
+	show_instigator False
 ´point_debug_036´ ElementDebug 100163
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 6
-	show_instigator false
+	show_instigator False
 ´point_debug_037´ ElementDebug 100164
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 7
-	show_instigator false
+	show_instigator False
 ´point_debug_038´ ElementDebug 100165
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 8
-	show_instigator false
+	show_instigator False
 ´point_debug_039´ ElementDebug 100166
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 9
-	show_instigator false
+	show_instigator False
 ´point_debug_040´ ElementDebug 100167
-	as_subtitle false
+	as_subtitle False
 	debug_string fourth 0
-	show_instigator false
+	show_instigator False
 ´func_sequence_001´ ElementUnitSequence 100169
 	position -1650, -700, 0
 	rotation 0, 0, 0, -1
@@ -1394,14 +1394,14 @@
 			notify_unit_sequence state_num_4_0
 			time 0
 ´remove_WP_drill_keycard_interact´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´WP_drill´ DISABLED
+ 		1 ´WP_drill´ DISABLED
 		2 ´WP_interact´
+	operation remove
 ´logic_random_005´ ElementRandom 100260
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´seq_random_moneybundles001´ (delay 0)
 		´seq_random_moneybundles002´ (delay 0)
@@ -1498,14 +1498,11 @@
 		´open_shutters´ (delay 0)
 		´disable_close_shutters´ (delay 0)
 ´disable_WP_goto´ ElementToggle 100028
+	elements
+ 		1 ´WP_goto´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´WP_goto´
 ´func_nav_obstacle_001´ ElementNavObstacle 100083
-	operation add
-	position -1200, 1000, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -1515,6 +1512,9 @@
 			guis_id 2
 			obj_name 15953514984309589828
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/002 (-45, -599, 0)
+	operation add
+	position -1200, 1000, 0
+	rotation 0, 0, 0, -1
 ´seq_disable_keycard_interaction´ ElementUnitSequence 100217
 	position -1000, -1000, 0
 	rotation 0, 0, 0, -1
@@ -1553,10 +1553,10 @@
 			notify_unit_sequence close_shutters
 			time 0
 ´disable_close_shutters´ ElementToggle 100303
+	elements
+ 		1 ´close_shutters´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´close_shutters´ DISABLED
 ´func_disable_unit_001´ ElementDisableUnit 100307
 	EXECUTE ON STARTUP
 	position -700, 450, 0
@@ -1611,65 +1611,63 @@
 		´logic_toggle_002´ (delay 0)
 ´teammate_comment_inside´ ElementTeammateComment 100231
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment g08
 	position -250, 200, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_found_it´ ElementTeammateComment 100232
 	DISABLED
-	close_to_element false
+	close_to_element False
 	comment v04
 	position -250, 100, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´teammate_comment_open_it_up´ ElementTeammateComment 100233
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v16
 	position -300, 200, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_drill_mounted´ ElementTeammateComment 100235
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment g21
 	position -50, -50, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_drill_done´ ElementTeammateComment 100236
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v23
 	position 0, 0, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_keycard_used´ ElementTeammateComment 100237
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v12
 	position -2, -93, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_computer_done´ ElementTeammateComment 100239
 	DISABLED
-	close_to_element true
+	close_to_element True
 	comment v24
 	position 443, -129, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´enable_VO´ ElementToggle 100240
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´teammate_comment_computer_done´ DISABLED
+ 		1 ´teammate_comment_computer_done´ DISABLED
 		2 ´teammate_comment_drill_done´ DISABLED
 		3 ´teammate_comment_drill_mounted´ DISABLED
 		4 ´teammate_comment_found_it´ DISABLED
@@ -1677,14 +1675,16 @@
 		6 ´teammate_comment_keycard_used´ DISABLED
 		7 ´teammate_comment_open_it_up´ DISABLED
 		8 ´teammate_comment_this_is_it´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´teammate_comment_this_is_it´ ElementTeammateComment 100241
 	DISABLED
-	close_to_element false
+	close_to_element False
 	comment g14
 	position 450, -50, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´area_player_close_to_computer´ ElementAreaTrigger 100242
 	TRIGGER TIMES 1
 	amount 1
@@ -1696,21 +1696,21 @@
 	position 407, -140, 170
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´teammate_comment_this_is_it´ (delay 0) DISABLED
 ´disable_VO´ ElementToggle 100234
+	elements
+ 		1 ´teammate_comment_open_it_up´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´teammate_comment_open_it_up´ DISABLED
 ´enable_keycard´ ElementUnitSequence 100227
 	position -700, 1000, 0
 	rotation 0, 0, 0, -1
@@ -1756,29 +1756,30 @@
 		´logic_operator_005´ (delay 0)
 		´WP_drill´ (delay 0.5) DISABLED
 ´enable_drill_resumed´ ElementToggle 100250
+	elements
+ 		1 ´drill_resumed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_resumed´ DISABLED
 ´hacking_started´ ElementInstanceOutput 100230
 	event hacking_started
 ´SO_none´ ElementSpecialObjective 100223
 	TRIGGER TIMES 1
-	SO_access 128
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+		1 ´SO_kick´
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -1786,35 +1787,34 @@
 	pose none
 	position -211, -38, 0.500084
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 1000
 	search_position -275 -75 0,500084
+	SO_access 128
 	so_action none
 	trigger_on none
-	followup_elements
-		1 ´SO_kick´
 ´link_start_interrupt_drill´ MissionScriptElement 100251
 	on_executed
 		´SO_none´ (delay 0)
 		´point_debug_042´ (delay 0)
 ´SO_kick´ ElementSpecialObjective 100252
-	SO_access 128
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
+	align_position False
+	align_rotation False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv false
-	no_arrest false
+	needs_pos_rsrv False
+	no_arrest False
 	path_haste none
 	path_stance none
 	path_style none
@@ -1822,38 +1822,38 @@
 	pose none
 	position -211, -38, 50.5001
 	rotation 0, 0, 0.707107, -0.707107
-	scan false
+	scan False
 	search_distance 0
 	search_position -275 -75 0,500084
+	SO_access 128
 	so_action e_so_container_kick
 	trigger_on none
-	followup_elements
 ´relay´ MissionScriptElement 100253
 	on_executed
 		´link_start_interrupt_drill´ (delay 10-15)
 		´enable_SOs_once´ (delay 0)
 ´fail_any´ ElementSpecialObjectiveTrigger 100254
+	elements
+ 		1 ´SO_none´
+		2 ´SO_kick´
 	event fail
 	position -700, -1800, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_none´
-		2 ´SO_kick´
 	on_executed
 		´link_start_interrupt_drill´ (delay 10-15)
 		´enable_SOs_once´ (delay 0)
 ´enable_SOs_once´ ElementToggle 100255
+	elements
+ 		1 ´SO_none´
+		2 ´SO_kick´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´SO_none´
-		2 ´SO_kick´
 ´complete_kick´ ElementSpecialObjectiveTrigger 100256
+	elements
+ 		1 ´SO_kick´
 	event complete
 	position -700, -1900, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´SO_kick´
 	on_executed
 		´relay_2´ (delay 0)
 		´logic_operator_004´ (delay 0)
@@ -1873,93 +1873,93 @@
 	on_executed
 		´WP_drill_fix´ (delay 0.5)
 ´point_debug_041´ ElementDebug 100259
-	as_subtitle false
+	as_subtitle False
 	debug_string yea thats my jam
-	show_instigator false
+	show_instigator False
 ´point_debug_042´ ElementDebug 100271
-	as_subtitle false
+	as_subtitle False
 	debug_string link_start_interrupt_drill
-	show_instigator false
+	show_instigator False
 ´enable_drill_resumed_trigger´ ElementToggle 100277
+	elements
+ 		1 ´drill_resumed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drill_resumed´ DISABLED
 ´disable_SO_interrupt´ ElementToggle 100279
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´relay´
+ 		1 ´relay´
 		2 ´link_start_interrupt_drill´
 		3 ´fail_any´
 		4 ´complete_kick´
 		5 ´SO_none´
 		6 ´SO_kick´
 		7 ´drill_resumed´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´logic_operator_003´ (delay 0)
 ´logic_operator_003´ ElementOperator 100298
-	operation remove
 	elements
-		1 ´SO_kick´
+ 		1 ´SO_kick´
 		2 ´SO_none´
+	operation remove
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100301
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 275, 500, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100318
 	accessibility any
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 375, 500, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_045´ ElementDebug 100319
-	as_subtitle false
+	as_subtitle False
 	debug_string jam resumed
-	show_instigator false
+	show_instigator False
 ´WP_drill_fix´ ElementWaypoint 100320
 	icon pd2_fix
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -35, -81, 147.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´logic_operator_004´ ElementOperator 100321
-	operation remove
 	elements
-		1 ´WP_drill´ DISABLED
+ 		1 ´WP_drill´ DISABLED
+	operation remove
 ´logic_operator_005´ ElementOperator 100322
-	operation remove
 	elements
-		1 ´WP_drill_fix´
+ 		1 ´WP_drill_fix´
+	operation remove
 ´logic_toggle_002´ ElementToggle 100023
+	elements
+ 		1 ´WP_drill´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´WP_drill´ DISABLED
 ´enable_WP_drill_once´ ElementToggle 100024
 	set_trigger_times 1
 	toggle on
 ´point_debug_044´ ElementDebug 100069
-	as_subtitle false
+	as_subtitle False
 	debug_string ENABLED kEYPAD
-	show_instigator false
+	show_instigator False
 ´seq_power_off´ ElementUnitSequence 100031
 	position -1200, 100, 0
 	rotation 0, 0, 0, -1

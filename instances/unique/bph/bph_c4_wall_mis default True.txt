@@ -56,14 +56,14 @@
 	position 0, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´show_waypoints_thermite´ (delay 0)
 		´func_sequence_001´ (delay 0)
@@ -82,24 +82,24 @@
 		´c4_placed_operator´ (delay 0)
 		´remove_c4_waypoint_001´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
-	as_subtitle false
+	as_subtitle False
 	debug_string placed all c4
-	show_instigator false
+	show_instigator False
 ´amount_of_c4s´ ElementCounter 100016
 	counter_target 0
 ´c4_placed_operator´ ElementCounterOperator 100017
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´amount_of_c4s´
+ 		1 ´amount_of_c4s´
+	instance_var_names
+	operation add
 	on_executed
 		´point_debug_002´ (delay 0)
 ´check_all_c4´ ElementCounterTrigger 100018
 	amount 3
-	trigger_type value
 	elements
-		1 ´amount_of_c4s´
+ 		1 ´amount_of_c4s´
+	trigger_type value
 	on_executed
 		´point_debug_001´ (delay 0)
 		´all_c4_placed´ (delay 0)
@@ -107,9 +107,9 @@
 ´all_c4_placed´ ElementInstanceOutput 100019
 	event all_c4_placed
 ´point_debug_002´ ElementDebug 100020
-	as_subtitle false
+	as_subtitle False
 	debug_string placed c4
-	show_instigator false
+	show_instigator False
 ´trigger_explosion´ ElementUnitSequence 100021
 	position 800, -600, 0
 	rotation 0, 0, 0, -1
@@ -159,8 +159,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´point_explosion_002´ ElementExplosion 100023
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -182,8 +182,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´point_explosion_003´ ElementExplosion 100024
 	above_camera_effect none
 	above_camera_effect_distance 0,5
@@ -205,8 +205,8 @@
 	rumble_release 2,1
 	rumble_sustain 0,3
 	sound_event trip_mine_explode
-	use_camera_shake true
-	use_rumble true
+	use_camera_shake True
+	use_rumble True
 ´c4_exploded´ ElementInstanceOutput 100025
 	event c4_exploded
 ´func_disable_unit_001´ ElementDisableUnit 100026
@@ -215,22 +215,22 @@
 	unit_ids
 ´waypoint_c4_001´ ElementWaypoint 100002
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -18, -3, 272
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_c4_002´ ElementWaypoint 100003
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 182, -3, 133
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_c4_003´ ElementWaypoint 100027
 	icon pd2_c4
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -128, -3, 73
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -253,17 +253,17 @@
 		´c4_placed_operator´ (delay 0)
 		´remove_c4_waypoint_003´ (delay 0)
 ´remove_c4_waypoint_001´ ElementOperator 100032
-	operation remove
 	elements
-		1 ´waypoint_c4_002´
+ 		1 ´waypoint_c4_002´
+	operation remove
 ´remove_c4_waypoint_002´ ElementOperator 100033
-	operation remove
 	elements
-		1 ´waypoint_c4_001´
+ 		1 ´waypoint_c4_001´
+	operation remove
 ´remove_c4_waypoint_003´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´waypoint_c4_003´
+ 		1 ´waypoint_c4_003´
+	operation remove
 ´show_waypoints_c4´ MissionScriptElement 100029
 	on_executed
 		´waypoint_c4_001´ (delay 0)
@@ -279,15 +279,15 @@
 		´waypoint_thermite_bottom´ (delay 0)
 ´waypoint_thermite_bottom´ ElementWaypoint 100037
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 125.817
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´waypoint_thermite_top´ ElementWaypoint 100042
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 221.817
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -312,13 +312,13 @@
 		´remove_thermite_waypoint_bottom´ (delay 0)
 		´show_thermite_bot´ (delay 0)
 ´remove_thermite_waypoint_top´ ElementOperator 100045
-	operation remove
 	elements
-		1 ´waypoint_thermite_top´
+ 		1 ´waypoint_thermite_top´
+	operation remove
 ´remove_thermite_waypoint_bottom´ ElementOperator 100046
-	operation remove
 	elements
-		1 ´waypoint_thermite_bottom´
+ 		1 ´waypoint_thermite_bottom´
+	operation remove
 ´thermite_effect_top´ ElementPlayEffect 100047
 	base_time 0
 	effect effects/payday2/particles/fire/thermite_infinite
@@ -326,7 +326,7 @@
 	position 0, 0, 221.351
 	random_time 0
 	rotation -0.707107, 0, 0, -0.707107
-	screen_space false
+	screen_space False
 ´thermite_effect_bottom´ ElementPlayEffect 100048
 	base_time 0
 	effect effects/payday2/particles/fire/thermite_infinite
@@ -334,7 +334,7 @@
 	position 0, 0, 126.465
 	random_time 0
 	rotation -0.707107, 0, 0, -0.707107
-	screen_space false
+	screen_space False
 ´stop_thermite_top´ MissionScriptElement 100051
 	on_executed
 		´stop_effect_top´ (delay 0)
@@ -342,17 +342,17 @@
 	on_executed
 		´stop_effect_bottom´ (delay 0)
 ´stop_effect_top´ ElementStopEffect 100040
+	elements
+ 		1 ´thermite_effect_top´
 	operation fade_kill
 	position 1700, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´thermite_effect_top´
 ´stop_effect_bottom´ ElementStopEffect 100053
+	elements
+ 		1 ´thermite_effect_bottom´
 	operation fade_kill
 	position 1900, -300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´thermite_effect_bottom´
 ´stop_thermite_top_input´ ElementInstanceInput 100054
 	event stop_thermite_top_input
 	on_executed
@@ -373,15 +373,15 @@
 	counter_target 0
 ´thermite_placed_operator´ ElementCounterOperator 100059
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´amount_of_thermite´
+ 		1 ´amount_of_thermite´
+	instance_var_names
+	operation add
 ´check_all_thermite´ ElementCounterTrigger 100060
 	amount 2
-	trigger_type value
 	elements
-		1 ´amount_of_thermite´
+ 		1 ´amount_of_thermite´
+	trigger_type value
 	on_executed
 		´all_thermite_placed´ (delay 0)
 		´start_thermite_sequence´ (delay 0)
@@ -487,19 +487,19 @@
 		´comment_finished_lets_go´ (delay 0)
 		´thermite_burn_done´ (delay 0)
 ´comment_thats_all´ ElementTeammateComment 100070
-	close_to_element false
+	close_to_element False
 	comment v08
 	position 1200, -600, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´comment_finished_lets_go´ ElementTeammateComment 100072
-	close_to_element false
+	close_to_element False
 	comment v25
 	position 1700, -500, 2.5
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´check_thermite_done_burning´ ElementUnitSequenceTrigger 100071
 	TRIGGER TIMES 1
 	sequence_list

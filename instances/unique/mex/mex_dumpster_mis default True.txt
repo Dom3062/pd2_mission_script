@@ -29,20 +29,20 @@
 	position 200, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´inside´
-	use_shape_element_ids
 	unit_ids
 		1 100004
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_3´ (delay 0) (alternative enter)
 ´inside´ ElementShape 100004
 	depth 100
-	height 97,65
+	height 97.65
 	position 0, 0, 75
 	radius 250
 	rotation 0, 0, 0, -1
@@ -58,15 +58,15 @@
 	position 300, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´inside´
-	use_shape_element_ids
 	unit_ids
 		1 100004
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_4´ (delay 0) (alternative leave)
 ´link_3´ MissionScriptElement 100008
@@ -79,26 +79,26 @@
 	counter_target 0
 ´add´ ElementCounterOperator 100011
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation add
 	on_executed
 		´deb´ (delay 0)
 ´sub´ ElementCounterOperator 100012
 	amount 1
-	operation subtract
-	instance_var_names
 	elements
-		1 ´counter´
+ 		1 ´counter´
+	instance_var_names
+	operation subtract
 	on_executed
 		´deb_2´ (delay 0)
 ´equal to 1´ ElementCounterFilter 100013
+	elements
+ 		1 ´counter´
 	check_type equal
 	needed_to_execute all
 	value 1
-	elements
-		1 ´counter´
 	on_executed
 		´1_body´ (delay 0)
 ´link_5´ MissionScriptElement 100015
@@ -112,13 +112,13 @@
 ´1_body´ ElementInstanceOutput 100014
 	event 1_body_in_dumpster
 ´deb´ ElementDebug 100017
-	as_subtitle false
+	as_subtitle False
 	debug_string add 1 body
-	show_instigator false
+	show_instigator False
 ´deb_2´ ElementDebug 100018
-	as_subtitle false
+	as_subtitle False
 	debug_string subtract 1 body
-	show_instigator false
+	show_instigator False
 ´input_remove_collision´ ElementInstanceInput 100043
 	event remove_collision
 	on_executed

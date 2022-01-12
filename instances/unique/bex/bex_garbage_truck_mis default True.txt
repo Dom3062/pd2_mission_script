@@ -35,8 +35,8 @@
 	event bag_secured
 ´WP_lootdrop´ ElementWaypoint 100012
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -12, -300, 150
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -54,21 +54,21 @@
 	position -3, -353, 150
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 150
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
 	on_executed
 		´loot_secured´ (delay 0)
 ´enable_area_lootdrop´ ElementToggle 100017
+	elements
+ 		1 ´area_lootdrop´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_lootdrop´ DISABLED
 	on_executed
 		´enable_WP_lootdrop´ (delay 0)
 ´secure_bag´ ElementCarry 100015
@@ -83,101 +83,101 @@
 		´add_loot_bag_001´ (delay 0) DISABLED
 		´add_loot_bag_002´ (delay 0) DISABLED
 ´soundbank_robbers_mission_gen´ ElementPlaySound 100019
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1400, 100, 2.5
 	rotation 0, 0, 0, -1
 	sound_event p14
-	use_instigator false
+	use_instigator False
 ´loot_secured´ MissionScriptElement 100022
 	on_executed
 		´secure_bag´ (delay 0)
 		´sound_bagdrop´ (delay 0)
 		´bag_counter+1´ (delay 0)
 ´sound_bagdrop´ ElementPlaySound 100024
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -12, -300, 100
 	rotation 0, 0, 0, -1
 	sound_event bag_medium_drop
-	use_instigator false
+	use_instigator False
 ´bag_counter+1´ ElementCounterOperator 100020
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	instance_var_names
+	operation add
 	on_executed
 		´logic_counter_filter_bag_amount´ (delay 1)
 ´counter_bags´ ElementCounter 100021
 	counter_target 0
 ´bag_secured001´ ElementCounterTrigger 100033
 	amount 1
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment001´ (delay 0)
 ´bag_secured002´ ElementCounterTrigger 100034
 	amount 2
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment002´ (delay 0)
 ´bag_secured003´ ElementCounterTrigger 100035
 	amount 3
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment003´ (delay 0)
 ´bag_secured004´ ElementCounterTrigger 100036
 	amount 4
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment004´ (delay 0)
 ´bag_secured005´ ElementCounterTrigger 100037
 	amount 5
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment005´ (delay 0)
 ´bag_secured006´ ElementCounterTrigger 100038
 	amount 6
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment006´ (delay 0)
 ´bag_secured007´ ElementCounterTrigger 100039
 	amount 7
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment007´ (delay 0)
 ´bag_secured008´ ElementCounterTrigger 100040
 	amount 8
-	trigger_type value
 	elements
-		1 ´counter_bags´
+ 		1 ´counter_bags´
+	trigger_type value
 	on_executed
 		´locke_loot_comment008´ (delay 0)
 ´disable_area_lootdrop´ ElementToggle 100058
+	elements
+ 		1 ´area_lootdrop´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_lootdrop´ DISABLED
 	on_executed
 		´remove_WP_lootdrop´ (delay 0)
 ´remove_WP_lootdrop´ ElementOperator 100009
-	operation remove
 	elements
-		1 ´WP_lootdrop´
+ 		1 ´WP_lootdrop´
+	operation remove
 	on_executed
 		´disable_nav_blockers´ (delay 0)
 ´drive_away_short´ ElementUnitSequence 100049
@@ -228,9 +228,6 @@
 	on_executed
 		´output_bag_secured´ (delay 0)
 ´enable_nav_blockers´ ElementNavObstacle 100030
-	operation add
-	position 600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -240,6 +237,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, 235, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
 ´start_drive_away´ MissionScriptElement 100005
 	TRIGGER TIMES 1
 	on_executed
@@ -251,87 +251,84 @@
 	on_executed
 		´start_drive_away´ (delay 0)
 ´soundbank_locke_system´ ElementPlaySound 100041
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1400, 0, 2.5
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_h11y
-	use_instigator false
+	use_instigator False
 ´logic_counter_filter_bag_amount´ ElementCounterFilter 100025
+	elements
+ 		1 ´counter_bags´
 	check_type greater_than
 	needed_to_execute all
 	value 8
-	elements
-		1 ´counter_bags´
 	on_executed
 		´locke_system_bag_comment_8+´ (delay 0)
 ´locke_system_bag_comment_8+´ ElementPlaySound 100042
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1600, -300, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_gen_11
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment008´ ElementPlaySound 100043
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1600, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_08
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment007´ ElementPlaySound 100044
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1500, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_07
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment006´ ElementPlaySound 100045
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1400, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_06
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment005´ ElementPlaySound 100046
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1300, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_05
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment004´ ElementPlaySound 100047
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1200, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_04
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment003´ ElementPlaySound 100048
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1100, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_03
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment002´ ElementPlaySound 100057
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1000, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_02
-	use_instigator false
+	use_instigator False
 ´locke_loot_comment001´ ElementPlaySound 100060
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 900, -500, 0
 	rotation 0, 0, 0, -1
 	sound_event Play_loc_count_bag_01
-	use_instigator false
+	use_instigator False
 ´disable_nav_blockers´ ElementNavObstacle 100023
-	operation remove
-	position 1000, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -341,6 +338,9 @@
 			guis_id 2
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (100, 235, 0)
+	operation remove
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´disable_blockers´ (delay 2)
 ´func_sequence_001´ ElementUnitSequence 100027
@@ -360,11 +360,11 @@
 			notify_unit_sequence hide
 			time 0
 ´toggle_ON´ ElementToggle 100031
+	elements
+ 		1 ´drive_away_short´ DISABLED
+		2 ´add_loot_bag_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drive_away_short´ DISABLED
-		2 ´add_loot_bag_001´ DISABLED
 ´set_garbage_truck_002´ ElementInstanceInput 100016
 	event set_garbage_002
 	on_executed
@@ -400,11 +400,11 @@
 			notify_unit_sequence flee_away_long
 			time 0
 ´toggle_ON_2´ ElementToggle 100052
+	elements
+ 		1 ´drive_away_long´ DISABLED
+		2 ´add_loot_bag_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´drive_away_long´ DISABLED
-		2 ´add_loot_bag_002´ DISABLED
 ´add_loot_bag_002´ ElementUnitSequence 100054
 	DISABLED
 	position 800, -600, 0

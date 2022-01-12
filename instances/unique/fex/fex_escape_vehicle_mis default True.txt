@@ -55,8 +55,8 @@
 	event all_players_in_escape_zone
 ´van_wp_bag001´ ElementWaypoint 100009
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -131.43, -3380.57, -89
 	rotation 0, 0, 0.671785, -0.740746
 	text_id debug_none
@@ -72,14 +72,14 @@
 	position -110, -3591, 200
 	radius 250
 	rotation 0, 0, 0.671785, -0.740746
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´output_all_players_in_escape_zone´ (delay 0)
 ´area_loot_secured001´ ElementAreaTrigger 100011
@@ -93,21 +93,21 @@
 	position -131.43, -3380.57, -89
 	radius 250
 	rotation 0, 0, 0.671785, -0.740746
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 309,925
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 309.925
 	on_executed
 		´add_loot_bag´ (delay 0)
 		´output_secure_bag´ (delay 0)
 ´van_wp_esc001´ ElementWaypoint 100012
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -90.5183, -3798.57, 100
 	rotation 0, 0, 0.671785, -0.740746
 	text_id debug_none
@@ -173,11 +173,11 @@
 	on_executed
 		´toggle_ON_triggers´ (delay 2)
 ´toggle_ON_triggers´ ElementToggle 100023
+	elements
+ 		1 ´area_escape001´ DISABLED
+		2 ´area_loot_secured001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_escape001´ DISABLED
-		2 ´area_loot_secured001´ DISABLED
 	on_executed
 		´van_wp_esc001´ (delay 0)
 		´van_wp_bag001´ (delay 0)
@@ -194,19 +194,19 @@
 	position 900, 200, 2.5
 	rotation 0, 0, 0, -1
 ´chance_fail´ ElementLogicChanceTrigger 100026
+	elements
+ 		1 ´wanker_spawn´
 	outcome fail
 	position 950, 100, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´wanker_spawn´
 	on_executed
 		´enable_wanker_car´ (delay 0)
 ´chance_success´ ElementLogicChanceTrigger 100027
+	elements
+ 		1 ´wanker_spawn´
 	outcome success
 	position 850, 100, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´wanker_spawn´
 	on_executed
 		´enable_escape_van´ (delay 0)
 ´enable_wanker_car´ ElementEnableUnit 100028
@@ -257,8 +257,8 @@
 		´toggle_ON_triggers_2´ (delay 2)
 ´van_wp_esc002´ ElementWaypoint 100032
 	icon pd2_escape
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 109.662, -3903.57, 100
 	rotation 0, 0, 0.671785, -0.740746
 	text_id debug_none
@@ -274,14 +274,14 @@
 	position 123, -3762, 200
 	radius 250
 	rotation 0, 0, 0.690946, -0.722907
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´output_all_players_in_escape_zone´ (delay 0)
 ´area_loot_secured002´ ElementAreaTrigger 100034
@@ -295,30 +295,30 @@
 	position 89.7981, -3413.18, -75
 	radius 250
 	rotation 0, 0, 0.671785, -0.740746
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´add_loot_bag_2´ (delay 0)
 		´output_secure_bag´ (delay 0)
 ´van_wp_bag002´ ElementWaypoint 100035
 	icon pd2_lootdrop
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 89.7981, -3413.18, -75
 	rotation 0, 0, 0.671785, -0.740746
 	text_id debug_none
 ´toggle_ON_triggers_2´ ElementToggle 100037
+	elements
+ 		1 ´area_escape002´ DISABLED
+		2 ´area_loot_secured002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_escape002´ DISABLED
-		2 ´area_loot_secured002´ DISABLED
 	on_executed
 		´enable_marker_2´ (delay 0)
 		´van_wp_esc002´ (delay 0)
@@ -355,9 +355,6 @@
 ´output_escape_vehicle_arrived´ ElementInstanceOutput 100042
 	event escape_vehicle_arrived
 ´add_door_blocker´ ElementNavObstacle 100041
-	operation add
-	position 850, -200, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -411,10 +408,10 @@
 			guis_id 14
 			obj_name 8163803164691588866
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/002 (95.6937, -3652.99, -191)
-´add_door_blocker_2´ ElementNavObstacle 100044
 	operation add
-	position 950, -200, 0
+	position 850, -200, 0
 	rotation 0, 0, 0, -1
+´add_door_blocker_2´ ElementNavObstacle 100044
 	obstacle_list
 		1
 			guis_id 1
@@ -464,12 +461,15 @@
 			guis_id 13
 			obj_name 8163803164691588866
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/013 (-785.753, -7091.47, -191)
+	operation add
+	position 950, -200, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´output_wanker_car_chosen´ (delay 0)
 ´randomize_doors´ ElementRandom 100047
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´open_back_right_doors´ (delay 0)
 		´open_back_left_doors´ (delay 0)
@@ -494,9 +494,6 @@
 ´output_wanker_car_chosen´ ElementInstanceOutput 100049
 	event wanker_car_chosen
 ´remove_door_blockers´ ElementNavObstacle 100059
-	operation remove
-	position 1100, -200, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -546,10 +543,10 @@
 			guis_id 12
 			obj_name 8163803164691588866
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/013 (-785.753, -7091.47, -191)
-´remove_door_blockers_2´ ElementNavObstacle 100064
 	operation remove
-	position 1300, -100, 2.5
+	position 1100, -200, 2.5
 	rotation 0, 0, 0, -1
+´remove_door_blockers_2´ ElementNavObstacle 100064
 	obstacle_list
 		1
 			guis_id 1
@@ -595,6 +592,9 @@
 			guis_id 11
 			obj_name 8163803164691588866
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_vehicle_sedan/005 (161.593, -6027.08, -191)
+	operation remove
+	position 1300, -100, 2.5
+	rotation 0, 0, 0, -1
 	on_executed
 		´output_escape_vehicle_arrived´ (delay 0)
 ´PLACE_HAJRUDIN_VO_HERE´ MissionScriptElement 100065

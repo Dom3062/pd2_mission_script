@@ -90,7 +90,7 @@
 ´it's´ ElementInteraction 100011
 	DISABLED
 	BASE DELAY 1
-	host_only false
+	host_only False
 	override_timer -1
 	position -625, 25.0001, 825
 	rotation 0, 0, 0, -1
@@ -102,7 +102,7 @@
 ´pay´ ElementInteraction 100012
 	DISABLED
 	BASE DELAY 1
-	host_only false
+	host_only False
 	override_timer -1
 	position -325, 25.0001, 825
 	rotation 0, 0, 0, -1
@@ -114,7 +114,7 @@
 ´day´ ElementInteraction 100013
 	DISABLED
 	BASE DELAY 1
-	host_only false
+	host_only False
 	override_timer -1
 	position 0, 25, 825
 	rotation 0, 0, 0, -1
@@ -159,32 +159,32 @@
 	on_executed
 		´turn_on´ (delay 0)
 ´turn_on´ ElementToggle 100087
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´day´ DISABLED
+ 		1 ´day´ DISABLED
 		2 ´it's´ DISABLED
 		3 ´pay´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´seq_enable_interactions´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100088
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 200, -1, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_waypoint_002´ ElementWaypoint 100089
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -275, -0.999901, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´point_waypoint_003´ ElementWaypoint 100090
 	icon pd2_fire
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -800, -0.999901, 25
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -201,21 +201,21 @@
 	on_executed
 		´logic_operator_003´ (delay 0)
 ´logic_operator_001´ ElementOperator 100095
-	operation remove
 	elements
-		1 ´point_waypoint_003´
+ 		1 ´point_waypoint_003´
+	operation remove
 	on_executed
 		´smoke001´ (delay 0)
 ´logic_operator_002´ ElementOperator 100096
-	operation remove
 	elements
-		1 ´point_waypoint_002´
+ 		1 ´point_waypoint_002´
+	operation remove
 	on_executed
 		´smoke002´ (delay 0)
 ´logic_operator_003´ ElementOperator 100097
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
+	operation remove
 	on_executed
 		´smoke003´ (delay 0)
 ´letter_smoke´ ElementPlayEffect 100079
@@ -225,7 +225,7 @@
 	position -775, -42.6777, 57.3223
 	random_time 0
 	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
-	screen_space false
+	screen_space False
 ´letter_smoke001´ ElementPlayEffect 100080
 	base_time 0
 	effect effects/particles/dest/apartment_smoke_pillar
@@ -233,7 +233,7 @@
 	position -275, -42.6776, 57.3223
 	random_time 0
 	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
-	screen_space false
+	screen_space False
 ´letter_smoke002´ ElementPlayEffect 100081
 	base_time 0
 	effect effects/particles/dest/apartment_smoke_pillar
@@ -241,7 +241,7 @@
 	position 200, -42.6775, 57.3223
 	random_time 0
 	rotation -3.42144E-08, 0.382683, 0.92388, -8.26013E-08
-	screen_space false
+	screen_space False
 ´smoke001´ MissionScriptElement 100098
 	on_executed
 		´letter_smoke´ (delay 1)
@@ -265,15 +265,15 @@
 	position -800, 0, 25
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 450
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 450
 	on_executed
 		´fire_damage´ (delay 0)
 ´trigger_area_002´ ElementAreaTrigger 100018
@@ -287,15 +287,15 @@
 	position -275, 0, 25
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 450
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 450
 	on_executed
 		´fire_damage´ (delay 0)
 ´fire_damage´ ElementKillZone 100019
@@ -313,36 +313,36 @@
 	position 200, 0, 25
 	radius 250
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type box
+	spawn_unit_elements
 	substitute_object 
 	trigger_on both
-	use_disabled_shapes false
-	width 500
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´fire_damage´ (delay 0)
 ´turn_on_2´ ElementToggle 100022
+	elements
+ 		1 ´trigger_area_001´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_001´ DISABLED
 	on_executed
 		´disable_WP_001´ (delay 0)
 ´turn_on001´ ElementToggle 100023
+	elements
+ 		1 ´trigger_area_002´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_002´ DISABLED
 	on_executed
 		´disable_WP_002´ (delay 0)
 ´turn_on002´ ElementToggle 100024
+	elements
+ 		1 ´trigger_area_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_003´ DISABLED
 	on_executed
 		´disable_WP_003´ (delay 0)
 ´its´ ElementEnableUnit 100025
@@ -398,37 +398,37 @@
 		´point_waypoint_001´ (delay 0)
 		´seq_show_outline´ (delay 0) DISABLED
 ´remove_WP´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´point_waypoint_001´
+ 		1 ´point_waypoint_001´
 		2 ´point_waypoint_002´
 		3 ´point_waypoint_003´
+	operation remove
 	on_executed
 		´seq_hide_outline´ (delay 0) DISABLED
 ´disable_WP_001´ ElementToggle 100035
+	elements
+ 		1 ´point_waypoint_003´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_003´
 ´disable_WP_002´ ElementToggle 100036
+	elements
+ 		1 ´point_waypoint_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_002´
 ´disable_WP_003´ ElementToggle 100037
+	elements
+ 		1 ´point_waypoint_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´point_waypoint_001´
 ´toggle_off_WP´ ElementToggle 100038
 	TRIGGER TIMES 1
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_disable_WP´
+ 		1 ´input_disable_WP´
 		2 ´input_enable_WP´
 		3 ´show_WP´
 		4 ´remove_WP´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´output_fire_completed´ (delay 0)
 ´seq_enable_interactions´ ElementUnitSequence 100042
@@ -586,7 +586,7 @@
 	position -900, 24.9999, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_004´ ElementPlayEffect 100055
 	base_time 0
 	effect effects/payday2/particles/explosions/molotov_grenade
@@ -594,7 +594,7 @@
 	position -675, -50.0001, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_005´ ElementPlayEffect 100053
 	base_time 0
 	effect effects/payday2/particles/explosions/molotov_grenade
@@ -602,7 +602,7 @@
 	position -400, -75.0001, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_006´ ElementPlayEffect 100056
 	base_time 0
 	effect effects/payday2/particles/explosions/molotov_grenade
@@ -610,7 +610,7 @@
 	position -175, 49.9999, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_007´ ElementPlayEffect 100057
 	base_time 0
 	effect effects/payday2/particles/explosions/molotov_grenade
@@ -618,7 +618,7 @@
 	position 75, 24.9999, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´env_effect_play_008´ ElementPlayEffect 100058
 	base_time 0
 	effect effects/payday2/particles/explosions/molotov_grenade
@@ -626,25 +626,25 @@
 	position 325, -75.0001, 0
 	random_time 0
 	rotation 0, 0, -0.707107, -0.707107
-	screen_space false
+	screen_space False
 ´point_play_sound_001´ ElementPlaySound 100052
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -800, -50, 0
 	rotation 0, 0, 0, -1
 	sound_event fire_burning_message_loop
-	use_instigator false
+	use_instigator False
 ´point_play_sound_002´ ElementPlaySound 100059
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position -275, -50, 0
 	rotation 0, 0, 0, -1
 	sound_event fire_burning_message_loop
-	use_instigator false
+	use_instigator False
 ´point_play_sound_003´ ElementPlaySound 100060
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 202, -50, 0
 	rotation 0, 0, 0, -1
 	sound_event fire_burning_message_loop
-	use_instigator false
+	use_instigator False

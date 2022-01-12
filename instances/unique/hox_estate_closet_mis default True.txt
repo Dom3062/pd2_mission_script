@@ -11,8 +11,8 @@
 ´point_smoke_grenade_001´ ElementSmokeGrenade 100003
 	duration 25
 	effect_type flash
-	ignore_control true
-	immediate true
+	ignore_control True
+	immediate True
 	position 0, 0, 0
 	rotation 0, 0, 0, -1
 ´inside´ ElementAreaTrigger 100004
@@ -27,15 +27,15 @@
 	position 0, 700, 300
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´closet_shape´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´start_checking_if_empty´ (delay 0.05)
 		´enable´ (delay 0)
@@ -59,28 +59,28 @@
 	position 100, 700, 300
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´closet_shape´
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´start_checking_if_inside´ (delay 0.05)
 		´disable´ (delay 0)
 ´start_checking_if_inside´ ElementToggle 100010
+	elements
+ 		1 ´inside´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´inside´ DISABLED
 ´start_checking_if_empty´ ElementToggle 100012
+	elements
+ 		1 ´not_inside´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´not_inside´ DISABLED
 ´enemy_enter´ ElementAreaTrigger 100013
 	TRIGGER TIMES 1
 	amount 1
@@ -92,14 +92,14 @@
 	position 0, 300, 153.698
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 400
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 400
 	on_executed
 		´enemy_close´ (delay 0)
 ´try_flashbang´ MissionScriptElement 100014
@@ -107,10 +107,10 @@
 		´logic_toggle_001´ (delay 25)
 		´point_smoke_grenade_001´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100015
+	elements
+ 		1 ´try_flashbang´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´try_flashbang´
 ´enemy_close´ MissionScriptElement 100016
 	on_executed
 		´only_if_inside´ (delay 0) DISABLED
@@ -119,15 +119,15 @@
 	on_executed
 		´try_flashbang´ (delay 0)
 ´enable´ ElementToggle 100018
+	elements
+ 		1 ´only_if_inside´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´only_if_inside´ DISABLED
 ´disable´ ElementToggle 100019
+	elements
+ 		1 ´only_if_inside´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´only_if_inside´ DISABLED
 ´start_checking´ ElementInstanceInput 100020
 	event start_checking
 	on_executed
@@ -136,7 +136,7 @@
 	on_executed
 		´start_checking_if_inside´ (delay 0)
 ´never_check´ ElementToggle 100022
+	elements
+ 		1 ´start_checking_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´start_checking_2´

@@ -6,7 +6,7 @@
 		´enable_cutoff´ (delay 0)
 ´select_screen´ ElementRandom 100002
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´display_001´ (delay 0)
 		´display_002´ (delay 0)
@@ -66,7 +66,7 @@
 		´3_times´ (delay 0)
 ´setup_random_change_time´ ElementRandom 100009
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´time001´ (delay 0)
 		´time002´ (delay 0)
@@ -106,18 +106,18 @@
 		´disable_cutoff´ (delay 0)
 		´select_dead_state_timer´ (delay 0)
 ´enable_cutoff´ ElementToggle 100017
+	elements
+ 		1 ´cutoff´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´cutoff´
 ´disable_cutoff´ ElementToggle 100019
+	elements
+ 		1 ´cutoff´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´cutoff´
 ´select_dead_state_timer´ ElementRandom 100023
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´dead001´ (delay 0)
 		´dead002´ (delay 0)
@@ -142,7 +142,7 @@
 		´rebooted´ (delay 1.55)
 ´set_timer_after_reboot´ ElementRandom 100027
 	amount 1
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´short001´ (delay 0)
 		´short002´ (delay 0)
@@ -163,19 +163,19 @@
 		´enable_all_motives´ (delay 0)
 		´reset´ (delay 0.05)
 ´enable_all_motives´ ElementToggle 100032
-	set_trigger_times 1
-	toggle on
 	elements
-		1 ´display_001´
+ 		1 ´display_001´
 		2 ´display_002´
 		3 ´display_003´
 		4 ´display_004´
+	set_trigger_times 1
+	toggle on
 ´reset´ ElementCounterOperator 100033
 	amount 3
-	operation set
-	instance_var_names
 	elements
-		1 ´3_times´
+ 		1 ´3_times´
+	instance_var_names
+	operation set
 ´cutoff´ MissionScriptElement 100034
 	on_executed
 		´select_screen´ (delay 0)
@@ -189,11 +189,11 @@
 	on_executed
 		´display_005´ (delay 0.35)
 ´stop_screening´ ElementToggle 100040
+	elements
+ 		1 ´select_screen´
+		2 ´set_next_screen´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´select_screen´
-		2 ´set_next_screen´
 ´rebooted´ ElementLogicChance 100035
 	chance 90
 	position -50, 800, 0
@@ -201,21 +201,21 @@
 	on_executed
 		´select_screen´ (delay 0)
 ´crashed´ ElementLogicChanceTrigger 100047
+	elements
+ 		1 ´rebooted´
 	outcome fail
 	position 100, 750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´rebooted´
 	on_executed
 		´display_006´ (delay 0)
 		´crash_again´ (delay 0)
 ´crash_again´ ElementLogicChanceOperator 100021
+	elements
+ 		1 ´rebooted´
 	chance 0
 	operation set_chance
 	position 50, 750, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´rebooted´
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100000
 	TRIGGER TIMES 1
 	sequence_list

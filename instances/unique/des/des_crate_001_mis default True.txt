@@ -32,15 +32,15 @@
 		´logic_toggle_002´ (delay 0)
 ´interact_wp´ ElementWaypoint 100004
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -3, 135
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´loot_wp´ ElementWaypoint 100005
 	icon pd2_loot
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -20, 132
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -50,9 +50,9 @@
 		´interact_wp´ (delay 0)
 		´enable_interaction´ (delay 0)
 ´remove_interact_wp´ ElementOperator 100007
-	operation remove
 	elements
-		1 ´interact_wp´
+ 		1 ´interact_wp´
+	operation remove
 	on_executed
 		´loot_wp´ (delay 1)
 		´crate_opened_2´ (delay 0)
@@ -113,9 +113,9 @@
 	on_executed
 		´remove_loot_wp´ (delay 0)
 ´remove_loot_wp´ ElementOperator 100015
-	operation remove
 	elements
-		1 ´loot_wp´
+ 		1 ´loot_wp´
+	operation remove
 	on_executed
 		´loot_taken_output´ (delay 0)
 ´loot_taken_output´ ElementInstanceOutput 100016
@@ -143,15 +143,15 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´logic_toggle_001´ ElementToggle 100019
+	elements
+ 		1 ´set_prop_unknown_004´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´set_prop_unknown_004´ DISABLED
 ´logic_toggle_002´ ElementToggle 100020
+	elements
+ 		1 ´set_prop_unknown_003´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´set_prop_unknown_003´ DISABLED
 ´env_effect_play_001´ ElementPlayEffect 100021
 	base_time 0
 	effect effects/payday2/particles/explosions/des_bats_02
@@ -159,14 +159,14 @@
 	position 0, -6.21277, 88.0942
 	random_time 0
 	rotation 0.116706, -0.116706, -0.697409, -0.697409
-	screen_space false
+	screen_space False
 ´point_play_sound_001´ ElementPlaySound 100022
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 7.78723, 115.094
 	rotation -5.96046E-08, 0, 0, -1
 	sound_event bats_fly_away
-	use_instigator false
+	use_instigator False
 ´bats´ MissionScriptElement 100023
 	on_executed
 		´point_play_sound_001´ (delay 0)
@@ -176,11 +176,11 @@
 	position 200, 200, 2.5
 	rotation 0, 0, 0, -1
 ´succes´ ElementLogicChanceTrigger 100025
+	elements
+ 		1 ´bats_chance´
 	outcome success
 	position 200, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´bats_chance´
 	on_executed
 		´bats´ (delay 0)
 ´enable_interaction´ ElementUnitSequence 100026

@@ -14,14 +14,14 @@
 		´activate_yellow_door´ (delay 0)
 		´add_door_blocker´ (delay 0)
 ´toggle_yellow_off´ ElementToggle 100005
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´set_yellow´
+ 		1 ´set_yellow´
 		2 ´light_red´
 		3 ´light_green´
 		4 ´light_green001´
 		5 ´interrupt_yellow_drill´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´disable_yellow´ (delay 0)
 ´disable_yellow´ ElementDisableUnit 100006
@@ -115,23 +115,23 @@
 		´point_debug_002´ (delay 0)
 ´add_door_blocker´ ElementNavObstacle 100013
 	TRIGGER TIMES 1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-78, 0, 2.5)
 	operation add
 	position 300, -500, 2.5
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100014
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-78, 0, 2.5)
-´remove_door_blocker´ ElementNavObstacle 100014
 	operation remove
 	position 400, -100, 2.5
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-78, 0, 2.5)
 	on_executed
 		´disable_keycard_reader´ (delay 0)
 ´keycard_interacted_trigger´ ElementUnitSequenceTrigger 100016
@@ -203,7 +203,7 @@
 			notify_unit_sequence red_light
 			time 0
 ´open_door_2´ ElementInteraction 100024
-	host_only false
+	host_only False
 	override_timer -1
 	position 16, -53, 109
 	rotation 0, 0, 0, -1
@@ -268,9 +268,9 @@
 		´enable_door_yellow´ (delay 0)
 		´enable_door_grey´ (delay 0)
 ´point_debug_001´ ElementDebug 100029
-	as_subtitle false
+	as_subtitle False
 	debug_string unlocked
-	show_instigator false
+	show_instigator False
 	on_executed
 		´light_green001´ (delay 0)
 ´enable_door_yellow´ ElementUnitSequence 100030
@@ -298,35 +298,33 @@
 	on_executed
 		´point_debug_007´ (delay 0)
 ´logic_toggle_001´ ElementToggle 100032
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_door_grey´
+ 		1 ´enable_door_grey´
 		2 ´interrupt_grey_drill´
+	set_trigger_times -1
+	toggle off
 ´logic_toggle_002´ ElementToggle 100033
+	elements
+ 		1 ´enable_door_yellow´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´enable_door_yellow´
 ´logic_toggle_003´ ElementToggle 100034
+	elements
+ 		1 ´open_door_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´open_door_2´
 	on_executed
 		´enable_cardreader´ (delay 0)
 ´logic_toggle_004´ ElementToggle 100035
+	elements
+ 		1 ´open_door_2´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´open_door_2´
 	on_executed
 		´disable_cardreader´ (delay 0)
 ´logic_toggle_005´ ElementToggle 100036
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´door_opened_trigger´
+ 		1 ´door_opened_trigger´
 		2 ´remove_door_blocker´
 		3 ´disable_keycard_reader´
 		4 ´light_green´
@@ -367,6 +365,8 @@
 		39 ´toggle_interupt_off´
 		40 ´initiate_so´ DISABLED
 		41 ´interrupt_so´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´door_open_output´ (delay 0)
 ´door_open_output´ ElementInstanceOutput 100037
@@ -382,14 +382,14 @@
 			notify_unit_sequence green_light
 			time 0
 ´point_debug_002´ ElementDebug 100039
-	as_subtitle false
+	as_subtitle False
 	debug_string opened_triggered
-	show_instigator false
+	show_instigator False
 ´disable_interaction´ ElementToggle 100040
+	elements
+ 		1 ´open_door_2´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´open_door_2´
 ´hide_gate_input´ ElementInstanceInput 100044
 	event hide_gate
 	on_executed
@@ -405,10 +405,8 @@
 	on_executed
 		´toggle_gate_off´ (delay 0)
 ´toggle_gate_off´ ElementToggle 100042
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´activate_grey_door´
+ 		1 ´activate_grey_door´
 		2 ´logic_toggle_002´
 		3 ´toggle_yellow_off´
 		4 ´set_grey_input´
@@ -444,58 +442,30 @@
 		34 ´door_open_output´
 		35 ´light_green´
 		36 ´open_door_2´
+	set_trigger_times -1
+	toggle off
 ´set_yellow_input´ ElementInstanceInput 100043
 	event set_yellow
 	on_executed
 		´set_yellow´ (delay 0)
 ´initiate_so´ ElementSpecialObjective 100001
 	DISABLED
-	SO_access 508
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
-	chance_inc 0
-	interaction_voice none
-	interrupt_dis 0
-	interrupt_dmg 1
-	interrupt_objective false
-	interval 5
-	needs_pos_rsrv true
-	path_haste run
-	path_stance cbt
-	path_style destination
-	patrol_path none
-	pose none
-	position 243, -40, 0
-	rotation 0, 0, -0.707107, -0.707107
-	scan true
-	search_distance 1000
-	search_position 135,179 15,1883 2,5
-	so_action none
-	trigger_on none
 	followup_elements
 		1 ´interrupt_so´ DISABLED
-´interrupt_so´ ElementSpecialObjective 100047
-	DISABLED
-	SO_access 508
-	action_duration_max 0
-	action_duration_min 0
-	ai_group enemies
-	align_position false
-	align_rotation false
-	attitude none
-	base_chance 1
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
-	interval 0
-	needs_pos_rsrv false
+	interrupt_objective False
+	interval 5
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style destination
@@ -503,12 +473,42 @@
 	pose none
 	position 243, -40, 0
 	rotation 0, 0, -0.707107, -0.707107
-	scan false
+	scan True
+	search_distance 1000
+	search_position 135,179 15,1883 2,5
+	SO_access 508
+	so_action none
+	trigger_on none
+´interrupt_so´ ElementSpecialObjective 100047
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position False
+	align_rotation False
+	attitude none
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval 0
+	needs_pos_rsrv False
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 243, -40, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan False
 	search_distance 0
 	search_position 207,79 -35,8396 2,5
+	SO_access 508
 	so_action e_so_container_kick
 	trigger_on none
-	followup_elements
 ´drill_placed_trigger´ ElementUnitSequenceTrigger 100049
 	sequence_list
 		1
@@ -522,59 +522,59 @@
 	on_executed
 		´if_drilling_and_loud´ (delay 0)
 ´toggle_interrupt_on´ ElementToggle 100051
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´initiate_so´ (delay 0) DISABLED
 ´toggle_initiate_on´ ElementToggle 100052
+	elements
+ 		1 ´initiate_so´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´initiate_so´ DISABLED
 	on_executed
 		´toggle_interrupt_on´ (delay 0.1)
 ´interrupt_completed´ ElementSpecialObjectiveTrigger 100054
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	event complete
 	position 700, 200, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´interrupt_grey_drill´ (delay 0)
 		´interrupt_yellow_drill´ (delay 0)
 ´initiate_failed´ ElementSpecialObjectiveTrigger 100053
+	elements
+ 		1 ´initiate_so´ DISABLED
 	event fail
 	position 500, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´initiate_so´ DISABLED
 	on_executed
 		´toggle_initiate_off´ (delay 0)
 		´toggle_initiate_on´ (delay 0)
 		´point_debug_003´ (delay 0)
 ´interrupt_failed´ ElementSpecialObjectiveTrigger 100055
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	event fail
 	position 600, 300, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´toggle_interupt_off´ (delay 0)
 		´toggle_initiate_on´ (delay 5)
 		´point_debug_004´ (delay 0)
 ´toggle_initiate_off´ ElementToggle 100056
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´interrupt_so´ DISABLED
 ´toggle_interupt_off´ ElementToggle 100057
+	elements
+ 		1 ´interrupt_so´ DISABLED
+		2 ´initiate_so´ DISABLED
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´interrupt_so´ DISABLED
-		2 ´initiate_so´ DISABLED
 ´interrupt_grey_drill´ ElementUnitSequence 100050
 	position 800, 200, 2.5
 	rotation 0, 0, 0, -1
@@ -634,13 +634,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, 900, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´drill_resumed´ ElementUnitSequenceTrigger 100062
 	sequence_list
 		1
@@ -660,13 +660,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 100, 900, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100064
 	DISABLED
 	accessibility any
@@ -674,21 +674,21 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -100, 900, 0
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´point_debug_003´ ElementDebug 100000
-	as_subtitle false
+	as_subtitle False
 	debug_string init_fail
-	show_instigator false
+	show_instigator False
 ´point_debug_004´ ElementDebug 100065
-	as_subtitle false
+	as_subtitle False
 	debug_string init_fail
-	show_instigator false
+	show_instigator False
 ´disable_all´ ElementUnitSequence 100066
 	position 400, -1000, 2.5
 	rotation 0, 0, 0, -1
@@ -726,40 +726,40 @@
 	on_executed
 		´if_drilling_and_loud´ (delay 0)
 ´point_debug_005´ ElementDebug 100069
-	as_subtitle false
+	as_subtitle False
 	debug_string Drill_placed_and_loud
-	show_instigator false
+	show_instigator False
 ´point_debug_006´ ElementDebug 100070
-	as_subtitle false
+	as_subtitle False
 	debug_string eanble_yello!!!!!!!
-	show_instigator false
+	show_instigator False
 ´point_debug_007´ ElementDebug 100071
-	as_subtitle false
+	as_subtitle False
 	debug_string enable_grey!!!!!
-	show_instigator false
+	show_instigator False
 ´locked_counter´ ElementCounter 100072
 	counter_target 1
 ´set_unlocked´ ElementCounterOperator 100073
 	amount 0
-	operation set
-	instance_var_names
 	elements
-		1 ´locked_counter´
+ 		1 ´locked_counter´
+	instance_var_names
+	operation set
 ´if_unlocked´ ElementCounterFilter 100074
+	elements
+ 		1 ´locked_counter´
 	check_type equal
 	needed_to_execute all
 	value 0
-	elements
-		1 ´locked_counter´
 	on_executed
 		´set_locked´ (delay 0)
 		´disable_door_interaction´ (delay 0)
 ´set_locked´ ElementCounterOperator 100075
 	amount 1
-	operation set
-	instance_var_names
 	elements
-		1 ´locked_counter´
+ 		1 ´locked_counter´
+	instance_var_names
+	operation set
 ´set_grey_cooking´ ElementInstanceInput 100076
 	event set_grey_cooking
 	on_executed

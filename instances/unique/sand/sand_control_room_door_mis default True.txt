@@ -66,24 +66,24 @@
 	set_trigger_times -1
 	toggle off
 ´add_door_blocker´ ElementNavObstacle 100006
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -37, 0)
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100008
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -37, 0)
-´remove_door_blocker´ ElementNavObstacle 100008
-	TRIGGER TIMES 1
 	operation remove
 	position 850, 0, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -37, 0)
 	on_executed
 		´door_open´ (delay 0)
 ´open_door_2´ ElementInstanceInput 100017
@@ -120,15 +120,15 @@
 	on_executed
 		´link_set_to_drill´ (delay 0)
 ´toggle_off_drill´ ElementToggle 100033
+	elements
+ 		1 ´link_set_to_drill´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´link_set_to_drill´
 ´toggle_off_hack´ ElementToggle 100034
+	elements
+ 		1 ´link_set_to_hack´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´link_set_to_hack´
 ´link_set_to_hack´ MissionScriptElement 100035
 	on_executed
 		´toggle_off_drill´ (delay 0)
@@ -183,8 +183,8 @@
 		´link_hide_wp´ (delay 0)
 ´waypoint_this_door´ ElementWaypoint 100042
 	icon pd2_door
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, -25, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -256,22 +256,22 @@
 		´op_remove_wp´ (delay 0)
 		´toggle_off_wp´ (delay 0)
 ´op_remove_wp´ ElementOperator 100053
-	operation remove
 	elements
-		1 ´waypoint_this_door´
+ 		1 ´waypoint_this_door´
+	operation remove
 ´toggle_on_wp´ ElementToggle 100054
+	elements
+ 		1 ´waypoint_this_door´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´waypoint_this_door´
 ´toggle_off_wp´ ElementToggle 100055
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´waypoint_this_door´
+ 		1 ´waypoint_this_door´
 		2 ´input_show_wp´
 		3 ´link_show_wp´
 		4 ´toggle_on_wp´
+	set_trigger_times -1
+	toggle off
 ´trigger_device_placed´ ElementUnitSequenceTrigger 100056
 	TRIGGER TIMES 1
 	sequence_list
@@ -283,14 +283,14 @@
 		´link_hacking_device_placed´ (delay 0)
 ´point_debug_002´ ElementDebug 100058
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string Control Room = Hack
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100059
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string Control Room = Drill
-	show_instigator false
+	show_instigator False
 ´seq_enable_hack´ ElementUnitSequence 100039
 	position 1725, -500, 0
 	rotation 0, 0, 0, -1
@@ -339,22 +339,22 @@
 			time 0
 ´remove_device_WP´ ElementWaypoint 100063
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -75, 0, 125
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´toggle_OFF_interaction´ ElementToggle 100065
+	elements
+ 		1 ´remove_device_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´remove_device_WP´
 	on_executed
 		´remve_interact_WP´ (delay 0)
 ´remve_interact_WP´ ElementOperator 100066
-	operation remove
 	elements
-		1 ´remove_device_WP´
+ 		1 ´remove_device_WP´
+	operation remove
 	on_executed
 		´link_hack_completed_2´ (delay 0)
 ´output_hack_door_opened´ ElementInstanceOutput 100068
@@ -364,12 +364,12 @@
 		´output_hack_door_opened´ (delay 0)
 		´link_open door´ (delay 0)
 ´tm_comment_were_in´ ElementTeammateComment 100004
-	close_to_element true
+	close_to_element True
 	comment v03
 	position 0, 0, 75
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_team_comment´ MissionScriptElement 100012
 	on_executed
 		´counter_2´ (delay 0)

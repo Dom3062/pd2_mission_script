@@ -8,15 +8,15 @@
 	position 10800.6, -7806.85, 701
 	radius 250
 	rotation 0, 0, 0.422618, -0.906308
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 110
 	rules_element_ids
 		1 ´data_instigator_rule_001´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 110
 	on_executed
 		´secure_cro_loot1´ (delay 0)
 		´secure_cro_loot2´ (delay 0)
@@ -36,14 +36,14 @@
 	position 10227.6, -7669.54, 740.004
 	radius 250
 	rotation 0, 0, -0.743145, -0.669131
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 700
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 700
 	on_executed
 		´func_mission_end_001´ (delay 2)
 		´tc_mission_end´ (delay 0)
@@ -109,17 +109,17 @@
 	on_executed
 		´turn escape area on´ (delay 0)
 ´turn escape area on´ ElementToggle 100013
+	elements
+ 		1 ´escape trigger´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´escape trigger´ DISABLED
 	on_executed
 		´show escape marker´ (delay 0)
 ´turn loot area on´ ElementToggle 100014
+	elements
+ 		1 ´loot trigger´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´loot trigger´ DISABLED
 ´startup´ MissionScriptElement 100016
 	EXECUTE ON STARTUP
 	on_executed
@@ -161,12 +161,12 @@
 	on_executed
 		´cro_loot_secured´ (delay 0)
 ´tc_mission_end´ ElementTeammateComment 100015
-	close_to_element false
+	close_to_element False
 	comment g24
 	position 348, -14, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´secure_coke´ ElementCarry 100022
 	operation secure
 	type_filter coke
@@ -200,21 +200,21 @@
 	operation remove
 	type_filter money
 ´func_nav_obstacle_001´ ElementNavObstacle 100030
-	operation add
-	position 875, 375, 50
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 1091660316451538096
 			unit_id units/pd2_dlc_cro/vehicles/air_interactable_cessna_206/air_interactable_vehicle_cessna_206/001 (20.9063, -198.904, 0)
+	operation add
+	position 875, 375, 50
+	rotation 0, 0, 0, -1
 ´tc_loot_secured´ ElementTeammateComment 100031
-	close_to_element false
+	close_to_element False
 	comment p27
 	position 448, -14, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´output_mission_end´ ElementInstanceOutput 100032
 	event mission_end
 ´func_instance_output_001´ ElementInstanceOutput 100033

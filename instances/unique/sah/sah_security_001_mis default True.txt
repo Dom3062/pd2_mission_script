@@ -4,31 +4,31 @@
 	enemy units/payday2/characters/ene_secret_service_1/ene_secret_service_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -70, -244, 10.004
 	rotation 0, 0, -0.681998, -0.731354
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´startup´ MissionScriptElement 100002
 	EXECUTE ON STARTUP
 	on_executed
 		´delayyyyy´ (delay 1)
 ´death´ ElementEnemyDummyTrigger 100003
+	elements
+ 		1 ´security_camera_guard´
 	event death
 	position 200, 200, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´security_camera_guard´
 	on_executed
 		´cameras_off´ (delay 0)
 ´tied´ ElementEnemyDummyTrigger 100004
+	elements
+ 		1 ´security_camera_guard´
 	event tied
 	position 100, 200, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´security_camera_guard´
 	on_executed
 		´cameras_off´ (delay 0)
 ´cameras_off´ ElementInstanceOutput 100006
@@ -68,14 +68,14 @@
 			notify_unit_sequence state_door_close
 			time 0
 ´func_nav_obstacle_001´ ElementNavObstacle 100030
-	operation add
-	position 400, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (100, -50, 0)
+	operation add
+	position 400, 100, 0
+	rotation 0, 0, 0, -1
 ´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100031
 	TRIGGER TIMES 1
 	sequence_list
@@ -94,11 +94,11 @@
 	on_executed
 		´func_nav_obstacle_002´ (delay 0)
 ´func_nav_obstacle_002´ ElementNavObstacle 100032
-	operation remove
-	position 500, 100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (100, -50, 0)
+	operation remove
+	position 500, 100, 0
+	rotation 0, 0, 0, -1

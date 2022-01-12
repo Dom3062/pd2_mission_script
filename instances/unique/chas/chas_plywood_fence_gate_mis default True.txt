@@ -77,22 +77,22 @@
 		´link_open_gate´ (delay 0)
 ´link_´ MissionScriptElement 100015
 ´navlink_001´ ElementSpecialObjective 100016
-	SO_access 6546880
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style precise
@@ -100,29 +100,29 @@
 	pose none
 	position 150, -75, 0
 	rotation 0, 0, 0, -1
-	scan true
+	scan True
 	search_distance 0
 	search_position 128,512 100,834 0
+	SO_access 6546880
 	so_action e_nl_climb_over_2m
 	trigger_on none
-	followup_elements
 ´navlink_002´ ElementSpecialObjective 100017
-	SO_access 255424
 	action_duration_max 0
 	action_duration_min 0
 	ai_group none
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste run
 	path_stance cbt
 	path_style precise
@@ -130,17 +130,17 @@
 	pose none
 	position 0, 75, 0
 	rotation 0, 0, 1, -4.37114E-08
-	scan true
+	scan True
 	search_distance 0
 	search_position 24,1599 -99,2139 0
+	SO_access 255424
 	so_action e_nl_climb_over_2m
 	trigger_on none
-	followup_elements
 ´operator_remove_navlinks´ ElementOperator 100019
-	operation remove
 	elements
-		1 ´navlink_001´
+ 		1 ´navlink_001´
 		2 ´navlink_002´
+	operation remove
 ´link_delay´ MissionScriptElement 100018
 	on_executed
 		´seq_set_gate_closed´ (delay 0)
@@ -149,14 +149,14 @@
 		´enable_padlock´ (delay 0)
 		´func_add_door_blockers´ (delay 0)
 ´nav_remove_door_blocker´ ElementNavObstacle 100021
-	operation remove
-	position 925, -150, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (25, -50, 0)
+	operation remove
+	position 925, -150, 0
+	rotation 0, 0, 0, -1
 ´disable_padlock´ ElementDisableUnit 100022
 	position 875, -275, 0
 	rotation 0, 0, 0, -1
@@ -168,20 +168,20 @@
 	unit_ids
 		1 units/payday2/equipment/gen_interactable_padlock/gen_interactable_padlock/001 (107, -5, 110)
 ´func_add_door_blockers´ ElementNavObstacle 100024
-	operation add
-	position 600, 0, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (25, -50, 0)
+	operation add
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
 ´disable_navlink´ ElementToggle 100025
 	BASE DELAY 1
+	elements
+ 		1 ´navlink_001´
+		2 ´navlink_002´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´navlink_001´
-		2 ´navlink_002´
 	on_executed
 		´operator_remove_navlinks´ (delay 0)

@@ -86,16 +86,16 @@
 		´point_debug_001´ (delay 0)
 ´WP_box´ ElementWaypoint 100012
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position 32, -11, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 	on_executed
 		´enable_2´ (delay 0)
 ´remove_WP_wire´ ElementOperator 100013
-	operation remove
 	elements
-		1 ´WP_wire´
+ 		1 ´WP_wire´
+	operation remove
 ´disable_interaction´ ElementUnitSequence 100014
 	position -200, 1200, 0
 	rotation 0, 0, 0, -1
@@ -134,29 +134,29 @@
 	on_executed
 		´WP_box´ (delay 0)
 ´enable´ ElementToggle 100018
+	elements
+ 		1 ´re-wired´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´re-wired´ DISABLED
 ´WP_wire´ ElementWaypoint 100019
 	icon pd2_wirecutter
-	only_in_civilian false
+	only_in_civilian False
 	position 32, -1, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WP_box´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´WP_box´
+ 		1 ´WP_box´
+	operation remove
 	on_executed
 		´disable´ (delay 0)
 ´teammate_comment_its_done´ ElementTeammateComment 100010
-	close_to_element false
+	close_to_element False
 	comment v07
 	position -100, 1000, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 ´close_door´ ElementUnitSequence 100021
 	position -200, 1000, 0
 	rotation 0, 0, 0, -1
@@ -174,9 +174,9 @@
 			notify_unit_sequence state_interaction_disable
 			time 0
 ´point_debug_001´ ElementDebug 100022
-	as_subtitle false
+	as_subtitle False
 	debug_string rewired
-	show_instigator false
+	show_instigator False
 ´area_player_near_box´ ElementAreaTrigger 100023
 	DISABLED
 	TRIGGER TIMES 1
@@ -189,37 +189,37 @@
 	position 150, 0, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 300
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
 	on_executed
 		´point_teammate_comment_lets_open_it_up´ (delay 0)
 ´point_teammate_comment_lets_open_it_up´ ElementTeammateComment 100024
 	TRIGGER TIMES 1
-	close_to_element false
+	close_to_element False
 	comment v16
 	position 25, 0, 0
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator true
+	use_instigator True
 	on_executed
 		´point_debug_002´ (delay 0)
 ´point_debug_002´ ElementDebug 100025
-	as_subtitle false
+	as_subtitle False
 	debug_string point_teammate_comment_lets_open_it_up
-	show_instigator false
+	show_instigator False
 ´enable_2´ ElementToggle 100026
+	elements
+ 		1 ´area_player_near_box´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´area_player_near_box´ DISABLED
 ´disable´ ElementToggle 100027
+	elements
+ 		1 ´area_player_near_box´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´area_player_near_box´ DISABLED

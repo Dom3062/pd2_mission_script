@@ -89,31 +89,31 @@
 		´toggle_OFF_police_called´ (delay 0)
 		´remove_door_blocker´ (delay 0)
 ´toggle_OFF_police_called´ ElementToggle 100016
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´police_called´
+ 		1 ´police_called´
 		2 ´ECM_jammer_on´
 		3 ´ECM_jammer_off´
+	set_trigger_times -1
+	toggle off
 ´add_door_blocker´ ElementNavObstacle 100006
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
 	operation add
 	position 600, 0, 0
 	rotation 0, 0, 0, -1
+´remove_door_blocker´ ElementNavObstacle 100008
+	TRIGGER TIMES 1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
-´remove_door_blocker´ ElementNavObstacle 100008
-	TRIGGER TIMES 1
 	operation remove
 	position 700, 0, 0
 	rotation 0, 0, 0, -1
-	obstacle_list
-		1
-			guis_id 1
-			obj_name 8037565586551743599
-			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -33, 0)
 	on_executed
 		´door_open´ (delay 0)
 ´open_door_2´ ElementInstanceInput 100017
@@ -191,15 +191,15 @@
 			notify_unit_sequence interact_enable
 			time 0
 ´disable_ECM_OFF_stealth´ ElementToggle 100029
+	elements
+ 		1 ´ECM_jammer_off´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´ECM_jammer_off´
 ´enable_ECM_ON_loud´ ElementToggle 100030
+	elements
+ 		1 ´ECM_jammer_off´
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´ECM_jammer_off´
 	on_executed
 		´output_card_reader_enabled´ (delay 0)
 ´input_disable_card_reader´ ElementInstanceInput 100019

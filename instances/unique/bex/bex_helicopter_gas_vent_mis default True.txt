@@ -41,26 +41,26 @@
 	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100012
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -300, -200, 0
 	rotation 0, 0, 1, 1.19209E-07
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´output_gas_deactivated´ ElementInstanceOutput 100013
 	event gas_deactivated
 ´seq_helicopter_flyin´ ElementUnitSequence 100016
@@ -151,12 +151,12 @@
 			notify_unit_sequence hidden
 			time 0
 ´objective_gas_released´ ElementSpecialObjectiveTrigger 100021
+	elements
+ 		1 ´1st_plant_anim´
+		2 ´2nd_plant_anim´
 	event complete
 	position 1100, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´1st_plant_anim´
-		2 ´2nd_plant_anim´
 	on_executed
 		´func_enable_gas_tube´ (delay 0)
 		´output_gas_released´ (delay 0)
@@ -166,22 +166,22 @@
 	unit_ids
 		1 units/payday2/props/gen_prop_knockout_gas_canister/gen_prop_knockout_gas_canister/001 (109, -7, 30)
 ´1st_plant_anim´ ElementSpecialObjective 100025
-	SO_access 128
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -189,20 +189,17 @@
 	pose none
 	position 254.988, 12.3359, 0
 	rotation 0, 0, -0.788011, -0.615661
-	scan true
+	scan True
 	search_distance 0
 	search_position 141,368 -3,10924 0
+	SO_access 128
 	so_action e_so_press_button_mid
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´ai_enemy_trigger_plant_tube´ ElementEnemyDummyTrigger 100026
 	TRIGGER TIMES 1
-	event spawn
-	position 900, 200, 0
-	rotation 0, 0, 0, -1
 	elements
-		1 ´ai_spawn_enemy_002´
+ 		1 ´ai_spawn_enemy_002´
 		2 ´ai_spawn_enemy_001´
 		3 ´ai_spawn_enemy_004´
 		4 ´ai_spawn_enemy_003´
@@ -210,41 +207,44 @@
 		6 ´ai_spawn_enemy_007´
 		7 ´ai_spawn_enemy_005´
 		8 ´ai_spawn_enemy_006´
+	event spawn
+	position 900, 200, 0
+	rotation 0, 0, 0, -1
 	on_executed
 		´1st_plant_anim´ (delay 5)
 ´objective_gas_cancelled´ ElementSpecialObjectiveTrigger 100027
+	elements
+ 		1 ´2nd_plant_anim´
 	event fail
 	position 1300, 100, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´2nd_plant_anim´
 	on_executed
 		´output_gas_deactivated´ (delay 0)
 ´objective_retry_plant´ ElementSpecialObjectiveTrigger 100022
+	elements
+ 		1 ´1st_plant_anim´
 	event fail
 	position 900, 100, 2.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´1st_plant_anim´
 	on_executed
 		´2nd_plant_anim´ (delay 3)
 ´2nd_plant_anim´ ElementSpecialObjective 100030
-	SO_access 128
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -252,57 +252,57 @@
 	pose none
 	position 255, 0, 0
 	rotation 0, 0, -0.737277, -0.67559
-	scan true
+	scan True
 	search_distance 0
 	search_position 141,368 -3,10924 0
+	SO_access 128
 	so_action e_so_press_button_mid
-	trigger_on none
-	use_instigator false
-	followup_elements
 	spawn_instigator_ids
 		1 ´ai_spawn_enemy_002´
 		2 ´ai_spawn_enemy_003´
 		3 ´ai_spawn_enemy_005´
 		4 ´ai_spawn_enemy_006´
+	trigger_on none
+	use_instigator False
 ´logic_filter_easy_to_hard´ ElementFilter 100023
-	difficulty_easy true
-	difficulty_easy_wish false
-	difficulty_hard true
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 900, -100, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´ai_spawn_enemy_001´ (delay 3.3)
 		´ai_spawn_enemy_002´ (delay 3.5)
 ´logic_filter_VH_and_Overkill´ ElementFilter 100024
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 true
-	difficulty_overkill_290 false
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1000, -100, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -314,135 +314,135 @@
 	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -300, -200, 0
 	rotation 0, 0, 1, 1.19209E-07
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_004´ ElementSpawnEnemyDummy 100029
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_005´ ElementSpawnEnemyDummy 100031
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -300, -200, 0
 	rotation 0, 0, 1, 1.19209E-07
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_006´ ElementSpawnEnemyDummy 100032
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position -300, -200, 0
 	rotation 0, 0, 1, 1.19209E-07
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_007´ ElementSpawnEnemyDummy 100033
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´ai_spawn_enemy_008´ ElementSpawnEnemyDummy 100034
 	accessibility any
 	amount 0
 	enemy units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 300, -200, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_down_17m_var2
 	team default
 	voice 0
-	orientation_elements
 ´logic_filter_EW_and_DW´ ElementFilter 100035
-	difficulty_easy false
-	difficulty_easy_wish true
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 true
-	difficulty_sm_wish false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 True
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1100, -100, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´ai_spawn_enemy_007´ (delay 3.5)
 		´ai_spawn_enemy_005´ (delay 3.3)
 ´logic_filter_SW´ ElementFilter 100036
-	difficulty_easy false
-	difficulty_easy_wish false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	difficulty_sm_wish true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 1200, -100, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´ai_spawn_enemy_008´ (delay 3.5)
 		´ai_spawn_enemy_006´ (delay 3.3)
 ´func_nav_obstacle_001´ ElementNavObstacle 100037
-	operation add
-	position 600, -100, 0
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
 			obj_name 4736386981840614990
 			unit_id units/world/architecture/diamondheist/props/diamondheist_roof_gen_large_01/001 (0, 0, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
 ´teammate_comment_enemy_on_roof´ ElementTeammateComment 100038
-	close_to_element true
+	close_to_element True
 	comment p34
 	position 0, -100, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False

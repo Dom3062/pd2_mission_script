@@ -1,21 +1,21 @@
 ´navlink_jump_out´ ElementSpecialObjective 100003
 	EXECUTE ON STARTUP
 	BASE DELAY 1
-	SO_access 15868
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance hos
 	path_style destination
@@ -23,40 +23,40 @@
 	pose none
 	position -50, 0, 75
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position -330,31 -62,7451 50
+	SO_access 15868
 	so_action e_nl_cs_jump_window
 	trigger_on none
-	followup_elements
 ´trigger_special_objective_001´ ElementSpecialObjectiveTrigger 100004
 	TRIGGER TIMES 1
+	elements
+ 		1 ´navlink_jump_out´
+		2 ´navlink_jump_in´
 	event anim_act_04
 	position -150, 100, 50
 	rotation 0, 0, 0, -1
-	elements
-		1 ´navlink_jump_out´
-		2 ´navlink_jump_in´
 	on_executed
 		´destroy_window´ (delay 0)
 ´navlink_jump_in´ ElementSpecialObjective 100005
 	EXECUTE ON STARTUP
 	BASE DELAY 1
-	SO_access 15868
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 4
-	is_navigation_link true
-	needs_pos_rsrv true
+	is_navigation_link True
+	needs_pos_rsrv True
 	path_haste none
 	path_stance hos
 	path_style destination
@@ -64,12 +64,12 @@
 	pose none
 	position -325, 23, 83
 	rotation 0, 0, 0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 0
 	search_position 17,3845 20,4756 75
+	SO_access 15868
 	so_action e_nl_cs_jump_window
 	trigger_on none
-	followup_elements
 ´destroy_window´ ElementUnitSequence 100006
 	position -50, 100, 50
 	rotation 0, 0, 0, -1
@@ -90,7 +90,7 @@
 	on_executed
 		´disable_window_destroy´ (delay 0)
 ´disable_window_destroy´ ElementToggle 100008
+	elements
+ 		1 ´trigger_special_objective_001´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_special_objective_001´

@@ -59,7 +59,7 @@
 ´randomize_server_interaction´ ElementRandom 100026
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´enable_interaction_HDD001´ (delay 0)
 		´enable_interaction_HDD002´ (delay 0)
@@ -167,39 +167,39 @@
 	event server_taken
 ´interact_WP001´ ElementWaypoint 100033
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 175, 25, 175
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´interact_WP002´ ElementWaypoint 100034
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 182, 157, 102.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´interact_WP003´ ElementWaypoint 100035
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -200, 175, 102.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´interact_WP004´ ElementWaypoint 100036
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position -200, -134, 227.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_WPs´ ElementOperator 100037
-	operation remove
 	elements
-		1 ´interact_WP001´
+ 		1 ´interact_WP001´
 		2 ´interact_WP002´
 		3 ´interact_WP003´
 		4 ´interact_WP004´
+	operation remove
 	on_executed
 		´output_HDD_taken´ (delay 0)
 ´point_shape_001´ ElementShape 100039
@@ -222,16 +222,16 @@
 	position 900, 300, 0
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	substitute_object 
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	substitute_object 
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´enable_interaction´ (delay 0)
 ´enable_WP´ MissionScriptElement 100041
@@ -239,38 +239,35 @@
 		´toggle_ON_obj´ (delay 0)
 		´goto_WP´ (delay 60)
 ´toggle_ON_obj´ ElementToggle 100042
+	elements
+ 		1 ´IT_room_found_LOUD´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´IT_room_found_LOUD´ DISABLED
 ´goto_WP´ ElementWaypoint 100008
 	icon pd2_goto
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 300
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´output_server_room_found´ ElementInstanceOutput 100017
 	event server_room_found
 ´toggle_OFF_WP´ ElementToggle 100043
+	elements
+ 		1 ´goto_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´goto_WP´
 	on_executed
 		´remove_goto_WP´ (delay 0)
 ´remove_goto_WP´ ElementOperator 100044
-	operation remove
 	elements
-		1 ´goto_WP´
+ 		1 ´goto_WP´
+	operation remove
 	on_executed
 		´output_server_room_found´ (delay 0)
 ´output_HDD_available´ ElementInstanceOutput 100045
 	event server_available
 ´add_door_blockers´ ElementNavObstacle 100047
-	operation add
-	position 600, -100, 2.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -292,17 +289,20 @@
 			guis_id 5
 			obj_name 11069904246521265821
 			unit_id units/pd2_dlc_berry/props/bry_prop_servers/bry_prop_server_02/001 (-219, 173, 0)
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
 ´input_hack_done_randomize_server´ ElementInstanceInput 100038
 	event hack_done_randomize_server
 	on_executed
 		´randomize_server_interaction´ (delay 0)
 ´teammate_comment_lets_go´ ElementTeammateComment 100021
-	close_to_element true
+	close_to_element True
 	comment g13
 	position 25, 100, 100
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´link_comment´ MissionScriptElement 100022
 	on_executed
 		´teammate_comment_lets_go´ (delay 0)

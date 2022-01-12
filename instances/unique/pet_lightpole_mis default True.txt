@@ -62,29 +62,29 @@
 	instigator player
 	interval 0.1
 	position -1400, -275, 2.5
-	radius 1156,09
+	radius 1156.09
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_2´ (delay 0)
 ´goat_waypoint´ ElementWaypoint 100028
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -6, -104, 907.53
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_goat_waypoint´ ElementOperator 100030
-	operation remove
 	elements
-		1 ´goat_waypoint´
+ 		1 ´goat_waypoint´
+	operation remove
 ´player_close_again´ ElementAreaTrigger 100031
 	DISABLED
 	amount 1
@@ -93,25 +93,25 @@
 	instigator player
 	interval 0.1
 	position -1400, -425, 2.5
-	radius 1202,98
+	radius 1202.98
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on both
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_again_2´ (delay 0)
 ´enable_player_close_again´ ElementToggle 100032
+	elements
+ 		1 ´player_close_again´ DISABLED
+		2 ´vehicle_close_again´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´player_close_again´ DISABLED
-		2 ´vehicle_close_again´ DISABLED
 ´player_close_2´ MissionScriptElement 100033
 	TRIGGER TIMES 1
 	on_executed
@@ -142,14 +142,14 @@
 			time 0
 ´saw_waypoint´ ElementWaypoint 100039
 	icon pd2_generic_saw
-	only_in_civilian false
+	only_in_civilian False
 	position 1, -25, 93.53
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_saw_waypoint´ ElementOperator 100040
-	operation remove
 	elements
-		1 ´saw_waypoint´
+ 		1 ´saw_waypoint´
+	operation remove
 ´saw_interacted´ ElementUnitSequenceTrigger 100041
 	TRIGGER TIMES 1
 	sequence_list
@@ -168,12 +168,12 @@
 		´point_area_min_police_force_001´ (delay 0)
 		´show_lamp_goat´ (delay 0)
 ´enable_player_close´ ElementToggle 100043
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´player_close´ DISABLED
+ 		1 ´player_close´ DISABLED
 		2 ´vehicle_close´ DISABLED
 		3 ´trigger_team_comment´ DISABLED
+	set_trigger_times -1
+	toggle on
 ´vehicle_close´ ElementAreaTrigger 100049
 	DISABLED
 	TRIGGER TIMES 1
@@ -183,17 +183,17 @@
 	instigator vehicle_with_players
 	interval 0.1
 	position -1400, -350, 2.5
-	radius 1156,09
+	radius 1156.09
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_2´ (delay 0.1)
 ´vehicle_close_again´ ElementAreaTrigger 100050
@@ -204,33 +204,33 @@
 	instigator vehicle_with_players
 	interval 0.1
 	position -1400, -500, 2.5
-	radius 1202,98
+	radius 1202.98
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on both
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
 		1 ´point_shape_001´
-	use_shape_element_ids
+	trigger_on both
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´player_close_again_2´ (delay 0.1)
 ´5_s_reenable´ ElementToggle 100051
+	elements
+ 		1 ´player_close_again_2´
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´player_close_again_2´
 ´disable´ ElementToggle 100052
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´enable_player_close_again´
+ 		1 ´enable_player_close_again´
 		2 ´player_close_again_2´
 		3 ´5_s_reenable´
 		4 ´vehicle_close_again´ DISABLED
 		5 ´player_close_again´ DISABLED
+	set_trigger_times -1
+	toggle off
 ´goat_picked_up´ ElementInstanceOutput 100053
 	event goat_picked_up
 ´point_shape_001´ ElementShape 100054
@@ -246,9 +246,9 @@
 	position 0, 0, 225
 	rotation 0, 0, 0, -1
 ´remove_police_force´ ElementOperator 100056
-	operation remove
 	elements
-		1 ´point_area_min_police_force_001´
+ 		1 ´point_area_min_police_force_001´
+	operation remove
 ´hide_goat´ ElementUnitSequence 100003
 	position -1250, -50, 2.5
 	rotation 0, 0, 0, -1
@@ -294,19 +294,19 @@
 			sequence interact
 			notify_unit_id units/pd2_dlc_peta/equipment/pta_interactable_saw/pta_interactable_saw/001 (-2.71011E-06, 0, 97.0727)
 ´keep_them_away´ ElementTeammateComment 100012
-	close_to_element true
+	close_to_element True
 	comment g16
 	position 0, -75, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´there´ ElementTeammateComment 100014
-	close_to_element true
+	close_to_element True
 	comment g15
 	position 0, -75, 200
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´trigger_team_comment´ ElementAreaTrigger 100013
 	DISABLED
 	amount 1
@@ -317,28 +317,28 @@
 	position 25, -50, 150
 	radius 300
 	rotation 0, 0, 0, -1
-	shape_type cylinder
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
 	rules_element_ids
+	shape_type cylinder
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´keep_them_away´ (delay 0)
 ´disable_2´ ElementToggle 100015
+	elements
+ 		1 ´trigger_team_comment´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trigger_team_comment´ DISABLED
 ´its_done´ ElementTeammateComment 100016
-	close_to_element true
+	close_to_element True
 	comment v07
 	position 0, -125, 150
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´goat_picked´ ElementUnitSequenceTrigger 100001
 	TRIGGER TIMES 1
 	sequence_list
@@ -363,8 +363,8 @@
 			notify_unit_sequence state_interaction_enabled
 			time 0
 ´light_break´ ElementPlaySound 100019
-	append_prefix false
+	append_prefix False
 	position 0, -50, 100
 	rotation 0, 0, 0, -1
 	sound_event road_light_break
-	use_instigator false
+	use_instigator False

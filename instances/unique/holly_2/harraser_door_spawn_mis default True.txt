@@ -5,13 +5,13 @@
 		´if_hards001´ (delay 0)
 		´if_over001´ (delay 0)
 ´harasser_death´ ElementEnemyDummyTrigger 100011
+	elements
+ 		1 ´harasser_norm´
+		2 ´harasser_hards´
+		3 ´harasser_over´
 	event death
 	position 0, 600, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´harasser_norm´
-		2 ´harasser_hards´
-		3 ´harasser_over´
 	on_executed
 		´harasser´ (delay 0) DISABLED
 ´harasser_norm´ ElementSpawnEnemyDummy 100016
@@ -19,16 +19,16 @@
 	amount 0
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
+	instance_var_names
+		enemy var_enemy_normal
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 6.10352E-05, -50, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_kick_enter
 	team default
 	voice 0
-	orientation_elements
-	instance_var_names
-		enemy var_enemy_normal
 	on_executed
 		´Ai_hunt_enable´ (delay 0)
 ´harasser_hards´ ElementSpawnEnemyDummy 100017
@@ -36,16 +36,16 @@
 	amount 0
 	enemy units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1
 	force_pickup none
+	instance_var_names
+		enemy var_enemy_hard_very_hard
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 6.10352E-05, -50.0001, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_kick_enter
 	team default
 	voice 0
-	orientation_elements
-	instance_var_names
-		enemy var_enemy_hard_very_hard
 	on_executed
 		´Ai_hunt_enable´ (delay 0)
 ´harasser_over´ ElementSpawnEnemyDummy 100018
@@ -53,71 +53,71 @@
 	amount 0
 	enemy units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1
 	force_pickup none
+	instance_var_names
+		enemy var_overkill_deathwish
 	interval 5
-	participate_to_group_ai false
+	orientation_elements
+	participate_to_group_ai False
 	position 6.10352E-05, -50, 0
 	rotation 0, 0, 0, -1
 	spawn_action e_sp_kick_enter
 	team default
 	voice 0
-	orientation_elements
-	instance_var_names
-		enemy var_overkill_deathwish
 	on_executed
 		´Ai_hunt_enable´ (delay 0)
 ´if_norm001´ ElementFilter 100020
-	difficulty_easy true
-	difficulty_hard false
-	difficulty_normal true
-	difficulty_overkill false
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy True
+	difficulty_hard False
+	difficulty_normal True
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position -50, 800, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´harasser_norm´ (delay 0)
 ´if_hards001´ ElementFilter 100021
-	difficulty_easy false
-	difficulty_hard true
-	difficulty_normal false
-	difficulty_overkill true
-	difficulty_overkill_145 false
-	difficulty_overkill_290 false
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_hard True
+	difficulty_normal False
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 0, 800, 0
 	rotation 0, 0, 0, -1
 	on_executed
 		´harasser_hards´ (delay 0)
 ´if_over001´ ElementFilter 100022
-	difficulty_easy false
-	difficulty_hard false
-	difficulty_normal false
-	difficulty_overkill false
-	difficulty_overkill_145 true
-	difficulty_overkill_290 true
-	mode_assault true
-	mode_control true
-	platform_ps3 true
-	platform_win32 true
-	player_1 true
-	player_2 true
-	player_3 true
-	player_4 true
+	difficulty_easy False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	mode_assault True
+	mode_control True
+	platform_ps3 True
+	platform_win32 True
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
 	position 50, 800, 0
 	rotation 0, 0, 0, -1
 	on_executed
@@ -127,8 +127,6 @@
 	on_executed
 		´off´ (delay 0)
 ´params´ ElementInstanceParams 100031
-	position 200, 700, 0
-	rotation 0, 0, 0, -1
 	params
 		1
 			default_value units/payday2/characters/ene_swat_1/ene_swat_1
@@ -146,51 +144,53 @@
 			default_value 50
 			type number
 			var_name var_delay_between_spawns
+	position 200, 700, 0
+	rotation 0, 0, 0, -1
 ´off´ ElementToggle 100035
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´harasser´ DISABLED
+ 		1 ´harasser´ DISABLED
 		2 ´harasser_death´
 		3 ´if_over001´
 		4 ´if_hards001´
 		5 ´if_norm001´
+	set_trigger_times -1
+	toggle off
 ´Ai_hunt_enable´ ElementSpecialObjective 100037
-	SO_access 16352
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position false
-	align_rotation false
-	allow_followup_self false
+	align_position False
+	align_rotation False
+	allow_followup_self False
 	attitude none
 	base_chance 1
+	followup_elements
+	forced True
 	chance_inc 0
-	forced true
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval 10
-	needs_pos_rsrv false
-	no_arrest false
+	needs_pos_rsrv False
+	no_arrest False
 	path_haste none
 	path_stance none
 	path_style none
 	patrol_path none
 	pose none
 	position 0, 500, 0
-	repeatable true
+	repeatable True
 	rotation 0, 0, 0, -1
-	scan false
+	scan False
 	search_distance 0
 	search_position -200 1000 0
+	SO_access 16352
 	so_action AI_hunt
-	trigger_on none
-	followup_elements
 	spawn_instigator_ids
 		1 ´harasser_hards´
 		2 ´harasser_norm´
 		3 ´harasser_over´
+	trigger_on none
 ´Trigger_AI_Hunt´ MissionScriptElement 100038
 	on_executed
 		´Ai_hunt_enable´ (delay 0)
@@ -238,13 +238,13 @@
 			notify_unit_sequence deactivate_door
 			time 0
 ´harasser_spawned´ ElementEnemyDummyTrigger 100049
+	elements
+ 		1 ´harasser_norm´
+		2 ´harasser_hards´
+		3 ´harasser_over´
 	event spawn
 	position 0, 300, 0
 	rotation 0, 0, 0, -1
-	elements
-		1 ´harasser_norm´
-		2 ´harasser_hards´
-		3 ´harasser_over´
 	on_executed
 		´door_open´ (delay 0)
 		´Trigger_AI_Hunt´ (delay 0)

@@ -26,8 +26,8 @@
 	event controls_triggered
 ´waypoint_crane_control´ ElementWaypoint 100010
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 50
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -82,21 +82,21 @@
 		´counter_2´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
 	DISABLED
-	as_subtitle false
+	as_subtitle False
 	debug_string Crane control interaction completed
-	show_instigator false
+	show_instigator False
 ´op_remove_wp´ ElementOperator 100020
+	elements
+ 		1 ´waypoint_crane_control´
 	operation remove
-	elements
-		1 ´waypoint_crane_control´
 ´toggle_OFF_WP´ ElementToggle 100004
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´input_show_wp´
+ 		1 ´input_show_wp´
 		2 ´link_exe_wp´
 		3 ´waypoint_crane_control´
 		4 ´trigger_global_loud´
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´op_remove_wp´ (delay 0)
 ´trigger_area_activate´ ElementAreaTrigger 100019
@@ -111,15 +111,15 @@
 	position 0, 0, 0
 	radius 600
 	rotation 0, 0, 0, -1
+	rules_element_ids
 	shape_type cylinder
+	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
-	use_disabled_shapes false
-	width 500
-	rules_element_ids
-	spawn_unit_elements
-	use_shape_element_ids
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
 	on_executed
 		´link_trigger_area´ (delay 0)
 ´link_enable´ MissionScriptElement 100021
@@ -130,38 +130,38 @@
 		´link_enable´ (delay 0)
 		´toggle_off´ (delay 0)
 ´toggle_off´ ElementToggle 100023
+	elements
+ 		1 ´input_enable_interaction´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´input_enable_interaction´
 ´toggle_on_trigger_area´ ElementToggle 100003
+	elements
+ 		1 ´trigger_area_activate´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trigger_area_activate´ DISABLED
 ´toggle_off_2´ ElementToggle 100024
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´trigger_area_activate´ DISABLED
+ 		1 ´trigger_area_activate´ DISABLED
 		2 ´link_enable´
 		3 ´link_trigger_area´
 		4 ´input_enable_interaction´
 		5 ´toggle_on_trigger_area´
+	set_trigger_times -1
+	toggle on
 ´teammate_comment_any_second´ ElementTeammateComment 100025
-	close_to_element true
+	close_to_element True
 	comment g67
 	position -75, 0, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´teammate_comment_here_it_comes´ ElementTeammateComment 100026
-	close_to_element true
+	close_to_element True
 	comment v19
 	position 100, 0, 50
 	radius 0
 	rotation 0, 0, 0, -1
-	use_instigator false
+	use_instigator False
 ´counter_2´ ElementCounter 100027
 	counter_target 2
 	on_executed
@@ -176,7 +176,7 @@
 ´logic_random_001´ ElementRandom 100029
 	amount 1
 	amount_random 0
-	ignore_disabled true
+	ignore_disabled True
 	on_executed
 		´teammate_comment_any_second´ (delay 0)
 		´teammate_comment_here_it_comes´ (delay 0)

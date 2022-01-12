@@ -5,7 +5,7 @@
 		´func_sequence_002´ (delay 0)
 ´connect_hose_interaction´ ElementInteraction 100001
 	DISABLED
-	host_only false
+	host_only False
 	override_timer 5
 	position 0, 7, 240.568
 	rotation 0, 0, 0, -1
@@ -15,15 +15,15 @@
 		´fixed´ (delay 0) DISABLED (alternative interacted)
 ´turn_on_interaction´ ElementToggle 100002
 	DISABLED
+	elements
+ 		1 ´connect_hose_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´connect_hose_interaction´ DISABLED
 	on_executed
 		´activate_wp´ (delay 0)
 ´hose_wp´ ElementWaypoint 100003
 	icon pd2_water_tap
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 7, 290.568
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -40,9 +40,9 @@
 	on_executed
 		´remove_wp´ (delay 0)
 ´remove_wp´ ElementOperator 100007
-	operation remove
 	elements
-		1 ´hose_wp´
+ 		1 ´hose_wp´
+	operation remove
 	on_executed
 		´show_hose001´ (delay 0)
 ´show_hose´ ElementUnitSequence 100009
@@ -84,21 +84,21 @@
 ´interrupt_so´ ElementSpecialObjective 100016
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 9696
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
-	interrupt_objective false
+	interrupt_objective False
 	interval 10
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -106,23 +106,23 @@
 	pose none
 	position 200, -30, 0.00400543
 	rotation 0, 0, -0.707107, -0.707107
-	scan true
+	scan True
 	search_distance 2000
 	search_position 200 0 0,00400543
+	SO_access 9696
 	so_action e_so_tube_interact
 	trigger_on none
-	use_instigator false
-	followup_elements
+	use_instigator False
 ´start_interrupt´ MissionScriptElement 100017
 	on_executed
 		´turn_on_interrupt_entities´ (delay 0)
 ´turn_on_interrupt_entities´ ElementToggle 100018
-	set_trigger_times -1
-	toggle on
 	elements
-		1 ´anim_fail´ DISABLED
+ 		1 ´anim_fail´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_done´ DISABLED
+	set_trigger_times -1
+	toggle on
 	on_executed
 		´loop´ (delay 0.5)
 ´loop´ MissionScriptElement 100019
@@ -130,44 +130,44 @@
 		´turn_on_execute_so´ (delay 0) DISABLED
 ´turn_on_execute_so´ ElementToggle 100020
 	DISABLED
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´interrupt_so´ (delay 1) DISABLED
 ´anim_done´ ElementSpecialObjectiveTrigger 100021
 	DISABLED
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	event complete
 	position 1400, 0, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´remove_so´ (delay 0)
 		´interrupted´ (delay 0)
 ´anim_fail´ ElementSpecialObjectiveTrigger 100022
 	DISABLED
+	elements
+ 		1 ´interrupt_so´ DISABLED
 	event fail
 	position 1600, 0, 0.00400543
 	rotation 0, 0, 0, -1
-	elements
-		1 ´interrupt_so´ DISABLED
 	on_executed
 		´loop´ (delay 5)
 ´remove_so´ ElementOperator 100023
-	operation remove
 	elements
-		1 ´interrupt_so´ DISABLED
+ 		1 ´interrupt_so´ DISABLED
+	operation remove
 	on_executed
 		´turn_off_enteties´ (delay 0)
 ´turn_off_enteties´ ElementToggle 100024
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´anim_done´ DISABLED
+ 		1 ´anim_done´ DISABLED
 		2 ´turn_on_execute_so´ DISABLED
 		3 ´anim_fail´ DISABLED
+	set_trigger_times -1
+	toggle off
 	on_executed
 		´remove_defend_wp´ (delay 0)
 ´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100025
@@ -176,13 +176,13 @@
 	enemy units/payday2/characters/ene_swat_1/ene_swat_1
 	force_pickup none
 	interval 5
-	participate_to_group_ai true
+	orientation_elements
+	participate_to_group_ai True
 	position 200, -400, 0.0039978
 	rotation 0, 0, 0, -1
 	spawn_action none
 	team default
 	voice 0
-	orientation_elements
 ´trigger_area_001´ ElementAreaTrigger 100026
 	DISABLED
 	amount 1
@@ -194,19 +194,19 @@
 	position 400, -300, 0.00400543
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 175
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 175
 	on_executed
 		´ai_spawn_enemy_001´ (delay 0)
 ´point_waypoint_001´ ElementWaypoint 100027
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 400, -300, 100.004
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -214,10 +214,10 @@
 	on_executed
 		´turn_on_interaction_2´ (delay 0)
 ´turn_on_interaction_2´ ElementToggle 100029
+	elements
+ 		1 ´connect_hose_interaction´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´connect_hose_interaction´ DISABLED
 	on_executed
 		´activate_wp_2´ (delay 0)
 ´activate_wp_2´ MissionScriptElement 100030
@@ -226,9 +226,9 @@
 		´hose_wp´ (delay 0)
 		´tanker_interrupted_output´ (delay 0)
 ´point_debug_001´ ElementDebug 100031
-	as_subtitle true
+	as_subtitle True
 	debug_string Bain: The swats pulled the hose of the tanker. Connect it again!
-	show_instigator false
+	show_instigator False
 ´fixed´ MissionScriptElement 100032
 	DISABLED
 	on_executed
@@ -250,18 +250,18 @@
 		´remove_so´ (delay 0)
 ´defend_wp´ ElementWaypoint 100038
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 7, 290.568
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´remove_defend_wp´ ElementOperator 100039
-	operation remove
 	elements
-		1 ´defend_wp´
+ 		1 ´defend_wp´
+	operation remove
 ´remove_fix_wp´ ElementOperator 100034
-	operation remove
 	elements
-		1 ´hose_wp´
+ 		1 ´hose_wp´
+	operation remove
 	on_executed
 		´tanker_fixed_output´ (delay 0)
 ´external_was_fixed´ ElementInstanceInput 100037
@@ -276,18 +276,15 @@
 		´turn_off_everything´ (delay 0)
 ´turn_off_everything´ MissionScriptElement 100041
 ´turn_on_fixed_check´ ElementToggle 100042
+	elements
+ 		1 ´fixed´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´fixed´ DISABLED
 ´point_debug_002´ ElementDebug 100043
-	as_subtitle true
+	as_subtitle True
 	debug_string Bain: Ok hose it attached again. keep protecting it.
-	show_instigator false
+	show_instigator False
 ´func_nav_obstacle_001´ ElementNavObstacle 100046
-	operation add
-	position 700, 800, 0.00400543
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -305,6 +302,9 @@
 			guis_id 4
 			obj_name 1899710181486966882
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (100, 122, 0.00400394)
+	operation add
+	position 700, 800, 0.00400543
+	rotation 0, 0, 0, -1
 ´func_sequence_002´ ElementUnitSequence 100015
 	position 1000, 900, 0
 	rotation 0, 0, 0, -1
@@ -327,16 +327,16 @@
 	on_executed
 		´interacted´ (delay 0)
 ´interrupt_sound´ ElementPlaySound 100049
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 0, 7, 236.233
 	rotation 0, 0, 0, -1
 	sound_event hose_interrupt_fuel_tank
-	use_instigator false
+	use_instigator False
 ´point_play_sound_001´ ElementPlaySound 100050
-	append_prefix false
-	interrupt true
+	append_prefix False
+	interrupt True
 	position 1600, 800, 0.00400543
 	rotation 0, 0, 0, -1
 	sound_event unmute
-	use_instigator false
+	use_instigator False

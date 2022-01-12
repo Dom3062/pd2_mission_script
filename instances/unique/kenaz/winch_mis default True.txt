@@ -153,17 +153,17 @@
 	counter_target 0
 ´winch_screw_counter_4´ ElementCounterTrigger 100018
 	amount 4
-	trigger_type value
 	elements
-		1 ´winch_screw_COUNTER´
+ 		1 ´winch_screw_COUNTER´
+	trigger_type value
 	on_executed
 		´output_winch_screwed´ (delay 0)
 ´winch_screw_counter_inc´ ElementCounterOperator 100019
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´winch_screw_COUNTER´
+ 		1 ´winch_screw_COUNTER´
+	instance_var_names
+	operation add
 ´seq_winch_ENABLE´ ElementUnitSequence 100021
 	position 450, 150, 1602.5
 	rotation 0, 0, 0, -1
@@ -219,14 +219,14 @@
 		´trg_winch_part_ON´ (delay 0)
 ´wp_winch_drop´ ElementWaypoint 100028
 	icon pd2_goto
-	only_in_civilian false
+	only_in_civilian False
 	position 0, 0, 226.74
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_winch_drop_REMOVE´ ElementOperator 100029
-	operation remove
 	elements
-		1 ´wp_winch_drop´
+ 		1 ´wp_winch_drop´
+	operation remove
 ´trg_winch_part´ ElementAreaTrigger 100009
 	DISABLED
 	TRIGGER TIMES 3
@@ -238,15 +238,15 @@
 	position 0, 0, 115.74
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_enter
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
 		1 ´dir_loot_winch_part´
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_enter
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´winch_part_remove´ (delay 0)
 		´winch_parts_placed_counter_INC´ (delay 0)
@@ -260,40 +260,40 @@
 				1 winch_part
 				2 winch_part_e3
 ´trg_winch_part_ON´ ElementToggle 100026
+	elements
+ 		1 ´trg_winch_part´ DISABLED
 	set_trigger_times -1
 	toggle on
-	elements
-		1 ´trg_winch_part´ DISABLED
 ´winch_part_remove´ ElementCarry 100033
 	operation remove
 	type_filter none
 ´winch_parts_placed_counter_INC´ ElementCounterOperator 100031
 	amount 1
-	operation add
-	instance_var_names
 	elements
-		1 ´winch_parts_placed_COUNTER´
+ 		1 ´winch_parts_placed_COUNTER´
+	instance_var_names
+	operation add
 ´winch_parts_placed_COUNTER´ ElementCounter 100032
 	counter_target 0
 ´winch_parts_placed_counter_2´ ElementCounterTrigger 100034
 	amount 2
-	trigger_type value
 	elements
-		1 ´winch_parts_placed_COUNTER´
+ 		1 ´winch_parts_placed_COUNTER´
+	trigger_type value
 	on_executed
 		´seq_winch_show_middle´ (delay 0)
 ´winch_parts_placed_counter_1´ ElementCounterTrigger 100035
 	amount 1
-	trigger_type value
 	elements
-		1 ´winch_parts_placed_COUNTER´
+ 		1 ´winch_parts_placed_COUNTER´
+	trigger_type value
 	on_executed
 		´seq_winch_show_bottom´ (delay 0)
 ´winch_parts_placed_counter_3´ ElementCounterTrigger 100036
 	amount 3
-	trigger_type value
 	elements
-		1 ´winch_parts_placed_COUNTER´
+ 		1 ´winch_parts_placed_COUNTER´
+	trigger_type value
 	on_executed
 		´wp_winch_drop_REMOVE´ (delay 0)
 		´seq_winch_screws_SHOW´ (delay 0)
@@ -335,41 +335,41 @@
 	event winch_hook_used
 ´wp_winch_hook´ ElementWaypoint 100043
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -50, -57, 178.74
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_winch_hook_REMOVE´ ElementOperator 100044
-	operation remove
 	elements
-		1 ´wp_winch_hook´
+ 		1 ´wp_winch_hook´
+	operation remove
 ´wp_start_winch_REMOVE´ ElementOperator 100045
-	operation remove
 	elements
-		1 ´wp_start_winch´
+ 		1 ´wp_start_winch´
+	operation remove
 ´wp_start_winch´ ElementWaypoint 100046
 	icon pd2_generic_interact
-	only_in_civilian false
+	only_in_civilian False
 	position -34, 104, 57.74
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´so_interrupt_winch´ ElementSpecialObjective 100024
 	DISABLED
 	TRIGGER TIMES 1
-	SO_access 15864
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude none
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 0,75
 	interval 1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -377,12 +377,12 @@
 	pose none
 	position -13, 186, 0
 	rotation 0, 0, 1, -5.96046E-08
-	scan true
+	scan True
 	search_distance 5000
 	search_position 108,346 4,03391 2,5
+	SO_access 15864
 	so_action e_so_push_button_low
 	trigger_on none
-	followup_elements
 ´start_interrupting´ MissionScriptElement 100049
 	on_executed
 		´start_interrupt_loop´ (delay 0)
@@ -393,28 +393,28 @@
 	on_executed
 		´so_interrupt_winch_ON´ (delay 0)
 ´so_interrupt_winch_ON´ ElementToggle 100052
+	elements
+ 		1 ´so_interrupt_winch´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´so_interrupt_winch´ DISABLED
 	on_executed
 		´so_interrupt_winch´ (delay 0.5) DISABLED
 ´so_trg_interrupt_winch_COMPLETE´ ElementSpecialObjectiveTrigger 100053
+	elements
+ 		1 ´so_interrupt_winch´ DISABLED
 	event complete
 	position 950, -25, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt_winch´ DISABLED
 	on_executed
 		´winch_interrupted´ (delay 0)
 		´seq_winch_ENABLE_2´ (delay 0)
 		´so_defend´ (delay 0)
 ´so_trg_interrupt_winch_FAIL´ ElementSpecialObjectiveTrigger 100054
+	elements
+ 		1 ´so_interrupt_winch´ DISABLED
 	event fail
 	position 775, -25, 1602.5
 	rotation 0, 0, 0, -1
-	elements
-		1 ´so_interrupt_winch´ DISABLED
 	on_executed
 		´start_interrupt_loop´ (delay 0)
 ´winch_interrupted´ MissionScriptElement 100055
@@ -429,26 +429,26 @@
 ´output_winch_interrupted´ ElementInstanceOutput 100056
 	event winch_interrupted
 ´so_interrupt_winch_OFF´ ElementToggle 100057
+	elements
+ 		1 ´so_interrupt_winch´ DISABLED
+		2 ´so_defend´
 	set_trigger_times 1
 	toggle off
-	elements
-		1 ´so_interrupt_winch´ DISABLED
-		2 ´so_defend´
 ´so_interrupt_winch_REMOVE´ ElementOperator 100058
-	operation remove
 	elements
-		1 ´so_interrupt_winch´ DISABLED
+ 		1 ´so_interrupt_winch´ DISABLED
 		2 ´so_defend´
+	operation remove
 ´loop_and_triggers_OFF´ ElementToggle 100059
-	set_trigger_times -1
-	toggle off
 	elements
-		1 ´so_trg_interrupt_winch_COMPLETE´
+ 		1 ´so_trg_interrupt_winch_COMPLETE´
 		2 ´so_trg_interrupt_winch_FAIL´
 		3 ´start_interrupting´
 		4 ´start_interrupt_loop´
 		5 ´try_interrupt´
 		6 ´so_interrupt_winch_ON´
+	set_trigger_times -1
+	toggle off
 ´seq_winch_ENABLE_2´ ElementUnitSequence 100060
 	position 950, -200, 1600
 	rotation 0, 0, 0, -1
@@ -476,11 +476,11 @@
 		´wp_defend_winch´ (delay 0)
 ´seq_trg_winch_INTERACT_TOGGLE´ ElementToggle 100063
 	TRIGGER TIMES 1
+	elements
+ 		1 ´seq_trg_winch_INTERACT´
+		2 ´seq_trg_winch_INTERACT_2´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´seq_trg_winch_INTERACT´
-		2 ´seq_trg_winch_INTERACT_2´ DISABLED
 ´input_winch_done´ ElementInstanceInput 100064
 	event winch_done
 	on_executed
@@ -492,50 +492,50 @@
 ´output_screw_winch´ ElementInstanceOutput 100065
 	event screw_winch
 ´sound_winch_dropped´ ElementPlaySound 100066
-	append_prefix false
+	append_prefix False
 	position 0, 0, 65.74
 	rotation 0, 0, 0, -1
 	sound_event winch_connect
-	use_instigator false
+	use_instigator False
 ´output_one_winch_part_placed´ ElementInstanceOutput 100067
 	event one_winch_part_placed
 	on_executed
 		´toggle_player_check_area´ (delay 0)
 ´wp_screw_01´ ElementWaypoint 100068
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 56, -49, 52
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_screw_01_REMOVE´ ElementOperator 100069
-	operation remove
 	elements
-		1 ´wp_screw_01´
+ 		1 ´wp_screw_01´
+	operation remove
 ´wp_defend_winch´ ElementWaypoint 100070
 	icon pd2_defend
-	only_in_civilian false
+	only_in_civilian False
 	position -34, 104, 57.74
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_defend_winch_REMOVE´ ElementOperator 100071
-	operation remove
 	elements
-		1 ´wp_defend_winch´
+ 		1 ´wp_defend_winch´
+	operation remove
 ´so_defend´ ElementSpecialObjective 100072
-	SO_access 15868
 	action_duration_max 0
 	action_duration_min 0
 	ai_group enemies
-	align_position true
-	align_rotation true
+	align_position True
+	align_rotation True
 	attitude avoid
 	base_chance 1
+	followup_elements
 	chance_inc 0
 	interaction_voice none
 	interrupt_dis 0
 	interrupt_dmg 1
 	interval -1
-	needs_pos_rsrv true
+	needs_pos_rsrv True
 	path_haste none
 	path_stance none
 	path_style none
@@ -543,13 +543,13 @@
 	pose none
 	position -13, 186, 0
 	rotation 0, 0, 1, -5.96046E-08
-	scan true
+	scan True
 	search_distance 0
 	search_position 130,434 -23,7096 2,5
+	SO_access 15868
 	so_action AI_defend
 	trigger_on none
-	use_instigator true
-	followup_elements
+	use_instigator True
 ´seq_winch_anim_transition´ ElementUnitSequence 100073
 	TRIGGER TIMES 1
 	position 525, 25, 1602.5
@@ -603,10 +603,10 @@
 			notify_unit_sequence set_e3
 			time 0
 ´seq_winch_resume_animation_ON´ ElementToggle 100027
+	elements
+ 		1 ´seq_winch_resume_animation´ DISABLED
 	set_trigger_times -1
 	toggle toggle
-	elements
-		1 ´seq_winch_resume_animation´ DISABLED
 ´trg_is_player_inside´ ElementAreaTrigger 100030
 	DISABLED
 	TRIGGER TIMES 1
@@ -618,14 +618,14 @@
 	position 0, 0, 115.74
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on while_inside
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on while_inside
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´toggle_player_exit_area´ (delay 0)
 		´disable_winch_collision´ (delay 0)
@@ -641,21 +641,21 @@
 	position 0, 0, 115.74
 	radius 250
 	rotation 0, 0, 0, -1
-	shape_type box
-	trigger_on on_empty
-	use_disabled_shapes false
-	width 200
 	rules_element_ids
+	shape_type box
 	spawn_unit_elements
-	use_shape_element_ids
+	trigger_on on_empty
 	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 200
 	on_executed
 		´enable_winch_collision´ (delay 0)
 ´toggle_player_exit_area´ ElementToggle 100076
+	elements
+ 		1 ´trg_did_player_exit´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_did_player_exit´ DISABLED
 ´enable_winch_collision´ ElementUnitSequence 100077
 	position -700, 150, 1602.5
 	rotation 0, 0, 0, -1
@@ -680,26 +680,23 @@
 		´toggle_player_exit_area´ (delay 0)
 ´toggle_player_check_area´ ElementToggle 100079
 	TRIGGER TIMES 1
+	elements
+ 		1 ´trg_is_player_inside´ DISABLED
 	set_trigger_times 1
 	toggle on
-	elements
-		1 ´trg_is_player_inside´ DISABLED
 	on_executed
 		´turn_off_check_player_area´ (delay 1)
 ´turn_off_check_player_area´ ElementToggle 100080
+	elements
+ 		1 ´trg_is_player_inside´ DISABLED
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´trg_is_player_inside´ DISABLED
 ´toggle_off´ ElementToggle 100081
+	elements
+ 		1 ´turn_off_check_player_area´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´turn_off_check_player_area´
 ´winch_nav_obstacle_ADD´ ElementNavObstacle 100084
-	operation add
-	position -125, -35, 1602.5
-	rotation 0, 0, 0, -1
 	obstacle_list
 		1
 			guis_id 1
@@ -709,35 +706,38 @@
 			guis_id 2
 			obj_name 8037565586551743599
 			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/002 (50, -82, 0)
+	operation add
+	position -125, -35, 1602.5
+	rotation 0, 0, 0, -1
 ´point_debug_001´ ElementDebug 100085
-	as_subtitle false
+	as_subtitle False
 	debug_string anim_transition
-	show_instigator false
+	show_instigator False
 ´point_debug_002´ ElementDebug 100086
-	as_subtitle false
+	as_subtitle False
 	debug_string resume_animation
-	show_instigator false
+	show_instigator False
 ´point_debug_003´ ElementDebug 100087
-	as_subtitle false
+	as_subtitle False
 	debug_string pause_animation
-	show_instigator false
+	show_instigator False
 ´output_one_screw_screwed´ ElementInstanceOutput 100088
 	event one_screw_screwed
 ´wp_screw_02´ ElementWaypoint 100089
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position 56, 18, 52
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_screw_04´ ElementWaypoint 100090
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -57, 17, 52
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_screw_03´ ElementWaypoint 100091
 	icon pd2_generic_look
-	only_in_civilian false
+	only_in_civilian False
 	position -57, -50, 52
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -786,14 +786,14 @@
 		´winch_screw_counter_inc´ (delay 0)
 		´wp_screw_04_REMOVE´ (delay 0)
 ´wp_screw_02_REMOVE´ ElementOperator 100016
-	operation remove
 	elements
-		1 ´wp_screw_02´
+ 		1 ´wp_screw_02´
+	operation remove
 ´wp_screw_03_REMOVE´ ElementOperator 100096
-	operation remove
 	elements
-		1 ´wp_screw_03´
+ 		1 ´wp_screw_03´
+	operation remove
 ´wp_screw_04_REMOVE´ ElementOperator 100097
-	operation remove
 	elements
-		1 ´wp_screw_04´
+ 		1 ´wp_screw_04´
+	operation remove

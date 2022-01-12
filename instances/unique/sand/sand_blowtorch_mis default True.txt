@@ -42,8 +42,8 @@
 	event blowtorch_picked_up
 ´blowtorch_WP´ ElementWaypoint 100011
 	icon pd2_generic_interact
-	only_in_civilian false
-	only_on_instigator false
+	only_in_civilian False
+	only_on_instigator False
 	position 0, 0, 33
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -57,16 +57,16 @@
 	on_executed
 		´toggle_OFF_WP´ (delay 0)
 ´toggle_OFF_WP´ ElementToggle 100013
+	elements
+ 		1 ´blowtorch_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_WP´
 	on_executed
 		´remove_WP´ (delay 0)
 ´remove_WP´ ElementOperator 100014
-	operation remove
 	elements
-		1 ´blowtorch_WP´
+ 		1 ´blowtorch_WP´
+	operation remove
 	on_executed
 		´output_blowtorch_picked_up´ (delay 0)
 ´enable_WP´ MissionScriptElement 100015
@@ -91,10 +91,10 @@
 	on_executed
 		´toggle_OFF_WP_2´ (delay 0)
 ´toggle_OFF_WP_2´ ElementToggle 100018
+	elements
+ 		1 ´blowtorch_WP´
 	set_trigger_times -1
 	toggle off
-	elements
-		1 ´blowtorch_WP´
 	on_executed
 		´disable_outline´ (delay 0)
 		´remove_WP_2´ (delay 0)
@@ -109,8 +109,8 @@
 			notify_unit_sequence disable_outline
 			time 0
 ´remove_WP_2´ ElementOperator 100020
-	operation remove
 	elements
-		1 ´blowtorch_WP´
+ 		1 ´blowtorch_WP´
+	operation remove
 	on_executed
 		´disable_outline´ (delay 0)
