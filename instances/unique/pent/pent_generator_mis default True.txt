@@ -1,0 +1,449 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_start_generator´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence hide_cable_01
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence hide_cable_02
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_start_generator´ ElementInstanceInput 100007
+	event start_generator
+	on_executed
+		´logic_toggle_on_look_at´ (delay 0)
+		´link_waypoint´ (delay 0)
+´output_generator_started´ ElementInstanceOutput 100008
+	event generator_started
+´seq_power´ ElementUnitSequence 100036
+	position 1700, 700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence main_screen_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´pc_start_sound´ (delay 0)
+´pc_start_sound´ MissionScriptElement 100038
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´enable_lever´ (delay 0)
+´keyboard_interacted´ ElementUnitSequenceTrigger 100040
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+	on_executed
+		´upload´ (delay 0)
+´upload´ ElementUnitSequence 100041
+	position 2000, 900, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence we_get_signal
+			time 0
+	on_executed
+		´delay_15´ (delay 0)
+´delay_15´ MissionScriptElement 100042
+	BASE DELAY 15
+	on_executed
+		´complete´ (delay 0)
+´complete´ ElementUnitSequence 100043
+	position 2000, 700, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence upload_complete
+			time 0
+	on_executed
+		´enable_lever´ (delay 1)
+´enable_lever´ ElementUnitSequence 100044
+	position 2000, 600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_lever_pulled´ ElementUnitSequenceTrigger 100045
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/dev_tools/level_tools/dev_collision/dev_collision_1x3m/001 (-107, 0, 0)
+	on_executed
+		´sound_power´ (delay 0)
+´sound_power´ MissionScriptElement 100046
+	on_executed
+		´disable´ (delay 0)
+´disable´ ElementUnitSequence 100047
+	position 2200, 800, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´generator_complete´ ElementInstanceOutput 100048
+	event Generator_complete
+´see_pc´ ElementLookAtTrigger 100065
+	DISABLED
+	TRIGGER TIMES 1
+	distance 400
+	in_front False
+	interval 0.1
+	position 0, -25, 125
+	rotation 0, 0, 0, -1
+	sensitivity 0,8
+´logic_toggle_on_look_at´ ElementToggle 100066
+	elements
+ 		1 ´see_pc´ DISABLED
+		2 ´waypoint_Pull_Interaction´
+	set_trigger_times -1
+	toggle on
+´logic_toggle_001´ ElementToggle 100087
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´output_generator_started´ (delay 0)
+´seq_remove_socket_outlines´ ElementUnitSequence 100088
+	position 1600, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´toggle_off´ (delay 0)
+´link_cable_front_interaction´ MissionScriptElement 100089
+	on_executed
+		´seq_remove_socket_outlines´ (delay 0)
+		´seq_show_cable1´ (delay 0)
+´link_cable_back_interaction´ MissionScriptElement 100090
+	on_executed
+		´seq_remove_socket_outlines´ (delay 0)
+		´seq_show_cable2´ (delay 0)
+´input_front_door´ ElementInstanceInput 100093
+	event front door open
+	on_executed
+		´link_door_open_once´ (delay 0)
+´input_back_door´ ElementInstanceInput 100094
+	event back door open
+	on_executed
+		´link_door_open_once´ (delay 0)
+´seq_show_cable1´ ElementUnitSequence 100009
+	position 1500, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence show_cable_01
+			time 0
+	on_executed
+		´seq_power´ (delay 0)
+´seq_show_cable2´ ElementUnitSequence 100010
+	position 1800, 1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence show_cable_02
+			time 0
+	on_executed
+		´seq_power´ (delay 0)
+´trigger_global_event_001´ ElementGlobalEventTrigger 100011
+	TRIGGER TIMES 1
+	global_event police_called
+	position 2400, 1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_loud´ (delay 0)
+´link_loud´ MissionScriptElement 100012
+	on_executed
+		´counter_3´ (delay 0)
+´toggle_off´ ElementToggle 100013
+	set_trigger_times -1
+	toggle off
+´logic_chance_001´ ElementLogicChance 100015
+	chance 0
+	position 2000, 200, 0
+	rotation 0, 0, 0, -1
+´link_success´ MissionScriptElement 100016
+	on_executed
+		´seq_power´ (delay 0.2)
+		´point_debug_001´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+		´seq_lights´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´generator_success´ (delay 0)
+´logic_chance_trigger_fail´ ElementLogicChanceTrigger 100017
+	elements
+ 		1 ´logic_chance_001´
+	outcome fail
+	position 2200, 100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_fail´ (delay 0)
+		´3_pulls´ (delay 0)
+´logic_chance_operator_add_15´ ElementLogicChanceOperator 100018
+	elements
+ 		1 ´logic_chance_001´
+	chance 33
+	operation add_chance
+	position 2200, -100, 0
+	rotation 0, 0, 0, -1
+´logic_chance_trigger_success´ ElementLogicChanceTrigger 100019
+	elements
+ 		1 ´logic_chance_001´
+	outcome success
+	position 1800, 100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_success´ (delay 0)
+´link_fail´ MissionScriptElement 100020
+	on_executed
+		´logic_chance_operator_add_15´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´seq_disable_interaction´ (delay 0)
+		´generator_false_start´ (delay 0)
+´point_debug_001´ ElementDebug 100021
+	as_subtitle False
+	debug_string Generator - Started!
+	show_instigator False
+´point_debug_002´ ElementDebug 100023
+	as_subtitle False
+	debug_string Generator - Fail +33 chance
+	show_instigator False
+´logic_toggle_off´ ElementToggle 100024
+	elements
+ 		1 ´logic_chance_trigger_fail´
+		2 ´link_fail´
+		3 ´waypoint_Pull_Interaction´
+		4 ´seq_disable_interaction´
+		5 ´logic_chance_001´
+		6 ´trigger_pull_cord´
+		7 ´seq_enable_interaction_2´
+	set_trigger_times -1
+	toggle off
+´trigger_pull_cord´ ElementUnitSequenceTrigger 100031
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+	on_executed
+		´logic_chance_001´ (delay 0)
+		´generator_pull´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100032
+	position 2200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_disabled
+			time 0
+	on_executed
+		´seq_enable_interaction_2´ (delay 1.5)
+´seq_lights´ ElementUnitSequence 100028
+	position 1800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/GREEN (175, -25, 125)
+			notify_unit_sequence light_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/RED (175, -25, 125)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_generator/pent_interactable_generator/001 (0, 0, 0)
+			notify_unit_sequence main_screen_on
+			time 0
+´seq_enable_interaction´ ElementUnitSequence 100033
+	position 900, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_enabled
+			time 0
+	on_executed
+		´point_debug_003´ (delay 0)
+´waypoint_Pull_Interaction´ ElementWaypoint 100035
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 183, -16, 116
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_waypoint´ MissionScriptElement 100037
+	TRIGGER TIMES 1
+	on_executed
+		´counter_3´ (delay 0)
+´logic_operator_001´ ElementOperator 100039
+	elements
+ 		1 ´waypoint_Pull_Interaction´
+	operation remove
+	on_executed
+		´generator_complete´ (delay 3)
+´counter_3´ ElementCounter 100049
+	counter_target 3
+	on_executed
+		´waypoint_Pull_Interaction´ (delay 1.5)
+		´seq_enable_interaction´ (delay 1)
+´link_door_open_once´ MissionScriptElement 100050
+	TRIGGER TIMES 1
+	on_executed
+		´counter_3´ (delay 0)
+´seq_enable_interaction_2´ ElementUnitSequence 100029
+	position 2200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_enabled
+			time 0
+´swear_shit´ ElementTeammateComment 100054
+	close_to_element True
+	comment g29
+	position 183, -25, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	use_instigator False
+´3_pulls´ ElementCounter 100055
+	TRIGGER TIMES 1
+	counter_target 3
+	on_executed
+		´swear_shit´ (delay 1.5)
+´turn_off_generator´ ElementInstanceInput 100022
+	event turn_off_generator
+	on_executed
+		´seq_handle_off´ (delay 0)
+´seq_handle_off´ ElementUnitSequence 100052
+	position 1300, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_int_generator_jumpstart_handle/pent_int_jumpstart_handle/001 (183, -4, 121)
+			notify_unit_sequence state_interactive_disabled
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100053
+	elements
+ 		1 ´waypoint_Pull_Interaction´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´stop_generator_loop´ (delay 0)
+´generator_false_start´ ElementPlaySound 100025
+	BASE DELAY 1.5
+	append_prefix False
+	interrupt True
+	position 50, 50, 175
+	rotation 0, 0, 0, -1
+	sound_event generator_false_start
+	use_instigator False
+´generator_pull´ ElementPlaySound 100026
+	append_prefix False
+	interrupt True
+	position 183, -25, 100
+	rotation 0, 0, 0, -1
+	sound_event generator_lever_pull
+	use_instigator False
+´generator_success´ ElementPlaySound 100056
+	BASE DELAY 1.5
+	append_prefix False
+	interrupt True
+	position 50, 50, 150
+	rotation 0, 0, 0, -1
+	sound_event generator_successful_start
+	use_instigator False
+´stop_generator_loop´ ElementPlaySound 100057
+	append_prefix False
+	interrupt True
+	position 50, 50, 202.5
+	rotation 0, 0, 0, -1
+	sound_event generator_stop
+	use_instigator False
+´point_debug_003´ ElementDebug 100058
+	as_subtitle False
+	debug_string Generator_handle_ON!!!
+	show_instigator False

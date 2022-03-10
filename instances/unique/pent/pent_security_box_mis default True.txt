@@ -1,0 +1,1352 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´off_2´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence set_time_120sec
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_hole/001 (0, -25, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		8 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_hole/001 (0, -25, 0)
+		9 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		10 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_hole/001 (0, -25, 0)
+		11 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		12 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_hole/001 (0.000115991, -25.0005, 0)
+		13 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		14 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electric_wall_hole/001 (0.000149608, -25.0005, 0)
+		15 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´input_lamp_on´ ElementInstanceInput 100007
+	event lamp_on
+	on_executed
+		´on´ (delay 0.1)
+		´2´ (delay 0)
+´out_lamp_on´ ElementInstanceOutput 100008
+	event lamp_is_on
+´lamp_on´ ElementEnableUnit 100011
+	position 800, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´toggle_on´ (delay 0)
+´lamp_off´ ElementEnableUnit 100012
+	position 900, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+	on_executed
+		´off´ (delay 0.2)
+		´point_debug_008´ (delay 0)
+´on´ ElementUnitSequence 100013
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_green
+			time 0
+	on_executed
+		´lamp_on´ (delay 0)
+´input_lamp_off´ ElementInstanceInput 100014
+	event lamp_off
+	on_executed
+		´2_2´ (delay 0)
+´off´ ElementUnitSequence 100016
+	position 900, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_on
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_red
+			time 0
+	on_executed
+		´out_lamp_off´ (delay 0)
+´enable_lever´ ElementUnitSequence 100020
+	position 1000, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence enable_interaction_lever
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+	on_executed
+		´show_lever´ (delay 0)
+´show_lever´ ElementEnableUnit 100021
+	position 1000, -200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´eneable_int_trigger´ (delay 0.1)
+´toggle_on´ ElementToggle 100022
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´out_lamp_off´ ElementInstanceOutput 100023
+	event lamp_is_off
+´goes_loud´ ElementGlobalEventTrigger 100024
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1400, 200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´off_2´ (delay 0)
+´off_2´ ElementToggle 100025
+	elements
+ 		1 ´switch _pulled´ DISABLED
+		2 ´input_all_levers_pulled´
+		3 ´enable_lever´
+		4 ´input_lamp_off´
+		5 ´input_lamp_on´
+		6 ´eneable_int_trigger´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_lever´ (delay 0)
+´remove_lever´ ElementUnitSequence 100026
+	position 1400, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_off
+			time 0
+	on_executed
+		´disable-siwtch´ (delay 0)
+´disable-siwtch´ ElementDisableUnit 100027
+	position 1400, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+		2 core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+	on_executed
+		´on_hack´ (delay 0)
+´switch _pulled´ ElementUnitSequenceTrigger 100028
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+	on_executed
+		´seq_lights_off´ (delay 0)
+´switches_flipped´ ElementInstanceOutput 100030
+	event switch_pulled
+´input_all_levers_pulled´ ElementInstanceInput 100029
+	event all_levers_pulled
+	on_executed
+		´off_3´ (delay 0)
+´off_3´ ElementToggle 100031
+	elements
+ 		1 ´goes_loud´
+		2 ´switch _pulled´ DISABLED
+		3 ´input_lamp_off´
+		4 ´input_lamp_on´
+		5 ´link_open´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´disabl_all´ (delay 0)
+´disabl_all´ ElementUnitSequence 100032
+	position 1200, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_off
+			time 0
+	on_executed
+		´disable´ (delay 0)
+´disable´ ElementDisableUnit 100033
+	position 1200, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´on_2´ ElementToggle 100034
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´enable_start_of_hack´ (delay 0)
+´enable_start_of_hack´ ElementUnitSequence 100035
+	position 1500, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´point_debug_010´ (delay 0)
+´start_timer´ MissionScriptElement 100038
+	on_executed
+		´hack_placed´ (delay 0)
+		´defend´ (delay 0)
+		´start´ (delay 0) DISABLED
+´out_hack_completed´ ElementInstanceOutput 100037
+	event hack_completed
+´2´ ElementCounter 100039
+	counter_target 2
+	on_executed
+		´enable_lever´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100040
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´toggle_of_red´ (delay 0)
+´hack_placed´ ElementInstanceOutput 100041
+	event hack_device_placed
+	on_executed
+		´remove_repair´ (delay 0.1)
+´input_disable_hack_int´ ElementInstanceInput 100043
+	event disable_hack_interaction
+	on_executed
+		´turns_off´ (delay 0)
+´turns_off´ ElementToggle 100044
+	elements
+ 		1 ´enable_start_of_hack´
+		2 ´Resume_hack´ DISABLED
+		3 ´interupt_old´ DISABLED
+		4 ´switch _pulled´ DISABLED
+		5 ´start_hack´
+		6 ´link_open´
+		7 ´logic_link_014´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´disable_hack´ (delay 0)
+´disable_hack´ ElementUnitSequence 100045
+	position 1700, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence disable_interaction_GUI_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´disable_hack_device´ (delay 0)
+´enable_hack_int´ MissionScriptElement 100046
+	DISABLED
+	on_executed
+		´on_2´ (delay 0)
+´on_hack´ ElementToggle 100047
+	elements
+ 		1 ´enable_hack_int´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´3 enable after hack´ (delay 0)
+		´remove_int_lever´ (delay 0) DISABLED
+´3 enable after hack´ ElementCounter 100048
+	counter_target 3
+	on_executed
+		´enable_hack_int´ (delay 0) DISABLED
+´hack_done´ ElementUnitSequence 100017
+	position 2000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´point_debug_006´ (delay 0)
+		´remove_interupt´ (delay 0)
+		´turns_off_wps´ (delay 0)
+´point_debug_001´ ElementDebug 100051
+	as_subtitle False
+	debug_string Hack_start
+	show_instigator False
+´point_debug_002´ ElementDebug 100053
+	as_subtitle False
+	debug_string hack_pasued
+	show_instigator False
+´point_debug_003´ ElementDebug 100055
+	as_subtitle False
+	debug_string hack_resumed
+	show_instigator False
+´ai_stoped_hack´ ElementUnitSequence 100056
+	position 1900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´turn_of_wp´ (delay 0)
+		´pause´ (delay 0) DISABLED
+		´toggle_ON_resume_hack´ (delay 0)
+´turn_of_wp´ ElementOperator 100057
+	elements
+ 		1 ´defend´
+	operation remove
+	on_executed
+		´show_repair´ (delay 0)
+´show_repair´ MissionScriptElement 100058
+	on_executed
+		´hack_disrupted´ (delay 0)
+		´repair´ (delay 0)
+´hack_disrupted´ ElementInstanceOutput 100059
+	event hack_disrupted
+´so_anim´ ElementSpecialObjective 100060
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position False
+	align_rotation False
+	attitude engage
+	base_chance 1
+	followup_elements
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	needs_pos_rsrv False
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 25, -150, 100
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 0
+	search_position 50,5967 -146,787 0
+	SO_access 10748
+	so_action e_so_pull_lever_var2
+	trigger_on none
+´so_drag´ ElementSpecialObjective 100061
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	attitude engage
+	base_chance 1
+	followup_elements
+		1 ´so_anim´
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	needs_pos_rsrv True
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position 0, -150, 0
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 2000
+	search_position 0 -100 0
+	SO_access 10748
+	so_action none
+	trigger_on none
+´inturupt_fail´ ElementSpecialObjectiveTrigger 100062
+	DISABLED
+	TRIGGER TIMES 1
+	elements
+ 		1 ´so_anim´
+	event fail
+	position 200, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_004´ (delay 0)
+		´on_3´ (delay 0)
+´interupt_succesful´ ElementSpecialObjectiveTrigger 100063
+	DISABLED
+	TRIGGER TIMES 1
+	elements
+ 		1 ´so_anim´
+	event complete
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_005´ (delay 0)
+		´stop_interupt´ (delay 0)
+		´ai_stoped_hack´ (delay 0)
+´point_debug_004´ ElementDebug 100064
+	as_subtitle False
+	debug_string interupt_fail
+	show_instigator False
+´point_debug_005´ ElementDebug 100065
+	as_subtitle False
+	debug_string Interupt_succesful
+	show_instigator False
+´stop_interupt´ MissionScriptElement 100066
+	on_executed
+		´remove_interupt´ (delay 0)
+		´disable_interupt´ (delay 0)
+´disable_interupt´ ElementToggle 100067
+	elements
+ 		1 ´interupt_succesful´ DISABLED
+		2 ´inturupt_fail´ DISABLED
+		3 ´so_anim´
+	set_trigger_times -1
+	toggle off
+´remove_interupt´ ElementOperator 100068
+	elements
+ 		1 ´so_drag´
+		2 ´so_anim´
+	operation remove
+´interupt_old´ ElementTimer 100069
+	DISABLED
+	timer
+		1 90
+		2 30
+	on_executed
+		´hack_done´ (delay 0)
+´start´ ElementTimerOperator 100070
+	DISABLED
+	elements
+ 		1 ´interupt_old´ DISABLED
+	operation start
+	position 2100, 200, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+´pause´ ElementTimerOperator 100071
+	DISABLED
+	elements
+ 		1 ´interupt_old´ DISABLED
+	operation pause
+	position 2100, 100, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	on_executed
+		´point_debug_002´ (delay 0)
+		´toggle_ON_resume_hack´ (delay 0)
+´resume´ ElementTimerOperator 100072
+	DISABLED
+	elements
+ 		1 ´interupt_old´ DISABLED
+	operation start
+	position 2100, 0, 2.5
+	rotation 0, 0, 0, -1
+	time 0
+	on_executed
+		´point_debug_003´ (delay 0)
+´on_3´ ElementToggle 100049
+	elements
+ 		1 ´inturupt_fail´ DISABLED
+		2 ´interupt_succesful´ DISABLED
+		3 ´so_drag´
+		4 ´so_anim´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´turns_off_2´ (delay 0)
+		´so_drag´ (delay 0)
+´Resume_hack´ ElementUnitSequenceTrigger 100050
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+	on_executed
+		´resume´ (delay 0) DISABLED
+		´logic_link_002´ (delay 0.1)
+´hack_resumed´ ElementInstanceOutput 100052
+	event hack_resumed
+´show_display´ ElementUnitSequence 100054
+	position 2300, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence state_device_resumed
+			time 0
+	on_executed
+		´logic_link_003´ (delay 0.1)
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100073
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position 300, -200, 0
+	rotation 0, 0, -0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100074
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position -300, -200, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100075
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position -300, -400, 0
+	rotation 0, 0, 0.707107, -0.707107
+	spawn_action none
+	team default
+	voice 0
+´turns_off_2´ ElementToggle 100076
+	elements
+ 		1 ´enable_start_of_hack´
+		2 ´start_hack´
+		3 ´link_open´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´start_timer´ (delay 0)
+´point_debug_006´ ElementDebug 100077
+	as_subtitle False
+	debug_string hack_done
+	show_instigator False
+´disable_hack_device´ ElementDisableUnit 100079
+	position 1700, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+	on_executed
+		´removes_look_wp´ (delay 0)
+´toggle_ON_resume_hack´ ElementToggle 100080
+	elements
+ 		1 ´Resume_hack´ DISABLED
+	set_trigger_times -1
+	toggle on
+´defend´ ElementWaypoint 100081
+	icon pd2_defend
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -50, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´repair´ ElementWaypoint 100082
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -50, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_debug_007´ ElementDebug 100083
+	as_subtitle False
+	debug_string Interupt_succesful
+	show_instigator False
+´remove_repair´ ElementOperator 100084
+	elements
+ 		1 ´repair´
+		2 ´marks_box_generic´
+	operation remove
+´removes_wps´ ElementOperator 100085
+	elements
+ 		1 ´repair´
+		2 ´defend´
+	operation remove
+	on_executed
+		´out_hack_completed´ (delay 0)
+´turns_off_wps´ ElementToggle 100086
+	elements
+ 		1 ´repair´
+		2 ´defend´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´removes_wps´ (delay 0)
+´new-hack_done´ ElementUnitSequenceTrigger 100102
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+	on_executed
+		´turns_off_wps´ (delay 0)
+´start_hack´ ElementUnitSequenceTrigger 100103
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+	on_executed
+		´on_3´ (delay 0)
+		´link_debug_disable_hack´ (delay 0) DISABLED
+´remove_repair_2´ ElementOperator 100101
+	elements
+ 		1 ´repair´
+	operation remove
+	on_executed
+		´hack_resumed´ (delay 0)
+´trigger_box_open´ ElementUnitSequenceTrigger 100042
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+	on_executed
+		´link_open´ (delay 0)
+		´out_box_open´ (delay 0)
+		´hatch_open´ (delay 0)
+		´2_2´ (delay 0)
+´link_open´ MissionScriptElement 100092
+	on_executed
+		´2´ (delay 0)
+		´3 enable after hack´ (delay 0)
+´enable_security_box´ ElementInstanceInput 100093
+	event enable_security_box
+	on_executed
+		´show_box´ (delay 2)
+´show_box´ ElementUnitSequence 100096
+	position 700, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_red
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´disable_wall´ (delay 0)
+´disable_wall´ ElementDisableUnit 100097
+	position 700, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/mkp/mkp_int_wall_1m_a/disable_wall (50, -25, 0)
+	on_executed
+		´show_security_box´ (delay 0)
+´show_security_box´ ElementEnableUnit 100104
+	position 700, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+	on_executed
+		´security_box_enabled´ (delay 0)
+´security_box_enabled´ ElementInstanceOutput 100106
+	event security_box_enabled
+´link_debug_disable_hack´ MissionScriptElement 100100
+	DISABLED
+	on_executed
+		´interupt_succesful´ (delay 5) DISABLED
+´logic_link_002´ MissionScriptElement 100107
+	on_executed
+		´toggle_on_2´ (delay 0)
+´toggle_on_2´ ElementToggle 100108
+	elements
+ 		1 ´interupt_succesful´ DISABLED
+		2 ´inturupt_fail´ DISABLED
+		3 ´so_anim´
+		4 ´defend´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´show_display´ (delay 0)
+		´point_debug_013´ (delay 0)
+´logic_link_003´ MissionScriptElement 100110
+	on_executed
+		´so_drag´ (delay 0)
+		´defend´ (delay 0)
+		´point_debug_009´ (delay 0) DISABLED
+		´remove_repair_2´ (delay 0.1)
+´point_debug_009´ ElementDebug 100111
+	DISABLED
+	as_subtitle False
+	debug_string hack - wp
+	show_instigator False
+´enable_hacking´ ElementInstanceInput 100109
+	event enable_hacking
+	on_executed
+		´3 enable after hack´ (delay 0)
+´marks_box_generic´ ElementWaypoint 100112
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -43, 123
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_location_of_box´ ElementInstanceInput 100113
+	event show_box_location
+	on_executed
+		´link_show_wp´ (delay 0)
+´link_show_wp´ MissionScriptElement 100114
+	on_executed
+		´marks_box_generic´ (delay 0)
+´removes_look_wp´ ElementOperator 100115
+	elements
+ 		1 ´marks_box_generic´
+	operation remove
+´seq_lights_off´ ElementUnitSequence 100087
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_green (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id core/units/light_omni_seq/light_omni_seq/light_red (16, -25, 144)
+			notify_unit_sequence light_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence state_light_off
+			time 0
+	on_executed
+		´switches_flipped´ (delay 0)
+´input_art_office_hole´ ElementInstanceInput 100126
+	event art - office hole
+	on_executed
+		´logic_link_004´ (delay 0)
+´input_art_office_no_hole´ ElementInstanceInput 100127
+	event art - office no hole
+	on_executed
+		´logic_link_005´ (delay 0)
+´input_lobby_01_hole´ ElementInstanceInput 100128
+	event art - lobby 01 hole
+	on_executed
+		´logic_link_006´ (delay 0)
+´input_lobby_01_no_hole´ ElementInstanceInput 100129
+	event art - lobby 01 no hole
+	on_executed
+		´logic_link_007´ (delay 0)
+´input_lobby_02_no_hole´ ElementInstanceInput 100131
+	event art - lobby 02 no hole
+	on_executed
+		´logic_link_009´ (delay 0)
+´input_garage_elevator_hole´ ElementInstanceInput 100132
+	event art - garage elevator hole
+	on_executed
+		´logic_link_010´ (delay 0)
+´input_garage_elevator_no_hole´ ElementInstanceInput 100133
+	event art - garage elevator no hole
+	on_executed
+		´logic_link_011´ (delay 0)
+´input_garage_elevator_01_hole´ ElementInstanceInput 100134
+	event art - garage elevator 01 hole
+	on_executed
+		´logic_link_012´ (delay 0)
+´input_garage_elevator_01_no_hole´ ElementInstanceInput 100135
+	event art - garage elevator 01 no hole
+	on_executed
+		´logic_link_013´ (delay 0)
+´logic_link_004´ MissionScriptElement 100136
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_005´ MissionScriptElement 100137
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_006´ MissionScriptElement 100138
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_007´ MissionScriptElement 100139
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_004´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_008´ MissionScriptElement 100140
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_005´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_009´ MissionScriptElement 100141
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_006´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_010´ MissionScriptElement 100142
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_007´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_011´ MissionScriptElement 100143
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_008´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_012´ MissionScriptElement 100144
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_009´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_013´ MissionScriptElement 100145
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_010´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´input_lobby_02_hole´ ElementInstanceInput 100130
+	event art - lobby 02 hole
+	on_executed
+		´logic_link_008´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100146
+	position 600, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_hole/001 (0, -25, 0)
+	on_executed
+		´removes_art_wall´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100147
+	position 800, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+´func_enable_unit_003´ ElementEnableUnit 100148
+	position 1000, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_hole/001 (0, -25, 0)
+	on_executed
+		´removes_art_wall001´ (delay 0)
+´func_enable_unit_004´ ElementEnableUnit 100149
+	position 1200, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+´func_enable_unit_005´ ElementEnableUnit 100150
+	position 1400, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_hole/001 (0, -25, 0)
+	on_executed
+		´removes_art_wall002´ (delay 0)
+´func_enable_unit_006´ ElementEnableUnit 100151
+	position 1600, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+´func_enable_unit_007´ ElementEnableUnit 100152
+	position 1800, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_hole/001 (0, -25, 0)
+	on_executed
+		´removes_art_wall003´ (delay 0)
+´func_enable_unit_008´ ElementEnableUnit 100153
+	position 2000, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+´func_enable_unit_009´ ElementEnableUnit 100154
+	position 2200, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_hole/001 (0, -25, 0)
+	on_executed
+		´removes_art_wall004´ (delay 0)
+´func_enable_unit_010´ ElementEnableUnit 100155
+	position 2400, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+´func_disable_unit_002´ ElementDisableUnit 100098
+	TRIGGER TIMES 1
+	position 1500, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/architecture/mkp/mkp_int_cube_1x1/mkp_int_cube_1x1_wall_remove_1 (-50, -25, 0)
+		2 units/payday2/architecture/mkp/mkp_int_cube_1x1/mkp_int_cube_1x1_wall_remove_2 (-50, -25, 150)
+		3 units/payday2/architecture/mkp/mkp_int_cube_1x1/mkp_int_cube_1x1_wall_remove_3 (-50, -25, 200)
+		4 units/payday2/architecture/mkp/mkp_int_pillar_025m_a/mkp_int_pillar_1x1_wall_remove_1 (-50, -25, 0)
+		5 units/payday2/architecture/mkp/mkp_int_pillar_025m_a/mkp_int_pillar_1x1_wall_remove_2 (25, -25, 0)
+		6 units/payday2/architecture/mkp/mkp_int_wall_1m_a/disable_wall (50, -25, 0)
+´removes_art_wall´ ElementDisableUnit 100099
+	position 600, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´removes_art_wall001´ ElementDisableUnit 100156
+	position 1000, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´removes_art_wall002´ ElementDisableUnit 100157
+	position 1400, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´removes_art_wall003´ ElementDisableUnit 100158
+	position 1800, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´removes_art_wall004´ ElementDisableUnit 100159
+	position 2200, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´input_set_hack_jammed´ ElementInstanceInput 100160
+	event set hack state jammed
+	on_executed
+		´logic_link_014´ (delay 0)
+´input_enable_interaction_fix´ ElementInstanceInput 100161
+	event set jammed interactable
+	on_executed
+		´logic_link_015´ (delay 0) DISABLED
+´logic_link_014´ MissionScriptElement 100162
+	on_executed
+		´toggle_on_3´ (delay 0)
+		´op_remove´ (delay 0.1)
+		´seq_set_jammed´ (delay 0)
+		´stop_interupt´ (delay 0)
+´logic_link_015´ MissionScriptElement 100163
+	DISABLED
+	on_executed
+		´seq_enable_interaction_jammed´ (delay 0)
+		´repair´ (delay 0)
+		´point_debug_012´ (delay 0)
+		´counter_2´ (delay 0)
+´seq_jam_hack_tool´ ElementUnitSequence 100164
+	position 2800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence disable_interaction_GUI_on
+			time 0
+´seq_enable_interaction_jammed´ ElementUnitSequence 100165
+	position 2750, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence enable_interaction_GUI_on
+			time 0
+´toggle_on_3´ ElementToggle 100166
+	elements
+ 		1 ´logic_link_015´ DISABLED
+		2 ´trigger_resume´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´point_debug_011´ (delay 0)
+´op_remove´ ElementOperator 100167
+	elements
+ 		1 ´repair´
+		2 ´defend´
+	operation remove
+´point_debug_010´ ElementDebug 100089
+	as_subtitle False
+	debug_string Security Box - Hack Enabled
+	show_instigator False
+´point_debug_011´ ElementDebug 100169
+	as_subtitle False
+	debug_string Security Box - Jammed (disable interaction)
+	show_instigator False
+´point_debug_012´ ElementDebug 100170
+	as_subtitle False
+	debug_string Security Box - Jammed (enable interaction)
+	show_instigator False
+´seq_set_jammed´ ElementUnitSequence 100171
+	BASE DELAY 0.5
+	position 2800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´seq_jam_hack_tool´ (delay 0)
+´counter_2´ ElementCounter 100172
+	counter_target 2
+	on_executed
+		´link_001´ (delay 0)
+´trigger_resume´ ElementUnitSequenceTrigger 100173
+	DISABLED
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_hacking_device/pent_prop_hacking_device/001 (2, -26, 111)
+	on_executed
+		´counter_2´ (delay 0)
+´link_001´ MissionScriptElement 100174
+	on_executed
+		´toggle_on_2´ (delay 0)
+´point_debug_013´ ElementDebug 100175
+	as_subtitle False
+	debug_string Hack_resumed
+	show_instigator False
+´input_brick_garbage_hole´ ElementInstanceInput 100078
+	event art - brick garbage hole
+	on_executed
+		´logic_link_001´ (delay 0)
+´input_brick_garbage_no_hole´ ElementInstanceInput 100176
+	event art - brick garbage no hole
+	on_executed
+		´logic_link_016´ (delay 0)
+´logic_link_001´ MissionScriptElement 100177
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_011´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_016´ MissionScriptElement 100178
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_012´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´func_enable_unit_011´ ElementEnableUnit 100179
+	position 2600, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_hole/001 (0.000115991, -25.0005, 0)
+	on_executed
+		´removes_art_wall_005´ (delay 0)
+´func_enable_unit_012´ ElementEnableUnit 100180
+	position 2800, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+´removes_art_wall_005´ ElementDisableUnit 100181
+	position 2600, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+´removes_art_watt_006´ ElementDisableUnit 100184
+	position 3000, -1000, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_brick_wall_electricbox_no_hole/001 (0.000134349, -25.0005, 0)
+		2 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_electric_wall_box_no_hole/001 (0, -25, 0)
+		3 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_garage_elevator_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		4 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+		5 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_01_no_hole/001 (0, -25, 0)
+		6 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_lobby_hallway_wall_electric_box_02_no_hole/001 (0, -25, 0)
+		7 units/pd2_dlc_pent/architecture/int/pent_int_elevator_hallway_and_office/electric_box_wall_pieces/pent_office_wall_electric_box_no_hole/001 (0, -25, 0)
+´input_garage_wall_hole´ ElementInstanceInput 100185
+	event art - garage hole
+	on_executed
+		´logic_link_017´ (delay 0)
+´input_garage_wall_no_hole´ ElementInstanceInput 100186
+	event art - garage no hole
+	on_executed
+		´logic_link_018´ (delay 0)
+´logic_link_017´ MissionScriptElement 100187
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_013´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´logic_link_018´ MissionScriptElement 100188
+	BASE DELAY 0.5
+	on_executed
+		´func_enable_unit_014´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´func_enable_unit_013´ ElementEnableUnit 100189
+	position 3000, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electric_wall_hole/001 (0.000149608, -25.0005, 0)
+	on_executed
+		´removes_art_watt_006´ (delay 0)
+´func_enable_unit_014´ ElementEnableUnit 100190
+	position 3200, -900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/architecture/int/pent_int_garage/wall_pieces/pent_garage_wall_electricbox_wall_no_hole/001 (0.000114441, -25.0005, 0)
+´out_box_open´ ElementInstanceOutput 100193
+	event security_box_open
+´wp_hint´ ElementWaypoint 100194
+	TRIGGER TIMES 1
+	icon pd2_question
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -300, 200
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´show_wp_hint´ ElementInstanceInput 100195
+	event show_wp_hint
+	on_executed
+		´shows_hint´ (delay 0)
+´remove_wp_hint´ ElementInstanceInput 100196
+	event remove_wp_hint
+	on_executed
+		´hint_removed´ (delay 0)
+´hitnt_off´ ElementToggle 100197
+	elements
+ 		1 ´wp_hint´
+	set_trigger_times -1
+	toggle off
+´hint_removed´ ElementOperator 100198
+	elements
+ 		1 ´wp_hint´
+	operation remove
+	on_executed
+		´hitnt_off´ (delay 0)
+´shows_hint´ MissionScriptElement 100199
+	on_executed
+		´wp_hint´ (delay 0)
+´eneable_int_trigger´ ElementToggle 100009
+	elements
+ 		1 ´switch _pulled´ DISABLED
+		2 ´remove_int_lever´ DISABLED
+	set_trigger_times -1
+	toggle on
+´remove_int_lever´ ElementUnitSequence 100010
+	DISABLED
+	position 1400, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_security_box/pent_interactable_security_box/001 (-27, -15, 77)
+			notify_unit_sequence disable_interaction_lever
+			time 0
+´hatch_open´ ElementPlaySound 100018
+	TRIGGER TIMES 1
+	append_prefix False
+	interrupt True
+	position -29, -25, 131
+	rotation 0, 0, 0, -1
+	sound_event security_box_open
+	use_instigator False
+´2_2´ ElementCounter 100200
+	counter_target 2
+	on_executed
+		´lamp_off´ (delay 0)
+´point_debug_008´ ElementDebug 100201
+	as_subtitle False
+	debug_string Lamp_is_red!!!
+	show_instigator False
+´toggle_of_red´ ElementToggle 100202
+	elements
+ 		1 ´lamp_off´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´out_lamp_on´ (delay 0)
+´remove_generic_wp´ ElementInstanceInput 100203
+	event remove_generic_wp
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100204
+	elements
+ 		1 ´marks_box_generic´
+	set_trigger_times -1
+	toggle off
+´logic_operator_001´ ElementOperator 100205
+	elements
+ 		1 ´marks_box_generic´
+	operation remove
+	on_executed
+		´logic_toggle_001´ (delay 0)

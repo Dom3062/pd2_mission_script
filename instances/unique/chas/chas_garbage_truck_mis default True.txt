@@ -73,7 +73,8 @@
 ´enable_area_lootdrop´ ElementToggle 100017
 	elements
  		1 ´area_lootdrop´ DISABLED
-		2 ´area_lootdrop_artifact´ DISABLED
+		2 ´area_lootdrop_teaset´ DISABLED
+		3 ´area_lootdrop_artifact´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´secure_bag´ ElementCarry 100015
@@ -415,3 +416,39 @@
 	elements
  		1 ´WP_lootdrop´
 	operation remove
+´area_lootdrop_teaset´ ElementAreaTrigger 100028
+	DISABLED
+	amount 1
+	depth 125
+	height 150
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position -3, -353, 150
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+		1 ´include_teaset´
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 150
+	on_executed
+		´output_teaset_secured´ (delay 0)
+´output_teaset_secured´ ElementInstanceOutput 100030
+	event teaset_secured
+´include_teaset´ ElementInstigatorRule 100066
+	instigator loot
+	invert False
+	rules
+		loot
+			carry_ids
+				1 chas_teaset
+´point_debug_003´ ElementDebug 100068
+	as_subtitle False
+	debug_string teaset_secured
+	show_instigator False

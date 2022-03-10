@@ -1,0 +1,72 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	BASE DELAY 1
+	on_executed
+		´turn_on_light´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_heliport_light/pent_prop_heliport_light/001 (-3.8147E-06, 12, 103)
+			notify_unit_sequence disable_light
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´turn_on_light´ ElementInstanceInput 100007
+	event Turn_on
+	on_executed
+		´light_on´ (delay 0)
+´light_is_on´ ElementInstanceOutput 100008
+	event light_on
+´turn_off_light´ ElementInstanceInput 100012
+	event Turn_off
+	on_executed
+		´light_off´ (delay 0)
+´light_is_off´ ElementInstanceOutput 100013
+	event light_off
+´light_on´ ElementUnitSequence 100014
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_heliport_light/pent_prop_heliport_light/001 (-3.8147E-06, 12, 103)
+			notify_unit_sequence flicker_lights
+			time 0
+	on_executed
+		´light_is_on´ (delay 0)
+´light_off´ ElementUnitSequence 100015
+	position 1000, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_heliport_light/pent_prop_heliport_light/001 (-3.8147E-06, 12, 103)
+			notify_unit_sequence disable_light
+			time 0
+	on_executed
+		´light_is_off´ (delay 0)

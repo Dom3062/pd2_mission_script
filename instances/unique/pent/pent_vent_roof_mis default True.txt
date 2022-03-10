@@ -1,0 +1,100 @@
+´auto_start´ MissionScriptElement 100031
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_vent´ (delay 0)
+´sound_grating´ ElementPlaySound 100034
+	TRIGGER TIMES 2
+	append_prefix False
+	interrupt True
+	position 0, 24, 25
+	rotation 0, 0, 0, -1
+	sound_event vent_metal_remove
+	use_instigator False
+´disable_vent´ ElementUnitSequence 100018
+	position 500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-49.9999, 15, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-49.9999, 15, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/001 (-50, 15, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+	on_executed
+		´link_debug´ (delay 0) DISABLED
+´vent_open´ ElementInstanceInput 100019
+	event vent_open
+	on_executed
+		´link_open_vent´ (delay 0)
+´link_open_vent´ MissionScriptElement 100020
+	on_executed
+		´seq_screws´ (delay 0)
+´point_spawn_player_002´ ElementPlayerSpawner 100000
+	DISABLED
+	position -50, -475, 0
+	rotation 0, 0, 0, -1
+	state standard
+´play_sound´ MissionScriptElement 100055
+	on_executed
+		´sound_grating´ (delay 0.1)
+		´func_instance_output_001´ (delay 0)
+´force_open´ ElementInteraction 100001
+	host_only False
+	override_timer -1
+	position 0, 25, 50
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_open_vent
+	on_executed
+		´link_open_vent´ (delay 0) (alternative interacted)
+´seq_open_vent_down´ ElementUnitSequence 100003
+	position 900, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/001 (-50, 15, 0)
+			notify_unit_sequence open_vent_down
+			time 0
+	on_executed
+		´play_sound´ (delay 0)
+´seq_screws´ ElementUnitSequence 100004
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-49.9999, 15, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-49.9999, 15, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+	on_executed
+		´link_delay´ (delay 0)
+´link_delay´ MissionScriptElement 100005
+	BASE DELAY 1.4
+	on_executed
+		´seq_open_vent_down´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100006
+	event vent open
+´link_debug´ MissionScriptElement 100007
+	DISABLED
+	on_executed
+		´point_spawn_player_002´ (delay 0) DISABLED

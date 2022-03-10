@@ -40,6 +40,7 @@
 		´enable_keycard_reader_crew_areas´ (delay 0.5)
 		´mayhem_and_above_2´ (delay 0)
 		´func_spawn_gage_assignment_001´ (delay 0)
+		´Enable_teaset´ (delay 1)
 ´point_spawn_player_001´ ElementPlayerSpawner 100102
 	position -6935.36, 13875, -400
 	rotation 0, 0, 0.92388, 0.382683
@@ -6067,8 +6068,12 @@
 		24 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/016 (-9196.97, 5267.68, -5.81145E-05)
 		25 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/018 (-9554.29, 5264.64, -5.81145E-05)
 		26 units/pd2_dlc_mex/props/mex_prop_glass_shatter/mex_prop_glass_shatter_02/017 (-9429.29, 5289.64, -5.81145E-05)
+		27 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/001 (-9966, 4253, 409.669)
+		28 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/002 (-8322.95, 12721.1, -200.315)
+		29 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/003 (-11742.2, 12494.6, 471.649)
 	on_executed
 		´add_door_blockers´ (delay 0)
+		´disable_teaset´ (delay 0)
 ´filter_vhard_below´ ElementFilter 100004
 	difficulty_easy True
 	difficulty_easy_wish False
@@ -38035,6 +38040,7 @@
 		´point_debug_170´ (delay 0)
 		´XP_players_escaped´ (delay 0)
 		´saws_achievements´ (delay 0) DISABLED
+		´func_job_value_001´ (delay 0) DISABLED
 ´func_mission_end_002´ ElementMissionEnd 103264
 	position -4000, 38200, 4100
 	rotation 0, 0, 0, -1
@@ -41942,6 +41948,8 @@
 		6
 			event all_players_in_escape_area
 			instance levels/instances/unique/chca/chca_lifeboat_escape/006
+	on_executed
+		´func_job_value_001´ (delay 0) DISABLED
 ´XP_found_LiDeng_or_Xunkang_loud´ ElementExperience 103552
 	DISABLED
 	TRIGGER TIMES 1
@@ -41999,6 +42007,8 @@
 		1
 			event all_players_in_escape_zone
 			instance levels/instances/unique/chca/chca_heli_escape/001
+	on_executed
+		´func_job_value_001´ (delay 0) DISABLED
 ´XP_wall_exploded´ ElementExperience 103570
 	TRIGGER TIMES 1
 	amount 2000
@@ -44382,3 +44392,141 @@
 		´logic_random_025´ (delay 0)
 		´func_objective_007´ (delay 0)
 		´start_VO_3´ (delay 0)
+´disable_teaset´ ElementUnitSequence 103821
+	position 900, 8000, 4102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/001 (-9966, 4253, 409.669)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/002 (-8322.95, 12721.1, -200.315)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/003 (-11742.2, 12494.6, 471.649)
+			notify_unit_sequence disable_interaction
+			time 0
+´Enable_teaset´ MissionScriptElement 103822
+	on_executed
+		´logic_random_028´ (delay 0)
+´logic_random_028´ ElementRandom 103823
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+		´func_enable_unit_004´ (delay 0)
+		´func_enable_unit_005´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 103824
+	position 5100, 9600, 4102.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/001 (-9966, 4253, 409.669)
+	on_executed
+		´func_sequence_006´ (delay 0)
+´func_enable_unit_004´ ElementEnableUnit 103825
+	position 5100, 9700, 4102.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/002 (-8322.95, 12721.1, -200.315)
+	on_executed
+		´func_sequence_007´ (delay 0)
+´func_enable_unit_005´ ElementEnableUnit 103826
+	position 5100, 9800, 4102.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/003 (-11742.2, 12494.6, 471.649)
+	on_executed
+		´func_sequence_008´ (delay 0)
+´func_sequence_006´ ElementUnitSequence 103827
+	position 5200, 9600, 4102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/001 (-9966, 4253, 409.669)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_007´ ElementUnitSequence 103828
+	position 5200, 9700, 4102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/002 (-8322.95, 12721.1, -200.315)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_sequence_008´ ElementUnitSequence 103829
+	position 5200, 9800, 4102.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chas/pickups/chas_pku_tea_loot/chas_pku_extra_tea_loot/003 (-11742.2, 12494.6, 471.649)
+			notify_unit_sequence enable_interaction
+			time 0
+´point_debug_021´ ElementDebug 103831
+	as_subtitle False
+	debug_string teaset_picked_up_achievement
+	show_instigator False
+´logic_toggle_074´ ElementToggle 103832
+	TRIGGER TIMES 1
+	elements
+ 		1 ´func_job_value_001´ DISABLED
+	set_trigger_times 1
+	toggle on
+´func_job_value_001´ ElementJobValue 103833
+	DISABLED
+	key tea_chca
+	save True
+	value 1
+	on_executed
+		´point_debug_021´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 103834
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 4900, 10050, 4102.5
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+		1 ´data_instigator_rule_007´
+	shape_type box
+	spawn_unit_elements
+		1 ´point_shape_secure_loot_ocean´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´logic_toggle_074´ (delay 0)
+		´point_debug_178´ (delay 0)
+		´func_secure_bags´ (delay 0)
+´data_instigator_rule_007´ ElementInstigatorRule 103835
+	instigator loot
+	invert False
+	rules
+		loot
+			carry_ids
+				1 chas_teaset
+´point_debug_178´ ElementDebug 103830
+	as_subtitle False
+	debug_string teaset_secured
+	show_instigator False

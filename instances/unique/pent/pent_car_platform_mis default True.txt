@@ -1,0 +1,881 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_jack/pent_pku_jack/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_jack/pent_pku_jack/001 (0, 0, 25)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_car_platform/pent_interactable_car_platform/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence state_hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_trunk/pent_interactable_trunk/001 (0, 0, 25)
+			notify_unit_sequence disable_outline
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_trunk/pent_interactable_trunk/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+´input_rotate_car´ ElementInstanceInput 100007
+	event start car platform rotation
+´func_disable_unit_001´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´add_door_blockers´ (delay 0)
+´point_interaction_rotate´ ElementInteraction 100046
+	DISABLED
+	host_only False
+	override_timer -1
+	position 150, -275, 108
+	rotation 0, 0, 0, -1
+	tweak_data_id uno_press_activate
+	on_executed
+		´link_car_rotate_started´ (delay 0) (alternative interacted)
+		´Start_rotate´ (delay 0) (alternative interacted)
+´point_interaction_start_engine´ ElementInteraction 100049
+	DISABLED
+	host_only False
+	override_timer -1
+	position -75, 25, 150
+	rotation 0, 0, -0.707107, -0.707107
+	tweak_data_id pent_motor_start
+	on_executed
+		´link_engine_started´ (delay 0) (alternative interacted)
+´link_car_in_position´ MissionScriptElement 100008
+	on_executed
+		´point_debug_004´ (delay 0)
+		´output_rotating_completed´ (delay 0)
+		´seq_enable_trunk´ (delay 0)
+´link_trunk_open´ MissionScriptElement 100051
+	on_executed
+		´point_debug_005´ (delay 0)
+		´enable_unit_diesel´ (delay 0)
+		´seq_enable_diesel_&_jack´ (delay 0.1)
+		´open_real_car_trunk´ (delay 0)
+´link_engine_started´ MissionScriptElement 100052
+	on_executed
+		´link_car_started´ (delay 0)
+		´seq_wheel_spin´ (delay 0)
+		´car_warm_up´ (delay 0)
+´toggle_on_car_fuel_jack´ ElementToggle 100054
+	set_trigger_times -1
+	toggle on
+´input_player_has_keys´ ElementInstanceInput 100055
+	DISABLED
+	event player has keys
+	on_executed
+		´point_debug_011´ (delay 0) DISABLED
+´link_car_fueled´ MissionScriptElement 100060
+	on_executed
+		´toggle_on_jack´ (delay 0) DISABLED
+		´point_debug_006´ (delay 0)
+		´link_fuel_completed´ (delay 0)
+		´output_car_fueled´ (delay 0)
+		´seq_enable_jack_placement´ (delay 0)
+		´counter_2_fuel_and_jack´ (delay 0)
+´link_car_raised´ MissionScriptElement 100061
+	on_executed
+		´seq_lift_car´ (delay 0)
+´toggle_on_jack´ ElementToggle 100062
+	DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_car_ignition_and_throttle´ ElementToggle 100063
+	elements
+ 		1 ´point_interaction_start_engine´ DISABLED
+	set_trigger_times -1
+	toggle on
+´point_debug_004´ ElementDebug 100056
+	as_subtitle False
+	debug_string car plat - rot complete, can open trunk now
+	show_instigator False
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´point_debug_005´ ElementDebug 100065
+	as_subtitle False
+	debug_string car plat - can fuel car
+	show_instigator False
+´point_debug_006´ ElementDebug 100066
+	as_subtitle False
+	debug_string car plat - can jack up car
+	show_instigator False
+´point_debug_008´ ElementDebug 100068
+	as_subtitle False
+	debug_string car plat - ready to be released
+	show_instigator False
+´link_car_rotate_started´ MissionScriptElement 100069
+	on_executed
+		´seq_rot_car´ (delay 0)
+		´link_control_panel_interaction´ (delay 0)
+´enable_unit_diesel´ ElementEnableUnit 100072
+	position 1800, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´seq_enable_diesel_&_jack´ ElementUnitSequence 100073
+	position 1800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_jack/pent_pku_jack/001 (0, 0, 25)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_jack/pent_pku_jack/001 (0, 0, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+´link_car_raised_2´ MissionScriptElement 100078
+	BASE DELAY 3
+	on_executed
+		´point_debug_002´ (delay 0)
+		´logic_link_001´ (delay 0)
+´link_jack_lowered´ MissionScriptElement 100057
+	on_executed
+		´output_start_drive´ (delay 0)
+		´link_jack_raised´ (delay 0)
+		´link_remove_wp´ (delay 0)
+		´seq_car_drive_anim´ (delay 0)
+		´link_hit_door_delay´ (delay 0)
+		´point_debug_007´ (delay 0)
+		´func_disable_unit_004´ (delay 0) DISABLED
+´point_debug_007´ ElementDebug 100059
+	as_subtitle False
+	debug_string car plat - start drive anim, be free!
+	show_instigator False
+´output_start_drive´ ElementInstanceOutput 100058
+	event car lowered complete - start drive anim
+´func_disable_unit_004´ ElementDisableUnit 100040
+	DISABLED
+	position 3600, -100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+		2 units/pd2_dlc_pent/pickups/pent_pku_jack/pent_pku_jack/001 (0, 0, 25)
+´point_debug_010´ ElementDebug 100067
+	as_subtitle False
+	debug_string car plat - fuel and jack completed
+	show_instigator False
+´point_debug_011´ ElementDebug 100081
+	DISABLED
+	as_subtitle False
+	debug_string car plat - player has keys
+	show_instigator False
+´point_debug_012´ ElementDebug 100082
+	as_subtitle False
+	debug_string car plat - car ready to lower
+	show_instigator False
+´waypoint_rotate´ ElementWaypoint 100083
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 150, -282, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fuel´ ElementWaypoint 100084
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 75, -75, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_keys´ ElementWaypoint 100085
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -80, 25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_collect´ ElementWaypoint 100086
+	icon pd2_goto
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -200, 250
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_jack´ ElementWaypoint 100087
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -250, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_wp_collect_fuel´ ElementInstanceInput 100088
+	event show waypoint collect fuel
+	on_executed
+		´link_wp_collect_fuel´ (delay 0)
+´input_show_wp_pour_fuel´ ElementInstanceInput 100089
+	event show waypoint pour fuel
+	on_executed
+		´link_wp_pour_fuel´ (delay 0)
+´input_show_wp_jack´ ElementInstanceInput 100090
+	event show waypoint jack
+	on_executed
+		´link_wp_jack´ (delay 0)
+´input_show_wp_control´ ElementInstanceInput 100091
+	event show waypoint rotate
+	on_executed
+		´link_wp_rotate´ (delay 0)
+´input_show_wp_start_car´ ElementInstanceInput 100092
+	event show waypoint start car
+	on_executed
+		´link_wp_start_car´ (delay 2)
+´input_show_wp_jack_lower´ ElementInstanceInput 100093
+	event Show waypoint Lower Jack
+	on_executed
+		´logic_link_006´ (delay 0)
+´link_wp_rotate´ MissionScriptElement 100094
+	on_executed
+		´waypoint_rotate´ (delay 0)
+´link_wp_collect_fuel´ MissionScriptElement 100095
+	on_executed
+		´waypoint_collect´ (delay 0)
+´link_wp_pour_fuel´ MissionScriptElement 100096
+	on_executed
+		´waypoint_fuel´ (delay 0)
+´link_wp_jack´ MissionScriptElement 100097
+	on_executed
+		´waypoint_jack´ (delay 0)
+´link_wp_start_car´ MissionScriptElement 100098
+	on_executed
+		´waypoint_keys´ (delay 0)
+´logic_link_006´ MissionScriptElement 100099
+	on_executed
+		´waypoint_lower_jack´ (delay 0)
+´link_control_panel_interaction´ MissionScriptElement 100101
+	on_executed
+		´toggle_off´ (delay 0)
+´toggle_off´ ElementToggle 100102
+	elements
+ 		1 ´waypoint_rotate´
+		2 ´link_wp_rotate´
+		3 ´point_interaction_rotate´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp´ (delay 0)
+´remove_wp´ ElementOperator 100103
+	elements
+ 		1 ´waypoint_rotate´
+	operation remove
+´trigger_collected_fuel´ ElementUnitSequenceTrigger 100104
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´link_fuel_collected´ (delay 0)
+´link_fuel_collected´ MissionScriptElement 100105
+	on_executed
+		´toggle_off_2´ (delay 0)
+´toggle_off_2´ ElementToggle 100106
+	elements
+ 		1 ´link_wp_collect_fuel´
+		2 ´waypoint_collect´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp_2´ (delay 0)
+´remove_wp_2´ ElementOperator 100107
+	elements
+ 		1 ´waypoint_collect´
+	operation remove
+´link_fuel_completed´ MissionScriptElement 100108
+	on_executed
+		´toggle_off_3´ (delay 0)
+´toggle_off_3´ ElementToggle 100109
+	elements
+ 		1 ´waypoint_fuel´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp_3´ (delay 0)
+´remove_wp_3´ ElementOperator 100110
+	elements
+ 		1 ´waypoint_fuel´
+	operation remove
+´link_jack_raised´ MissionScriptElement 100111
+	on_executed
+		´toggle_off_4´ (delay 0)
+´toggle_off_4´ ElementToggle 100112
+	elements
+ 		1 ´waypoint_jack´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp_4´ (delay 0)
+´remove_wp_4´ ElementOperator 100113
+	elements
+ 		1 ´waypoint_jack´
+	operation remove
+´link_car_started´ MissionScriptElement 100114
+	on_executed
+		´toggle_off_5´ (delay 0)
+´toggle_off_5´ ElementToggle 100115
+	elements
+ 		1 ´waypoint_keys´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp_5´ (delay 0)
+´remove_wp_5´ ElementOperator 100116
+	elements
+ 		1 ´waypoint_keys´
+	operation remove
+´input_enable_rotate_controls´ ElementInstanceInput 100117
+	event enable rotate controls
+	on_executed
+		´link_enable_rotate_controls´ (delay 0)
+´link_enable_rotate_controls´ MissionScriptElement 100118
+	on_executed
+		´toggle_on_rotate_interaction´ (delay 0) DISABLED
+		´func_sequence_001´ (delay 0)
+´output_rotating_completed´ ElementInstanceOutput 100120
+	event car rotating completed
+´toggle_on_rotate_interaction´ ElementToggle 100119
+	DISABLED
+	elements
+ 		1 ´point_interaction_rotate´ DISABLED
+	set_trigger_times -1
+	toggle on
+´output_car_fueled´ ElementInstanceOutput 100121
+	event car fuel completed
+´output_car_raised´ ElementInstanceOutput 100122
+	event car raise completed
+´output_engine_started´ ElementInstanceOutput 100123
+	event car engine start completed
+´input_enable_lower_jack´ ElementInstanceInput 100124
+	event enable lower jack interaction
+	on_executed
+		´link_enable_lower_interaction´ (delay 0)
+´link_enable_lower_interaction´ MissionScriptElement 100125
+	on_executed
+		´seq_jack_release´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´toggle_on´ (delay 0)
+´waypoint_lower_jack´ ElementWaypoint 100129
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -225, 72
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_remove_wp´ MissionScriptElement 100130
+	on_executed
+		´toggle_off_6´ (delay 0)
+´toggle_off_6´ ElementToggle 100131
+	elements
+ 		1 ´waypoint_lower_jack´
+		2 ´input_show_wp_jack_lower´
+		3 ´logic_link_006´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_wp_6´ (delay 0)
+´remove_wp_6´ ElementOperator 100132
+	elements
+ 		1 ´waypoint_lower_jack´
+	operation remove
+´seq_rot_car´ ElementUnitSequence 100133
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+			notify_unit_sequence anim_rotate_car
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_car_platform/pent_interactable_car_platform/001 (0, 0, 25)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´out_car_plattform_moves´ (delay 0)
+´trigger_car_rot_complete´ ElementUnitSequenceTrigger 100134
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_rotate
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+	on_executed
+		´link_car_in_position´ (delay 0)
+		´rotate_done´ (delay 0)
+´seq_lift_car´ ElementUnitSequence 100002
+	position 2400, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+			notify_unit_sequence anim_lift_car
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence state_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence disable_interaction
+			time 0
+´trigger_lift_complete´ ElementUnitSequenceTrigger 100003
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_lift
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+	on_executed
+		´link_car_raised_2´ (delay 0)
+		´car_jack_placed´ (delay 0)
+´seq_car_drive_anim´ ElementUnitSequence 100033
+	position 3900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+			notify_unit_sequence anim_crash_car
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_meeting_room/pent_prop_meeting_room/001 (-7, 1469, 0)
+			notify_unit_sequence anim_table_destroy
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence disable_release_outline
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_meeting_room/pent_prop_meeting_room/001 (-7, 1469, 0)
+			notify_unit_sequence sequence_table_chip
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´seq_wheel_spin´ ElementUnitSequence 100034
+	position 2900, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+			notify_unit_sequence anim_wheel_spin
+			time 0
+	on_executed
+		´link_wheel_spin_build_up´ (delay 0)
+´link_wheel_spin_build_up´ MissionScriptElement 100035
+	BASE DELAY 5
+	on_executed
+		´output_engine_started´ (delay 0)
+		´point_debug_008´ (delay 0)
+´seq_enable_jack_placement´ ElementUnitSequence 100031
+	position 2200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence disable_outline
+			time 0
+´trigger_jack_placed´ ElementUnitSequenceTrigger 100032
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+	on_executed
+		´link_car_raised´ (delay 0)
+´trigger_jack_released´ ElementUnitSequenceTrigger 100036
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+	on_executed
+		´link_jack_lowered´ (delay 0)
+´seq_jack_release´ ElementUnitSequence 100037
+	position 3200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence set_interaction_release
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_jack/pent_interactable_jack/001 (0, 0, 26)
+			notify_unit_sequence enable_release_outline
+			time 0
+´point_debug_001´ ElementDebug 100038
+	as_subtitle False
+	debug_string car plat - enable lower jack interaction
+	show_instigator False
+´toggle_on´ ElementToggle 100039
+	elements
+ 		1 ´trigger_jack_released´ DISABLED
+	set_trigger_times -1
+	toggle on
+´trigger_fuel´ ElementUnitSequenceTrigger 100048
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+	on_executed
+		´link_car_fueled´ (delay 0)
+´trigger_got_gas´ ElementUnitSequenceTrigger 100070
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+	on_executed
+		´seq_enable_fuel_cap´ (delay 0)
+´seq_enable_fuel_cap´ ElementUnitSequence 100071
+	position 1800, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence state_show
+			time 0
+´output_hit_door´ ElementInstanceOutput 100043
+	event car - hit door
+´link_hit_door_delay´ MissionScriptElement 100050
+	on_executed
+		´output_hit_door´ (delay 0)
+´counter_2_fuel_and_jack´ ElementCounter 100074
+	counter_target 2
+	on_executed
+		´output_car_raised´ (delay 0)
+		´point_debug_010´ (delay 0)
+		´toggle_car_ignition_and_throttle´ (delay 0)
+´point_debug_002´ ElementDebug 100076
+	as_subtitle False
+	debug_string car plat - lift complete
+	show_instigator False
+´input_remove_wp_rotate_and_disable_interaction´ ElementInstanceInput 100077
+	event remove waypoint rotate and disable control panel interaction
+	on_executed
+		´link_control_panel_interaction´ (delay 0)
+´seq_enable_trunk´ ElementUnitSequence 100079
+	position 1500, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_trunk/pent_interactable_trunk/001 (0, 0, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_trunk/pent_interactable_trunk/001 (0, 0, 25)
+			notify_unit_sequence enable_outline
+			time 0
+´trigger_trunk_open´ ElementUnitSequenceTrigger 100080
+	TRIGGER TIMES 1
+	sequence_list
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_trunk/pent_interactable_trunk/001 (0, 0, 25)
+	on_executed
+		´link_trunk_open´ (delay 0)
+´logic_link_001´ MissionScriptElement 100047
+	on_executed
+		´counter_2_fuel_and_jack´ (delay 0)
+´trigger_carplat_rot´ ElementUnitSequenceTrigger 100126
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_car_platform/pent_interactable_car_platform/001 (0, 0, 25)
+	on_executed
+		´link_car_rotate_started´ (delay 0)
+		´Start_rotate´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100135
+	position 850, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_car_platform/pent_interactable_car_platform/001 (0, 0, 25)
+			notify_unit_sequence enable_interaction
+			time 0
+´open_real_car_trunk´ ElementUnitSequence 100011
+	position 1800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+			notify_unit_sequence anim_open_trunk
+			time 0
+´gas_can_picked_up´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_pent/pickups/pent_pku_gas_can/pent_pku_gas_can/001 (0, 0, 25)
+	on_executed
+		´show_lid_outline´ (delay 0)
+´show_lid_outline´ ElementUnitSequence 100013
+	position 1900, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/equipment/pent_interactable_gas_lid/pent_interactable_gas_lid/001 (0, 0, 25)
+			notify_unit_sequence enable_outline
+			time 0
+´car_jack_placed´ ElementInstanceOutput 100014
+	event car_jack_anim_done
+´Start_rotate´ ElementPlaySound 100015
+	TRIGGER TIMES 1
+	append_prefix False
+	interrupt True
+	position 0, 0, 45
+	rotation 0, 0, 0, -1
+	sound_event PENT_Car_Display_Rotate
+	use_instigator False
+´rotate_done´ ElementPlaySound 100016
+	TRIGGER TIMES 1
+	append_prefix False
+	interrupt True
+	position 0, 0, 28
+	rotation 0, 0, 0, -1
+	sound_event PENT_Car_Display_Rotate_Ends
+	use_instigator False
+´logic_toggle_001´ ElementToggle 100017
+	elements
+ 		1 ´Start_rotate´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100018
+	elements
+ 		1 ´Start_rotate´
+	operation remove
+´car_warm_up´ ElementPlaySound 100019
+	append_prefix False
+	interrupt True
+	position 0, -149, 131
+	rotation 0, 0, 0, -1
+	sound_event PENT_Car_RevUp_LP
+	use_instigator False
+´logic_toggle_002´ ElementToggle 100020
+	elements
+ 		1 ´car_warm_up´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100021
+	elements
+ 		1 ´car_warm_up´
+	operation remove
+	on_executed
+		´remove_door_blockers´ (delay 0)
+´out_car_plattform_moves´ ElementInstanceOutput 100022
+	event car_display_move_starts
+´add_nav_table´ ElementNavObstacle 100009
+	obstacle_list
+		1
+			guis_id 2
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/003 (400, 1550, 0)
+		2
+			guis_id 3
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/002 (354, 1734, 0)
+		3
+			guis_id 4
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/004 (-193.052, 1601.97, 0)
+		4
+			guis_id 5
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/005 (-279.655, 1651.97, 0)
+	operation add
+	position 3900, -200, 2.5
+	rotation 0, 0, 0, -1
+´add_door_blockers´ ElementNavObstacle 100023
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (240, 1591, 0)
+		2
+			guis_id 3
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/002 (-160, 1591, 0)
+		3
+			guis_id 5
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/008 (135, 1625, 0)
+	operation add
+	position 600, -100, 2.5
+	rotation 0, 0, 0, -1
+´remove_door_blockers´ ElementNavObstacle 100024
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/001 (240, 1591, 0)
+		2
+			guis_id 3
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/002 (-160, 1591, 0)
+		3
+			guis_id 5
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/008 (135, 1625, 0)
+	operation remove
+	position 3900, -100, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´add_nav_table´ (delay 6)
+´car_anim_done´ ElementUnitSequenceTrigger 100064
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_crash
+			notify_unit_id units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100127
+	position 4100, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_pent/vehicles/pent_vehicle_car_display/pent_vehicle_car_display/001 (3.18323E-12, 1.27329E-11, 25)

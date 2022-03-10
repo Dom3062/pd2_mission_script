@@ -1,0 +1,765 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´seq_deactivate_gold´ (delay 0)
+		´logic_link_001´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -250, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´func_sequence_002´ (delay 3)
+		´enable_gold´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence disable_interact
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence state_vis_hide_keycard
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+		2 units/pd2_dlc_brb/props/brb_prop_titan_shutters/brb_prop_titan_shutters/001 (-2.28882E-05, 2.81334E-05, 0)
+		3 units/pd2_dlc_pent/props/pent_prop_entryhall_mirror_alt/pent_prop_entryhall_mirror_alt/001 (1.52588E-05, -25, 0)
+´trigger_keycard_reader_left_complete´ ElementUnitSequenceTrigger 100021
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+	on_executed
+		´link_open_door´ (delay 0)
+´seq_open_door´ ElementUnitSequence 100023
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_titan_shutters/brb_prop_titan_shutters/001 (-2.28882E-05, 2.81334E-05, 0)
+			notify_unit_sequence anim_open
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence off
+			time 0
+´link_open_door´ MissionScriptElement 100024
+	on_executed
+		´seq_open_door´ (delay 0)
+´seq_deactivate_gold´ ElementUnitSequence 100036
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence hide
+			time 0
+´enable_unit´ ElementEnableUnit 100041
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´disable_loot´ (delay 0)
+´disable_loot´ ElementUnitSequence 100042
+	position 1000, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence hide
+			time 0
+		9
+			id 9
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence disable_interact
+			time 0
+		10
+			id 10
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence state_vis_hide_keycard
+			time 0
+	on_executed
+		´disable_unit´ (delay 0)
+´disable_unit´ ElementDisableUnit 100043
+	position 1000, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_interaction_open´ ElementInteraction 100053
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, -50, 125
+	rotation 0, 0, 1, 4.37114E-08
+	tweak_data_id pent_hold_open
+	on_executed
+		´link_open´ (delay 0) (alternative interacted)
+		´move_shelf´ (delay 0) (alternative interacted)
+´point_interaction_close´ ElementInteraction 100054
+	DISABLED
+	host_only False
+	override_timer -1
+	position 175, -50, 125
+	rotation 0, 0, 1, 4.37114E-08
+	tweak_data_id pent_hold_close
+	on_executed
+		´link_close´ (delay 0) (alternative interacted)
+		´move_shelf´ (delay 0) (alternative interacted)
+´link_open´ MissionScriptElement 100055
+	on_executed
+		´logic_toggle_off_2´ (delay 0)
+		´nav_obstacle_remove´ (delay 0)
+		´link_book_case_opened´ (delay 0)
+		´logic_toggle_on´ (delay 0)
+		´shutter_open_open´ (delay 0)
+´link_close´ MissionScriptElement 100056
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´seq_close´ (delay 0)
+		´nav_obstacle_add´ (delay 0)
+		´shutter_open_closed´ (delay 0)
+´seq_close´ ElementUnitSequence 100057
+	BASE DELAY 2
+	position 1400, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence disable_interact
+			time 0
+	on_executed
+		´logic_toggle_on_2´ (delay 0)
+´logic_toggle_off´ ElementToggle 100059
+	elements
+ 		1 ´point_interaction_close´ DISABLED
+		2 ´link_open_3´ DISABLED
+		3 ´link_open_2´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´2_2´ (delay 0)
+´logic_toggle_off_2´ ElementToggle 100060
+	elements
+ 		1 ´point_interaction_open´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´2´ (delay 0)
+´logic_toggle_on´ ElementToggle 100061
+	elements
+ 		1 ´point_interaction_close´ DISABLED
+		2 ´link_open_2´ DISABLED
+		3 ´link_open_3´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_2´ ElementToggle 100062
+	elements
+ 		1 ´point_interaction_open´ DISABLED
+	set_trigger_times -1
+	toggle on
+´nav_obstacle_remove´ ElementNavObstacle 100065
+	obstacle_list
+	operation remove
+	position 1000, -1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´nav_obstacle_add´ ElementNavObstacle 100066
+	obstacle_list
+	operation add
+	position 1300, -1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_disable_unit_002´ (delay 0)
+´logic_link_001´ MissionScriptElement 100068
+	on_executed
+		´enable_unit´ (delay 0)
+		´toggle_off´ (delay 0)
+´trigger_shutter_open´ ElementUnitSequenceTrigger 100029
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_open
+			notify_unit_id units/pd2_dlc_brb/props/brb_prop_titan_shutters/brb_prop_titan_shutters/001 (-2.28882E-05, 2.81334E-05, 0)
+	on_executed
+		´link_door_open´ (delay 0)
+´link_door_open´ MissionScriptElement 100031
+	on_executed
+		´toggle_off_loud´ (delay 0)
+´toggle_off_loud´ ElementToggle 100039
+	elements
+ 		1 ´seq_show_enable_keycard_readers´
+		2 ´link_book_case_opened´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´seq_disable´ (delay 0)
+´link_book_case_opened´ MissionScriptElement 100067
+	on_executed
+		´seq_show_disabled_readers´ (delay 0) DISABLED
+		´is_ecm_on?´ (delay 0)
+´seq_show_enable_keycard_readers´ ElementUnitSequence 100069
+	position 600, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence orig
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence state_5
+			time 0
+´toggle_off´ ElementToggle 100070
+	elements
+ 		1 ´link_book_case_opened´
+		2 ´seq_show_enable_keycard_readers´
+		3 ´gold_hint´
+	set_trigger_times -1
+	toggle off
+´seq_show_disabled_readers´ ElementUnitSequence 100071
+	DISABLED
+	position 700, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence state_6
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence disable_interact
+			time 0
+´toggle´ ElementToggle 100075
+	set_trigger_times -1
+	toggle toggle
+	on_executed
+		´disable_wall´ (delay 1)
+´func_sequence_002´ ElementUnitSequence 100076
+	position 600, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+´func_disable_unit_001´ ElementDisableUnit 100081
+	position 1000, -1100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100082
+	position 1000, -1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´bookshelf_moved´ (delay 0)
+´bookshelf_moved´ ElementInstanceOutput 100095
+	event bookshelf_moved
+´bookshelf_closed´ ElementInstanceOutput 100096
+	event bookshelf_closed
+´enable_gold´ ElementInstanceInput 100099
+	event enable_gold
+	on_executed
+		´enable_gold_2´ (delay 0)
+´gold_picked_up´ ElementUnitSequenceTrigger 100101
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+		3
+			guis_id 3
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+		4
+			guis_id 4
+			sequence interact
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+		5
+			guis_id 5
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+		6
+			guis_id 6
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+		7
+			guis_id 7
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+		8
+			guis_id 8
+			sequence load
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+	on_executed
+		´gold_picked_up_2´ (delay 0)
+´gold_picked_up_2´ ElementInstanceOutput 100103
+	event gold_picked_up
+	on_executed
+		´4´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100104
+	position 1300, -1100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100105
+	position 1300, -1200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´bookshelf_closed´ (delay 0)
+´2´ ElementCounter 100106
+	counter_target 2
+	on_executed
+		´nav_obstacle_add_2´ (delay 0)
+´nav_obstacle_add_2´ ElementNavObstacle 100107
+	obstacle_list
+	operation add
+	position 900, -1200, 2.5
+	rotation 0, 0, 0, -1
+´nav_obstacle_remove_002´ ElementNavObstacle 100108
+	obstacle_list
+	operation remove
+	position 1200, -1200, 2.5
+	rotation 0, 0, 0, -1
+´2_2´ ElementCounter 100109
+	counter_target 2
+	on_executed
+		´nav_obstacle_remove_002´ (delay 0)
+´gold_hint´ ElementAreaTrigger 100115
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
+	on_executed
+		´logic_toggle_004´ (delay 0)
+´location_found´ ElementInstanceOutput 100116
+	event gold_location_found
+´show_wp´ ElementInstanceInput 100117
+	event show_gold_wp
+	on_executed
+		´look_loot´ (delay 0)
+´look_loot´ ElementWaypoint 100118
+	icon pd2_generic_look
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -50, 250
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_001´ ElementOperator 100120
+	elements
+ 		1 ´look_loot´
+	operation remove
+	on_executed
+		´logic_toggle_005´ (delay 0)
+´disable_wp´ ElementInstanceInput 100119
+	event disable waypoint
+	on_executed
+		´logic_operator_001´ (delay 0)
+´4´ ElementCounter 100121
+	counter_target 4
+	on_executed
+		´logic_operator_002´ (delay 0)
+´logic_operator_002´ ElementOperator 100122
+	elements
+ 		1 ´look_loot´
+	operation remove
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´logic_toggle_003´ ElementToggle 100123
+	elements
+ 		1 ´look_loot´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_004´ ElementToggle 100124
+	elements
+ 		1 ´look_loot´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´location_found´ (delay 0)
+´disable_wall´ ElementDisableUnit 100040
+	position 1800, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´show_readers´ (delay 0)
+´show_readers´ ElementEnableUnit 100045
+	position 1800, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+		2 units/pd2_dlc_brb/props/brb_prop_titan_shutters/brb_prop_titan_shutters/001 (-2.28882E-05, 2.81334E-05, 0)
+		3 units/pd2_dlc_pent/props/pent_prop_entryhall_mirror_alt/pent_prop_entryhall_mirror_alt/001 (1.52588E-05, -25, 0)
+	on_executed
+		´toggle_on´ (delay 0)
+´toggle_on´ ElementToggle 100046
+	elements
+ 		1 ´link_book_case_opened´
+		2 ´seq_show_enable_keycard_readers´
+		3 ´gold_hint´
+		4 ´point_interaction_open´ DISABLED
+	set_trigger_times -1
+	toggle on
+´enable_gold_2´ ElementUnitSequence 100110
+	position 1800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence off
+			time 0
+	on_executed
+		´toggle´ (delay 0)
+´seq_disable´ ElementUnitSequence 100112
+	position 1600, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/gen_interactable_panel_keycard/gen_interactable_panel_keycard/001 (-75.0001, -25.0001, 116)
+			notify_unit_sequence disable_interact
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´enable_int_gold´ ElementUnitSequence 100113
+	DISABLED
+	position 1100, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence enable_interaction
+			time 0
+´disable_int_move´ ElementUnitSequence 100114
+	DISABLED
+	position 1400, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/001 (14.5444, 8.41701, 65)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/002 (44.544, 8.41696, 64)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/003 (45.544, 9.41737, 111)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/pickups/gen_pku_gold/gen_pku_gold/004 (15.5445, 9.4173, 112)
+			notify_unit_sequence disable_interaction
+			time 0
+´shutter_open_closed´ MissionScriptElement 100125
+	on_executed
+		´move_back´ (delay 0)
+´shutter_open_open´ MissionScriptElement 100126
+	on_executed
+		´play_move´ (delay 0)
+´logic_toggle_002´ ElementToggle 100127
+	elements
+ 		1 ´disable_int_move´ DISABLED
+		2 ´enable_int_gold´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´gold_located´ (delay 0)
+		´enable_int_gold´ (delay 1.5) DISABLED
+´logic_toggle_005´ ElementToggle 100129
+	elements
+ 		1 ´look_loot´
+	set_trigger_times -1
+	toggle off
+´gold_located´ ElementInstanceOutput 100130
+	event gold_located
+´move_shelf´ ElementPlaySound 100009
+	append_prefix False
+	interrupt False
+	position 79, -100, 100
+	rotation 0, 0, 0, -1
+	sound_event bookshelf_mirror_slide_open
+	use_instigator False
+´ecm_on´ ElementGlobalEventTrigger 100010
+	global_event ecm_jammer_on
+	position 600, -300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´turns_off_x´ (delay 0)
+´ecm_off´ ElementGlobalEventTrigger 100011
+	global_event ecm_jammer_off
+	position 700, -300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´turns_on_x´ (delay 0)
+´turns_off_x´ ElementToggle 100012
+	elements
+ 		1 ´is_ecm_on?´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´turns_on_y´ (delay 0)
+´turns_on_x´ ElementToggle 100013
+	elements
+ 		1 ´is_ecm_on?´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´turns_off_y´ (delay 0)
+´is_ecm_on?´ MissionScriptElement 100007
+	on_executed
+		´seq_show_enable_keycard_readers´ (delay 0)
+´turns_on_y´ ElementToggle 100008
+	elements
+ 		1 ´seq_show_disabled_readers´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´link_open_2´ (delay 0) DISABLED
+´turns_off_y´ ElementToggle 100014
+	elements
+ 		1 ´seq_show_disabled_readers´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´link_open_3´ (delay 0) DISABLED
+´link_open_2´ MissionScriptElement 100015
+	DISABLED
+	on_executed
+		´seq_show_disabled_readers´ (delay 0.1) DISABLED
+´link_open_3´ MissionScriptElement 100016
+	DISABLED
+	on_executed
+		´is_ecm_on?´ (delay 0.1)
+´play_move´ ElementUnitSequence 100019
+	position 1100, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_entryhall_mirror_alt/pent_prop_entryhall_mirror_alt/001 (1.52588E-05, -25, 0)
+			notify_unit_sequence state_move
+			time 0
+	on_executed
+		´enable_int_gold´ (delay 0) DISABLED
+´move_back´ ElementUnitSequence 100020
+	position 1400, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_pent/props/pent_prop_entryhall_mirror_alt/pent_prop_entryhall_mirror_alt/001 (1.52588E-05, -25, 0)
+			notify_unit_sequence state_move_back
+			time 0
+	on_executed
+		´disable_int_move´ (delay 0.1) DISABLED
