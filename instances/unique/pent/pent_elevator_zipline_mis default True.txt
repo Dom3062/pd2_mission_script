@@ -70,7 +70,7 @@
 	height 9000
 	instigator player
 	instigator_name 
-	interval 0.05
+	interval 0.01
 	position 0, 0, 8975
 	radius 250
 	rotation 0, 0, 0, -1
@@ -84,17 +84,17 @@
 	use_shape_element_ids
 	width 150
 	on_executed
-		´point_teleport_player_001´ (delay 0.05)
+		´point_teleport_player_001´ (delay 0)
 		´point_debug_002´ (delay 0) DISABLED
 ´trigger_area_enter´ ElementAreaTrigger 100012
-	BASE DELAY 0.8
+	DISABLED
 	amount 1
 	depth 150
-	height 200
+	height 400
 	instigator player
 	instigator_name 
-	interval 0.05
-	position 0, 0, 12125
+	interval 0.01
+	position -300, 0, 12225
 	radius 250
 	rotation 0, 0, 0, -1
 	rules_element_ids
@@ -108,17 +108,21 @@
 	width 150
 	on_executed
 		´point_debug_001´ (delay 0) DISABLED
-		´logic_link_002´ (delay 0.05)
+		´logic_link_002´ (delay 0.8)
 ´toggle_on_trig_teleport´ ElementToggle 100013
 	elements
  		1 ´trigger_area_teleport´ DISABLED
 	set_trigger_times 1
 	toggle on
+	on_executed
+		´teleport_areaoff´ (delay 0)
 ´logic_toggle_off_trig_tele´ ElementToggle 100014
 	elements
  		1 ´trigger_area_teleport´ DISABLED
 	set_trigger_times 1
 	toggle off
+	on_executed
+		´teleport_on´ (delay 0)
 ´point_debug_001´ ElementDebug 100015
 	DISABLED
 	as_subtitle False
@@ -248,3 +252,21 @@
 ´logic_link_002´ MissionScriptElement 100035
 	on_executed
 		´toggle_on_trig_teleport´ (delay 0)
+´teleport_areaoff´ ElementToggle 100036
+	elements
+ 		1 ´trigger_area_enter´ DISABLED
+	set_trigger_times -1
+	toggle off
+´teleport_on´ ElementToggle 100037
+	elements
+ 		1 ´trigger_area_enter´ DISABLED
+	set_trigger_times -1
+	toggle on
+´player_exit_zipline´ ElementUnitSequenceTrigger 100038
+	sequence_list
+		1
+			guis_id 1
+			sequence on_person_exit_zipline
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 0, -100)
+	on_executed
+		´point_teleport_player_001´ (delay 0)
