@@ -255,6 +255,8 @@
 		17 ´enabl_outline_bottom´
 		18 ´hint_door_bottom´
 		19 ´hint_door_left´
+		20 ´stealth_enable_close´
+		21 ´stealth_enable_close001´
 	set_trigger_times -1
 	toggle off
 	on_executed
@@ -300,7 +302,7 @@
 			sequence done_opened
 			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
 	on_executed
-		´link_drill_complete_2´ (delay 0)
+		´link_drill_complete_2´ (delay 0.1)
 		´point_debug_011´ (delay 0)
 ´toggle_off´ ElementToggle 100078
 	elements
@@ -442,12 +444,14 @@
 		´logic_toggle_005´ (delay 0)
 		´remove_all´ (delay 0)
 		´open_door´ (delay 0)
+		´room_open´ (delay 0) DISABLED
 ´link_drill_complete_2´ MissionScriptElement 100035
 	on_executed
 		´seq_open_gate´ (delay 0)
 		´bottom_drill_completed´ (delay 0)
 		´logic_toggle_003´ (delay 0)
 		´remove_wps´ (delay 0)
+		´room_open´ (delay 0) DISABLED
 ´seq_drill_active´ ElementUnitSequence 100037
 	DISABLED
 	position 1000, -300, 0
@@ -1008,10 +1012,6 @@
 ´trigger_gate_c4´ ElementUnitSequenceTrigger 100335
 	TRIGGER TIMES 1
 	sequence_list
-		1
-			guis_id 1
-			sequence c4_placed
-			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
 		2
 			guis_id 2
 			sequence explode_door
@@ -1031,23 +1031,21 @@
 			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
 		2
 			guis_id 2
-			sequence c4_placed
-			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
-		3
-			guis_id 3
 			sequence c4_completed
 			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
 	on_executed
 		´link_exploded´ (delay 0)
 ´link_exploded´ MissionScriptElement 100339
+	TRIGGER TIMES 1
 	on_executed
-		´toggle_off_7´ (delay 0)
+		´toggle_off_7´ (delay 0.1)
 		´operator_remove_2´ (delay 0)
 		´room_open´ (delay 0) DISABLED
 		´remove_nav_obst_bottom´ (delay 0)
 ´link_exploded_2´ MissionScriptElement 100340
+	TRIGGER TIMES 1
 	on_executed
-		´toggle_off_6´ (delay 0)
+		´toggle_off_6´ (delay 0.1)
 		´operator_remove´ (delay 0)
 		´room_open´ (delay 0) DISABLED
 		´remove_nav_obst_left´ (delay 0)
@@ -1133,7 +1131,7 @@
 ´link_gate_open´ MissionScriptElement 100352
 	TRIGGER TIMES 1
 	on_executed
-		´toggle_off_8´ (delay 0)
+		´toggle_off_8´ (delay 0.1)
 		´room_open´ (delay 0) DISABLED
 		´remove_wps_bottom´ (delay 0)
 		´remove_nav_obst_bottom´ (delay 0)
@@ -1150,7 +1148,7 @@
 ´link_gate_open_2´ MissionScriptElement 100357
 	TRIGGER TIMES 1
 	on_executed
-		´toggle_off_9´ (delay 0)
+		´toggle_off_9´ (delay 0.1)
 		´room_open´ (delay 0) DISABLED
 		´remove_wps_left´ (delay 0)
 		´remove_nav_obst_left´ (delay 0)
@@ -1160,11 +1158,11 @@
 	sequence_list
 		1
 			guis_id 1
-			sequence open_door_with_saw
+			sequence done_opened
 			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
 		2
 			guis_id 2
-			sequence done_opened
+			sequence open_door_with_saw
 			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
 	on_executed
 		´link_gate_open_2´ (delay 0)
@@ -1590,11 +1588,15 @@
 		2 ´place_drill_left´
 		3 ´defend´
 	operation remove
+	on_executed
+		´stealth_enable_close´ (delay 0.1)
 ´remove_wps_bottom´ ElementOperator 100239
 	elements
  		1 ´bottom_defend´
 		2 ´bottom_place_drill´
 	operation remove
+	on_executed
+		´stealth_enable_close001´ (delay 0.1)
 ´input_left_lounge_wall´ ElementInstanceInput 100243
 	event left_lounge_wall
 	on_executed
@@ -1835,3 +1837,85 @@
  		1 ´point_interaction_reset_left´ DISABLED
 	set_trigger_times -1
 	toggle off
+´stealth_enable_close´ ElementToggle 100203
+	elements
+ 		1 ´point_interaction_reset_left´ DISABLED
+	set_trigger_times -1
+	toggle on
+´stealth_enable_close001´ ElementToggle 100211
+	elements
+ 		1 ´point_interaction_reset_bottom´ DISABLED
+	set_trigger_times -1
+	toggle on
+´open_with_saw_C4_bottom´ ElementUnitSequenceTrigger 100227
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door_with_saw
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
+		2
+			guis_id 2
+			sequence c4_completed
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
+		3
+			guis_id 3
+			sequence explode_door
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
+	on_executed
+		´logic_toggle_009´ (delay 0)
+´open_with_saw_c4_left´ ElementUnitSequenceTrigger 100228
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_door_with_saw
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
+		2
+			guis_id 2
+			sequence c4_completed
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
+		3
+			guis_id 3
+			sequence explode_door
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
+	on_executed
+		´logic_toggle_008´ (delay 0)
+´logic_toggle_008´ ElementToggle 100250
+	elements
+ 		1 ´open_door´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´link_drill_complete´ (delay 0)
+		´disable_unit_drill´ (delay 0)
+		´remove_nav_obst_left´ (delay 1)
+´logic_toggle_009´ ElementToggle 100251
+	elements
+ 		1 ´seq_open_gate´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´link_drill_complete_2´ (delay 0)
+		´remove_nav_obst_bottom´ (delay 1)
+		´disable_unit_drill_2´ (delay 0)
+´c4_placed_bottom´ ElementUnitSequenceTrigger 100252
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence c4_placed
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/bottom (25, -394, 0)
+	on_executed
+		´operator_remove_2´ (delay 0)
+		´toggle_off_7´ (delay 0)
+´c4_placed_side´ ElementUnitSequenceTrigger 100253
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence c4_placed
+			notify_unit_id units/payday2/architecture/bnk/bnk_int_fence_door_interactable/left (-208, 150, 0)
+	on_executed
+		´operator_remove´ (delay 0)
+		´toggle_off_6´ (delay 0)
