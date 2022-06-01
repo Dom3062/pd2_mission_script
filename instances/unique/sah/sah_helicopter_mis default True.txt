@@ -79,6 +79,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -99,6 +100,7 @@
 	type_filter black_tablet
 	on_executed
 		´loot_secured_output´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´loot_secured_output´ ElementInstanceOutput 100011
 	event loot_secured
 ´enable´ ElementToggle 100012
@@ -193,6 +195,8 @@
 ´remove_other´ ElementCarry 100022
 	operation remove
 	type_filter mus_artifact
+	on_executed
+		´func_experience_001´ (delay 0)
 ´area_destroy_additional_bags´ ElementAreaTrigger 100010
 	DISABLED
 	TRIGGER TIMES 1
@@ -208,6 +212,7 @@
 	rules_element_ids
 	shape_type cylinder
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -653,3 +658,11 @@
 			notify_unit_id units/payday2/vehicles/air_vehicle_blackhawk/helicopter_cops_ref/002 (0, 0, 0)
 			notify_unit_sequence state_add_loot_bag
 			time 0
+´point_debug_001´ ElementDebug 100083
+	as_subtitle False
+	debug_string Loot EXP given (1000)
+	show_instigator False
+´func_experience_001´ ElementExperience 100084
+	amount 1000
+	on_executed
+		´point_debug_001´ (delay 0)

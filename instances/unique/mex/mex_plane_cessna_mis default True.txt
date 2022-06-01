@@ -177,6 +177,7 @@
 	spawn_unit_elements
 		1 ´point_shape_001´
 		2 ´point_shape_002´
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -262,6 +263,7 @@
 	on_executed
 		´add1´ (delay 0)
 		´add_001´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´secure_loot_extra´ ElementCarry 100015
 	operation secure
 	type_filter none
@@ -273,6 +275,7 @@
 	on_executed
 		´point_debug_002´ (delay 0)
 		´add_001´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´waypoint_lootdrop´ ElementWaypoint 100017
 	icon pd2_lootdrop
 	only_in_civilian False
@@ -392,6 +395,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -1041,6 +1045,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -2065,6 +2070,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -3030,6 +3036,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -3051,6 +3058,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -3100,6 +3108,7 @@
 		1 ´rule_roman_armor´
 	shape_type cylinder
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -3148,6 +3157,7 @@
 	type_filter roman_armor
 	on_executed
 		´roman_armour_secured_4´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´trigger_area_loot_extra_001´ ElementAreaTrigger 100513
 	amount 1
 	depth 500
@@ -3165,6 +3175,7 @@
 		4 ´rule_not_roman_armor´
 	shape_type cylinder
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -3411,3 +3422,11 @@
 	rotation 0, 0, 0, -1
 	on_executed
 		´toggle_disable_plane_stuff´ (delay 0)
+´point_debug_019´ ElementDebug 100321
+	as_subtitle False
+	debug_string Loot EXP given (500)
+	show_instigator False
+´func_experience_001´ ElementExperience 100696
+	amount 500
+	on_executed
+		´point_debug_019´ (delay 0)

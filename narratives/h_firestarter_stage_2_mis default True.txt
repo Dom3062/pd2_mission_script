@@ -3607,6 +3607,8 @@
 ´func_carry_002´ ElementCarry 105189
 	operation remove
 	type_filter none
+	on_executed
+		´func_experience_001´ (delay 0)
 ´on´ ElementToggle 105190
 	elements
  		1 ´trigger_area_007´ DISABLED
@@ -8552,7 +8554,7 @@
 ´test2´ ElementRandom 106836
 	amount 3
 	amount_random 0
-	counter_id 104394
+	counter_id ´amountOfBoxes´
 	ignore_disabled True
 	on_executed
 		´boxLink001´ (delay 0) DISABLED
@@ -11442,7 +11444,7 @@
 ´logic_random_038´ ElementRandom 107086
 	amount 1
 	amount_random 0
-	counter_id 107094
+	counter_id ´logic_counter_004´
 	ignore_disabled False
 	on_executed
 		´cam001´ (delay 0)
@@ -11454,7 +11456,7 @@
 ´logic_random_039´ ElementRandom 107087
 	amount 1
 	amount_random 0
-	counter_id 107093
+	counter_id ´logic_counter_003´
 	ignore_disabled False
 	on_executed
 		´cam007´ (delay 0)
@@ -11466,7 +11468,7 @@
 ´logic_random_040´ ElementRandom 107088
 	amount 1
 	amount_random 0
-	counter_id 107092
+	counter_id ´logic_counter_002´
 	ignore_disabled True
 	on_executed
 		´cam013´ (delay 0)
@@ -11478,7 +11480,7 @@
 ´logic_random_041´ ElementRandom 107089
 	amount 1
 	amount_random 0
-	counter_id 107091
+	counter_id ´logic_counter_001´
 	ignore_disabled False
 	on_executed
 		´cam019´ (delay 0)
@@ -11490,7 +11492,7 @@
 ´logic_random_042´ ElementRandom 107090
 	amount 1
 	amount_random 0
-	counter_id 107095
+	counter_id ´logic_counter_005´
 	ignore_disabled False
 	on_executed
 		´cam025´ (delay 0)
@@ -20342,7 +20344,7 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position -51.9395, -1750, 0
+	position -51.9392, -1750, 0
 	repeatable False
 	rotation 0, 0, 0.923879, -0.382684
 	scan True
@@ -23150,6 +23152,7 @@
 ´secured_goat´ MissionScriptElement 100799
 	on_executed
 		´filter_ovk_dw´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´hide_goat´ ElementDisableUnit 100807
 	position -900, 2400, 1300
 	rotation 0, 0, 0, -1
@@ -24445,6 +24448,7 @@
 			notify_unit_sequence enable_interaction
 			time 0
 ´func_eventsidejob_001´ ElementEventSideJobAward 102404
+	award_instantly False
 	award_instigator False
 	challenge pda8_collective
 	objective_id pda8_item_2
@@ -24462,3 +24466,11 @@
 			notify_unit_id units/pd2_dlc_pda8/pickups/pda8_interactable_items/pda8_interactable_item_02/002 (-2447, -2300, 475.659)
 	on_executed
 		´func_eventsidejob_001´ (delay 0)
+´point_debug_006´ ElementDebug 102408
+	as_subtitle False
+	debug_string Loot EXP given (1000)
+	show_instigator False
+´func_experience_001´ ElementExperience 102409
+	amount 1000
+	on_executed
+		´point_debug_006´ (delay 0)

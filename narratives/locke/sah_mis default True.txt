@@ -927,6 +927,7 @@
 	on_executed
 		´func_carry_remove´ (delay 0)
 		´escape´ (delay 0)
+		´func_experience_010´ (delay 0) DISABLED
 ´van_wp_bag001´ ElementWaypoint 100233
 	icon pd2_lootdrop
 	only_in_civilian False
@@ -1274,7 +1275,7 @@
 ´spawn_snipers´ ElementRandom 100366
 	amount 1
 	amount_random 0
-	counter_id 100367
+	counter_id ´snipers_to_spawn´
 	ignore_disabled True
 	on_executed
 		´sniper001´ (delay 0)
@@ -5117,7 +5118,7 @@
 	path_style destination
 	patrol_path none
 	pose stand
-	position 3.40796, -2735.61, -1000
+	position 3.40747, -2735.61, -1000
 	repeatable False
 	rotation 0, 0, -0.104529, -0.994522
 	scan True
@@ -11406,7 +11407,7 @@
 	enemy units/payday2/characters/civ_female_hostess_jacket_1/civ_female_hostess_jacket_1
 	force_pickup none
 	orientation_elements
-	position 1.08078, 328, 0
+	position 1.08084, 328, 0
 	rotation 0, 0, 1, -1.19209E-07
 	state cf_sp_stand_idle_var1
 	team default
@@ -18623,6 +18624,7 @@
 		´point_debug_097´ (delay 0) DISABLED
 		´disable_zipline_lootdrop_WPs´ (delay 0)
 		´point_debug_155´ (delay 0)
+		´func_experience_009´ (delay 0)
 ´enable_zipline_001´ ElementUnitSequence 100991
 	TRIGGER TIMES 1
 	position 6900, -11200, 4100
@@ -18666,6 +18668,7 @@
 	type_filter mus_artifact
 	on_executed
 		´point_debug_154´ (delay 0)
+		´func_experience_009´ (delay 0)
 ´remove_wp_obj017´ ElementOperator 101001
 	elements
  		1 ´zipline_interact_wp_002´ DISABLED
@@ -35727,3 +35730,21 @@
 	as_subtitle False
 	debug_string EAST_OFFICE
 	show_instigator False
+´point_debug_159´ ElementDebug 102636
+	DISABLED
+	as_subtitle False
+	debug_string Loot EXP given (1000)
+	show_instigator False
+´point_debug_160´ ElementDebug 102638
+	as_subtitle False
+	debug_string Loot EXP given (1000)
+	show_instigator False
+´func_experience_009´ ElementExperience 102639
+	amount 1000
+	on_executed
+		´point_debug_160´ (delay 0)
+´func_experience_010´ ElementExperience 102640
+	DISABLED
+	amount 1000
+	on_executed
+		´point_debug_159´ (delay 0) DISABLED

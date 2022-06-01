@@ -364,7 +364,7 @@
 	interval 5
 	orientation_elements
 	participate_to_group_ai True
-	position 0.0486145, 4573, 0
+	position 0.0486755, 4573, 0
 	rotation 0, 0, 1, -1.19209E-07
 	spawn_action e_sp_up_ 2_75_fwd_2_7_dwn_2_75m
 	team default
@@ -879,7 +879,7 @@
 ´spawn_snipers´ ElementRandom 100366
 	amount 1
 	amount_random 0
-	counter_id 100367
+	counter_id ´snipers_to_spawn´
 	ignore_disabled True
 	on_executed
 		´sniper001´ (delay 0)
@@ -19064,7 +19064,7 @@
 ´spawn_snipers001´ ElementRandom 102473
 	amount 1
 	amount_random 0
-	counter_id 102479
+	counter_id ´snipers_to_spawn001´
 	ignore_disabled True
 	on_executed
 		´sniper015´ (delay 1)
@@ -22159,6 +22159,7 @@
 	type_filter none
 	on_executed
 		´remove_extraloot_preplanning´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´remove_extraloot_preplanning´ ElementCarry 102844
 	operation remove
 	type_filter none
@@ -22387,6 +22388,7 @@
 	type_filter none
 	on_executed
 		´remove_requiredloot_preplanning´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´remove_requiredloot_preplanning´ ElementCarry 102870
 	operation remove
 	type_filter none
@@ -23870,7 +23872,7 @@
 	fade_in fade_out_mex
 	fade_out fade_out_mex
 	position 3100, -8500, 4100
-	rotation 2.63611E-12, -9.88987E-13, -3.09058E-14, -1
+	rotation 2.64055E-12, -9.90763E-13, -3.09613E-14, -1
 	state True
 ´disable_9´ ElementToggle 103370
 	elements
@@ -43529,3 +43531,11 @@
 	rotation 0, 0, 0, -1
 	state complete
 	sub_objective none
+´func_experience_001´ ElementExperience 103774
+	amount 500
+	on_executed
+		´point_debug_119´ (delay 0)
+´point_debug_119´ ElementDebug 103775
+	as_subtitle False
+	debug_string Loot EXP given (500)
+	show_instigator False

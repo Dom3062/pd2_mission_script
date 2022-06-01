@@ -9646,7 +9646,7 @@
 ´s1_cash_random´ ElementRandom 100908
 	amount 1
 	amount_random 0
-	counter_id 100836
+	counter_id ´amount_of_cash_in_safe´
 	ignore_disabled True
 	on_executed
 		´s1_c1´ (delay 0)
@@ -9941,7 +9941,7 @@
 ´s2_cash_random´ ElementRandom 101315
 	amount 1
 	amount_random 0
-	counter_id 100836
+	counter_id ´amount_of_cash_in_safe´
 	ignore_disabled True
 	on_executed
 		´s2_c2´ (delay 0)
@@ -11041,7 +11041,7 @@
 ´s3_cash_random´ ElementRandom 102681
 	amount 1
 	amount_random 0
-	counter_id 100836
+	counter_id ´amount_of_cash_in_safe´
 	ignore_disabled True
 	on_executed
 		´s3_c1´ (delay 0)
@@ -11402,7 +11402,7 @@
 ´spawn_keyguards´ ElementRandom 103054
 	amount 1
 	amount_random 0
-	counter_id 100519
+	counter_id ´amount_of_guards_with_keys´
 	ignore_disabled True
 	on_executed
 		´russian_mobster_guard_key_001´ (delay 0)
@@ -11432,7 +11432,7 @@
 ´spawn_guards´ ElementRandom 103082
 	amount 1
 	amount_random 0
-	counter_id 103065
+	counter_id ´amount_of_normal_guards´
 	ignore_disabled True
 	on_executed
 		´russian_mobster_guard_pose_001´ (delay 0)
@@ -12137,6 +12137,7 @@
 		´remove´ (delay 2)
 		´point_debug_022´ (delay 0)
 		´logic_counter_operator_007´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´cash´ ElementCarry 103816
 	operation secure
 	type_filter money
@@ -12145,6 +12146,7 @@
 		´func_carry_002´ (delay 2)
 		´point_debug_023´ (delay 0)
 		´logic_counter_operator_007´ (delay 0)
+		´func_experience_001´ (delay 0)
 ´remove´ ElementCarry 103817
 	operation remove
 	type_filter coke
@@ -17407,6 +17409,7 @@
 		´func_sequence_043´ (delay 0)
 		´func_sequence_072´ (delay 0)
 ´func_eventsidejob_001´ ElementEventSideJobAward 104798
+	award_instantly False
 	award_instigator False
 	challenge pda8_collective
 	objective_id pda8_item_4
@@ -17432,3 +17435,11 @@
 			notify_unit_id units/pd2_dlc_pda8/pickups/pda8_interactable_items/pda8_interactable_item_04/004 (3125, -6856, 576)
 	on_executed
 		´func_eventsidejob_001´ (delay 0)
+´point_debug_059´ ElementDebug 104800
+	as_subtitle False
+	debug_string Loot EXP given (1000)
+	show_instigator False
+´func_experience_001´ ElementExperience 104801
+	amount 1000
+	on_executed
+		´point_debug_059´ (delay 0)
