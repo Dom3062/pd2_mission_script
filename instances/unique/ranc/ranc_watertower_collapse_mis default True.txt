@@ -1,0 +1,100 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_collapse´ ElementInstanceInput 100007
+	event collapse
+	on_executed
+		´logic_link_swap´ (delay 0)
+´output_collapsed´ ElementInstanceOutput 100008
+	event collapsed
+´logic_link_swap´ MissionScriptElement 100037
+	on_executed
+		´func_enable_unit_001´ (delay 0) DISABLED
+		´func_disable_unit_001´ (delay 0) DISABLED
+		´func_nav_obstacle_001´ (delay 0) DISABLED
+		´seq_fall´ (delay 0)
+		´point_play_sound_001´ (delay 0) DISABLED
+´func_enable_unit_001´ ElementEnableUnit 100049
+	DISABLED
+	position 1000, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_001´ ElementDisableUnit 100050
+	DISABLED
+	position 1200, -200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 300002
+		2 300003
+		3 300004
+		4 300005
+´func_nav_obstacle_001´ ElementNavObstacle 100070
+	DISABLED
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/001 (-623.744, -879.81, 0)
+		2
+			guis_id 2
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/002 (-393.934, -650, 0)
+	operation add
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+´seq_fall´ ElementUnitSequence 100072
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_water_tower/ranc_prop_water_tower/001 (0, 0, 0)
+			notify_unit_sequence anim_fall
+			time 0
+´link_collpased´ MissionScriptElement 100073
+	on_executed
+		´output_collapsed´ (delay 0)
+´seq_trigger_fallen´ ElementUnitSequenceTrigger 100074
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_fallen
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_water_tower/ranc_prop_water_tower/001 (0, 0, 0)
+	on_executed
+		´link_collpased´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100009
+	DISABLED
+	append_prefix False
+	interrupt True
+	position -300, -300, 200
+	rotation 0, 0, 0, -1
+	sound_event RANC_Truck_Parking_Brake
+	use_instigator False

@@ -1,0 +1,64 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_int_prop_anvil/ranc_pku_hammer/001 (0, 0, 3)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_int_prop_anvil/ranc_pku_hammer/001 (0, 0, 3)
+			notify_unit_sequence interaction_disable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_instance´ ElementInstanceInput 100007
+	event enable instance
+	on_executed
+		´link_enable´ (delay 0)
+´link_enable´ MissionScriptElement 100010
+	on_executed
+		´seq_enable´ (delay 0)
+´seq_enable´ ElementUnitSequence 100011
+	position 900, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_int_prop_anvil/ranc_pku_hammer/001 (0, 0, 3)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_int_prop_anvil/ranc_pku_hammer/001 (0, 0, 3)
+			notify_unit_sequence interaction_enable
+			time 0

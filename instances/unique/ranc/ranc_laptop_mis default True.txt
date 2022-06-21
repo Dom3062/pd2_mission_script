@@ -1,0 +1,681 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence set_hack_time_50
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence remove_attention
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop_outline/001 (0, 0, 80)
+			notify_unit_sequence state_hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable interaction - hack
+	on_executed
+		´logic_link_005´ (delay 0)
+´output_hack_completed´ ElementInstanceOutput 100008
+	event hack completed
+´seq_enable_interaction´ ElementUnitSequence 100011
+	TRIGGER TIMES 1
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_only_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence set_hack_time_40
+			time 0
+´trigger_hack_finished´ ElementUnitSequenceTrigger 100012
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_hacking
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+	on_executed
+		´logic_link_002´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100013
+	icon pd2_computer
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 125
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_waypoint´ ElementInstanceInput 100014
+	event show waypoint
+	on_executed
+		´link_waypoint´ (delay 0)
+´link_waypoint´ MissionScriptElement 100015
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_link_002´ MissionScriptElement 100016
+	on_executed
+		´output_hack_completed´ (delay 0)
+		´remove_waypoint´ (delay 0)
+		´seq_disable´ (delay 0)
+´remove_waypoint´ ElementOperator 100017
+	elements
+ 		1 ´point_waypoint_001´
+	operation remove
+´input_loud_take_laptop´ ElementInstanceInput 100018
+	event loud - take laptop
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100019
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´logic_toggle_on´ (delay 0) DISABLED
+		´func_disable_unit_002´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100020
+	position 2150, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop_outline/001 (0, 0, 80)
+			notify_unit_sequence state_show_open
+			time 0
+´point_interaction_take´ ElementInteraction 100021
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, 0, 81
+	rotation 0, 0, 0, -1
+	tweak_data_id ranc_press_take_laptop
+	on_executed
+		´logic_link_003´ (delay 0) (alternative interacted)
+´logic_toggle_on´ ElementToggle 100022
+	DISABLED
+	elements
+ 		1 ´point_interaction_take´ DISABLED
+	set_trigger_times -1
+	toggle on
+´func_disable_unit_001´ ElementDisableUnit 100023
+	position 2100, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+´logic_link_003´ MissionScriptElement 100024
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´output_laptop_collected´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+		´func_sequence_003´ (delay 0)
+		´point_play_sound_pick_up´ (delay 0)
+´logic_operator_001´ ElementOperator 100025
+	elements
+ 		1 ´point_waypoint_001´
+	operation remove
+´trigger_hack_started´ ElementUnitSequenceTrigger 100026
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_link_004´ MissionScriptElement 100027
+	on_executed
+		´output_hack_started´ (delay 0)
+´logic_link_005´ MissionScriptElement 100028
+	TRIGGER TIMES 1
+	on_executed
+		´logic_toggle_on_2´ (delay 0)
+		´link_voice´ (delay 0)
+		´logic_link_fingerprint´ (delay 0) DISABLED
+´logic_toggle_on_2´ ElementToggle 100029
+	elements
+ 		1 ´trigger_hack_started´ DISABLED
+		2 ´trigger_hack_finished´ DISABLED
+	set_trigger_times -1
+	toggle on
+´output_hack_started´ ElementInstanceOutput 100030
+	event hack started
+´input_jammed´ ElementInstanceInput 100031
+	event set jammed
+	on_executed
+		´logic_link_006´ (delay 0)
+´input_resume´ ElementInstanceInput 100032
+	event set enable resume
+	on_executed
+		´logic_link_007´ (delay 0)
+´logic_link_006´ MissionScriptElement 100033
+	on_executed
+		´seq_set_jammed´ (delay 0)
+´logic_link_007´ MissionScriptElement 100034
+	on_executed
+		´seq_enable_interaction_2´ (delay 0)
+´seq_set_jammed´ ElementUnitSequence 100035
+	position 2000, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´logic_link_009´ (delay 0)
+´seq_enable_interaction_2´ ElementUnitSequence 100037
+	position 2200, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_enabled
+			time 0
+´input_cm_fail´ ElementInstanceInput 100039
+	event countermeasure - failed
+	on_executed
+		´logic_link_008´ (delay 0)
+´logic_link_008´ MissionScriptElement 100040
+	on_executed
+		´seq_black_screen_turn_off_pc´ (delay 0)
+´seq_black_screen_turn_off_pc´ ElementUnitSequence 100041
+	BASE DELAY 0.1
+	position 1800, -1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence power_off
+			time 0
+´logic_link_009´ MissionScriptElement 100044
+	BASE DELAY 0.1
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´logic_link_010´ MissionScriptElement 100046
+´seq_disable_interaction´ ElementUnitSequence 100047
+	position 2000, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+	on_executed
+		´logic_link_010´ (delay 0)
+´trigger_global_event_loud´ ElementGlobalEventTrigger 100010
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1400, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_011´ (delay 0)
+´logic_link_011´ MissionScriptElement 100042
+	on_executed
+		´seq_disable_shutdown´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+		´output_shutdown´ (delay 0)
+		´func_disable_unit_003´ (delay 0)
+´seq_disable_shutdown´ ElementUnitSequence 100043
+	position 1500, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_timer_gui
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence power_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_no_sound
+			time 0.1
+´logic_toggle_off´ ElementToggle 100045
+	elements
+ 		1 ´logic_link_002´
+		2 ´trigger_hack_finished´ DISABLED
+		3 ´logic_link_005´
+		4 ´link_wake_comp_voice´
+		5 ´seq_wake_voice´
+		6 ´output_disc_bio_reqs´
+		7 ´point_interaction_wake_computer´
+	set_trigger_times -1
+	toggle off
+´output_shutdown´ ElementInstanceOutput 100048
+	event loud shutdown
+´output_laptop_collected´ ElementInstanceOutput 100049
+	event laptop collected
+´logic_toggle_001´ ElementToggle 100050
+	elements
+ 		1 ´point_waypoint_001´
+		2 ´link_waypoint´
+		3 ´trigger_global_event_loud´
+		4 ´logic_link_011´
+	set_trigger_times -1
+	toggle off
+´point_interaction_wake_computer´ ElementInteraction 100051
+	host_only False
+	override_timer -1
+	position 0, 0, 92
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id ranc_press_wake_computer
+	on_executed
+		´link_wake_comp_voice´ (delay 0) (alternative interacted)
+		´link_wake_comp_finger´ (delay 0) DISABLED (alternative interacted)
+´output_disc_bio_reqs´ ElementInstanceOutput 100052
+	event biometric requirements discovered
+´link_wake_comp_voice´ MissionScriptElement 100053
+	on_executed
+		´output_disc_bio_reqs´ (delay 0)
+		´seq_wake_voice´ (delay 0)
+		´logic_link_012´ (delay 0)
+´seq_wake_voice´ ElementUnitSequence 100054
+	position 600, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_locked_voice
+			time 0
+´input_remove_wp´ ElementInstanceInput 100055
+	event remove waypoint (not disabled)
+	on_executed
+		´logic_link_012´ (delay 0)
+´logic_link_012´ MissionScriptElement 100056
+	on_executed
+		´logic_operator_remove´ (delay 0)
+´logic_operator_remove´ ElementOperator 100057
+	elements
+ 		1 ´point_waypoint_001´
+	operation remove
+´func_disable_unit_003´ ElementDisableUnit 100062
+	position 1400, -1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker_1x1/dev_ai_vis_blocker_1x1/001 (0, -50, 75)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker_1x1/dev_ai_vis_blocker_1x1/002 (-100, -50, 75)
+´seq_disable´ ElementUnitSequence 100036
+	position 1700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_only_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+´input_enable_hack_bio_switch´ ElementInstanceInput 100009
+	event enable bio switch hack
+	on_executed
+		´link_013´ (delay 0)
+´link_013´ MissionScriptElement 100038
+	on_executed
+		´func_seq_bio_switch´ (delay 0)
+		´logic_toggle_om´ (delay 0)
+´func_seq_bio_switch´ ElementUnitSequence 100059
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence set_hack_time_60
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_only_on
+			time 0
+´logic_toggle_om´ ElementToggle 100064
+	elements
+ 		1 ´seq_trigger_hack_complete´ DISABLED
+	set_trigger_times -1
+	toggle on
+´seq_trigger_hack_complete´ ElementUnitSequenceTrigger 100066
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_hacking
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+		2
+			guis_id 2
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+	on_executed
+		´logic_link_013´ (delay 0)
+´logic_link_013´ MissionScriptElement 100067
+	on_executed
+		´seq_lock_laptop_again´ (delay 0)
+		´output_biomet_hack_complete´ (delay 0)
+		´seq_display_fp_locked´ (delay 0.1)
+´seq_lock_laptop_again´ ElementUnitSequence 100069
+	position 600, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_locked_fingerprint
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_off
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_only_off
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+´output_biomet_hack_complete´ ElementInstanceOutput 100068
+	event biomet switch hack complete
+´seq_display_fp_locked´ ElementUnitSequence 100070
+	position 800, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_timer_gui
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_locked_fingerprint
+			time 0
+´link_wake_comp_finger´ MissionScriptElement 100058
+	DISABLED
+	on_executed
+		´output_disc_bio_reqs´ (delay 0)
+		´seq_wake_finger´ (delay 0)
+		´logic_link_012´ (delay 0)
+´seq_wake_finger´ ElementUnitSequence 100071
+	position 800, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_no_sound
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence set_hack_time_60
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_locked_fingerprint
+			time 0
+´input_audio_dead´ ElementInstanceInput 100072
+	event audio dead
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100073
+	elements
+ 		1 ´link_wake_comp_finger´ DISABLED
+		2 ´link_wake_comp_voice´
+		3 ´link_voice´
+		4 ´logic_link_fingerprint´ DISABLED
+	set_trigger_times -1
+	toggle toggle
+´link_voice´ MissionScriptElement 100060
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´logic_link_fingerprint´ MissionScriptElement 100074
+	DISABLED
+	on_executed
+		´seq_enable_interaction_3´ (delay 0)
+´seq_enable_interaction_3´ ElementUnitSequence 100075
+	position 1300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence state_contour_only_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence set_hack_time_90
+			time 0
+´trigger_start_hack´ ElementUnitSequenceTrigger 100076
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+	on_executed
+		´logic_link_012´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100078
+	position 2100, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+´func_enable_unit_001´ ElementEnableUnit 100079
+	BASE DELAY 0.1
+	position 2300, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100080
+	position 2300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+			notify_unit_sequence enable_interaction
+			time 0
+´seq_trigger_laptop_collected´ ElementUnitSequenceTrigger 100081
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_pku_laptop/001 (0, 0, 80)
+	on_executed
+		´logic_link_003´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100083
+	position 2100, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop_outline/001 (0, 0, 80)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_no_sound
+			time 0
+´func_sequence_004´ ElementUnitSequence 100084
+	position 1800, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence interact_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_timer_gui
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence turn_off_no_sound
+			time 0.1
+´trigger_global_event_001´ ElementGlobalEventTrigger 100085
+	BASE DELAY 0.1
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1800, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´func_sequence_004´ (delay 0)
+´point_play_sound_pick_up´ ElementPlaySound 100086
+	append_prefix False
+	interrupt True
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	sound_event alarm_clock_pick_up
+	use_instigator False

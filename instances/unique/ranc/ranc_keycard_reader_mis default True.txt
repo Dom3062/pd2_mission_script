@@ -1,0 +1,175 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´unit_disabler´ (delay 0) DISABLED
+		´func_seq_disable´ (delay 0) DISABLED
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_enable´ ElementUnitSequence 100005
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence set_interaction_180_z_axis
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence light_default
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence interact_enable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	DISABLED
+	position 650, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable´ ElementInstanceInput 100007
+	event enable
+	on_executed
+		´logic_link_001´ (delay 0)
+´output_interaction_complete´ ElementInstanceOutput 100008
+	event card interaction complete
+´logic_link_001´ MissionScriptElement 100010
+	on_executed
+		´seq_enable´ (delay 0)
+´func_seq_disable´ ElementUnitSequence 100011
+	DISABLED
+	position 650, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´seq_trigger_card_interact´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100013
+	on_executed
+		´output_interaction_complete´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+´trigger_global_loud´ ElementGlobalEventTrigger 100014
+	TRIGGER TIMES 1
+	global_event police_called
+	position 900, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_003´ MissionScriptElement 100015
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100016
+	position 900, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence light_red
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence interact_disable
+			time 0
+´logic_toggle_off´ ElementToggle 100017
+	elements
+ 		1 ´trigger_global_loud´
+		2 ´logic_link_003´
+		3 ´func_sequence_001´
+		4 ´seq_disable_used´
+		5 ´logic_link_004´
+	set_trigger_times -1
+	toggle off
+´input_reader_used´ ElementInstanceInput 100018
+	event keycard used - disable
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_link_004´ MissionScriptElement 100019
+	BASE DELAY 1
+	on_executed
+		´seq_disable_used´ (delay 0)
+´seq_disable_used´ ElementUnitSequence 100020
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence light_default
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence interact_disable
+			time 0
+´input_disable_instance´ ElementInstanceInput 100021
+	event disable and hide instance
+	on_executed
+		´logic_link_005´ (delay 0)
+´logic_link_005´ MissionScriptElement 100022
+	on_executed
+		´seq_disable_instance´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´seq_disable_instance´ ElementUnitSequence 100023
+	position 1200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence interact_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_mex/props/mex_prop_keycard_reader/mex_prop_keycard_reader/001 (0, 0, 125)
+			notify_unit_sequence hide
+			time 0
+´logic_toggle_001´ ElementToggle 100024
+	elements
+ 		1 ´logic_link_001´
+		2 ´input_enable´
+		3 ´input_reader_used´
+		4 ´logic_link_004´
+		5 ´trigger_global_loud´
+		6 ´logic_link_003´
+		7 ´seq_trigger_card_interact´
+		8 ´logic_link_002´
+		9 ´delay´
+	set_trigger_times -1
+	toggle off

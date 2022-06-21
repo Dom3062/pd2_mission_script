@@ -1,0 +1,152 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_show_WP´ (delay 0)
+		´input_enable_interaction´ (delay 0)
+		´input_enable_unit´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+´input_enable_unit´ ElementInstanceInput 100007
+	event enable_unit
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100010
+	position 1050, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´func_enable_unit_001´ ElementEnableUnit 100011
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+´input_enable_interaction´ ElementInstanceInput 100012
+	event enable_interaction
+	on_executed
+		´logic_link_001´ (delay 0)
+´WP_tape´ ElementWaypoint 100014
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_hide_WP´ ElementInstanceInput 100016
+	event hide_WP
+	on_executed
+		´logic_operator_remove_WP´ (delay 0)
+´input_show_WP´ ElementInstanceInput 100018
+	event show_WP
+	on_executed
+		´link_WP´ (delay 0)
+´link_WP´ MissionScriptElement 100020
+	on_executed
+		´WP_tape´ (delay 0)
+´logic_operator_remove_WP´ ElementOperator 100015
+	elements
+ 		1 ´WP_tape´
+	operation remove
+´trigger_interaction_done´ ElementUnitSequenceTrigger 100021
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+	on_executed
+		´logic_operator_remove_WP_2´ (delay 0)
+´output_tape_collected´ ElementInstanceOutput 100022
+	event tape_collected
+´input_disable_interaction´ ElementInstanceInput 100008
+	event disable_interaction
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100013
+	position 1200, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´seq_disable_interaction_2´ ElementUnitSequence 100019
+	position 1600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_bex/props/bex_prop_tape_holder/bex_prop_tape_holder/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´output_tape_collected´ (delay 0)
+´logic_operator_remove_WP_2´ ElementOperator 100023
+	elements
+ 		1 ´WP_tape´
+	operation remove
+	on_executed
+		´seq_disable_interaction_2´ (delay 0)
+´point_debug_001´ ElementDebug 100017
+	as_subtitle False
+	debug_string trigger_interaction_done
+	show_instigator False
+´point_debug_002´ ElementDebug 100024
+	as_subtitle False
+	debug_string logic_operator_remove_WP
+	show_instigator False
+´point_debug_003´ ElementDebug 100025
+	as_subtitle False
+	debug_string seq_disable_interaction
+	show_instigator False
+´point_debug_004´ ElementDebug 100026
+	as_subtitle False
+	debug_string output_tape_collected
+	show_instigator False
+´logic_toggle_off´ ElementToggle 100027
+	elements
+ 		1 ´WP_tape´
+	set_trigger_times -1
+	toggle off
+´logic_link_001´ MissionScriptElement 100028
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´seq_enable_interaction´ (delay 0)
+		´logic_operator_remove_WP´ (delay 0)

@@ -1,0 +1,452 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 0)
+´delay´ MissionScriptElement 100001
+	BASE DELAY 1
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´func_nav_obstacle_add´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence state_requires_crowbar
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence spawn_empty
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_hide_marking
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+´input_spawn_stock´ ElementInstanceInput 100015
+	TRIGGER TIMES 1
+	event spawn stock
+	on_executed
+		´logic_link_008´ (delay 0)
+´input_spawn_receiver´ ElementInstanceInput 100008
+	TRIGGER TIMES 1
+	event spawn receiver
+	on_executed
+		´logic_link_007´ (delay 0)
+´input_spawn_barrel´ ElementInstanceInput 100024
+	TRIGGER TIMES 1
+	event spawn barrel
+	on_executed
+		´logic_link_006´ (delay 0)
+´logic_toggle_001´ ElementToggle 100028
+	set_trigger_times -1
+	toggle on
+´logic_toggle_002´ ElementToggle 100029
+	set_trigger_times -1
+	toggle on
+´logic_toggle_003´ ElementToggle 100030
+	set_trigger_times -1
+	toggle on
+´link_barrel_collected´ MissionScriptElement 100031
+	on_executed
+		´output_barrel_collected´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´link_receiver_collected´ MissionScriptElement 100032
+	on_executed
+		´output_receiver_collected´ (delay 0)
+		´func_disable_unit_002´ (delay 0)
+´link_stock_collected´ MissionScriptElement 100033
+	on_executed
+		´output_stock_collected´ (delay 0)
+		´func_disable_unit_003´ (delay 0)
+´output_barrel_collected´ ElementInstanceOutput 100034
+	event barrel collected
+´output_receiver_collected´ ElementInstanceOutput 100035
+	event receiver collected
+´output_stock_collected´ ElementInstanceOutput 100036
+	event stock collected
+´logic_link_003´ MissionScriptElement 100011
+	on_executed
+		´point_debug_001´ (delay 0)
+		´seq_spawn_barrels´ (delay 0)
+´logic_link_004´ MissionScriptElement 100014
+	on_executed
+		´point_debug_002´ (delay 0)
+		´seq_spawn_receivers´ (delay 0)
+´logic_link_005´ MissionScriptElement 100038
+	on_executed
+		´point_debug_003´ (delay 0)
+		´seq_spawn_stocks´ (delay 0)
+´point_debug_001´ ElementDebug 100007
+	as_subtitle False
+	debug_string spawn barrel
+	show_instigator False
+´point_debug_002´ ElementDebug 100009
+	as_subtitle False
+	debug_string spawn receiver
+	show_instigator False
+´point_debug_003´ ElementDebug 100010
+	as_subtitle False
+	debug_string spawn stock
+	show_instigator False
+´func_disable_unit_001´ ElementDisableUnit 100018
+	position 1250, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_002´ ElementDisableUnit 100019
+	position 1650, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_disable_unit_003´ ElementDisableUnit 100020
+	position 2050, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´logic_counter=2´ ElementCounter 100023
+	counter_target 2
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_counter=2_2´ ElementCounter 100039
+	counter_target 2
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_counter=2_3´ ElementCounter 100040
+	counter_target 2
+	on_executed
+		´logic_toggle_003´ (delay 0)
+´seq_trigger_open´ ElementUnitSequenceTrigger 100041
+	TRIGGER TIMES 1
+	sequence_list
+	on_executed
+		´logic_counter=2´ (delay 0)
+		´logic_counter=2_2´ (delay 0)
+		´logic_counter=2_3´ (delay 0)
+´trigger_crate_open´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+	on_executed
+		´logic_counter_=2´ (delay 0)
+		´logic_counter_=2_2´ (delay 0)
+		´logic_counter_=2_3´ (delay 0)
+´logic_counter_=2´ ElementCounter 100046
+	counter_target 2
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_counter_=2_2´ ElementCounter 100047
+	counter_target 2
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_counter_=2_3´ ElementCounter 100048
+	counter_target 2
+	on_executed
+		´logic_link_005´ (delay 0)
+´seq_spawn_barrels´ ElementUnitSequence 100044
+	position 1300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence spawn_barrels
+			time 0
+´seq_spawn_receivers´ ElementUnitSequence 100045
+	position 1800, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence spawn_receivers
+			time 0
+´seq_spawn_stocks´ ElementUnitSequence 100049
+	position 2300, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence spawn_stocks
+			time 0
+´input_enable_marked_crate´ ElementInstanceInput 100012
+	BASE DELAY 8
+	event enable marked crate
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100050
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=2_4´ (delay 0)
+´func_nav_obstacle_add´ ElementNavObstacle 100057
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 50, 0)
+	operation add
+	position 700, -100, 0
+	rotation 0, 0, 0, -1
+´input_disable_instance´ ElementInstanceInput 100058
+	event disable and remove instance
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100059
+	BASE DELAY 2
+	on_executed
+		´func_nav_obstacle_remove´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´func_nav_obstacle_remove´ ElementNavObstacle 100060
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/001 (-100, 50, 0)
+	operation remove
+	position 700, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´seq_off_and_hide´ (delay 0)
+´seq_off_and_hide´ ElementUnitSequence 100061
+	position 700, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_hide_marking
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´func_disable_unit_box´ (delay 0)
+´func_disable_unit_box´ ElementDisableUnit 100062
+	position 700, -700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+´logic_toggle_off´ ElementToggle 100052
+	elements
+ 		1 ´logic_link_007´
+		2 ´logic_link_004´
+		3 ´seq_set_green´
+		4 ´seq_set_blue´
+		5 ´logic_link_008´
+		6 ´logic_counter_=2_3´
+		7 ´logic_counter_=2_2´
+		8 ´logic_toggle_off_2´
+		9 ´logic_toggle_off_3´
+		10 ´output_recevier´
+		11 ´output_stock´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_2´ ElementToggle 100064
+	elements
+ 		1 ´seq_set_red´
+		2 ´logic_link_006´
+		3 ´logic_toggle_off´
+		4 ´seq_set_blue´
+		5 ´logic_link_008´
+		6 ´logic_toggle_off_3´
+		7 ´output_barrel´
+		8 ´output_stock´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_3´ ElementToggle 100065
+	elements
+ 		1 ´logic_link_007´
+		2 ´logic_toggle_off_2´
+		3 ´logic_toggle_off´
+		4 ´logic_link_006´
+		5 ´seq_set_red´
+		6 ´seq_set_green´
+		7 ´output_recevier´
+		8 ´output_barrel´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_004´ ElementToggle 100063
+	elements
+ 		1 ´logic_link_003´
+		2 ´logic_link_004´
+		3 ´logic_link_005´
+		4 ´seq_trigger_open´
+		5 ´trigger_crate_open´
+		6 ´logic_link_001´
+	set_trigger_times -1
+	toggle off
+´seq_show_marking´ ElementUnitSequence 100066
+	position 750, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_show_marking
+			time 0
+´logic_link_006´ MissionScriptElement 100053
+	on_executed
+		´logic_counter_=2´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+		´seq_set_red´ (delay 0)
+		´link_part_spawned´ (delay 0)
+		´output_barrel´ (delay 0)
+´logic_link_007´ MissionScriptElement 100054
+	on_executed
+		´logic_counter_=2_2´ (delay 0)
+		´logic_toggle_off_2´ (delay 0)
+		´seq_set_green´ (delay 0)
+		´link_part_spawned´ (delay 0)
+		´output_recevier´ (delay 0)
+´logic_link_008´ MissionScriptElement 100055
+	on_executed
+		´logic_counter_=2_3´ (delay 0)
+		´logic_toggle_off_3´ (delay 0)
+		´seq_set_blue´ (delay 0)
+		´link_part_spawned´ (delay 0)
+		´output_stock´ (delay 0)
+´seq_set_red´ ElementUnitSequence 100067
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_set_marking_color_red
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_hide_marking
+			time 0
+´seq_set_green´ ElementUnitSequence 100068
+	position 1600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_set_marking_color_green
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_hide_marking
+			time 0
+´seq_set_blue´ ElementUnitSequence 100069
+	position 2100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_set_marking_color_blue
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+			notify_unit_sequence state_hide_marking
+			time 0
+´func_enable_unit_001´ ElementEnableUnit 100021
+	position 650, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_weapon_box_marking/001 (-9.53674E-07, -3.47009E-05, -2.00003)
+´logic_counter=2_4´ ElementCounter 100013
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+		´seq_show_marking´ (delay 0)
+´link_part_spawned´ MissionScriptElement 100016
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=2_4´ (delay 0)
+´output_barrel´ ElementInstanceOutput 100017
+	event barrel spawn
+´output_recevier´ ElementInstanceOutput 100022
+	event receiver spawn
+´output_stock´ ElementInstanceOutput 100025
+	event stock spawn
+´input_spawn_empty´ ElementInstanceInput 100026
+	event spawn empty
+	on_executed
+		´logic_link_009´ (delay 0)
+´logic_link_009´ MissionScriptElement 100027
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´logic_toggle_005´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100037
+	position 2600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_weapon_box_2x1x1m/ranc_int_weapon_box_2x1x1m/001 (0, 0, 0)
+			notify_unit_sequence spawn_empty
+			time 0
+´logic_toggle_005´ ElementToggle 100070
+	elements
+ 		1 ´logic_link_008´
+		2 ´logic_counter_=2_3´
+		3 ´seq_set_blue´
+		4 ´seq_spawn_stocks´
+		5 ´seq_spawn_receivers´
+		6 ´seq_set_green´
+		7 ´seq_spawn_barrels´
+		8 ´seq_set_red´
+		9 ´logic_link_006´
+		10 ´logic_link_007´
+		11 ´logic_counter_=2´
+		12 ´logic_counter_=2_2´
+		13 ´logic_link_001´
+		14 ´logic_counter=2_4´
+		15 ´func_enable_unit_001´
+		16 ´seq_show_marking´
+	set_trigger_times -1
+	toggle off

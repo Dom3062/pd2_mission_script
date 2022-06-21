@@ -1,0 +1,133 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´nav_obstacle_add´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+			notify_unit_sequence close_in
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´nav_obstacle_add´ ElementNavObstacle 100011
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, -25, -8)
+	operation add
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+´func_sequence_trigger_open´ ElementUnitSequenceTrigger 100007
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+		2
+			guis_id 2
+			sequence int_seq_break
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+		3
+			guis_id 3
+			sequence open_in
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+		4
+			guis_id 4
+			sequence open_out
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+	on_executed
+		´func_nav_obstacle_remove´ (delay 0)
+		´func_sequence_001´ (delay 0)
+		´enable_vis_blocker_open´ (delay 0)
+		´disable_vis_blocker_close´ (delay 0)
+		´logic_link_002´ (delay 0)
+´func_nav_obstacle_remove´ ElementNavObstacle 100008
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, -25, -8)
+	operation remove
+	position 600, -300, 0
+	rotation 0, 0, 0, -1
+´func_sequence_001´ ElementUnitSequence 100012
+	position 800, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+´enable_vis_blocker_open´ ElementEnableUnit 100022
+	position 600, -400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (433.671, 171.142, -1)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (379.594, 4.70721, -1)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (379.594, 4.70721, 107)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (433.671, 171.142, 107)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (-388.779, 4.45743, 107)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (-404.031, 178.792, 107)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (-404.031, 178.792, -1)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (-388.779, 4.45743, -1)
+´disable_vis_blocker_close´ ElementDisableUnit 100023
+	position 800, -400, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x8x8m/CLOSED (400, 3.05176E-05, -500)
+´input_open_gate´ ElementInstanceInput 100024
+	event open gate
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100025
+	BASE DELAY 2
+	on_executed
+		´seq_open_gate´ (delay 0)
+´seq_open_gate´ ElementUnitSequence 100026
+	position 1100, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_sand/props/sand_prop_fenced_gate/sand_prop_fenced_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+´output_gate_open´ ElementInstanceOutput 100027
+	event gate open
+´logic_link_002´ MissionScriptElement 100028
+	on_executed
+		´output_gate_open´ (delay 0)

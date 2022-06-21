@@ -1,0 +1,596 @@
+´unscrew - hide´ ElementUnitSequence 100012
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´off´ (delay 0)
+´screw_used_1´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+	on_executed
+		´2´ (delay 0)
+		´4´ (delay 0)
+´off´ ElementToggle 100014
+	elements
+ 		1 ´pushed_open_1´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´enable vent_1´ (delay 0)
+´auto_start´ MissionScriptElement 100031
+	EXECUTE ON STARTUP
+	on_executed
+		´disable_vent´ (delay 0)
+		´point_spawn_player_002´ (delay 0) DISABLED
+´sound_grating´ ElementPlaySound 100034
+	TRIGGER TIMES 2
+	append_prefix False
+	interrupt True
+	position -50, 24, 25
+	rotation 0, 0, 0, -1
+	sound_event vent_metal_remove
+	use_instigator False
+´open_right_1´ ElementUnitSequence 100038
+	position 700, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+			notify_unit_sequence open_vent_right
+			time 1
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´2´ ElementCounter 100015
+	counter_target 2
+	on_executed
+		´unscrew - hide´ (delay 0)
+´enable vent_1´ ElementUnitSequence 100009
+	position 1100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+´vent_used_1´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+	on_executed
+		´logic_link_002´ (delay 0)
+´disable_vent´ ElementUnitSequence 100018
+	position 500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´dw - lower´ (delay 0) DISABLED
+´vent_open´ ElementInstanceInput 100019
+	event vent_open
+	on_executed
+		´link´ (delay 0)
+´link´ MissionScriptElement 100020
+	on_executed
+		´Open´ (delay 0)
+´Open´ ElementUnitSequence 100021
+	position 900, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´off_2´ (delay 0)
+´off_2´ ElementToggle 100023
+	set_trigger_times -1
+	toggle off
+´dw - lower´ ElementFilter 100010
+	DISABLED
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 True
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 500, -100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´off_3´ (delay 0)
+´off_3´ ElementToggle 100026
+	elements
+ 		1 ´screw_used_1´
+		2 ´2´
+		3 ´unscrew - hide´
+		4 ´off´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´enable vent_1´ (delay 1)
+		´disable´ (delay 0)
+´disable´ ElementUnitSequence 100027
+	position 500, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence hide
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´vent_used_2´ ElementUnitSequenceTrigger 100030
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100032
+	on_executed
+		´open_right_2´ (delay 0)
+´open_right_2´ ElementUnitSequence 100033
+	position 800, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+			notify_unit_sequence open_vent_left
+			time 1
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence anim_screw_down
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+			notify_unit_sequence interaction_disabled
+			time 0
+´screw_used_2´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+	on_executed
+		´2_2´ (delay 0)
+		´4´ (delay 0)
+´2_2´ ElementCounter 100036
+	counter_target 2
+	on_executed
+		´unscrew_hide_2´ (delay 0)
+´unscrew_hide_2´ ElementUnitSequence 100037
+	position 1200, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´off_4´ (delay 0)
+´off_4´ ElementToggle 100039
+	elements
+ 		1 ´pushed_open_2´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´enable_vent_2´ (delay 0)
+´enable_vent_2´ ElementUnitSequence 100040
+	position 1200, -300, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+			notify_unit_sequence interaction_enabled
+			time 0
+´enable_force_open´ ElementToggle 100041
+	set_trigger_times -1
+	toggle on
+´pushed_open_2´ ElementUnitSequence 100042
+	position 1100, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/002 (-99.9999, 54, 0)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/002 (-99.9999, 54, 0)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+			notify_unit_sequence open_vent_left
+			time 0
+	on_executed
+		´play_sound´ (delay 0)
+		´enable_so´ (delay 0) DISABLED
+´pushed_open_1´ ElementUnitSequence 100043
+	position 1200, -600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_left/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/props/drk_prop_winch_screws/drk_prop_winch_screw_right/001 (0, -1, 0)
+			notify_unit_sequence hide
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+			notify_unit_sequence open_vent_right
+			time 0
+	on_executed
+		´play_sound´ (delay 0)
+		´enable_so´ (delay 0) DISABLED
+´logic_link_002´ MissionScriptElement 100002
+	on_executed
+		´open_right_1´ (delay 0)
+´point_spawn_player_002´ ElementPlayerSpawner 100000
+	DISABLED
+	position -50, -475, 0
+	rotation 0, 0, 0, -1
+	state standard
+´on_opened_2´ ElementUnitSequenceTrigger 100047
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/003 (-99.9999, 52.9999, 0)
+	on_executed
+		´play_sund´ (delay 0)
+		´pushed_open_1´ (delay 2)
+´on_opened_1´ ElementUnitSequenceTrigger 100048
+	TRIGGER TIMES 2
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_chca/props/chca_prop_grilles/chca_prop_grilles/002 (0, -1, 0)
+	on_executed
+		´play_sund´ (delay 0)
+		´pushed_open_2´ (delay 2)
+´play_sund´ MissionScriptElement 100054
+	on_executed
+		´sound_grating´ (delay 1)
+´play_sound´ MissionScriptElement 100055
+	on_executed
+		´sound_grating´ (delay 0.1)
+´4´ ElementCounter 100006
+	counter_target 4
+	on_executed
+		´turns_off_force_open´ (delay 0.1)
+´turns_off_force_open´ ElementToggle 100007
+	elements
+ 		1 ´force_open´ DISABLED
+	set_trigger_times -1
+	toggle off
+´force_open´ ElementInteraction 100001
+	DISABLED
+	host_only False
+	override_timer -1
+	position -50, 25, 50
+	rotation 0, 0, 0, -1
+	tweak_data_id chca_force_open_vent
+	on_executed
+		´pushed_open_2´ (delay 0) (alternative interacted)
+		´pushed_open_1´ (delay 0) (alternative interacted)
+´point_special_objective_001´ ElementSpecialObjective 100008
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval 4
+	is_navigation_link True
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -50, -100, 0
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 0
+	search_position -51,6119 153,044 0
+	SO_access 247008
+	so_action e_nl_under_0_7m
+	trigger_on none
+´enable_nav´ ElementGlobalEventTrigger 100056
+	TRIGGER TIMES 1
+	global_event police_called
+	position 600, 100, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_special_objective_002´ (delay 0) DISABLED
+		´point_special_objective_001´ (delay 0) DISABLED
+		´enable_so_later´ (delay 0)
+´point_special_objective_002´ ElementSpecialObjective 100057
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval 4
+	is_navigation_link True
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -50, 150, 0
+	rotation 0, 0, 1, -1.19209E-07
+	scan True
+	search_distance 0
+	search_position -50,507 -135,199 0
+	SO_access 247008
+	so_action e_nl_under_0_7m
+	trigger_on none
+´enable_so´ ElementToggle 100059
+	DISABLED
+	elements
+ 		1 ´point_special_objective_001´ DISABLED
+		2 ´point_special_objective_002´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´logic_link_003´ (delay 0) DISABLED
+´logic_link_003´ MissionScriptElement 100058
+	DISABLED
+	on_executed
+		´point_special_objective_001´ (delay 0) DISABLED
+		´point_special_objective_002´ (delay 0) DISABLED
+´enable_so_later´ ElementToggle 100060
+	elements
+ 		1 ´logic_link_003´ DISABLED
+	set_trigger_times -1
+	toggle on
+´force_open001´ ElementInteraction 100062
+	DISABLED
+	host_only False
+	override_timer -1
+	position -50, 25, 50
+	rotation 0, 0, 0, -1
+	tweak_data_id chca_force_open_vent
+	on_executed
+		´pushed_open_2´ (delay 0) (alternative interacted)
+		´pushed_open_1´ (delay 0) (alternative interacted)

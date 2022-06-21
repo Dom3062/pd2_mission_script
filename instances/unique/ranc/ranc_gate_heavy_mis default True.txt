@@ -1,0 +1,388 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 2)
+		´link_add_nav´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence state_reset
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (0, 7.23103, 142.457)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_open_gate´ ElementInstanceInput 100007
+	event open gates
+	on_executed
+		´link_open´ (delay 0)
+´output_gate_open´ ElementInstanceOutput 100008
+	event gate open
+´link_open´ MissionScriptElement 100012
+	on_executed
+		´seq_open_gate_standard´ (delay 0)
+		´output_gate_open´ (delay 0)
+		´link_remove_closed_blocker´ (delay 0)
+		´func_nav_obstacle_002´ (delay 1)
+´seq_open_gate_standard´ ElementUnitSequence 100013
+	position 1050, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+´input_winch_ripped´ ElementInstanceInput 100015
+	event winch ripped away
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100016
+	BASE DELAY 0.01
+	on_executed
+		´logic_toggle_001´ (delay 0)
+		´seq_truck_winch´ (delay 0)
+		´link_remove_closed_blocker´ (delay 0)
+		´output_gate_open´ (delay 0)
+´logic_toggle_001´ ElementToggle 100020
+	elements
+ 		1 ´link_open´
+		2 ´seq_open_gate_standard´
+	set_trigger_times -1
+	toggle off
+´seq_truck_winch´ ElementUnitSequence 100022
+	position 2300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_car_drag
+			time 0
+	on_executed
+		´Keep the pace, what's next?´ (delay 0)
+´input_open_gate_one_side´ ElementInstanceInput 100017
+	event open gate one side
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100018
+	on_executed
+		´seq_open_one_side´ (delay 0)
+		´link_remove_closed_blocker´ (delay 0)
+		´output_gate_open´ (delay 0)
+´seq_open_one_side´ ElementUnitSequence 100023
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_sneak_in
+			time 0
+´link_remove_closed_blocker´ MissionScriptElement 100014
+	on_executed
+		´func_nav_obstacle_003´ (delay 0)
+´point_waypoint_goto´ ElementWaypoint 100019
+	icon pd2_goto
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 325
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_waypoint´ ElementInstanceInput 100024
+	event show waypoint
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_link_004´ MissionScriptElement 100025
+	on_executed
+		´point_waypoint_goto´ (delay 0)
+		´point_debug_001´ (delay 0)
+´logic_link_005´ MissionScriptElement 100026
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´logic_operator_remove´ (delay 0)
+´input_hide_waypoint´ ElementInstanceInput 100027
+	event hide waypoint
+	on_executed
+		´logic_link_005´ (delay 0)
+´logic_toggle_off´ ElementToggle 100028
+	elements
+ 		1 ´point_waypoint_goto´
+	set_trigger_times -1
+	toggle off
+´logic_operator_remove´ ElementOperator 100029
+	elements
+ 		1 ´point_waypoint_goto´
+	operation remove
+´input_hide_disable´ ElementInstanceInput 100030
+	event Hide and disable gate
+	on_executed
+		´logic_link_006´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100031
+	position 3150, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+´logic_link_006´ MissionScriptElement 100032
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+		´logic_toggle_off_2´ (delay 0)
+´logic_toggle_off_2´ ElementToggle 100033
+	elements
+ 		1 ´link_open´
+		2 ´logic_link_002´
+		3 ´logic_link_001´
+		4 ´logic_link_004´
+		5 ´link_remove_closed_blocker´
+		6 ´link_add_nav´
+	set_trigger_times -1
+	toggle off
+´link_add_nav´ MissionScriptElement 100034
+	BASE DELAY 5
+	on_executed
+		´func_nav_obstacle_001´ (delay 0)
+´point_debug_001´ ElementDebug 100035
+	as_subtitle False
+	debug_string Gate - show waypoint
+	show_instigator False
+´input_enable_c4´ ElementInstanceInput 100037
+	event enable c4 interaction
+	on_executed
+		´logic_link_007´ (delay 0)
+´seq_enable_c4´ ElementUnitSequence 100039
+	position 3600, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (0, 7.23103, 142.457)
+			notify_unit_sequence show_interactive
+			time 0
+´logic_link_007´ MissionScriptElement 100040
+	on_executed
+		´seq_enable_c4´ (delay 0)
+		´logic_link_show_c4_waypoint´ (delay 0)
+´logic_link_show_c4_waypoint´ MissionScriptElement 100041
+	BASE DELAY 3-5
+	on_executed
+		´point_waypoint_c4´ (delay 0)
+´point_waypoint_c4´ ElementWaypoint 100038
+	TRIGGER TIMES 1
+	icon pd2_c4
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 15, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_c4_interact´ ElementUnitSequenceTrigger 100042
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (0, 7.23103, 142.457)
+	on_executed
+		´logic_link_008´ (delay 0)
+´trigger_c4_exploded´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence activate_explode_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (0, 7.23103, 142.457)
+	on_executed
+		´logic_link_009´ (delay 4.3)
+´seq_c4_explode´ ElementUnitSequence 100044
+	position 3600, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_shape_charge_plantable/gen_equipment_shape_charge_plantable/001 (0, 7.23103, 142.457)
+			notify_unit_sequence activate_explode_sequence
+			time 0
+´logic_link_008´ MissionScriptElement 100045
+	BASE DELAY 1
+	on_executed
+		´seq_c4_explode´ (delay 0)
+		´logic_link_010´ (delay 0)
+		´func_enable_unit_001´ (delay 0) DISABLED
+		´C4 applied, stand back´ (delay 0)
+		´output_gate_open_c4´ (delay 0)
+´logic_link_009´ MissionScriptElement 100046
+	on_executed
+		´seq_gate_open_explode´ (delay 0)
+		´link_remove_closed_blocker´ (delay 0)
+		´point_feedback_001´ (delay 0)
+		´point_play_sound_c4´ (delay 0)
+´output_gate_open_c4´ ElementInstanceOutput 100047
+	event gate open exploded - c4
+´seq_gate_open_explode´ ElementUnitSequence 100048
+	position 3850, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_blow_up
+			time 0
+	on_executed
+		´logic_random_001´ (delay 0)
+´logic_link_010´ MissionScriptElement 100049
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´operator_remove´ (delay 0)
+´operator_remove´ ElementOperator 100050
+	elements
+ 		1 ´point_waypoint_c4´
+		2 ´point_waypoint_goto´
+	operation remove
+´logic_toggle_002´ ElementToggle 100051
+	elements
+ 		1 ´point_waypoint_c4´
+		2 ´point_waypoint_goto´
+	set_trigger_times -1
+	toggle off
+´func_enable_unit_001´ ElementEnableUnit 100053
+	DISABLED
+	position 3500, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_feedback_001´ ElementFeedback 100055
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 0, 0, 100
+	range 0
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake True
+	use_rumble True
+´func_nav_obstacle_002´ ElementNavObstacle 100062
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/full1 (-450, 0, 0)
+		2
+			guis_id 2
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/full2 (328.015, 17.101, 0)
+	operation add
+	position 1100, -100, 0
+	rotation 0, 0, 0, -1
+´point_play_sound_c4´ ElementPlaySound 100066
+	append_prefix False
+	interrupt True
+	position 0, 0, 150
+	rotation 0, 0, 0, -1
+	sound_event RANC_C4_Gate
+	use_instigator False
+´func_nav_obstacle_001´ ElementNavObstacle 100010
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/closed (300, -50, 0)
+	operation add
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+´func_nav_obstacle_003´ ElementNavObstacle 100011
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/closed (300, -50, 0)
+	operation remove
+	position 1400, -300, 0
+	rotation 0, 0, 0, -1
+´logic_random_001´ ElementRandom 100067
+	BASE DELAY 1.5
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´Damn that was loud!´ (delay 0)
+´Damn that was loud!´ ElementTeammateComment 100068
+	close_to_element True
+	comment v54
+	position -100, -200, 102.5
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´C4 applied, stand back´ ElementTeammateComment 100069
+	TRIGGER TIMES 1
+	close_to_element True
+	comment v13
+	position 0, -100, 202.5
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´Keep the pace, what's next?´ ElementTeammateComment 100070
+	BASE DELAY 1
+	TRIGGER TIMES 1
+	close_to_element False
+	comment v09
+	position 2300, -100, 2.5
+	radius 0
+	rotation 0, 0, 0, -1
+	use_instigator False
+´input_start_truck_pull´ ElementInstanceInput 100052
+	event start truck pull groan
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_003´ MissionScriptElement 100064
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100065
+	position 1800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_car_drag_groan
+			time 0

@@ -1,0 +1,173 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 650, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence state_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence interaction_disable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 650, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable´ ElementInstanceInput 100007
+	event show and enable
+	on_executed
+		´logic_link_001´ (delay 0)
+´output_collected´ ElementInstanceOutput 100008
+	event acid collected
+´seq_show_&_enable´ ElementUnitSequence 100009
+	position 950, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence state_show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence interaction_enable
+			time 0
+´logic_link_001´ MissionScriptElement 100010
+	BASE DELAY 2
+	on_executed
+		´seq_show_&_enable´ (delay 0)
+´seq_trigger_interact´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100012
+	on_executed
+		´output_collected´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´logic_link_005´ (delay 0)
+		´remove_acid´ (delay 0)
+´point_debug_001´ ElementDebug 100013
+	as_subtitle False
+	debug_string acid inst - collected
+	show_instigator False
+´police_called´ ElementGlobalEventTrigger 100018
+	TRIGGER TIMES 1
+	global_event police_called
+	position 650, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_disable_acid´ (delay 0)
+´link_disable_acid´ MissionScriptElement 100019
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+		´logic_link_004´ (delay 0)
+		´logic_link_005´ (delay 0)
+		´point_debug_002´ (delay 0)
+´seq_disable_interaction´ ElementUnitSequence 100020
+	position 750, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence interaction_disable
+			time 0
+´point_waypoint_001´ ElementWaypoint 100021
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_waypoint´ ElementInstanceInput 100022
+	event show waypoint
+	on_executed
+		´logic_link_003´ (delay 0)
+´input_hide_waypoint´ ElementInstanceInput 100023
+	event hide waypoint
+	on_executed
+		´logic_link_004´ (delay 0)
+´input_hide_disable_waypoint´ ElementInstanceInput 100024
+	event hide and disable waypoint
+	on_executed
+		´logic_link_005´ (delay 0)
+´logic_link_003´ MissionScriptElement 100025
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_link_004´ MissionScriptElement 100026
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_link_005´ MissionScriptElement 100027
+	on_executed
+		´logic_link_004´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´logic_operator_001´ ElementOperator 100028
+	elements
+ 		1 ´point_waypoint_001´
+	operation remove
+´logic_toggle_001´ ElementToggle 100029
+	elements
+ 		1 ´point_waypoint_001´
+	set_trigger_times -1
+	toggle off
+´input_disable_instance´ ElementInstanceInput 100031
+	event disable instance
+	on_executed
+		´link_disable_acid´ (delay 0)
+´point_debug_002´ ElementDebug 100032
+	as_subtitle False
+	debug_string [Acid Inst] disabled
+	show_instigator False
+´remove_acid´ ElementUnitSequence 100015
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/pickups/ranc_pku_acid/ranc_pku_acid/001 (0, 0, 0)
+			notify_unit_sequence state_hide
+			time 0

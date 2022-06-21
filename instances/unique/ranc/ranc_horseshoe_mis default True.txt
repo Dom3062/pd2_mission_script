@@ -1,0 +1,66 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_disable_instance´ ElementInstanceInput 100007
+	event disable instance
+	on_executed
+		´logic_link_001´ (delay 0)
+´point_interaction_001´ ElementInteraction 100010
+	host_only False
+	override_timer -1
+	position 0, 0, 2
+	rotation 0, 0, 0, -1
+	tweak_data_id ranc_press_pickup_horseshoe
+	on_executed
+		´logic_link_002´ (delay 0) (alternative interacted)
+´logic_link_001´ MissionScriptElement 100011
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+´logic_toggle_off´ ElementToggle 100012
+	elements
+ 		1 ´point_interaction_001´
+	set_trigger_times -1
+	toggle off
+´func_disable_unit_001´ ElementDisableUnit 100013
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_ranc/props/ranc_prop_horseshoe/ranc_prop_horseshoe/001 (0, 0, 0)
+´logic_link_002´ MissionScriptElement 100008
+	on_executed
+		´output_collected´ (delay 0)
+		´func_disable_unit_001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´output_collected´ ElementInstanceOutput 100014
+	event horseshoe collected
+´point_debug_001´ ElementDebug 100015
+	as_subtitle False
+	debug_string horseshoe collected
+	show_instigator False

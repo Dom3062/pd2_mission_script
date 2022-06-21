@@ -1,0 +1,429 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´logic_counter_operator_+1´ (delay 0)
+		´link_delay´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´output_hack_complete´ ElementInstanceOutput 100008
+	event hack complete
+´sequence_trigger_hack_complete´ ElementUnitSequenceTrigger 100007
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+	on_executed
+		´link_hack_completed´ (delay 0)
+´link_hack_completed´ MissionScriptElement 100016
+	BASE DELAY 1
+	on_executed
+		´output_hack_complete´ (delay 0)
+		´seq_reset_hack´ (delay 0)
+		´link_delay´ (delay 0)
+		´logic_counter_operator_+1´ (delay 0)
+´input_enable_interaction´ ElementInstanceInput 100017
+	event enable interaction
+	on_executed
+		´logic_link_001´ (delay 0)
+´input_disable_interaction´ ElementInstanceInput 100018
+	event disable interaction
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_001´ MissionScriptElement 100019
+	on_executed
+		´turn on trigger´ (delay 0)
+´logic_link_002´ MissionScriptElement 100020
+	on_executed
+		´seq_disable´ (delay 0)
+		´remove_wp´ (delay 0)
+´seq_enable´ ElementUnitSequence 100021
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence main_screen_on_v1
+			time 0
+´seq_disable´ ElementUnitSequence 100022
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_reset
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence power_off
+			time 0.1
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_disabled
+			time 0.1
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence main_screen_off
+			time 0.1
+´seq_reset_hack´ ElementUnitSequence 100023
+	position 950, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_reset
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence main_screen_on_v1
+			time 0
+´logic_counter_operator_+1´ ElementCounterOperator 100024
+	amount 1
+	elements
+ 		1 ´logic_counter_001´
+	instance_var_names
+	operation add
+´logic_counter_001´ ElementCounter 100025
+	counter_target 0
+´filter_=1´ ElementCounterFilter 100026
+	elements
+ 		1 ´logic_counter_001´
+	check_type equal
+	needed_to_execute all
+	value 1
+	on_executed
+		´logic_link_003´ (delay 0)
+´filter_=2´ ElementCounterFilter 100027
+	elements
+ 		1 ´logic_counter_001´
+	check_type equal
+	needed_to_execute all
+	value 2
+	on_executed
+		´logic_link_004´ (delay 0)
+´filter=4´ ElementCounterFilter 100029
+	elements
+ 		1 ´logic_counter_001´
+	check_type equal
+	needed_to_execute all
+	value 4
+	on_executed
+		´logic_link_006´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100031
+	position 1600, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence set_hack_time_state_4
+			time 0
+	on_executed
+		´point_debug_001´ (delay 0)
+´func_sequence_003´ ElementUnitSequence 100032
+	position 1900, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence set_hack_time_state_6
+			time 0
+	on_executed
+		´point_debug_002´ (delay 0)
+´func_sequence_005´ ElementUnitSequence 100034
+	position 2200, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence set_hack_time_state_13
+			time 0
+	on_executed
+		´point_debug_004´ (delay 0)
+´logic_link_003´ MissionScriptElement 100036
+	on_executed
+		´func_sequence_002´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´logic_link_004´ MissionScriptElement 100037
+	on_executed
+		´func_sequence_003´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´logic_link_006´ MissionScriptElement 100039
+	on_executed
+		´func_sequence_005´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´point_debug_001´ ElementDebug 100041
+	as_subtitle False
+	debug_string computer workshop - set hack time = 1
+	show_instigator False
+´point_debug_002´ ElementDebug 100042
+	as_subtitle False
+	debug_string computer workshop - set hack time = 2
+	show_instigator False
+´point_debug_004´ ElementDebug 100044
+	as_subtitle False
+	debug_string computer workshop - set hack time = 4
+	show_instigator False
+´link_delay´ MissionScriptElement 100046
+	BASE DELAY 0.25
+	on_executed
+		´filter_=1´ (delay 0)
+		´filter_=2´ (delay 0)
+		´filter=4´ (delay 0)
+´trigger_global_event_loud´ ElementGlobalEventTrigger 100028
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1200, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_toggle_001´ ElementToggle 100030
+	elements
+ 		1 ´input_enable_interaction´
+		2 ´logic_link_001´
+		3 ´seq_enable´
+		4 ´filter_=1´
+		5 ´filter_=2´
+		6 ´filter=4´
+		7 ´func_sequence_002´
+		8 ´func_sequence_003´
+		9 ´func_sequence_005´
+		10 ´link_hack_completed´
+		11 ´seq_reset_hack´
+		12 ´sequence_trigger_hack_complete´
+		13 ´logic_link_008´
+		14 ´logic_link_005´
+		15 ´logic_link_007´
+		16 ´func_sequence_trigger_resumed´
+		17 ´restart_hack´
+		18 ´trigger_area_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´input_set_jammed´ ElementInstanceInput 100033
+	event set jammed
+	on_executed
+		´logic_link_005´ (delay 0)
+´input_set_enable_resume´ ElementInstanceInput 100035
+	event set enable resume
+	on_executed
+		´logic_link_007´ (delay 0)
+´seq__state_jammed´ ElementUnitSequence 100038
+	position 900, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_device_jammed
+			time 0
+	on_executed
+		´logic_link_009´ (delay 0)
+		´logic_random_VO´ (delay 0)
+´func_sequence_enable_interaction´ ElementUnitSequence 100040
+	position 1200, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+	on_executed
+		´restart_hack´ (delay 3)
+´seq_interaction_disabled´ ElementUnitSequence 100043
+	position 900, -1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+´logic_link_005´ MissionScriptElement 100045
+	on_executed
+		´seq__state_jammed´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+´logic_link_007´ MissionScriptElement 100047
+	on_executed
+		´func_sequence_enable_interaction´ (delay 0)
+´seq_trigger_hack_started´ ElementUnitSequenceTrigger 100048
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+	on_executed
+		´logic_link_008´ (delay 0)
+´logic_link_008´ MissionScriptElement 100049
+	on_executed
+		´output_hack_started´ (delay 0)
+´output_hack_started´ ElementInstanceOutput 100050
+	event hack started
+´logic_toggle_002´ ElementToggle 100051
+	elements
+ 		1 ´seq_trigger_hack_started´
+	set_trigger_times 1
+	toggle on
+´logic_toggle_003´ ElementToggle 100052
+	elements
+ 		1 ´seq_trigger_hack_started´
+	set_trigger_times 1
+	toggle on
+´logic_toggle_004´ ElementToggle 100053
+	elements
+ 		1 ´seq_trigger_hack_started´
+	set_trigger_times 1
+	toggle on
+´logic_toggle_off´ ElementToggle 100054
+	elements
+ 		1 ´seq_trigger_hack_started´
+	set_trigger_times -1
+	toggle off
+´func_sequence_trigger_resumed´ ElementUnitSequenceTrigger 100055
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence resumed_trigger
+			notify_unit_id units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b/001 (0, -25, 100)
+	on_executed
+		´remove_restart_wp´ (delay 0)
+´logic_link_009´ MissionScriptElement 100056
+	BASE DELAY 0.1
+	on_executed
+		´seq_interaction_disabled´ (delay 0)
+´logic_random_VO´ ElementRandom 100060
+	BASE DELAY 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´Shit´ (delay 0)
+		´oh fuck´ (delay 0)
+´Shit´ ElementTeammateComment 100061
+	TRIGGER TIMES 1
+	close_to_element True
+	comment g29
+	position 50, 0, 200
+	radius 2000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´oh fuck´ ElementTeammateComment 100062
+	TRIGGER TIMES 1
+	close_to_element True
+	comment g60
+	position -50, 0, 200
+	radius 2000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´restart_hack´ ElementWaypoint 100013
+	TRIGGER TIMES 1
+	icon pd2_computer
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -8, 157
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_restart_wp´ ElementOperator 100014
+	elements
+ 		1 ´restart_hack´
+	operation remove
+´remove_wp´ ElementOperator 100015
+	elements
+ 		1 ´restart_hack´
+	operation remove
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´trigger_area_001´ ElementAreaTrigger 100059
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 200, 102.5
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 750
+	on_executed
+		´seq_enable´ (delay 0)
+´turn on trigger´ ElementToggle 100064
+	elements
+ 		1 ´trigger_area_001´ DISABLED
+	set_trigger_times -1
+	toggle on

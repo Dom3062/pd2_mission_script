@@ -1,0 +1,330 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´func_nav_obstacle_add´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-3.99999, -10, 125)
+			notify_unit_sequence state_interaction_thermite
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-3.99999, -10, 125)
+			notify_unit_sequence enable
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence state_reset
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (433.431, 170.211, 118)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (433.431, 170.211, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (380.28, 6.62971, 0)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (380.28, 6.62971, 118)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (-377.744, 4.21321, 0)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (-392.734, 175.559, 0)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (-392.734, 175.559, 118)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (-377.744, 4.21321, 118)
+´input_override_open´ ElementInstanceInput 100007
+	event override - open
+	on_executed
+		´logic_link_001´ (delay 0)
+´output_gate_open´ ElementInstanceOutput 100008
+	event gate open
+´seq_trigger_thermite´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-3.99999, -10, 125)
+	on_executed
+		´link_thermite_burning´ (delay 0)
+		´logic_link_003´ (delay 0)
+		´output_thermite_placed´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´link_thermite_burning´ MissionScriptElement 100012
+	on_executed
+		´link_play_thermite_FX_001´ (delay 0)
+		´point_play_sound_thermite_start´ (delay 0)
+		´point_blurzone_001´ (delay 0)
+´seq_open_gate´ ElementUnitSequence 100013
+	position 1000, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence open_in
+			time 0
+	on_executed
+		´output_gate_open´ (delay 0)
+´logic_link_001´ MissionScriptElement 100014
+	on_executed
+		´seq_open_gate´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100015
+	elements
+ 		1 ´seq_trigger_thermite´
+		2 ´link_thermite_burning´
+	set_trigger_times -1
+	toggle off
+´env_effect_play_thermite_001´ ElementPlayEffect 100019
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -3, 0, 177.5
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+´env_effect_play_thermite_002´ ElementPlayEffect 100016
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -3, 0, 152.5
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+´env_effect_play_thermite_003´ ElementPlayEffect 100020
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -3, 0, 127.5
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+´link_play_thermite_FX_001´ MissionScriptElement 100017
+	on_executed
+		´link_play_thermite_FX_002´ (delay 0.5)
+		´env_effect_play_thermite_001´ (delay 0)
+´link_play_thermite_FX_002´ MissionScriptElement 100018
+	on_executed
+		´link_play_thermite_FX_003´ (delay 0.5)
+		´env_effect_play_thermite_002´ (delay 0)
+´link_play_thermite_FX_003´ MissionScriptElement 100021
+	on_executed
+		´env_effect_play_thermite_003´ (delay 0)
+		´link_play_thermite_FX_004´ (delay 0.5)
+´env_effect_play_thermite_004´ ElementPlayEffect 100022
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -3, 0, 102.5
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+´env_effect_play_thermite_005´ ElementPlayEffect 100023
+	base_time 0
+	effect effects/payday2/particles/fire/thermite_fade
+	max_amount 0
+	position -3, 0, 77.5
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+´link_play_thermite_FX_004´ MissionScriptElement 100024
+	on_executed
+		´link_play_thermite_FX_005´ (delay 0.5)
+		´env_effect_play_thermite_004´ (delay 0)
+´link_play_thermite_FX_005´ MissionScriptElement 100025
+	on_executed
+		´seq_open_gate´ (delay 1)
+		´env_effect_play_thermite_005´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+		´logic_toggle_003´ (delay 1)
+		´point_play_sound_thermite_end´ (delay 0)
+´trigger_door_opened´ ElementUnitSequenceTrigger 100035
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence open_in
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+	on_executed
+		´func_disable_vis_blocker_closed´ (delay 0)
+		´func_enable_unit_001´ (delay 0)
+		´func_nav_obstacle_001´ (delay 0)
+´func_disable_vis_blocker_closed´ ElementDisableUnit 100036
+	position 1300, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x8x8m/CLOSED (400, 0, 0)
+		2 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_8x32m/001 (400, -7.62939E-06, 0)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_8x32m/001 (399, -2.99995, 0)
+		4 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/007 (400, -79.5003, -5.36254)
+		5 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/008 (300, -79.5004, -5.3625)
+		6 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/005 (200, -79.5004, -5.36247)
+		7 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/006 (100, -79.5004, -5.36243)
+		8 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/003 (-3.05176E-05, -79.5004, -5.36241)
+		9 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/004 (-100, -79.5005, -5.36236)
+		10 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/002 (-200, -79.5005, -5.36235)
+		11 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/001 (-300, -79.5005, -5.36231)
+		12 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/009 (-400, 81.4997, -5.36255)
+		13 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/010 (-300, 81.4998, -5.3625)
+		14 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/011 (-200, 81.4998, -5.36247)
+		15 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/012 (-100, 81.4999, -5.36243)
+		16 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/013 (-3.05176E-05, 81.4999, -5.36241)
+		17 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/014 (100, 81.5, -5.36237)
+		18 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/015 (200, 81.5, -5.36235)
+		19 units/dev_tools/level_tools/dev_vehicle_only_collision/dev_vehicle_only_collision_1x1m/016 (300, 81.5001, -5.36232)
+´func_enable_unit_001´ ElementEnableUnit 100037
+	position 1300, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/003 (433.431, 170.211, 118)
+		2 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/001 (433.431, 170.211, 0)
+		3 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/004 (380.28, 6.62971, 118)
+		4 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/002 (380.28, 6.62971, 0)
+		5 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/007 (-377.744, 4.21321, 0)
+		6 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/008 (-392.734, 175.559, 0)
+		7 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/005 (-392.734, 175.559, 118)
+		8 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m/006 (-377.744, 4.21321, 118)
+´input_disable_thermite´ ElementInstanceInput 100038
+	event disable thermite
+	on_executed
+		´link_dis_thermite´ (delay 0)
+´seq_disable_thermite´ ElementUnitSequence 100039
+	position 1300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_cro/thermite_interactable/thermite_interactable/001 (-3.99999, -10, 125)
+			notify_unit_sequence disable
+			time 0
+´link_dis_thermite´ MissionScriptElement 100040
+	on_executed
+		´seq_disable_thermite´ (delay 0)
+´func_nav_obstacle_add´ ElementNavObstacle 100045
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, 0, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+´point_play_sound_thermite_start´ ElementPlaySound 100009
+	append_prefix False
+	interrupt True
+	position -3, 0, 125
+	rotation 0, 0, 0, -1
+	sound_event thermite_paste_start
+	use_instigator False
+´point_play_sound_thermite_end´ ElementPlaySound 100047
+	append_prefix False
+	interrupt True
+	position -3, 0, 50
+	rotation 0, 0, 0, -1
+	sound_event thermite_paste_finish
+	use_instigator False
+´logic_toggle_002´ ElementToggle 100048
+	elements
+ 		1 ´point_play_sound_thermite_start´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_001´ (delay 0)
+´logic_toggle_003´ ElementToggle 100049
+	elements
+ 		1 ´point_play_sound_thermite_end´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_002´ (delay 0)
+´logic_operator_001´ ElementOperator 100050
+	elements
+ 		1 ´point_play_sound_thermite_start´
+		2 ´point_blurzone_001´
+	operation remove
+´logic_operator_002´ ElementOperator 100051
+	elements
+ 		1 ´point_play_sound_thermite_end´
+	operation remove
+´point_blurzone_001´ ElementBlurZone 100052
+	height 200
+	mode 1
+	position 0, 0, 0
+	radius 180
+	rotation 0, 0, 0, -1
+´func_nav_obstacle_001´ ElementNavObstacle 100053
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/001 (300, 0, 0)
+	operation remove
+	position 1400, 0, 0
+	rotation 0, 0, 0, -1
+´point_waypoint_001´ ElementWaypoint 100046
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -25, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_link_002´ MissionScriptElement 100054
+	TRIGGER TIMES 1
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´input_show_waypoint´ ElementInstanceInput 100055
+	event show waypoint
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_hide_waypoint´ ElementInstanceInput 100056
+	event hide waypoint
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_003´ MissionScriptElement 100057
+	on_executed
+		´logic_toggle_004´ (delay 0)
+		´logic_operator_003´ (delay 0)
+´logic_toggle_004´ ElementToggle 100058
+	elements
+ 		1 ´point_waypoint_001´
+	set_trigger_times -1
+	toggle off
+´logic_operator_003´ ElementOperator 100059
+	elements
+ 		1 ´point_waypoint_001´
+	operation remove
+´output_thermite_placed´ ElementInstanceOutput 100060
+	event thermite placed
+´func_sequence_001´ ElementUnitSequence 100061
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/props/ranc_prop_heavy_gate/ranc_prop_heavy_gate/001 (-400, 0, 0)
+			notify_unit_sequence execute_thermite
+			time 0
