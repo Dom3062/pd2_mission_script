@@ -173,7 +173,7 @@
 		´func_disable_unit_001´ (delay 0)
 		´logic_operator_001´ (delay 0)
 		´output_laptop_collected´ (delay 0)
-		´logic_toggle_001´ (delay 0)
+		´logic_toggle_off_2´ (delay 0)
 		´func_sequence_003´ (delay 0)
 		´point_play_sound_pick_up´ (delay 0)
 ´logic_operator_001´ ElementOperator 100025
@@ -324,13 +324,13 @@
 			name run_sequence
 			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
 			notify_unit_sequence turn_off_no_sound
-			time 0.1
+			time 0
 		5
 			id 5
 			name run_sequence
 			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
 			notify_unit_sequence toggle_sound_off
-			time 0
+			time 0.1
 ´logic_toggle_off´ ElementToggle 100045
 	elements
  		1 ´logic_link_002´
@@ -346,12 +346,29 @@
 	event loud shutdown
 ´output_laptop_collected´ ElementInstanceOutput 100049
 	event laptop collected
-´logic_toggle_001´ ElementToggle 100050
+´logic_toggle_off_2´ ElementToggle 100050
 	elements
  		1 ´point_waypoint_001´
 		2 ´link_waypoint´
 		3 ´trigger_global_event_loud´
-		4 ´logic_link_011´
+		4 ´func_sequence_005´
+		5 ´logic_link_014´
+		6 ´seq_black_screen_turn_off_pc´
+		7 ´seq_set_jammed´
+		8 ´seq_disable_interaction´
+		9 ´seq_enable_interaction_2´
+		10 ´logic_link_011´
+		11 ´seq_wake_finger´
+		12 ´seq_wake_voice´
+		13 ´seq_display_fp_locked´
+		14 ´seq_lock_laptop_again´
+		15 ´func_seq_bio_switch´
+		16 ´seq_enable_interaction´
+		17 ´seq_enable_interaction_3´
+		18 ´seq_disable´
+		19 ´func_sequence_001´
+		20 ´func_sequence_002´
+		21 ´func_sequence_004´
 	set_trigger_times -1
 	toggle off
 ´point_interaction_wake_computer´ ElementInteraction 100051
@@ -655,6 +672,12 @@
 			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
 			notify_unit_sequence turn_off_no_sound
 			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
+			notify_unit_sequence toggle_sound_off
+			time 0.1
 ´func_sequence_004´ ElementUnitSequence 100084
 	position 1800, -300, 0
 	rotation 0, 0, 0, -1
@@ -676,13 +699,13 @@
 			name run_sequence
 			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
 			notify_unit_sequence turn_off_no_sound
-			time 0.1
+			time 0
 		4
 			id 4
 			name run_sequence
 			notify_unit_id units/pd2_dlc_ranc/equipment/ranc_int_laptop/ranc_int_laptop/001 (0, -2.62269E-05, 80)
 			notify_unit_sequence toggle_sound_off
-			time 0
+			time 0.1
 ´trigger_global_event_001´ ElementGlobalEventTrigger 100085
 	BASE DELAY 0.1
 	TRIGGER TIMES 1
