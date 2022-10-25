@@ -1,0 +1,323 @@
+´seq_disable_interaction´ ElementUnitSequence 100031
+	position -700, 600, -0.00400543
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_crane_control/trai_prop_crane_control/001 (0, 0, 89)
+			notify_unit_sequence disable_interaction
+			time 0
+´startup´ MissionScriptElement 100032
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´SO_none´ ElementSpecialObjective 100036
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+		1 ´SO_interact_anim´ DISABLED
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,5
+	interrupt_objective False
+	interval -1
+	is_navigation_link False
+	needs_pos_rsrv True
+	no_arrest False
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -150, 0, 0
+	rotation 0, 0, 0.707107, -0.707107
+	scan False
+	search_distance 2000
+	search_position -100 -75 0,00400543
+	SO_access 504
+	so_action none
+	trigger_on none
+´SO_interact_anim´ ElementSpecialObjective 100043
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position False
+	align_rotation False
+	attitude none
+	base_chance 1
+	followup_elements
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	needs_pos_rsrv False
+	no_arrest False
+	path_haste run
+	path_stance cbt
+	path_style destination
+	patrol_path none
+	pose none
+	position -150, 0, 0
+	rotation 0, 0, 0.707106, -0.707107
+	scan False
+	search_distance 0
+	search_position -100 -75 0,00400543
+	SO_access 504
+	so_action e_so_pull_lever_var2
+	trigger_on none
+´WP_defend´ ElementWaypoint 100074
+	icon pd2_defend
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´WP_interact´ ElementWaypoint 100086
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´delay´ MissionScriptElement 100001
+	EXECUTE ON STARTUP
+	on_executed
+		´seq_disable_interaction´ (delay 0)
+´enable_interaction´ ElementInstanceInput 100002
+	event enable interaction
+	on_executed
+		´enable_interaction_2´ (delay 0)
+´enable_interaction_2´ ElementUnitSequence 100003
+	position -600, 400, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_crane_control/trai_prop_crane_control/001 (0, 0, 89)
+			notify_unit_sequence enable_interaction
+			time 0
+´trigger_interaction´ ElementUnitSequenceTrigger 100004
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_crane_control/trai_prop_crane_control/001 (0, 0, 89)
+	on_executed
+		´logic_link_004´ (delay 0)
+´police_called´ ElementGlobalEventTrigger 100030
+	TRIGGER TIMES 1
+	global_event police_called
+	position -500, -1125, 2.5
+	rotation 0, 0, 0, -1
+´input_disable_interaction´ ElementInstanceInput 100034
+	event disable interaction
+	on_executed
+		´logic_link_disable´ (delay 0)
+´logic_link_disable´ MissionScriptElement 100035
+	on_executed
+		´seq_disable´ (delay 0)
+´seq_disable´ ElementUnitSequence 100037
+	position -700, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_crane_control/trai_prop_crane_control/001 (0, 0, 89)
+			notify_unit_sequence disable_interaction
+			time 0
+´trigger_special_objective_complete´ ElementSpecialObjectiveTrigger 100042
+	elements
+ 		1 ´SO_interact_anim´ DISABLED
+	event complete
+	position -1800, -100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_001´ (delay 0)
+´trigger_special_objective_fail´ ElementSpecialObjectiveTrigger 100044
+	elements
+ 		1 ´SO_none´ DISABLED
+		2 ´SO_interact_anim´ DISABLED
+	event fail
+	position -1800, -500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_001´ MissionScriptElement 100045
+	on_executed
+		´point_debug_002´ (delay 0)
+		´output_ai_dissruption_successful´ (delay 0)
+		´logic_toggle_off_disable_all´ (delay 0)
+		´enable_interaction_2´ (delay 0)
+		´logic_toggle_on´ (delay 0)
+´logic_link_002´ MissionScriptElement 100046
+	on_executed
+		´point_debug_001´ (delay 0)
+		´logic_toggle_on_enable´ (delay 2)
+´logic_toggle_off_disable_all´ ElementToggle 100048
+	elements
+ 		1 ´trigger_special_objective_complete´
+		2 ´trigger_special_objective_fail´
+		3 ´SO_none´ DISABLED
+		4 ´SO_interact_anim´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_operator_001´ ElementOperator 100049
+	elements
+ 		1 ´SO_none´ DISABLED
+		2 ´SO_interact_anim´ DISABLED
+	operation remove
+´output_ai_dissruption_successful´ ElementInstanceOutput 100051
+	event ai dissruption successful
+´point_debug_001´ ElementDebug 100052
+	as_subtitle False
+	debug_string [crane console] ai dissruption fail - reset
+	show_instigator False
+´point_debug_002´ ElementDebug 100053
+	as_subtitle False
+	debug_string [crane console] ai dissruption successful
+	show_instigator False
+´logic_toggle_on_enable´ ElementToggle 100047
+	BASE DELAY 0.1
+	elements
+ 		1 ´trigger_special_objective_complete´
+		2 ´trigger_special_objective_fail´
+		3 ´SO_interact_anim´ DISABLED
+		4 ´SO_none´ DISABLED
+		5 ´output_ai_dissruption_successful´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´SO_none´ (delay 0) DISABLED
+		´point_debug_003´ (delay 0)
+		´logic_toggle_off_4´ (delay 0)
+´input_enable_ai_interrupt´ ElementInstanceInput 100054
+	event enable ai interrupt
+	on_executed
+		´logic_toggle_on_enable´ (delay 0)
+´point_debug_003´ ElementDebug 100055
+	as_subtitle False
+	debug_string [crane controls] ai interruption enabled
+	show_instigator False
+´input_disable_ai_interrupt´ ElementInstanceInput 100068
+	event disable ai interrupt
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´logic_operator_remove´ (delay 0)
+´logic_toggle_off´ ElementToggle 100069
+	elements
+ 		1 ´SO_none´ DISABLED
+		2 ´SO_interact_anim´ DISABLED
+		3 ´trigger_special_objective_fail´
+		4 ´trigger_special_objective_complete´
+		5 ´output_ai_dissruption_successful´
+	set_trigger_times -1
+	toggle off
+´logic_operator_remove´ ElementOperator 100070
+	elements
+ 		1 ´SO_none´ DISABLED
+		2 ´SO_interact_anim´ DISABLED
+	operation remove
+´logic_link_004´ MissionScriptElement 100000
+	on_executed
+		´output_interaction´ (delay 0)
+´output_interaction´ ElementInstanceOutput 100005
+	event player interaction generic
+´input_show_defend_waypoint´ ElementInstanceInput 100006
+	event show defend waypoint
+	on_executed
+		´logic_link_003´ (delay 0)
+´input_disable_defend_waypoint´ ElementInstanceInput 100007
+	event disable defend waypoint
+	on_executed
+		´logic_link_006´ (delay 0)
+´input_show_interaction_waypoint´ ElementInstanceInput 100008
+	event show interaction waypoint
+	on_executed
+		´logic_link_007´ (delay 0)
+´input_disable_interaction_waypoint´ ElementInstanceInput 100009
+	event disable interaction waypoint
+	on_executed
+		´logic_link_009´ (delay 0)
+´input_remove_interaction_waypoint´ ElementInstanceInput 100010
+	event remove interaction waypoint
+	on_executed
+		´logic_link_008´ (delay 0)
+´input_remove_defend_waypoint´ ElementInstanceInput 100011
+	event remove defend waypoint
+	on_executed
+		´logic_link_005´ (delay 0)
+´logic_link_003´ MissionScriptElement 100012
+	on_executed
+		´WP_defend´ (delay 0)
+´logic_link_005´ MissionScriptElement 100013
+	on_executed
+		´logic_operator_remove_3´ (delay 0)
+´logic_link_006´ MissionScriptElement 100014
+	on_executed
+		´logic_toggle_off_2´ (delay 0)
+		´logic_operator_remove_3´ (delay 0)
+´logic_link_007´ MissionScriptElement 100015
+	on_executed
+		´WP_interact´ (delay 0)
+´logic_link_008´ MissionScriptElement 100016
+	on_executed
+		´logic_operator_remove_2´ (delay 0)
+´logic_link_009´ MissionScriptElement 100017
+	on_executed
+		´logic_toggle_off_3´ (delay 0)
+		´logic_operator_remove_2´ (delay 0)
+´logic_operator_remove_2´ ElementOperator 100018
+	elements
+ 		1 ´WP_interact´
+	operation remove
+´logic_operator_remove_3´ ElementOperator 100019
+	elements
+ 		1 ´WP_defend´
+	operation remove
+´logic_toggle_off_2´ ElementToggle 100020
+	elements
+ 		1 ´WP_defend´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_3´ ElementToggle 100021
+	elements
+ 		1 ´WP_interact´
+	set_trigger_times -1
+	toggle off
+´output_player_resumed´ ElementInstanceOutput 100022
+	event player resumed
+´trigger_interaction_2´ ElementUnitSequenceTrigger 100024
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_crane_control/trai_prop_crane_control/001 (0, 0, 89)
+	on_executed
+		´output_player_resumed´ (delay 0)
+´logic_toggle_on´ ElementToggle 100023
+	elements
+ 		1 ´trigger_interaction_2´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_4´ ElementToggle 100025
+	elements
+ 		1 ´trigger_interaction_2´ DISABLED
+	set_trigger_times 1
+	toggle off

@@ -1,0 +1,385 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 1600, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 1600, 800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_interaction_decouple´ ElementInteraction 100010
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, -1100, 100
+	rotation 0, 0, 0, -1
+	tweak_data_id trai_hold_decouple_locomotive
+	on_executed
+		´logic_link_007´ (delay 0) (alternative interacted)
+´point_interaction_fuel´ ElementInteraction 100011
+	DISABLED
+	host_only False
+	override_timer -1
+	position 200, 119, 125
+	rotation 0, -0.707107, 0, -0.707107
+	tweak_data_id trai_hold_refuel_locomotive
+	on_executed
+		´logic_link_008´ (delay 0) (alternative interacted)
+´point_interaction_engine´ ElementInteraction 100012
+	DISABLED
+	host_only False
+	override_timer -1
+	position 200, 857, 150
+	rotation 0, -0.707107, 0, -0.707107
+	tweak_data_id trai_hold_start_locomotive_engine
+	on_executed
+		´logic_link_009´ (delay 0) (alternative interacted)
+´point_waypoint_decouple´ ElementWaypoint 100013
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 2, -1122, 148
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_fuel´ ElementWaypoint 100014
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 206, 119, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_engine´ ElementWaypoint 100015
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 200, 857, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_show_locamotive´ ElementInstanceInput 100016
+	event show locomotive
+	on_executed
+		´logic_link_005´ (delay 0)
+´func_instance_input_hide_locomotive´ ElementInstanceInput 100017
+	event hide locomotive
+	on_executed
+		´logic_link_006´ (delay 0)
+´input_enable_decoupling_interaction´ ElementInstanceInput 100018
+	event enable decoupling interaction
+	on_executed
+		´logic_link_001´ (delay 0)
+´input_enable_refueling_interaction´ ElementInstanceInput 100019
+	event enable refueling interaction
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_enable_start_engine_interaction´ ElementInstanceInput 100020
+	event enable start engine interaction
+	on_executed
+		´logic_link_003´ (delay 0)
+´input_start_move_anim´ ElementInstanceInput 100007
+	event start movement animation
+	on_executed
+		´logic_link_004´ (delay 0)
+´output_decoupling_completed´ ElementInstanceOutput 100008
+	event decoupling completed
+´output_refuel_completed´ ElementInstanceOutput 100021
+	event refuel completed
+´output_engine_start_completed´ ElementInstanceOutput 100022
+	event engine start completed
+´output_anim_completed´ ElementInstanceOutput 100023
+	event movement anim completed
+´logic_link_001´ MissionScriptElement 100024
+	on_executed
+		´logic_toggle_on´ (delay 0)
+		´link_show_waypoint´ (delay 0)
+´logic_link_002´ MissionScriptElement 100025
+	on_executed
+		´logic_toggle_on_2´ (delay 0)
+		´link_show_waypoint_2´ (delay 0)
+´logic_link_003´ MissionScriptElement 100026
+	on_executed
+		´logic_toggle_on_3´ (delay 0)
+		´link_show_waypoint_3´ (delay 0)
+		´seq_OPEN_ELECTRIC_BOX´ (delay 0)
+´logic_link_004´ MissionScriptElement 100027
+	on_executed
+		´seq_anim_train´ (delay 0)
+´logic_toggle_on´ ElementToggle 100028
+	elements
+ 		1 ´point_interaction_decouple´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_2´ ElementToggle 100029
+	elements
+ 		1 ´point_interaction_fuel´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_3´ ElementToggle 100030
+	elements
+ 		1 ´point_interaction_engine´ DISABLED
+	set_trigger_times -1
+	toggle on
+´seq_anim_train´ ElementUnitSequence 100031
+	position 2200, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence anim_train
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence anim_elecric_box_close
+			time 0
+´func_sequence_trigger_anim_compelte´ ElementUnitSequenceTrigger 100032
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_arrive
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+	on_executed
+		´logic_link_010´ (delay 0)
+´logic_link_005´ MissionScriptElement 100033
+	on_executed
+		´func_sequence_002´ (delay 0)
+´logic_link_006´ MissionScriptElement 100034
+	on_executed
+		´func_sequence_003´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100035
+	position 1800, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+´func_sequence_003´ ElementUnitSequence 100036
+	position 2000, 600, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence pin_remove
+			time 0
+´logic_link_007´ MissionScriptElement 100037
+	on_executed
+		´output_decoupling_completed´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´seq_remove_pin´ (delay 0)
+´logic_link_008´ MissionScriptElement 100038
+	on_executed
+		´output_refuel_completed´ (delay 0)
+		´logic_toggle_off_2´ (delay 0)
+		´point_debug_002´ (delay 0)
+´logic_link_009´ MissionScriptElement 100039
+	on_executed
+		´output_engine_start_completed´ (delay 0)
+		´logic_toggle_off_3´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´seq_start_engine´ (delay 0)
+´link_show_waypoint´ MissionScriptElement 100040
+	on_executed
+		´point_waypoint_decouple´ (delay 0)
+´link_show_waypoint_2´ MissionScriptElement 100041
+	on_executed
+		´point_waypoint_fuel´ (delay 0)
+´link_show_waypoint_3´ MissionScriptElement 100042
+	on_executed
+		´point_waypoint_engine´ (delay 0)
+´logic_toggle_off´ ElementToggle 100043
+	elements
+ 		1 ´point_waypoint_decouple´
+		2 ´link_show_waypoint´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove´ (delay 0)
+´logic_toggle_off_2´ ElementToggle 100044
+	elements
+ 		1 ´point_waypoint_fuel´
+		2 ´link_show_waypoint_2´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove_2´ (delay 0)
+´logic_toggle_off_3´ ElementToggle 100045
+	elements
+ 		1 ´point_waypoint_engine´
+		2 ´link_show_waypoint_3´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_003´ (delay 0)
+´logic_operator_remove´ ElementOperator 100046
+	elements
+ 		1 ´point_waypoint_decouple´
+	operation remove
+´logic_operator_remove_2´ ElementOperator 100047
+	elements
+ 		1 ´point_waypoint_fuel´
+	operation remove
+´logic_operator_003´ ElementOperator 100048
+	elements
+ 		1 ´point_waypoint_engine´
+	operation remove
+´func_nav_obstacle_add´ ElementNavObstacle 100057
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_011_end (1094.23, 3611.83, 0)
+		2
+			guis_id 2
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end (1659.93, 4177.52, 0)
+		3
+			guis_id 3
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_013_end (1872.06, 4389.65, 0)
+		4
+			guis_id 4
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_014_end (2084.18, 4601.78, 0)
+		5
+			guis_id 5
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_015_end (2296.31, 4813.91, 0)
+		6
+			guis_id 6
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_016_end (2508.45, 5026.05, 0)
+		7
+			guis_id 7
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end001 (1447.79, 3965.39, 0)
+		8
+			guis_id 8
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end002 (1306.37, 3823.97, 0)
+		9
+			guis_id 9
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_015_end001 (2579.16, 4531.06, 0)
+		10
+			guis_id 10
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_016_end001 (2791.3, 4743.2, 0)
+		11
+			guis_id 11
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_014_end001 (2367.03, 4318.93, 0)
+		12
+			guis_id 12
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_013_end001 (2154.9, 4106.81, 0)
+		13
+			guis_id 13
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end005 (1942.77, 3894.68, 0)
+		14
+			guis_id 14
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end004 (1730.64, 3682.54, 0)
+		15
+			guis_id 15
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_012_end003 (1589.22, 3541.12, 0)
+		16
+			guis_id 16
+			obj_name 15222891314593672833
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_3x4x3/dev_door_blocker_3x4x3_011_end001 (1377.08, 3328.98, 0)
+	operation add
+	position 2100, 400, 0
+	rotation 0, 0, 0, -1
+´func_nav_obstacle_remove´ ElementNavObstacle 100058
+	DISABLED
+	obstacle_list
+	operation remove
+	position 2300, 400, 0
+	rotation 0, 0, 0, -1
+´logic_link_010´ MissionScriptElement 100066
+	on_executed
+		´output_anim_completed´ (delay 0)
+		´func_nav_obstacle_add´ (delay 0)
+		´func_nav_obstacle_remove´ (delay 0) DISABLED
+		´point_debug_004´ (delay 0)
+´point_debug_001´ ElementDebug 100055
+	as_subtitle False
+	debug_string [locomotive] - decoupling completed
+	show_instigator False
+´point_debug_002´ ElementDebug 100056
+	as_subtitle False
+	debug_string [locomotive] - refuel completed
+	show_instigator False
+´point_debug_003´ ElementDebug 100067
+	as_subtitle False
+	debug_string [locomotive] - engine start completed
+	show_instigator False
+´point_debug_004´ ElementDebug 100068
+	as_subtitle False
+	debug_string [locomotive] - anim completed
+	show_instigator False
+´seq_start_engine´ ElementUnitSequence 100049
+	position 2300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence engine_start
+			time 0
+´seq_OPEN_ELECTRIC_BOX´ ElementUnitSequence 100073
+	position 2300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence anim_elecric_box_open
+			time 0
+´seq_remove_pin´ ElementUnitSequence 100074
+	position 1500, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (0, 0, 0)
+			notify_unit_sequence pin_remove
+			time 0

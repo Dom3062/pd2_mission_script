@@ -1,0 +1,70 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´output_damaged´ ElementInstanceOutput 100008
+	event taken damage
+´trigger_hit_once´ ElementUnitSequenceTrigger 100011
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_damaged
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_electrical_box/trai_prop_electrical_box/001 (0, -19, -25)
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100007
+	on_executed
+		´output_damaged´ (delay 0)
+		´logic_link_vfx´ (delay 0)
+		´seq_set_damaged´ (delay 0)
+´env_effect_play_spark´ ElementPlayEffect 100012
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 0, -17.4186, 55.3189
+	random_time 0
+	rotation 0.649447, 0, 0, -0.760407
+	screen_space False
+´logic_link_vfx´ MissionScriptElement 100013
+	on_executed
+		´logic_link_loop´ (delay 0)
+		´env_effect_play_spark´ (delay 0)
+´logic_link_loop´ MissionScriptElement 100014
+	on_executed
+		´logic_link_vfx´ (delay 1-5)
+´seq_set_damaged´ ElementUnitSequence 100009
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_electrical_box/trai_prop_electrical_box/001 (0, -19, -25)
+			notify_unit_sequence state_damaged
+			time 0

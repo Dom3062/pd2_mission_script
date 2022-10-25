@@ -1,0 +1,254 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_motion_sensor_console/trai_prop_motion_sensor_console/001 (-15, -56, 138)
+			notify_unit_sequence state_security_on
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_hack´ ElementInstanceInput 100007
+	event enable_hack
+	on_executed
+		´toggle_enable_find_and_hack´ (delay 0)
+´output_console_int_access_denied´ ElementInstanceOutput 100008
+	event console_jammed
+´point_interaction_access_console´ ElementInteraction 100012
+	DISABLED
+	host_only False
+	override_timer -1
+	position -14, -40, 117
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id trai_hold_access_console
+	on_executed
+		´link_console_interacted´ (delay 0) (alternative interacted)
+´trigger_area_001´ ElementAreaTrigger 100013
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 50
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´lookat_and_stand_next´ (delay 0)
+´point_lookat_trigger_001´ ElementLookAtTrigger 100014
+	DISABLED
+	TRIGGER TIMES 1
+	distance 400
+	in_front False
+	interval 0.1
+	position 0, -75, 75
+	rotation 0, 0, 0, -1
+	sensitivity 0,9
+	on_executed
+		´lookat_and_stand_next´ (delay 0)
+´seq_console_jammed´ ElementUnitSequence 100016
+	position 700, -200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_motion_sensor_console/trai_prop_motion_sensor_console/001 (-15, -56, 138)
+			notify_unit_sequence state_access_denied
+			time 0
+	on_executed
+		´remove_WP_console´ (delay 0)
+´input_enable_deactivation´ ElementInstanceInput 100018
+	event enable_deactivation
+	on_executed
+		´toggle_enable_interact_deactivate´ (delay 0)
+´input_code_wrong´ ElementInstanceInput 100019
+	event code_wrong_access_denied
+	on_executed
+		´seq_int_disabled´ (delay 0)
+´toggle_enable_interact_deactivate´ ElementToggle 100011
+	elements
+ 		1 ´point_interaction_disable_sensors´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´func_seq_access_granted´ (delay 0)
+´link_sensors_disabled´ MissionScriptElement 100020
+	on_executed
+		´seq_state_unlocked´ (delay 0)
+´seq_state_unlocked´ ElementUnitSequence 100021
+	position 1300, -300, 2.5
+	rotation 0, 0, 4.76837E-07, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_motion_sensor_console/trai_prop_motion_sensor_console/001 (-15, -56, 138)
+			notify_unit_sequence state_security_off
+			time 0
+	on_executed
+		´output_sensors_deactivated´ (delay 0)
+´seq_int_disabled´ ElementUnitSequence 100023
+	position 1200, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_motion_sensor_console/trai_prop_motion_sensor_console/001 (-15, -56, 138)
+			notify_unit_sequence state_access_denied
+			time 0
+	on_executed
+		´toggle_off_interactions´ (delay 0)
+´WP_interact_console´ ElementWaypoint 100024
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -14.1898, -89.246, 144
+	rotation 0, 0, -0.00872655, -0.999962
+	text_id debug_none
+´WP_interact_keypad´ ElementWaypoint 100025
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 30.8033, -88.4607, 144
+	rotation 0, 0, -0.00872655, -0.999962
+	text_id debug_none
+´lookat_and_stand_next´ ElementCounter 100026
+	counter_target 2
+	on_executed
+		´link_console_found´ (delay 0)
+´toggle_enable_find_and_hack´ ElementToggle 100027
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
+		2 ´trigger_area_001´ DISABLED
+		3 ´point_interaction_access_console´ DISABLED
+	set_trigger_times -1
+	toggle on
+´link_console_found´ MissionScriptElement 100028
+	on_executed
+		´WP_interact_console´ (delay 0)
+		´output_console_found´ (delay 0)
+´remove_WP_console´ ElementOperator 100029
+	elements
+ 		1 ´WP_interact_console´
+	operation remove
+	on_executed
+		´output_console_int_access_denied´ (delay 0)
+´output_console_found´ ElementInstanceOutput 100030
+	event console_found
+´input_add_WP_keypad´ ElementInstanceInput 100031
+	event add_WP_keypad
+	on_executed
+		´link_add_WP_keypad´ (delay 0)
+´link_add_WP_keypad´ MissionScriptElement 100032
+	on_executed
+		´WP_interact_keypad´ (delay 0)
+´input_remove_all_WP´ ElementInstanceInput 100033
+	event remove_all_WP
+	on_executed
+		´remove_all_WP´ (delay 0)
+´remove_all_WP´ ElementOperator 100034
+	elements
+ 		1 ´WP_interact_console´
+		2 ´WP_interact_keypad´
+	operation remove
+´output_sensors_deactivated´ ElementInstanceOutput 100035
+	event sensors_deactivated
+´input_add_WP_console´ ElementInstanceInput 100036
+	event add_WP_console
+	on_executed
+		´link_add_WP_console´ (delay 0)
+´link_add_WP_console´ MissionScriptElement 100037
+	on_executed
+		´WP_interact_console´ (delay 0)
+´link_console_interacted´ MissionScriptElement 100039
+	on_executed
+		´seq_console_jammed´ (delay 0)
+´point_interaction_disable_sensors´ ElementInteraction 100015
+	DISABLED
+	host_only False
+	override_timer -1
+	position -14, -65, 132
+	rotation 0, 0, 1, 1.49012E-08
+	tweak_data_id trai_hold_disable_alarm
+	on_executed
+		´link_sensors_disabled´ (delay 0) (alternative interacted)
+´func_seq_access_granted´ ElementUnitSequence 100022
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_motion_sensor_console/trai_prop_motion_sensor_console/001 (-15, -56, 138)
+			notify_unit_sequence state_access_granted
+			time 0
+´police_called´ ElementGlobalEventTrigger 100010
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1100, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100017
+	elements
+ 		1 ´WP_interact_keypad´
+		2 ´WP_interact_console´
+	operation remove
+	on_executed
+		´disable_WP´ (delay 0)
+´disable_WP´ ElementToggle 100040
+	elements
+ 		1 ´point_interaction_access_console´ DISABLED
+		2 ´point_interaction_disable_sensors´ DISABLED
+		3 ´toggle_enable_find_and_hack´
+		4 ´link_add_WP_keypad´
+		5 ´link_add_WP_console´
+		6 ´toggle_enable_interact_deactivate´
+		7 ´WP_interact_keypad´
+		8 ´WP_interact_console´
+		9 ´point_lookat_trigger_001´ DISABLED
+		10 ´trigger_area_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´toggle_off_interactions´ ElementToggle 100041
+	elements
+ 		1 ´point_interaction_disable_sensors´ DISABLED
+		2 ´point_interaction_access_console´ DISABLED
+	set_trigger_times -1
+	toggle off

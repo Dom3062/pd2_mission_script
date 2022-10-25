@@ -1,0 +1,2071 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+		´logic_random_box´ (delay 0)
+		´logic_link_010´ (delay 0)
+		´func_nav_obstacle_add´ (delay 0)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_setup´ ElementUnitSequence 100005
+	BASE DELAY 0.1
+	position 5000, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_raise
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence pin_remove
+			time 0
+	on_executed
+		´func_sequence_001´ (delay 0)
+´unit_disabler´ ElementDisableUnit 100006
+	position 4950, 1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 300020
+		2 300021
+´input_show_train´ ElementInstanceInput 100007
+	event show locomotive
+	on_executed
+		´logic_link_009´ (delay 0)
+´logic_link_001´ MissionScriptElement 100180
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´logic_link_002´ (delay 1)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´logic_link_002´ MissionScriptElement 100181
+´debug_trigger_area´ ElementAreaTrigger 100182
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 200, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´logic_link_014´ (delay 0)
+´point_waypoint_left´ ElementWaypoint 100543
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position -2325, 625, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_random_box´ ElementRandom 100004
+	BASE DELAY 2
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´link_enable_box_a´ (delay 0)
+		´link_enable_box_b´ (delay 0)
+´link_enable_box_a´ MissionScriptElement 100549
+´link_enable_box_b´ MissionScriptElement 100550
+´point_waypoint_hook1´ ElementWaypoint 100551
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -1800, 450, 500
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_hook2´ ElementWaypoint 100552
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -1700, 450, 500
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_hook3´ ElementWaypoint 100553
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -1700, -300, 500
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_waypoint_hook4´ ElementWaypoint 100554
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position -1800, -300, 500
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_interaction_hook1´ ElementInteraction 100555
+	DISABLED
+	host_only False
+	override_timer -1
+	position -1800, 450, 500
+	rotation 0, 0, 0, -1
+	tweak_data_id trai_hold_attach_hook
+	on_executed
+		´link_hook1_complete´ (delay 0) (alternative interacted)
+´point_interaction_hook2´ ElementInteraction 100556
+	DISABLED
+	host_only False
+	override_timer -1
+	position -1700, 450, 500
+	rotation 0, 0, 0, -1
+	tweak_data_id trai_hold_attach_hook
+	on_executed
+		´link_hook2_complete´ (delay 0) (alternative interacted)
+´point_interaction_hook4´ ElementInteraction 100557
+	DISABLED
+	host_only False
+	override_timer -1
+	position -1800, -300, 500
+	rotation 0, 0, 0, -1
+	tweak_data_id trai_hold_attach_hook
+	on_executed
+		´link_hook4_complete´ (delay 0) (alternative interacted)
+´point_interaction_hook3´ ElementInteraction 100558
+	DISABLED
+	host_only False
+	override_timer -1
+	position -1700, -300, 500
+	rotation 0, 0, 0, -1
+	tweak_data_id trai_hold_attach_hook
+	on_executed
+		´link_hook3_complete´ (delay 0) (alternative interacted)
+´link_enable_hooks´ MissionScriptElement 100559
+	on_executed
+		´logic_counter=2´ (delay 0)
+		´point_debug_019´ (delay 0)
+´logic_toggle_on´ ElementToggle 100560
+	elements
+ 		1 ´point_interaction_hook2´ DISABLED
+		2 ´point_interaction_hook1´ DISABLED
+		3 ´point_interaction_hook3´ DISABLED
+		4 ´point_interaction_hook4´ DISABLED
+	set_trigger_times -1
+	toggle on
+´link_hook1_complete´ MissionScriptElement 100561
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=4´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+´link_hook2_complete´ MissionScriptElement 100562
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=4´ (delay 0)
+		´logic_toggle_off_2´ (delay 0)
+´link_hook3_complete´ MissionScriptElement 100563
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=4´ (delay 0)
+		´logic_toggle_off_3´ (delay 0)
+´link_hook4_complete´ MissionScriptElement 100564
+	TRIGGER TIMES 1
+	on_executed
+		´logic_counter=4´ (delay 0)
+		´logic_toggle_off_4´ (delay 0)
+´logic_counter=4´ ElementCounter 100565
+	counter_target 4
+	on_executed
+		´logic_link_004´ (delay 0)
+´logic_link_004´ MissionScriptElement 100566
+	on_executed
+		´output_hooks_complete´ (delay 0)
+		´point_debug_005´ (delay 0)
+		´logic_random_001´ (delay 0)
+´logic_link_003´ MissionScriptElement 100567
+	on_executed
+		´link_wp_hook1´ (delay 0)
+		´link_wp_hook2´ (delay 0)
+		´link_wp_hook3´ (delay 0)
+		´link_wp_hook4´ (delay 0)
+´link_wp_hook1´ MissionScriptElement 100568
+	BASE DELAY 20
+	on_executed
+		´point_waypoint_hook1´ (delay 0)
+´link_wp_hook2´ MissionScriptElement 100569
+	BASE DELAY 20-30
+	on_executed
+		´point_waypoint_hook2´ (delay 0)
+´link_wp_hook3´ MissionScriptElement 100570
+	BASE DELAY 20
+	on_executed
+		´point_waypoint_hook3´ (delay 0)
+´link_wp_hook4´ MissionScriptElement 100571
+	BASE DELAY 20
+	on_executed
+		´point_waypoint_hook4´ (delay 0)
+´logic_toggle_off´ ElementToggle 100572
+	elements
+ 		1 ´link_wp_hook1´
+		2 ´point_waypoint_hook1´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove´ (delay 0)
+´logic_toggle_off_2´ ElementToggle 100573
+	elements
+ 		1 ´link_wp_hook2´
+		2 ´point_waypoint_hook2´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove_2´ (delay 0)
+´logic_toggle_off_3´ ElementToggle 100574
+	elements
+ 		1 ´link_wp_hook3´
+		2 ´point_waypoint_hook3´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove_3´ (delay 0)
+´logic_toggle_off_4´ ElementToggle 100575
+	elements
+ 		1 ´link_wp_hook4´
+		2 ´point_waypoint_hook4´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove_4´ (delay 0)
+´logic_operator_remove´ ElementOperator 100576
+	elements
+ 		1 ´point_waypoint_hook1´
+	operation remove
+	on_executed
+		´func_sequence_002´ (delay 0)
+´logic_operator_remove_2´ ElementOperator 100577
+	elements
+ 		1 ´point_waypoint_hook2´
+	operation remove
+	on_executed
+		´func_sequence_003´ (delay 0)
+´logic_operator_remove_3´ ElementOperator 100578
+	elements
+ 		1 ´point_waypoint_hook3´
+	operation remove
+	on_executed
+		´func_sequence_004´ (delay 0)
+´logic_operator_remove_4´ ElementOperator 100579
+	elements
+ 		1 ´point_waypoint_hook4´
+	operation remove
+	on_executed
+		´func_sequence_005´ (delay 0)
+´input_enable_train_hooks´ ElementInstanceInput 100580
+	event enable train hook interactions
+	on_executed
+		´link_enable_hooks´ (delay 0)
+´input_start_moving_sequence´ ElementInstanceInput 100583
+	event start moving sequence
+	on_executed
+		´logic_link_008´ (delay 0)
+´output_hooks_complete´ ElementInstanceOutput 100584
+	event hooks attachment completed
+´logic_link_008´ MissionScriptElement 100010
+	on_executed
+		´seq_anim_train_lift´ (delay 0)
+		´toggle_on´ (delay 0.5)
+		´point_debug_004´ (delay 0)
+		´toggle_on_teleporter´ (delay 0)
+´seq_anim_train_lift´ ElementUnitSequence 100011
+	position 5300, -1000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_raise
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´seq_show_train´ ElementUnitSequence 100012
+	position 5300, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence show
+			time 0
+´logic_link_009´ MissionScriptElement 100013
+	on_executed
+		´seq_show_train´ (delay 0)
+´input_hide_train´ ElementInstanceInput 100014
+	event hide_loud_locomotive
+	on_executed
+		´logic_link_010´ (delay 0)
+´logic_link_010´ MissionScriptElement 100015
+	on_executed
+		´seq_hide_train´ (delay 0)
+´seq_hide_train´ ElementUnitSequence 100016
+	position 5500, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´trigger_anim_lift_complete´ ElementUnitSequenceTrigger 100017
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_lift
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+	on_executed
+		´logic_link_005´ (delay 0)
+´toggle_on´ ElementToggle 100018
+	elements
+ 		1 ´trigger_anim_lift_complete´ DISABLED
+	set_trigger_times 1
+	toggle on
+´logic_link_005´ MissionScriptElement 100019
+	on_executed
+		´seq_anim_train_crane_move´ (delay 0)
+		´toggle_on_2´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´link_stop_train´ (delay 8)
+		´timer_operator_start´ (delay 0)
+		´logic_timer_operator_start´ (delay 0)
+		´func_nav_obstacle_remove´ (delay 0)
+		´toggle_off_teleporter´ (delay 0)
+´seq_anim_train_crane_move´ ElementUnitSequence 100020
+	position 5300, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_crane_move
+			time 0
+	on_executed
+		´seq_lean´ (delay 6.5)
+´trigger_anin_train_crane_complete´ ElementUnitSequenceTrigger 100021
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_stop
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+´toggle_on_2´ ElementToggle 100022
+	elements
+ 		1 ´trigger_anin_train_crane_complete´ DISABLED
+	set_trigger_times 1
+	toggle on
+´logic_link_006´ MissionScriptElement 100023
+	on_executed
+		´seq_anim_train_stop_lean_forward´ (delay 0)
+		´point_debug_002´ (delay 0)
+		´output_train_lower_anim_started´ (delay 0)
+		´logic_toggle_off_8´ (delay 0)
+´seq_anim_train_stop_lean_forward´ ElementUnitSequence 100024
+	position 5200, -1900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_stop_forward
+			time 0
+	on_executed
+		´func_seq_anim_train_lower´ (delay 2)
+´toggle_on_3´ ElementToggle 100025
+	elements
+ 		1 ´trigger_anim_train_lower´ DISABLED
+	set_trigger_times 1
+	toggle on
+´trigger_anim_train_lower´ ElementUnitSequenceTrigger 100026
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_lower
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+	on_executed
+		´logic_link_007´ (delay 0)
+´logic_link_007´ MissionScriptElement 100027
+	on_executed
+		´output_anim_complete_final_pos´ (delay 0)
+		´point_debug_003´ (delay 0)
+		´logic_random_002´ (delay 0)
+		´disable_teleport´ (delay 0)
+´output_anim_complete_final_pos´ ElementInstanceOutput 100028
+	event train anim completed - final position
+´point_debug_001´ ElementDebug 100002
+	as_subtitle False
+	debug_string [crane] - move train/crane start
+	show_instigator False
+´point_debug_002´ ElementDebug 100029
+	as_subtitle False
+	debug_string [crane] - move train/crane completed, start lower
+	show_instigator False
+´point_debug_003´ ElementDebug 100030
+	as_subtitle False
+	debug_string [crane] - lower complete - in final pos
+	show_instigator False
+´point_debug_004´ ElementDebug 100031
+	as_subtitle False
+	debug_string [crane] - lift train start
+	show_instigator False
+´point_debug_005´ ElementDebug 100033
+	as_subtitle False
+	debug_string [crane] - all hooks attached
+	show_instigator False
+´logic_chance_001´ ElementLogicChance 100034
+	chance 30
+	position 6900, -1000, 0
+	rotation 0, 0, 0, -1
+´logic_chance_operator_001´ ElementLogicChanceOperator 100035
+	elements
+ 		1 ´logic_chance_001´
+	chance 10
+	operation add_chance
+	position 7000, -1300, 0
+	rotation 0, 0, 0, -1
+´trigger_success´ ElementLogicChanceTrigger 100036
+	elements
+ 		1 ´logic_chance_001´
+	outcome success
+	position 6800, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_012´ (delay 0)
+´trigger_fail´ ElementLogicChanceTrigger 100037
+	elements
+ 		1 ´logic_chance_001´
+	outcome fail
+	position 7000, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_link_011´ (delay 0)
+´logic_link_011´ MissionScriptElement 100038
+	on_executed
+		´logic_chance_operator_001´ (delay 0)
+		´point_debug_007´ (delay 0)
+		´logic_link_016´ (delay 2)
+´logic_link_012´ MissionScriptElement 100039
+	on_executed
+		´point_debug_006´ (delay 0)
+		´seq_stop_crane´ (delay 0)
+		´logic_toggle_off_5´ (delay 0)
+		´timer_operator_pause´ (delay 0)
+		´timer_operator_pause_2´ (delay 0)
+		´logic_filter_veryhard-_2´ (delay 0)
+		´logic_filter_ovk+´ (delay 0)
+		´logic_filter_death_sentence´ (delay 0)
+		´logic_random_003´ (delay 0)
+´point_debug_006´ ElementDebug 100040
+	as_subtitle False
+	debug_string [crane] - stop success (left/right)
+	show_instigator False
+´point_debug_007´ ElementDebug 100041
+	as_subtitle False
+	debug_string [crane] - stop fail, looping (left/right)
+	show_instigator False
+´seq_stop_crane´ ElementUnitSequence 100042
+	position 6800, -1300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_crane_stop
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_stop_side
+			time 0
+	on_executed
+		´output_crane_stopped´ (delay 0)
+´logic_toggle_off_5´ ElementToggle 100043
+	elements
+ 		1 ´logic_chance_001´
+	set_trigger_times -1
+	toggle off
+´link_stop_train´ MissionScriptElement 100044
+	BASE DELAY 5
+	on_executed
+		´logic_link_016´ (delay 0)
+´logic_timer=33´ ElementTimer 100045
+	TRIGGER TIMES 1
+	timer 33
+	on_executed
+		´logic_link_013´ (delay 0)
+´timer_operator_pause´ ElementTimerOperator 100047
+	elements
+ 		1 ´logic_timer=33´
+		2 ´logic_timer=105s´
+	operation pause
+	position 5800, -1600, 0
+	rotation 0, 0, 0, -1
+	time 0
+´timer_operator_start´ ElementTimerOperator 100046
+	elements
+ 		1 ´logic_timer=33´
+	operation start
+	position 5600, -1600, 0
+	rotation 0, 0, 0, -1
+	time 0
+´logic_link_013´ MissionScriptElement 100048
+	on_executed
+		´logic_toggle_off_6´ (delay 0)
+		´point_debug_009´ (delay 0)
+		´seq_train_stop_side_lean´ (delay 0)
+		´output_left/right_anim_compelte´ (delay 0)
+´logic_toggle_off_6´ ElementToggle 100049
+	elements
+ 		1 ´logic_chance_001´
+		2 ´logic_link_012´
+		3 ´logic_link_011´
+		4 ´seq_stop_crane´
+		5 ´trigger_success´
+		6 ´trigger_fail´
+		7 ´link_stop_train´
+		8 ´link_resume´
+		9 ´point_debug_010´
+		10 ´seq_resume_anim´
+		11 ´output_crane_repaired´
+		12 ´logic_toggle_left´
+		13 ´logic_operator_remove_left´
+		14 ´seq_lean´
+		15 ´logic_toggle_off_right´
+		16 ´logic_operator_remove_right´
+		17 ´logic_toggle_off_left001´
+		18 ´logic_operator_remove_left001´
+		19 ´logic_toggle_off_right001´
+		20 ´logic_operator_remove_right001´
+	set_trigger_times -1
+	toggle off
+´point_interaction_left´ ElementInteraction 100050
+	DISABLED
+	host_only False
+	override_timer -1
+	position -2325, 625, 150
+	rotation 0, 0.707107, 0, -0.707107
+	tweak_data_id trai_fix_cable
+	on_executed
+		´link_interacted_left´ (delay 0) (alternative interacted)
+´link_resume´ MissionScriptElement 100051
+	on_executed
+		´seq_resume_anim´ (delay 0)
+		´logic_timer_operator_start´ (delay 0)
+		´point_debug_010´ (delay 0)
+		´timer_operator_start´ (delay 0)
+		´output_crane_repaired´ (delay 0)
+´link_show_resume_waypoint_left´ MissionScriptElement 100052
+	on_executed
+		´point_waypoint_left´ (delay 0)
+		´logic_toggle_on_2´ (delay 0)
+		´sparks_left´ (delay 0)
+		´seq_break_cables001´ (delay 0)
+´logic_toggle_on_2´ ElementToggle 100053
+	elements
+ 		1 ´point_interaction_left´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_left´ ElementToggle 100054
+	elements
+ 		1 ´point_waypoint_left´
+		2 ´sparks_left´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´logic_operator_remove_left´ (delay 0)
+´logic_operator_remove_left´ ElementOperator 100055
+	elements
+ 		1 ´point_waypoint_left´
+	operation remove
+´seq_resume_anim´ ElementUnitSequence 100056
+	position 7100, -2400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_crane_move
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lean_side
+			time 0
+´debug_trigger_area_2´ ElementAreaTrigger 100057
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 100
+	height 200
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -2300, -575, 100
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 100
+	on_executed
+		´input_start_moving_sequence´ (delay 0)
+´logic_timer=105s´ ElementTimer 100058
+	timer 105
+	on_executed
+		´logic_link_006´ (delay 0)
+´logic_timer_operator_start´ ElementTimerOperator 100059
+	elements
+ 		1 ´logic_timer=105s´
+	operation start
+	position 5100, -1600, 0
+	rotation 0, 0, 0, -1
+	time 0
+´timer_operator_pause_2´ ElementTimerOperator 100060
+	elements
+ 		1 ´logic_timer=105s´
+	operation pause
+	position 5300, -1600, 0
+	rotation 0, 0, 0, -1
+	time 0
+´seq_lean´ ElementUnitSequence 100032
+	position 5300, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lean_side
+			time 0
+´point_debug_008´ ElementDebug 100061
+	as_subtitle False
+	debug_string [crane] - stop chance active (left/right)
+	show_instigator False
+´point_debug_009´ ElementDebug 100062
+	as_subtitle False
+	debug_string [crane] - timer left/right completed
+	show_instigator False
+´point_debug_010´ ElementDebug 100063
+	as_subtitle False
+	debug_string [crane] - resumed (left/right)
+	show_instigator False
+´seq_train_stop_side_lean´ ElementUnitSequence 100064
+	BASE DELAY 2
+	position 5800, -1900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_stop_side
+			time 0
+	on_executed
+		´seq_train_start_front_lean´ (delay 0)
+´seq_train_start_front_lean´ ElementUnitSequence 100065
+	position 5800, -2000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lean_forward
+			time 0
+	on_executed
+		´output_anim_moving_forward´ (delay 0)
+´func_seq_anim_train_lower´ ElementUnitSequence 100066
+	position 5200, -2000, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lower
+			time 0
+	on_executed
+		´toggle_on_3´ (delay 0.5)
+		´func_nav_obstacle_add_2´ (delay 0)
+		´toggle_on_teleport_areas´ (delay 8)
+´output_crane_stopped´ ElementInstanceOutput 100008
+	event crane stopped
+´output_crane_repaired´ ElementInstanceOutput 100067
+	event crane repaired
+´point_debug_011´ ElementDebug 100068
+	as_subtitle False
+	debug_string hook_interactions_enabled
+	show_instigator False
+´func_nav_obstacle_add´ ElementNavObstacle 100084
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_001_start (-1600, 950, 0)
+		2
+			guis_id 2
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_002_start (-1600, 800, 0)
+		3
+			guis_id 3
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_003_start (-1600, -1050, 0)
+		4
+			guis_id 4
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_001_start (-1600, -800, 0)
+		5
+			guis_id 5
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_002_start (-1600, 50, 0)
+		6
+			guis_id 6
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_003_start (-2000, -800, 0)
+		7
+			guis_id 7
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_004_start (-2000, 50, 0)
+	operation add
+	position 4900, 1300, 0
+	rotation 0, 0, 0, -1
+´func_nav_obstacle_remove´ ElementNavObstacle 100085
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_001_start (-1600, 950, 0)
+		2
+			guis_id 2
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_002_start (-1600, 800, 0)
+		3
+			guis_id 3
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_003_start (-1600, -1050, 0)
+		4
+			guis_id 4
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_001_start (-1600, -800, 0)
+		5
+			guis_id 5
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_002_start (-1600, 50, 0)
+		6
+			guis_id 6
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_003_start (-2000, -800, 0)
+		7
+			guis_id 7
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_004_start (-2000, 50, 0)
+	operation remove
+	position 5100, -1100, 0
+	rotation 0, 0, 0, -1
+´func_nav_obstacle_add_2´ ElementNavObstacle 100086
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_004_end (1800, -3950, 0)
+		2
+			guis_id 2
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_005_end (1800, -2100, 0)
+		3
+			guis_id 3
+			obj_name 6237774253185985364
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x5x3/dev_door_blocker_1x5x3_006_end (1800, -1950, 0)
+		4
+			guis_id 4
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_005_end (1400, -2850, 0)
+		5
+			guis_id 5
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_006_end (1400, -3700, 0)
+		6
+			guis_id 6
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_007_end (1800, -3700, 0)
+		7
+			guis_id 7
+			obj_name 6454096881371725503
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x8x3/dev_door_blocker_1x8x3_008_end (1800, -2850, 0)
+	operation add
+	position 5100, -2000, 0
+	rotation 0, 0, 0, -1
+´func_sequence_001´ ElementUnitSequence 100087
+	position 5050, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence show
+			time 0
+´input_lower_crane´ ElementInstanceInput 100088
+	event lower hooks
+	on_executed
+		´logic_link_014´ (delay 0)
+´logic_link_014´ MissionScriptElement 100089
+	on_executed
+		´seq_lower_hooks´ (delay 0)
+		´point_debug_018´ (delay 0)
+´seq_lower_hooks´ ElementUnitSequence 100090
+	BASE DELAY 0.1
+	position 4750, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lower
+			time 0
+	on_executed
+		´seq_hide_train_2´ (delay 0)
+´seq_hide_train_2´ ElementUnitSequence 100091
+	position 4750, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´logic_toggle_on_3´ (delay 0)
+´trigger_lower_complete´ ElementUnitSequenceTrigger 100092
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_lower
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+	on_executed
+		´logic_counter=2´ (delay 0)
+		´output_hooks_lowered´ (delay 0)
+´logic_toggle_on_3´ ElementToggle 100093
+	elements
+ 		1 ´trigger_lower_complete´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_counter=2´ ElementCounter 100094
+	counter_target 2
+	on_executed
+		´logic_link_015´ (delay 0)
+´logic_link_015´ MissionScriptElement 100095
+	on_executed
+		´point_debug_011´ (delay 0)
+		´logic_toggle_on´ (delay 0)
+		´logic_link_003´ (delay 0)
+´output_hooks_lowered´ ElementInstanceOutput 100096
+	event hooks lowered
+´logic_link_016´ MissionScriptElement 100097
+	BASE DELAY 4
+	on_executed
+		´logic_chance_001´ (delay 0)
+		´point_debug_008´ (delay 0)
+´logic_link_019´ MissionScriptElement 100103
+	on_executed
+		´seq_stop_train´ (delay 0)
+		´logic_toggle_off_7´ (delay 0)
+		´timer_operator_pause_2´ (delay 0)
+		´point_debug_012´ (delay 0)
+		´logic_random_003´ (delay 0)
+´logic_toggle_off_7´ ElementToggle 100107
+	set_trigger_times -1
+	toggle off
+´seq_stop_train´ ElementUnitSequence 100109
+	position 7900, -1400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_crane_stop
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_stop_forward
+			time 0
+	on_executed
+		´output_crane_stopped_forward´ (delay 0)
+´output_crane_stopped_forward´ ElementInstanceOutput 100112
+	event crane stopped forward
+´input_resume_anim_forward´ ElementInstanceInput 100113
+	event resume anim forward
+	on_executed
+		´logic_link_017´ (delay 0)
+´logic_link_017´ MissionScriptElement 100114
+	on_executed
+		´point_debug_015´ (delay 0)
+		´seq_resume_anim_forward´ (delay 0)
+		´logic_timer_operator_start´ (delay 0)
+´seq_resume_anim_forward´ ElementUnitSequence 100115
+	position 7800, -2400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_crane_move
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_train_lean_forward
+			time 0
+´point_debug_015´ ElementDebug 100116
+	as_subtitle False
+	debug_string [crane] - resumed (forward)
+	show_instigator False
+´input_stop_forward_anim´ ElementInstanceInput 100117
+	event stop forward anim
+	on_executed
+		´logic_link_019´ (delay 0)
+´output_anim_moving_forward´ ElementInstanceOutput 100118
+	event anim started moving forward
+´func_sequence_002´ ElementUnitSequence 100111
+	position 5500, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_attach_hook_03
+			time 0
+´func_sequence_003´ ElementUnitSequence 100119
+	position 5600, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_attach_hook_04
+			time 0
+´func_sequence_004´ ElementUnitSequence 100120
+	position 5800, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_attach_hook_02
+			time 0
+´func_sequence_005´ ElementUnitSequence 100121
+	position 5900, -250, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_attach_hook_01
+			time 0
+´output_left/right_anim_compelte´ ElementInstanceOutput 100122
+	event left/right anim completed
+´point_debug_016´ ElementDebug 100123
+	as_subtitle False
+	debug_string none
+	show_instigator False
+´point_debug_017´ ElementDebug 100124
+	as_subtitle False
+	debug_string none
+	show_instigator False
+´point_debug_018´ ElementDebug 100125
+	as_subtitle False
+	debug_string crane - lower hooks anim
+	show_instigator False
+´point_debug_019´ ElementDebug 100126
+	as_subtitle False
+	debug_string crane - enable hook interaction
+	show_instigator False
+´output_train_lower_anim_started´ ElementInstanceOutput 100127
+	event train lower anim started
+´logic_toggle_off_8´ ElementToggle 100128
+	elements
+ 		1 ´seq_stop_train´
+		2 ´logic_link_019´
+		3 ´logic_link_012´
+		4 ´seq_stop_crane´
+		5 ´seq_resume_anim_forward´
+		6 ´seq_resume_anim´
+		7 ´input_stop_forward_anim´
+		8 ´logic_link_017´
+		9 ´logic_timer=33´
+		10 ´timer_operator_start´
+		11 ´timer_operator_pause´
+		12 ´logic_link_013´
+	set_trigger_times -1
+	toggle off
+´point_debug_012´ ElementDebug 100098
+	as_subtitle False
+	debug_string [crane] - ai stopped (forward)
+	show_instigator False
+´env_effect_play_left´ ElementPlayEffect 100099
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position -2309, 625, 165
+	random_time 0
+	rotation 0, -0.382683, 0, -0.92388
+	screen_space False
+´point_waypoint_right´ ElementWaypoint 100100
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position -2325, -557, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´env_effect_play_right´ ElementPlayEffect 100101
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position -2309, -557, 165
+	random_time 0
+	rotation 0, -0.382683, 0, -0.92388
+	screen_space False
+´point_interaction_right´ ElementInteraction 100102
+	DISABLED
+	host_only False
+	override_timer -1
+	position -2325, -557, 150
+	rotation 0, 0.707107, 0, -0.707107
+	tweak_data_id trai_fix_cable
+	on_executed
+		´link_interacted_right´ (delay 0) (alternative interacted)
+´logic_filter_ovk+´ ElementFilter 100104
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6500, -1300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_2´ (delay 0)
+´logic_filter_veryhard-´ ElementFilter 100105
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6800, -2100, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_1´ (delay 0)
+´logic_filter_ovk+_2´ ElementFilter 100106
+	difficulty_easy False
+	difficulty_easy_wish True
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 True
+	difficulty_overkill_290 True
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6800, -2200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_2´ (delay 0)
+´logic_filter_veryhard-_2´ ElementFilter 100108
+	difficulty_easy True
+	difficulty_easy_wish False
+	difficulty_hard True
+	difficulty_normal True
+	difficulty_overkill True
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish False
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6600, -1300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_1´ (delay 0)
+´link_show_resume_waypoint_right´ MissionScriptElement 100110
+	on_executed
+		´logic_toggle_on001´ (delay 0)
+		´sparks_right´ (delay 0)
+		´point_waypoint_right´ (delay 0)
+		´seq_break_cables002´ (delay 0)
+´logic_toggle_on001´ ElementToggle 100129
+	elements
+ 		1 ´point_interaction_right´ DISABLED
+	set_trigger_times -1
+	toggle on
+´point_waypoint_left001´ ElementWaypoint 100130
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position 2180, 625, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´env_effect_play_left001´ ElementPlayEffect 100131
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 2167, 625, 165
+	random_time 0
+	rotation 0, 0.382684, 0, -0.923879
+	screen_space False
+´point_interaction_left001´ ElementInteraction 100132
+	DISABLED
+	host_only False
+	override_timer -1
+	position 2167, 625, 150
+	rotation 0.707107, 1.19209E-07, 0.707107, -8.9407E-08
+	tweak_data_id trai_fix_cable
+	on_executed
+		´link_interacted_left001´ (delay 0) (alternative interacted)
+´point_waypoint_right001´ ElementWaypoint 100133
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position 2180, -557, 175
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´env_effect_play_right001´ ElementPlayEffect 100134
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 2167, -557, 165
+	random_time 0
+	rotation 0, 0.382684, 0, -0.923879
+	screen_space False
+´point_interaction_right001´ ElementInteraction 100135
+	DISABLED
+	host_only False
+	override_timer -1
+	position 2167, -557, 150
+	rotation 0.707107, 1.19209E-07, 0.707107, -8.9407E-08
+	tweak_data_id trai_fix_cable
+	on_executed
+		´link_interacted_right001´ (delay 0) (alternative interacted)
+´logic_filter_death_sentence´ ElementFilter 100139
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6400, -1300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_random_3´ (delay 0)
+´logic_random_3´ ElementRandom 100142
+	amount 3
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´link_show_resume_waypoint_right001´ (delay 0)
+		´link_show_resume_waypoint_left001´ (delay 0)
+		´link_show_resume_waypoint_right´ (delay 0)
+		´link_show_resume_waypoint_left´ (delay 0)
+´logic_random_2´ ElementRandom 100143
+	amount 2
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´link_show_resume_waypoint_left´ (delay 0)
+		´link_show_resume_waypoint_right´ (delay 0)
+		´link_show_resume_waypoint_left001´ (delay 0)
+		´link_show_resume_waypoint_right001´ (delay 0)
+´logic_random_1´ ElementRandom 100144
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´link_show_resume_waypoint_left´ (delay 0)
+		´link_show_resume_waypoint_right´ (delay 0)
+		´link_show_resume_waypoint_left001´ (delay 0)
+		´link_show_resume_waypoint_right001´ (delay 0)
+´logic_toggle_on002´ ElementToggle 100145
+	elements
+ 		1 ´point_interaction_left001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on003´ ElementToggle 100146
+	elements
+ 		1 ´point_interaction_right001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´link_show_resume_waypoint_left001´ MissionScriptElement 100147
+	on_executed
+		´logic_toggle_on002´ (delay 0)
+		´sparks_left001´ (delay 0)
+		´point_waypoint_left001´ (delay 0)
+		´seq_break_cables003´ (delay 0)
+´link_show_resume_waypoint_right001´ MissionScriptElement 100148
+	on_executed
+		´logic_toggle_on003´ (delay 0)
+		´sparks_right001´ (delay 0)
+		´point_waypoint_right001´ (delay 0)
+		´seq_break_cables004´ (delay 0)
+´sparks_left´ MissionScriptElement 100137
+	on_executed
+		´loop´ (delay 0)
+		´env_effect_play_left´ (delay 0)
+´sparks_left001´ MissionScriptElement 100138
+	on_executed
+		´loop002´ (delay 0)
+		´env_effect_play_left001´ (delay 0)
+´sparks_right´ MissionScriptElement 100140
+	on_executed
+		´loop001´ (delay 0)
+		´env_effect_play_right´ (delay 0)
+´sparks_right001´ MissionScriptElement 100141
+	on_executed
+		´loop003´ (delay 0)
+		´env_effect_play_right001´ (delay 0)
+´logic_filter_death_sentence_2´ ElementFilter 100149
+	difficulty_easy False
+	difficulty_easy_wish False
+	difficulty_hard False
+	difficulty_normal False
+	difficulty_overkill False
+	difficulty_overkill_145 False
+	difficulty_overkill_290 False
+	difficulty_sm_wish True
+	mode_assault True
+	mode_control True
+	platform_pc_only False
+	platform_ps3 True
+	platform_ps4_only False
+	platform_win32 True
+	platform_xb1_only False
+	player_1 True
+	player_2 True
+	player_3 True
+	player_4 True
+	position 6800, -2300, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_3´ (delay 0)
+´logic_counter_1´ ElementCounter 100150
+	counter_target 1
+	on_executed
+		´point_debug_020´ (delay 0)
+		´link_resume´ (delay 0)
+´logic_counter_2´ ElementCounter 100151
+	counter_target 2
+	on_executed
+		´point_debug_014´ (delay 0)
+		´link_resume´ (delay 0)
+´logic_counter_3´ ElementCounter 100152
+	counter_target 3
+	on_executed
+		´point_debug_013´ (delay 0)
+		´link_resume´ (delay 0)
+´loop´ MissionScriptElement 100153
+	BASE DELAY 0.9-2.9
+	on_executed
+		´sparks_left´ (delay 0)
+´loop001´ MissionScriptElement 100154
+	BASE DELAY 0.9-2.9
+	on_executed
+		´sparks_right´ (delay 0)
+´loop002´ MissionScriptElement 100155
+	BASE DELAY 0.9-2.9
+	on_executed
+		´sparks_left001´ (delay 0)
+´loop003´ MissionScriptElement 100156
+	BASE DELAY 0.9-2.9
+	on_executed
+		´sparks_right001´ (delay 0)
+´logic_toggle_off_right´ ElementToggle 100136
+	elements
+ 		1 ´point_waypoint_right´
+		2 ´sparks_right´
+	set_trigger_times -1
+	toggle off
+´logic_operator_remove_right´ ElementOperator 100157
+	elements
+ 		1 ´point_waypoint_right´
+	operation remove
+´logic_operator_remove_right001´ ElementOperator 100158
+	elements
+ 		1 ´point_waypoint_right001´
+	operation remove
+´logic_toggle_off_right001´ ElementToggle 100160
+	elements
+ 		1 ´point_waypoint_right001´
+		2 ´sparks_right001´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_left001´ ElementToggle 100159
+	elements
+ 		1 ´point_waypoint_left001´
+		2 ´sparks_left001´
+	set_trigger_times -1
+	toggle off
+´logic_operator_remove_left001´ ElementOperator 100161
+	elements
+ 		1 ´point_waypoint_left001´
+	operation remove
+´link_interacted_left´ MissionScriptElement 100162
+	on_executed
+		´logic_operator_remove_left´ (delay 0)
+		´logic_toggle_left´ (delay 0)
+		´seq_fix_cables001´ (delay 0)
+		´point_debug_021´ (delay 0)
+		´logic_filter_veryhard-´ (delay 0)
+		´logic_filter_ovk+_2´ (delay 0)
+		´logic_filter_death_sentence_2´ (delay 0)
+´link_interacted_right´ MissionScriptElement 100163
+	on_executed
+		´logic_toggle_off_right´ (delay 0)
+		´logic_operator_remove_right´ (delay 0)
+		´seq_fix_cables002´ (delay 0)
+		´point_debug_022´ (delay 0)
+		´logic_filter_veryhard-´ (delay 0)
+		´logic_filter_ovk+_2´ (delay 0)
+		´logic_filter_death_sentence_2´ (delay 0)
+´link_interacted_right001´ MissionScriptElement 100164
+	on_executed
+		´logic_toggle_off_right001´ (delay 0)
+		´logic_operator_remove_right001´ (delay 0)
+		´seq_fix_cables003´ (delay 0)
+		´point_debug_024´ (delay 0)
+		´logic_filter_death_sentence_2´ (delay 0)
+		´logic_filter_ovk+_2´ (delay 0)
+		´logic_filter_veryhard-´ (delay 0)
+´link_interacted_left001´ MissionScriptElement 100165
+	on_executed
+		´logic_toggle_off_left001´ (delay 0)
+		´logic_operator_remove_left001´ (delay 0)
+		´seq_fix_cables004´ (delay 0)
+		´point_debug_023´ (delay 0)
+		´logic_filter_death_sentence_2´ (delay 0)
+		´logic_filter_ovk+_2´ (delay 0)
+		´logic_filter_veryhard-´ (delay 0)
+´logic_random_001´ ElementRandom 100167
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´point_teammate_comment_001´ (delay 0)
+		´point_teammate_comment_002´ (delay 0)
+		´point_teammate_comment_003´ (delay 0)
+´point_teammate_comment_001´ ElementTeammateComment 100169
+	close_to_element True
+	comment p28
+	position -1800, 0, 500
+	radius 750
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_002´ ElementTeammateComment 100170
+	close_to_element True
+	comment v07
+	position -1800, 100, 500
+	radius 750
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_003´ ElementTeammateComment 100171
+	close_to_element True
+	comment v08
+	position -1800, 200, 500
+	radius 750
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_getiton´ ElementTeammateComment 100166
+	close_to_element False
+	comment p47
+	position 1700, -2900, 0
+	radius 2000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_finished´ ElementTeammateComment 100168
+	close_to_element False
+	comment v25
+	position 1700, -2900, 0
+	radius 2000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_fyeah´ ElementTeammateComment 100172
+	close_to_element True
+	comment v46
+	position 1700, -2900, 0
+	radius 2000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´logic_random_002´ ElementRandom 100173
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´point_teammate_comment_fyeah´ (delay 0)
+		´point_teammate_comment_getiton´ (delay 0)
+		´point_teammate_comment_finished´ (delay 0)
+´point_teammate_comment_shit´ ElementTeammateComment 100174
+	close_to_element True
+	comment g29
+	position -50, 50, 50
+	radius 4000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_fuck´ ElementTeammateComment 100175
+	close_to_element True
+	comment g60
+	position 50, 50, 50
+	radius 4000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´logic_random_003´ ElementRandom 100176
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´point_teammate_comment_shit´ (delay 0)
+		´point_teammate_comment_fuck´ (delay 0)
+´point_interaction_001´ ElementInteraction 100177
+	DISABLED
+	host_only False
+	override_timer -1
+	position 1450, -3788, 127
+	rotation -4.21468E-08, 0.707107, -4.21468E-08, -0.707107
+	tweak_data_id trai_hold_start_locomotive_engine
+	on_executed
+		´link_engine_interacted´ (delay 0) (alternative interacted)
+´input_enable_start_engine´ ElementInstanceInput 100178
+	event enable_start_engine
+	on_executed
+		´logic_toggle_on_4´ (delay 0)
+		´seq_open_electrical_box´ (delay 0)
+´logic_toggle_on_4´ ElementToggle 100179
+	elements
+ 		1 ´point_interaction_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´link_show_WP´ (delay 0)
+´link_engine_interacted´ MissionScriptElement 100183
+	on_executed
+		´logic_chance_33´ (delay 0)
+´logic_chance_33´ ElementLogicChance 100184
+	chance 33
+	position 5200, -3100, 2.5
+	rotation 0, 0, 0, -1
+´logic_chance_trigger_fail´ ElementLogicChanceTrigger 100185
+	elements
+ 		1 ´logic_chance_33´
+	outcome success
+	position 5000, -3200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_success´ (delay 0)
+´logic_chance_trigger_fail_2´ ElementLogicChanceTrigger 100186
+	elements
+ 		1 ´logic_chance_33´
+	outcome fail
+	position 5400, -3200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´link_fail´ (delay 0)
+´link_success´ MissionScriptElement 100187
+	on_executed
+		´remove_WP_engine´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+		´point_play_engine_start´ (delay 0) DISABLED
+		´seq_close_electrical_box´ (delay 0)
+´link_fail´ MissionScriptElement 100188
+	on_executed
+		´logic_chance_operator_002´ (delay 0)
+		´point_debug_fail´ (delay 0)
+		´env_effect_play_sparks´ (delay 0)
+		´logic_counter_2_2´ (delay 0)
+		´point_play_engine_fail´ (delay 0) DISABLED
+´output_engine_started´ ElementInstanceOutput 100189
+	event engine_started
+´remove_WP_engine´ ElementOperator 100190
+	elements
+ 		1 ´WP_engine´
+	operation remove
+	on_executed
+		´output_engine_started´ (delay 0)
+´WP_engine´ ElementWaypoint 100191
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 1439, -3784, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_show_WP´ MissionScriptElement 100192
+	on_executed
+		´WP_engine´ (delay 0)
+´logic_chance_operator_002´ ElementLogicChanceOperator 100193
+	elements
+ 		1 ´logic_chance_33´
+	chance 34
+	operation add_chance
+	position 5400, -3400, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter_001´ (delay 0)
+		´logic_counter_002´ (delay 0)
+´point_debug_fail´ ElementDebug 100194
+	as_subtitle False
+	debug_string start_engine_fail_add_chance
+	show_instigator False
+´env_effect_play_sparks´ ElementPlayEffect 100195
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 1464, -3784, 142
+	random_time 0
+	rotation 0, -0.707107, 0, -0.707107
+	screen_space False
+´logic_toggle_on_3rd_´ ElementToggle 100196
+	elements
+ 		1 ´point_interaction_003´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_2nd´ ElementToggle 100197
+	elements
+ 		1 ´point_interaction_002´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_003´ ElementToggle 100198
+	elements
+ 		1 ´logic_chance_trigger_fail_2´
+		2 ´link_fail´
+		3 ´logic_chance_operator_002´
+		4 ´logic_toggle_on_3rd_´
+		5 ´logic_toggle_on_2nd´
+	set_trigger_times -1
+	toggle off
+´logic_counter_2_2´ ElementCounter 100199
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´point_teammate_comment_004´ (delay 0)
+´point_teammate_comment_004´ ElementTeammateComment 100200
+	close_to_element True
+	comment g29
+	position 1450, -3784, 205
+	radius 300
+	rotation 0, 0, 0, -1
+	use_instigator False
+´logic_counter_001´ ElementCounter 100201
+	TRIGGER TIMES 1
+	counter_target 1
+	on_executed
+		´logic_toggle_on_2nd´ (delay 0)
+´logic_counter_002´ ElementCounter 100202
+	TRIGGER TIMES 1
+	counter_target 2
+	on_executed
+		´logic_toggle_on_3rd_´ (delay 0)
+´point_interaction_002´ ElementInteraction 100203
+	DISABLED
+	host_only False
+	override_timer -1
+	position 1450, -3780, 113
+	rotation -4.21468E-08, 0.707107, -4.21468E-08, -0.707107
+	tweak_data_id trai_hold_start_locomotive_engine
+	on_executed
+		´link_engine_interacted´ (delay 0) (alternative interacted)
+´point_interaction_003´ ElementInteraction 100204
+	DISABLED
+	host_only False
+	override_timer -1
+	position 1450, -3797, 112
+	rotation -4.21468E-08, 0.707107, -4.21468E-08, -0.707107
+	tweak_data_id trai_hold_start_locomotive_engine
+	on_executed
+		´link_engine_interacted´ (delay 0) (alternative interacted)
+´point_play_engine_start´ ElementPlaySound 100205
+	DISABLED
+	append_prefix True
+	interrupt False
+	position 1650, -3175, 250
+	rotation 0, 0, 0, -1
+	sound_event TRAI_LOCO_Roll_Start
+	use_instigator False
+´point_play_engine_fail´ ElementPlaySound 100206
+	DISABLED
+	append_prefix True
+	interrupt False
+	position 1650, -3225, 250
+	rotation 0, 0, 0, -1
+	sound_event TRAI_Engine_Fail
+	use_instigator False
+´seq_break_cables001´ ElementUnitSequence 100207
+	position 6400, -1925, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_broken_1
+			time 0
+´seq_break_cables002´ ElementUnitSequence 100208
+	position 6600, -1925, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_broken_2
+			time 0
+´seq_break_cables003´ ElementUnitSequence 100209
+	position 6800, -1925, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_broken_3
+			time 0
+´seq_break_cables004´ ElementUnitSequence 100210
+	position 7000, -1925, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_broken_4
+			time 0
+´seq_fix_cables001´ ElementUnitSequence 100211
+	position 6400, -2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_fixed_1
+			time 0
+´seq_fix_cables002´ ElementUnitSequence 100212
+	position 6500, -2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_fixed_2
+			time 0
+´seq_fix_cables004´ ElementUnitSequence 100213
+	position 6600, -2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_fixed_4
+			time 0
+´seq_fix_cables003´ ElementUnitSequence 100214
+	position 6700, -2600, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence state_fixed_3
+			time 0
+´teleport_shape´ ElementShape 100215
+	depth 2050
+	height 500
+	position 1650, -2925, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 400
+´area_teleport_player´ ElementAreaTrigger 100216
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 975, -3025, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´teleport_shape´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´point_teleport_player_001´ (delay 0)
+´point_teleport_player_001´ ElementTeleportPlayer 100217
+	equip_selection none
+	fade_in 0
+	fade_out 0
+	keep_carry True
+	position 1225, -3300, 50
+	refill False
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	sustain 0
+´toggle_on_teleport_areas´ ElementToggle 100218
+	TRIGGER TIMES 1
+	elements
+ 		1 ´area_teleport_player´ DISABLED
+	set_trigger_times -1
+	toggle on
+´area_teleport_bag_money´ ElementAreaTrigger 100219
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position 975, -2850, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´teleport_shape´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´func_carry_001´ (delay 0)
+´func_carry_001´ ElementCarry 100225
+	operation add_to_respawn
+	type_filter none
+	on_executed
+		´point_loot_bag_001´ (delay 0)
+´point_loot_bag_001´ ElementLootBag 100226
+	carry_id none
+	from_respawn True
+	position 1300, -2575, 75
+	rotation 0, 0, 0, -1
+´disable_teleport´ ElementToggle 100221
+	TRIGGER TIMES 1
+	elements
+ 		1 ´area_teleport_player´ DISABLED
+		2 ´area_teleport_bag_money´ DISABLED
+		3 ´point_teleport_player_001´
+		4 ´func_carry_001´
+		5 ´point_loot_bag_001´
+	set_trigger_times -1
+	toggle off
+´seq_open_electrical_box´ ElementUnitSequence 100220
+	position 4900, -2900, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_crane/trai_prop_crane/001 (-1750, 0, 0)
+			notify_unit_sequence anim_elecric_box_open
+			time 0
+´seq_close_electrical_box´ ElementUnitSequence 100222
+	position 4900, -3300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence anim_elecric_box_close
+			time 0
+´point_debug_013´ ElementDebug 100223
+	as_subtitle False
+	debug_string cables_fixed_death_sentence
+	show_instigator False
+´point_debug_014´ ElementDebug 100224
+	as_subtitle False
+	debug_string cables_fixed_ovk+
+	show_instigator False
+´point_debug_020´ ElementDebug 100227
+	as_subtitle False
+	debug_string cables_fixed_veryhard-
+	show_instigator False
+´point_debug_021´ ElementDebug 100228
+	as_subtitle False
+	debug_string cable_1_fixed
+	show_instigator False
+´point_debug_022´ ElementDebug 100229
+	as_subtitle False
+	debug_string cable_2_fixed
+	show_instigator False
+´point_debug_023´ ElementDebug 100230
+	as_subtitle False
+	debug_string cable_4_fixed
+	show_instigator False
+´point_debug_024´ ElementDebug 100231
+	as_subtitle False
+	debug_string cable_3_fixed
+	show_instigator False
+´input_open_electrical_panel´ ElementInstanceInput 100232
+	event open_electrical_panel
+	on_executed
+		´logic_link_018´ (delay 0)
+´logic_link_018´ MissionScriptElement 100233
+	on_executed
+		´seq_open_box´ (delay 0)
+´seq_open_box´ ElementUnitSequence 100234
+	position 5150, 1200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence anim_elecric_box_open
+			time 0
+´input_close_electrical_box´ ElementInstanceInput 100235
+	event close_electrical_box
+	on_executed
+		´logic_link_020´ (delay 0)
+´logic_link_020´ MissionScriptElement 100236
+	on_executed
+		´seq_close_box´ (delay 0)
+´seq_close_box´ ElementUnitSequence 100237
+	position 5150, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_vehicle_locomotive/trai_vehicle_locomotive/001 (-1750, 0, 0)
+			notify_unit_sequence anim_elecric_box_close
+			time 0
+´area_teleport_player001´ ElementAreaTrigger 100238
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -2425, -125, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´teleport_shape001´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´point_teleport_player_002´ (delay 0)
+´area_teleport_bag_money001´ ElementAreaTrigger 100239
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator loot
+	instigator_name 
+	interval 0.1
+	position -2425, 150, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´teleport_shape001´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´func_carry_002´ (delay 0)
+´func_carry_002´ ElementCarry 100240
+	operation add_to_respawn
+	type_filter none
+	on_executed
+		´point_loot_bag_002´ (delay 0)
+´point_loot_bag_002´ ElementLootBag 100241
+	carry_id none
+	from_respawn True
+	position -2100, 125, 75
+	rotation 0, 0, 0, -1
+´point_teleport_player_002´ ElementTeleportPlayer 100243
+	equip_selection none
+	fade_in 0
+	fade_out 0
+	keep_carry True
+	position -2175, -100, 50
+	refill False
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	sustain 0
+´teleport_shape001´ ElementShape 100242
+	depth 2200
+	height 500
+	position -1750, -25, 1100
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 500
+´toggle_on_teleporter´ ElementToggle 100244
+	elements
+ 		1 ´area_teleport_player001´ DISABLED
+		2 ´area_teleport_bag_money001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_off_teleporter´ ElementToggle 100245
+	elements
+ 		1 ´area_teleport_player001´ DISABLED
+		2 ´area_teleport_bag_money001´ DISABLED
+	set_trigger_times -1
+	toggle off

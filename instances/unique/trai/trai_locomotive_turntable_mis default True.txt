@@ -1,0 +1,158 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -1900, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 1900, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 1900, -1900, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_show_locomotive´ ElementInstanceInput 100007
+	event show locomotive
+	on_executed
+		´seq_show_loco´ (delay 0)
+´output_turn_anim_completed´ ElementInstanceOutput 100008
+	event turntable animation completed
+´seq_show_loco´ ElementUnitSequence 100010
+	position 2100, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+			notify_unit_sequence show
+			time 0
+´trigger_anim_start´ ElementUnitSequenceTrigger 100012
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_turntable_start
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+	on_executed
+		´output_animation_started´ (delay 0)
+´trigger_anim_stop´ ElementUnitSequenceTrigger 100013
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_turntable_stop
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+	on_executed
+		´func_instance_output_002´ (delay 0)
+´output_animation_started´ ElementInstanceOutput 100014
+	event turntable animation started
+´func_instance_output_002´ ElementInstanceOutput 100015
+	event turntable animation stopped
+´input_hide_loco´ ElementInstanceInput 100016
+	event hide locomotive
+	on_executed
+		´seq_hide_loco´ (delay 0)
+´seq_hide_loco´ ElementUnitSequence 100017
+	position 2300, -1700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+			notify_unit_sequence hide
+			time 0
+´seq_start_anim´ ElementUnitSequence 100018
+	position 2500, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+			notify_unit_sequence anim_turntable_start
+			time 0
+´seq_stop_anim´ ElementUnitSequence 100019
+	position 2700, -1800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/vehicles/trai_prop_turntable/trai_prop_turntable/001 (0, 0, 0)
+			notify_unit_sequence anim_turntable_stop
+			time 0
+´input_start_anim´ ElementInstanceInput 100020
+	event start turntable animation
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_stop_anim´ ElementInstanceInput 100021
+	event stop turntable animation
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_001´ MissionScriptElement 100022
+	on_executed
+		´output_turn_anim_completed´ (delay 0)
+		´point_debug_003´ (delay 0)
+´logic_timer_25_sec´ ElementTimer 100023
+	timer 25
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_timer_operator_start´ ElementTimerOperator 100024
+	elements
+ 		1 ´logic_timer_25_sec´
+	operation start
+	position 2500, -1900, 0
+	rotation 0, 0, 0, -1
+	time 0
+´logic_timer_operator_pause´ ElementTimerOperator 100025
+	elements
+ 		1 ´logic_timer_25_sec´
+	operation pause
+	position 2700, -1900, 0
+	rotation 0, 0, 0, -1
+	time 0
+´logic_link_002´ MissionScriptElement 100011
+	on_executed
+		´logic_timer_operator_start´ (delay 0)
+		´seq_start_anim´ (delay 0)
+		´point_debug_001´ (delay 0)
+´logic_link_003´ MissionScriptElement 100026
+	on_executed
+		´seq_stop_anim´ (delay 0)
+		´logic_timer_operator_pause´ (delay 0)
+		´point_debug_002´ (delay 0)
+´point_debug_001´ ElementDebug 100027
+	as_subtitle False
+	debug_string [turntable] anim started
+	show_instigator False
+´point_debug_002´ ElementDebug 100028
+	as_subtitle False
+	debug_string [turntable] anim stopped
+	show_instigator False
+´point_debug_003´ ElementDebug 100029
+	as_subtitle False
+	debug_string [turntable] anim completed
+	show_instigator False

@@ -1,0 +1,390 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence set_hack_time_state_12
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence main_screen_on_v1
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable interaction
+	on_executed
+		´logic_link_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100013
+	BASE DELAY 0.1
+	on_executed
+		´seq_enable_interaction´ (delay 0)
+´seq_enable_interaction´ ElementUnitSequence 100014
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´input_show_waypoint´ ElementInstanceInput 100015
+	event show waypoint
+	on_executed
+		´logic_link_002´ (delay 0)
+´input_hide_waypoint´ ElementInstanceInput 100016
+	event hide and disable waypoint
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_link_002´ MissionScriptElement 100017
+	on_executed
+		´point_waypoint_001´ (delay 0)
+´logic_link_003´ MissionScriptElement 100018
+	on_executed
+		´logic_operator_remove´ (delay 0)
+		´logic_toggle_off´ (delay 0)
+´point_waypoint_001´ ElementWaypoint 100019
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 75
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´logic_operator_remove´ ElementOperator 100020
+	elements
+ 		1 ´point_waypoint_001´
+		2 ´point_waypoint_lookat´
+	operation remove
+´logic_toggle_off´ ElementToggle 100021
+	elements
+ 		1 ´point_waypoint_001´
+	set_trigger_times -1
+	toggle off
+´trigger_hack_completed´ ElementUnitSequenceTrigger 100008
+	BASE DELAY 1
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+	on_executed
+		´seq_remove_hack_complete_screen´ (delay 0)
+´logic_link_004´ MissionScriptElement 100022
+	BASE DELAY 0.2
+	on_executed
+		´seq_show_omni´ (delay 0)
+		´seq_show_avalon´ (delay 0)
+		´seq_show_hefty´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´logic_counter=2´ (delay 0)
+		´logic_toggle_off_comment´ (delay 2)
+´input_set_omni´ ElementInstanceInput 100030
+	event set display - Omni Exports
+	on_executed
+		´logic_link_005´ (delay 0)
+´input_set_avalon´ ElementInstanceInput 100031
+	event set display - Avalon Logistics
+	on_executed
+		´logic_link_006´ (delay 0)
+´input_set_hefty´ ElementInstanceInput 100032
+	event set display - Hefty Shipping & Transport Ltd
+	on_executed
+		´logic_link_007´ (delay 0)
+´logic_link_005´ MissionScriptElement 100033
+	BASE DELAY 0.5
+	on_executed
+		´logic_toggle_off_2´ (delay 0)
+´logic_link_006´ MissionScriptElement 100034
+	BASE DELAY 0.5
+	on_executed
+		´logic_toggle_off_3´ (delay 0)
+´logic_link_007´ MissionScriptElement 100035
+	BASE DELAY 0.5
+	on_executed
+		´logic_toggle_off_4´ (delay 0)
+´logic_toggle_off_2´ ElementToggle 100036
+	elements
+ 		1 ´seq_show_avalon´
+		2 ´seq_show_hefty´
+		3 ´logic_link_006´
+		4 ´logic_link_007´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_3´ ElementToggle 100037
+	elements
+ 		1 ´seq_show_omni´
+		2 ´seq_show_hefty´
+		3 ´logic_link_007´
+		4 ´logic_link_005´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_4´ ElementToggle 100038
+	elements
+ 		1 ´seq_show_avalon´
+		2 ´seq_show_omni´
+		3 ´logic_link_006´
+		4 ´logic_link_005´
+	set_trigger_times -1
+	toggle off
+´point_debug_001´ ElementDebug 100039
+	as_subtitle False
+	debug_string [computer] - hack complete
+	show_instigator False
+´output_hack_completed´ ElementInstanceOutput 100040
+	event hack completed
+´point_debug_002´ ElementDebug 100041
+	as_subtitle False
+	debug_string [computer] - display Omni Exports
+	show_instigator False
+´point_debug_003´ ElementDebug 100042
+	as_subtitle False
+	debug_string [computer] - display Hefty Shipping & Transport Ltd
+	show_instigator False
+´point_debug_004´ ElementDebug 100043
+	as_subtitle False
+	debug_string [computer] - display Avalon Logistics
+	show_instigator False
+´input_enable_find_area´ ElementInstanceInput 100044
+	event enable_find_area
+	on_executed
+		´logic_link_008´ (delay 0)
+´logic_link_008´ MissionScriptElement 100045
+	on_executed
+		´logic_toggle_on´ (delay 0)
+´logic_toggle_on´ ElementToggle 100046
+	elements
+ 		1 ´area_computer_found´ DISABLED
+	set_trigger_times -1
+	toggle on
+´area_computer_found´ ElementAreaTrigger 100047
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 250
+	height 400
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, -100, 2.5
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 300
+	on_executed
+		´output_area_triggered´ (delay 0)
+´output_area_triggered´ ElementInstanceOutput 100048
+	event area_triggered
+	on_executed
+		´point_debug_005´ (delay 0)
+		´seq_enable_interaction´ (delay 0)
+´input_disable_find_area´ ElementInstanceInput 100049
+	event disable_find_area
+	on_executed
+		´logic_link_009´ (delay 0)
+´logic_link_009´ MissionScriptElement 100050
+	on_executed
+		´logic_toggle_off_5´ (delay 0)
+´logic_toggle_off_5´ ElementToggle 100051
+	elements
+ 		1 ´area_computer_found´ DISABLED
+	set_trigger_times -1
+	toggle off
+´point_debug_005´ ElementDebug 100052
+	as_subtitle False
+	debug_string area_triggered
+	show_instigator False
+´seq_show_omni´ ElementUnitSequence 100054
+	position 800, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence main_screen_on_v4
+			time 0
+	on_executed
+		´point_debug_002´ (delay 0)
+´seq_show_avalon´ ElementUnitSequence 100055
+	position 900, -400, 0
+	rotation 0, 0, -2.68221E-07, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence main_screen_on_v3
+			time 0
+	on_executed
+		´point_debug_004´ (delay 0)
+´seq_show_hefty´ ElementUnitSequence 100056
+	position 1000, -400, 0
+	rotation 0, 0, -2.68221E-07, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence main_screen_on_v2
+			time 0
+	on_executed
+		´point_debug_003´ (delay 0)
+´seq_remove_hack_complete_screen´ ElementUnitSequence 100009
+	BASE DELAY 0.5
+	position 900, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence state_reset
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_computer/trai_int_prop_hack_computer/001 (0, -4.76837E-05, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´output_hack_completed´ (delay 0)
+		´point_debug_001´ (delay 0)
+		´logic_link_004´ (delay 0)
+´point_waypoint_lookat´ ElementWaypoint 100027
+	icon pd2_generic_look
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -25, 59.4073
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´point_lookat_trigger_001´ ElementLookAtTrigger 100028
+	DISABLED
+	TRIGGER TIMES 1
+	distance 600
+	in_front True
+	interval 0.1
+	position 0, 2.54659E-11, 25
+	rotation 0, 0, 1, -4.17233E-07
+	sensitivity 0,898
+	on_executed
+		´link_lookat_triggered´ (delay 0)
+´enable_lookat´ ElementInstanceInput 100029
+	event enable_lookat
+	on_executed
+		´logic_link_WP´ (delay 0)
+´logic_toggle_on_2´ ElementToggle 100057
+	elements
+ 		1 ´point_lookat_trigger_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_link_WP´ MissionScriptElement 100058
+	on_executed
+		´logic_toggle_on_2´ (delay 0)
+		´point_waypoint_lookat´ (delay 0)
+´output_lookat_triggered´ ElementInstanceOutput 100059
+	event lookat_triggered
+´link_lookat_triggered´ MissionScriptElement 100060
+	on_executed
+		´remove_WP_lookat´ (delay 0)
+´remove_WP_lookat´ ElementOperator 100061
+	elements
+ 		1 ´point_waypoint_lookat´
+	operation remove
+	on_executed
+		´output_lookat_triggered´ (delay 0)
+´trigger_global_police_called´ ElementGlobalEventTrigger 100062
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1900, -100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter=2´ (delay 0)
+´point_teammate_comment_hack_complete´ ElementTeammateComment 100063
+	close_to_element True
+	comment v24
+	position 0, 0, 0
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_finished´ ElementTeammateComment 100064
+	close_to_element True
+	comment v25
+	position 0, 0, 0
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_done´ ElementTeammateComment 100065
+	close_to_element True
+	comment v07
+	position 0, 0, 0
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´point_teammate_comment_letsgo´ ElementTeammateComment 100066
+	close_to_element True
+	comment g13
+	position 0, 0, 0
+	radius 1000
+	rotation 0, 0, 0, -1
+	use_instigator False
+´logic_random_001´ ElementRandom 100067
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´point_teammate_comment_hack_complete´ (delay 0)
+		´point_teammate_comment_finished´ (delay 0)
+		´point_teammate_comment_letsgo´ (delay 0)
+		´point_teammate_comment_done´ (delay 0)
+´logic_counter=2´ ElementCounter 100068
+	counter_target 2
+	on_executed
+		´logic_random_001´ (delay 0)
+´logic_toggle_off_comment´ ElementToggle 100069
+	elements
+ 		1 ´logic_random_001´
+		2 ´logic_counter=2´
+	set_trigger_times -1
+	toggle off

@@ -1,0 +1,577 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -700, -200
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_secondary_wagon/trai_prop_secondary_wagon/001 (0, 0, 0)
+			notify_unit_sequence reset
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´point_interaction_bt1´ ElementInteraction 100149
+	host_only False
+	override_timer 1
+	position -140, 99, 35
+	rotation 0.5, -0.5, 0.5, -0.5
+	tweak_data_id hold_blow_torch
+	on_executed
+		´logic_link_bt1´ (delay 0) (alternative interacted)
+		´interacted_bt1´ (delay 0) (alternative interacted)
+		´interrupted_bt1´ (delay 0) (alternative interupt)
+		´started_bt1´ (delay 0) (alternative start)
+´point_interaction_bt2´ ElementInteraction 100150
+	host_only False
+	override_timer 1
+	position -140, -78, 34
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id hold_blow_torch
+	on_executed
+		´logic_link_bt2´ (delay 0) (alternative interacted)
+		´interacted_bt2´ (delay 0) (alternative interacted)
+		´interrupted_bt2´ (delay 0) (alternative interupt)
+		´started_bt2´ (delay 0) (alternative start)
+´point_interaction_bt4´ ElementInteraction 100151
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, -100, -75
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id sand_hold_blow_torch
+	on_executed
+		´logic_link_bt4´ (delay 0) (alternative interacted)
+´point_interaction_bt3´ ElementInteraction 100152
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, 100, -75
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id sand_hold_blow_torch
+	on_executed
+		´logic_link_bt3´ (delay 0) (alternative interacted)
+´point_interaction_bt6´ ElementInteraction 100153
+	host_only False
+	override_timer 1
+	position 137, -78, 35
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id hold_blow_torch
+	on_executed
+		´logic_link_bt6´ (delay 0) (alternative interacted)
+		´started_bt6´ (delay 0) (alternative start)
+		´interrupted_bt6´ (delay 0) (alternative interupt)
+		´interacted_bt6´ (delay 0) (alternative interacted)
+´point_interaction_bt5´ ElementInteraction 100154
+	host_only False
+	override_timer 1
+	position 137, 101, 36
+	rotation 0.707107, 0, 0, -0.707107
+	tweak_data_id hold_blow_torch
+	on_executed
+		´logic_link_bt5´ (delay 0) (alternative interacted)
+		´interacted_bt5´ (delay 0) (alternative interacted)
+		´interrupted_bt5´ (delay 0) (alternative interupt)
+		´started_bt5´ (delay 0) (alternative start)
+´waypoint_fire_bt1´ ElementWaypoint 100155
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator True
+	position -140, 99, 10
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fire_bt3´ ElementWaypoint 100156
+	DISABLED
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 100, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fire_bt5´ ElementWaypoint 100157
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator True
+	position 137, 101, 11
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fire_bt6´ ElementWaypoint 100158
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator True
+	position 137, -78, 10
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fire_bt4´ ElementWaypoint 100159
+	DISABLED
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -100, 25
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´waypoint_fire_bt2´ ElementWaypoint 100160
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator True
+	position -140, -78, 9
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_area_enter´ ElementAreaTrigger 100161
+	amount 1
+	depth 0
+	height 0
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1300, 300, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+		1 ´data_instigator_rule_player_has_blowtorch´
+	shape_type box
+	spawn_unit_elements
+		1 ´point_shape_waypoints´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 0
+	on_executed
+		´logic_link_show_waypoint´ (delay 0)
+´trigger_area_exit´ ElementAreaTrigger 100162
+	amount 1
+	depth 0
+	height 0
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 1700, 300, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+		1 ´data_instigator_rule_player_has_blowtorch001´
+	shape_type box
+	spawn_unit_elements
+		1 ´point_shape_waypoints´
+	substitute_object 
+	trigger_on on_exit
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 0
+	on_executed
+		´logic_link_001´ (delay 0)
+´point_shape_waypoints´ ElementShape 100164
+	depth 500
+	height 200
+	position 0, 0, -150
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 500
+´logic_link_show_waypoint´ MissionScriptElement 100165
+	on_executed
+		´waypoint_fire_bt6´ (delay 0)
+		´waypoint_fire_bt4´ (delay 0) DISABLED
+		´waypoint_fire_bt2´ (delay 0)
+		´waypoint_fire_bt5´ (delay 0)
+		´waypoint_fire_bt3´ (delay 0) DISABLED
+		´waypoint_fire_bt1´ (delay 0)
+		´logic_counter_operator_add´ (delay 0)
+´logic_link_hide_waypoint´ MissionScriptElement 100166
+	on_executed
+		´point_debug_001´ (delay 0) DISABLED
+		´logic_operator_007´ (delay 0)
+´logic_link_bt2´ MissionScriptElement 100168
+	on_executed
+		´logic_toggle_003´ (delay 0)
+		´logic_operator_002´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_link_bt1´ MissionScriptElement 100169
+	on_executed
+		´logic_toggle_002´ (delay 0)
+		´logic_operator_001´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_link_bt3´ MissionScriptElement 100170
+	on_executed
+		´logic_toggle_004´ (delay 0)
+		´logic_operator_003´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_link_bt4´ MissionScriptElement 100171
+	on_executed
+		´logic_toggle_005´ (delay 0)
+		´logic_operator_004´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_link_bt5´ MissionScriptElement 100172
+	on_executed
+		´logic_toggle_006´ (delay 0)
+		´logic_operator_005´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_link_bt6´ MissionScriptElement 100173
+	on_executed
+		´logic_toggle_007´ (delay 0)
+		´logic_operator_006´ (delay 0)
+		´logic_counter=4´ (delay 0)
+´logic_toggle_002´ ElementToggle 100174
+	elements
+ 		1 ´waypoint_fire_bt1´
+		2 ´point_interaction_bt1´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_003´ ElementToggle 100175
+	elements
+ 		1 ´waypoint_fire_bt2´
+		2 ´point_interaction_bt2´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_004´ ElementToggle 100176
+	elements
+ 		1 ´waypoint_fire_bt3´ DISABLED
+		2 ´point_interaction_bt3´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_toggle_005´ ElementToggle 100177
+	elements
+ 		1 ´waypoint_fire_bt4´ DISABLED
+		2 ´point_interaction_bt4´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_toggle_006´ ElementToggle 100178
+	elements
+ 		1 ´waypoint_fire_bt5´
+		2 ´point_interaction_bt5´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_007´ ElementToggle 100179
+	elements
+ 		1 ´waypoint_fire_bt6´
+		2 ´point_interaction_bt6´
+	set_trigger_times -1
+	toggle off
+´logic_operator_001´ ElementOperator 100180
+	elements
+ 		1 ´waypoint_fire_bt1´
+	operation remove
+´logic_operator_002´ ElementOperator 100181
+	elements
+ 		1 ´waypoint_fire_bt2´
+	operation remove
+´logic_operator_003´ ElementOperator 100182
+	elements
+ 		1 ´waypoint_fire_bt3´ DISABLED
+	operation remove
+´logic_operator_004´ ElementOperator 100183
+	elements
+ 		1 ´waypoint_fire_bt4´ DISABLED
+	operation remove
+´logic_operator_005´ ElementOperator 100184
+	elements
+ 		1 ´waypoint_fire_bt5´
+	operation remove
+´logic_operator_006´ ElementOperator 100185
+	elements
+ 		1 ´waypoint_fire_bt6´
+	operation remove
+´point_debug_001´ ElementDebug 100186
+	DISABLED
+	as_subtitle False
+	debug_string [secondary wagon] left trigger
+	show_instigator False
+´logic_operator_007´ ElementOperator 100167
+	elements
+ 		1 ´waypoint_fire_bt6´
+		2 ´waypoint_fire_bt4´ DISABLED
+		3 ´waypoint_fire_bt2´
+		4 ´waypoint_fire_bt1´
+		5 ´waypoint_fire_bt3´ DISABLED
+		6 ´waypoint_fire_bt5´
+	operation remove
+´logic_counter=4´ ElementCounter 100187
+	counter_target 4
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100190
+	on_executed
+		´output_wagon_open_bt´ (delay 0)
+		´point_loot_bag_001´ (delay 0)
+		´point_loot_bag_002´ (delay 0)
+		´seq_remove_hatch´ (delay 0)
+´output_wagon_open_bt´ ElementInstanceOutput 100008
+	event wagon opened [blowtorch]
+´point_loot_bag_001´ ElementLootBag 100063
+	carry_id money
+	from_respawn False
+	position -50, 0, 68
+	rotation 0, 0, 0, -1
+´point_loot_bag_002´ ElementLootBag 100041
+	carry_id money
+	from_respawn False
+	position 50, 0, 68
+	rotation 0, 0, 0, -1
+´logic_counter´ ElementCounter 100069
+	counter_target 0
+´logic_counter_operator_add´ ElementCounterOperator 100070
+	amount 1
+	elements
+ 		1 ´logic_counter´
+	instance_var_names
+	operation add
+´logic_counter_filter_001´ ElementCounterFilter 100078
+	elements
+ 		1 ´logic_counter´
+	check_type less_or_equal
+	needed_to_execute all
+	value 0
+	on_executed
+		´logic_link_hide_waypoint´ (delay 0)
+´logic_counter_operator_subtract´ ElementCounterOperator 100076
+	amount 1
+	elements
+ 		1 ´logic_counter´
+	instance_var_names
+	operation subtract
+	on_executed
+		´logic_counter_filter_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100077
+	on_executed
+		´logic_counter_operator_subtract´ (delay 0)
+´data_instigator_rule_player_has_blowtorch´ ElementInstigatorRule 100081
+	instigator player
+	invert False
+	rules
+		player
+			mission_equipment
+				1 blow_torch
+´started_bt6´ MissionScriptElement 100082
+	on_executed
+		´env_effect_play_006´ (delay 0)
+´interrupted_bt6´ MissionScriptElement 100083
+	on_executed
+		´env_effect_stop_006´ (delay 0)
+´interacted_bt6´ MissionScriptElement 100084
+	on_executed
+		´env_effect_stop_006´ (delay 0)
+		´seq_display_cut_fx_003´ (delay 0)
+´started_bt2´ MissionScriptElement 100085
+	on_executed
+		´env_effect_play_002´ (delay 0)
+´interrupted_bt2´ MissionScriptElement 100086
+	on_executed
+		´env_effect_stop_002´ (delay 0)
+´interacted_bt2´ MissionScriptElement 100087
+	on_executed
+		´env_effect_stop_002´ (delay 0)
+		´seq_display_cut_fx_004´ (delay 0)
+´interacted_bt1´ MissionScriptElement 100088
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+		´seq_display_cut_fx_001´ (delay 0)
+´interrupted_bt1´ MissionScriptElement 100089
+	on_executed
+		´env_effect_stop_001´ (delay 0)
+´started_bt1´ MissionScriptElement 100090
+	on_executed
+		´env_effect_play_001´ (delay 0)
+´started_bt5´ MissionScriptElement 100091
+	on_executed
+		´env_effect_play_005´ (delay 0)
+´interrupted_bt5´ MissionScriptElement 100092
+	on_executed
+		´env_effect_stop_005´ (delay 0)
+´interacted_bt5´ MissionScriptElement 100093
+	on_executed
+		´env_effect_stop_005´ (delay 0)
+		´seq_display_cut_fx_002´ (delay 0)
+´env_effect_stop_002´ ElementStopEffect 100094
+	elements
+ 		1 ´env_effect_play_002´
+	operation kill
+	position -400, -400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_play_sound_002´ (delay 0)
+´env_effect_stop_006´ ElementStopEffect 100095
+	elements
+ 		1 ´env_effect_play_006´
+	operation kill
+	position 400, -400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_play_sound_006´ (delay 0)
+´env_effect_stop_005´ ElementStopEffect 100096
+	elements
+ 		1 ´env_effect_play_005´
+	operation kill
+	position 400, 400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_play_sound_005´ (delay 0)
+´env_effect_stop_001´ ElementStopEffect 100097
+	elements
+ 		1 ´env_effect_play_001´
+	operation kill
+	position -400, 400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_play_sound_001´ (delay 0)
+´env_effect_play_002´ ElementPlayEffect 100098
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -140, -78, 24.9996
+	random_time 0
+	rotation 0.707107, 0.707107, -1.19209E-07, -1.63913E-07
+	screen_space False
+´env_effect_play_001´ ElementPlayEffect 100099
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position -140, 99, 25.9996
+	random_time 0
+	rotation 0.707107, 0.707107, -1.19209E-07, -1.63913E-07
+	screen_space False
+´env_effect_play_005´ ElementPlayEffect 100100
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 137, 101, 26.9996
+	random_time 0
+	rotation 0.707107, 0.707107, -1.19209E-07, -1.63913E-07
+	screen_space False
+´env_effect_play_006´ ElementPlayEffect 100101
+	base_time 0
+	effect effects/payday2/particles/equipment/welding_effect_blowtorch
+	max_amount 0
+	position 137, -78, 25.9996
+	random_time 0
+	rotation 0.707107, 0.707107, -1.19209E-07, -1.63913E-07
+	screen_space False
+´point_play_sound_001´ ElementPlaySound 100102
+	append_prefix False
+	interrupt True
+	position -140, 99, 1.15385
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator False
+´point_play_sound_002´ ElementPlaySound 100103
+	append_prefix False
+	interrupt True
+	position -140, -78, 0.153847
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator False
+´point_play_sound_006´ ElementPlaySound 100104
+	append_prefix False
+	interrupt True
+	position 137, -78, 1.15385
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator False
+´point_play_sound_005´ ElementPlaySound 100105
+	append_prefix False
+	interrupt True
+	position 137, 101, 2.15385
+	rotation 0, 0, 0, -1
+	sound_event bar_blowtorch_end
+	use_instigator False
+´seq_remove_hatch´ ElementUnitSequence 100009
+	position 1350, -1200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_secondary_wagon/trai_prop_secondary_wagon/001 (0, 0, 0)
+			notify_unit_sequence anim_hatch_fall
+			time 0
+´seq_display_cut_fx_003´ ElementUnitSequence 100010
+	position 500, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_main_wagon/trai_wagon_hatch_cutting/003 (137, -77, 34)
+			notify_unit_sequence play_animation
+			time 0
+´seq_display_cut_fx_001´ ElementUnitSequence 100011
+	position -300, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_main_wagon/trai_wagon_hatch_cutting/001 (-138, 100, 34)
+			notify_unit_sequence play_animation
+			time 0
+´seq_display_cut_fx_002´ ElementUnitSequence 100012
+	position 500, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_main_wagon/trai_wagon_hatch_cutting/002 (137, 100, 34)
+			notify_unit_sequence play_animation
+			time 0
+´seq_display_cut_fx_004´ ElementUnitSequence 100013
+	position -300, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_prop_main_wagon/trai_wagon_hatch_cutting/004 (-140, -77, 34)
+			notify_unit_sequence play_animation
+			time 0
+´input_disable_cutting´ ElementInstanceInput 100018
+	event disable_cutting
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100019
+	elements
+ 		1 ´point_interaction_bt1´
+		2 ´point_interaction_bt2´
+		3 ´point_interaction_bt3´ DISABLED
+		4 ´point_interaction_bt4´ DISABLED
+		5 ´point_interaction_bt5´
+		6 ´point_interaction_bt6´
+		7 ´logic_link_hide_waypoint´
+		8 ´logic_link_show_waypoint´
+		9 ´waypoint_fire_bt1´
+		10 ´waypoint_fire_bt2´
+		11 ´waypoint_fire_bt3´ DISABLED
+		12 ´waypoint_fire_bt4´ DISABLED
+		13 ´waypoint_fire_bt5´
+		14 ´waypoint_fire_bt6´
+	set_trigger_times -1
+	toggle off
+´data_instigator_rule_player_has_blowtorch001´ ElementInstigatorRule 100020
+	instigator player
+	invert False
+	rules
+		player
+			mission_equipment
+				1 blow_torch

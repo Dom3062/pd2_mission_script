@@ -1,0 +1,246 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´link_delay´ (delay 1)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position -400, -750, 0
+	rotation 0, 0, 0, -1
+	state standard
+´seq_set_gate_closed´ ElementUnitSequence 100006
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+			notify_unit_sequence state_fence_shock_toggled_on
+			time 0
+	on_executed
+		´nav_obst_add´ (delay 0)
+´link_delay´ MissionScriptElement 100018
+	on_executed
+		´seq_set_gate_closed´ (delay 0)
+´player_state_electrocution´ ElementPlayerState 100054
+	TRIGGER TIMES 1
+	position 700, -700, 0
+	rotation 0, 0, 0, -1
+	state electrocution
+	use_instigator True
+	on_executed
+		´output_player_eletrocuted´ (delay 0)
+		´reset_trigger_times´ (delay 3)
+´input_disable_electric´ ElementInstanceInput 100059
+	event disable electricity
+	on_executed
+		´link_disable_electric´ (delay 0)
+´output_player_eletrocuted´ ElementInstanceOutput 100067
+	TRIGGER TIMES 1
+	event player eletrocuted
+´player_is_electrified´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+	on_executed
+		´player_state_electrocution´ (delay 0)
+´reset_trigger_times´ ElementToggle 100055
+	elements
+ 		1 ´player_is_electrified´
+		2 ´player_state_electrocution´
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´seq_reset_fence_interactions´ (delay 0)
+´link_disable_electric´ MissionScriptElement 100017
+	on_executed
+		´toggle_off´ (delay 0)
+		´seq_enable_fence_interaction´ (delay 0)
+		´logic_toggle_on´ (delay 0)
+		´point_debug_001´ (delay 0)
+´nav_obst_add´ ElementNavObstacle 100019
+	obstacle_list
+	operation add
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+´toggle_off´ ElementToggle 100028
+	elements
+ 		1 ´player_state_electrocution´
+		2 ´player_is_electrified´
+	set_trigger_times 0
+	toggle off
+´logic_link_001´ MissionScriptElement 100005
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´logic_link_002´ (delay 0)
+´logic_link_002´ MissionScriptElement 100007
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+´seq_reset_fence_interactions´ ElementUnitSequence 100008
+	position 800, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+			notify_unit_sequence state_enabled
+			time 0
+´seq_enable_fence_interaction´ ElementUnitSequence 100002
+	position 1200, -800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+			notify_unit_sequence state_fence_shock_toggled_off
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+			notify_unit_sequence state_enabled
+			time 0.2
+´seq_trigger_fence_cut´ ElementUnitSequenceTrigger 100009
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/props/air_prop_runway_fence/air_prop_runway_fence/001 (0, 0, 0)
+	on_executed
+		´logic_link_003´ (delay 0)
+´logic_toggle_on´ ElementToggle 100010
+	elements
+ 		1 ´seq_trigger_fence_cut´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off´ ElementToggle 100011
+	elements
+ 		1 ´player_is_electrified´
+		2 ´player_state_electrocution´
+	set_trigger_times -1
+	toggle off
+´logic_link_003´ MissionScriptElement 100012
+	on_executed
+		´logic_toggle_off´ (delay 0)
+		´logic_counter=2´ (delay 0)
+´logic_counter=2´ ElementCounter 100013
+	BASE DELAY 0.2
+	counter_target 2
+	on_executed
+		´link_enable_SOs´ (delay 0)
+´trigger_global_event_001´ ElementGlobalEventTrigger 100014
+	TRIGGER TIMES 1
+	global_event police_called
+	position 900, -1100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´logic_counter=2´ (delay 0)
+		´logic_toggle_on_2´ (delay 0)
+´link_enable_SOs´ MissionScriptElement 100016
+	on_executed
+		´point_special_objective_001´ (delay 0) DISABLED
+		´point_special_objective_002´ (delay 0) DISABLED
+´point_special_objective_001´ ElementSpecialObjective 100020
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	is_navigation_link True
+	needs_pos_rsrv True
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -200, -125, 0
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 0
+	search_position -251,885 107,397 2,5
+	SO_access 6546656
+	so_action e_nl_under_0_7m
+	trigger_on none
+´point_special_objective_002´ ElementSpecialObjective 100021
+	DISABLED
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	is_navigation_link True
+	needs_pos_rsrv True
+	path_haste run
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position -200, 125, 0
+	rotation 0, 0, 1, 4.37114E-08
+	scan True
+	search_distance 0
+	search_position -143,979 -196,816 2,5
+	SO_access 6546656
+	so_action e_nl_under_0_7m
+	trigger_on none
+´logic_toggle_on_2´ ElementToggle 100022
+	elements
+ 		1 ´point_special_objective_001´ DISABLED
+		2 ´point_special_objective_002´ DISABLED
+	set_trigger_times -1
+	toggle on
+´point_debug_001´ ElementDebug 100023
+	as_subtitle False
+	debug_string [ele fence] - electric disabled
+	show_instigator False
+´trigger_area_001´ ElementAreaTrigger 100024
+	DISABLED
+	TRIGGER TIMES 1
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position -200, 0, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´link_disable_electric´ (delay 0)
