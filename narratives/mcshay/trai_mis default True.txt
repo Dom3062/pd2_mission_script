@@ -2405,6 +2405,8 @@
 		´logic_toggle_off_drones´ (delay 0)
 		´seq_helicopter_leave´ (delay 10-40)
 		´logic_toggle_001´ (delay 0)
+		´logic_counter_008´ (delay 0)
+		´logic_counter_if_loud´ (delay 0)
 ´police_called´ ElementGlobalEventTrigger 100023
 	TRIGGER TIMES 1
 	global_event police_called
@@ -8137,7 +8139,6 @@
 		´logic_toggle_off_vo´ (delay 0)
 		´link_manifest_found´ (delay 0) DISABLED
 		´logic_counter_4´ (delay 0)
-		´logic_counter_LOUD_2´ (delay 0)
 		´logic_counter_LOUD´ (delay 0)
 		´logic_counter_5´ (delay 0)
 		´func_experience_005´ (delay 0)
@@ -8283,17 +8284,19 @@
 		´point_debug_028´ (delay 0)
 		´remove_WP_lootdrop´ (delay 0)
 		´link_obj_started_4´ (delay 0)
-		´logic_counter_LOUD_2´ (delay 0)
 		´logic_toggle_off_loud_prev_and_VO´ (delay 0)
 		´func_experience_009´ (delay 0)
+		´logic_counter_008´ (delay 0)
+		´link_disable_pipeline_loud´ (delay 0)
+		´link_loud_2´ (delay 0) DISABLED
 ´link_obj_started_4´ MissionScriptElement 100723
 	BASE DELAY 1
 	on_executed
 		´obj_PA_booth´ (delay 0)
 		´WP_PA_booth´ (delay 0)
 		´point_debug_029´ (delay 0)
-		´logic_counter_007´ (delay 0)
 		´logic_link_092´ (delay 0)
+		´logic_counter_if_loud´ (delay 0)
 ´obj_PA_booth´ ElementObjective 100724
 	amount 0
 	countdown False
@@ -8345,12 +8348,11 @@
 		´logic_toggle_off_vo_14´ (delay 0)
 		´func_experience_010´ (delay 0)
 		´spawn_worker´ (delay 9)
-		´blocking_flow_if_loud´ (delay 15)
+		´link_blocking_flow_if_loud´ (delay 15)
 ´link_start_prepare_locomotive´ MissionScriptElement 100731
 	DISABLED
 	on_executed
 		´obj_setup_locomotive´ (delay 0)
-		´logic_counter_008´ (delay 0)
 		´logic_toggle_off_vo_15´ (delay 0)
 		´logic_counter=012´ (delay 0)
 		´logic_counter_022´ (delay 0)
@@ -8382,8 +8384,8 @@
 	counter_target 2
 	on_executed
 		´link_STEALTH´ (delay 0)
-		´link_LOUD´ (delay 0) DISABLED
 		´logic_toggle_off_VO_fuel´ (delay 0)
+		´link_LOUD´ (delay 0) DISABLED
 ´WP_manifest´ ElementWaypoint 100764
 	icon pd2_question
 	only_in_civilian False
@@ -8446,7 +8448,6 @@
 		´WP_start_engine´ (delay 0) DISABLED
 		´enable_engine_start´ (delay 0) DISABLED
 		´input_enable_engine_start´ (delay 0)
-		´link_disable_pipeline_loud´ (delay 0)
 		´toggle_off_loud_objectives´ (delay 0)
 ´link_tank_interacted´ MissionScriptElement 100780
 	on_executed
@@ -8626,13 +8627,10 @@
 		´logic_counter_004´ (delay 0)
 		´logic_counter_005´ (delay 0)
 		´logic_counter_006´ (delay 0)
-		´logic_counter_007´ (delay 0)
-		´logic_counter_008´ (delay 0)
 		´logic_counter_4´ (delay 0)
 		´input_disable_keypads_if_loud´ (delay 0)
 		´logic_counter_5´ (delay 0)
 		´logic_counter_LOUD´ (delay 0)
-		´logic_counter_LOUD_2´ (delay 0)
 		´logic_counter_2_2´ (delay 0)
 		´logic_counter_009´ (delay 0)
 		´link_start_point_of_no_return´ (delay 0)
@@ -8650,15 +8648,15 @@
 		´input_disable_interactions_loud´ (delay 0)
 ´logic_toggle_on´ ElementToggle 100940
 	elements
- 		1 ´link_LOUD´ DISABLED
-		2 ´trigger_office_right_open´ DISABLED
-		3 ´link_manifest_found´ DISABLED
-		4 ´link_loud´ DISABLED
-		5 ´link_LOUD_2´ DISABLED
-		6 ´trigger_area_player´ DISABLED
-		7 ´logic_link_144´ DISABLED
-		8 ´func_experience_027´ DISABLED
-		9 ´trigger_office_left_open´ DISABLED
+ 		1 ´trigger_office_right_open´ DISABLED
+		2 ´link_manifest_found´ DISABLED
+		3 ´link_loud´ DISABLED
+		4 ´link_LOUD_2´ DISABLED
+		5 ´trigger_area_player´ DISABLED
+		6 ´logic_link_144´ DISABLED
+		7 ´func_experience_027´ DISABLED
+		8 ´trigger_office_left_open´ DISABLED
+		9 ´link_loud_2´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´logic_operator_001´ ElementOperator 100941
@@ -8808,6 +8806,7 @@
 		´seq_enable_office_doors_left´ (delay 0)
 		´seq_enable_office_doors_right´ (delay 0)
 		´counter_loud_check(pipeline)´ (delay 0)
+		´logic_counter_008´ (delay 0)
 ´link_obj_drill_act´ MissionScriptElement 100979
 	on_executed
 		´obj_drill_office´ (delay 0)
@@ -8895,193 +8894,191 @@
 		´func_experience_012´ (delay 0)
 ´logic_toggle_off´ ElementToggle 101041
 	elements
- 		1 ´link_STEALTH´
-		2 ´link_obj_active´
-		3 ´link_obj_started_4´
-		4 ´logic_link_056´
-		5 ´logic_link_057´
-		6 ´loc_trai_01_01´
-		7 ´loc_trai_02_01´
-		8 ´logic_link_loop´
-		9 ´point_debug_036´
-		10 ´point_debug_037´
-		11 ´logic_link_058´
-		12 ´loc_trai_03_01´
-		13 ´point_debug_039´
-		14 ´logic_link_059´
-		15 ´loc_trai_05_01´
-		16 ´point_debug_038´
-		17 ´link_loop´
-		18 ´logic_link_061´
-		19 ´loc_trai_06_01´
-		20 ´point_debug_040´
-		21 ´logic_link_062´
-		22 ´func_dialogue_08´
-		23 ´point_debug_041´
-		24 ´logic_link_063´
-		25 ´loc_trai_09_01´
-		26 ´point_debug_042´
-		27 ´logic_link_064´
-		28 ´loc_trai_10_01´
-		29 ´point_debug_043´
-		30 ´logic_link_loop001´
-		31 ´link_obj_started_2´
-		32 ´link_obj_started_9´
-		33 ´link_stealth´
-		34 ´obj_steal_keycard´
-		35 ´seq_enable_keycard_reader´
-		36 ´link_stealth_2´
-		37 ´obj_head_for_warehouse´
-		38 ´trigger_area_warehouse´
-		39 ´logic_link_075´
-		40 ´logic_link_074´
-		41 ´loc_trai_11_01´
-		42 ´loc_trai_12_01´
-		43 ´point_debug_058´
-		44 ´point_debug_057´
-		45 ´logic_link_loop002´
-		46 ´logic_link_077´
-		47 ´loc_trai_13_01´
-		48 ´point_debug_060´
-		49 ´point_debug_059´
-		50 ´loc_trai_14_01´
-		51 ´logic_link_076´
-		52 ´logic_link_loop003´
-		53 ´logic_link_080´
-		54 ´loc_trai_15_01´
-		55 ´point_debug_063´
-		56 ´logic_link_079´
-		57 ´loc_trai_16_01´
-		58 ´point_debug_062´
-		59 ´point_debug_061´
-		60 ´loc_trai_17_01´
-		61 ´logic_link_078´
-		62 ´logic_link_loop004´
-		63 ´point_debug_065´
-		64 ´loc_trai_19_01´
-		65 ´logic_link_082´
-		66 ´loc_trai_20_01´
-		67 ´logic_link_081´
-		68 ´point_debug_064´
-		69 ´logic_link_loop005´
-		70 ´logic_link_085´
-		71 ´logic_link_084´
-		72 ´loc_trai_21_01´
-		73 ´loc_trai_22_01´
-		74 ´point_debug_068´
-		75 ´point_debug_067´
-		76 ´logic_link_loop006´
-		77 ´logic_link_088´
-		78 ´gem_trai_02_01´
-		79 ´point_debug_071´
-		80 ´point_debug_070´
-		81 ´loc_trai_23_01´
-		82 ´logic_link_087´
-		83 ´logic_link_086´ DISABLED
-		84 ´loc_trai_24_01´
-		85 ´point_debug_069´
-		86 ´logic_link_loop007´
-		87 ´loc_trai_25_01´
-		88 ´point_debug_073´
-		89 ´point_debug_074´
-		90 ´gem_trai_03_01´
-		91 ´logic_link_090´
-		92 ´logic_link_092´
-		93 ´loc_trai_26_01´
-		94 ´point_debug_076´
-		95 ´point_debug_075´
-		96 ´loc_trai_28_01´
-		97 ´logic_link_091´
-		98 ´logic_link_loop008´
-		99 ´logic_link_093´
-		100 ´loc_trai_27_01´
-		101 ´point_debug_077´
-		102 ´point_debug_078´
-		103 ´gem_trai_04_01´
-		104 ´logic_link_094´
-		105 ´logic_link_096´
-		106 ´loc_trai_29_01´
-		107 ´point_debug_080´
-		108 ´point_debug_079´
-		109 ´loc_trai_30_01´
-		110 ´logic_link_095´
-		111 ´logic_link_loop009´
-		112 ´logic_link_098´
-		113 ´loc_trai_31_01´
-		114 ´point_debug_082´
-		115 ´point_debug_081´
-		116 ´loc_trai_32_01´
-		117 ´logic_link_097´
-		118 ´logic_link_loop010´
-		119 ´logic_link_099´
-		120 ´loc_trai_33_01´
-		121 ´point_debug_083´
-		122 ´point_debug_084´
-		123 ´loc_trai_34_01´
-		124 ´logic_link_100´
-		125 ´logic_link_102´
-		126 ´logic_link_101´
-		127 ´loc_trai_36_01´
-		128 ´loc_trai_35_01´
-		129 ´point_debug_086´
-		130 ´point_debug_085´
-		131 ´logic_link_loop011´
-		132 ´logic_link_104´
-		133 ´logic_link_103´
-		134 ´loc_trai_37_01´
-		135 ´loc_trai_38_01´
-		136 ´logic_link_loop012´
-		137 ´point_debug_087´
-		138 ´point_debug_088´
-		139 ´logic_link_106´
-		140 ´logic_link_105´
-		141 ´loc_trai_39_01´
-		142 ´loc_trai_40_01´
-		143 ´point_debug_090´
-		144 ´point_debug_089´
-		145 ´logic_link_loop013´
-		146 ´input_show_code_WP_helper´
-		147 ´input_enable_vault_int´
-		148 ´input_enable_vault_int001´
-		149 ´input_enable_vault_int002´
-		150 ´input_enable_vault_int003´
-		151 ´input_enable_vault_int004´
-		152 ´input_enable_vault_int008´
-		153 ´input_enable_vault_int007´
-		154 ´input_enable_vault_int006´
-		155 ´input_enable_vault_int005´
-		156 ´logic_link_162´
-		157 ´gem_trai_01_01´
-		158 ´gem_trai_01_01_2´
-		159 ´point_debug_072´
-		160 ´output_hack_done´
-		161 ´input_enable_hack´
-		162 ´output_panel_opened´
-		163 ´input_find_and_enable´
-		164 ´output_panel_found´
-		165 ´input_show_code´
-		166 ´output_code_shown´
-		167 ´input_add_WP_keypad´
-		168 ´output_code_right_3´
-		169 ´input_enable_deactivation´
-		170 ´input_enable_hack_2´
-		171 ´output_console_accessed´
-		172 ´input_enable_keypad´
-		173 ´trigger_door_left_open´
-		174 ´trigger_door_right´
-		175 ´logic_link_163´
-		176 ´loc_trai_24A_01´
-		177 ´point_debug_168´
-		178 ´func_experience_008´
-		179 ´seq_open_trainyard_gate´
-		180 ´input_add_WP_Console_help´
-		181 ´blocking_flow_if_loud´
-		182 ´link_stealth_check´
-		183 ´obj_find_security_panel´
-		184 ´obj_find_sensors_monitor´
-		185 ´obj_open_the_trainyard_gate´
-		186 ´input_disable_entered_wagon´
-		187 ´func_experience_013´
+ 		1 ´link_obj_active´
+		2 ´link_obj_started_4´
+		3 ´logic_link_056´
+		4 ´logic_link_057´
+		5 ´loc_trai_01_01´
+		6 ´loc_trai_02_01´
+		7 ´logic_link_loop´
+		8 ´point_debug_036´
+		9 ´point_debug_037´
+		10 ´logic_link_058´
+		11 ´loc_trai_03_01´
+		12 ´point_debug_039´
+		13 ´logic_link_059´
+		14 ´loc_trai_05_01´
+		15 ´point_debug_038´
+		16 ´link_loop´
+		17 ´logic_link_061´
+		18 ´loc_trai_06_01´
+		19 ´point_debug_040´
+		20 ´logic_link_062´
+		21 ´func_dialogue_08´
+		22 ´point_debug_041´
+		23 ´logic_link_063´
+		24 ´loc_trai_09_01´
+		25 ´point_debug_042´
+		26 ´logic_link_064´
+		27 ´loc_trai_10_01´
+		28 ´point_debug_043´
+		29 ´logic_link_loop001´
+		30 ´link_obj_started_2´
+		31 ´link_obj_started_9´
+		32 ´link_stealth´
+		33 ´obj_steal_keycard´
+		34 ´seq_enable_keycard_reader´
+		35 ´link_stealth_2´
+		36 ´obj_head_for_warehouse´
+		37 ´trigger_area_warehouse´
+		38 ´logic_link_075´
+		39 ´logic_link_074´
+		40 ´loc_trai_11_01´
+		41 ´loc_trai_12_01´
+		42 ´point_debug_058´
+		43 ´point_debug_057´
+		44 ´logic_link_loop002´
+		45 ´logic_link_077´
+		46 ´loc_trai_13_01´
+		47 ´point_debug_060´
+		48 ´point_debug_059´
+		49 ´loc_trai_14_01´
+		50 ´logic_link_076´
+		51 ´logic_link_loop003´
+		52 ´logic_link_080´
+		53 ´loc_trai_15_01´
+		54 ´point_debug_063´
+		55 ´logic_link_079´
+		56 ´loc_trai_16_01´
+		57 ´point_debug_062´
+		58 ´point_debug_061´
+		59 ´loc_trai_17_01´
+		60 ´logic_link_078´
+		61 ´logic_link_loop004´
+		62 ´point_debug_065´
+		63 ´loc_trai_19_01´
+		64 ´logic_link_082´
+		65 ´loc_trai_20_01´
+		66 ´logic_link_081´
+		67 ´point_debug_064´
+		68 ´logic_link_loop005´
+		69 ´logic_link_085´
+		70 ´logic_link_084´
+		71 ´loc_trai_21_01´
+		72 ´loc_trai_22_01´
+		73 ´point_debug_068´
+		74 ´point_debug_067´
+		75 ´logic_link_loop006´
+		76 ´logic_link_088´
+		77 ´gem_trai_02_01´
+		78 ´point_debug_071´
+		79 ´point_debug_070´
+		80 ´loc_trai_23_01´
+		81 ´logic_link_087´
+		82 ´logic_link_086´ DISABLED
+		83 ´loc_trai_24_01´
+		84 ´point_debug_069´
+		85 ´logic_link_loop007´
+		86 ´loc_trai_25_01´
+		87 ´point_debug_073´
+		88 ´point_debug_074´
+		89 ´gem_trai_03_01´
+		90 ´logic_link_090´
+		91 ´logic_link_092´
+		92 ´loc_trai_26_01´
+		93 ´point_debug_076´
+		94 ´point_debug_075´
+		95 ´loc_trai_28_01´
+		96 ´logic_link_091´
+		97 ´logic_link_loop008´
+		98 ´logic_link_093´
+		99 ´loc_trai_27_01´
+		100 ´point_debug_077´
+		101 ´point_debug_078´
+		102 ´gem_trai_04_01´
+		103 ´logic_link_094´
+		104 ´logic_link_096´
+		105 ´loc_trai_29_01´
+		106 ´point_debug_080´
+		107 ´point_debug_079´
+		108 ´loc_trai_30_01´
+		109 ´logic_link_095´
+		110 ´logic_link_loop009´
+		111 ´logic_link_098´
+		112 ´loc_trai_31_01´
+		113 ´point_debug_082´
+		114 ´point_debug_081´
+		115 ´loc_trai_32_01´
+		116 ´logic_link_097´
+		117 ´logic_link_loop010´
+		118 ´logic_link_099´
+		119 ´loc_trai_33_01´
+		120 ´point_debug_083´
+		121 ´point_debug_084´
+		122 ´loc_trai_34_01´
+		123 ´logic_link_100´
+		124 ´logic_link_102´
+		125 ´logic_link_101´
+		126 ´loc_trai_36_01´
+		127 ´loc_trai_35_01´
+		128 ´point_debug_086´
+		129 ´point_debug_085´
+		130 ´logic_link_loop011´
+		131 ´logic_link_104´
+		132 ´logic_link_103´
+		133 ´loc_trai_37_01´
+		134 ´loc_trai_38_01´
+		135 ´logic_link_loop012´
+		136 ´point_debug_087´
+		137 ´point_debug_088´
+		138 ´logic_link_106´
+		139 ´logic_link_105´
+		140 ´loc_trai_39_01´
+		141 ´loc_trai_40_01´
+		142 ´point_debug_090´
+		143 ´point_debug_089´
+		144 ´logic_link_loop013´
+		145 ´input_show_code_WP_helper´
+		146 ´input_enable_vault_int´
+		147 ´input_enable_vault_int001´
+		148 ´input_enable_vault_int002´
+		149 ´input_enable_vault_int003´
+		150 ´input_enable_vault_int004´
+		151 ´input_enable_vault_int008´
+		152 ´input_enable_vault_int007´
+		153 ´input_enable_vault_int006´
+		154 ´input_enable_vault_int005´
+		155 ´logic_link_162´
+		156 ´gem_trai_01_01´
+		157 ´gem_trai_01_01_2´
+		158 ´point_debug_072´
+		159 ´output_hack_done´
+		160 ´input_enable_hack´
+		161 ´output_panel_opened´
+		162 ´input_find_and_enable´
+		163 ´output_panel_found´
+		164 ´input_show_code´
+		165 ´output_code_shown´
+		166 ´input_add_WP_keypad´
+		167 ´output_code_right_3´
+		168 ´input_enable_deactivation´
+		169 ´input_enable_hack_2´
+		170 ´output_console_accessed´
+		171 ´input_enable_keypad´
+		172 ´trigger_door_left_open´
+		173 ´trigger_door_right´
+		174 ´logic_link_163´
+		175 ´loc_trai_24A_01´
+		176 ´point_debug_168´
+		177 ´func_experience_008´
+		178 ´seq_open_trainyard_gate´
+		179 ´input_add_WP_Console_help´
+		180 ´link_stealth_check´
+		181 ´obj_find_security_panel´
+		182 ´obj_find_sensors_monitor´
+		183 ´obj_open_the_trainyard_gate´
+		184 ´input_disable_entered_wagon´
+		185 ´func_experience_013´
 	set_trigger_times -1
 	toggle off
 ´link_obj_active_2´ MissionScriptElement 101038
@@ -16055,10 +16052,10 @@
 	amount_random 0
 	ignore_disabled True
 	on_executed
+		´logic_link_044´ (delay 0)
 		´logic_link_042´ (delay 0)
 		´logic_link_041´ (delay 0)
 		´logic_link_043´ (delay 0)
-		´logic_link_044´ (delay 0)
 ´output_green_wire_cut006´ ElementInstanceOutputEvent 102320
 	DISABLED
 	event_list
@@ -16298,40 +16295,40 @@
 	event_list
 		1
 			event blue_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/001
+			instance levels/instances/unique/trai/trai_wire_box/025
 		2
 			event blue_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/002
+			instance levels/instances/unique/trai/trai_wire_box/026
 		3
 			event blue_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/003
+			instance levels/instances/unique/trai/trai_wire_box/027
 		4
 			event blue_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/004
+			instance levels/instances/unique/trai/trai_wire_box/028
 		5
 			event green_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/001
+			instance levels/instances/unique/trai/trai_wire_box/025
 		6
 			event green_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/002
+			instance levels/instances/unique/trai/trai_wire_box/026
 		7
 			event green_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/003
+			instance levels/instances/unique/trai/trai_wire_box/027
 		8
 			event green_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/004
+			instance levels/instances/unique/trai/trai_wire_box/028
 		9
 			event red_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/001
+			instance levels/instances/unique/trai/trai_wire_box/025
 		10
 			event red_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/002
+			instance levels/instances/unique/trai/trai_wire_box/026
 		11
 			event red_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/003
+			instance levels/instances/unique/trai/trai_wire_box/027
 		12
 			event red_wire_cut_output
-			instance levels/instances/unique/trai/trai_wire_box/004
+			instance levels/instances/unique/trai/trai_wire_box/028
 	on_executed
 		´link_wrong_cable_cut006´ (delay 0)
 ´link_wrong_cable_cut006´ MissionScriptElement 102334
@@ -19115,14 +19112,19 @@
 	operation remove
 ´link_disable_pipeline_loud´ MissionScriptElement 102580
 	on_executed
-		´toggle_off_pipeline_obj´ (delay 0)
 		´remove_WP_c4´ (delay 0)
+		´toggle_off_pipeline_obj´ (delay 0)
 ´toggle_off_pipeline_obj´ ElementToggle 102581
 	elements
  		1 ´link_trainyard_entered´
 		2 ´link_start_obj´
 		3 ´link_start_point_of_no_return´
 		4 ´func_point_no_return´
+		5 ´obj_get_explosives´
+		6 ´obj_get_explosives001´
+		7 ´input_explosive_bag´
+		8 ´seq_disable_office_doors´
+		9 ´output_explosives_picked_up´
 	set_trigger_times -1
 	toggle off
 ´remove_WP_c4´ ElementOperator 102584
@@ -19144,7 +19146,6 @@
 		´logic_counter_4´ (delay 0)
 		´logic_counter_5´ (delay 0)
 		´logic_counter_LOUD´ (delay 0)
-		´logic_counter_LOUD_2´ (delay 0)
 ´logic_toggle_off_6´ ElementToggle 102589
 	set_trigger_times -1
 	toggle off
@@ -19222,16 +19223,6 @@
 	on_executed
 		´link_trainyard_entered´ (delay 0)
 		´logic_operator_remove_2´ (delay 0)
-´logic_counter_007´ ElementCounter 102599
-	counter_target 2
-	on_executed
-		´link_trainyard_entered´ (delay 0)
-		´logic_operator_remove_2´ (delay 0)
-´logic_counter_008´ ElementCounter 102600
-	counter_target 2
-	on_executed
-		´link_trainyard_entered´ (delay 0)
-		´logic_operator_remove_2´ (delay 0)
 ´point_debug_026´ ElementDebug 102601
 	as_subtitle False
 	debug_string office door opened loud
@@ -19267,15 +19258,13 @@
 		3 ´obj_blow_up_pipeline´
 		4 ´obj_get_explosives´
 		5 ´input_explosive_bag´
-		6 ´logic_counter_008´
-		7 ´logic_counter_007´
-		8 ´logic_counter_006´
-		9 ´logic_counter_005´
-		10 ´logic_counter_004´
-		11 ´logic_counter_003´
-		12 ´logic_counter_002´
-		13 ´logic_counter_2´
-		14 ´link_start_point_of_no_return´
+		6 ´logic_counter_006´
+		7 ´logic_counter_005´
+		8 ´logic_counter_004´
+		9 ´logic_counter_003´
+		10 ´logic_counter_002´
+		11 ´logic_counter_2´
+		12 ´link_start_point_of_no_return´
 	set_trigger_times -1
 	toggle off
 ´input_disable_keypads_if_loud´ ElementInstanceInputEvent 102608
@@ -19425,11 +19414,6 @@
 ´link_blowtorch_found_2´ MissionScriptElement 101008
 	on_executed
 		´logic_counter_LOUD´ (delay 0)
-		´logic_counter_LOUD_2´ (delay 0)
-´logic_counter_LOUD_2´ ElementCounter 101021
-	counter_target 5
-	on_executed
-		´link_start_prepare_locomotive´ (delay 0) DISABLED
 ´logic_toggle_off_loud_prev_and_VO´ ElementToggle 101022
 	elements
  		1 ´logic_counter_LOUD´
@@ -20557,6 +20541,8 @@
 	set_trigger_times -1
 	toggle off
 ´logic_toggle_off_vo_15´ ElementToggle 102764
+	elements
+ 		1 ´logic_counter_if_loud´
 	set_trigger_times -1
 	toggle off
 ´logic_toggle_off_vo_16´ ElementToggle 102765
@@ -21468,6 +21454,7 @@
 		6 ´logic_link_loop016´
 		7 ´loc_trai_66_01_2´
 		8 ´point_debug_105´
+		9 ´logic_counter_008´
 	set_trigger_times -1
 	toggle off
 ´logic_toggle_off_13´ ElementToggle 101032
@@ -48520,9 +48507,6 @@
 	award_instigator False
 	position -800, 20400, 4100
 	rotation 0, 0, 0, -1
-´blocking_flow_if_loud´ MissionScriptElement 100677
-	on_executed
-		´link_start_prepare_locomotive´ (delay 0) DISABLED
 ´input_open_box_crane_loco´ ElementInstanceInputEvent 104256
 	event_list
 		1
@@ -48925,6 +48909,7 @@
  		1 ´link_LOUD´ DISABLED
 		2 ´input_show_crane_locomotive´
 		3 ´input_hide_stealth_locomotive´
+		4 ´logic_counter_008´
 	set_trigger_times -1
 	toggle off
 ´point_debug_193´ ElementDebug 100777
@@ -50898,3 +50883,42 @@
 	so_action e_nl_dwn_jump_4_5m
 	trigger_on none
 	use_instigator False
+´logic_counter_008´ ElementCounter 102600
+	counter_target 3
+	on_executed
+		´logic_toggle_on_11´ (delay 0)
+		´logic_toggle_off_18´ (delay 0)
+´logic_toggle_on_11´ ElementToggle 101021
+	elements
+ 		1 ´link_LOUD´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_18´ ElementToggle 104347
+	elements
+ 		1 ´link_STEALTH´
+	set_trigger_times -1
+	toggle off
+´logic_counter_if_loud´ ElementCounter 100677
+	counter_target 2
+	on_executed
+		´logic_toggle_off_19´ (delay 0)
+		´link_start_prepare_locomotive´ (delay 0) DISABLED
+		´remove_WP_PA´ (delay 0)
+		´point_debug_201´ (delay 0)
+´logic_toggle_off_19´ ElementToggle 102599
+	elements
+ 		1 ´link_blocking_flow_if_loud´
+		2 ´logic_counter_if_loud´
+	set_trigger_times -1
+	toggle off
+´link_blocking_flow_if_loud´ MissionScriptElement 104348
+	on_executed
+		´link_start_prepare_locomotive´ (delay 0) DISABLED
+´point_debug_201´ ElementDebug 104349
+	as_subtitle False
+	debug_string Loud triggered during PA
+	show_instigator False
+´link_loud_2´ MissionScriptElement 104350
+	DISABLED
+	on_executed
+		´link_start_prepare_locomotive´ (delay 0) DISABLED
