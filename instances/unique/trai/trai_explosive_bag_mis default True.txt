@@ -148,6 +148,7 @@
 	event disable_bag
 	on_executed
 		´seq_disable_int_outline´ (delay 0)
+		´remove_WP´ (delay 0)
 ´seq_disable_int_outline´ ElementUnitSequence 100021
 	position 700, 200, 0
 	rotation 0, 0, 0, -1
@@ -164,8 +165,6 @@
 			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
 			notify_unit_sequence state_interaction_disable
 			time 0
-	on_executed
-		´toggle_off_WP_2´ (delay 0)
 ´toggle_off_WP´ ElementToggle 100022
 	elements
  		1 ´WP_bag´
@@ -176,3 +175,9 @@
  		1 ´WP_bag´
 	set_trigger_times -1
 	toggle off
+´remove_WP´ ElementOperator 100024
+	elements
+ 		1 ´WP_bag´
+	operation remove
+	on_executed
+		´toggle_off_WP_2´ (delay 0)
