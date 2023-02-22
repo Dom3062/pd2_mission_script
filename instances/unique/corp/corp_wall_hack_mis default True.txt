@@ -1,0 +1,535 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 2400, 400, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´ai_spawn_enemy_001´ (delay 0)
+		´ai_spawn_enemy_002´ (delay 0)
+		´ai_spawn_enemy_003´ (delay 0)
+		´input_enable_interactions´ (delay 1)
+		´input_enable_hack_WPs´ (delay 0)
+		´input_hack_time_60´ (delay 0)
+		´input_power_cut´ (delay 20)
+		´input_power_restored´ (delay 25)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´interact_WP´ ElementWaypoint 100017
+	DISABLED
+	TRIGGER TIMES 1
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -15, 128
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´output_hacking_done´ ElementInstanceOutput 100007
+	event alarm_box_hack_done
+	on_executed
+		´point_debug_001´ (delay 0)
+´point_debug_001´ ElementDebug 100012
+	as_subtitle False
+	debug_string hack_done
+	show_instigator False
+´seq_hack_done´ ElementUnitSequence 100014
+	position 1200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´disable_everything´ (delay 0)
+´link_enable_interaction´ MissionScriptElement 100019
+	on_executed
+		´enable_interaction´ (delay 0)
+´disable_everything´ ElementToggle 100023
+	elements
+ 		1 ´interact_WP´ DISABLED
+		2 ´defend_WP´ DISABLED
+		3 ´start_interrupt´
+		4 ´SO_success´ DISABLED
+		5 ´SO_failed´ DISABLED
+		6 ´SO_interrupt_position´
+		7 ´SO_interrupt_position001´
+		8 ´fix_hack_WP´ DISABLED
+		9 ´input_power_cut´
+		10 ´input_power_restored´
+		11 ´interrupt_hack´
+		12 ´power_restored´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_WP´ (delay 0)
+´input_enable_interactions´ ElementInstanceInput 100018
+	event enable_interactions
+	on_executed
+		´link_enable_interactions´ (delay 0)
+´link_enable_interactions´ MissionScriptElement 100024
+	on_executed
+		´link_enable_interaction´ (delay 0)
+´remove_WP´ ElementOperator 100025
+	elements
+ 		1 ´interact_WP´ DISABLED
+		2 ´defend_WP´ DISABLED
+		3 ´fix_hack_WP´ DISABLED
+	operation remove
+´defend_WP´ ElementWaypoint 100031
+	DISABLED
+	TRIGGER TIMES 1
+	icon pd2_computer
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -15, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´link_enable_defend_WP´ MissionScriptElement 100032
+	on_executed
+		´defend_WP´ (delay 0) DISABLED
+		´enable_SOs´ (delay 0)
+´start_interrupt´ MissionScriptElement 100026
+	on_executed
+		´link_enable_defend_WP´ (delay 0)
+´SO_interrupt_position´ ElementSpecialObjective 100035
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+		1 ´SO_interrupt_position001´
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval 4
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, -75, 0
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 2000
+	search_position 0 -100 0
+	SO_access 9724
+	so_action none
+	trigger_on none
+	use_instigator False
+´SO_interrupt_position001´ ElementSpecialObjective 100039
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group none
+	align_position False
+	align_rotation False
+	attitude none
+	base_chance 1
+	followup_elements
+	forced True
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval 0
+	needs_pos_rsrv False
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, -75, 125
+	rotation 0, 0, 0, -1
+	scan True
+	search_distance 0
+	search_position 0 -100 0
+	SO_access 9724
+	so_action e_so_pull_lever
+	trigger_on none
+	use_instigator False
+´activate_SOs´ MissionScriptElement 100040
+	on_executed
+		´SO_interrupt_position´ (delay 0)
+´SO_failed´ ElementSpecialObjectiveTrigger 100041
+	DISABLED
+	elements
+ 		1 ´SO_interrupt_position´
+		2 ´SO_interrupt_position001´
+	event fail
+	position -100, -150, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_002´ (delay 0)
+		´enable_SOs´ (delay 4)
+´point_debug_002´ ElementDebug 100042
+	as_subtitle False
+	debug_string interrupt_failed
+	show_instigator False
+´SO_success´ ElementSpecialObjectiveTrigger 100043
+	DISABLED
+	elements
+ 		1 ´SO_interrupt_position001´
+	event complete
+	position 100, -150, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´point_debug_003´ (delay 0)
+		´stop_interrupt´ (delay 0)
+		´output_hack_interrupted´ (delay 0)
+		´enable_WP_resume_hack´ (delay 1)
+´point_debug_003´ ElementDebug 100044
+	as_subtitle False
+	debug_string komrat_kat_wants_U_to resume_the hack
+	show_instigator False
+´ai_spawn_enemy_001´ ElementSpawnEnemyDummy 100045
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position 250, 275, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+´ai_spawn_enemy_002´ ElementSpawnEnemyDummy 100046
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position 25, 275, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+´ai_spawn_enemy_003´ ElementSpawnEnemyDummy 100047
+	accessibility any
+	amount 0
+	enemy units/payday2/characters/ene_swat_1/ene_swat_1
+	force_pickup none
+	interval 5
+	orientation_elements
+	participate_to_group_ai True
+	position -225, 275, 0
+	rotation 0, 0, 0, -1
+	spawn_action none
+	team default
+	voice 0
+´enable_SOs´ ElementToggle 100048
+	elements
+ 		1 ´SO_success´ DISABLED
+		2 ´SO_failed´ DISABLED
+		3 ´SO_interrupt_position´
+		4 ´SO_interrupt_position001´
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´activate_SOs´ (delay 0)
+´stop_interrupt´ MissionScriptElement 100049
+	on_executed
+		´disable_SOs´ (delay 0)
+		´remove_SOs´ (delay 0)
+		´func_sequence_001´ (delay 0)
+´remove_SOs´ ElementOperator 100050
+	elements
+ 		1 ´SO_interrupt_position´
+		2 ´SO_interrupt_position001´
+	operation remove
+´disable_SOs´ ElementToggle 100051
+	elements
+ 		1 ´SO_interrupt_position´
+		2 ´SO_success´ DISABLED
+		3 ´SO_failed´ DISABLED
+		4 ´SO_interrupt_position001´
+	set_trigger_times -1
+	toggle off
+´seq_enable_hack_resume´ ElementUnitSequence 100052
+	position 300, -325, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence enable_interaction_GUI_on
+			time 0
+	on_executed
+		´enable_resume_hack´ (delay 0)
+´enable_WP_resume_hack´ MissionScriptElement 100055
+	on_executed
+		´enable_resume_hack´ (delay 0)
+		´seq_enable_hack_resume´ (delay 1)
+´fix_hack_WP´ ElementWaypoint 100056
+	DISABLED
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -15, 150
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´remove_WP_2´ ElementOperator 100057
+	elements
+ 		1 ´fix_hack_WP´ DISABLED
+		2 ´interact_WP´ DISABLED
+	operation remove
+	on_executed
+		´seq_restart_hack´ (delay 0)
+´input_hack_time_60´ ElementInstanceInput 100065
+	event set_hack_time_60
+	on_executed
+		´seq_set_hack_time_60´ (delay 0)
+´output_hack_has_started´ ElementInstanceOutput 100064
+	event hack_has_started
+´enable_resume_hack´ ElementToggle 100069
+	elements
+ 		1 ´hack_interrupted´ DISABLED
+	set_trigger_times 1
+	toggle on
+´output_hack_interrupted´ ElementInstanceOutput 100009
+	event hack_stopped
+´point_debug_005´ ElementDebug 100010
+	as_subtitle False
+	debug_string hack_resumed
+	show_instigator False
+´output_hack_resumed´ ElementInstanceOutput 100011
+	event hack_resumed
+	on_executed
+		´point_debug_005´ (delay 0)
+´input_disable_waypoint´ ElementInstanceInput 100013
+	event disable_waypoint
+	on_executed
+		´toggle_disable_WP´ (delay 0)
+´toggle_disable_WP´ ElementToggle 100054
+	elements
+ 		1 ´defend_WP´ DISABLED
+		2 ´fix_hack_WP´ DISABLED
+		3 ´interact_WP´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_WP_3´ (delay 0)
+´remove_WP_3´ ElementOperator 100059
+	elements
+ 		1 ´defend_WP´ DISABLED
+		2 ´fix_hack_WP´ DISABLED
+		3 ´interact_WP´ DISABLED
+	operation remove
+´input_enable_hack_WPs´ ElementInstanceInput 100021
+	event enable_WPs
+	on_executed
+		´enable_hack_WP´ (delay 0)
+´enable_hack_WP´ ElementToggle 100037
+	elements
+ 		1 ´defend_WP´ DISABLED
+		2 ´fix_hack_WP´ DISABLED
+		3 ´interact_WP´ DISABLED
+	set_trigger_times -1
+	toggle on
+´turns_off_waypoint´ ElementToggle 100066
+	elements
+ 		1 ´interact_WP´ DISABLED
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´output_hack_has_started´ (delay 0)
+´removes_waypoint´ ElementOperator 100070
+	elements
+ 		1 ´interact_WP´ DISABLED
+	operation remove
+	on_executed
+		´turns_off_waypoint´ (delay 0)
+´enable_interaction´ ElementToggle 100062
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´interact_WP´ (delay 0) DISABLED
+		´seq_start_hack001´ (delay 0)
+´link_hack_started´ MissionScriptElement 100008
+	on_executed
+		´removes_waypoint´ (delay 0)
+´seq_start_hack001´ ElementUnitSequence 100034
+	position 700, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence enable_interaction
+			time 0
+´hack_resumed´ MissionScriptElement 100038
+	BASE DELAY 1
+	on_executed
+		´remove_WP_2´ (delay 0)
+		´output_hack_resumed´ (delay 0)
+		´start_interrupt´ (delay 3)
+´input_hack_time_150´ ElementInstanceInput 100053
+	event set_hack_time_150
+	on_executed
+		´seq_set_hack_time_120´ (delay 0)
+´input_power_cut´ ElementInstanceInput 100060
+	event power_cut
+	on_executed
+		´interrupt_hack´ (delay 0)
+´interrupt_hack´ MissionScriptElement 100061
+	on_executed
+		´stop_interrupt´ (delay 0)
+´input_power_restored´ ElementInstanceInput 100063
+	event power_restored
+	on_executed
+		´power_restored´ (delay 0)
+´power_restored´ MissionScriptElement 100067
+	on_executed
+		´enable_WP_resume_hack´ (delay 0)
+´seq_restart_hack´ ElementUnitSequence 100068
+	position 1550, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence state_device_resumed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence disable_interaction_GUI_on
+			time 0
+´hack_started´ ElementUnitSequenceTrigger 100072
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+	on_executed
+		´link_hack_started´ (delay 0)
+		´start_interrupt´ (delay 0)
+´seq_set_hack_time_60´ ElementUnitSequence 100073
+	position 2025, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence set_time_60sec
+			time 0
+´seq_set_hack_time_120´ ElementUnitSequence 100074
+	position 2125, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence set_time_150sec
+			time 0
+´hack_done´ ElementUnitSequenceTrigger 100075
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+	on_executed
+		´seq_hack_done´ (delay 0)
+		´output_hacking_done´ (delay 0)
+		´disable_SOs´ (delay 0)
+		´remove_SOs´ (delay 0)
+´hack_interrupted´ ElementUnitSequenceTrigger 100076
+	DISABLED
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+	on_executed
+		´hack_resumed´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100016
+	position 100, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence state_device_jammed
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence disable_interaction_GUI_on
+			time 0
+´input_disable_hack´ ElementInstanceInput 100015
+	event disable_hack
+	on_executed
+		´seq_disable_hack´ (delay 0)
+´seq_disable_hack´ ElementUnitSequence 100020
+	position 2125, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_disable_WP´ (delay 0)
+´input_disable_hack_temp´ ElementInstanceInput 100022
+	event temp_disable_hack
+	on_executed
+		´seq_disable_hack_001´ (delay 0)
+´seq_disable_hack_001´ ElementUnitSequence 100027
+	position 2225, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_trai/props/trai_int_prop_hacking_device/trai_int_prop_hacking_device/001 (7.62939E-06, -1.19209E-05, 150)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´remove_WP_3´ (delay 0)

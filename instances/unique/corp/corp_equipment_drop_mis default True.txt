@@ -1,0 +1,254 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´input_show_WP´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence show_prop_only
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_show_WP´ ElementInstanceInput 100007
+	event show_WP
+	on_executed
+		´show_WP´ (delay 0)
+´output_C4_picked_up´ ElementInstanceOutput 100008
+	event picked_up_C4
+	on_executed
+		´point_debug_001´ (delay 0)
+´output_thermite_picked_up´ ElementInstanceOutput 100012
+	event picked_up_THERMITE
+	on_executed
+		´point_debug_002´ (delay 0)
+´output_saw_picked_up´ ElementInstanceOutput 100013
+	event picked_up_SAW
+	on_executed
+		´point_debug_003´ (delay 0)
+´seq_trigger_C4´ ElementUnitSequenceTrigger 100014
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+	on_executed
+		´output_C4_picked_up´ (delay 0)
+		´remove_WP´ (delay 0)
+´seq_trigger_thermite´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+	on_executed
+		´output_thermite_picked_up´ (delay 0)
+		´remove_WP´ (delay 0)
+´seq_trigger_saw´ ElementUnitSequenceTrigger 100016
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+	on_executed
+		´output_saw_picked_up´ (delay 0)
+		´remove_WP´ (delay 0)
+´point_debug_001´ ElementDebug 100017
+	as_subtitle False
+	debug_string got_C4
+	show_instigator False
+´point_debug_002´ ElementDebug 100018
+	as_subtitle False
+	debug_string got_thermite
+	show_instigator False
+´point_debug_003´ ElementDebug 100019
+	as_subtitle False
+	debug_string got_saw
+	show_instigator False
+´show_WP´ MissionScriptElement 100020
+	on_executed
+		´WP_equipment´ (delay 0) DISABLED
+´input_hide_WP´ ElementInstanceInput 100021
+	event hide_WP
+	on_executed
+		´remove_WP´ (delay 0)
+´remove_WP´ ElementOperator 100022
+	elements
+ 		1 ´WP_equipment´ DISABLED
+	operation remove
+´WP_equipment´ ElementWaypoint 100023
+	DISABLED
+	icon pd2_loot
+	only_in_civilian False
+	only_on_instigator False
+	position -25, -25, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_disable_everything´ ElementInstanceInput 100024
+	event disable_equipment
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´remove_WP_2´ (delay 0)
+´remove_WP_2´ ElementOperator 100026
+	elements
+ 		1 ´WP_equipment´ DISABLED
+	operation remove
+	on_executed
+		´func_sequence_001´ (delay 0)
+´func_sequence_001´ ElementUnitSequence 100027
+	position 900, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence state_vis_hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence hide_outline
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence state_vis_hide
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence hide_prop_only
+			time 0
+		7
+			id 7
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence hide
+			time 0
+		8
+			id 8
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´input_enable_equipment´ ElementInstanceInput 100028
+	event enable_equipment
+	on_executed
+		´seq_setup001´ (delay 0)
+´seq_setup001´ ElementUnitSequence 100029
+	position 1300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence show_prop_only
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_rvd/pickups/rvd_pku_saw/rvd_pku_saw/001 (-50.7071, -0.707108, 6)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence show
+			time 0
+		5
+			id 5
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_thermal_paste/corp_int_thermal_paste/002 (-35, -11, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		6
+			id 6
+			name run_sequence
+			notify_unit_id units/pd2_dlc1/pickups/gen_pku_c4_explosives/gen_pku_c4_explosives/001 (0, 0, 0)
+			notify_unit_sequence state_vis_show
+			time 0
+	on_executed
+		´enable_WP´ (delay 0)
+´enable_WP´ ElementToggle 100030
+	elements
+ 		1 ´WP_equipment´ DISABLED
+	set_trigger_times -1
+	toggle on

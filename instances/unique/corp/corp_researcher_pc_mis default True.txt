@@ -1,0 +1,72 @@
+´startup´ MissionScriptElement 100003
+	EXECUTE ON STARTUP
+	BASE DELAY 1
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100013
+	position 200, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´diable_interaction001´ (delay 0)
+´diable_interaction001´ ElementUnitSequence 100016
+	position 300, -100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_hack_lead_computer/corp_int_hack_lead_computer/001 (0, 0, 2.5)
+			notify_unit_sequence enable_interaction
+			time 0
+´police_called´ ElementGlobalEventTrigger 100001
+	TRIGGER TIMES 1
+	global_event police_called
+	position 100, -200, 2.5
+	rotation 0, 0, 0, -1
+	on_executed
+		´diable_interaction002´ (delay 0)
+´diable_interaction002´ ElementUnitSequence 100002
+	position 200, -200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_hack_lead_computer/corp_int_hack_lead_computer/001 (0, 0, 2.5)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´logic_toggle_002´ ElementToggle 100004
+	set_trigger_times -1
+	toggle off
+´schedule_found001´ ElementInstanceOutput 100008
+	event schedule_found
+	on_executed
+		´point_debug_001´ (delay 0)
+´input_disable_interactions´ ElementInstanceInput 100010
+	event disable_interactions
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´logic_toggle_001´ ElementToggle 100011
+	elements
+ 		1 ´schedule_found001´
+		2 ´func_sequence_trigger_001´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´diable_interaction002´ (delay 0)
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100017
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence timer_done
+			notify_unit_id units/pd2_dlc_corp/equipment/corp_int_hack_lead_computer/corp_int_hack_lead_computer/001 (0, 0, 2.5)
+	on_executed
+		´schedule_found001´ (delay 0)
+´point_debug_001´ ElementDebug 100018
+	as_subtitle False
+	debug_string schedule_found
+	show_instigator False
