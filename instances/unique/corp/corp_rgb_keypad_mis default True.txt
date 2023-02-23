@@ -1549,22 +1549,6 @@
 ´delay´ MissionScriptElement 100191
 	on_executed
 		´text_available´ (delay 0)
-´ecm_jammer_on´ ElementGlobalEventTrigger 100192
-	global_event ecm_jammer_on
-	position -100, 625, 0
-	rotation 0, 0, 0, -1
-	on_executed
-		´disable interaction´ (delay 0)
-		´text_jammed´ (delay 0)
-		´enable_interaction_OFF´ (delay 0.5)
-´ecm_jammer_off´ ElementGlobalEventTrigger 100176
-	global_event ecm_jammer_off
-	position -150, -50, 0
-	rotation 0, 0, 0, -1
-	on_executed
-		´enable_interaction´ (delay 30)
-		´text_rebooting´ (delay 0)
-		´enable_interaction_ON´ (delay 0)
 ´police_called´ ElementGlobalEventTrigger 100013
 	DISABLED
 	TRIGGER TIMES 1
@@ -1600,17 +1584,14 @@
 		´reset´ (delay 0)
 ´ecm_callbacks_OFF´ ElementToggle 100214
 	elements
- 		1 ´ecm_jammer_off´
-		2 ´ecm_jammer_on´
-		3 ´enable_interaction´
-		4 ´enable_interaction_OFF´
-		5 ´enable_interaction_ON´
+ 		1 ´enable_interaction´
+		2 ´enable_interaction_OFF´
+		3 ´enable_interaction_ON´
 	set_trigger_times -1
 	toggle off
 ´ecm_callbacks_ON´ ElementToggle 100215
 	elements
  		1 ´police_called´ DISABLED
-		2 ´ecm_jammer_on´
 	set_trigger_times -1
 	toggle on
 ´input_enable_interactions´ ElementInstanceInput 100216

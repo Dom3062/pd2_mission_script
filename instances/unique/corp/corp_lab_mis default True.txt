@@ -723,6 +723,7 @@
 		´output_start_flooding´ (delay 0)
 		´point_play_sound_005´ (delay 0)
 		´point_play_sound_006´ (delay 0)
+		´enable_player_teleport´ (delay 0)
 ´lab_killzone_enemies´ ElementAreaTrigger 100011
 	DISABLED
 	amount 1
@@ -864,3 +865,91 @@
 	sound_event corp_water_squirt_right
 	use_instigator False
 	use_play_func False
+´trigger_area_teleport_players_001´ ElementAreaTrigger 100050
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 2800, -500, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´point_shape_teleport_player_001´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´point_teleport_player_001´ (delay 0)
+´trigger_area_teleport_players_002´ ElementAreaTrigger 100051
+	DISABLED
+	amount 1
+	depth 500
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 2800, -600, 0
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+		1 ´point_shape_teleport_player_002´
+	substitute_object 
+	trigger_on on_enter
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 500
+	on_executed
+		´point_teleport_player_002´ (delay 0)
+´point_shape_teleport_player_001´ ElementShape 100052
+	depth 1200
+	height 500
+	position -575, 600, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 1150
+´point_shape_teleport_player_002´ ElementShape 100053
+	depth 1200
+	height 500
+	position -1725, 600, 75
+	radius 250
+	rotation 0, 0, 0, -1
+	shape_type box
+	width 1150
+´point_teleport_player_001´ ElementTeleportPlayer 100054
+	equip_selection none
+	fade_in 0
+	fade_out 0
+	keep_carry True
+	position 200, 1000, 0
+	refill False
+	rotation 0, 0, 0.707107, -0.707107
+	state standard
+	sustain 0
+´point_teleport_player_002´ ElementTeleportPlayer 100055
+	equip_selection none
+	fade_in 0
+	fade_out 0
+	keep_carry True
+	position -2450, 600, 0
+	refill False
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	sustain 0
+´enable_player_teleport´ ElementToggle 100056
+	elements
+ 		1 ´trigger_area_teleport_players_001´ DISABLED
+		2 ´trigger_area_teleport_players_002´ DISABLED
+	set_trigger_times -1
+	toggle on
