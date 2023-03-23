@@ -165,6 +165,7 @@
 ´wp_drill_parts´ ElementWaypoint 100220
 	icon pd2_fix
 	only_in_civilian False
+	only_on_instigator False
 	position -711, -67, 68.4701
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -262,6 +263,7 @@
 		1 ´dir_valid_loot´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -331,6 +333,7 @@
 	on_executed
 		´loot_remove´ (delay 0)
 		´seq_van_addlootbag´ (delay 0)
+		´output_loot_secured´ (delay 0)
 ´loot_remove´ ElementCarry 100057
 	operation remove
 	type_filter none
@@ -358,6 +361,7 @@
 		1 ´dir_unknown_loot´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -381,6 +385,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -433,6 +438,7 @@
 		1 ´dir_invalid_loot´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -486,12 +492,14 @@
 ´wp_lootdrop´ ElementWaypoint 100093
 	icon pd2_lootdrop
 	only_in_civilian False
+	only_on_instigator False
 	position 3, -836, 114.5
 	rotation 0, 0, 0, -1
 	text_id debug_none
 ´wp_escape´ ElementWaypoint 100094
 	icon pd2_escape
 	only_in_civilian False
+	only_on_instigator False
 	position -359, -413, 144.482
 	rotation 0, 0, 0, -1
 	text_id debug_none
@@ -523,3 +531,5 @@
 	operation remove
 ´output_mission_end´ ElementInstanceOutput 100176
 	event mission_end
+´output_loot_secured´ ElementInstanceOutput 100002
+	event output_loot_secured

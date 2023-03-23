@@ -44,12 +44,14 @@
 ´wp_silent_escape´ ElementWaypoint 100006
 	icon pd2_escape
 	only_in_civilian False
+	only_on_instigator False
 	position 1606.59, 5116.74, 225
 	rotation 0, 0, 0.382683, -0.92388
 	text_id debug_none
 ´wp_silent_lootdrop´ ElementWaypoint 100007
 	icon pd2_lootdrop
 	only_in_civilian False
+	only_on_instigator False
 	position 1323.74, 4833.9, 125
 	rotation 0, 0, 0.382683, -0.92388
 	text_id debug_none
@@ -68,6 +70,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -89,6 +92,7 @@
 		1 ´data_instigator_rule_002´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -122,6 +126,7 @@
 	type_filter none
 	on_executed
 		´remove_all´ (delay 0)
+		´output_loot_secured´ (delay 0)
 ´remove_all´ ElementCarry 100018
 	operation remove
 	type_filter none
@@ -328,6 +333,7 @@
 		1 ´data_instigator_rule_001´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -362,6 +368,7 @@
 	DISABLED
 	icon pd2_lootdrop
 	only_in_civilian False
+	only_on_instigator False
 	position 1174.99, 3831.96, 128
 	rotation 0, 0, 0.965926, -0.258819
 	text_id debug_none
@@ -369,6 +376,7 @@
 	DISABLED
 	icon pd2_escape
 	only_in_civilian False
+	only_on_instigator False
 	position 1348.49, 3531.45, 221
 	rotation 0, 0, 0.965926, -0.258819
 	text_id debug_none
@@ -416,6 +424,7 @@
 	rules_element_ids
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -468,12 +477,14 @@
 ´wp_c4_bag_01´ ElementWaypoint 100058
 	icon pd2_loot
 	only_in_civilian False
+	only_on_instigator False
 	position 1429.15, 3320.74, 106
 	rotation 0, 0, 0.965926, 0.258819
 	text_id debug_none
 ´wp_c4_bag_02´ ElementWaypoint 100059
 	icon pd2_loot
 	only_in_civilian False
+	only_on_instigator False
 	position 1447, 3289.65, 106
 	rotation 0, 0, 0.965926, 0.258819
 	text_id debug_none
@@ -543,6 +554,7 @@
 		1 ´dtr_loot_unknown´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -565,6 +577,7 @@
 		1 ´dtr_loot_unknown_2´
 	shape_type box
 	spawn_unit_elements
+	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
@@ -790,3 +803,5 @@
 	as_subtitle False
 	debug_string from instance: HIDE LIMO
 	show_instigator False
+´output_loot_secured´ ElementInstanceOutput 100090
+	event output_loot_secured
