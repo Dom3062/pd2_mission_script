@@ -1,0 +1,412 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay_3sec´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -300, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay_3sec´ MissionScriptElement 100004
+	BASE DELAY 3
+	on_executed
+		´debug_show_cards´ (delay 0)
+		´point_debug_001´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/001 (300, -200, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/002 (300, -300, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/001 (300, -200, 0)
+		2 units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/002 (300, -300, 0)
+	on_executed
+		´add_blocker´ (delay 0)
+´input_set_tape_1´ ElementInstanceInput 100007
+	event input_set_tape_1
+	on_executed
+		´point_debug_009´ (delay 0)
+		´logic_toggle_001´ (delay 0)
+´output_tape_1_set´ ElementInstanceOutput 100008
+	event tape_1_set
+´2_cards´ ElementCounter 100010
+	counter_target 2
+	on_executed
+		´opens_safe´ (delay 0)
+´opens_safe´ ElementUnitSequence 100011
+	TRIGGER TIMES 1
+	position 800, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_prop_safe/lrm_prop_safe/001 (0, 2.38419E-05, 18)
+			notify_unit_sequence anim_open_01
+			time 0
+	on_executed
+		´event_safe_open´ (delay 0)
+		´eanble_tape_001´ (delay 2.5)
+		´eanble_tape_002´ (delay 2.5)
+		´eanble_tape_003´ (delay 2.5)
+		´eanble_tape_004´ (delay 2.5)
+´debug_enable_keycard´ ElementUnitSequence 100014
+	position 500, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/001 (300, -200, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/002 (300, -300, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+	on_executed
+		´input_set_tape_1´ (delay 0)
+´debug_show_cards´ ElementEnableUnit 100016
+	position 500, 100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/001 (300, -200, 0)
+		2 units/pd2_dlc_lrm/props/lrm_pku_keycard/lrm_pku_keycard/002 (300, -300, 0)
+	on_executed
+		´debug_enable_keycard´ (delay 0)
+´event_safe_open´ ElementDebug 100017
+	as_subtitle False
+	debug_string safe_open
+	show_instigator False
+´point_debug_001´ ElementDebug 100018
+	as_subtitle False
+	debug_string debug_event_safe_on
+	show_instigator False
+´input_set_tape_2´ ElementInstanceInput 100020
+	event input_set_tape_2
+	on_executed
+		´point_debug_008´ (delay 0)
+		´logic_toggle_002´ (delay 0)
+´input_set_tape_3´ ElementInstanceInput 100021
+	event input_set_tape_3
+	on_executed
+		´point_debug_007´ (delay 0)
+		´logic_toggle_003´ (delay 0)
+´input_set_tape_4´ ElementInstanceInput 100022
+	event input_set_tape_4
+	on_executed
+		´point_debug_002´ (delay 0)
+		´logic_toggle_004´ (delay 0)
+´output_tape_2_set´ ElementInstanceOutput 100023
+	event tape_2_set
+´output_tape_3_set´ ElementInstanceOutput 100024
+	event tape_3_set
+´output_tape_4_set´ ElementInstanceOutput 100025
+	event tape_4_set
+´add_blocker´ ElementNavObstacle 100035
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 8037565586551743599
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x1x3/001 (-50, -42, 0)
+	operation add
+	position 600, -100, 0
+	rotation 0, 0, 0, -1
+´eanble_tape_001´ ElementUnitSequence 100013
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence set_label_01_damage
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´logic_toggle_001´ ElementToggle 100015
+	elements
+ 		1 ´tape_2´
+		2 ´tape_3´
+		3 ´tape_4´
+		4 ´eanble_tape_002´
+		5 ´eanble_tape_003´
+		6 ´eanble_tape_004´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´point_debug_018´ (delay 0)
+		´output_tape_1_set´ (delay 0)
+´logic_toggle_002´ ElementToggle 100039
+	elements
+ 		1 ´tape_1´
+		2 ´tape_3´
+		3 ´tape_4´
+		4 ´eanble_tape_001´
+		5 ´eanble_tape_003´
+		6 ´eanble_tape_004´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´point_debug_017´ (delay 0)
+		´output_tape_2_set´ (delay 0)
+´logic_toggle_003´ ElementToggle 100040
+	elements
+ 		1 ´tape_2´
+		2 ´tape_1´
+		3 ´tape_4´
+		4 ´eanble_tape_001´
+		5 ´eanble_tape_002´
+		6 ´eanble_tape_004´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´point_debug_016´ (delay 0)
+		´output_tape_3_set´ (delay 0)
+´logic_toggle_004´ ElementToggle 100041
+	elements
+ 		1 ´tape_3´
+		2 ´tape_2´
+		3 ´tape_1´
+		4 ´eanble_tape_003´
+		5 ´eanble_tape_002´
+		6 ´eanble_tape_001´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´point_debug_015´ (delay 0)
+		´output_tape_4_set´ (delay 0)
+´tape_1´ ElementJobValue 100042
+	key LRON
+	save True
+	value 0
+	on_executed
+		´point_debug_011´ (delay 0)
+		´Tape_1_picked_up´ (delay 0)
+´Tape_picked_up´ ElementUnitSequenceTrigger 100043
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+	on_executed
+		´sync_001´ (delay 0)
+		´sync_002´ (delay 0)
+		´sync_003´ (delay 0)
+		´sync_004´ (delay 0)
+		´point_debug_010´ (delay 0)
+´tape_2´ ElementJobValue 100047
+	key LRTW
+	save True
+	value 0
+	on_executed
+		´point_debug_012´ (delay 0)
+		´Tape_2_picked_up´ (delay 0)
+´tape_3´ ElementJobValue 100048
+	key LRTH
+	save True
+	value 0
+	on_executed
+		´point_debug_013´ (delay 0)
+		´Tape_3_picked_up´ (delay 0)
+´tape_4´ ElementJobValue 100049
+	key LRFO
+	save True
+	value 0
+	on_executed
+		´point_debug_014´ (delay 0)
+		´Tape_4_picked_up´ (delay 0)
+´Tape_1_picked_up´ ElementInstanceOutput 100044
+	event Tape_1_picked_up
+´Tape_2_picked_up´ ElementInstanceOutput 100045
+	event Tape_2_picked_up
+´Tape_3_picked_up´ ElementInstanceOutput 100046
+	event Tape_3_picked_up
+´Tape_4_picked_up´ ElementInstanceOutput 100050
+	event Tape_4_picked_up
+´keycard_1´ ElementInteraction 100051
+	host_only False
+	override_timer -1
+	position 35, -50, 132
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id press_use_lrm_safe_keycard
+	on_executed
+		´card_1´ (delay 0) (alternative interacted)
+´keycard_2´ ElementInteraction 100052
+	host_only False
+	override_timer -1
+	position 35, -50, 70
+	rotation 0, 0, 0.707107, -0.707107
+	tweak_data_id press_use_lrm_safe_keycard
+	on_executed
+		´card_2´ (delay 0) (alternative interacted)
+´card_1´ ElementUnitSequence 100053
+	position 150, -50, 100
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_prop_safe/lrm_prop_safe/001 (0, 2.38419E-05, 18)
+			notify_unit_sequence state_keycard_01
+			time 0
+	on_executed
+		´2_cards´ (delay 0)
+´card_2´ ElementUnitSequence 100054
+	position 150, -50, 50
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_prop_safe/lrm_prop_safe/001 (0, 2.38419E-05, 18)
+			notify_unit_sequence state_keycard_02
+			time 0
+	on_executed
+		´2_cards´ (delay 0)
+´sync_001´ MissionScriptElement 100056
+	on_executed
+		´tape_1´ (delay 0)
+´sync_002´ MissionScriptElement 100058
+	on_executed
+		´tape_2´ (delay 0)
+´sync_003´ MissionScriptElement 100059
+	on_executed
+		´tape_3´ (delay 0)
+´sync_004´ MissionScriptElement 100060
+	on_executed
+		´tape_4´ (delay 0)
+´point_debug_002´ ElementDebug 100019
+	as_subtitle False
+	debug_string set_tape_4
+	show_instigator False
+´point_debug_007´ ElementDebug 100055
+	as_subtitle False
+	debug_string set_tape_3
+	show_instigator False
+´point_debug_008´ ElementDebug 100057
+	as_subtitle False
+	debug_string set_tape_2
+	show_instigator False
+´point_debug_009´ ElementDebug 100061
+	as_subtitle False
+	debug_string set_tape_1
+	show_instigator False
+´point_debug_010´ ElementDebug 100062
+	as_subtitle False
+	debug_string Tape_picked_up
+	show_instigator False
+´point_debug_011´ ElementDebug 100063
+	as_subtitle False
+	debug_string Got_LRON_tape_1
+	show_instigator False
+´point_debug_012´ ElementDebug 100064
+	as_subtitle False
+	debug_string Got_LRTW_tape_2
+	show_instigator False
+´point_debug_013´ ElementDebug 100065
+	as_subtitle False
+	debug_string Got_LRTH_tape_3
+	show_instigator False
+´point_debug_014´ ElementDebug 100066
+	as_subtitle False
+	debug_string Got_LRFO_tape_4
+	show_instigator False
+´point_debug_015´ ElementDebug 100067
+	as_subtitle False
+	debug_string Disable_none_used_tapes 1,2,3
+	show_instigator False
+´point_debug_016´ ElementDebug 100068
+	as_subtitle False
+	debug_string Disable_none_used_tapes 1,2,4
+	show_instigator False
+´point_debug_017´ ElementDebug 100069
+	as_subtitle False
+	debug_string none
+	show_instigator False
+´point_debug_018´ ElementDebug 100070
+	as_subtitle False
+	debug_string Disable_none_used_tapes 2,3,4
+	show_instigator False
+´point_debug_019´ ElementDebug 100071
+	as_subtitle False
+	debug_string Disable_none_used_tapes 1,3,4
+	show_instigator False
+´eanble_tape_002´ ElementUnitSequence 100072
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence set_label_02_biggerhill
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´eanble_tape_003´ ElementUnitSequence 100073
+	position 800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence set_label_03_slipping
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´eanble_tape_004´ ElementUnitSequence 100074
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence set_label_04_connections
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_lrm/props/lrm_pku_cassette_tape/lrm_pku_cassette_tape/001 (5.75734, 6.61522, 41)
+			notify_unit_sequence state_interaction_enabled
+			time 0
