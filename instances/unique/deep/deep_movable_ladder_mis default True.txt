@@ -1,0 +1,131 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´func_sequence_001´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (51, -30, 6)
+			notify_unit_sequence state_ladder_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/001 (199.284, 54.5115, 306)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/002 (51, -25, 7.58643E-07)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/001 (0, 7, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/002 (0, 7, 100)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/003 (0, 7, 200)
+´input_enable_ladder´ ElementInstanceInput 100007
+	event enable_ladder_interaction
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event ladder_placed
+´func_sequence_001´ ElementUnitSequence 100013
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/dev_tools/dev_ladder/dev_ladder/001 (51, -30, 6)
+			notify_unit_sequence state_ladder_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/001 (199.284, 54.5115, 306)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/002 (51, -25, 7.58643E-07)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´func_disable_unit_001´ (delay 0)
+´logic_link_001´ MissionScriptElement 100014
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100015
+	position 800, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100016
+	position 800, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/001 (0, 7, 0)
+		2 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/002 (0, 7, 100)
+		3 units/dev_tools/level_tools/dev_collision/dev_collision_1x1m/003 (0, 7, 200)
+	on_executed
+		´output_´ (delay 0)
+´logic_toggle_001´ ElementToggle 100017
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´eneble_int´ (delay 0)
+´point_play_sound_001´ ElementPlaySound 100018
+	append_prefix False
+	interrupt False
+	position 50, 0, 304.257
+	rotation 0, 0, 0, -1
+	sound_event metalsheet_place
+	use_instigator False
+	use_play_func False
+´func_sequence_trigger_001´ ElementUnitSequenceTrigger 100021
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/001 (199.284, 54.5115, 306)
+	on_executed
+		´logic_link_001´ (delay 0)
+´eneble_int´ ElementUnitSequence 100022
+	position 1000, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_pku_pickable_ladder/deep_pku_pickable_ladder/001 (199.284, 54.5115, 306)
+			notify_unit_sequence interaction_enable
+			time 0

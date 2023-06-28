@@ -1,0 +1,276 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´test_delay´ (delay 3)
+		´point_spawn_player_001´ (delay 0) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´seq_enable_deploy´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_outlined_interaction_disabled
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_closed
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_disable
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+		2 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+´input_activate_zipline_down´ ElementInstanceInput 100007
+	event activate_zipline_down
+	on_executed
+		´disable_up´ (delay 0)
+´output_zipline_deployed´ ElementInstanceOutput 100008
+	event zipline_deployed
+´old´ ElementUnitSequence 100013
+	BASE DELAY 2
+	position 1100, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´enable_zipline_2´ (delay 0)
+´disable_zipline_1´ ElementDisableUnit 100014
+	position 1100, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+	on_executed
+		´old´ (delay 0)
+´enable_zipline_2´ ElementEnableUnit 100015
+	BASE DELAY 1
+	position 1100, -100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+	on_executed
+		´func_seq_eanble_down´ (delay 0)
+´input_enable_deploy´ ElementInstanceInput 100018
+	event enable_deploy
+	on_executed
+		´seq_enable_deploy´ (delay 0)
+´seq_enable_deploy´ ElementUnitSequence 100019
+	position 700, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_outlined_interaction_enabled
+			time 0
+´enable_zipline_1´ ElementEnableUnit 100020
+	position 900, 200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+	on_executed
+		´func_sequence_001´ (delay 0)
+		´point_debug_001´ (delay 0)
+´trigger_deployed´ ElementUnitSequenceTrigger 100021
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+	on_executed
+		´enable_zipline_1´ (delay 2.8)
+´func_sequence_001´ ElementUnitSequence 100022
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_enable
+			time 0
+	on_executed
+		´output_zipline_deployed´ (delay 0)
+´point_teleport_player_001´ ElementTeleportPlayer 100010
+	equip_selection none
+	fade_in 0
+	fade_out 0
+	keep_carry True
+	position -150, 175, 2900
+	refill False
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+	sustain 0
+´player_exit_zippline´ ElementUnitSequenceTrigger 100023
+	sequence_list
+		1
+			guis_id 1
+			sequence on_person_exit_zipline
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+	on_executed
+		´point_teleport_player_001´ (delay 0.1)
+´if_players_join_later_downwards´ ElementInstanceInput 100024
+	event if_players_join_later_zipline_downwards
+	on_executed
+		´func_sequence_002´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100025
+	position 1400, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_opened
+			time 0
+	on_executed
+		´old´ (delay 0)
+´disable_up´ ElementUnitSequence 100027
+	position 1100, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+	on_executed
+		´disable_zipline_1´ (delay 0)
+´point_debug_001´ ElementDebug 100026
+	as_subtitle False
+	debug_string zipline_deployed
+	show_instigator False
+´input_deploy_down_loud´ ElementInstanceInput 100028
+	event deploy_down_loud
+	on_executed
+		´enable_zipline_2_2´ (delay 0)
+´enable_zipline´ ElementUnitSequence 100029
+	position 1500, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+			notify_unit_sequence state_zipline_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_opened
+			time 0
+´disable_zippline_up´ ElementInstanceInput 100011
+	event disable_zipline_up
+	on_executed
+		´disable_zip_up´ (delay 0)
+´disable_zip_up´ ElementUnitSequence 100030
+	position 1200, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/001 (0, 174, -3)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_interactable_zipline/gen_interactable_zipline_mount_ground/001 (127, 174, 0)
+			notify_unit_sequence state_outlined_interaction_disabled_no_hide
+			time 0
+´disable_zippline_down´ ElementInstanceInput 100031
+	event disable_zipline_down
+	on_executed
+		´disable_zip_down´ (delay 0)
+´disable_zip_down´ ElementUnitSequence 100032
+	position 1300, 200, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+			notify_unit_sequence state_zipline_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+			notify_unit_sequence state_zipline_disable_special
+			time 0
+´zipline_down_used´ ElementUnitSequenceTrigger 100033
+	sequence_list
+		1
+			guis_id 1
+			sequence on_person_enter_zipline
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+	on_executed
+		´player_zippline_down´ (delay 0)
+´player_zippline_down´ ElementInstanceOutput 100034
+	event player_enters_zipline_down
+´func_seq_eanble_down´ ElementUnitSequence 100035
+	position 1100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+			notify_unit_sequence state_zipline_enable
+			time 0
+´enable_zipline_2_2´ ElementEnableUnit 100036
+	position 1500, 200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/payday2/equipment/gen_equipment_zipline_motor/gen_equipment_zipline_motor/002 (0, 174, 2893)
+	on_executed
+		´enable_zipline´ (delay 0)

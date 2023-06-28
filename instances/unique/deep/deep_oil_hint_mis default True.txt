@@ -1,0 +1,117 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´yellow_pipe´ (delay 0)
+		´eanble_whiteboard´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+			notify_unit_sequence set_spike_green
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dah/props/dah_prop_whiteboard/dah_prop_whiteboard_b/001 (0, 0, 100)
+		2 units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+´blue_pipe´ ElementInstanceInput 100007
+	BASE DELAY 1
+	event blue_pipe_selected
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´output_´ ElementInstanceOutput 100008
+	event none
+´yellow_pipe´ ElementInstanceInput 100013
+	BASE DELAY 1
+	event yellow_pipe_selected
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´red_pipe´ ElementInstanceInput 100014
+	BASE DELAY 1
+	event red_pipe_selected
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100015
+	BASE DELAY 3
+	position 800, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´blue´ (delay 0)
+´func_enable_unit_002´ ElementEnableUnit 100016
+	BASE DELAY 3
+	position 900, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´yellow´ (delay 0)
+´func_enable_unit_003´ ElementEnableUnit 100017
+	BASE DELAY 3
+	position 1000, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´red´ (delay 0)
+´func_enable_unit_004´ ElementEnableUnit 100018
+	position 1100, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dah/props/dah_prop_whiteboard/dah_prop_whiteboard_b/001 (0, 0, 100)
+		2 units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+´eanble_whiteboard´ ElementInstanceInput 100019
+	BASE DELAY 1
+	event show_hint_board
+	on_executed
+		´func_enable_unit_004´ (delay 0)
+´blue´ ElementUnitSequence 100021
+	position 800, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+			notify_unit_sequence set_spike_blue
+			time 0
+´yellow´ ElementUnitSequence 100022
+	position 900, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+			notify_unit_sequence set_spike_green
+			time 0
+´red´ ElementUnitSequence 100023
+	position 1000, 0, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_prop_whiteboard_spike_amount_decal/deep_prop_whiteboard_spike_amount_decal/001 (2.38418E-07, 5.99994, 156)
+			notify_unit_sequence set_spike_red
+			time 0

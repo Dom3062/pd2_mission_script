@@ -1,0 +1,292 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -750, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+			notify_unit_sequence hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+			notify_unit_sequence hide
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+			notify_unit_sequence hide
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+			notify_unit_sequence hide
+			time 0
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´input_enable_blowtorch´ ElementInstanceInput 100007
+	event enable_blowtorch
+	on_executed
+		´torch_only_loud´ (delay 0)
+´output_blowtorch_picked_up´ ElementInstanceOutput 100008
+	event blowtorch_picked_up
+´show_torch_old´ ElementUnitSequence 100014
+	position 700, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+			notify_unit_sequence show
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+			notify_unit_sequence show
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+			notify_unit_sequence show
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+			notify_unit_sequence show
+			time 0
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´trigger_pku´ ElementUnitSequenceTrigger 100015
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+		2
+			guis_id 2
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+		3
+			guis_id 3
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+		4
+			guis_id 4
+			sequence load
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+	on_executed
+		´output_blowtorch_picked_up´ (delay 0)
+		´toggle_off_WP´ (delay 0)
+´toggle_off_WP´ ElementToggle 100016
+	elements
+ 		1 ´WP_blowtorch´
+		2 ´input_enable_WP´
+		3 ´link_WP´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´remove_WP_blowtorch´ (delay 0)
+´remove_WP_blowtorch´ ElementOperator 100017
+	elements
+ 		1 ´WP_blowtorch´
+	operation remove
+	on_executed
+		´remove_outline´ (delay 0)
+´WP_blowtorch´ ElementWaypoint 100018
+	icon pd2_question
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´input_enable_WP´ ElementInstanceInput 100019
+	event enable_waypoint
+	on_executed
+		´link_WP´ (delay 0)
+´link_WP´ MissionScriptElement 100020
+	on_executed
+		´WP_blowtorch´ (delay 0)
+´input_disable_WP´ ElementInstanceInput 100021
+	event disable_waypoint
+	on_executed
+		´link_disable_WP´ (delay 0)
+´link_disable_WP´ MissionScriptElement 100022
+	on_executed
+		´toggle_off_WP´ (delay 0)
+´step_in_trigger´ MissionScriptElement 100024
+	on_executed
+		´func_sequence_002´ (delay 0)
+´step_out´ MissionScriptElement 100026
+	DISABLED
+	on_executed
+		´remove_outline´ (delay 0)
+´func_sequence_002´ ElementUnitSequence 100027
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+			notify_unit_sequence enable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+			notify_unit_sequence enable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´remove_outline´ ElementUnitSequence 100028
+	position 900, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+´logic_toggle_001´ ElementToggle 100029
+	elements
+ 		1 ´trigger_area_report_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´trigger_area_report_001´ ElementAreaReportTrigger 100030
+	DISABLED
+	amount 1
+	depth 800
+	height 500
+	instigator player
+	instigator_name 
+	interval 0.1
+	position 0, 0, 200
+	radius 250
+	rotation 0, 0, 0, -1
+	rules_element_ids
+	shape_type box
+	spawn_unit_elements
+	substitute_object 
+	unit_ids
+	use_disabled_shapes False
+	use_shape_element_ids
+	width 800
+	on_executed
+		´step_out´ (delay 0) DISABLED (alternative leave)
+		´step_in_trigger´ (delay 0) (alternative while_inside)
+´pigs_called´ ElementGlobalEventTrigger 100023
+	TRIGGER TIMES 1
+	global_event police_called
+	position 1400, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´torch_only_loud´ (delay 0)
+´torch_only_loud´ ElementCounter 100025
+	counter_target 2
+	on_executed
+		´logic_toggle_001´ (delay 0)
+´disable_int´ ElementInstanceInput 100031
+	event disable_torch_pickup
+	on_executed
+		´logic_toggle_002´ (delay 0)
+´disable_pickup´ ElementUnitSequence 100032
+	position 1300, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/001 (9.89329, 9.89628, 0.600464)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/002 (-7.07478, 14.1399, 0.361675)
+			notify_unit_sequence disable_interaction
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/003 (9.89665, -7.07289, 0.384141)
+			notify_unit_sequence disable_interaction
+			time 0
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_dark/pickups/drk_pku_blowtorch/drk_pku_blowtorch/004 (-11.3137, -8.48529, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´toggle_off_WP´ (delay 0)
+´logic_toggle_002´ ElementToggle 100033
+	elements
+ 		1 ´trigger_area_report_001´ DISABLED
+		2 ´pigs_called´
+		3 ´remove_outline´
+		4 ´func_sequence_002´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´disable_pickup´ (delay 0)

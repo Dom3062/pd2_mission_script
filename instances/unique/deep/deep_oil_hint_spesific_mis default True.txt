@@ -1,0 +1,120 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	on_executed
+		´eanble_whiteboard´ (delay 0)
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/001 (-74, 7.99999, 186)
+		2 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Dates_1 (-76, 7.99997, 124)
+		3 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/dates_3 (-59, 7.99999, 113)
+		4 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent001 (-73, 5.99997, 166)
+		5 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent002 (-74, 5.99997, 166)
+		6 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent003 (-79, 5.99997, 162)
+		7 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/dates_2 (-41, 8.99998, 128)
+		8 units/pd2_dlc_deep/props/deep_prop_whiteboard_puzzle_hint/deep_prop_whiteboard/001 (0, 0, 100)
+´func_enable_unit_004´ ElementEnableUnit 100018
+	DISABLED
+	position 1100, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/001 (-74, 7.99999, 186)
+		2 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/dates_3 (-59, 7.99999, 113)
+´eanble_whiteboard´ ElementInstanceInput 100019
+	BASE DELAY 3
+	event random_excellent_serial_number
+	on_executed
+		´logic_random_001´ (delay 0)
+´logic_random_001´ ElementRandom 100007
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´enable_excellent001´ (delay 0)
+		´enable_excellent002´ (delay 0)
+		´enable_excellent003´ (delay 0)
+´func_enable_unit_005´ ElementEnableUnit 100014
+	DISABLED
+	position 1200, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/001 (-74, 7.99999, 186)
+		2 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/dates_2 (-41, 8.99998, 128)
+´func_enable_unit_006´ ElementEnableUnit 100015
+	DISABLED
+	position 1300, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/001 (-74, 7.99999, 186)
+		2 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Dates_1 (-76, 7.99997, 124)
+´output_set_excellent1´ ElementInstanceOutput 100027
+	event set_excellent_1
+	on_executed
+		´point_debug_001´ (delay 0)
+´enable_excellent001´ ElementEnableUnit 100028
+	position 700, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent001 (-73, 5.99997, 166)
+		2 units/pd2_dlc_deep/props/deep_prop_whiteboard_puzzle_hint/deep_prop_whiteboard/001 (0, 0, 100)
+	on_executed
+		´output_set_excellent1´ (delay 0)
+´enable_excellent002´ ElementEnableUnit 100029
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent002 (-74, 5.99997, 166)
+		2 units/pd2_dlc_deep/props/deep_prop_whiteboard_puzzle_hint/deep_prop_whiteboard/001 (0, 0, 100)
+	on_executed
+		´output_set_excellent002´ (delay 0)
+´enable_excellent003´ ElementEnableUnit 100030
+	position 900, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_dark/props/editable_text_dunton/editable_text_dunton/Set_excellent003 (-79, 5.99997, 162)
+		2 units/pd2_dlc_deep/props/deep_prop_whiteboard_puzzle_hint/deep_prop_whiteboard/001 (0, 0, 100)
+	on_executed
+		´output_set_excellent003´ (delay 0)
+´output_set_excellent002´ ElementInstanceOutput 100032
+	event set_excellent_2
+	on_executed
+		´point_debug_002´ (delay 0)
+´output_set_excellent003´ ElementInstanceOutput 100033
+	event set_excellent_3
+	on_executed
+		´point_debug_003´ (delay 0)
+´point_debug_001´ ElementDebug 100008
+	as_subtitle False
+	debug_string (instance) set_excellent1
+	show_instigator False
+´point_debug_002´ ElementDebug 100021
+	as_subtitle False
+	debug_string (instance) set_excellent2
+	show_instigator False
+´point_debug_003´ ElementDebug 100026
+	as_subtitle False
+	debug_string (instance) set_excellent3
+	show_instigator False

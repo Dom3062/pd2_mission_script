@@ -1,0 +1,702 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´disable_editor_only_text´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0) DISABLED
+		´test_delay´ (delay 3) DISABLED
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	DISABLED
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+	DISABLED
+	BASE DELAY 3
+	on_executed
+		´func_sequence_001´ (delay 0) DISABLED
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence interaction_enable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence outline_OFF
+			time 0
+´disable_editor_only_text´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/editable_text_long/editable_text_long/008 (50, 100, 25)
+		2 units/dev_tools/editable_text_long/editable_text_long/013 (-100, 100, 25)
+		3 units/dev_tools/editable_text_long/editable_text_long/007 (50, -75, 25)
+		4 units/dev_tools/editable_text_long/editable_text_long/014 (-100, -75, 25)
+´input_defualt_state´ ElementInstanceInput 100007
+	event defualt_state
+´output_interacted_valve´ ElementInstanceOutput 100008
+	event interacted_valve
+´Set_Rotation´ MissionScriptElement 100014
+´input_random_state´ ElementInstanceInput 100016
+	event randomize_state
+	on_executed
+		´logic_random_001´ (delay 0)
+´func_disable_unit_001´ ElementDisableUnit 100017
+	position 1100, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_001´ (delay 0)
+´func_disable_unit_002´ ElementDisableUnit 100018
+	position 1200, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_002´ (delay 0)
+´func_disable_unit_003´ ElementDisableUnit 100019
+	position 1300, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_003´ (delay 0)
+´func_disable_unit_004´ ElementDisableUnit 100020
+	position 1400, -1300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_004´ (delay 0)
+´logic_random_001´ ElementRandom 100015
+	TRIGGER TIMES 1
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´seq__set_state_001´ (delay 0)
+		´seq__set_state_002´ (delay 0)
+		´seq__set_state_003´ (delay 0)
+		´seq__set_state_006´ (delay 0)
+´func_enable_unit_001´ ElementEnableUnit 100021
+	position 1100, -1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_002´ ElementEnableUnit 100022
+	position 1200, -1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_003´ ElementEnableUnit 100023
+	position 1300, -1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´func_enable_unit_004´ ElementEnableUnit 100024
+	position 1400, -1400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´Valve_interacted´ ElementUnitSequenceTrigger 100025
+	BASE DELAY 0.1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+	on_executed
+		´re_enable_interaction´ (delay 1.2)
+		´point_debug_012´ (delay 0)
+´re_enable_interaction´ ElementUnitSequence 100026
+	position 500, -700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+	on_executed
+		´+1´ (delay 0)
+		´point_debug_011´ (delay 0)
+´enable_valve ´ ElementUnitSequence 100027
+	position 1000, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence interaction_enable
+			time 0
+´input_enable_valve´ ElementInstanceInput 100028
+	event enable_valve
+	on_executed
+		´enable_valve ´ (delay 0)
+´+1´ ElementCounterOperator 100029
+	amount 1
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation add
+	on_executed
+		´output_interacted_valve´ (delay 0)
+		´=4´ (delay 0)
+´Valve_state´ ElementCounter 100030
+	counter_target 0
+´=4´ ElementCounterFilter 100031
+	elements
+ 		1 ´Valve_state´
+	check_type equal
+	needed_to_execute all
+	value 4
+	on_executed
+		´reset´ (delay 0)
+´reset´ ElementCounterOperator 100032
+	amount 0
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation set
+´0´ ElementCounterTrigger 100033
+	BASE DELAY 0.15
+	amount 0
+	elements
+ 		1 ´Valve_state´
+	trigger_type value
+	on_executed
+		´func_disable_unit_005´ (delay 0)
+		´link_state_is_001´ (delay 0)
+		´point_debug_002´ (delay 0) DISABLED
+´1´ ElementCounterTrigger 100034
+	BASE DELAY 0.15
+	amount 1
+	elements
+ 		1 ´Valve_state´
+	trigger_type value
+	on_executed
+		´func_disable_unit_006´ (delay 0)
+		´link_state_is_002´ (delay 0)
+		´point_debug_003´ (delay 0) DISABLED
+´2´ ElementCounterTrigger 100035
+	BASE DELAY 0.15
+	amount 2
+	elements
+ 		1 ´Valve_state´
+	trigger_type value
+	on_executed
+		´func_disable_unit_007´ (delay 0)
+		´link_state_is_003´ (delay 0)
+		´point_debug_004´ (delay 0) DISABLED
+´3´ ElementCounterTrigger 100036
+	BASE DELAY 0.15
+	amount 3
+	elements
+ 		1 ´Valve_state´
+	trigger_type value
+	on_executed
+		´func_disable_unit_008´ (delay 0)
+		´link_state_is_004´ (delay 0)
+		´point_debug_005´ (delay 0) DISABLED
+´func_disable_unit_005´ ElementDisableUnit 100037
+	position 500, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_005´ (delay 0)
+´func_disable_unit_006´ ElementDisableUnit 100038
+	position 600, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_006´ (delay 0)
+´func_disable_unit_007´ ElementDisableUnit 100039
+	position 700, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_007´ (delay 0)
+´func_disable_unit_008´ ElementDisableUnit 100040
+	position 800, -1100, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´func_enable_unit_008´ (delay 0)
+´func_enable_unit_005´ ElementEnableUnit 100041
+	position 500, -1200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´output_001´ (delay 0)
+´func_enable_unit_006´ ElementEnableUnit 100042
+	position 600, -1200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´output_002´ (delay 0)
+´func_enable_unit_007´ ElementEnableUnit 100043
+	position 700, -1200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´output_003´ (delay 0)
+´func_enable_unit_008´ ElementEnableUnit 100044
+	position 800, -1200, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+	on_executed
+		´output_004´ (delay 0)
+´output_001´ ElementInstanceOutput 100045
+	event valve_state_1
+´output_002´ ElementInstanceOutput 100046
+	event valve_state_2
+´output_003´ ElementInstanceOutput 100047
+	event valve_state_3
+´output_004´ ElementInstanceOutput 100048
+	event valve_state_4
+´func_sequence_001´ ElementUnitSequence 100049
+	DISABLED
+	position 500, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence interaction_disable
+			time 0
+´input_disable_valve´ ElementInstanceInput 100050
+	event disable_valve
+	on_executed
+		´disable_valve´ (delay 0)
+´disable_valve´ ElementUnitSequence 100051
+	BASE DELAY 0.2
+	position 1100, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence interaction_disable
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence outline_OFF
+			time 0
+´out_start_stat_1´ ElementInstanceOutput 100052
+	event start_stat_1
+´out_start_stat_2´ ElementInstanceOutput 100053
+	event start_stat_2
+´out_start_stat_3´ ElementInstanceOutput 100054
+	event start_stat_3
+´out_start_stat_4´ ElementInstanceOutput 100055
+	event start_stat_4
+´+0´ ElementCounterOperator 100056
+	amount 0
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation add
+	on_executed
+		´out_start_stat_1´ (delay 0)
+´+1_2´ ElementCounterOperator 100057
+	amount 1
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation add
+	on_executed
+		´out_start_stat_2´ (delay 0)
+´+2´ ElementCounterOperator 100058
+	amount 2
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation add
+	on_executed
+		´out_start_stat_3´ (delay 0)
+´+3´ ElementCounterOperator 100059
+	amount 3
+	elements
+ 		1 ´Valve_state´
+	instance_var_names
+	operation add
+	on_executed
+		´out_start_stat_4´ (delay 0)
+´input_correct_state_is_001´ ElementInstanceInput 100060
+	event correct_state_is_001
+	on_executed
+		´logic_toggle_on_toggles_001´ (delay 0)
+´input_correct_state_is_002´ ElementInstanceInput 100061
+	event correct_state_is_002
+	on_executed
+		´logic_toggle_on_toggles_002´ (delay 0)
+´input_correct_state_is_003´ ElementInstanceInput 100062
+	event correct_state_is_003
+	on_executed
+		´logic_toggle_on_toggles_003´ (delay 0)
+´input_correct_state_is_004´ ElementInstanceInput 100063
+	event correct_state_is_004
+	on_executed
+		´logic_toggle_on_toggles_004´ (delay 0)
+´logic_toggle_on_toggles_001´ ElementToggle 100064
+	elements
+ 		1 ´logic_toggle_off_correct_001´ DISABLED
+		2 ´logic_toggle_on_wrong_001´ DISABLED
+		3 ´logic_toggle_off_wrong_001´ DISABLED
+		4 ´logic_toggle_on_correct_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´input_check_state´ ElementInstanceInput 100069
+	event check_state
+	on_executed
+		´logic_link_001´ (delay 0) DISABLED
+		´logic_link_002´ (delay 0)
+´output_state_is_wrong´ ElementInstanceOutput 100070
+	event state_is_wrong
+	on_executed
+		´point_debug_009´ (delay 0)
+´output_state_is_correct´ ElementInstanceOutput 100071
+	event state_is_correct
+	on_executed
+		´point_debug_010´ (delay 0)
+´logic_link_001´ MissionScriptElement 100072
+	DISABLED
+	on_executed
+		´output_state_is_correct´ (delay 0)
+´logic_link_002´ MissionScriptElement 100073
+	on_executed
+		´output_state_is_wrong´ (delay 0)
+´logic_toggle_on_wrong_001´ ElementToggle 100074
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_correct_001´ ElementToggle 100075
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_wrong_001´ ElementToggle 100076
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_off_correct_001´ ElementToggle 100077
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´link_state_is_001´ MissionScriptElement 100078
+	on_executed
+		´logic_toggle_on_correct_001´ (delay 0) DISABLED
+		´logic_toggle_off_wrong_001´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_002´ (delay 0) DISABLED
+		´logic_toggle_off_correct_002´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_003´ (delay 0) DISABLED
+		´logic_toggle_off_correct_003´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_004´ (delay 0) DISABLED
+		´logic_toggle_off_correct_004´ (delay 0) DISABLED
+´link_state_is_002´ MissionScriptElement 100079
+	on_executed
+		´logic_toggle_on_correct_002´ (delay 0) DISABLED
+		´logic_toggle_off_wrong_002´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_001´ (delay 0) DISABLED
+		´logic_toggle_off_correct_001´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_003´ (delay 0) DISABLED
+		´logic_toggle_off_correct_003´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_004´ (delay 0) DISABLED
+		´logic_toggle_off_correct_004´ (delay 0) DISABLED
+´link_state_is_003´ MissionScriptElement 100080
+	on_executed
+		´logic_toggle_on_correct_003´ (delay 0) DISABLED
+		´logic_toggle_off_wrong_003´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_001´ (delay 0) DISABLED
+		´logic_toggle_off_correct_001´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_002´ (delay 0) DISABLED
+		´logic_toggle_off_correct_002´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_004´ (delay 0) DISABLED
+		´logic_toggle_off_correct_004´ (delay 0) DISABLED
+´link_state_is_004´ MissionScriptElement 100081
+	on_executed
+		´logic_toggle_on_correct_004´ (delay 0) DISABLED
+		´logic_toggle_off_wrong_004´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_001´ (delay 0) DISABLED
+		´logic_toggle_off_correct_001´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_002´ (delay 0) DISABLED
+		´logic_toggle_off_correct_002´ (delay 0) DISABLED
+		´logic_toggle_on_wrong_003´ (delay 0) DISABLED
+		´logic_toggle_off_correct_003´ (delay 0) DISABLED
+´logic_toggle_on_correct_002´ ElementToggle 100065
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_wrong_002´ ElementToggle 100066
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_wrong_002´ ElementToggle 100067
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_correct_002´ ElementToggle 100068
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_toggles_002´ ElementToggle 100082
+	elements
+ 		1 ´logic_toggle_off_correct_002´ DISABLED
+		2 ´logic_toggle_on_wrong_002´ DISABLED
+		3 ´logic_toggle_off_wrong_002´ DISABLED
+		4 ´logic_toggle_on_correct_002´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_correct_003´ ElementToggle 100083
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_wrong_003´ ElementToggle 100084
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_wrong_003´ ElementToggle 100085
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_correct_003´ ElementToggle 100086
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_toggles_003´ ElementToggle 100087
+	elements
+ 		1 ´logic_toggle_off_correct_003´ DISABLED
+		2 ´logic_toggle_on_wrong_003´ DISABLED
+		3 ´logic_toggle_off_wrong_003´ DISABLED
+		4 ´logic_toggle_on_correct_003´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_on_correct_004´ ElementToggle 100088
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_wrong_004´ ElementToggle 100089
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_wrong_004´ ElementToggle 100090
+	DISABLED
+	elements
+ 		1 ´logic_link_002´
+	set_trigger_times -1
+	toggle on
+´logic_toggle_off_correct_004´ ElementToggle 100091
+	DISABLED
+	elements
+ 		1 ´logic_link_001´ DISABLED
+	set_trigger_times -1
+	toggle off
+´logic_toggle_on_toggles_004´ ElementToggle 100092
+	elements
+ 		1 ´logic_toggle_off_correct_004´ DISABLED
+		2 ´logic_toggle_on_wrong_004´ DISABLED
+		3 ´logic_toggle_off_wrong_004´ DISABLED
+		4 ´logic_toggle_on_correct_004´ DISABLED
+	set_trigger_times -1
+	toggle on
+´point_debug_001´ ElementDebug 100093
+	DISABLED
+	as_subtitle False
+	debug_string correct_state_is_1
+	show_instigator False
+´point_debug_002´ ElementDebug 100094
+	DISABLED
+	as_subtitle False
+	debug_string current_state_is_1
+	show_instigator False
+´point_debug_003´ ElementDebug 100095
+	DISABLED
+	as_subtitle False
+	debug_string current_state_is_2
+	show_instigator False
+´point_debug_004´ ElementDebug 100096
+	DISABLED
+	as_subtitle False
+	debug_string current_state_is_3
+	show_instigator False
+´point_debug_005´ ElementDebug 100097
+	DISABLED
+	as_subtitle False
+	debug_string current_state_is_4
+	show_instigator False
+´point_debug_006´ ElementDebug 100098
+	DISABLED
+	as_subtitle False
+	debug_string correct_state_is_2
+	show_instigator False
+´point_debug_007´ ElementDebug 100099
+	DISABLED
+	as_subtitle False
+	debug_string correct_state_is_3
+	show_instigator False
+´point_debug_008´ ElementDebug 100100
+	DISABLED
+	as_subtitle False
+	debug_string correct_state_is_4
+	show_instigator False
+´point_debug_009´ ElementDebug 100101
+	as_subtitle False
+	debug_string state_is_wrong
+	show_instigator False
+´point_debug_010´ ElementDebug 100102
+	as_subtitle False
+	debug_string state_is_correct
+	show_instigator False
+´seq__set_state_001´ ElementUnitSequence 100104
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence set_spin_0
+			time 0
+	on_executed
+		´+0´ (delay 0)
+´seq__set_state_002´ ElementUnitSequence 100105
+	position 904, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence set_spin_90
+			time 0
+	on_executed
+		´+1_2´ (delay 0)
+´seq__set_state_003´ ElementUnitSequence 100106
+	position 1000, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence set_spin_180
+			time 0
+	on_executed
+		´+2´ (delay 0)
+´seq__set_state_006´ ElementUnitSequence 100109
+	position 1100, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence set_spin_270
+			time 0
+	on_executed
+		´+3´ (delay 0)
+´show_outline´ ElementInstanceInput 100013
+	event show_outline
+	on_executed
+		´show_outline_2´ (delay 0)
+´show_outline_2´ ElementUnitSequence 100107
+	position 2100, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence outline_ON
+			time 0
+´hide_outline´ ElementUnitSequence 100108
+	position 2200, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence outline_OFF
+			time 0
+´hide_outline_2´ ElementInstanceInput 100110
+	event hide_outline
+	on_executed
+		´hide_outline´ (delay 0)
+´hide_valve´ ElementInstanceInput 100111
+	event hide_valve
+	on_executed
+		´hide_valve_2´ (delay 0)
+´hide_valve_2´ ElementUnitSequence 100112
+	position 2300, 100, 2.5
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence outline_OFF
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+			notify_unit_sequence interaction_disable
+			time 0
+	on_executed
+		´disable_unit´ (delay 0)
+´disable_unit´ ElementDisableUnit 100113
+	position 2300, 0, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_deep/props/deep_int_pipes_corner/deep_pipe_corner/001 (0, 0, 12)
+	on_executed
+		´toggle_off_enable_int´ (delay 0)
+´toggle_off_enable_int´ ElementToggle 100114
+	elements
+ 		1 ´enable_valve ´
+		2 ´input_enable_valve´
+	set_trigger_times -1
+	toggle off
+´point_debug_011´ ElementDebug 100115
+	as_subtitle False
+	debug_string Valve interaction reenabled
+	show_instigator False
+´point_debug_012´ ElementDebug 100116
+	as_subtitle False
+	debug_string interacted
+	show_instigator False

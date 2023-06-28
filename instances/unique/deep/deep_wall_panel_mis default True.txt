@@ -1,0 +1,72 @@
+´startup´ MissionScriptElement 100000
+	EXECUTE ON STARTUP
+	on_executed
+		´delay´ (delay 1)
+´delay´ MissionScriptElement 100001
+	on_executed
+		´seq_setup´ (delay 0)
+		´unit_disabler´ (delay 0)
+´test(disabled_by_default)´ MissionScriptElement 100002
+	DISABLED
+	EXECUTE ON STARTUP
+	on_executed
+		´point_spawn_player_001´ (delay 0)
+		´test_delay´ (delay 3)
+´point_spawn_player_001´ ElementPlayerSpawner 100003
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	state standard
+´test_delay´ MissionScriptElement 100004
+´seq_setup´ ElementUnitSequence 100005
+	position 600, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´unit_disabler´ ElementDisableUnit 100006
+	position 600, 0, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_deep/props/deep_prop_wall_panel/deep_prop_wall_panel/002 (-124, -12.4233, 49.1622)
+´input_enable_interaction´ ElementInstanceInput 100007
+	event enable_interaction
+	on_executed
+		´toggle_on´ (delay 0)
+´output_interacted´ ElementInstanceOutput 100008
+	event wall_interacted
+´point_interaction_001´ ElementInteraction 100017
+	DISABLED
+	host_only False
+	override_timer -1
+	position 0, 0, 129.205
+	rotation 0, 0, 1, -5.96046E-08
+	tweak_data_id hold_open
+	on_executed
+		´link_interacted´ (delay 0) (alternative interacted)
+´toggle_on´ ElementToggle 100022
+	elements
+ 		1 ´point_interaction_001´ DISABLED
+	set_trigger_times -1
+	toggle on
+´link_interacted´ MissionScriptElement 100023
+	on_executed
+		´disable_unit´ (delay 0)
+		´enable_unit´ (delay 0)
+		´output_interacted´ (delay 0)
+		´point_play_sound_001´ (delay 0)
+´disable_unit´ ElementDisableUnit 100024
+	position 1000, 200, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_deep/props/deep_prop_wall_panel/deep_prop_wall_panel/001 (4.43459E-05, 3.99997, 125)
+´enable_unit´ ElementEnableUnit 100025
+	position 1000, 100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_deep/props/deep_prop_wall_panel/deep_prop_wall_panel/002 (-124, -12.4233, 49.1622)
+´point_play_sound_001´ ElementPlaySound 100009
+	append_prefix False
+	interrupt True
+	position -125, 0, 25
+	rotation 0, 0, 0, -1
+	sound_event vit_security_shutter_impact
+	use_instigator False
+	use_play_func False
