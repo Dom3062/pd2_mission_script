@@ -269,7 +269,7 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position -99.6473, -2200, 0
+	position -99.6459, -2200, 0
 	repeatable False
 	rotation 0, 0, 0.382683, -0.92388
 	scan True
@@ -2995,6 +2995,7 @@
 ´ai_graph_001´ ElementAIGraph 101384
 	filter_group none
 	graph_ids
+		1 87
 	operation forbid_access
 	position -2300, 300, 2100
 	rotation 0, 0, 0, -1
@@ -9342,7 +9343,7 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position 941, 59.0413, 0
+	position 941, 59.042, 0
 	repeatable False
 	rotation 0, 0, 0.233393, -0.972382
 	scan True
@@ -10478,7 +10479,7 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position 0.000976563, -2250, 701.143
+	position 0.000976562, -2250, 701.143
 	repeatable False
 	rotation 0, 0, -5.96046E-07, -1
 	scan True
@@ -13941,7 +13942,7 @@
 	position 2700, -1200, -100
 	rotation 0, 0, 0, -1
 	unit_ids
-		1 units/payday2/vehicles/str_vehicle_car_modernsedan2/str_vehicle_car_modernsedan2/001 (2278.45, -1211.49, -120)
+		1 units/payday2/vehicles/str_vehicle_car_modernsedan2/str_vehicle_car_modernsedan2/001 (2287.24, -1209.56, -120)
 ´killCar´ ElementLogicChance 103825
 	chance 33
 	position 2800, -1200, -100
@@ -15431,9 +15432,9 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position 1758, -1286, -120
+	position 1749, -1286, -120
 	repeatable False
-	rotation 0, 0, -5.96046E-07, -1
+	rotation 0, 0, 0.0436188, -0.999048
 	scan True
 	search_distance 0
 	search_position -2025 -500 0
@@ -15583,7 +15584,7 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position 325, -4.1211E-08, 475
+	position 325, -4.2608E-08, 475
 	repeatable False
 	rotation 0, 0, 1, -7.15256E-07
 	scan True
@@ -16641,6 +16642,7 @@
 		18 ´point_orientation_010´
 		19 ´point_orientation_006´
 		20 ´point_orientation_005´
+		21 ´point_orientation_021´
 	position 1100, -1650, 475
 	rotation 0, 0, 0, -1
 ´bain_guard_onway´ ElementDialogue 104145
@@ -17797,23 +17799,23 @@
 	TRIGGER TIMES 1
 	amount 1
 	depth 100
-	height 200
+	height 35
 	instigator loot
 	instigator_name 
 	interval 0.1
-	position 900, 1900, 50
-	radius 250
+	position 908, 1900, 72
+	radius 20
 	rotation 0, 0, -0.707107, -0.707107
 	rules_element_ids
 		1 ´rule_painting´
-	shape_type box
+	shape_type cylinder
 	spawn_unit_elements
 	substitute_object 
 	trigger_on on_enter
 	unit_ids
 	use_disabled_shapes False
 	use_shape_element_ids
-	width 59.28
+	width 59
 	on_executed
 		´logic_link_035´ (delay 0)
 		´point_play_sound_006´ (delay 0.5)
@@ -17829,7 +17831,7 @@
 	instigator loot
 	instigator_name 
 	interval 0.1
-	position 905, 2200, 74
+	position 905, 2200, 72
 	radius 20
 	rotation 0, 0, -0.707107, -0.707107
 	rules_element_ids
@@ -17855,7 +17857,7 @@
 ´point_play_sound_006´ ElementPlaySound 104300
 	append_prefix False
 	interrupt True
-	position 900, 1900, 75
+	position 908, 1900, 47
 	rotation 0, 0, -0.707107, -0.707107
 	sound_event toilet_flush
 	use_instigator False
@@ -18017,3 +18019,22 @@
 		18 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x6x12m/vis_blocker_skylght_stealth_012 (2025, -8.85001E-06, 529.237)
 		19 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x6x12m/vis_blocker_skylght_stealth_013 (1175, 0, 529.237)
 		20 units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_001x6x12m/vis_blocker_skylght_stealth_014 (2375, -1.77E-05, 529.237)
+´ai_graph_teaser_room_on_001´ ElementAIGraph 104617
+	filter_group none
+	graph_ids
+		1 87
+	operation allow_access
+	position 1350, -1100, 75
+	rotation 0, 0, 0, -1
+´on_teaser_room_door_done_opened´ ElementUnitSequenceTrigger 104618
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence done_opened
+			notify_unit_id units/payday2/equipment/gen_interactable_door_reinforced/gen_interactable_door_reinforced/002 (1172, -1130, 0)
+	on_executed
+		´ai_graph_teaser_room_on_001´ (delay 2)
+´point_orientation_021´ MissionScriptElement 104619
+	position 1369, -1320, 88.1246
+	rotation 0, 0, 0, -1
