@@ -1,0 +1,452 @@
+´STARTUP´ MissionScriptElement 100010
+	EXECUTE ON STARTUP
+	on_executed
+		´startup_disable´ (delay 0)
+		´startup_obstacles´ (delay 0)
+		´startup_sequences´ (delay 0)
+´startup_sequences´ ElementUnitSequence 100012
+	position 500, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/001 (0, 0, 175)
+			notify_unit_sequence state_vis_hide
+			time 0
+´startup_disable´ ElementDisableUnit 100013
+	position 600, -400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 200006
+		2 units/pd2_dlc_corp/props/corp_int_double_door/corp_int_double_door/001 (-25, 100, 0)
+		3 units/dev_tools/level_tools/shadow_caster_5x5/001 (-15, 0, 225)
+´startup_obstacles´ ElementNavObstacle 100014
+	TRIGGER TIMES 1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-50, -100, 0)
+	operation add
+	position 700, -400, 0
+	rotation 0, 0, 0, -1
+´EDITOR_ONLY_PLAYERSPAWNER´ ElementPlayerSpawner 100015
+	DISABLED
+	EXECUTE ON STARTUP
+	position 100, -100, 0
+	rotation 0, 0, -0.707107, -0.707107
+	state standard
+´so_ene_plantC4´ ElementSpecialObjective 100016
+	DISABLED
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	attitude none
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 2
+	interrupt_dmg 0
+	interrupt_objective False
+	interval 10
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 100, -5, 0
+	rotation 0, 0, -0.707107, -0.707107
+	scan True
+	search_distance 12000
+	search_position 100 0 0
+	SO_access 8384
+	so_action e_so_plant_c4_hi
+	trigger_on none
+´input_show_doorways´ ElementInstanceInput 100018
+	event show_doorways
+	on_executed
+		´link_show_doorways´ (delay 1)
+		´toggle_remove_obs´ (delay 1)
+´link_show_doorways´ MissionScriptElement 100019
+	on_executed
+		´sequence_show_doorways´ (delay 0)
+		´show_doorways´ (delay 0)
+		´toggle_blow_off´ (delay 0)
+		´toggle_open_on´ (delay 0)
+´sequence_show_doorways´ ElementUnitSequence 100020
+	only_for_local_player False
+	position 600, 700, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_caps/auc_door_cap_double/001 (0, 0, 0)
+			notify_unit_sequence state_door
+			time 0
+´obstacle_remove´ ElementNavObstacle 100023
+	DISABLED
+	TRIGGER TIMES 1
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 1899710181486966882
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x2x3/003 (-50, -100, 0)
+	operation remove
+	position 700, -200, 0
+	rotation 0, 0, 0, -1
+´link_door_opened´ MissionScriptElement 100026
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´sequence_open_door´ (delay 1) DISABLED
+		´obstacle_remove´ (delay 0) DISABLED
+		´disable_caster´ (delay 1) DISABLED
+´show_doorways´ ElementEnableUnit 100028
+	position 700, 700, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_corp/props/corp_int_double_door/corp_int_double_door/001 (-25, 100, 0)
+		2 units/dev_tools/level_tools/shadow_caster_5x5/001 (-15, 0, 225)
+´output_exploded´ ElementInstanceOutput 100041
+	event exploded
+´sot_plantedC4´ ElementSpecialObjectiveTrigger 100043
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	event anim_start
+	position 1500, 800, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´startExplodingWall´ (delay 0.5)
+´sot_administeredToC4´ ElementSpecialObjectiveTrigger 100044
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	event administered
+	position 1500, 700, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´debugAminC4´ (delay 0)
+´debugAminC4´ ElementDebug 100045
+	as_subtitle False
+	debug_string Unit: "I wanna blow a wall up, brb."
+	show_instigator False
+´startExplodingWall´ MissionScriptElement 100046
+	on_executed
+		´debugCompleteC4´ (delay 0)
+		´showC4´ (delay 0)
+		´link_explode_wall´ (delay 3)
+		´toggle_on_sooner´ (delay 0)
+´debugCompleteC4´ ElementDebug 100047
+	as_subtitle False
+	debug_string --A big fucking hole coming right up...
+	show_instigator False
+´showC4´ ElementUnitSequence 100048
+	position 1800, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/001 (0, 0, 175)
+			notify_unit_sequence trigger_expolsive
+			time 0
+´link_explode_wall´ MissionScriptElement 100049
+	TRIGGER TIMES 1
+	on_executed
+		´explodeWall´ (delay 0)
+		´explosion´ (delay 0)
+´debugExplodedWall´ ElementDebug 100050
+	as_subtitle False
+	debug_string BOOM
+	show_instigator False
+´explodeWall´ ElementUnitSequence 100051
+	TRIGGER TIMES 1
+	position 1800, 900, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/001 (0, 0, 175)
+			notify_unit_sequence state_vis_hide
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_caps/auc_door_cap_double/001 (0, 0, 0)
+			notify_unit_sequence explode
+			time 0
+´explosion´ ElementExplosion 100052
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 100
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	no_raycast_check_characters False
+	orientation_elements
+	player_damage 100
+	position 0, 0, 100
+	range 250
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event trip_mine_explode
+	use_camera_shake True
+	use_rumble True
+	on_executed
+		´explosion_silent´ (delay 0)
+´sequence_open_door´ ElementUnitSequence 100056
+	DISABLED
+	TRIGGER TIMES 1
+	position 500, 1100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_corp/props/corp_int_double_door/corp_int_double_door/001 (-25, 100, 0)
+			notify_unit_sequence open_door
+			time 0
+´explosion_silent´ ElementExplosion 100058
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 1
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	damage 90
+	effect mission_triggered
+	explosion_effect effects/particles/explosions/explosion_grenade_launcher
+	no_raycast_check_characters True
+	orientation_elements
+	player_damage 90
+	position 4, 0, 150
+	range 300
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	sound_event no_sound
+	use_camera_shake True
+	use_rumble True
+´toggle_c4_SO_on´ ElementToggle 100063
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´sequence_explodable´ (delay 0)
+		´show_explodable´ (delay 2)
+´toggle_off_SO´ ElementToggle 100065
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+		2 ´toggle_on_c4_again´
+		3 ´sot_fail´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´operator_off_SO´ (delay 0.1)
+´operator_off_SO´ ElementOperator 100066
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	operation remove
+´trigger_wall_opended´ ElementUnitSequenceTrigger 100067
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence state_exploded
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_caps/auc_door_cap_double/001 (0, 0, 0)
+	on_executed
+		´obstacle_remove´ (delay 0) DISABLED
+´input_blowable´ ElementInstanceInput 100001
+	event input_blowable
+	on_executed
+		´toggle_c4_SO_on´ (delay 0)
+		´toggle_remove_obs´ (delay 0)
+´input_open_explode´ ElementInstanceInput 100002
+	event input_open_explode
+	on_executed
+		´link_door_opened´ (delay 0) DISABLED
+		´link_please_explode´ (delay 0)
+´toggle_open_on´ ElementToggle 100003
+	elements
+ 		1 ´link_door_opened´ DISABLED
+		2 ´sequence_open_door´ DISABLED
+		3 ´disable_caster´ DISABLED
+	set_trigger_times -1
+	toggle on
+´trigger_wall_exploded´ ElementUnitSequenceTrigger 100004
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence explode
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_caps/auc_door_cap_double/001 (0, 0, 0)
+	on_executed
+		´link_sooner´ (delay 0) DISABLED
+		´toggle_off_SO´ (delay 1)
+		´output_exploded´ (delay 0)
+		´operator_off_SO´ (delay 0)
+		´disable_unit_cross´ (delay 0)
+		´toggle_of_sooner´ (delay 0)
+		´env_effect_play_001´ (delay 0)
+´sequence_explodable´ ElementUnitSequence 100005
+	only_for_local_player False
+	position 600, 800, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_caps/auc_door_cap_double/001 (0, 0, 0)
+			notify_unit_sequence state_explodable
+			time 0
+´toggle_blow_off´ ElementToggle 100006
+	elements
+ 		1 ´sequence_explodable´
+		2 ´toggle_c4_SO_on´
+		3 ´show_explodable´
+		4 ´input_blowable´
+		5 ´sot_administeredToC4´
+		6 ´sot_plantedC4´
+		7 ´sot_fail´
+		8 ´output_exploded´
+		9 ´trigger_wall_exploded´
+		10 ´toggle_off_SO´
+		11 ´operator_off_SO´
+		12 ´disable_unit_cross´
+		13 ´toggle_on_c4_again´
+		14 ´link_explode_wall´
+		15 ´debugExplodedWall´
+		16 ´explodeWall´
+		17 ´showC4´
+		18 ´debugCompleteC4´
+		19 ´startExplodingWall´
+		20 ´debugAminC4´
+		21 ´so_ene_plantC4´ DISABLED
+		22 ´link_please_explode´
+	set_trigger_times -1
+	toggle off
+´toggle_remove_obs´ ElementToggle 100021
+	elements
+ 		1 ´obstacle_remove´ DISABLED
+	set_trigger_times -1
+	toggle on
+´show_explodable´ ElementEnableUnit 100017
+	position 700, 800, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+´disable_unit_cross´ ElementDisableUnit 100025
+	position 1600, 1176, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+´sot_fail´ ElementSpecialObjectiveTrigger 100027
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	event fail
+	position 1500, 1000, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´toggle_on_c4_again´ (delay 0)
+´toggle_on_c4_again´ ElementToggle 100029
+	elements
+ 		1 ´so_ene_plantC4´ DISABLED
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´so_ene_plantC4´ (delay 0) DISABLED
+´link_please_explode´ MissionScriptElement 100011
+	TRIGGER TIMES 1
+	on_executed
+		´so_ene_plantC4´ (delay 0) DISABLED
+´toggle_on_sooner´ ElementToggle 100030
+	elements
+ 		1 ´link_sooner´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_of_sooner´ ElementToggle 100031
+	elements
+ 		1 ´link_sooner´ DISABLED
+	set_trigger_times -1
+	toggle off
+´link_sooner´ MissionScriptElement 100032
+	DISABLED
+	on_executed
+		´toggle_off_exploded_stuff´ (delay 0)
+		´hide_c4´ (delay 0)
+´toggle_off_exploded_stuff´ ElementToggle 100033
+	elements
+ 		1 ´explodeWall´
+	set_trigger_times -1
+	toggle on
+´hide_c4´ ElementUnitSequence 100034
+	TRIGGER TIMES 1
+	position 1800, 1075, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/001 (0, 0, 175)
+			notify_unit_sequence trigger_expolsive
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_jolly/equipment/gen_plant_c4/gen_plant_c4/001 (0, 0, 175)
+			notify_unit_sequence state_vis_hide
+			time 0
+´env_effect_play_001´ ElementPlayEffect 100035
+	TRIGGER TIMES 1
+	base_time 0
+	effect effects/particles/explosions/bank_toilet_explosion
+	max_amount 0
+	position 0, 0, 112.606
+	random_time 0
+	rotation 0, 0, -0.707107, -0.707107
+	screen_space False
+	on_executed
+		´feedback_explosion_screenshake´ (delay 0)
+´disable_caster´ ElementDisableUnit 100037
+	DISABLED
+	position 600, 1100, 2.5
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/dev_tools/level_tools/shadow_caster_5x5/001 (-15, 0, 225)
+´feedback_explosion_screenshake´ ElementFeedback 100038
+	above_camera_effect none
+	above_camera_effect_distance 0,5
+	camera_shake_amplitude 3
+	camera_shake_attack 0,1
+	camera_shake_decay 2,1
+	camera_shake_effect mission_triggered
+	camera_shake_frequency 1
+	camera_shake_sustain 0,3
+	effect mission_triggered
+	position 0, 0, 125
+	range 500
+	rotation 0, 0, 0, -1
+	rumble_attack 0,1
+	rumble_peak 1
+	rumble_release 2,1
+	rumble_sustain 0,3
+	use_camera_shake True
+	use_rumble True

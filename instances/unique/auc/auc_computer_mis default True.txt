@@ -1,0 +1,225 @@
+´Input_power_on´ ElementInstanceInput 100059
+	event power_on
+	on_executed
+		´sequence_pc_on´ (delay 0)
+		´sequence_firewall_again´ (delay 0) DISABLED
+´sequence_pc_on´ ElementUnitSequence 100060
+	position -150, 205, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_show_desktop
+			time 0
+´input_power_off´ ElementInstanceInput 100062
+	event power_off
+	on_executed
+		´sequence_pc_off´ (delay 0)
+´sequence_pc_off´ ElementUnitSequence 100063
+	position -150, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_hide_desktop
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_interact_disable
+			time 0
+´Input_hackable´ ElementInstanceInput 100019
+	event hackable
+	on_executed
+		´toggle_firewall_off´ (delay 0)
+		´toggle_hack_on´ (delay 0)
+´sequence_hackable´ ElementUnitSequence 100067
+	DISABLED
+	position -150, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_loud
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_interact_enable
+			time 0
+´trigger_hack_done´ ElementUnitSequenceTrigger 100069
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence hacked_trigger_loud
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+	on_executed
+		´Output_hack_done´ (delay 0)
+		´operator_remove_hack´ (delay 0)
+		´waypoint_interact´ (delay 0)
+´Output_hack_done´ ElementInstanceOutput 100073
+	event hack_done
+´waypoint_pc´ ElementWaypoint 100072
+	DISABLED
+	icon pd2_computer
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´trigger_hack_finalized´ ElementUnitSequenceTrigger 100000
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence hacked_trigger_approved
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+	on_executed
+		´Output_hack_finalized´ (delay 0)
+		´operator_remove_finalize´ (delay 0)
+´Output_hack_finalized´ ElementInstanceOutput 100002
+	event hack_finalized
+´operator_remove_hack´ ElementOperator 100003
+	elements
+ 		1 ´waypoint_pc´ DISABLED
+	operation remove
+´trigger_hack_started´ ElementUnitSequenceTrigger 100001
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+	on_executed
+		´output_hack_started´ (delay 0)
+		´waypoint_pc´ (delay 0) DISABLED
+´trigger_hack_jammed´ ElementUnitSequenceTrigger 100004
+	sequence_list
+		1
+			guis_id 1
+			sequence jammed_trigger
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+	on_executed
+		´Output_jammed´ (delay 0)
+		´operator_remove_hack´ (delay 0)
+		´waypoint_repair´ (delay 0)
+´output_hack_started´ ElementInstanceOutput 100018
+	TRIGGER TIMES 1
+	event hack_started
+´Output_jammed´ ElementInstanceOutput 100020
+	event hack_jammed
+´trigger_hack_resumed´ ElementUnitSequenceTrigger 100030
+	sequence_list
+		1
+			guis_id 1
+			sequence resumed_trigger
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+	on_executed
+		´output_hack_resumed´ (delay 0)
+		´waypoint_pc´ (delay 0) DISABLED
+		´operator_remove_fix´ (delay 0)
+´output_hack_resumed´ ElementInstanceOutput 100046
+	event hack_resumed
+´waypoint_repair´ ElementWaypoint 100061
+	icon pd2_fix
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 0, 100
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´operator_remove_fix´ ElementOperator 100070
+	elements
+ 		1 ´waypoint_repair´
+	operation remove
+´waypoint_interact´ ElementWaypoint 100076
+	icon pd2_generic_interact
+	only_in_civilian False
+	only_on_instigator False
+	position 0, -15, 5
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´operator_remove_finalize´ ElementOperator 100077
+	elements
+ 		1 ´waypoint_interact´
+	operation remove
+´Input_decorative´ ElementInstanceInput 100006
+	event decorative
+	on_executed
+		´sequence_decorative´ (delay 0)
+´sequence_decorative´ ElementUnitSequence 100007
+	position -150, 105, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_show_desktop
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_interact_disable
+			time 0
+´trigger_global_event_alarm´ ElementGlobalEventTrigger 100005
+	TRIGGER TIMES 1
+	global_event police_called
+	position -250, 0, 2.2558
+	rotation 0, 0, 0, -1
+	on_executed
+		´toggle_firewall´ (delay 0)
+		´sequence_firewall´ (delay 0) DISABLED
+´toggle_firewall´ ElementToggle 100012
+	elements
+ 		1 ´sequence_firewall´ DISABLED
+		2 ´sequence_firewall_again´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_firewall_off´ ElementToggle 100013
+	elements
+ 		1 ´toggle_firewall´
+	set_trigger_times -1
+	toggle off
+´toggle_hack_on´ ElementToggle 100014
+	elements
+ 		1 ´sequence_hackable´ DISABLED
+		2 ´waypoint_pc´ DISABLED
+	set_trigger_times -1
+	toggle on
+´sequence_firewall´ ElementUnitSequence 100008
+	DISABLED
+	position -150, 5, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_show_lockdown
+			time 0
+´sequence_firewall_again´ ElementUnitSequence 100009
+	DISABLED
+	position -150, -195, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_computer/auc_interactable_computer/001 (0, 13, -1.0762)
+			notify_unit_sequence state_show_lockdown
+			time 0
+´Input_hacknow´ ElementInstanceInput 100010
+	event hack_now
+	on_executed
+		´sequence_hackable´ (delay 0) DISABLED
+		´waypoint_pc´ (delay 20) DISABLED

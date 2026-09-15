@@ -1,0 +1,581 @@
+´input_start´ ElementInstanceInput 100002
+	TRIGGER TIMES 1
+	event start
+	on_executed
+		´sequence_open´ (delay 0)
+		´sequence_on_lever´ (delay 0)
+		´toggle_on_light_1´ (delay 0)
+´lever_interacted_00_first´ ElementInstanceOutput 100005
+	event interacted_00_first
+	on_executed
+		´debug_first´ (delay 0)
+		´debug_pressed_00´ (delay 0)
+´input_shutoff_lever´ ElementInstanceInput 100006
+	event shutoff
+	on_executed
+		´toggle_off_lever´ (delay 0)
+		´sequence_off_lever´ (delay 0)
+´toggle_off_lever´ ElementToggle 100007
+	elements
+ 		1 ´raise_lever´ DISABLED
+		2 ´sequence_on_lever´
+	set_trigger_times -1
+	toggle off
+´input_wrong´ ElementInstanceInput 100008
+	event wrong
+	on_executed
+		´sequence_wrong´ (delay 0)
+		´raise_lever´ (delay 1) DISABLED
+´raise_lever´ ElementUnitSequence 100009
+	DISABLED
+	position 200, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence anim_lever_reset
+			time 0.2
+	on_executed
+		´toggle_off_raise´ (delay 0.5)
+´sequence_lower_lever´ ElementUnitSequence 100010
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence anim_lever
+			time 0
+´toggle_on_raise´ ElementToggle 100011
+	elements
+ 		1 ´raise_lever´ DISABLED
+	set_trigger_times 1
+	toggle on
+´toggle_off_raise´ ElementToggle 100012
+	elements
+ 		1 ´raise_lever´ DISABLED
+	set_trigger_times -1
+	toggle off
+´input_on_wp´ ElementInstanceInput 100014
+	event wp_on
+´input_off_wp´ ElementInstanceInput 100015
+	event wp_off
+´input_00´ ElementInstanceInput 100020
+	event 00_num
+	on_executed
+		´toggle_on_00´ (delay 0)
+		´toggle_off_01´ (delay 0)
+		´toggle_off_10´ (delay 0)
+		´toggle_off_11´ (delay 0)
+´input_01´ ElementInstanceInput 100021
+	event 01_num
+	on_executed
+		´toggle_on_01´ (delay 0)
+		´toggle_off_00´ (delay 0)
+		´toggle_off_10´ (delay 0)
+		´toggle_off_11´ (delay 0)
+´input_10´ ElementInstanceInput 100022
+	event 10_num
+	on_executed
+		´toggle_on_10´ (delay 0)
+		´toggle_off_00´ (delay 0)
+		´toggle_off_01´ (delay 0)
+		´toggle_off_11´ (delay 0)
+´input_11´ ElementInstanceInput 100023
+	event 11_num
+	on_executed
+		´toggle_on_11´ (delay 0)
+		´toggle_off_10´ (delay 0)
+		´toggle_off_01´ (delay 0)
+		´toggle_off_00´ (delay 0)
+´sequence_trigger_lever´ ElementUnitSequenceTrigger 100018
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+	on_executed
+		´sequence_lower_lever´ (delay 0)
+		´toggle_on_raise´ (delay 0)
+		´link_interacted_00´ (delay 0) DISABLED
+		´link_interacted_01´ (delay 0) DISABLED
+		´link_interacted_10´ (delay 0) DISABLED
+		´link_interacted_11´ (delay 0) DISABLED
+´sequence_on_lever´ ElementUnitSequence 100019
+	position -100, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+´sequence_off_lever´ ElementUnitSequence 100033
+	position 100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence light_04_on
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence number_hide
+			time 0
+´toggle_on_00´ ElementToggle 100000
+	elements
+ 		1 ´sequence_numbers_00´ DISABLED
+		2 ´link_interacted_00´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_on_01´ ElementToggle 100001
+	elements
+ 		1 ´sequence_numbers_01´ DISABLED
+		2 ´link_interacted_01´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_on_10´ ElementToggle 100004
+	elements
+ 		1 ´sequence_numbers_10´ DISABLED
+		2 ´link_interacted_10´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_on_11´ ElementToggle 100013
+	elements
+ 		1 ´sequence_numbers_11´ DISABLED
+		2 ´link_interacted_11´ DISABLED
+	set_trigger_times -1
+	toggle on
+´sequence_numbers_00´ ElementUnitSequence 100016
+	DISABLED
+	position 800, 100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence number_00
+			time 0
+´sequence_numbers_01´ ElementUnitSequence 100017
+	DISABLED
+	position 800, 0, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence number_01
+			time 0
+´sequence_numbers_10´ ElementUnitSequence 100024
+	DISABLED
+	position 800, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence number_10
+			time 0
+´sequence_numbers_11´ ElementUnitSequence 100025
+	DISABLED
+	position 800, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence number_11
+			time 0
+´sequence_open´ ElementUnitSequence 100026
+	TRIGGER TIMES 1
+	position 0, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence anim_cover
+			time 0
+	on_executed
+		´sequence_numbers_00´ (delay 0) DISABLED
+		´sequence_numbers_01´ (delay 0) DISABLED
+		´sequence_numbers_10´ (delay 0) DISABLED
+		´sequence_numbers_11´ (delay 0) DISABLED
+´toggle_off_00´ ElementToggle 100027
+	elements
+ 		1 ´sequence_numbers_00´ DISABLED
+		2 ´link_interacted_00´ DISABLED
+	set_trigger_times -1
+	toggle off
+´toggle_off_01´ ElementToggle 100028
+	elements
+ 		1 ´sequence_numbers_01´ DISABLED
+		2 ´link_interacted_01´ DISABLED
+	set_trigger_times -1
+	toggle off
+´toggle_off_10´ ElementToggle 100029
+	elements
+ 		1 ´sequence_numbers_10´ DISABLED
+		2 ´link_interacted_10´ DISABLED
+	set_trigger_times -1
+	toggle off
+´toggle_off_11´ ElementToggle 100030
+	elements
+ 		1 ´sequence_numbers_11´ DISABLED
+		2 ´link_interacted_11´ DISABLED
+	set_trigger_times -1
+	toggle off
+´input_light_2´ ElementInstanceInput 100031
+	event light_2
+	on_executed
+		´toggle_on_light_2´ (delay 0)
+´sequence_light_2´ ElementUnitSequence 100034
+	position -500, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence light_01_on
+			time 0.5
+´sequence_light_3´ ElementUnitSequence 100035
+	position -400, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence light_02_on
+			time 0.5
+´sequence_light_4´ ElementUnitSequence 100036
+	position -300, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence light_03_on
+			time 0.5
+´lever_interacted_01_first´ ElementInstanceOutput 100041
+	event interacted_01_first
+	on_executed
+		´debug_first´ (delay 0)
+		´debug_pressed_01´ (delay 0)
+´lever_interacted_10_first´ ElementInstanceOutput 100042
+	event interacted_10_first
+	on_executed
+		´debug_first´ (delay 0)
+		´debug_pressed_10´ (delay 0)
+´lever_interacted_11_first´ ElementInstanceOutput 100043
+	event interacted_11_first
+	on_executed
+		´debug_first´ (delay 0)
+		´debug_pressed_11´ (delay 0)
+´input_light_3´ ElementInstanceInput 100003
+	event light_3
+	on_executed
+		´toggle_on_light_3´ (delay 0)
+´input_light_4´ ElementInstanceInput 100037
+	event light_4
+	on_executed
+		´toggle_on_light_4´ (delay 0)
+´sequence_wrong´ ElementUnitSequence 100038
+	position 300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence light_error
+			time 0.5
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence lights_all_off
+			time 3
+		4
+			id 4
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_vault_lever/auc_interactable_vault_lever/001 (-1, -3, 0)
+			notify_unit_sequence enable_interaction
+			time 3.1
+	on_executed
+		´sequence_numbers_00´ (delay 3.1) DISABLED
+		´sequence_numbers_01´ (delay 3.1) DISABLED
+		´sequence_numbers_10´ (delay 3.1) DISABLED
+		´sequence_numbers_11´ (delay 3.1) DISABLED
+		´toggle_on_light_1´ (delay 0)
+´link_interacted_00´ MissionScriptElement 100039
+	DISABLED
+	on_executed
+		´lever_interacted_00_fourth´ (delay 0) DISABLED
+		´lever_interacted_00_third´ (delay 0) DISABLED
+		´lever_interacted_00_second´ (delay 0) DISABLED
+		´lever_interacted_00_first´ (delay 0)
+´link_interacted_01´ MissionScriptElement 100040
+	DISABLED
+	on_executed
+		´lever_interacted_01_fourth´ (delay 0) DISABLED
+		´lever_interacted_01_third´ (delay 0) DISABLED
+		´lever_interacted_01_second´ (delay 0) DISABLED
+		´lever_interacted_01_first´ (delay 0)
+´link_interacted_10´ MissionScriptElement 100044
+	DISABLED
+	on_executed
+		´lever_interacted_10_fourth´ (delay 0) DISABLED
+		´lever_interacted_10_third´ (delay 0) DISABLED
+		´lever_interacted_10_second´ (delay 0) DISABLED
+		´lever_interacted_10_first´ (delay 0)
+´link_interacted_11´ MissionScriptElement 100045
+	DISABLED
+	on_executed
+		´lever_interacted_11_fourth´ (delay 0) DISABLED
+		´lever_interacted_11_third´ (delay 0) DISABLED
+		´lever_interacted_11_second´ (delay 0) DISABLED
+		´lever_interacted_11_first´ (delay 0)
+´toggle_on_light_2´ ElementToggle 100046
+	elements
+ 		1 ´lever_interacted_00_second´ DISABLED
+		2 ´lever_interacted_01_second´ DISABLED
+		3 ´lever_interacted_10_second´ DISABLED
+		4 ´lever_interacted_11_second´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´toggle_off_light_2´ (delay 0)
+		´sequence_light_2´ (delay 0)
+´toggle_on_light_3´ ElementToggle 100047
+	elements
+ 		1 ´lever_interacted_00_third´ DISABLED
+		2 ´lever_interacted_01_third´ DISABLED
+		3 ´lever_interacted_10_third´ DISABLED
+		4 ´lever_interacted_11_third´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´toggle_off_light_3´ (delay 0)
+		´sequence_light_3´ (delay 0)
+´toggle_on_light_4´ ElementToggle 100048
+	elements
+ 		1 ´lever_interacted_00_fourth´ DISABLED
+		2 ´lever_interacted_01_fourth´ DISABLED
+		3 ´lever_interacted_10_fourth´ DISABLED
+		4 ´lever_interacted_11_fourth´ DISABLED
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´toggle_off_light_4´ (delay 0)
+		´sequence_light_4´ (delay 0)
+´toggle_off_light_4´ ElementToggle 100049
+	elements
+ 		1 ´lever_interacted_00_first´
+		2 ´lever_interacted_00_second´ DISABLED
+		3 ´lever_interacted_00_third´ DISABLED
+		4 ´lever_interacted_01_third´ DISABLED
+		5 ´lever_interacted_01_second´ DISABLED
+		6 ´lever_interacted_01_first´
+		7 ´lever_interacted_10_first´
+		8 ´lever_interacted_10_second´ DISABLED
+		9 ´lever_interacted_10_third´ DISABLED
+		10 ´lever_interacted_11_third´ DISABLED
+		11 ´lever_interacted_11_second´ DISABLED
+		12 ´lever_interacted_11_first´
+	set_trigger_times -1
+	toggle off
+´toggle_off_light_3´ ElementToggle 100050
+	elements
+ 		1 ´lever_interacted_00_first´
+		2 ´lever_interacted_00_second´ DISABLED
+		3 ´lever_interacted_01_second´ DISABLED
+		4 ´lever_interacted_01_first´
+		5 ´lever_interacted_10_first´
+		6 ´lever_interacted_10_second´ DISABLED
+		7 ´lever_interacted_11_second´ DISABLED
+		8 ´lever_interacted_11_first´
+		9 ´lever_interacted_11_fourth´ DISABLED
+		10 ´lever_interacted_10_fourth´ DISABLED
+		11 ´lever_interacted_01_fourth´ DISABLED
+		12 ´lever_interacted_00_fourth´ DISABLED
+	set_trigger_times -1
+	toggle off
+´toggle_off_light_2´ ElementToggle 100051
+	elements
+ 		1 ´lever_interacted_00_first´
+		2 ´lever_interacted_01_first´
+		3 ´lever_interacted_10_first´
+		4 ´lever_interacted_11_first´
+		5 ´lever_interacted_11_third´ DISABLED
+		6 ´lever_interacted_11_fourth´ DISABLED
+		7 ´lever_interacted_10_fourth´ DISABLED
+		8 ´lever_interacted_10_third´ DISABLED
+		9 ´lever_interacted_01_third´ DISABLED
+		10 ´lever_interacted_01_fourth´ DISABLED
+		11 ´lever_interacted_00_fourth´ DISABLED
+		12 ´lever_interacted_00_third´ DISABLED
+	set_trigger_times -1
+	toggle off
+´sequence_light_1´ ElementUnitSequence 100052
+	position -600, -350, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+´toggle_on_light_1´ ElementToggle 100053
+	elements
+ 		1 ´lever_interacted_11_first´
+		2 ´lever_interacted_10_first´
+		3 ´lever_interacted_01_first´
+		4 ´lever_interacted_00_first´
+	set_trigger_times -1
+	toggle on
+	on_executed
+		´toggle_off_light_1´ (delay 0)
+		´sequence_light_1´ (delay 1.1)
+´toggle_off_light_1´ ElementToggle 100054
+	elements
+ 		1 ´lever_interacted_11_second´ DISABLED
+		2 ´lever_interacted_10_second´ DISABLED
+		3 ´lever_interacted_01_second´ DISABLED
+		4 ´lever_interacted_00_second´ DISABLED
+		5 ´lever_interacted_00_third´ DISABLED
+		6 ´lever_interacted_00_fourth´ DISABLED
+		7 ´lever_interacted_01_fourth´ DISABLED
+		8 ´lever_interacted_01_third´ DISABLED
+		9 ´lever_interacted_10_third´ DISABLED
+		10 ´lever_interacted_10_fourth´ DISABLED
+		11 ´lever_interacted_11_fourth´ DISABLED
+		12 ´lever_interacted_11_third´ DISABLED
+	set_trigger_times -1
+	toggle off
+´lever_interacted_00_second´ ElementInstanceOutput 100055
+	DISABLED
+	event interacted_00_second
+	on_executed
+		´debug_second´ (delay 0)
+		´debug_pressed_00´ (delay 0)
+´lever_interacted_01_second´ ElementInstanceOutput 100056
+	DISABLED
+	event interacted_01_second
+	on_executed
+		´debug_second´ (delay 0)
+		´debug_pressed_01´ (delay 0)
+´lever_interacted_10_second´ ElementInstanceOutput 100057
+	DISABLED
+	event interacted_10_second
+	on_executed
+		´debug_second´ (delay 0)
+		´debug_pressed_10´ (delay 0)
+´lever_interacted_11_second´ ElementInstanceOutput 100058
+	DISABLED
+	event interacted_11_second
+	on_executed
+		´debug_second´ (delay 0)
+		´debug_pressed_11´ (delay 0)
+´lever_interacted_00_third´ ElementInstanceOutput 100059
+	DISABLED
+	event interacted_00_third
+	on_executed
+		´debug_third´ (delay 0)
+		´debug_pressed_00´ (delay 0)
+´lever_interacted_01_third´ ElementInstanceOutput 100060
+	DISABLED
+	event interacted_01_third
+	on_executed
+		´debug_third´ (delay 0)
+		´debug_pressed_01´ (delay 0)
+´lever_interacted_10_third´ ElementInstanceOutput 100061
+	DISABLED
+	event interacted_10_third
+	on_executed
+		´debug_third´ (delay 0)
+		´debug_pressed_10´ (delay 0)
+´lever_interacted_11_third´ ElementInstanceOutput 100062
+	DISABLED
+	event interacted_11_third
+	on_executed
+		´debug_third´ (delay 0)
+		´debug_pressed_11´ (delay 0)
+´lever_interacted_00_fourth´ ElementInstanceOutput 100063
+	DISABLED
+	event interacted_00_fourth
+	on_executed
+		´debug_fourth´ (delay 0)
+		´debug_pressed_00´ (delay 0)
+´lever_interacted_01_fourth´ ElementInstanceOutput 100064
+	DISABLED
+	event interacted_01_fourth
+	on_executed
+		´debug_fourth´ (delay 0)
+		´debug_pressed_01´ (delay 0)
+´lever_interacted_10_fourth´ ElementInstanceOutput 100065
+	DISABLED
+	event interacted_10_fourth
+	on_executed
+		´debug_fourth´ (delay 0)
+		´debug_pressed_10´ (delay 0)
+´lever_interacted_11_fourth´ ElementInstanceOutput 100066
+	DISABLED
+	event interacted_11_fourth
+	on_executed
+		´debug_fourth´ (delay 0)
+		´debug_pressed_11´ (delay 0)
+´debug_pressed_00´ ElementDebug 100067
+	as_subtitle False
+	debug_string pressed_00
+	show_instigator False
+´debug_pressed_01´ ElementDebug 100068
+	as_subtitle False
+	debug_string pressed_01
+	show_instigator False
+´debug_pressed_10´ ElementDebug 100069
+	as_subtitle False
+	debug_string pressed_10
+	show_instigator False
+´debug_pressed_11´ ElementDebug 100070
+	as_subtitle False
+	debug_string pressed_11
+	show_instigator False
+´debug_fourth´ ElementDebug 100071
+	as_subtitle False
+	debug_string pressed_fourth
+	show_instigator False
+´debug_third´ ElementDebug 100072
+	as_subtitle False
+	debug_string pressed_third
+	show_instigator False
+´debug_second´ ElementDebug 100073
+	as_subtitle False
+	debug_string pressed_second
+	show_instigator False
+´debug_first´ ElementDebug 100074
+	as_subtitle False
+	debug_string pressed_first
+	show_instigator False

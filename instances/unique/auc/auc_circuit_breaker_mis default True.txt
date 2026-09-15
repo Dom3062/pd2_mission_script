@@ -1,0 +1,430 @@
+´loop_and_triggers_ON´ ElementToggle 100005
+	elements
+ 		1 ´so_trg_interrupt_power_COMPLETE´
+		2 ´so_trg_interrupt_power_FAIL´
+		3 ´start_interrupting´
+		4 ´interrupt_loop´
+		5 ´try_interrupt´
+		6 ´so_interrupt_power_ON´
+	set_trigger_times -1
+	toggle on
+´seq_power_socket_ENABLE´ ElementUnitSequence 100006
+	position -100, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence enable_interaction
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence turn_off
+			time 0
+´input_start_interrupting´ ElementInstanceInput 100007
+	event start_interrupting
+	on_executed
+		´start_interrupting´ (delay 0.5)
+		´loop_and_triggers_ON´ (delay 0)
+´power_socket_disconnected´ MissionScriptElement 100008
+	on_executed
+		´output_power_stopped´ (delay 0)
+		´seq_power_socket_ENABLE´ (delay 0)
+		´wp_powersocket´ (delay 0)
+		´stop_interrupting´ (delay 0)
+		´open_box´ (delay 0)
+´start_interrupting´ MissionScriptElement 100009
+	on_executed
+		´interrupt_loop´ (delay 0)
+		´wp_powersocket_defend´ (delay 0)
+´input_stop_interrupting´ ElementInstanceInput 100010
+	event stop_interrupting
+	on_executed
+		´stop_interrupting´ (delay 0)
+´stop_interrupting´ MissionScriptElement 100011
+	on_executed
+		´so_interrupt_power_OFF´ (delay 0)
+		´so_interrupt_power_REMOVE´ (delay 0)
+		´loop_and_triggers_OFF´ (delay 0)
+		´wp_powersocket_defend_REMOVE´ (delay 0)
+´so_trg_interrupt_power_FAIL´ ElementSpecialObjectiveTrigger 100012
+	elements
+ 		1 ´so_interrupt_power´
+	event fail
+	position 100, -100, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´interrupt_loop´ (delay 0)
+´power light on´ ElementUnitSequence 100013
+	position -600, -300, 1.52588E-05
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence turn_on
+			time 0
+´output_power_stopped´ ElementInstanceOutput 100014
+	event power_stopped
+´wp_powersocket_REMOVE´ ElementOperator 100015
+	elements
+ 		1 ´wp_powersocket´
+	operation remove
+	on_executed
+		´power light on´ (delay 0)
+´so_trg_interrupt_power_COMPLETE´ ElementSpecialObjectiveTrigger 100016
+	elements
+ 		1 ´so_interrupt_power´
+	event complete
+	position 0, -200, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´interrupt_loop´ (delay 0)
+		´power_socket_disconnected´ (delay 0)
+		´so_defend´ (delay 0)
+´interrupt_loop´ MissionScriptElement 100017
+	on_executed
+		´try_interrupt´ (delay 30)
+´so_interrupt_power_OFF´ ElementToggle 100018
+	elements
+ 		1 ´so_interrupt_power´
+	set_trigger_times -1
+	toggle off
+´loop_and_triggers_OFF´ ElementToggle 100019
+	elements
+ 		1 ´so_trg_interrupt_power_COMPLETE´
+		2 ´so_trg_interrupt_power_FAIL´
+		3 ´start_interrupting´
+		4 ´interrupt_loop´
+		5 ´try_interrupt´
+		6 ´so_interrupt_power_ON´
+	set_trigger_times -1
+	toggle off
+´so_interrupt_power_ON´ ElementToggle 100020
+	elements
+ 		1 ´so_interrupt_power´
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´so_interrupt_power´ (delay 0.5)
+´wp_powersocket_defend_REMOVE´ ElementOperator 100021
+	elements
+ 		1 ´wp_powersocket_defend´
+	operation remove
+´so_interrupt_power_REMOVE´ ElementOperator 100022
+	elements
+ 		1 ´so_interrupt_power´
+	operation remove
+´wp_powersocket´ ElementWaypoint 100023
+	icon pd2_power
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 29, 64
+	rotation 0, 0, -0.707107, -0.707107
+	text_id debug_none
+´wp_powersocket_defend´ ElementWaypoint 100024
+	icon pd2_defend
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 40, 64
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´wp_powerbox_OFF´ ElementToggle 100025
+	set_trigger_times -1
+	toggle off
+´wp_powerbox_REMOVE´ ElementOperator 100026
+	operation remove
+´so_interrupt_power´ ElementSpecialObjective 100027
+	TRIGGER TIMES 1
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	allow_followup_self True
+	attitude none
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 0,75
+	interrupt_objective False
+	interval 1
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, 76, 0
+	rotation 0, 0, 1, -0
+	scan True
+	search_distance 5000
+	search_position 0 51 0
+	SO_access 5600
+	so_action e_so_pull_lever
+	trigger_on none
+´so_defend´ ElementSpecialObjective 100028
+	action_duration_max 0
+	action_duration_min 0
+	ai_group enemies
+	align_position True
+	align_rotation True
+	attitude avoid
+	base_chance 1
+	followup_elements
+	chance_inc 0
+	interaction_voice none
+	interrupt_dis 0
+	interrupt_dmg 1
+	interrupt_objective False
+	interval -1
+	needs_pos_rsrv True
+	path_haste none
+	path_stance none
+	path_style none
+	patrol_path none
+	pose none
+	position 0, 76, 0
+	rotation 0, 0, 1, -0
+	scan True
+	search_distance 0
+	search_position 0 51 0
+	SO_access 15868
+	so_action AI_defend
+	trigger_on none
+	use_instigator True
+´try_interrupt´ MissionScriptElement 100029
+	on_executed
+		´so_interrupt_power_ON´ (delay 0)
+´interacted´ ElementUnitSequenceTrigger 100030
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+	on_executed
+		´wp_powersocket_REMOVE´ (delay 0)
+		´output_power_resumed´ (delay 0)
+´open_box´ ElementUnitSequence 100031
+	TRIGGER TIMES 1
+	position -200, -300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence open_box
+			time 0
+´output_power_resumed´ ElementInstanceOutput 100032
+	event power_resumed
+´input_done_forever´ ElementInstanceInput 100033
+	TRIGGER TIMES 1
+	event done_forever
+	on_executed
+		´toggle_all_off´ (delay 0)
+		´operator_all_off´ (delay 0)
+´toggle_all_off´ ElementToggle 100034
+	elements
+ 		1 ´wp_powersocket_defend´
+		2 ´wp_powersocket´
+		3 ´so_interrupt_power´
+		4 ´so_defend´
+		5 ´input_stop_interrupting´
+		6 ´input_start_interrupting´
+		7 ´output_power_stopped´
+		8 ´output_power_resumed´
+		9 ´so_interrupt_power_ON´
+		10 ´wp_powerbox_REMOVE´
+		11 ´wp_powerbox_OFF´
+		12 ´wp_powersocket_REMOVE´
+		13 ´interacted´
+		14 ´power light on´
+		15 ´open_box´
+		16 ´seq_power_socket_ENABLE´
+		17 ´loop_and_triggers_ON´
+		18 ´stop_interrupting´
+		19 ´loop_and_triggers_OFF´
+		20 ´wp_powersocket_defend_REMOVE´
+		21 ´so_interrupt_power_OFF´
+		22 ´power_socket_disconnected´
+		23 ´start_interrupting´
+		24 ´so_trg_interrupt_power_FAIL´
+		25 ´so_trg_interrupt_power_COMPLETE´
+		26 ´interrupt_loop´
+		27 ´so_interrupt_power_REMOVE´
+		28 ´try_interrupt´
+	set_trigger_times -1
+	toggle off
+´operator_all_off´ ElementOperator 100035
+	elements
+ 		1 ´wp_powersocket_defend´
+		2 ´wp_powersocket´
+		3 ´so_defend´
+		4 ´so_interrupt_power´
+	operation remove
+´input_no_wp´ ElementInstanceInput 100036
+	event no_wp_at_all
+	on_executed
+		´toggle_off_wp´ (delay 0)
+´toggle_off_wp´ ElementToggle 100037
+	elements
+ 		1 ´wp_powersocket_defend´
+		2 ´wp_powersocket´
+	set_trigger_times -1
+	toggle off
+´input_on_fire´ ElementInstanceInput 100038
+	event on_fire
+	on_executed
+		´open_fire´ (delay 0)
+		´toggle_on_fire_interact´ (delay 0)
+´open_fire´ ElementUnitSequence 100039
+	position -200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence open_box
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/world/props/suburbia_transformer_box/suburbia_transformer_box/001 (0, 0, 0)
+			notify_unit_sequence disable_interaction
+			time 0
+	on_executed
+		´waypoint_fire´ (delay 0)
+		´play_fire´ (delay 0)
+		´play_sparks_002´ (delay 0)
+		´play_fire_effect´ (delay 0)
+´waypoint_fire´ ElementWaypoint 100040
+	icon pd2_fire
+	only_in_civilian False
+	only_on_instigator False
+	position 0, 40, 64
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´play_sparks_002´ ElementPlayEffect 100041
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 3, -10, 101
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+	on_executed
+		´play_sparks_003´ (delay 6.7)
+		´stop_effect_001´ (delay 3)
+´play_fire´ ElementPlayEffect 100042
+	TRIGGER TIMES 1
+	base_time 0
+	effect effects/payday2/environment/electric_fire
+	max_amount 0
+	position 28, 1, 73
+	random_time 0
+	rotation 0.707107, 0, 0, -0.707107
+	screen_space False
+´play_sparks_003´ ElementPlayEffect 100043
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position -36, -13, 72
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+	on_executed
+		´play_sparks_001´ (delay 5.3)
+		´stop_effect_002´ (delay 3)
+´play_sparks_001´ ElementPlayEffect 100044
+	base_time 0
+	effect effects/payday2/environment/electric_spark
+	max_amount 0
+	position 42, -13, 61
+	random_time 0
+	rotation -0.707107, 0, 0, -0.707107
+	screen_space False
+	on_executed
+		´play_sparks_002´ (delay 4.2)
+		´stop_effect_003´ (delay 3)
+´interaction_extin´ ElementInteraction 100045
+	DISABLED
+	host_only False
+	override_timer 5
+	position 1, -9, 67
+	rotation 0, 0, 0, -1
+	tweak_data_id hold_extinguish_fire
+	on_executed
+		´output_extinguished´ (delay 0) (alternative interacted)
+		´operator_effect´ (delay 0) (alternative interacted)
+´output_extinguished´ ElementInstanceOutput 100046
+	event extinguished
+´toggle_on_fire_interact´ ElementToggle 100047
+	elements
+ 		1 ´interaction_extin´ DISABLED
+	set_trigger_times 0
+	toggle on
+´operator_effect´ ElementOperator 100048
+	elements
+ 		1 ´waypoint_fire´
+		2 ´play_fire_effect´
+	operation remove
+	on_executed
+		´toggle_off´ (delay 0)
+´toggle_off´ ElementToggle 100049
+	elements
+ 		1 ´play_sparks_001´
+		2 ´play_sparks_003´
+		3 ´play_sparks_002´
+		4 ´play_fire´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´stop_effect´ (delay 0)
+´stop_effect´ ElementStopEffect 100053
+	elements
+ 		1 ´play_sparks_001´
+		2 ´play_sparks_003´
+		3 ´play_sparks_002´
+		4 ´play_fire´
+	operation fade_kill
+	position -600, 200, 0
+	rotation 0, 0, 0, -1
+´stop_effect_001´ ElementStopEffect 100054
+	elements
+ 		1 ´play_sparks_002´
+	operation fade_kill
+	position 100, 500, 0
+	rotation 0, 0, 0, -1
+´stop_effect_002´ ElementStopEffect 100055
+	elements
+ 		1 ´play_sparks_003´
+	operation fade_kill
+	position 0, 500, 0
+	rotation 0, 0, 0, -1
+´stop_effect_003´ ElementStopEffect 100056
+	elements
+ 		1 ´play_sparks_001´
+	operation fade_kill
+	position -100, 500, 0
+	rotation 0, 0, 0, -1
+´input_power_hooked´ ElementInstanceInput 100050
+	TRIGGER TIMES 1
+	event hooked
+	on_executed
+		´open_box´ (delay 0)
+´play_fire_effect´ ElementPlaySound 100051
+	append_prefix False
+	interrupt True
+	position 0, -23, 70.8574
+	rotation 0, 0, 1, -3.25841E-07
+	sound_event large_fire
+	use_instigator False
+	use_play_func False

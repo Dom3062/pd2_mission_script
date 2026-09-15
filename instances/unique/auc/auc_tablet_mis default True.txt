@@ -1,0 +1,378 @@
+´instance_input_angular´ ElementInstanceInput 100002
+	event angular
+	on_executed
+		´sequence_angular´ (delay 5) DISABLED
+´instance_input_black´ ElementInstanceInput 100003
+	event black
+	on_executed
+		´sequence_black´ (delay 5) DISABLED
+´instance_input_red´ ElementInstanceInput 100004
+	event red
+	on_executed
+		´sequence_red´ (delay 5) DISABLED
+´instance_input_gold´ ElementInstanceInput 100005
+	event gold
+	on_executed
+		´sequence_gold´ (delay 5) DISABLED
+´instance_input_good_tablet´ ElementInstanceInput 100006
+	event good_tablet
+	on_executed
+		´toggle_off_good_tablet´ (delay 0)
+		´toggle_on_good_tablet´ (delay 0)
+´toggle_off_good_tablet´ ElementToggle 100008
+	elements
+ 		1 ´instance_output_junk_tablet´
+	set_trigger_times -1
+	toggle off
+´global_event_loud´ ElementGlobalEventTrigger 100015
+	TRIGGER TIMES 1
+	global_event police_called
+	position 0, 500, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´toggle_off_loud´ (delay 0)
+		´toggle_on_loud´ (delay 0)
+´toggle_off_loud´ ElementToggle 100016
+	TRIGGER TIMES 1
+	elements
+ 		1 ´counter_2_wp´ DISABLED
+		2 ´sequence_unjammed_stealth´
+		3 ´sequence_unjammed_stealth_interaction´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´sequence_loud´ (delay 0)
+		´operator_remove_wp´ (delay 0)
+´sequence_loud´ ElementUnitSequence 100017
+	position 200, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_locked
+			time 0
+´sequence_trigger_tablet_used´ ElementUnitSequenceTrigger 100022
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+	on_executed
+		´toggle_off_used´ (delay 0)
+		´instance_output_good_tablet´ (delay 0) DISABLED
+		´instance_output_junk_tablet´ (delay 0)
+		´counter_2_wp´ (delay 0) DISABLED
+´toggle_off_used´ ElementToggle 100023
+	TRIGGER TIMES 1
+	elements
+ 		1 ´global_event_jammed´
+		2 ´global_event_unjammed´
+		3 ´sequence_jammed´
+		4 ´sequence_unjammed_stealth´
+		5 ´sequence_unjammed_stealth_interaction´
+	set_trigger_times -1
+	toggle off
+´toggle_on_good_tablet´ ElementToggle 100036
+	elements
+ 		1 ´instance_output_good_tablet´ DISABLED
+		2 ´counter_2_wp´ DISABLED
+		3 ´sequence_gold´ DISABLED
+		4 ´sequence_red´ DISABLED
+		5 ´sequence_black´ DISABLED
+		6 ´sequence_angular´ DISABLED
+	set_trigger_times -1
+	toggle on
+´instance_output_good_tablet´ ElementInstanceOutput 100007
+	DISABLED
+	event good_tablet
+´instance_output_junk_tablet´ ElementInstanceOutput 100038
+	event junk_tablet
+´waypoint_look´ ElementWaypoint 100001
+	TRIGGER TIMES 1
+	icon pd2_generic_look
+	only_in_civilian False
+	only_on_instigator False
+	position 19, 0, 70
+	rotation 0, 0, 0, -1
+	text_id debug_none
+´instance_input_add_wp´ ElementInstanceInput 100039
+	event wp
+	on_executed
+		´counter_2_wp´ (delay 0) DISABLED
+´counter_2_wp´ ElementCounter 100044
+	DISABLED
+	counter_target 2
+	on_executed
+		´waypoint_look´ (delay 0)
+´instance_input_remove_wp´ ElementInstanceInput 100040
+	event no_wp
+	on_executed
+		´operator_remove_wp´ (delay 0)
+´operator_remove_wp´ ElementOperator 100041
+	TRIGGER TIMES 1
+	elements
+ 		1 ´waypoint_look´
+	operation remove
+´instance_input_interaction_off´ ElementInstanceInput 100042
+	event turn_off_interaction
+	on_executed
+		´seqeunce_interaction_off´ (delay 0)
+´seqeunce_interaction_off´ ElementUnitSequence 100043
+	position -300, -100, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´toggle_off_interaction_forever´ (delay 0)
+´sequence_gold´ ElementUnitSequence 100025
+	DISABLED
+	position -300, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence set_clue_04
+			time 0
+´sequence_red´ ElementUnitSequence 100026
+	DISABLED
+	EXECUTE ON STARTUP
+	position -300, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence set_clue_02
+			time 0
+´sequence_black´ ElementUnitSequence 100027
+	DISABLED
+	position -300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence set_clue_01
+			time 0
+´sequence_angular´ ElementUnitSequence 100028
+	DISABLED
+	position -300, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence set_clue_03
+			time 0
+´global_event_jammed´ ElementGlobalEventTrigger 100000
+	global_event ecm_jammer_on
+	position 0, 400, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´sequence_jammed´ (delay 0)
+´sequence_jammed´ ElementUnitSequence 100009
+	position 200, 400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_hacked
+			time 0
+´global_event_unjammed´ ElementGlobalEventTrigger 100010
+	global_event ecm_jammer_off
+	position 0, 300, 0
+	rotation 0, 0, 0, -1
+	on_executed
+		´sequence_unjammed_stealth´ (delay 0)
+		´sequence_unjammed_loud´ (delay 0) DISABLED
+´sequence_unjammed_stealth´ ElementUnitSequence 100011
+	position 200, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_search
+			time 0
+	on_executed
+		´sequence_unjammed_stealth_interaction´ (delay 0)
+´sequence_unjammed_loud´ ElementUnitSequence 100012
+	DISABLED
+	position 200, 200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_locked
+			time 0
+´toggle_on_loud´ ElementToggle 100013
+	TRIGGER TIMES 1
+	elements
+ 		1 ´sequence_unjammed_loud´ DISABLED
+		2 ´sequence_jammed´
+		3 ´global_event_jammed´
+		4 ´global_event_unjammed´
+	set_trigger_times -1
+	toggle on
+´instance_input_blackout´ ElementInstanceInput 100014
+	event blackout
+	on_executed
+		´sequence_blackout´ (delay 0)
+´instance_input_end_blackout´ ElementInstanceInput 100018
+	event end_blackout
+	on_executed
+		´random_end_blackout´ (delay 0)
+´sequence_blackout´ ElementUnitSequence 100019
+	position -300, -200, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_off
+			time 0
+	on_executed
+		´toggle_off_blackout´ (delay 0)
+´random_end_blackout´ ElementRandom 100021
+	amount 1
+	amount_random 0
+	ignore_disabled True
+	on_executed
+		´sequence_end_blackout´ (delay 0)
+		´link_dummy_off´ (delay 0)
+´sequence_end_blackout´ ElementUnitSequence 100024
+	position -200, -400, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_locked
+			time 0
+	on_executed
+		´toggle_on_end_blackout´ (delay 0)
+´toggle_on_end_blackout´ ElementToggle 100029
+	elements
+ 		1 ´global_event_unjammed´
+		2 ´global_event_jammed´
+		3 ´sequence_jammed´
+		4 ´sequence_unjammed_loud´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_off_blackout´ ElementToggle 100030
+	elements
+ 		1 ´global_event_unjammed´
+		2 ´global_event_jammed´
+		3 ´sequence_jammed´
+		4 ´sequence_unjammed_loud´ DISABLED
+	set_trigger_times -1
+	toggle off
+´link_dummy_off´ MissionScriptElement 100020
+´toggle_off_interaction_forever´ ElementToggle 100031
+	elements
+ 		1 ´sequence_unjammed_stealth_interaction´
+	set_trigger_times -1
+	toggle off
+´sequence_unjammed_stealth_interaction´ ElementUnitSequence 100032
+	position 300, 300, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_enabled
+			time 0
+´instance_input_nothing_here´ ElementInstanceInput 100034
+	event nothing_here
+	on_executed
+		´toggle_off_everything´ (delay 0)
+		´instance_output_nothing_here´ (delay 0)
+´toggle_off_everything´ ElementToggle 100035
+	elements
+ 		1 ´global_event_unjammed´
+		2 ´global_event_jammed´
+		3 ´sequence_jammed´
+		4 ´sequence_unjammed_loud´ DISABLED
+		5 ´sequence_unjammed_stealth´
+		6 ´sequence_unjammed_stealth_interaction´
+		7 ´sequence_loud´
+		8 ´toggle_off_loud´
+		9 ´global_event_loud´
+		10 ´toggle_on_loud´
+		11 ´toggle_off_used´
+		12 ´sequence_trigger_tablet_used´
+		13 ´waypoint_look´
+		14 ´toggle_on_end_blackout´
+		15 ´sequence_end_blackout´
+		16 ´link_dummy_off´
+		17 ´toggle_off_blackout´
+		18 ´toggle_off_interaction_forever´
+		19 ´random_end_blackout´
+		20 ´instance_input_end_blackout´
+		21 ´instance_input_blackout´
+		22 ´instance_input_interaction_off´
+		23 ´instance_input_remove_wp´
+		24 ´instance_input_add_wp´
+		25 ´instance_input_angular´
+		26 ´instance_input_black´
+		27 ´instance_input_red´
+		28 ´instance_input_gold´
+		29 ´instance_input_good_tablet´
+		30 ´toggle_on_good_tablet´
+		31 ´instance_output_good_tablet´ DISABLED
+		32 ´toggle_off_good_tablet´
+		33 ´instance_output_junk_tablet´
+		34 ´sequence_gold´ DISABLED
+		35 ´sequence_red´ DISABLED
+		36 ´sequence_black´ DISABLED
+		37 ´sequence_angular´ DISABLED
+		38 ´counter_2_wp´ DISABLED
+		39 ´operator_remove_wp´
+		40 ´seqeunce_interaction_off´
+		41 ´sequence_blackout´
+	set_trigger_times -1
+	toggle off
+	on_executed
+		´sequence_disable_safety´ (delay 0)
+´disable_everything´ ElementDisableUnit 100037
+	position -100, -500, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+´sequence_disable_safety´ ElementUnitSequence 100045
+	position -200, -500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/equipment/auc_interactable_kiosk/auc_interactable_desk_kiosk/001 (0, 0, 0)
+			notify_unit_sequence state_interaction_disabled
+			time 0
+	on_executed
+		´disable_everything´ (delay 0)
+´func_instance_output_001´ ElementInstanceOutput 100046
+	event none
+´instance_output_nothing_here´ ElementInstanceOutput 100047
+	event nothing_here_output

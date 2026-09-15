@@ -1,0 +1,205 @@
+´input_enable_readers´ ElementInstanceInput 100005
+	event enable_readers
+	on_executed
+		´sequence_enable_readers´ (delay 0)
+´sequence_enable_readers´ ElementUnitSequence 100006
+	position -400, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+			notify_unit_sequence interaction_enabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+			notify_unit_sequence interaction_enabled
+			time 0
+´sequence_close_door´ ElementUnitSequence 100007
+	position -500, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_security_door/security_shutter (0, -13, 0)
+			notify_unit_sequence anim_close_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+			notify_unit_sequence set_tweak_open
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+			notify_unit_sequence set_tweak_open
+			time 0
+	on_executed
+		´obstacle_add´ (delay 0)
+		´toggle_off_open´ (delay 0)
+´toggle_on_open´ ElementToggle 100008
+	elements
+ 		1 ´sequence_open_door´ DISABLED
+		2 ´input_force_open´ DISABLED
+		3 ´obstacle_remove´ DISABLED
+		4 ´output_pad_used_open´ DISABLED
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´output_door_opened´ (delay 0)
+´output_door_closed´ ElementInstanceOutput 100010
+	event door_closed
+´sequence_open_door´ ElementUnitSequence 100011
+	DISABLED
+	position -600, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc2/architecture/gov_d_int/gov_d_int_security_door/security_shutter (0, -13, 0)
+			notify_unit_sequence anim_open_door
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+			notify_unit_sequence set_tweak_close
+			time 0
+		3
+			id 3
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+			notify_unit_sequence set_tweak_close
+			time 0
+	on_executed
+		´obstacle_remove´ (delay 0) DISABLED
+		´toggle_off_close´ (delay 0)
+´trigger_interacted´ ElementUnitSequenceTrigger 100012
+	sequence_list
+		1
+			guis_id 1
+			sequence interact
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+		2
+			guis_id 2
+			sequence interact
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+	on_executed
+		´output_pad_used_close´ (delay 0)
+		´output_pad_used_open´ (delay 0) DISABLED
+		´sequence_close_door´ (delay 0)
+		´sequence_open_door´ (delay 0) DISABLED
+´toggle_on_close´ ElementToggle 100013
+	elements
+ 		1 ´input_force_close´
+		2 ´sequence_close_door´
+		3 ´obstacle_add´
+		4 ´output_pad_used_close´
+	set_trigger_times 1
+	toggle on
+	on_executed
+		´output_door_closed´ (delay 0)
+´input_disable_readers´ ElementInstanceInput 100014
+	event disable_readers
+	on_executed
+		´sequence_disable_readers´ (delay 0)
+´sequence_disable_readers´ ElementUnitSequence 100015
+	position -300, 500, 0
+	rotation 0, 0, 0, -1
+	trigger_list
+		1
+			id 1
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+			notify_unit_sequence interaction_disabled
+			time 0
+		2
+			id 2
+			name run_sequence
+			notify_unit_id units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+			notify_unit_sequence interaction_disabled
+			time 0
+´obstacle_add´ ElementNavObstacle 100016
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-34, -25, 0)
+	operation add
+	position -500, 400, 0
+	rotation 0, 0, 0, -1
+´obstacle_remove´ ElementNavObstacle 100017
+	DISABLED
+	obstacle_list
+		1
+			guis_id 1
+			obj_name 15953514984309589828
+			unit_id units/dev_tools/level_tools/dev_door_blocker/dev_door_blocker_1x4x3/001 (-34, -25, 0)
+	operation remove
+	position -600, 400, 0
+	rotation 0, 0, 0, -1
+´input_force_close´ ElementInstanceInput 100019
+	TRIGGER TIMES 1
+	event force_close
+	on_executed
+		´sequence_close_door´ (delay 0)
+´input_force_open´ ElementInstanceInput 100020
+	DISABLED
+	TRIGGER TIMES 1
+	event force_open
+	on_executed
+		´sequence_open_door´ (delay 0) DISABLED
+´toggle_off_open´ ElementToggle 100018
+	elements
+ 		1 ´input_force_close´
+		2 ´sequence_close_door´
+		3 ´obstacle_add´
+		4 ´output_pad_used_close´
+	set_trigger_times 1
+	toggle off
+	on_executed
+		´toggle_on_open´ (delay 1)
+´toggle_off_close´ ElementToggle 100024
+	elements
+ 		1 ´input_force_open´ DISABLED
+		2 ´sequence_open_door´ DISABLED
+		3 ´obstacle_remove´ DISABLED
+		4 ´output_pad_used_open´ DISABLED
+	set_trigger_times 1
+	toggle off
+	on_executed
+		´toggle_on_close´ (delay 1)
+´output_door_opened´ ElementInstanceOutput 100025
+	event door_opened
+´input_padless´ ElementInstanceInput 100031
+	TRIGGER TIMES 1
+	event padless
+	on_executed
+		´toggle_off_pas´ (delay 0)
+		´disable_pads´ (delay 0)
+´toggle_off_pas´ ElementToggle 100032
+	elements
+ 		1 ´input_enable_readers´
+		2 ´input_disable_readers´
+		3 ´sequence_disable_readers´
+		4 ´sequence_enable_readers´
+	set_trigger_times 1
+	toggle off
+´disable_pads´ ElementDisableUnit 100033
+	position -800, 400, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_1 (25, 349, 140)
+		2 units/pd2_dlc_auc/props/auc_prop_rfid_reader/auc_prop_rfid_reader/reader_2 (-1.74846E-07, 349, 140)
+´output_pad_used_close´ ElementInstanceOutput 100002
+	event pad_used_close
+´output_pad_used_open´ ElementInstanceOutput 100009
+	DISABLED
+	event pad_used_open
