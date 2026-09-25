@@ -43,6 +43,7 @@
 	on_executed
 		´obstacle_add´ (delay 0)
 		´toggle_off_open´ (delay 0)
+		´enable_shutter´ (delay 0)
 ´toggle_on_open´ ElementToggle 100008
 	elements
  		1 ´sequence_open_door´ DISABLED
@@ -81,6 +82,7 @@
 	on_executed
 		´obstacle_remove´ (delay 0) DISABLED
 		´toggle_off_close´ (delay 0)
+		´disable_shutter´ (delay 1)
 ´trigger_interacted´ ElementUnitSequenceTrigger 100012
 	sequence_list
 		1
@@ -149,7 +151,7 @@
 	TRIGGER TIMES 1
 	event force_close
 	on_executed
-		´sequence_close_door´ (delay 0)
+		´sequence_close_door´ (delay 0.05)
 ´input_force_open´ ElementInstanceInput 100020
 	DISABLED
 	TRIGGER TIMES 1
@@ -203,3 +205,18 @@
 ´output_pad_used_open´ ElementInstanceOutput 100009
 	DISABLED
 	event pad_used_open
+´disable_shutter´ ElementDisableUnit 100021
+	position -600, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_d_int/gov_d_int_security_door/security_shutter (0, -13, 0)
+´enable_shutter´ ElementEnableUnit 100022
+	position -500, 300, 0
+	rotation 0, 0, 0, -1
+	unit_ids
+		1 units/pd2_dlc2/architecture/gov_d_int/gov_d_int_security_door/security_shutter (0, -13, 0)
+´STARTUP´ MissionScriptElement 100023
+	EXECUTE ON STARTUP
+	TRIGGER TIMES 1
+	on_executed
+		´disable_shutter´ (delay 0)

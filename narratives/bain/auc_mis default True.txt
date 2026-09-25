@@ -1072,7 +1072,8 @@
 		´point_vault_2_lever_2´ (delay 0)
 		´point_vault_2_lever_3´ (delay 0)
 		´point_vault_2_lever_4´ (delay 0)
-´instances_alarm´ ElementInstanceOutputEvent 102798
+´instances_alarm_vault´ ElementInstanceOutputEvent 102798
+	TRIGGER TIMES 1
 	event_list
 		1
 			event alarm
@@ -1083,15 +1084,8 @@
 		3
 			event alarm
 			instance levels/instances/unique/auc/auc_vault/003
-		4
-			event code_wrong
-			instance levels/instances/unique/auc/auc_keypad/001
-		5
-			event code_wrong
-			instance levels/instances/unique/auc/auc_keypad/002
 	on_executed
 		´Alarm_generic´ (delay 0)
-		´event_code_received´ (delay 0)
 ´Alarm_generic´ ElementAiGlobalEvent 102799
 	TRIGGER TIMES 1
 	AI_event police_called
@@ -1226,6 +1220,7 @@
 		´toggle_vo_remindersoff_006´ (delay 0)
 		´toggle_off_respawn´ (delay 0)
 		´script_activate_extinct´ (delay 0)
+		´instance_input_objective_off_scanner´ (delay 0)
 ´Main_hall_left_and_right´ MissionScriptElement 102803
 	on_executed
 		´sequence_nocat_3´ (delay 0)
@@ -4168,8 +4163,9 @@
 			event code_-34
 			instance levels/instances/unique/auc/auc_security_room/007
 	on_executed
-		´code_set34´ (delay 5)
 		´logic_toggle_code_on_34´ (delay 0)
+		´code_set34´ (delay 5)
+		´disable_int_keypad´ (delay 5.1)
 ´code_set34´ ElementInstanceInputEvent 103210
 	event_list
 		1
@@ -4205,8 +4201,9 @@
 			event code_-63
 			instance levels/instances/unique/auc/auc_security_room/007
 	on_executed
-		´code_set63´ (delay 5)
 		´logic_toggle_code_on_63´ (delay 0)
+		´code_set63´ (delay 5)
+		´disable_int_keypad´ (delay 5.1)
 ´code_set63´ ElementInstanceInputEvent 103212
 	event_list
 		1
@@ -4242,8 +4239,9 @@
 			event code_-85
 			instance levels/instances/unique/auc/auc_security_room/007
 	on_executed
-		´code_set95´ (delay 5)
 		´logic_toggle_code_on_95´ (delay 0)
+		´code_set95´ (delay 5)
+		´disable_int_keypad´ (delay 5.1)
 ´code_set95´ ElementInstanceInputEvent 103214
 	event_list
 		1
@@ -4389,9 +4387,6 @@
 		6
 			event Event_code
 			instance levels/instances/unique/auc/auc_security_room/007
-		7
-			event remove_wp
-			instance levels/instances/unique/auc/auc_keypad/002
 ´stop_keypad´ ElementInstanceInputEvent 103223
 	event_list
 		1
@@ -4900,6 +4895,7 @@
 		6 ´success_5´ DISABLED
 		7 ´teammate_comment_find_her´
 		8 ´experience_escape_loud´ DISABLED
+		9 ´link_safety_loud_mid_scan´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´toggle_off_loud´ ElementToggle 103300
@@ -7495,6 +7491,7 @@
 	position -200, 2175, 400
 	rotation 0, 0, 0, -1
 ´instance_input_blowing_tops´ ElementInstanceInputEvent 103529
+	TRIGGER TIMES 1
 	event_list
 		1
 			event Turn_on_blowing
@@ -8067,16 +8064,14 @@
 		15 ´spawn_cloaker_office_normal_002´ DISABLED
 		16 ´link_achivement_all_loot_ovk´ DISABLED
 		17 ´link_achivement_no_interuption´ DISABLED
-		18 ´award_achievement_all_loot´ DISABLED
-		19 ´award_achievement_bfd_junior´ DISABLED
-		20 ´random_other_activity_4_2´ DISABLED
-		21 ´random_other_activity_3_2´ DISABLED
-		22 ´random_other_activity_2_2´ DISABLED
-		23 ´random_other_activity_1_2´ DISABLED
-		24 ´chance_operator_guard_alerted_bottom_mid´ DISABLED
-		25 ´chance_operator_guard_alerted_top_mid´ DISABLED
-		26 ´chance_operator_guard_spawned_bottom_mid´ DISABLED
-		27 ´chance_operator_guard_spawned_top_mid´ DISABLED
+		18 ´random_other_activity_4_2´ DISABLED
+		19 ´random_other_activity_3_2´ DISABLED
+		20 ´random_other_activity_2_2´ DISABLED
+		21 ´random_other_activity_1_2´ DISABLED
+		22 ´chance_operator_guard_alerted_bottom_mid´ DISABLED
+		23 ´chance_operator_guard_alerted_top_mid´ DISABLED
+		24 ´chance_operator_guard_spawned_bottom_mid´ DISABLED
+		25 ´chance_operator_guard_spawned_top_mid´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´toggle_MH´ ElementToggle 103611
@@ -8103,12 +8098,10 @@
 		20 ´spawn_cloaker_office_normal_002´ DISABLED
 		21 ´link_achivement_all_loot_ovk´ DISABLED
 		22 ´link_achivement_no_interuption´ DISABLED
-		23 ´award_achievement_all_loot´ DISABLED
-		24 ´award_achievement_bfd_junior´ DISABLED
-		25 ´chance_operator_guard_alerted_bottom_mid´ DISABLED
-		26 ´chance_operator_guard_alerted_top_mid´ DISABLED
-		27 ´chance_operator_guard_spawned_bottom_mid´ DISABLED
-		28 ´chance_operator_guard_spawned_top_mid´ DISABLED
+		23 ´chance_operator_guard_alerted_bottom_mid´ DISABLED
+		24 ´chance_operator_guard_alerted_top_mid´ DISABLED
+		25 ´chance_operator_guard_spawned_bottom_mid´ DISABLED
+		26 ´chance_operator_guard_spawned_top_mid´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´toggle_DW´ ElementToggle 103612
@@ -8135,12 +8128,10 @@
 		20 ´spawn_cloaker_office_normal_002´ DISABLED
 		21 ´link_achivement_all_loot_ovk´ DISABLED
 		22 ´link_achivement_no_interuption´ DISABLED
-		23 ´award_achievement_all_loot´ DISABLED
-		24 ´award_achievement_bfd_junior´ DISABLED
-		25 ´chance_operator_guard_alerted_bottom_high´ DISABLED
-		26 ´chance_operator_guard_alerted_top_high´ DISABLED
-		27 ´chance_operator_guard_spawned_bottom_high´ DISABLED
-		28 ´chance_operator_guard_spawned_top_high´ DISABLED
+		23 ´chance_operator_guard_alerted_bottom_high´ DISABLED
+		24 ´chance_operator_guard_alerted_top_high´ DISABLED
+		25 ´chance_operator_guard_spawned_bottom_high´ DISABLED
+		26 ´chance_operator_guard_spawned_top_high´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´toggle_DS´ ElementToggle 103613
@@ -8167,12 +8158,10 @@
 		20 ´spawn_cloaker_office_zeal_002´ DISABLED
 		21 ´link_achivement_all_loot_ovk´ DISABLED
 		22 ´link_achivement_no_interuption´ DISABLED
-		23 ´award_achievement_all_loot´ DISABLED
-		24 ´award_achievement_bfd_junior´ DISABLED
-		25 ´chance_operator_guard_alerted_top_high´ DISABLED
-		26 ´chance_operator_guard_alerted_bottom_high´ DISABLED
-		27 ´chance_operator_guard_spawned_bottom_high´ DISABLED
-		28 ´chance_operator_guard_spawned_top_high´ DISABLED
+		23 ´chance_operator_guard_alerted_top_high´ DISABLED
+		24 ´chance_operator_guard_alerted_bottom_high´ DISABLED
+		25 ´chance_operator_guard_spawned_bottom_high´ DISABLED
+		26 ´chance_operator_guard_spawned_top_high´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´filter_OD´ ElementFilter 103614
@@ -21304,6 +21293,7 @@
 		40 ´gage_point_015´
 		41 ´gage_point_011´
 		42 ´gage_point_029´
+		43 ´gage_point_044´
 	position 6150, -8575, 2500
 	rotation 0, 0, -0.707107, -0.707107
 ´gage_point_001´ MissionScriptElement 105951
@@ -21391,7 +21381,7 @@
 	position -3001.3, 2758.02, 916.82
 	rotation 0, 0, 0.580703, -0.814116
 ´gage_point_036´ MissionScriptElement 105979
-	position -2197.56, 2300.52, 800
+	position -2575.61, 1885.91, 922
 	rotation 0, 0, 0.978148, -0.207912
 ´gage_point_021´ MissionScriptElement 105980
 	position -3668, 2346, 867
@@ -25329,7 +25319,7 @@
 	rotation 0, 0, 0, -1
 	zipline_unit_id 102236
 	on_executed
-		´dialogue_auc_058´ (delay 20-40)
+		´dialogue_auc_058´ (delay 5-25)
 ´spawn_bag_cutter_2_3´ ElementLootBag 102243
 	carry_id auc_cutter_part
 	from_respawn False
@@ -25357,16 +25347,17 @@
 			time 0
 	on_executed
 		´spawn_bag_cutter_2_1´ (delay 5)
-		´spawn_bag_cutter_2_2´ (delay 50)
-		´spawn_bag_cutter_2_3´ (delay 95)
-		´instance_input_obj_complete_033´ (delay 112)
+		´spawn_bag_cutter_2_2´ (delay 44)
+		´spawn_bag_cutter_2_3´ (delay 84)
+		´instance_input_obj_complete_033´ (delay 100)
 ´trigger_global_cutter_on_back´ ElementGlobalEventTrigger 102267
 	TRIGGER TIMES 1
 	global_event pku_toolbag
-	position -8375, -18300, 2500
+	position -8350, -18300, 2500
 	rotation 0, 0, 0, -1
 	on_executed
 		´link_place_topvault_wp´ (delay 0)
+		´instance_input_marker´ (delay 0)
 ´link_place_topvault_wp´ MissionScriptElement 102268
 	on_executed
 		´waypoint_topvault_1place´ (delay 0) DISABLED
@@ -29655,11 +29646,6 @@
 		2 units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1/truck_parking_1 (-754.297, 4827.28, -99.9992)
 	operation add
 	use_instigator False
-´vehicle_trigger_001´ ElementVehicleTrigger 102522
-	TRIGGER TIMES 1
-	event on_enter
-	position -1375, 5300, -50
-	rotation 0, 0, 0, -1
 ´func_sequence_trigger_truck_accepted_statue_2´ ElementUnitSequenceTrigger 102523
 	sequence_list
 		1
@@ -30833,7 +30819,7 @@
 		15 units/pd2_dlc_auc/architecture/auc_ext/auc_ext_roof_trims/auc_ext_roof_trim_steps/auc_ext_roof_trim_steps_roof_right (-778, 1403, 1200)
 		16 units/world/architecture/diamondheist/props/diamondheist_roof_gen_small_01/001disablevent001 (-400, 4610, 345)
 		17 units/pd2_dlc_cane/props/cne_prop_runway_fence_cloth/cne_prop_runway_fence_cloth/005 (-2092, 1011, 799)
-		18 units/pd2_dlc_born/props/bor_prop_runway_fence/bor_prop_runway_fence/003 (-2092, 1395, 800)
+		18 units/pd2_dlc_born/props/bor_prop_runway_fence/bor_prop_runway_fence/005 (-2092, 1395, 801)
 ´disable_roof_right´ ElementDisableUnit 102823
 	position 6200, -10100, 2500
 	rotation 0, 0, 0, -1
@@ -31878,9 +31864,6 @@
 		13
 			event objective_disable
 			instance levels/instances/shared/obj_link/025
-		14
-			event objective_disable
-			instance levels/instances/shared/obj_link/026
 ´instance_input_obj_complete_030´ ElementInstanceInputEvent 100084
 	event_list
 		1
@@ -32098,6 +32081,7 @@
 		´event_code_received´ (delay 0)
 		´link_explodable_roof´ (delay 0)
 		´toggle_vo_remindersoff_030´ (delay 0)
+		´event_validated´ (delay 0)
 ´instance_input_obj_complete_015´ ElementInstanceInputEvent 101022
 	event_list
 		1
@@ -32725,6 +32709,7 @@
 			instance levels/instances/unique/auc/auc_keypad/002
 	on_executed
 		´link_completed_obj_019´ (delay 0)
+		´point_debug_008´ (delay 0)
 ´link_key_found´ MissionScriptElement 102850
 	on_executed
 		´instance_input_obj_complete_021´ (delay 0)
@@ -33035,6 +33020,7 @@
 		´disable_unit_secondfloor´ (delay 0)
 		´link_explodable_roof´ (delay 0)
 		´experience_keypad´ (delay 0)
+		´event_validated´ (delay 0)
 ´toggle_off_obj_019´ ElementToggle 101093
 	elements
  		1 ´link_loop_auc_037´
@@ -33057,6 +33043,10 @@
 	toggle on
 ´link_escaped´ MissionScriptElement 102929
 	on_executed
+		´job_value_auc_11_ecm_late´ (delay 0)
+		´job_value_auc_11_ecm_success´ (delay 0) DISABLED
+		´job_value_auc_11_dominated_late´ (delay 0)
+		´job_value_auc_11_dominated_success´ (delay 0) DISABLED
 		´instance_input_obj_complete_047´ (delay 0)
 		´toggle_off_alarm´ (delay 0)
 		´success_8´ (delay 8)
@@ -33184,6 +33174,7 @@
 	on_executed
 		´instance_input_obj_complete_011´ (delay 0)
 		´experience_reach_first´ (delay 0)
+		´counter_explosive_placable´ (delay 2)
 ´toggle_on_area_wentup´ ElementToggle 102973
 	elements
  		1 ´trigger_area_wentup´ DISABLED
@@ -33237,12 +33228,6 @@
 		7
 			event input_open_explode
 			instance levels/instances/unique/auc/auc_double_door/002
-		8
-			event disable_interaction
-			instance levels/instances/unique/auc/auc_keypad/001
-		9
-			event disable_interaction
-			instance levels/instances/unique/auc/auc_keypad/002
 	on_executed
 		´logic_counter_hatch´ (delay 0)
 		´sequence_over_rope_002´ (delay 0)
@@ -35052,6 +35037,7 @@
 		´toggle_off_select_vault3´ (delay 0)
 		´script_empty_hall´ (delay 0)
 ´instance_output_event_explosives_grabbed´ ElementInstanceOutputEvent 104928
+	TRIGGER TIMES 1
 	event_list
 		1
 			event explosives_picked
@@ -35064,6 +35050,7 @@
 			instance levels/instances/unique/auc/auc_vault/003
 	on_executed
 		´instance_input_obj_complete_029´ (delay 0)
+		´counter_explosive_placable´ (delay 0)
 ´trigger_area_roof_zipline´ ElementAreaTrigger 101203
 	DISABLED
 	TRIGGER TIMES 1
@@ -37526,6 +37513,7 @@
 		7 ´so_guard_roof_008´
 		8 ´so_guard_roof_009´
 		9 ´so_guard_roof_001´
+		10 ´gage_point_038´
 	set_trigger_times -1
 	toggle off
 ´toggle_so_roof_right´ ElementToggle 102881
@@ -37539,6 +37527,7 @@
 		7 ´so_guard_roof_014´
 		8 ´so_guard_roof_015´
 		9 ´so_guard_roof_016´
+		10 ´gage_point_044´
 	set_trigger_times -1
 	toggle off
 ´group_guard_luxury´ ElementSpecialObjectiveGroup 102882
@@ -41539,13 +41528,13 @@
 		24
 			id 24
 			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/046 (-2141, 2681, 1000)
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/046 (-2141, 2656, 1000)
 			notify_unit_sequence light_off
 			time 0
 		25
 			id 25
 			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/045 (-2141, 1931, 1000)
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/045 (-2141, 1956, 1000)
 			notify_unit_sequence light_off
 			time 0
 		26
@@ -41575,17 +41564,11 @@
 		30
 			id 30
 			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/025 (-5537, 2191, 72)
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/020 (-6488, 5048, 113.805)
 			notify_unit_sequence light_off
 			time 0
 		31
 			id 31
-			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/020 (-6488, 5048, 113.805)
-			notify_unit_sequence light_off
-			time 0
-		32
-			id 32
 			name run_sequence
 			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/019 (-6491, 6180, 113.805)
 			notify_unit_sequence light_off
@@ -41731,13 +41714,13 @@
 		23
 			id 23
 			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/046 (-2141, 2681, 1000)
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/046 (-2141, 2656, 1000)
 			notify_unit_sequence light_on
 			time 0
 		24
 			id 24
 			name run_sequence
-			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/045 (-2141, 1931, 1000)
+			notify_unit_id units/pd2_mcmansion/props/mcm_prop_garden_lamp_wall/mcm_prop_garden_lamp_wall/045 (-2141, 1956, 1000)
 			notify_unit_sequence light_on
 			time 0
 		25
@@ -41788,7 +41771,7 @@
 		16 core/units/light_omni/light_omni/light_omni_lantern_016 (-4415, 4209, 529)
 		17 core/units/light_omni/light_omni/light_omni_lantern_017 (-2440, 5259, 204)
 		18 core/units/light_omni/light_omni/light_omni_lantern_018 (-2340, 2659, 1054)
-		19 core/units/light_omni/light_omni/light_omni_lantern_019 (-2340, 1934, 1054)
+		19 core/units/light_omni/light_omni/light_omni_lantern_019 (-2340, 1959, 1054)
 		20 core/units/light_omni/light_omni/light_omni_lantern_020 (-3765, 2284, 1054)
 		21 core/units/light_omni/light_omni/light_omni_lantern_021 (-3204, 2284, 1054)
 		22 core/units/light_omni/light_omni/light_omni_lantern_022 (-3765, 3009, 1054)
@@ -41823,7 +41806,7 @@
 		16 core/units/light_omni/light_omni/light_omni_lantern_016 (-4415, 4209, 529)
 		17 core/units/light_omni/light_omni/light_omni_lantern_017 (-2440, 5259, 204)
 		18 core/units/light_omni/light_omni/light_omni_lantern_018 (-2340, 2659, 1054)
-		19 core/units/light_omni/light_omni/light_omni_lantern_019 (-2340, 1934, 1054)
+		19 core/units/light_omni/light_omni/light_omni_lantern_019 (-2340, 1959, 1054)
 		20 core/units/light_omni/light_omni/light_omni_lantern_020 (-3765, 2284, 1054)
 		21 core/units/light_omni/light_omni/light_omni_lantern_021 (-3204, 2284, 1054)
 		22 core/units/light_omni/light_omni/light_omni_lantern_022 (-3765, 3009, 1054)
@@ -44062,9 +44045,9 @@
 	path_style destination
 	patrol_path none
 	pose stand
-	position -2458, 484, 0.000976562
+	position -2373, 461, 0.000976562
 	repeatable False
-	rotation 0, 0, 0.707107, -0.707107
+	rotation 0, 0, 0.622515, -0.782608
 	scan True
 	search_distance 0
 	search_position -3151 1700 0,001
@@ -44198,9 +44181,9 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position -2108, 1689, 0.000976562
+	position -2746, 1819, 0.000976562
 	repeatable False
-	rotation 0, 0, 0.707107, -0.707107
+	rotation 0, 0, 0.939693, -0.34202
 	scan True
 	search_distance 0
 	search_position -3151 1700 0,001
@@ -44232,9 +44215,9 @@
 	path_style destination
 	patrol_path none
 	pose none
-	position -2158, 1669, 0.000976562
+	position -2756, 1619, 0.000976562
 	repeatable False
-	rotation 0, 0, 0.707107, -0.707107
+	rotation 0, 0, 0.48481, -0.87462
 	scan True
 	search_distance 0
 	search_position -3151 1700 0,001
@@ -47069,7 +47052,7 @@
 	on_executed
 		´toggle_scan_forcefail_off´ (delay 0)
 ´logic_chance_it´ ElementLogicChance 100353
-	chance 25
+	chance 40
 	position -75, -17568, 2477.5
 	rotation 0, 0, 0, -1
 ´logic_chance_trigger_it_failure´ ElementLogicChanceTrigger 100354
@@ -47093,7 +47076,7 @@
 ´logic_chance_operator_it_add_25´ ElementLogicChanceOperator 100361
 	elements
  		1 ´logic_chance_it´
-	chance 25
+	chance 20
 	operation add_chance
 	position -71, -17463, 2477.5
 	rotation 0, 0, 0, -1
@@ -50806,11 +50789,12 @@
 	toggle on
 ´debug_code_entered´ ElementDebug 101166
 	as_subtitle False
-	debug_string code entered
+	debug_string code entered right - stealth
 	show_instigator False
 ´toggle_off_vault_objectives_loud´ ElementToggle 100976
 	elements
  		1 ´instance_input_objective_vault_not_opened´
+		2 ´counter_explosive_placable´
 	set_trigger_times -1
 	toggle off
 ´instance_input_objective_vault_not_opened´ ElementInstanceInputEvent 100977
@@ -54193,6 +54177,7 @@
 		´dialogue_auc_050´ (delay 3) DISABLED
 		´instance_input_obj_complete_026´ (delay 5)
 		´toggle_off_xp_all´ (delay 0)
+		´toggle_off_do_scanner´ (delay 0)
 ´sequence_scanner_hotdrop´ ElementUnitSequence 100485
 	position -4633, -7193, 2502.5
 	rotation 0, 0, 0, -1
@@ -54470,7 +54455,7 @@
 	unit_spawn_settled False
 	unit_spawn_velocity 0
 ´spawn_loot_auction_fashion_o_004´ ElementSpawnUnit 102709
-	position -787, 4115, 517.379
+	position -788, 4111, 517.379
 	rotation 8.9616E-09, -2.8423E-08, 0.866026, 0.5
 	unit_name units/pd2_dlc_auc/pickups/pku_auc_auction_items/pku_auc_item_o
 	unit_spawn_amount 1
@@ -67278,14 +67263,6 @@
 	as_subtitle True
 	debug_string sniper spawned
 	show_instigator False
-´dev_interaction_truck´ ElementInteraction 107397
-	host_only False
-	override_timer -1
-	position -825, 5100, -100
-	rotation 0, 0, 0, -1
-	tweak_data_id push_button
-	on_executed
-		´instance_output_obj_started_045´ (delay 0) (alternative interacted)
 ´harasser_dead_right_03´ ElementEnemyDummyTrigger 106112
 	elements
  		1 ´harasser_right_3_A´ DISABLED
@@ -70393,8 +70370,11 @@
 	DISABLED
 	on_executed
 		´toggle_off_do_gas´ (delay 0)
+		´toggle_off_do_scanner´ (delay 0)
 		´instance_input_obj_sucess_scan´ (delay 0) DISABLED
 		´instance_input_obj_complete_026´ (delay 5)
+		´link_safety_loud_mid_scan´ (delay 5) DISABLED
+		´toggle_off_failsafe_instance´ (delay 0)
 ´toggle_off_do_gas´ ElementToggle 100269
 	TRIGGER TIMES 1
 	elements
@@ -71542,7 +71522,7 @@
 ´link_achivement_all_loot_ovk´ MissionScriptElement 109605
 	DISABLED
 	on_executed
-		´award_achievement_all_loot´ (delay 0) DISABLED
+		´award_achievement_all_loot´ (delay 0)
 ´teammate_comment_sucess´ ElementTeammateComment 109607
 	TRIGGER TIMES 1
 	close_to_element True
@@ -71591,11 +71571,10 @@
 ´link_achivement_no_interuption´ MissionScriptElement 106827
 	DISABLED
 	on_executed
-		´award_achievement_bfd_junior´ (delay 0) DISABLED
+		´award_achievement_bfd_junior´ (delay 0)
 ´toggle_off_failed_bfd_junior´ ElementToggle 106828
 	elements
  		1 ´link_achivement_no_interuption´ DISABLED
-		2 ´award_achievement_bfd_junior´ DISABLED
 	set_trigger_times -1
 	toggle off
 	on_executed
@@ -71605,13 +71584,11 @@
 	debug_string failed bfd junior
 	show_instigator False
 ´award_achievement_bfd_junior´ ElementAwardAchievment 106830
-	DISABLED
 	achievment auc_13
 	award_instigator False
 	position -2450, -11125, 2502.5
 	rotation 0, 0, 0, -1
 ´award_achievement_all_loot´ ElementAwardAchievment 106831
-	DISABLED
 	achievment auc_9
 	award_instigator False
 	position -2250, -11125, 2502.5
@@ -74122,11 +74099,17 @@
 	on_executed
 		´job_value_auc_11_dominated_fail´ (delay 0)
 		´debug_tied_guard´ (delay 0)
+		´toggle_off_dominated_late´ (delay 0)
+		´toggle_on_dominated_late´ (delay 0)
 ´job_value_auc_11_dominated_start´ ElementJobValue 109727
 	key auc_11_dominated
+	save False
+	sync True
 	value 1
 ´job_value_auc_11_dominated_fail´ ElementJobValue 109728
 	key auc_11_dominated
+	save False
+	sync True
 	value 0
 ´debug_tied_guard´ ElementDebug 109729
 	as_subtitle True
@@ -75829,9 +75812,13 @@
 		7 units/world/props/office/binders/binder_pile/binder_pile_004_vr2 (-153.88, 2643.69, 882.001)
 ´job_value_auc_11_ecm_start´ ElementJobValue 105898
 	key auc_10_ecm
+	save False
+	sync True
 	value 1
 ´job_value_auc_11_ecm_fail´ ElementJobValue 105899
 	key auc_10_ecm
+	save False
+	sync True
 	value 0
 ´debug_ecm´ ElementDebug 105900
 	as_subtitle True
@@ -75845,6 +75832,8 @@
 	on_executed
 		´job_value_auc_11_ecm_fail´ (delay 0)
 		´debug_ecm´ (delay 0)
+		´toggle_off_ecm_late´ (delay 0)
+		´toggle_on_ecm_late´ (delay 0)
 ´point_debug_007´ ElementDebug 107198
 	as_subtitle True
 	debug_string loot_accepted
@@ -75856,8 +75845,8 @@
 			event objective_disable
 			instance levels/instances/shared/obj_link/042
 	on_executed
-		´logic_toggle_001´ (delay 0)
-´logic_toggle_001´ ElementToggle 107199
+		´toggle_off_vault_again´ (delay 0)
+´toggle_off_vault_again´ ElementToggle 107199
 	TRIGGER TIMES 1
 	elements
  		1 ´instance_input_objective_on_failsafe´ DISABLED
@@ -75868,3 +75857,176 @@
 	rotation 0, 0, 0, -1
 	unit_ids
 		1 units/dev_tools/level_tools/dev_bag_collision/dev_bag_collision_1x3m/dev_bag_collision_1x3m_019_outside_gate (-4822.8, 2184.56, -197)
+´disable_int_keypad´ ElementInstanceInputEvent 101031
+	event_list
+		1
+			event disable_interaction
+			instance levels/instances/unique/auc/auc_keypad/001
+		2
+			event disable_interaction
+			instance levels/instances/unique/auc/auc_keypad/002
+´point_debug_008´ ElementDebug 103707
+	as_subtitle False
+	debug_string code entered - loud
+	show_instigator False
+´instances_alarm_keypad´ ElementInstanceOutputEvent 106738
+	TRIGGER TIMES 1
+	event_list
+		1
+			event code_wrong
+			instance levels/instances/unique/auc/auc_keypad/001
+		2
+			event code_wrong
+			instance levels/instances/unique/auc/auc_keypad/002
+	on_executed
+		´Alarm_generic´ (delay 0)
+		´debug_alarm_keypad´ (delay 0)
+´debug_alarm_keypad´ ElementDebug 106739
+	as_subtitle False
+	debug_string ALARM KEYPAD
+	show_instigator False
+´event_validated´ ElementInstanceInputEvent 107264
+	event_list
+		1
+			event validated
+			instance levels/instances/unique/auc/auc_keypad/001
+		2
+			event validated
+			instance levels/instances/unique/auc/auc_keypad/002
+		3
+			event remove_wp
+			instance levels/instances/unique/auc/auc_keypad/002
+´instance_input_objective_off_scanner´ ElementInstanceInputEvent 100086
+	event_list
+		1
+			event objective_disable
+			instance levels/instances/shared/obj_link/026
+´toggle_off_do_scanner´ ElementToggle 100907
+	TRIGGER TIMES 1
+	elements
+ 		1 ´instance_input_objective_off_scanner´
+		2 ´scanner_off´
+	set_trigger_times -1
+	toggle off
+´play_sound_elevator_low´ ElementPlaySound 102522
+	append_prefix False
+	interrupt True
+	position -1775, 2300, 550.001
+	rotation 0, 0, 0, -1
+	sound_event dah_elevator_ding
+	use_instigator False
+	use_play_func False
+´play_sound_elevator_high´ ElementPlaySound 106740
+	append_prefix False
+	interrupt True
+	position -1775, 2300, 925.001
+	rotation 0, 0, 0, -1
+	sound_event dah_elevator_ding
+	use_instigator False
+	use_play_func False
+´sequence_trigger_door_low´ ElementUnitSequenceTrigger 106741
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_open
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_int/auc_int_elevator_door/auc_int_elevator_door_002_firstfloor (-1779, 2224, 400.001)
+	on_executed
+		´play_sound_elevator_low´ (delay 0)
+´sequence_trigger_door_high´ ElementUnitSequenceTrigger 107248
+	TRIGGER TIMES 1
+	sequence_list
+		1
+			guis_id 1
+			sequence anim_open
+			notify_unit_id units/pd2_dlc_auc/architecture/auc_int/auc_int_elevator_door/003 (-1779, 2224, 800.001)
+	on_executed
+		´play_sound_elevator_high´ (delay 0)
+´link_safety_loud_mid_scan´ MissionScriptElement 107250
+	DISABLED
+	TRIGGER TIMES 1
+	on_executed
+		´instance_output_obj_find_new_chain_6´ (delay 0)
+		´point_debug_009´ (delay 0)
+´point_debug_009´ ElementDebug 107261
+	as_subtitle True
+	debug_string looked_for_new
+	show_instigator False
+´toggle_off_failsafe_instance´ ElementToggle 107262
+	elements
+ 		1 ´instance_input_objective_on_failsafe´ DISABLED
+	set_trigger_times -1
+	toggle off
+´gage_point_044´ MissionScriptElement 107263
+	position -3, 223, 870
+	rotation 0, 0, 0.894934, 0.446198
+´job_value_auc_11_dominated_late´ ElementJobValue 107265
+	key auc_11_dominated
+	save False
+	sync True
+	value 1
+´job_value_auc_11_ecm_late´ ElementJobValue 107266
+	key auc_10_ecm
+	save False
+	sync True
+	value 1
+´toggle_off_ecm_late´ ElementToggle 107397
+	elements
+ 		1 ´job_value_auc_11_ecm_late´
+	set_trigger_times -1
+	toggle off
+´toggle_off_dominated_late´ ElementToggle 107472
+	elements
+ 		1 ´job_value_auc_11_dominated_late´
+	set_trigger_times -1
+	toggle off
+´toggle_on_ecm_late´ ElementToggle 107611
+	elements
+ 		1 ´job_value_auc_11_ecm_success´ DISABLED
+	set_trigger_times -1
+	toggle on
+´toggle_on_dominated_late´ ElementToggle 107686
+	elements
+ 		1 ´job_value_auc_11_dominated_success´ DISABLED
+	set_trigger_times -1
+	toggle on
+´job_value_auc_11_ecm_success´ ElementJobValue 107747
+	DISABLED
+	key auc_10_ecm
+	save False
+	sync True
+	value 0
+´job_value_auc_11_dominated_success´ ElementJobValue 107808
+	DISABLED
+	key auc_11_dominated
+	save False
+	sync True
+	value 0
+´counter_explosive_placable´ ElementCounter 107809
+	counter_target 2
+	on_executed
+		´instance_input_blowing_tops_sooner´ (delay 0)
+´instance_input_blowing_tops_sooner´ ElementInstanceInputEvent 107811
+	TRIGGER TIMES 1
+	event_list
+		1
+			event Turn_on_blowing_sooner
+			instance levels/instances/unique/auc/auc_vault_ceiling/003
+		2
+			event Turn_on_blowing_sooner
+			instance levels/instances/unique/auc/auc_vault_ceiling/001
+		3
+			event Turn_on_blowing_sooner
+			instance levels/instances/unique/auc/auc_vault_ceiling/002
+´instance_input_marker´ ElementInstanceInputEvent 107812
+	TRIGGER TIMES 1
+	event_list
+		1
+			event show_marker
+			instance levels/instances/unique/auc/auc_vault_ceiling/003
+		2
+			event show_marker
+			instance levels/instances/unique/auc/auc_vault_ceiling/001
+		3
+			event show_marker
+			instance levels/instances/unique/auc/auc_vault_ceiling/002

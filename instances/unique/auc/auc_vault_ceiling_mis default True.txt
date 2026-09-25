@@ -105,8 +105,8 @@
 		´toggle_accept_bag´ (delay 5)
 		´debug_accepting_bags´ (delay 5)
 		´output_Exploded´ (delay 5)
-		´show_marker_cutter´ (delay 5)
 		´operator_c4´ (delay 0)
+		´toggle_off_c4_wp´ (delay 0) DISABLED
 ´C4_placed´ ElementUnitSequenceTrigger 100015
 	sequence_list
 		1
@@ -124,7 +124,8 @@
 	on_executed
 		´counter_all_c4´ (delay 0)
 ´show_marker_cutter´ ElementUnitSequence 100016
-	position 700, -1900, 0
+	DISABLED
+	position 700, -3150, 0
 	rotation 0, 0, 8.74228E-08, -1
 	trigger_list
 		1
@@ -135,6 +136,7 @@
 			time 0
 ´turn_on_c4´ ElementUnitSequence 100017
 	DISABLED
+	TRIGGER TIMES 1
 	position 700, -2900, 0
 	rotation 0, 0, 0, -1
 	trigger_list
@@ -228,6 +230,10 @@
 		10 ´waypoint_fix´ DISABLED
 		11 ´Turn_on_blowing´ DISABLED
 		12 ´broken´ DISABLED
+		13 ´Turn_on_blowing_sooner´ DISABLED
+		14 ´show_marker´ DISABLED
+		15 ´show_marker_cutter´ DISABLED
+		16 ´toggle_off_c4_wp´ DISABLED
 	set_trigger_times -1
 	toggle on
 ´Turn_on_blowing´ ElementInstanceInput 100025
@@ -740,3 +746,19 @@
 	rumble_sustain 0,3
 	use_camera_shake True
 	use_rumble True
+´Turn_on_blowing_sooner´ ElementInstanceInput 100070
+	DISABLED
+	event Turn_on_blowing_sooner
+	on_executed
+		´turn_on_c4´ (delay 0) DISABLED
+´toggle_off_c4_wp´ ElementToggle 100071
+	DISABLED
+	elements
+ 		1 ´waypoint_c4´
+	set_trigger_times -1
+	toggle off
+´show_marker´ ElementInstanceInput 100072
+	DISABLED
+	event show_marker
+	on_executed
+		´show_marker_cutter´ (delay 0) DISABLED
